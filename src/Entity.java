@@ -1,0 +1,53 @@
+import javafx.scene.control.TextField;
+
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+/**
+ * Created by hokan on 02.10.15.
+ */
+public class Entity extends AbstractEntity {
+
+    private byte[] value;
+    private TextField field;
+    private int dataLength;
+
+    public Entity(TextField field, int dataLength) {
+        this.field = field;
+        this.dataLength = dataLength;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void loadDataFromFile(RandomAccessFile file) {
+        byte[] data = getValueFromFile(file, dataLength);
+        String fieldValue = createFieldValue();
+        field.setText(fieldValue);
+        value = data;
+    }
+
+    private String createFieldValue() {
+        long temp = 0;
+        for (int i = 0; i < value.length; i++) {
+            temp += value[i] << (i * 0xFF);
+        }
+
+        return String.valueOf(temp);
+    }
+
+    private byte[] getValueFromFile(RandomAccessFile file, int length) {
+        long offset = getFullFileOffset();
+
+        byte[] data = new byte[length];
+        try {
+            file.seek(offset);
+            file.read(data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return data;
+    }
+}
