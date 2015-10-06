@@ -1,18 +1,14 @@
-import javafx.scene.control.TextField;
-
+import javax.swing.*;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-/**
- * Created by hokan on 02.10.15.
- */
 public class Entity extends AbstractEntity {
 
     private byte[] value;
-    private TextField field;
+    private JTextField field;
     private int dataLength;
 
-    public Entity(TextField field, int dataLength) {
+    public Entity(JTextField field, int dataLength) {
         this.field = field;
         this.dataLength = dataLength;
     }

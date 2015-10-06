@@ -1,6 +1,3 @@
-/**
- * Created by hokan on 02.10.15.
- */
 public class Skill {
     SkillType type;
     int abilityLevel;

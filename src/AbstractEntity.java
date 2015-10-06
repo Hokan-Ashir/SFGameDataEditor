@@ -1,9 +1,6 @@
 import java.io.RandomAccessFile;
 import java.util.List;
 
-/**
- * Created by hokan on 02.10.15.
- */
 public abstract class AbstractEntity implements IDataManipulator {
 
     private AbstractEntity parent;

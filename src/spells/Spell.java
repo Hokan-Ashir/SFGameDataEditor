@@ -1,8 +1,5 @@
 package spells;
 
-/**
- * Created by hokan on 02.10.15.
- */
 public class Spell {
 
     private short number;
