@@ -1,7 +1,10 @@
 package views;
 
+import javafx.util.Pair;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class SkillView {
     private JPanel mainPanel;
@@ -9,8 +12,13 @@ public class SkillView {
     private JLabel levelLabel;
     private JPanel skillRequrementsPanel;
 
-    SkillRequrementView lightCombatArtsView;
-    SkillRequrementView heavyCombatArtsView;
+    SkillRequirementView lightCombatArtsView = new SkillRequirementView();
+    SkillRequirementView heavyCombatArtsView = new SkillRequirementView();
+    SkillRequirementView archeryView = new SkillRequirementView();
+    SkillRequirementView blackMagicView = new SkillRequirementView();
+    SkillRequirementView whiteMagicView = new SkillRequirementView();
+    SkillRequirementView mindMagicView = new SkillRequirementView();
+    SkillRequirementView elementalMagicView = new SkillRequirementView();
 
     public JPanel getMainPanel() {
         return mainPanel;
@@ -21,47 +29,26 @@ public class SkillView {
     }
 
     private void generateUi() {
-        mainPanel = new JPanel();
-        mainPanel.setLayout(new GridBagLayout());
-        levelComboBox = new JComboBox();
-        final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
-        for (int i = 1; i <= 20; i++) {
-            defaultComboBoxModel1.addElement(String.valueOf(i));
+        java.util.List<Pair<SkillRequirementView, String>> viewList = new ArrayList<Pair<SkillRequirementView, String>>();
+        viewList.add(new Pair<SkillRequirementView, String>(lightCombatArtsView, "Light combat arts:"));
+        viewList.add(new Pair<SkillRequirementView, String>(heavyCombatArtsView, "Heavy combat arts:"));
+        viewList.add(new Pair<SkillRequirementView, String>(archeryView, "Archery:"));
+        viewList.add(new Pair<SkillRequirementView, String>(blackMagicView, "Black magic:"));
+        viewList.add(new Pair<SkillRequirementView, String>(whiteMagicView, "White magic:"));
+        viewList.add(new Pair<SkillRequirementView, String>(mindMagicView, "Mind magic:"));
+        viewList.add(new Pair<SkillRequirementView, String>(elementalMagicView, "Elemental magic:"));
+
+        int gridy = 0;
+        for (Pair<SkillRequirementView, String> skillRequirementViewStringPair : viewList) {
+            skillRequirementViewStringPair.getKey().setSkillName(skillRequirementViewStringPair.getValue());
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = gridy;
+            gbc.weightx = 1.0;
+            gbc.weighty = 1.0;
+            skillRequrementsPanel.add(skillRequirementViewStringPair.getKey().getMainPanel(), gbc);
+
+            gridy++;
         }
-
-        levelComboBox.setModel(defaultComboBoxModel1);
-        GridBagConstraints gbc;
-        gbc = new GridBagConstraints();
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.weighty = 1.0;
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        mainPanel.add(levelComboBox, gbc);
-        levelLabel = new JLabel();
-        levelLabel.setText("Level:");
-        gbc = new GridBagConstraints();
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
-        mainPanel.add(levelLabel, gbc);
-        skillRequrementsPanel = new JPanel();
-        skillRequrementsPanel.setLayout(new GridBagLayout());
-        gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.fill = GridBagConstraints.BOTH;
-        mainPanel.add(skillRequrementsPanel, gbc);
-
-        /*lightCombatArtsView = new SkillRequrementView();
-        lightCombatArtsView.setSkillName("Light combat arts:");
-        mainPanel.add(lightCombatArtsView.getMainPanel(), gbc, 0);
-
-        heavyCombatArtsView = new SkillRequrementView();
-        heavyCombatArtsView.setSkillName("Heavy combat arts:");
-        mainPanel.add(heavyCombatArtsView.getMainPanel(), gbc, 1);*/
     }
-
 }

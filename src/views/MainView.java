@@ -22,4 +22,5 @@ public class MainView {
         mainView.modulesPanel.add(skillView.getMainPanel());
         mainView.modulesPanel.revalidate();
     }
+
 }

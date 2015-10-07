@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="views.SkillRequrementView">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="views.SkillRequirementView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="471" height="409"/>
+      <xy x="20" y="20" width="581" height="409"/>
     </constraints>
-    <properties/>
+    <properties>
+      <minimumSize width="581" height="85"/>
+    </properties>
     <border type="none"/>
     <children>
       <grid id="e04b7" binding="layoutPanel" layout-manager="GridBagLayout">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="1.0"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
         </constraints>
         <properties>
           <autoscrolls value="false"/>
-          <minimumSize width="440" height="38"/>
+          <minimumSize width="571" height="75"/>
           <opaque value="true"/>
         </properties>
         <border type="none"/>
@@ -22,23 +24,24 @@
           <component id="a713d" class="javax.swing.JLabel" binding="stregthLabel">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="0.0" weighty="1.0" ipadx="20"/>
+              <gridbag weightx="0.0" weighty="0.0" ipadx="20"/>
             </constraints>
             <properties>
               <labelFor value="6d595"/>
               <text value="Strength:"/>
             </properties>
           </component>
-          <component id="6d595" class="javax.swing.JTextField" binding="strengthTextField">
+          <component id="6d595" class="javax.swing.JTextField" binding="strengthField">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <minimum-size width="35" height="-1"/>
                 <preferred-size width="35" height="-1"/>
                 <maximum-size width="35" height="-1"/>
               </grid>
-              <gridbag weightx="0.0" weighty="1.0"/>
+              <gridbag weightx="0.0" weighty="1.0" ipadx="10"/>
             </constraints>
             <properties>
+              <minimumSize width="35" height="23"/>
               <opaque value="true"/>
               <preferredSize width="35" height="23"/>
               <text value=""/>
@@ -60,16 +63,17 @@
                 <preferred-size width="35" height="-1"/>
                 <maximum-size width="35" height="-1"/>
               </grid>
-              <gridbag weightx="0.0" weighty="1.0"/>
+              <gridbag weightx="0.0" weighty="1.0" ipadx="10"/>
             </constraints>
             <properties>
+              <minimumSize width="35" height="23"/>
               <preferredSize width="35" height="23"/>
             </properties>
           </component>
           <component id="56f93" class="javax.swing.JLabel" binding="agilityLabel">
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="1.0" weighty="1.0" ipadx="20"/>
+              <gridbag weightx="0.0" weighty="1.0" ipadx="20"/>
             </constraints>
             <properties>
               <text value="Agility:"/>
@@ -82,9 +86,10 @@
                 <preferred-size width="35" height="-1"/>
                 <maximum-size width="35" height="-1"/>
               </grid>
-              <gridbag weightx="1.0" weighty="1.0"/>
+              <gridbag weightx="1.0" weighty="1.0" ipadx="10"/>
             </constraints>
             <properties>
+              <minimumSize width="35" height="23"/>
               <preferredSize width="35" height="23"/>
             </properties>
           </component>
@@ -104,9 +109,10 @@
                 <preferred-size width="35" height="-1"/>
                 <maximum-size width="35" height="-1"/>
               </grid>
-              <gridbag weightx="0.0" weighty="1.0"/>
+              <gridbag weightx="0.0" weighty="1.0" ipadx="10"/>
             </constraints>
             <properties>
+              <minimumSize width="35" height="23"/>
               <preferredSize width="35" height="23"/>
               <text value=""/>
             </properties>
@@ -127,9 +133,10 @@
                 <preferred-size width="35" height="-1"/>
                 <maximum-size width="35" height="-1"/>
               </grid>
-              <gridbag weightx="0.0" weighty="1.0"/>
+              <gridbag weightx="0.0" weighty="1.0" ipadx="10"/>
             </constraints>
             <properties>
+              <minimumSize width="35" height="23"/>
               <preferredSize width="35" height="23"/>
             </properties>
           </component>
@@ -149,9 +156,10 @@
                 <preferred-size width="35" height="-1"/>
                 <maximum-size width="35" height="-1"/>
               </grid>
-              <gridbag weightx="0.0" weighty="1.0"/>
+              <gridbag weightx="0.0" weighty="1.0" ipadx="10"/>
             </constraints>
             <properties>
+              <minimumSize width="35" height="23"/>
               <preferredSize width="35" height="23"/>
               <text value=""/>
             </properties>
@@ -172,17 +180,18 @@
                 <preferred-size width="35" height="-1"/>
                 <maximum-size width="35" height="-1"/>
               </grid>
-              <gridbag weightx="0.0" weighty="0.0"/>
+              <gridbag weightx="0.0" weighty="0.0" ipadx="10"/>
             </constraints>
             <properties>
+              <minimumSize width="35" height="23"/>
               <preferredSize width="35" height="23"/>
               <text value=""/>
             </properties>
           </component>
           <component id="bf66b" class="javax.swing.JLabel" binding="skillNameLabel">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-              <gridbag weightx="0.0" weighty="0.0"/>
+              <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0" ipadx="140"/>
             </constraints>
             <properties>
               <text value="SkillName:"/>
@@ -190,7 +199,7 @@
           </component>
           <component id="7754e" class="javax.swing.JSeparator" binding="skillNameSeparator">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="7" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
               <gridbag top="10" left="0" bottom="10" right="0" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties/>
