@@ -1,4 +1,4 @@
-package views;
+package views.skills;
 
 import javax.swing.*;
 

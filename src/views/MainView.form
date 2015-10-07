@@ -52,10 +52,18 @@
         <properties>
           <model>
             <item value="Skills"/>
-            <item value="Black magic"/>
-            <item value="White magic"/>
-            <item value="Mind magic"/>
-            <item value="Elemental magic"/>
+            <item value="Black magic : Death"/>
+            <item value="Black magic : Necromancy"/>
+            <item value="Black magic : Curses"/>
+            <item value="White magic : Life"/>
+            <item value="White magic : Nature"/>
+            <item value="White magic : Boons"/>
+            <item value="Mind magic : Offensive"/>
+            <item value="Mind magic : Enchantment"/>
+            <item value="Mind magic : Defensive"/>
+            <item value="Elemental magic : Fire"/>
+            <item value="Elemental magic : Ice"/>
+            <item value="Elemental magic : Earth"/>
           </model>
         </properties>
       </component>
