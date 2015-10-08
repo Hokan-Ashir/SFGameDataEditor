@@ -1,8 +1,10 @@
 package views.skills;
 
+import views.IView;
+
 import javax.swing.*;
 
-public class SkillRequirementView {
+public class SkillRequirementView implements IView {
     private JPanel mainPanel;
     private JTextField strengthField;
     private JLabel stregthLabel;
@@ -26,6 +28,10 @@ public class SkillRequirementView {
         skillNameLabel.setText(skillName);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public JPanel getMainPanel() {
         return mainPanel;
     }

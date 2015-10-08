@@ -1,8 +1,10 @@
 package views.spells;
 
+import views.IView;
+
 import javax.swing.*;
 
-public class SpellView {
+public class SpellView implements IView {
     private JPanel mainPanel;
     private JTextField numberField;
     private JLabel numberLabel;
@@ -27,6 +29,10 @@ public class SpellView {
     private JLabel durationLabel;
     private JTextField durationField;
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public JPanel getMainPanel() {
         return mainPanel;
     }

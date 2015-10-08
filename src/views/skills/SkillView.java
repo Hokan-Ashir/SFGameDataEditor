@@ -1,12 +1,13 @@
 package views.skills;
 
 import javafx.util.Pair;
+import views.IView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class SkillView {
+public class SkillView implements IView {
     private JPanel mainPanel;
     private JComboBox levelComboBox;
     private JLabel levelLabel;
@@ -20,6 +21,10 @@ public class SkillView {
     SkillRequirementView mindMagicView = new SkillRequirementView();
     SkillRequirementView elementalMagicView = new SkillRequirementView();
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public JPanel getMainPanel() {
         return mainPanel;
     }
