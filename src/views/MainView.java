@@ -5,6 +5,9 @@ import views.spells.blackmagic.BlackMagicView;
 import views.spells.blackmagic.CursesView;
 import views.spells.blackmagic.DeathMagicView;
 import views.spells.blackmagic.NecromancyView;
+import views.spells.combat.ArcheryArtsMagic;
+import views.spells.combat.HeavyCombatArtsMagic;
+import views.spells.combat.LightCombatArtsMagic;
 import views.spells.elementalmagic.EarthView;
 import views.spells.elementalmagic.ElementalMagicView;
 import views.spells.elementalmagic.FireView;
@@ -33,10 +36,24 @@ public class MainView implements IView {
     private JLabel modulesLabel;
     private JPanel mainPanel;
 
-    private Map<String, Class<? extends IView>> modulesMap = new TreeMap<String, Class<? extends IView>>();
+    private Map<String, Class<? extends IView>> modulesMap = new TreeMap<>();
 
     public MainView() {
+        constructModulesMap();
+        fillModulesNameComboBox();
+    }
+
+    private void fillModulesNameComboBox() {
+        for (String s : modulesMap.keySet()) {
+            modulesComboBox.addItem(s);
+        }
+    }
+
+    private void constructModulesMap() {
         modulesMap.put("Skills", SkillView.class);
+        modulesMap.put("Light Combat Arts", LightCombatArtsMagic.class);
+        modulesMap.put("Heavy Combat Arts", HeavyCombatArtsMagic.class);
+        modulesMap.put("Archery", ArcheryArtsMagic.class);
         modulesMap.put("Black magic", BlackMagicView.class);
         modulesMap.put("Black magic : Death", DeathMagicView.class);
         modulesMap.put("Black magic : Necromancy", NecromancyView.class);

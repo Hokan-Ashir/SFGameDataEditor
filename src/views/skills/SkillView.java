@@ -35,13 +35,13 @@ public class SkillView implements IView {
 
     private void generateUi() {
         java.util.List<Pair<SkillRequirementView, String>> viewList = new ArrayList<Pair<SkillRequirementView, String>>();
-        viewList.add(new Pair<SkillRequirementView, String>(lightCombatArtsView, "Light combat arts:"));
-        viewList.add(new Pair<SkillRequirementView, String>(heavyCombatArtsView, "Heavy combat arts:"));
-        viewList.add(new Pair<SkillRequirementView, String>(archeryView, "Archery:"));
-        viewList.add(new Pair<SkillRequirementView, String>(blackMagicView, "Black magic:"));
-        viewList.add(new Pair<SkillRequirementView, String>(whiteMagicView, "White magic:"));
-        viewList.add(new Pair<SkillRequirementView, String>(mindMagicView, "Mind magic:"));
-        viewList.add(new Pair<SkillRequirementView, String>(elementalMagicView, "Elemental magic:"));
+        viewList.add(new Pair<>(lightCombatArtsView, "Light combat arts:"));
+        viewList.add(new Pair<>(heavyCombatArtsView, "Heavy combat arts:"));
+        viewList.add(new Pair<>(archeryView, "Archery:"));
+        viewList.add(new Pair<>(blackMagicView, "Black magic:"));
+        viewList.add(new Pair<>(whiteMagicView, "White magic:"));
+        viewList.add(new Pair<>(mindMagicView, "Mind magic:"));
+        viewList.add(new Pair<>(elementalMagicView, "Elemental magic:"));
 
         int gridy = 0;
         for (Pair<SkillRequirementView, String> skillRequirementViewStringPair : viewList) {

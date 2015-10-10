@@ -8,8 +8,9 @@ public class Entity extends AbstractEntity {
     private JTextField field;
     private int dataLength;
 
-    public Entity(JTextField field, int dataLength) {
+    public Entity(JTextField field, long offset, int dataLength) {
         this.field = field;
+        setOffsetInFile(offset);
         this.dataLength = dataLength;
     }
 

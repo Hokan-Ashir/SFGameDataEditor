@@ -29,6 +29,10 @@ public abstract class AbstractEntity implements IDataManipulator {
         return offsetInFile;
     }
 
+    protected void setOffsetInFile(long offsetInFile) {
+        this.offsetInFile = offsetInFile;
+    }
+
     protected long getFullFileOffset() {
         long offset = offsetInFile;
         AbstractEntity parent = getParent();

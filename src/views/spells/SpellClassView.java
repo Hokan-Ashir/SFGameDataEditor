@@ -17,7 +17,7 @@ public abstract class SpellClassView implements IView {
     private JComboBox spellNameComboBox;
     private JLabel spellNameLabel;
 
-    java.util.Map<String, SpellView> spellViewMap = new TreeMap<String, SpellView>();
+    java.util.Map<String, SpellView> spellViewMap = new TreeMap<>();
 
     public SpellClassView() {
         generateUI();
@@ -25,11 +25,8 @@ public abstract class SpellClassView implements IView {
 
     private void generateUI() {
         List<String> spellList = createSpellList();
-        fillSpellViewMap(spellList);
-
-        for (String s : spellViewMap.keySet()) {
-            spellNameComboBox.addItem(s);
-        }
+        constructSpellViewMap(spellList);
+        fillSpellNameComboBox();
 
         spellNameComboBox.addItemListener(new ItemListener() {
             @Override
@@ -60,7 +57,13 @@ public abstract class SpellClassView implements IView {
         spellNameComboBox.setSelectedIndex(0);
     }
 
-    private void fillSpellViewMap(List<String> spellList) {
+    private void fillSpellNameComboBox() {
+        for (String s : spellViewMap.keySet()) {
+            spellNameComboBox.addItem(s);
+        }
+    }
+
+    private void constructSpellViewMap(List<String> spellList) {
         for (String s : spellList) {
             spellViewMap.put(s, new SpellView());
         }
