@@ -25,7 +25,9 @@ public class SpellEntity extends Entity {
     @Override
     protected long getOffsetInFile() {
         long offset = super.getOffsetInFile();
-        offset += spellLevel * SPELL_DATA_LENGTH;
+        // subtract 1, cause initial spell offset (see SpellView constructor)
+        // is already contains first spell level offset
+        offset += (spellLevel - 1) * SPELL_DATA_LENGTH;
         return offset;
     }
 }

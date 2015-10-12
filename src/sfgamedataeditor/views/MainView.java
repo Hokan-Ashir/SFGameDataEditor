@@ -25,6 +25,8 @@ import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -38,15 +40,16 @@ public class MainView implements IView {
 
     private Map<String, Class<? extends IView>> modulesMap = new TreeMap<>();
 
+    /**
+     * List of SpellViews (widgets with list of spells) which has no level differentiation
+     * like combat spells (from Archery, Heavy Combat Arts or Light Combat Arts 'magic'-schools)
+     */
+    private List<Class<? extends IView>> nonLevelableSpellViews = new ArrayList<>();
+
     public MainView() {
         constructModulesMap();
         fillModulesNameComboBox();
-    }
-
-    private void fillModulesNameComboBox() {
-        for (String s : modulesMap.keySet()) {
-            modulesComboBox.addItem(s);
-        }
+        fillNonLevelableSpellViews();
     }
 
     private void constructModulesMap() {
@@ -72,8 +75,20 @@ public class MainView implements IView {
         modulesMap.put("Elemental magic : Earth", EarthView.class);
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("SpellForce GameData.cff editor");
+    private void fillModulesNameComboBox() {
+        for (String s : modulesMap.keySet()) {
+            modulesComboBox.addItem(s);
+        }
+    }
+
+    private void fillNonLevelableSpellViews() {
+        nonLevelableSpellViews.add(ArcheryArtsMagic.class);
+        nonLevelableSpellViews.add(HeavyCombatArtsMagic.class);
+        nonLevelableSpellViews.add(LightCombatArtsMagic.class);
+    }
+
+    public static void showMainView() {
+        JFrame frame = new JFrame("SpellForce GameData.cff Editor : Parameters Editor");
         final MainView mainView = new MainView();
         frame.setContentPane(mainView.getMainPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,6 +107,8 @@ public class MainView implements IView {
                             try {
                                 IView view = stringClassEntry.getValue().getConstructor().newInstance();
                                 mainView.getModulesPanel().add(view.getMainPanel());
+                                mainView.setLevelWidgetsVisibility(view);
+
                             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e1) {
                                 e1.printStackTrace();
                             }
@@ -106,6 +123,22 @@ public class MainView implements IView {
 
         mainView.getModulesComboBox().setSelectedItem(null);
         mainView.getModulesComboBox().setSelectedIndex(0);
+    }
+
+    private void setLevelWidgetsVisibility(IView view) {
+        for (Class<? extends IView> aClass : nonLevelableSpellViews) {
+            SpellClassView spellClassView = (SpellClassView) view;
+            if (view.getClass().equals(aClass)) {
+                spellClassView.getLevelComboBox()
+                        .setVisible(false);
+                spellClassView.getLevelLabel().setVisible(false);
+                break;
+            } else {
+                spellClassView.getLevelComboBox()
+                        .setVisible(true);
+                spellClassView.getLevelLabel().setVisible(true);
+            }
+        }
     }
 
     /**

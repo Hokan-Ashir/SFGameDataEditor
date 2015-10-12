@@ -102,4 +102,12 @@ public abstract class SpellClassView extends AbstractEntity implements IView {
     public JPanel getMainPanel() {
         return mainPanel;
     }
+
+    public JComboBox getLevelComboBox() {
+        return levelComboBox;
+    }
+
+    public JLabel getLevelLabel() {
+        return levelLabel;
+    }
 }
