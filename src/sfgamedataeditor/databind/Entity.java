@@ -6,7 +6,7 @@ import java.io.RandomAccessFile;
 
 public class Entity extends AbstractEntity {
 
-    private byte[] value;
+    private int[] value;
     private JTextField field;
     private int dataLength;
 
@@ -21,28 +21,29 @@ public class Entity extends AbstractEntity {
      */
     @Override
     public void loadDataFromFile(RandomAccessFile file) {
-        byte[] data = getValueFromFile(file, dataLength);
+        value = getValueFromFile(file, dataLength);
         String fieldValue = createFieldValue();
         field.setText(fieldValue);
-        value = data;
     }
 
     private String createFieldValue() {
         long temp = 0;
         for (int i = 0; i < value.length; i++) {
-            temp += value[i] << (i * 0xFF);
+            temp += value[i] << ((value.length - 1 - i) * 8);
         }
 
         return String.valueOf(temp);
     }
 
-    private byte[] getValueFromFile(RandomAccessFile file, int length) {
+    private int[] getValueFromFile(RandomAccessFile file, int length) {
         long offset = getFullFileOffset();
 
-        byte[] data = new byte[length];
+        int[] data = new int[length];
         try {
             file.seek(offset);
-            file.read(data);
+            for (int i = data.length - 1; i > -1; --i) {
+                data[i] = file.readUnsignedByte();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

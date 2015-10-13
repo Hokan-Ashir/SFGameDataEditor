@@ -14,7 +14,7 @@ public class ArcheryArtsMagic extends SpellClassView {
     @Override
     protected List<Pair<String, Long>> createSpellList() {
         return new ArrayList<Pair<String, Long>>() {{
-            add(new Pair<>("Hit The Target", 0l));
+            add(new Pair<>("Hit The Target", 116084l));
             add(new Pair<>("Blessing", 0l));
             add(new Pair<>("Steel Skin", 0l));
             add(new Pair<>("Volley", 0l));

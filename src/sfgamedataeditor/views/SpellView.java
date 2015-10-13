@@ -47,12 +47,16 @@ public class SpellView extends AbstractEntity implements IView {
             add(new EntityTuple(requirementClassField, 4, 1));
             add(new EntityTuple(requirementSubClassField, 5, 1));
             add(new EntityTuple(requirementLevelField, 6, 1));
-            add(new EntityTuple(manaUsageField, 7, 2));
-            add(new EntityTuple(castTimeField, 9, 4));
-            add(new EntityTuple(cooldownField, 13, 4));
-            add(new EntityTuple(maxRangeField, 17, 2));
-            add(new EntityTuple(castTypeField, 19, 2));
-            add(new EntityTuple(durationField, 21, 4));
+            // TODO add possible spell skill requirements (9 bytes offset)
+            add(new EntityTuple(manaUsageField, 16, 2));
+            add(new EntityTuple(castTimeField, 18, 4));
+            add(new EntityTuple(cooldownField, 22, 4));
+            // TODO add possible spell min range parameter (2 bytes offset)
+            add(new EntityTuple(maxRangeField, 28, 2));
+            add(new EntityTuple(castTypeField, 30, 2));
+            add(new EntityTuple(durationField, 32, 4));
+            // TODO add spell additional parameters (number of targets for wave-like spells,
+            // spell-child effects for auras and frost/fire shields)
         }};
 
         for (EntityTuple entityTuple : entityTuples) {
@@ -80,11 +84,6 @@ public class SpellView extends AbstractEntity implements IView {
      */
     @Override
     public void loadDataFromFile(RandomAccessFile file) {
-        // TODO remove this as soon as user have ability to select original and modification files
-        if (file == null) {
-            return;
-        }
-
         for (SpellEntity entity : entityList) {
             entity.setSpellLevel(spellLevel);
             entity.loadDataFromFile(file);
