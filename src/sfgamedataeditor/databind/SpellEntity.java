@@ -2,7 +2,7 @@ package sfgamedataeditor.databind;
 
 import javax.swing.*;
 
-public class SpellEntity extends Entity {
+public abstract class SpellEntity<T extends JComponent> extends Entity<T> {
 
     /**
      * Length of typical spell data (in bytes)
@@ -11,8 +11,8 @@ public class SpellEntity extends Entity {
 
     private int spellLevel;
 
-    public SpellEntity(JTextField field, long offsetInBytes, int dataLengthInBytes) {
-        super(field, offsetInBytes, dataLengthInBytes);
+    public SpellEntity(T component, long offsetInBytes, int dataLengthInBytes) {
+        super(component, offsetInBytes, dataLengthInBytes);
     }
 
     public void setSpellLevel(int spellLevel) {

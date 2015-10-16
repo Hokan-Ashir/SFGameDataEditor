@@ -35,28 +35,30 @@ public abstract class SpellClassView extends AbstractEntity implements IView {
         spellNameComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    spellsPanel.removeAll();
-
-                    Object selectedItem = e.getItem();
-                    currentlySelectedSpellView = spellViewMap.get(selectedItem);
-                    if (currentlySelectedSpellView != null) {
-                        GridBagConstraints gbc = new GridBagConstraints();
-                        gbc.gridx = 0;
-                        gbc.gridy = 0;
-                        gbc.weightx = 1.0;
-                        gbc.weighty = 1.0;
-                        gbc.insets = new Insets(5, 5, 5, 5);
-                        gbc.anchor = GridBagConstraints.NORTHWEST;
-                        spellsPanel.add(currentlySelectedSpellView.getMainPanel(), gbc);
-                        String levelItem = (String) levelComboBox.getSelectedItem();
-                        currentlySelectedSpellView.setSpellLevel(Integer.valueOf(levelItem));
-                        SpellClassView.this.loadDataFromFile(FilesContainer.getOriginalFile());
-                    }
-
-                    spellsPanel.revalidate();
-                    spellsPanel.repaint();
+                if (e.getStateChange() != ItemEvent.SELECTED) {
+                    return;
                 }
+
+                spellsPanel.removeAll();
+
+                Object selectedItem = e.getItem();
+                currentlySelectedSpellView = spellViewMap.get(selectedItem);
+                if (currentlySelectedSpellView != null) {
+                    GridBagConstraints gbc = new GridBagConstraints();
+                    gbc.gridx = 0;
+                    gbc.gridy = 0;
+                    gbc.weightx = 1.0;
+                    gbc.weighty = 1.0;
+                    gbc.insets = new Insets(5, 5, 5, 5);
+                    gbc.anchor = GridBagConstraints.NORTHWEST;
+                    spellsPanel.add(currentlySelectedSpellView.getMainPanel(), gbc);
+                    String levelItem = (String) levelComboBox.getSelectedItem();
+                    currentlySelectedSpellView.setSpellLevel(Integer.valueOf(levelItem));
+                    SpellClassView.this.loadDataFromFile(FilesContainer.getOriginalFile());
+                }
+
+                spellsPanel.revalidate();
+                spellsPanel.repaint();
             }
         });
 

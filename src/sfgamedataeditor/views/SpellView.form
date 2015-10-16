@@ -5,8 +5,8 @@
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
     <properties>
-      <minimumSize width="250" height="320"/>
-      <preferredSize width="250" height="320"/>
+      <minimumSize width="380" height="400"/>
+      <preferredSize width="380" height="400"/>
     </properties>
     <border type="none"/>
     <children>
@@ -33,8 +33,9 @@
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <minimumSize width="60" height="23"/>
-          <preferredSize width="60" height="23"/>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
           <text value=""/>
         </properties>
       </component>
@@ -58,8 +59,9 @@
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <minimumSize width="60" height="23"/>
-          <preferredSize width="60" height="23"/>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
         </properties>
       </component>
       <component id="ed357" class="javax.swing.JLabel" binding="requirementClassLabel">
@@ -71,19 +73,6 @@
           <text value="Requirement class:"/>
         </properties>
       </component>
-      <component id="f61cc" class="javax.swing.JTextField" binding="requirementClassField">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <minimumSize width="60" height="23"/>
-          <preferredSize width="60" height="23"/>
-          <text value=""/>
-        </properties>
-      </component>
       <component id="f7588" class="javax.swing.JLabel" binding="requirementSubClassLabel">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -91,18 +80,6 @@
         </constraints>
         <properties>
           <text value="Requirement subclass:"/>
-        </properties>
-      </component>
-      <component id="7b8fe" class="javax.swing.JTextField" binding="requirementSubClassField">
-        <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <minimumSize width="60" height="23"/>
-          <preferredSize width="60" height="23"/>
         </properties>
       </component>
       <component id="7b4c7" class="javax.swing.JLabel" binding="requirementLevelLabel">
@@ -122,13 +99,14 @@
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <minimumSize width="60" height="23"/>
-          <preferredSize width="60" height="23"/>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
         </properties>
       </component>
       <component id="effaf" class="javax.swing.JLabel" binding="manaUsageLabel">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -137,20 +115,21 @@
       </component>
       <component id="c0306" class="javax.swing.JTextField" binding="manaUsageField">
         <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <minimumSize width="60" height="23"/>
-          <preferredSize width="60" height="23"/>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
           <text value=""/>
         </properties>
       </component>
       <component id="60c0a" class="javax.swing.JLabel" binding="castTimeLabel">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -159,20 +138,21 @@
       </component>
       <component id="17912" class="javax.swing.JTextField" binding="castTimeField">
         <constraints>
-          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <minimumSize width="60" height="23"/>
-          <preferredSize width="60" height="23"/>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
           <text value=""/>
         </properties>
       </component>
       <component id="859a8" class="javax.swing.JLabel" binding="cooldownLabel">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -181,19 +161,20 @@
       </component>
       <component id="52348" class="javax.swing.JTextField" binding="cooldownField">
         <constraints>
-          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <minimumSize width="60" height="23"/>
-          <preferredSize width="60" height="23"/>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
         </properties>
       </component>
       <component id="42b13" class="javax.swing.JLabel" binding="maxRangeLabel">
         <constraints>
-          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -202,19 +183,20 @@
       </component>
       <component id="48469" class="javax.swing.JTextField" binding="maxRangeField">
         <constraints>
-          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <minimumSize width="60" height="23"/>
-          <preferredSize width="60" height="23"/>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
         </properties>
       </component>
       <component id="a71ec" class="javax.swing.JLabel" binding="castTypeLabel">
         <constraints>
-          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -226,19 +208,20 @@
       </component>
       <component id="5d76c" class="javax.swing.JTextField" binding="castTypeField">
         <constraints>
-          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <minimumSize width="60" height="23"/>
-          <preferredSize width="60" height="23"/>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
         </properties>
       </component>
       <component id="5c31e" class="javax.swing.JLabel" binding="durationLabel">
         <constraints>
-          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -250,14 +233,102 @@
       </component>
       <component id="e111a" class="javax.swing.JTextField" binding="durationField">
         <constraints>
-          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <minimumSize width="60" height="23"/>
-          <preferredSize width="60" height="23"/>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
+        </properties>
+      </component>
+      <component id="8490d" class="javax.swing.JLabel" binding="requirementClassLabel2">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="124" height="15"/>
+          <minimumSize width="124" height="15"/>
+          <preferredSize width="124" height="15"/>
+          <text value="Requirement class:"/>
+        </properties>
+      </component>
+      <component id="5e9fa" class="javax.swing.JComboBox" binding="requirementClassComboBox">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
+        </properties>
+      </component>
+      <component id="69a5d" class="javax.swing.JComboBox" binding="requirementSubClassComboBox">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
+        </properties>
+      </component>
+      <component id="78862" class="javax.swing.JComboBox" binding="requirementClassComboBox2">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
+        </properties>
+      </component>
+      <component id="85828" class="javax.swing.JLabel" binding="requirementSubClassLabel2">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Requirement subclass:"/>
+        </properties>
+      </component>
+      <component id="26732" class="javax.swing.JComboBox" binding="requirementSubClassComboBox2">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
+        </properties>
+      </component>
+      <component id="b4980" class="javax.swing.JLabel" binding="requirementLevelLabel2">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Requirement class:"/>
+        </properties>
+      </component>
+      <component id="205f8" class="javax.swing.JTextField" binding="requirementLevelField2">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="180" height="23"/>
+          <minimumSize width="180" height="23"/>
+          <preferredSize width="180" height="23"/>
         </properties>
       </component>
     </children>

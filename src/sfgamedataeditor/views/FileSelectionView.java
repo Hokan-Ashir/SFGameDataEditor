@@ -29,6 +29,7 @@ public class FileSelectionView {
         frame.pack();
         frame.setVisible(true);
 
+        view.getOkButton().setEnabled(false);
         addOpenParametersEditorListener(frame, view);
         addOriginalFileSelectionListener(view);
         addModificationFileSelectionListener(view);
@@ -45,6 +46,7 @@ public class FileSelectionView {
                 chooser.showOpenDialog(view.getMainPanel());
                 File selectedFile = chooser.getSelectedFile();
                 if (selectedFile == null) {
+                    view.getOkButton().setEnabled(FilesContainer.getOriginalFile() != null);
                     return;
                 }
 
@@ -54,10 +56,12 @@ public class FileSelectionView {
                     file = new RandomAccessFile(selectedFile.getAbsolutePath(), "rw");
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
+                    view.getOkButton().setEnabled(false);
                     return;
                 }
 
                 FilesContainer.setOriginalFile(file);
+                view.getOkButton().setEnabled(true);
             }
         });
     }

@@ -4,14 +4,14 @@ import javax.swing.*;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-public class Entity extends AbstractEntity {
+public abstract class Entity<T extends JComponent> extends AbstractEntity {
 
     private int[] value;
-    private JTextField field;
+    private T component;
     private int dataLength;
 
-    public Entity(JTextField field, long offsetInBytes, int dataLengthInBytes) {
-        this.field = field;
+    public Entity(T component, long offsetInBytes, int dataLengthInBytes) {
+        this.component = component;
         setOffsetInFile(offsetInBytes);
         this.dataLength = dataLengthInBytes;
     }
@@ -22,18 +22,10 @@ public class Entity extends AbstractEntity {
     @Override
     public void loadDataFromFile(RandomAccessFile file) {
         value = getValueFromFile(file, dataLength);
-        String fieldValue = createFieldValue();
-        field.setText(fieldValue);
+        setFieldValue();
     }
 
-    private String createFieldValue() {
-        long temp = 0;
-        for (int i = 0; i < value.length; i++) {
-            temp += value[i] << ((value.length - 1 - i) * 8);
-        }
-
-        return String.valueOf(temp);
-    }
+    protected abstract void setFieldValue();
 
     private int[] getValueFromFile(RandomAccessFile file, int length) {
         long offset = getFullFileOffset();
@@ -49,5 +41,13 @@ public class Entity extends AbstractEntity {
         }
 
         return data;
+    }
+
+    protected T getComponent() {
+        return component;
+    }
+
+    protected int[] getValue() {
+        return value;
     }
 }
