@@ -14,13 +14,16 @@ public class LightCombatArtsMagic extends SpellClassView {
     @Override
     protected List<Pair<String, Integer>> createSpellList() {
         return new ArrayList<Pair<String, Integer>>() {{
-            add(new Pair<>("Berserk", 0));
-            add(new Pair<>("Blessing", 0));
-            add(new Pair<>("Sanctuary", 0));
-            add(new Pair<>("Endurance", 0));
-            add(new Pair<>("Critical Hits", 0));
-            add(new Pair<>("Shift Life", 0));
-            add(new Pair<>("Riposte", 0));
+            // Berserk = 85
+            // AbilityBerserk = 152
+            add(new Pair<>("Berserk", 152));
+            add(new Pair<>("Blessing", 153));
+            // AbilityShelter = 154
+            add(new Pair<>("Sanctuary", 154));
+            // AbilityDurability = 155
+            add(new Pair<>("Endurance", 155));
+            add(new Pair<>("Critical Hits", 222));
+            add(new Pair<>("Shift Life", 220));
         }};
     }
 
@@ -28,7 +31,7 @@ public class LightCombatArtsMagic extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellClass() {
+    protected byte getSpellClass() {
         return 1;
     }
 
@@ -36,7 +39,7 @@ public class LightCombatArtsMagic extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellSubClass() {
+    protected byte getSpellSubClass() {
         return 0;
     }
 }

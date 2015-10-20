@@ -14,13 +14,13 @@ public class ArcheryArtsMagic extends SpellClassView {
     @Override
     protected List<Pair<String, Integer>> createSpellList() {
         return new ArrayList<Pair<String, Integer>>() {{
-            add(new Pair<>("Hit The Target", 0));
-            add(new Pair<>("Blessing", 0));
-            add(new Pair<>("Steel Skin", 0));
-            add(new Pair<>("Volley", 0));
-            add(new Pair<>("Critical Hits", 0));
-            add(new Pair<>("Shift Life", 0));
-            add(new Pair<>("Riposte", 0));
+            // Arrow = 84
+            add(new Pair<>("True Shot", 156));
+            add(new Pair<>("Blessing", 153));
+            add(new Pair<>("Steel Skin", 157));
+            add(new Pair<>("Salvo", 158));
+            add(new Pair<>("Critical Hits", 222));
+            add(new Pair<>("Shift Life", 220));
         }};
     }
 
@@ -28,7 +28,7 @@ public class ArcheryArtsMagic extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellClass() {
+    protected byte getSpellClass() {
         return 3;
     }
 
@@ -36,7 +36,7 @@ public class ArcheryArtsMagic extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellSubClass() {
+    protected byte getSpellSubClass() {
         return 0;
     }
 }

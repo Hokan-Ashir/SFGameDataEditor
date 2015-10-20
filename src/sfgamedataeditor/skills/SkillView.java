@@ -1,13 +1,14 @@
 package sfgamedataeditor.skills;
 
 import javafx.util.Pair;
+import sfgamedataeditor.views.ILevelableView;
 import sfgamedataeditor.views.IView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class SkillView implements IView {
+public class SkillView implements ILevelableView {
     private JPanel mainPanel;
     private JComboBox levelComboBox;
     private JLabel levelLabel;
@@ -55,5 +56,21 @@ public class SkillView implements IView {
 
             gridy++;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JComboBox getLevelComboBox() {
+        return levelComboBox;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JLabel getLevelLabel() {
+        return levelLabel;
     }
 }

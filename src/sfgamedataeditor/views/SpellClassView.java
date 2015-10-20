@@ -8,11 +8,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.List;
 import java.util.TreeMap;
 
-public abstract class SpellClassView extends AbstractEntity implements IView {
+public abstract class SpellClassView extends AbstractEntity implements ILevelableView {
     private JPanel mainPanel;
     private JLabel levelLabel;
     private JPanel spellsPanel;
@@ -83,15 +84,87 @@ public abstract class SpellClassView extends AbstractEntity implements IView {
 
     private void constructSpellViewMap(List<Pair<String, Integer>> spellList) {
         for (Pair<String, Integer> pair : spellList) {
-            spellViewMap.put(pair.getKey(), new SpellView(pair.getValue(), getSpellClass(), getSpellSubClass()));
+            spellViewMap.put(pair.getKey(), new SpellView(pair.getValue()));
         }
     }
 
+    /**
+     * Creates list of pairs - "spellName" - "spellID"
+     * List of spellIDs can be obtained via decompiling file "sql_spells.lua" located in
+     * SPELLFORCE_FOLDER/script/ with help of Lua4Dec - https://github.com/aheadley/python-lua4dec
+     * or by using this list:
+     * http://pastebin.com/WmMk32zv
+     *
+     * @return list of pair-spells "spellName" - "spellID"
+     */
     protected abstract java.util.List<Pair<String, Integer>> createSpellList();
 
-    protected abstract int getSpellClass();
+    protected abstract byte getSpellClass();
 
-    protected abstract int getSpellSubClass();
+    protected abstract byte getSpellSubClass();
+
+    public void fillSpellsOffsetsByLevel(byte[] spellData) {
+        for (SpellView spellView : spellViewMap.values()) {
+            byte[] pattern = new byte[5];
+            pattern[0] = (byte) (spellView.getSpellType() & 0xFF);
+            pattern[1] = (byte) (spellView.getSpellType() & 0xFF00);
+            pattern[2] = getSpellClass();
+            pattern[3] = getSpellSubClass();
+            for (int i = 0; i < 20; ++i) {
+                pattern[4] = (byte) (i + 1);
+                int index = indexOf(spellData, pattern);
+                if (index == -1) {
+                    spellView.getSpellLevelOffsets().add(i, 0L);
+                } else {
+                    spellView.getSpellLevelOffsets().add(i, (long) index + MainView.SPELLS_DATA_BEGIN_OFFSET - 0x2);
+                }
+            }
+        }
+    }
+
+    /**
+     * Finds the first occurrence of the pattern in the text.
+     */
+    private int indexOf(byte[] data, byte[] pattern) {
+        int[] failure = computeFailure(pattern);
+
+        int j = 0;
+        if (data.length == 0) {
+            return -1;
+        }
+
+        for (int i = 0; i < data.length; i++) {
+            while (j > 0 && pattern[j] != data[i]) {
+                j = failure[j - 1];
+            }
+            if (pattern[j] == data[i]) { j++; }
+            if (j == pattern.length) {
+                return i - pattern.length + 1;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Computes the failure function using a boot-strapping process,
+     * where the pattern is matched against itself.
+     */
+    private int[] computeFailure(byte[] pattern) {
+        int[] failure = new int[pattern.length];
+
+        int j = 0;
+        for (int i = 1; i < pattern.length; i++) {
+            while (j > 0 && pattern[j] != pattern[i]) {
+                j = failure[j - 1];
+            }
+            if (pattern[j] == pattern[i]) {
+                j++;
+            }
+            failure[i] = j;
+        }
+
+        return failure;
+    }
 
     /**
      * {@inheritDoc}
@@ -109,10 +182,18 @@ public abstract class SpellClassView extends AbstractEntity implements IView {
         return mainPanel;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public JComboBox getLevelComboBox() {
         return levelComboBox;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public JLabel getLevelLabel() {
         return levelLabel;
     }

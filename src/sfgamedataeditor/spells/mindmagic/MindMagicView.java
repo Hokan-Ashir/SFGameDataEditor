@@ -14,8 +14,8 @@ public class MindMagicView extends SpellClassView {
     @Override
     protected List<Pair<String, Integer>> createSpellList() {
         return new ArrayList<Pair<String, Integer>>() {{
-            add(new Pair<>("Mind Essence", 0));
-            add(new Pair<>("Mind Almightiness", 0));
+            add(new Pair<>("Mind Essence", 177));
+            add(new Pair<>("Mind Almightiness", 181));
         }};
     }
 
@@ -23,7 +23,7 @@ public class MindMagicView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellClass() {
+    protected byte getSpellClass() {
         return 6;
     }
 
@@ -31,7 +31,7 @@ public class MindMagicView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellSubClass() {
+    protected byte getSpellSubClass() {
         return 0;
     }
 }

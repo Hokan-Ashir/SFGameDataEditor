@@ -14,17 +14,22 @@ public class NecromancyView extends SpellClassView {
     @Override
     protected List<Pair<String, Integer>> createSpellList() {
         return new ArrayList<Pair<String, Integer>>() {{
-            add(new Pair<>("Summon Skeleton", 0));
-            add(new Pair<>("Lifetap", 0));
-            add(new Pair<>("Death Grasp", 0));
-            add(new Pair<>("Summon Undead Goblin", 0));
-            add(new Pair<>("Raise Dead", 0));
-            add(new Pair<>("Aura of Lifetap", 0));
-            add(new Pair<>("Summon Spectre", 0));
-            add(new Pair<>("Trick Death", 0));
-            add(new Pair<>("Chain Lifetap", 0));
-            add(new Pair<>("Summon Blade", 0));
-            add(new Pair<>("Control Undead", 0));
+            add(new Pair<>("Summon Skeleton", 29));
+            add(new Pair<>("Lifetap", 19));
+            add(new Pair<>("Death Grasp", 32));
+            add(new Pair<>("Summon Undead Goblin", 20));
+            add(new Pair<>("Raise Dead", 30));
+            // AuraLifeTap = 91
+            // LifeTapAura = 146
+            add(new Pair<>("Aura of Lifetap", 146));
+            add(new Pair<>("Summon Spectre", 92));
+            add(new Pair<>("Feign Death", 93));
+            // LifeTapChained = 231
+            add(new Pair<>("Chain Lifetap", 196));
+            add(new Pair<>("Summon Blade", 198));
+            add(new Pair<>("Dominate Undead", 197));
+            // Summon Demon = 31
+            // SummonChanneler = 33
         }};
     }
 
@@ -32,7 +37,7 @@ public class NecromancyView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellClass() {
+    protected byte getSpellClass() {
         return 7;
     }
 
@@ -40,7 +45,7 @@ public class NecromancyView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellSubClass() {
+    protected byte getSpellSubClass() {
         return 2;
     }
 }

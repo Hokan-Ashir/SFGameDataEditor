@@ -2,7 +2,7 @@ package sfgamedataeditor.databind;
 
 import javax.swing.*;
 
-public class TextFieldEntity extends SpellEntity<JTextField> {
+public class TextFieldEntity extends Entity<JTextField> {
 
     public TextFieldEntity(JTextField field, long offsetInBytes, int dataLengthInBytes) {
         super(field, offsetInBytes, dataLengthInBytes);

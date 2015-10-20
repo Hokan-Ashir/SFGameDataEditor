@@ -14,8 +14,10 @@ public class ElementalMagicView extends SpellClassView {
     @Override
     protected List<Pair<String, Integer>> createSpellList() {
         return new ArrayList<Pair<String, Integer>>() {{
-            add(new Pair<>("Elemental Essence", 0));
-            add(new Pair<>("Elemental Almightiness", 0));
+            // EssenceElementalEffect = 183
+            add(new Pair<>("Elemental Essence", 176));
+            // AlmightinessElementalEffect = 182
+            add(new Pair<>("Elemental Almightiness", 180));
         }};
     }
 
@@ -23,7 +25,7 @@ public class ElementalMagicView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellClass() {
+    protected byte getSpellClass() {
         return 5;
     }
 
@@ -31,7 +33,7 @@ public class ElementalMagicView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellSubClass() {
+    protected byte getSpellSubClass() {
         return 0;
     }
 }

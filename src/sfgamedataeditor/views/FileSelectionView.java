@@ -96,12 +96,17 @@ public class FileSelectionView {
     }
 
     private static void addOpenParametersEditorListener(final JFrame frame,
-            FileSelectionView view) {
+            final FileSelectionView view) {
         view.getOkButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.dispose();
+                view.getOkButton().setText("Processing data. Please wait ...");
+                view.getOkButton().setEnabled(false);
+                view.getOriginalFileSelectorButton().setEnabled(false);
+                view.getModificationFileSelectorButton().setEnabled(false);
+                frame.repaint();
                 MainView.showMainView();
+                frame.dispose();
             }
         });
     }

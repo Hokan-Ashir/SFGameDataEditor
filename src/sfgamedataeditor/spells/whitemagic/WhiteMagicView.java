@@ -14,8 +14,8 @@ public class WhiteMagicView extends SpellClassView {
     @Override
     protected List<Pair<String, Integer>> createSpellList() {
         return new ArrayList<Pair<String, Integer>>() {{
-            add(new Pair<>("White Essence", 0));
-            add(new Pair<>("White Amlightiness", 0));
+            add(new Pair<>("White Essence", 175));
+            add(new Pair<>("White Almightiness", 179));
         }};
     }
 
@@ -23,7 +23,7 @@ public class WhiteMagicView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellClass() {
+    protected byte getSpellClass() {
         return 4;
     }
 
@@ -31,7 +31,7 @@ public class WhiteMagicView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellSubClass() {
+    protected byte getSpellSubClass() {
         return 0;
     }
 }

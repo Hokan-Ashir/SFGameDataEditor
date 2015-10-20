@@ -14,17 +14,26 @@ public class BoonsView extends SpellClassView {
     @Override
     protected List<Pair<String, Integer>> createSpellList() {
         return new ArrayList<Pair<String, Integer>>() {{
-            add(new Pair<>("Aura of Fast Fighting", 0));
-            add(new Pair<>("Hallow", 0));
-            add(new Pair<>("Aura of Dexterity", 0));
-            add(new Pair<>("Dispel Black Aura", 0));
-            add(new Pair<>("Aura of Fast Waling", 0));
-            add(new Pair<>("Aura of Light", 0));
-            add(new Pair<>("Aura of Flexibility", 0));
-            add(new Pair<>("Invulnerability", 0));
-            add(new Pair<>("Chain Hallow", 0));
-            add(new Pair<>("Aura of Eternity", 0));
-            add(new Pair<>("Fortification", 0));
+            // Quickness = 48
+            // QuicknessArea = 49
+            // FastFighting = 118
+            add(new Pair<>("Aura of Fast Fighting", 110));
+            add(new Pair<>("Hallow", 58));
+            // Dexterity = 116
+            add(new Pair<>("Aura of Dexterity", 115));
+            add(new Pair<>("Dispel Black Aura", 112));
+            add(new Pair<>("Aura of Fast Waling", 113));
+            add(new Pair<>("Aura of Light", 114));
+            // Flexibility = 50
+            // FlexibilityArea = 51
+            add(new Pair<>("Aura of Flexibility", 111));
+            add(new Pair<>("Invulnerability", 6));
+            // HallowChained = 230
+            add(new Pair<>("Chain Hallow", 190));
+            // Eternity = 229
+            add(new Pair<>("Aura of Eternity", 192));
+            // HolyMight = 57
+            add(new Pair<>("Reinforcement", 191));
         }};
     }
 
@@ -32,7 +41,7 @@ public class BoonsView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellClass() {
+    protected byte getSpellClass() {
         return 4;
     }
 
@@ -40,7 +49,7 @@ public class BoonsView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected int getSpellSubClass() {
+    protected byte getSpellSubClass() {
         return 3;
     }
 }

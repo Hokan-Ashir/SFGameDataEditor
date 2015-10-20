@@ -3,11 +3,13 @@ package sfgamedataeditor.views;
 import sfgamedataeditor.databind.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.*;
+import java.util.List;
 
 public class SpellView extends AbstractEntity implements IView {
 
@@ -44,56 +46,22 @@ public class SpellView extends AbstractEntity implements IView {
     private JTextField manaPerPeriodConsumingField;
     private JLabel summoningCreatureIDLabel;
     private JTextField summoningCreatureIDField;
+    private JLabel requirementClassLabel3;
+    private JComboBox requirementClassComboBox3;
+    private JLabel requirementSubClassLabel3;
+    private JComboBox requirementSubClassComboBox3;
+    private JLabel requirementLevelLabel3;
+    private JTextField requirementLevelField3;
 
-    private List<SpellEntity> entityList = new ArrayList<>();
-    private int spellLevel = 1;
+    private List<Entity> entityList = new ArrayList<>();
+    private Integer spellType;
     private Map<String, List<String>> classSubClassComboBoxContent = new LinkedHashMap<>();
     private List<Long> spellLevelOffsets = new ArrayList<>(20);
 
-    public SpellView(Integer spellType, int spellClass, int spellSubClass) {
-        fillSpellLevelOffsetList(spellType, spellClass, spellSubClass);
-        setOffsetInFile(spellLevelOffsets.get(spellLevel));
+    public SpellView(Integer spellType) {
+        this.spellType = spellType;
         initializeRequirementsComboBoxes();
         initializeEntityList();
-    }
-
-    private void fillSpellLevelOffsetList(Integer spellType, int spellClass, int spellSubClass) {
-        spellLevelOffsets.add(null);
-        for (int i = 1; i <= 20; i++) {
-            spellLevelOffsets.add(i, 0L);
-        }
-
-        RandomAccessFile file = FilesContainer.getOriginalFile();
-        int[] spellBuffer = new int[5];
-        int[] pattern = new int[5];
-        pattern[0] = spellType & 0xFF;
-        pattern[1] = spellType & 0xFF00;
-        pattern[2] = spellClass;
-        pattern[3] = spellSubClass;
-        for (int i = 0; i < spellLevelOffsets.size(); i++) {
-            pattern[4] = i + 1;
-            try {
-                file.seek(0x20L);
-                for (int j = 0; j < spellBuffer.length; ) {
-                    spellBuffer[j] = file.readUnsignedByte();
-                    if (spellBuffer[j] == pattern[j]) {
-                        j++;
-                    } else {
-                        j = 0;
-                    }
-
-                    if (file.getFilePointer() == 0x3fd13L) {
-                        break;
-                    }
-                }
-
-                if (spellBuffer.length == pattern.length) {
-                    spellLevelOffsets.set(i, file.getFilePointer() - 7);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private void initializeRequirementsComboBoxes() {
@@ -112,10 +80,12 @@ public class SpellView extends AbstractEntity implements IView {
         for (String s : classSubClassComboBoxContent.keySet()) {
             requirementClassComboBox.addItem(s);
             requirementClassComboBox2.addItem(s);
+            requirementClassComboBox3.addItem(s);
         }
 
         attachSubClassListenerToClassComboBox(requirementClassComboBox, requirementSubClassComboBox);
         attachSubClassListenerToClassComboBox(requirementClassComboBox2, requirementSubClassComboBox2);
+        attachSubClassListenerToClassComboBox(requirementClassComboBox3, requirementSubClassComboBox3);
     }
 
     private void attachSubClassListenerToClassComboBox(JComboBox classComboBox, JComboBox subClassComboBox) {
@@ -135,7 +105,10 @@ public class SpellView extends AbstractEntity implements IView {
             add(new EntityTuple<>(requirementClassComboBox2, 7, 1));
             add(new EntityTuple<>(requirementSubClassComboBox2, 8, 1));
             add(new EntityTuple<>(requirementLevelField2, 9, 1));
-            // TODO add possible spell skill requirements (6 bytes offset)
+            add(new EntityTuple<>(requirementClassComboBox3, 10, 1));
+            add(new EntityTuple<>(requirementSubClassComboBox3, 11, 1));
+            add(new EntityTuple<>(requirementLevelField3, 12, 1));
+            // TODO add possible spell skill requirements (3 bytes offset)
             add(new EntityTuple<>(manaUsageField, 16, 2));
             add(new EntityTuple<>(castTimeField, 18, 4));
             add(new EntityTuple<>(cooldownField, 22, 4));
@@ -150,7 +123,7 @@ public class SpellView extends AbstractEntity implements IView {
         }};
 
         for (EntityTuple entityTuple : entityTuples) {
-            SpellEntity entity;
+            Entity entity;
             if (entityTuple.component instanceof JTextField) {
                 entity = new TextFieldEntity((JTextField) entityTuple.component, entityTuple.offsetInBytes, entityTuple.lengthInBytes);
             } else {
@@ -163,7 +136,16 @@ public class SpellView extends AbstractEntity implements IView {
     }
 
     public void setSpellLevel(int spellLevel) {
-        this.spellLevel = spellLevel;
+        if (!spellLevelOffsets.isEmpty()) {
+            Long offsetInFile = spellLevelOffsets.get(spellLevel - 1);
+            setOffsetInFile(offsetInFile);
+            for (Component component : mainPanel.getComponents()) {
+                component.setVisible(offsetInFile != 0);
+            }
+            for (int i = 0; i < spellLevelOffsets.size(); i++) {
+                System.out.println(i + ": " + spellLevelOffsets.get(i));
+            }
+        }
     }
 
     /**
@@ -179,8 +161,7 @@ public class SpellView extends AbstractEntity implements IView {
      */
     @Override
     public void loadDataFromFile(RandomAccessFile file) {
-        for (SpellEntity entity : entityList) {
-            entity.setSpellLevel(spellLevel);
+        for (Entity entity : entityList) {
             entity.loadDataFromFile(file);
         }
     }
@@ -219,5 +200,13 @@ public class SpellView extends AbstractEntity implements IView {
                 subClassComboBox.addItem(subClass);
             }
         }
+    }
+
+    public List<Long> getSpellLevelOffsets() {
+        return spellLevelOffsets;
+    }
+
+    public Integer getSpellType() {
+        return spellType;
     }
 }

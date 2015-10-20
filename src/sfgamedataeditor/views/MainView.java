@@ -27,11 +27,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MainView implements IView {
     private JButton loadSfmodFileButton;
@@ -41,64 +37,68 @@ public class MainView implements IView {
     private JLabel modulesLabel;
     private JPanel mainPanel;
 
-    private Map<String, Class<? extends IView>> modulesMap = new LinkedHashMap<>();
-
-    /**
-     * List of SpellViews (widgets with list of spells) which has no level differentiation
-     * like combat spells (from Archery, Heavy Combat Arts or Light Combat Arts 'magic'-schools)
-     */
-    private List<Class<? extends IView>> nonLevelableSpellViews = new ArrayList<>();
+    private Map<String, IView> modulesMap = new LinkedHashMap<>();
+    public static final int SPELLS_DATA_BEGIN_OFFSET = 0x20;
+    private static final int SPELLS_DATA_END_OFFSET = 0x3fd13;
 
     public MainView() {
-        loadDataFromFile();
         constructModulesMap();
         fillModulesNameComboBox();
-        fillNonLevelableSpellViews();
-    }
-
-    private void loadDataFromFile() {
-        RandomAccessFile file = FilesContainer.getOriginalFile();
-        try {
-            file.seek(0x20L);
-            file.read();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void constructModulesMap() {
-        modulesMap.put("Skills", SkillView.class);
-        modulesMap.put("Light Combat Arts", LightCombatArtsMagic.class);
-        modulesMap.put("Heavy Combat Arts", HeavyCombatArtsMagic.class);
-        modulesMap.put("Archery", ArcheryArtsMagic.class);
-        modulesMap.put("White magic", WhiteMagicView.class);
-        modulesMap.put("White magic : Life", LifeView.class);
-        modulesMap.put("White magic : Nature", NatureView.class);
-        modulesMap.put("White magic : Life", BoonsView.class);
-        modulesMap.put("Elemental magic", ElementalMagicView.class);
-        modulesMap.put("Elemental magic : Fire", FireView.class);
-        modulesMap.put("Elemental magic : Ice", IceView.class);
-        modulesMap.put("Elemental magic : Earth", EarthView.class);
-        modulesMap.put("Mind magic", MindMagicView.class);
-        modulesMap.put("Mind magic : Offensive", OffensiveMagicView.class);
-        modulesMap.put("Mind magic : Enchantment", EnchantmentView.class);
-        modulesMap.put("Mind magic : Defensive", DefensiveMagicView.class);
-        modulesMap.put("Black magic", BlackMagicView.class);
-        modulesMap.put("Black magic : Death", DeathMagicView.class);
-        modulesMap.put("Black magic : Necromancy", NecromancyView.class);
-        modulesMap.put("Black magic : Curses", CursesView.class);
+        modulesMap.put("Skills", new SkillView());
+        modulesMap.put("Light Combat Arts", new LightCombatArtsMagic());
+        modulesMap.put("Heavy Combat Arts", new HeavyCombatArtsMagic());
+        modulesMap.put("Archery", new ArcheryArtsMagic());
+        modulesMap.put("White magic", new WhiteMagicView());
+        modulesMap.put("White magic : Life", new LifeView());
+        modulesMap.put("White magic : Nature", new NatureView());
+        modulesMap.put("White magic : Boons", new BoonsView());
+        modulesMap.put("Elemental magic", new ElementalMagicView());
+        modulesMap.put("Elemental magic : Fire", new FireView());
+        modulesMap.put("Elemental magic : Ice", new IceView());
+        modulesMap.put("Elemental magic : Earth", new EarthView());
+        modulesMap.put("Mind magic", new MindMagicView());
+        modulesMap.put("Mind magic : Offensive", new OffensiveMagicView());
+        modulesMap.put("Mind magic : Enchantment", new EnchantmentView());
+        modulesMap.put("Mind magic : Defensive", new DefensiveMagicView());
+        modulesMap.put("Black magic", new BlackMagicView());
+        modulesMap.put("Black magic : Death", new DeathMagicView());
+        modulesMap.put("Black magic : Necromancy", new NecromancyView());
+        modulesMap.put("Black magic : Curses", new CursesView());
+
+        setUpSpellsOffsetsByLevel();
+    }
+
+    private void setUpSpellsOffsetsByLevel() {
+        byte[] buffer = getSpellDataArrayFromFile();
+        for (IView view : modulesMap.values()) {
+            if (!(view instanceof SpellClassView)) {
+                continue;
+            }
+
+            ((SpellClassView) view).fillSpellsOffsetsByLevel(buffer);
+        }
+    }
+
+    private byte[] getSpellDataArrayFromFile() {
+        RandomAccessFile file = FilesContainer.getOriginalFile();
+        byte[] buffer = new byte[SPELLS_DATA_END_OFFSET - SPELLS_DATA_BEGIN_OFFSET];
+        try {
+            file.seek(SPELLS_DATA_BEGIN_OFFSET);
+            file.read(buffer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return buffer;
     }
 
     private void fillModulesNameComboBox() {
         for (String s : modulesMap.keySet()) {
             modulesComboBox.addItem(s);
         }
-    }
-
-    private void fillNonLevelableSpellViews() {
-        nonLevelableSpellViews.add(ArcheryArtsMagic.class);
-        nonLevelableSpellViews.add(HeavyCombatArtsMagic.class);
-        nonLevelableSpellViews.add(LightCombatArtsMagic.class);
     }
 
     public static void showMainView() {
@@ -116,16 +116,10 @@ public class MainView implements IView {
                     Object item = e.getItem();
 
                     mainView.modulesPanel.removeAll();
-                    for (Map.Entry<String, Class<? extends IView>> stringClassEntry : mainView.getModulesMap().entrySet()) {
+                    for (Map.Entry<String, IView> stringClassEntry : mainView.getModulesMap().entrySet()) {
                         if (item.equals(stringClassEntry.getKey())) {
-                            try {
-                                IView view = stringClassEntry.getValue().getConstructor().newInstance();
-                                mainView.getModulesPanel().add(view.getMainPanel());
-                                mainView.setLevelWidgetsVisibility(view);
-
-                            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e1) {
-                                e1.printStackTrace();
-                            }
+                            IView view = stringClassEntry.getValue();
+                            mainView.getModulesPanel().add(view.getMainPanel());
                         }
                     }
 
@@ -137,22 +131,6 @@ public class MainView implements IView {
 
         mainView.getModulesComboBox().setSelectedItem(null);
         mainView.getModulesComboBox().setSelectedIndex(0);
-    }
-
-    private void setLevelWidgetsVisibility(IView view) {
-        for (Class<? extends IView> aClass : nonLevelableSpellViews) {
-            SpellClassView spellClassView = (SpellClassView) view;
-            if (view.getClass().equals(aClass)) {
-                spellClassView.getLevelComboBox()
-                        .setVisible(false);
-                spellClassView.getLevelLabel().setVisible(false);
-                break;
-            } else {
-                spellClassView.getLevelComboBox()
-                        .setVisible(true);
-                spellClassView.getLevelLabel().setVisible(true);
-            }
-        }
     }
 
     /**
@@ -171,7 +149,7 @@ public class MainView implements IView {
         return modulesPanel;
     }
 
-    public Map<String, Class<? extends IView>> getModulesMap() {
+    public Map<String, IView> getModulesMap() {
         return modulesMap;
     }
 }

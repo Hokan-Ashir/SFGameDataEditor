@@ -2,7 +2,7 @@ package sfgamedataeditor.databind;
 
 import javax.swing.*;
 
-public class ComboBoxEntity extends SpellEntity<JComboBox> {
+public class ComboBoxEntity extends Entity<JComboBox> {
 
     public ComboBoxEntity(JComboBox component, long offsetInBytes, int dataLengthInBytes) {
         super(component, offsetInBytes, dataLengthInBytes);
