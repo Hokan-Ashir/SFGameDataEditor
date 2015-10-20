@@ -12,15 +12,31 @@ public class HeavyCombatArtsMagic extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected List<Pair<String, Long>> createSpellList() {
-        return new ArrayList<Pair<String, Long>>() {{
-            add(new Pair<>("Battle Cry", 0x1c314L));
-            add(new Pair<>("Support", 0x1c360L));
-            add(new Pair<>("Protect", 0x1c3acL));
-            add(new Pair<>("Steadfastness", 0x1c3f8L));
-            add(new Pair<>("Critical Hits", 0l));
-            add(new Pair<>("Shift Life", 0l));
-            add(new Pair<>("Riposte", 0l));
+    protected List<Pair<String, Integer>> createSpellList() {
+        return new ArrayList<Pair<String, Integer>>() {{
+            add(new Pair<>("Battle Cry", 0));
+            add(new Pair<>("Support", 0));
+            add(new Pair<>("Protect", 0));
+            add(new Pair<>("Steadfastness", 0));
+            add(new Pair<>("Critical Hits", 0));
+            add(new Pair<>("Shift Life", 0));
+            add(new Pair<>("Riposte", 0));
         }};
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getSpellClass() {
+        return 2;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getSpellSubClass() {
+        return 0;
     }
 }

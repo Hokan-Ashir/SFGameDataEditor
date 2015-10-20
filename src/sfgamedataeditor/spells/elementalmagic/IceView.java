@@ -12,19 +12,35 @@ public class IceView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected List<Pair<String, Long>> createSpellList() {
-        return new ArrayList<Pair<String, Long>>() {{
-            add(new Pair<>("Iceburst", 0l));
-            add(new Pair<>("Iceshield", 0l));
-            add(new Pair<>("Freeze", 0l));
-            add(new Pair<>("Fog", 0l));
-            add(new Pair<>("Summon Ice Elemental", 0l));
-            add(new Pair<>("Wave of Ice", 0l));
-            add(new Pair<>("Chill Resistance", 0l));
-            add(new Pair<>("Blizzard", 0l));
-            add(new Pair<>("Chain Iceburst", 0l));
-            add(new Pair<>("Area Freeze", 0l));
-            add(new Pair<>("Summon Ice Golem", 0l));
+    protected List<Pair<String, Integer>> createSpellList() {
+        return new ArrayList<Pair<String, Integer>>() {{
+            add(new Pair<>("Iceburst", 0));
+            add(new Pair<>("Iceshield", 0));
+            add(new Pair<>("Freeze", 0));
+            add(new Pair<>("Fog", 0));
+            add(new Pair<>("Summon Ice Elemental", 0));
+            add(new Pair<>("Wave of Ice", 0));
+            add(new Pair<>("Chill Resistance", 0));
+            add(new Pair<>("Blizzard", 0));
+            add(new Pair<>("Chain Iceburst", 0));
+            add(new Pair<>("Area Freeze", 0));
+            add(new Pair<>("Summon Ice Golem", 0));
         }};
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getSpellClass() {
+        return 5;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getSpellSubClass() {
+        return 2;
     }
 }

@@ -12,10 +12,26 @@ public class ElementalMagicView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected List<Pair<String, Long>> createSpellList() {
-        return new ArrayList<Pair<String, Long>>() {{
-            add(new Pair<>("Elemental Essence", 0l));
-            add(new Pair<>("Elemental Almightiness", 0l));
+    protected List<Pair<String, Integer>> createSpellList() {
+        return new ArrayList<Pair<String, Integer>>() {{
+            add(new Pair<>("Elemental Essence", 0));
+            add(new Pair<>("Elemental Almightiness", 0));
         }};
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getSpellClass() {
+        return 5;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getSpellSubClass() {
+        return 0;
     }
 }

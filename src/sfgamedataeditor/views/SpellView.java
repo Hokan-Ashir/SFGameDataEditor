@@ -1,13 +1,11 @@
 package sfgamedataeditor.views;
 
-import sfgamedataeditor.databind.AbstractEntity;
-import sfgamedataeditor.databind.ComboBoxEntity;
-import sfgamedataeditor.databind.SpellEntity;
-import sfgamedataeditor.databind.TextFieldEntity;
+import sfgamedataeditor.databind.*;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.*;
 
@@ -42,18 +40,67 @@ public class SpellView extends AbstractEntity implements IView {
     private JComboBox requirementSubClassComboBox2;
     private JLabel requirementLevelLabel2;
     private JTextField requirementLevelField2;
+    private JLabel manaPerPeriodConsumingLabel;
+    private JTextField manaPerPeriodConsumingField;
+    private JLabel summoningCreatureIDLabel;
+    private JTextField summoningCreatureIDField;
 
     private List<SpellEntity> entityList = new ArrayList<>();
-    private int spellLevel;
+    private int spellLevel = 1;
     private Map<String, List<String>> classSubClassComboBoxContent = new LinkedHashMap<>();
+    private List<Long> spellLevelOffsets = new ArrayList<>(20);
 
-    public SpellView(long offsetInBytes) {
-        setOffsetInFile(offsetInBytes);
+    public SpellView(Integer spellType, int spellClass, int spellSubClass) {
+        fillSpellLevelOffsetList(spellType, spellClass, spellSubClass);
+        setOffsetInFile(spellLevelOffsets.get(spellLevel));
         initializeRequirementsComboBoxes();
         initializeEntityList();
     }
 
+    private void fillSpellLevelOffsetList(Integer spellType, int spellClass, int spellSubClass) {
+        spellLevelOffsets.add(null);
+        for (int i = 1; i <= 20; i++) {
+            spellLevelOffsets.add(i, 0L);
+        }
+
+        RandomAccessFile file = FilesContainer.getOriginalFile();
+        int[] spellBuffer = new int[5];
+        int[] pattern = new int[5];
+        pattern[0] = spellType & 0xFF;
+        pattern[1] = spellType & 0xFF00;
+        pattern[2] = spellClass;
+        pattern[3] = spellSubClass;
+        for (int i = 0; i < spellLevelOffsets.size(); i++) {
+            pattern[4] = i + 1;
+            try {
+                file.seek(0x20L);
+                for (int j = 0; j < spellBuffer.length; ) {
+                    spellBuffer[j] = file.readUnsignedByte();
+                    if (spellBuffer[j] == pattern[j]) {
+                        j++;
+                    } else {
+                        j = 0;
+                    }
+
+                    if (file.getFilePointer() == 0x3fd13L) {
+                        break;
+                    }
+                }
+
+                if (spellBuffer.length == pattern.length) {
+                    spellLevelOffsets.set(i, file.getFilePointer() - 7);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void initializeRequirementsComboBoxes() {
+        // order of spell class/subclass mapping is taken from http://spellforcefanforum.hostoi.com/viewtopic.php?f=14&t=241
+        // NOTE: order of this list is HIGHLY important, if you change it, you may
+        // accidentally set (via this Editor) i.e "Iceburst" "White Magic - Nature" requirements
+        // instead of "Elemental Magic - Ice"
         classSubClassComboBoxContent.put("Light Combat Arts", Collections.<String>emptyList());
         classSubClassComboBoxContent.put("Heavy Combat Arts", Collections.<String>emptyList());
         classSubClassComboBoxContent.put("Archery", Collections.<String>emptyList());
@@ -67,37 +114,14 @@ public class SpellView extends AbstractEntity implements IView {
             requirementClassComboBox2.addItem(s);
         }
 
-        requirementClassComboBox.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() != ItemEvent.SELECTED) {
-                    return;
-                }
+        attachSubClassListenerToClassComboBox(requirementClassComboBox, requirementSubClassComboBox);
+        attachSubClassListenerToClassComboBox(requirementClassComboBox2, requirementSubClassComboBox2);
+    }
 
-                List<String> subClasses = classSubClassComboBoxContent.get(e.getItem());
-                requirementSubClassComboBox.removeAllItems();
-                for (String subClass : subClasses) {
-                    requirementSubClassComboBox.addItem(subClass);
-                }
-            }
-        });
-        requirementClassComboBox.setSelectedItem(null);
-
-        requirementClassComboBox2.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() != ItemEvent.SELECTED) {
-                    return;
-                }
-
-                List<String> subClasses = classSubClassComboBoxContent.get(e.getItem());
-                requirementSubClassComboBox2.removeAllItems();
-                for (String subClass : subClasses) {
-                    requirementSubClassComboBox2.addItem(subClass);
-                }
-            }
-        });
-        requirementClassComboBox2.setSelectedItem(null);
+    private void attachSubClassListenerToClassComboBox(JComboBox classComboBox, JComboBox subClassComboBox) {
+        ClassRequirementComboBoxListener listener = new ClassRequirementComboBoxListener(subClassComboBox);
+        classComboBox.addItemListener(listener);
+        classComboBox.setSelectedItem(null);
     }
 
     private void initializeEntityList() {
@@ -119,6 +143,8 @@ public class SpellView extends AbstractEntity implements IView {
             add(new EntityTuple<>(maxRangeField, 28, 2));
             add(new EntityTuple<>(castTypeField, 30, 2));
             add(new EntityTuple<>(durationField, 32, 4));
+            add(new EntityTuple<>(manaPerPeriodConsumingField, 36, 4));
+            add(new EntityTuple<>(summoningCreatureIDField, 40, 2));
             // TODO add spell additional parameters (number of targets for wave-like spells,
             // spell-child effects for auras and frost/fire shields)
         }};
@@ -159,7 +185,7 @@ public class SpellView extends AbstractEntity implements IView {
         }
     }
 
-    private class EntityTuple<T extends JComponent> {
+    private static class EntityTuple<T extends JComponent> {
         private T component;
         private long offsetInBytes;
         private int lengthInBytes;
@@ -168,6 +194,30 @@ public class SpellView extends AbstractEntity implements IView {
             this.component = component;
             this.offsetInBytes = offsetInBytes;
             this.lengthInBytes = lengthInBytes;
+        }
+    }
+
+    private class ClassRequirementComboBoxListener implements ItemListener {
+        private JComboBox subClassComboBox;
+
+        public ClassRequirementComboBoxListener(JComboBox subClassComboBox) {
+            this.subClassComboBox = subClassComboBox;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() != ItemEvent.SELECTED) {
+                return;
+            }
+
+            List<String> subClasses = classSubClassComboBoxContent.get(e.getItem());
+            subClassComboBox.removeAllItems();
+            for (String subClass : subClasses) {
+                subClassComboBox.addItem(subClass);
+            }
         }
     }
 }

@@ -12,19 +12,35 @@ public class EnchantmentView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected List<Pair<String, Long>> createSpellList() {
-        return new ArrayList<Pair<String, Long>>() {{
-            add(new Pair<>("Self Illusion", 0l));
-            add(new Pair<>("Distract", 0l));
-            add(new Pair<>("Dominate", 0l));
-            add(new Pair<>("Invisibility", 0l));
-            add(new Pair<>("Charm", 0l));
-            add(new Pair<>("Befriend", 0l));
-            add(new Pair<>("Disenchant", 0l));
-            add(new Pair<>("Charisma", 0l));
-            add(new Pair<>("Replica", 0l));
-            add(new Pair<>("Chain Charm", 0l));
-            add(new Pair<>("Reflect", 0l));
+    protected List<Pair<String, Integer>> createSpellList() {
+        return new ArrayList<Pair<String, Integer>>() {{
+            add(new Pair<>("Self Illusion", 0));
+            add(new Pair<>("Distract", 0));
+            add(new Pair<>("Dominate", 0));
+            add(new Pair<>("Invisibility", 0));
+            add(new Pair<>("Charm", 0));
+            add(new Pair<>("Befriend", 0));
+            add(new Pair<>("Disenchant", 0));
+            add(new Pair<>("Charisma", 0));
+            add(new Pair<>("Replica", 0));
+            add(new Pair<>("Chain Charm", 0));
+            add(new Pair<>("Reflect", 0));
         }};
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getSpellClass() {
+        return 6;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getSpellSubClass() {
+        return 2;
     }
 }

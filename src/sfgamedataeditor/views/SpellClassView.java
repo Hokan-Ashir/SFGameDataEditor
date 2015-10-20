@@ -28,7 +28,7 @@ public abstract class SpellClassView extends AbstractEntity implements IView {
     }
 
     private void generateUI() {
-        List<Pair<String, Long>> spellList = createSpellList();
+        List<Pair<String, Integer>> spellList = createSpellList();
         constructSpellViewMap(spellList);
         fillSpellNameComboBox();
 
@@ -81,13 +81,17 @@ public abstract class SpellClassView extends AbstractEntity implements IView {
         }
     }
 
-    private void constructSpellViewMap(List<Pair<String, Long>> spellList) {
-        for (Pair<String, Long> pair : spellList) {
-            spellViewMap.put(pair.getKey(), new SpellView(pair.getValue()));
+    private void constructSpellViewMap(List<Pair<String, Integer>> spellList) {
+        for (Pair<String, Integer> pair : spellList) {
+            spellViewMap.put(pair.getKey(), new SpellView(pair.getValue(), getSpellClass(), getSpellSubClass()));
         }
     }
 
-    protected abstract java.util.List<Pair<String, Long>> createSpellList();
+    protected abstract java.util.List<Pair<String, Integer>> createSpellList();
+
+    protected abstract int getSpellClass();
+
+    protected abstract int getSpellSubClass();
 
     /**
      * {@inheritDoc}

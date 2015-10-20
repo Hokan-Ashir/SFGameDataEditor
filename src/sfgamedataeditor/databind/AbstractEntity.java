@@ -41,7 +41,7 @@ public abstract class AbstractEntity implements IDataManipulator {
     }
 
     protected long getFullFileOffset() {
-        long offset = offsetInFile;
+        long offset = getOffsetInFile();
         AbstractEntity parent = getParent();
         while (parent != null) {
             offset += parent.getOffsetInFile();

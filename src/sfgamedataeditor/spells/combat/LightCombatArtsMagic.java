@@ -12,15 +12,31 @@ public class LightCombatArtsMagic extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected List<Pair<String, Long>> createSpellList() {
-        return new ArrayList<Pair<String, Long>>() {{
-            add(new Pair<>("Berserk", 0x1c444L));
-            add(new Pair<>("Blessing", 0x1c490L));
-            add(new Pair<>("Sanctuary", 0x1c4dcL));
-            add(new Pair<>("Endurance", 0x1c528L));
-            add(new Pair<>("Critical Hits", 0l));
-            add(new Pair<>("Shift Life", 0l));
-            add(new Pair<>("Riposte", 0l));
+    protected List<Pair<String, Integer>> createSpellList() {
+        return new ArrayList<Pair<String, Integer>>() {{
+            add(new Pair<>("Berserk", 0));
+            add(new Pair<>("Blessing", 0));
+            add(new Pair<>("Sanctuary", 0));
+            add(new Pair<>("Endurance", 0));
+            add(new Pair<>("Critical Hits", 0));
+            add(new Pair<>("Shift Life", 0));
+            add(new Pair<>("Riposte", 0));
         }};
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getSpellClass() {
+        return 1;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getSpellSubClass() {
+        return 0;
     }
 }

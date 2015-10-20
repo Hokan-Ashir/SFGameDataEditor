@@ -1,5 +1,6 @@
 package sfgamedataeditor.views;
 
+import sfgamedataeditor.databind.FilesContainer;
 import sfgamedataeditor.skills.SkillView;
 import sfgamedataeditor.spells.blackmagic.BlackMagicView;
 import sfgamedataeditor.spells.blackmagic.CursesView;
@@ -24,11 +25,13 @@ import sfgamedataeditor.spells.whitemagic.WhiteMagicView;
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class MainView implements IView {
     private JButton loadSfmodFileButton;
@@ -38,7 +41,7 @@ public class MainView implements IView {
     private JLabel modulesLabel;
     private JPanel mainPanel;
 
-    private Map<String, Class<? extends IView>> modulesMap = new TreeMap<>();
+    private Map<String, Class<? extends IView>> modulesMap = new LinkedHashMap<>();
 
     /**
      * List of SpellViews (widgets with list of spells) which has no level differentiation
@@ -47,9 +50,20 @@ public class MainView implements IView {
     private List<Class<? extends IView>> nonLevelableSpellViews = new ArrayList<>();
 
     public MainView() {
+        loadDataFromFile();
         constructModulesMap();
         fillModulesNameComboBox();
         fillNonLevelableSpellViews();
+    }
+
+    private void loadDataFromFile() {
+        RandomAccessFile file = FilesContainer.getOriginalFile();
+        try {
+            file.seek(0x20L);
+            file.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void constructModulesMap() {
@@ -57,22 +71,22 @@ public class MainView implements IView {
         modulesMap.put("Light Combat Arts", LightCombatArtsMagic.class);
         modulesMap.put("Heavy Combat Arts", HeavyCombatArtsMagic.class);
         modulesMap.put("Archery", ArcheryArtsMagic.class);
-        modulesMap.put("Black magic", BlackMagicView.class);
-        modulesMap.put("Black magic : Death", DeathMagicView.class);
-        modulesMap.put("Black magic : Necromancy", NecromancyView.class);
-        modulesMap.put("Black magic : Curses", CursesView.class);
         modulesMap.put("White magic", WhiteMagicView.class);
         modulesMap.put("White magic : Life", LifeView.class);
         modulesMap.put("White magic : Nature", NatureView.class);
         modulesMap.put("White magic : Life", BoonsView.class);
-        modulesMap.put("Mind magic", MindMagicView.class);
-        modulesMap.put("Mind magic : Offensive", OffensiveMagicView.class);
-        modulesMap.put("Mind magic : Enchantment", EnchantmentView.class);
-        modulesMap.put("Mind magic : Defensive", DefensiveMagicView.class);
         modulesMap.put("Elemental magic", ElementalMagicView.class);
         modulesMap.put("Elemental magic : Fire", FireView.class);
         modulesMap.put("Elemental magic : Ice", IceView.class);
         modulesMap.put("Elemental magic : Earth", EarthView.class);
+        modulesMap.put("Mind magic", MindMagicView.class);
+        modulesMap.put("Mind magic : Offensive", OffensiveMagicView.class);
+        modulesMap.put("Mind magic : Enchantment", EnchantmentView.class);
+        modulesMap.put("Mind magic : Defensive", DefensiveMagicView.class);
+        modulesMap.put("Black magic", BlackMagicView.class);
+        modulesMap.put("Black magic : Death", DeathMagicView.class);
+        modulesMap.put("Black magic : Necromancy", NecromancyView.class);
+        modulesMap.put("Black magic : Curses", CursesView.class);
     }
 
     private void fillModulesNameComboBox() {

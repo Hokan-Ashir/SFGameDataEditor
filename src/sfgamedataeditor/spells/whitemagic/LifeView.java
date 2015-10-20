@@ -12,19 +12,35 @@ public class LifeView extends SpellClassView {
      * {@inheritDoc}
      */
     @Override
-    protected List<Pair<String, Long>> createSpellList() {
-        return new ArrayList<Pair<String, Long>>() {{
-            add(new Pair<>("Healing", 0l));
-            add(new Pair<>("Area Healing", 0l));
-            add(new Pair<>("Aura of Strength", 0l));
-            add(new Pair<>("Greater Healing", 0l));
-            add(new Pair<>("Aura of Healing", 0l));
-            add(new Pair<>("Aura of Endurance", 0l));
-            add(new Pair<>("Sentiel Healing", 0l));
-            add(new Pair<>("Suicide Healing", 0l));
-            add(new Pair<>("Help", 0l));
-            add(new Pair<>("Vengeance", 0l));
-            add(new Pair<>("Healing Touch", 0l));
+    protected List<Pair<String, Integer>> createSpellList() {
+        return new ArrayList<Pair<String, Integer>>() {{
+            add(new Pair<>("Healing", 0));
+            add(new Pair<>("Area Healing", 0));
+            add(new Pair<>("Aura of Strength", 0));
+            add(new Pair<>("Greater Healing", 0));
+            add(new Pair<>("Aura of Healing", 0));
+            add(new Pair<>("Aura of Endurance", 0));
+            add(new Pair<>("Sentiel Healing", 0));
+            add(new Pair<>("Suicide Healing", 0));
+            add(new Pair<>("Help", 0));
+            add(new Pair<>("Vengeance", 0));
+            add(new Pair<>("Healing Touch", 0));
         }};
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getSpellClass() {
+        return 4;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getSpellSubClass() {
+        return 1;
     }
 }
