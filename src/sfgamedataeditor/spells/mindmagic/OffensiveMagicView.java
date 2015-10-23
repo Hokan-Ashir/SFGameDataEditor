@@ -44,6 +44,6 @@ public class OffensiveMagicView extends SpellClassView {
      */
     @Override
     protected byte getSpellSubClass() {
-        return 1;
+        return 2;
     }
 }

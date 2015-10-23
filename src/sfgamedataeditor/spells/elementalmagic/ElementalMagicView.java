@@ -16,8 +16,6 @@ public class ElementalMagicView extends SpellClassView {
         return new ArrayList<Pair<String, Integer>>() {{
             // EssenceElementalEffect = 183
             add(new Pair<>("Elemental Essence", 176));
-            // AlmightinessElementalEffect = 182
-            add(new Pair<>("Elemental Almightiness", 180));
         }};
     }
 

@@ -45,6 +45,6 @@ public class EnchantmentView extends SpellClassView {
      */
     @Override
     protected byte getSpellSubClass() {
-        return 2;
+        return 1;
     }
 }

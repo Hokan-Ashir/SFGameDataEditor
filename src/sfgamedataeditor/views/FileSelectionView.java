@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 
-public class FileSelectionView {
+public class FileSelectionView implements IView {
     private JPanel mainPanel;
     private JTextField originalFileField;
     private JLabel originalFileLabel;
@@ -104,13 +104,17 @@ public class FileSelectionView {
                 view.getOkButton().setEnabled(false);
                 view.getOriginalFileSelectorButton().setEnabled(false);
                 view.getModificationFileSelectorButton().setEnabled(false);
-                frame.repaint();
+                view.getMainPanel().paintImmediately(view.getMainPanel().getBounds());
                 MainView.showMainView();
                 frame.dispose();
             }
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public JPanel getMainPanel() {
         return mainPanel;
     }

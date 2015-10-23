@@ -1,26 +1,15 @@
 package sfgamedataeditor.views;
 
+import sfgamedataeditor.databind.AbstractEntity;
 import sfgamedataeditor.databind.FilesContainer;
 import sfgamedataeditor.skills.SkillView;
-import sfgamedataeditor.spells.blackmagic.BlackMagicView;
-import sfgamedataeditor.spells.blackmagic.CursesView;
-import sfgamedataeditor.spells.blackmagic.DeathMagicView;
-import sfgamedataeditor.spells.blackmagic.NecromancyView;
+import sfgamedataeditor.spells.blackmagic.*;
 import sfgamedataeditor.spells.combat.ArcheryArtsMagic;
 import sfgamedataeditor.spells.combat.HeavyCombatArtsMagic;
 import sfgamedataeditor.spells.combat.LightCombatArtsMagic;
-import sfgamedataeditor.spells.elementalmagic.EarthView;
-import sfgamedataeditor.spells.elementalmagic.ElementalMagicView;
-import sfgamedataeditor.spells.elementalmagic.FireView;
-import sfgamedataeditor.spells.elementalmagic.IceView;
-import sfgamedataeditor.spells.mindmagic.DefensiveMagicView;
-import sfgamedataeditor.spells.mindmagic.EnchantmentView;
-import sfgamedataeditor.spells.mindmagic.MindMagicView;
-import sfgamedataeditor.spells.mindmagic.OffensiveMagicView;
-import sfgamedataeditor.spells.whitemagic.BoonsView;
-import sfgamedataeditor.spells.whitemagic.LifeView;
-import sfgamedataeditor.spells.whitemagic.NatureView;
-import sfgamedataeditor.spells.whitemagic.WhiteMagicView;
+import sfgamedataeditor.spells.elementalmagic.*;
+import sfgamedataeditor.spells.mindmagic.*;
+import sfgamedataeditor.spells.whitemagic.*;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -37,7 +26,7 @@ public class MainView implements IView {
     private JLabel modulesLabel;
     private JPanel mainPanel;
 
-    private Map<String, IView> modulesMap = new LinkedHashMap<>();
+    private Map<String, AbstractLevelableEntity> modulesMap = new LinkedHashMap<>();
     public static final int SPELLS_DATA_BEGIN_OFFSET = 0x20;
     private static final int SPELLS_DATA_END_OFFSET = 0x3fd13;
 
@@ -52,18 +41,22 @@ public class MainView implements IView {
         modulesMap.put("Heavy Combat Arts", new HeavyCombatArtsMagic());
         modulesMap.put("Archery", new ArcheryArtsMagic());
         modulesMap.put("White magic", new WhiteMagicView());
+        modulesMap.put("White magic : All", new WhiteMagicAllView());
         modulesMap.put("White magic : Life", new LifeView());
         modulesMap.put("White magic : Nature", new NatureView());
         modulesMap.put("White magic : Boons", new BoonsView());
         modulesMap.put("Elemental magic", new ElementalMagicView());
+        modulesMap.put("Elemental magic : All", new ElementalMagicAllView());
         modulesMap.put("Elemental magic : Fire", new FireView());
         modulesMap.put("Elemental magic : Ice", new IceView());
         modulesMap.put("Elemental magic : Earth", new EarthView());
         modulesMap.put("Mind magic", new MindMagicView());
+        modulesMap.put("Mind magic : All", new MindMagicAllView());
         modulesMap.put("Mind magic : Offensive", new OffensiveMagicView());
         modulesMap.put("Mind magic : Enchantment", new EnchantmentView());
         modulesMap.put("Mind magic : Defensive", new DefensiveMagicView());
         modulesMap.put("Black magic", new BlackMagicView());
+        modulesMap.put("Black magic : All", new BlackMagicAllView());
         modulesMap.put("Black magic : Death", new DeathMagicView());
         modulesMap.put("Black magic : Necromancy", new NecromancyView());
         modulesMap.put("Black magic : Curses", new CursesView());
@@ -115,10 +108,11 @@ public class MainView implements IView {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     Object item = e.getItem();
 
-                    mainView.modulesPanel.removeAll();
-                    for (Map.Entry<String, IView> stringClassEntry : mainView.getModulesMap().entrySet()) {
+                    mainView.getModulesPanel().removeAll();
+                    for (Map.Entry<String, AbstractLevelableEntity> stringClassEntry : mainView.getModulesMap().entrySet()) {
                         if (item.equals(stringClassEntry.getKey())) {
-                            IView view = stringClassEntry.getValue();
+                            AbstractLevelableEntity view = stringClassEntry.getValue();
+                            view.loadDataFromFile(FilesContainer.getOriginalFile());
                             mainView.getModulesPanel().add(view.getMainPanel());
                         }
                     }
@@ -149,7 +143,7 @@ public class MainView implements IView {
         return modulesPanel;
     }
 
-    public Map<String, IView> getModulesMap() {
+    public Map<String, AbstractLevelableEntity> getModulesMap() {
         return modulesMap;
     }
 }

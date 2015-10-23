@@ -53,10 +53,12 @@ public class SpellView extends AbstractEntity implements IView {
     private JLabel requirementLevelLabel3;
     private JTextField requirementLevelField3;
 
+    public static final int NUMBER_OF_ABILITY_LEVELS = 20;
+
     private List<Entity> entityList = new ArrayList<>();
     private Integer spellType;
     private Map<String, List<String>> classSubClassComboBoxContent = new LinkedHashMap<>();
-    private List<Long> spellLevelOffsets = new ArrayList<>(20);
+    private List<Long> spellLevelOffsets = new ArrayList<>(NUMBER_OF_ABILITY_LEVELS);
 
     public SpellView(Integer spellType) {
         this.spellType = spellType;
@@ -74,7 +76,7 @@ public class SpellView extends AbstractEntity implements IView {
         classSubClassComboBoxContent.put("Archery", Collections.<String>emptyList());
         classSubClassComboBoxContent.put("White Magic", new ArrayList<>(Arrays.asList("Life", "Nature", "Boons")));
         classSubClassComboBoxContent.put("Elemental Magic", new ArrayList<>(Arrays.asList("Fire", "Ice", "Earth")));
-        classSubClassComboBoxContent.put("Mind Magic", new ArrayList<>(Arrays.asList("Offensive", "Enchantment", "Defensive")));
+        classSubClassComboBoxContent.put("Mind Magic", new ArrayList<>(Arrays.asList("Enchantment", "Offensive", "Defensive")));
         classSubClassComboBoxContent.put("Black Magic", new ArrayList<>(Arrays.asList("Death", "Necromancy", "Curses")));
 
         for (String s : classSubClassComboBoxContent.keySet()) {
@@ -136,15 +138,14 @@ public class SpellView extends AbstractEntity implements IView {
     }
 
     public void setSpellLevel(int spellLevel) {
-        if (!spellLevelOffsets.isEmpty()) {
-            Long offsetInFile = spellLevelOffsets.get(spellLevel - 1);
-            setOffsetInFile(offsetInFile);
-            for (Component component : mainPanel.getComponents()) {
-                component.setVisible(offsetInFile != 0);
-            }
-            for (int i = 0; i < spellLevelOffsets.size(); i++) {
-                System.out.println(i + ": " + spellLevelOffsets.get(i));
-            }
+        if (spellLevelOffsets.isEmpty()) {
+            return;
+        }
+
+        Long offsetInFile = spellLevelOffsets.get(spellLevel - 1);
+        setOffsetInFile(offsetInFile);
+        for (Component component : mainPanel.getComponents()) {
+            component.setVisible(offsetInFile != 0);
         }
     }
 

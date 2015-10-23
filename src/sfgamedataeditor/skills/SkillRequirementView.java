@@ -1,10 +1,12 @@
 package sfgamedataeditor.skills;
 
+import sfgamedataeditor.databind.AbstractEntity;
 import sfgamedataeditor.views.IView;
 
 import javax.swing.*;
+import java.io.RandomAccessFile;
 
-public class SkillRequirementView implements IView {
+public class SkillRequirementView extends AbstractEntity implements IView {
     private JPanel mainPanel;
     private JTextField strengthField;
     private JLabel stregthLabel;
@@ -34,5 +36,13 @@ public class SkillRequirementView implements IView {
     @Override
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void loadDataFromFile(RandomAccessFile file) {
+
     }
 }

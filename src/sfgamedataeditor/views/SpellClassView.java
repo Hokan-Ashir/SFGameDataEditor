@@ -13,7 +13,7 @@ import java.io.RandomAccessFile;
 import java.util.List;
 import java.util.TreeMap;
 
-public abstract class SpellClassView extends AbstractEntity implements ILevelableView {
+public abstract class SpellClassView extends AbstractLevelableEntity {
     private JPanel mainPanel;
     private JLabel levelLabel;
     private JPanel spellsPanel;
@@ -103,15 +103,43 @@ public abstract class SpellClassView extends AbstractEntity implements ILevelabl
 
     protected abstract byte getSpellSubClass();
 
+    protected byte getSpellClass2() {
+        return 0;
+    }
+
+    protected byte getSpellSubClass2() {
+        return 0;
+    }
+
+    protected byte getSpellClass3() {
+        return 0;
+    }
+
+    protected byte getSpellSubClass3() {
+        return 0;
+    }
+
     public void fillSpellsOffsetsByLevel(byte[] spellData) {
         for (SpellView spellView : spellViewMap.values()) {
-            byte[] pattern = new byte[5];
+            byte[] pattern = new byte[11];
             pattern[0] = (byte) (spellView.getSpellType() & 0xFF);
             pattern[1] = (byte) (spellView.getSpellType() & 0xFF00);
             pattern[2] = getSpellClass();
             pattern[3] = getSpellSubClass();
-            for (int i = 0; i < 20; ++i) {
+            pattern[5] = getSpellClass2();
+            pattern[6] = getSpellSubClass2();
+            pattern[8] = getSpellClass3();
+            pattern[9] = getSpellSubClass3();
+            for (int i = 0; i < SpellView.NUMBER_OF_ABILITY_LEVELS; ++i) {
                 pattern[4] = (byte) (i + 1);
+                if (getSpellClass2() != 0) {
+                    pattern[7] = (byte) (i + 1);
+                }
+
+                if (getSpellClass3() != 0) {
+                    pattern[10] = (byte) (i + 1);
+                }
+
                 int index = indexOf(spellData, pattern);
                 if (index == -1) {
                     spellView.getSpellLevelOffsets().add(i, 0L);
@@ -119,6 +147,8 @@ public abstract class SpellClassView extends AbstractEntity implements ILevelabl
                     spellView.getSpellLevelOffsets().add(i, (long) index + MainView.SPELLS_DATA_BEGIN_OFFSET - 0x2);
                 }
             }
+
+            spellView.setSpellLevel(1);
         }
     }
 

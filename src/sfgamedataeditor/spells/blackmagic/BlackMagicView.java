@@ -15,7 +15,6 @@ public class BlackMagicView extends SpellClassView {
     protected List<Pair<String, Integer>> createSpellList() {
         return new ArrayList<Pair<String, Integer>>() {{
             add(new Pair<>("Black Essence", 174));
-            add(new Pair<>("Black Almightiness", 178));
         }};
     }
 

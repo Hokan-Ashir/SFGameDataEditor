@@ -1,14 +1,17 @@
 package sfgamedataeditor.skills;
 
 import javafx.util.Pair;
+import sfgamedataeditor.databind.AbstractEntity;
+import sfgamedataeditor.views.AbstractLevelableEntity;
 import sfgamedataeditor.views.ILevelableView;
 import sfgamedataeditor.views.IView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
-public class SkillView implements ILevelableView {
+public class SkillView extends AbstractLevelableEntity {
     private JPanel mainPanel;
     private JComboBox levelComboBox;
     private JLabel levelLabel;
@@ -72,5 +75,13 @@ public class SkillView implements ILevelableView {
     @Override
     public JLabel getLevelLabel() {
         return levelLabel;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void loadDataFromFile(RandomAccessFile file) {
+
     }
 }

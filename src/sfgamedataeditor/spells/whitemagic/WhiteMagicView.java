@@ -15,7 +15,6 @@ public class WhiteMagicView extends SpellClassView {
     protected List<Pair<String, Integer>> createSpellList() {
         return new ArrayList<Pair<String, Integer>>() {{
             add(new Pair<>("White Essence", 175));
-            add(new Pair<>("White Almightiness", 179));
         }};
     }
 

@@ -15,7 +15,6 @@ public class MindMagicView extends SpellClassView {
     protected List<Pair<String, Integer>> createSpellList() {
         return new ArrayList<Pair<String, Integer>>() {{
             add(new Pair<>("Mind Essence", 177));
-            add(new Pair<>("Mind Almightiness", 181));
         }};
     }
 
