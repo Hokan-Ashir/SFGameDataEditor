@@ -1,6 +1,5 @@
 package sfgamedataeditor.views;
 
-import sfgamedataeditor.databind.AbstractEntity;
 import sfgamedataeditor.databind.FilesContainer;
 import sfgamedataeditor.skills.SkillView;
 import sfgamedataeditor.spells.blackmagic.*;
@@ -16,7 +15,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class MainView implements IView {
     private JButton loadSfmodFileButton;

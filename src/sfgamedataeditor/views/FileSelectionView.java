@@ -5,6 +5,7 @@ import sfgamedataeditor.databind.FilesContainer;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -100,10 +101,15 @@ public class FileSelectionView implements IView {
         view.getOkButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.getOkButton().setText("Processing data. Please wait ...");
-                view.getOkButton().setEnabled(false);
+                JButton okButton = view.getOkButton();
+                okButton.setText("Processing data. Please wait ...");
+                int fontSize = okButton.getFont().getSize();
+                okButton.setPreferredSize(new Dimension(okButton.getText().length() * fontSize,
+                        okButton.getPreferredSize().height));
+                okButton.setEnabled(false);
                 view.getOriginalFileSelectorButton().setEnabled(false);
                 view.getModificationFileSelectorButton().setEnabled(false);
+                frame.pack();
                 view.getMainPanel().paintImmediately(view.getMainPanel().getBounds());
                 MainView.showMainView();
                 frame.dispose();
