@@ -3,6 +3,7 @@ package sfgamedataeditor.views;
 import javafx.util.Pair;
 import sfgamedataeditor.databind.AbstractEntity;
 import sfgamedataeditor.databind.FilesContainer;
+import sfgamedataeditor.databind.SpellDataTuple;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,10 +11,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.*;
 import java.util.List;
-import java.util.TreeMap;
 
-public abstract class SpellClassView extends AbstractLevelableEntity {
+public class SpellClassView extends AbstractLevelableEntity {
     private JPanel mainPanel;
     private JLabel levelLabel;
     private JPanel spellsPanel;
@@ -23,14 +24,13 @@ public abstract class SpellClassView extends AbstractLevelableEntity {
 
     java.util.Map<String, SpellView> spellViewMap = new TreeMap<>();
     private SpellView currentlySelectedSpellView;
+    private Map<Pair<Integer, String>, List<Pair<Integer, Long>>> spellMap = new HashMap<>();
 
-    public SpellClassView() {
-        generateUI();
+    public SpellClassView(SpellDataTuple tuple) {
+        addSpellTuple(tuple);
     }
 
     private void generateUI() {
-        List<Pair<String, Integer>> spellList = createSpellList();
-        constructSpellViewMap(spellList);
         fillSpellNameComboBox();
 
         spellNameComboBox.addItemListener(new ItemListener() {
@@ -82,118 +82,25 @@ public abstract class SpellClassView extends AbstractLevelableEntity {
         }
     }
 
-    private void constructSpellViewMap(List<Pair<String, Integer>> spellList) {
-        for (Pair<String, Integer> pair : spellList) {
-            spellViewMap.put(pair.getKey(), new SpellView(pair.getValue()));
-        }
-    }
-
-    /**
-     * Creates list of pairs - "spellName" - "spellID"
-     * List of spellIDs can be obtained via decompiling file "sql_spells.lua" located in
-     * SPELLFORCE_FOLDER/script/ with help of Lua4Dec - https://github.com/aheadley/python-lua4dec
-     * or by using this list:
-     * http://pastebin.com/WmMk32zv
-     *
-     * @return list of pair-spells "spellName" - "spellID"
-     */
-    protected abstract java.util.List<Pair<String, Integer>> createSpellList();
-
-    protected abstract byte getSpellClass();
-
-    protected abstract byte getSpellSubClass();
-
-    protected byte getSpellClass2() {
-        return 0;
-    }
-
-    protected byte getSpellSubClass2() {
-        return 0;
-    }
-
-    protected byte getSpellClass3() {
-        return 0;
-    }
-
-    protected byte getSpellSubClass3() {
-        return 0;
-    }
-
-    public void fillSpellsOffsetsByLevel(byte[] spellData) {
-        for (SpellView spellView : spellViewMap.values()) {
-            byte[] pattern = new byte[11];
-            pattern[0] = (byte) (spellView.getSpellType() & 0xFF);
-            pattern[1] = (byte) (spellView.getSpellType() & 0xFF00);
-            pattern[2] = getSpellClass();
-            pattern[3] = getSpellSubClass();
-            pattern[5] = getSpellClass2();
-            pattern[6] = getSpellSubClass2();
-            pattern[8] = getSpellClass3();
-            pattern[9] = getSpellSubClass3();
-            for (int i = 0; i < SpellView.NUMBER_OF_ABILITY_LEVELS; ++i) {
-                pattern[4] = (byte) (i + 1);
-                if (getSpellClass2() != 0) {
-                    pattern[7] = (byte) (i + 1);
-                }
-
-                if (getSpellClass3() != 0) {
-                    pattern[10] = (byte) (i + 1);
-                }
-
-                int index = indexOf(spellData, pattern);
-                if (index == -1) {
-                    spellView.getSpellLevelOffsets().add(i, 0L);
-                } else {
-                    spellView.getSpellLevelOffsets().add(i, (long) index + MainView.SPELLS_DATA_BEGIN_OFFSET - 0x2);
-                }
-            }
-
-            spellView.setSpellLevel(1);
-        }
-    }
-
-    /**
-     * Finds the first occurrence of the pattern in the text.
-     */
-    private int indexOf(byte[] data, byte[] pattern) {
-        int[] failure = computeFailure(pattern);
-
-        int j = 0;
-        if (data.length == 0) {
-            return -1;
+    public void construct() {
+        for (Map.Entry<Pair<Integer, String>, List<Pair<Integer, Long>>> pairListEntry : spellMap
+                .entrySet()) {
+            spellViewMap.put(pairListEntry.getKey().getValue(), new SpellView(pairListEntry.getKey().getKey(), pairListEntry.getValue()));
         }
 
-        for (int i = 0; i < data.length; i++) {
-            while (j > 0 && pattern[j] != data[i]) {
-                j = failure[j - 1];
-            }
-            if (pattern[j] == data[i]) { j++; }
-            if (j == pattern.length) {
-                return i - pattern.length + 1;
-            }
-        }
-        return -1;
+        generateUI();
     }
 
-    /**
-     * Computes the failure function using a boot-strapping process,
-     * where the pattern is matched against itself.
-     */
-    private int[] computeFailure(byte[] pattern) {
-        int[] failure = new int[pattern.length];
-
-        int j = 0;
-        for (int i = 1; i < pattern.length; i++) {
-            while (j > 0 && pattern[j] != pattern[i]) {
-                j = failure[j - 1];
-            }
-            if (pattern[j] == pattern[i]) {
-                j++;
-            }
-            failure[i] = j;
+    public void addSpellTuple(SpellDataTuple tuple) {
+        Pair<Integer, String> spellKey = new Pair<>(tuple.getId(), tuple.getName());
+        if (!spellMap.containsKey(spellKey)) {
+            List<Pair<Integer, Long>> spellValue = new ArrayList<>();
+            spellValue.add(new Pair<>(tuple.getLevel(), tuple.getOffset()));
+            spellMap.put(spellKey, spellValue);
+        } else {
+            List<Pair<Integer, Long>> spellValue = spellMap.get(spellKey);
+            spellValue.add(new Pair<>(tuple.getLevel(), tuple.getOffset()));
         }
-
-        return failure;
     }
 
     /**

@@ -23,7 +23,11 @@ public class ComboBoxEntity extends Entity<JComboBox> {
         if (getComponent().getItemCount() != 0) {
             // cause comboBox-item indexes enumeration begins with "0", subtract "1"
             // to match spell values enumeration which begins with "1"
-            getComponent().setSelectedIndex(temp - 1);
+
+            // TODO check why this causes error
+            if (getComponent().getItemCount() >= temp) {
+                getComponent().setSelectedIndex(temp - 1);
+            }
         }
     }
 }

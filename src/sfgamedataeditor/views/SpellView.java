@@ -1,5 +1,6 @@
 package sfgamedataeditor.views;
 
+import javafx.util.Pair;
 import sfgamedataeditor.databind.*;
 
 import javax.swing.*;
@@ -58,10 +59,12 @@ public class SpellView extends AbstractEntity implements IView {
     private List<Entity> entityList = new ArrayList<>();
     private Integer spellType;
     private Map<String, List<String>> classSubClassComboBoxContent = new LinkedHashMap<>();
-    private List<Long> spellLevelOffsets = new ArrayList<>(NUMBER_OF_ABILITY_LEVELS);
+    // TODO optimization, store only list of offsets, not level numbers itself
+    private List<Pair<Integer, Long>> spellLevelOffsets = new ArrayList<>(NUMBER_OF_ABILITY_LEVELS);
 
-    public SpellView(Integer spellType) {
+    public SpellView(Integer spellType, List<Pair<Integer, Long>> offsets) {
         this.spellType = spellType;
+        this.spellLevelOffsets = offsets;
         initializeRequirementsComboBoxes();
         initializeEntityList();
     }
@@ -142,7 +145,14 @@ public class SpellView extends AbstractEntity implements IView {
             return;
         }
 
-        Long offsetInFile = spellLevelOffsets.get(spellLevel - 1);
+        Long offsetInFile = 0l;
+        for (Pair<Integer, Long> spellLevelOffset : spellLevelOffsets) {
+            if (spellLevelOffset.getKey() == spellLevel) {
+                offsetInFile = spellLevelOffset.getValue();
+                break;
+            }
+        }
+
         setOffsetInFile(offsetInFile);
         for (Component component : mainPanel.getComponents()) {
             component.setVisible(offsetInFile != 0);
@@ -203,7 +213,7 @@ public class SpellView extends AbstractEntity implements IView {
         }
     }
 
-    public List<Long> getSpellLevelOffsets() {
+    public List<Pair<Integer, Long>> getSpellLevelOffsets() {
         return spellLevelOffsets;
     }
 
