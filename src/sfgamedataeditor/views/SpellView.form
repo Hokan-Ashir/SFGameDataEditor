@@ -5,9 +5,9 @@
       <xy x="20" y="20" width="1200" height="550"/>
     </constraints>
     <properties>
-      <maximumSize width="950" height="350"/>
-      <minimumSize width="950" height="350"/>
-      <preferredSize width="950" height="350"/>
+      <maximumSize width="950" height="390"/>
+      <minimumSize width="950" height="390"/>
+      <preferredSize width="950" height="390"/>
     </properties>
     <border type="none"/>
     <children>
@@ -145,7 +145,7 @@
           <preferredSize width="90" height="23"/>
         </properties>
       </component>
-      <component id="5c31e" class="javax.swing.JLabel" binding="durationLabel">
+      <component id="5c31e" class="javax.swing.JLabel" binding="parameterLabel1">
         <constraints>
           <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
@@ -154,10 +154,10 @@
           <maximumSize width="115" height="23"/>
           <minimumSize width="115" height="23"/>
           <preferredSize width="115" height="23"/>
-          <text value="Duration (ms.):"/>
+          <text value="Unknown:"/>
         </properties>
       </component>
-      <component id="e111a" class="javax.swing.JTextField" binding="durationField">
+      <component id="e111a" class="javax.swing.JTextField" binding="parameterField1">
         <constraints>
           <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -181,40 +181,18 @@
           <preferredSize width="165" height="23"/>
         </properties>
       </component>
-      <component id="a1fd8" class="javax.swing.JLabel" binding="manaPerPeriodConsumingLabel">
+      <component id="1f6e3" class="javax.swing.JLabel" binding="parameterLabel3">
         <constraints>
-          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Mana pt./duration:"/>
+          <text value="Unknown:"/>
         </properties>
       </component>
-      <component id="1c97" class="javax.swing.JTextField" binding="manaPerPeriodConsumingField">
+      <component id="1751f" class="javax.swing.JTextField" binding="parameterField3">
         <constraints>
           <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
-      <component id="1f6e3" class="javax.swing.JLabel" binding="summoningCreatureIDLabel">
-        <constraints>
-          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text value="Summoning creature ID:"/>
-        </properties>
-      </component>
-      <component id="1751f" class="javax.swing.JTextField" binding="summoningCreatureIDField">
-        <constraints>
-          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
@@ -450,6 +428,182 @@
       <component id="d86bf" class="javax.swing.JTextField" binding="requirementLevelField3">
         <constraints>
           <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="a1fd8" class="javax.swing.JLabel" binding="parameterLabel2">
+        <constraints>
+          <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Unknown:"/>
+        </properties>
+      </component>
+      <component id="1c97" class="javax.swing.JTextField" binding="parameterField2">
+        <constraints>
+          <grid row="9" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="ca4be" class="javax.swing.JLabel" binding="parameterLabel4">
+        <constraints>
+          <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Unknown:"/>
+        </properties>
+      </component>
+      <component id="aea8a" class="javax.swing.JTextField" binding="parameterField4">
+        <constraints>
+          <grid row="10" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="8b45f" class="javax.swing.JLabel" binding="parameterLabel5">
+        <constraints>
+          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Unknown:"/>
+        </properties>
+      </component>
+      <component id="5e509" class="javax.swing.JTextField" binding="parameterField5">
+        <constraints>
+          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="497ce" class="javax.swing.JLabel" binding="parameterLabel6">
+        <constraints>
+          <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Unknown:"/>
+        </properties>
+      </component>
+      <component id="c74f8" class="javax.swing.JTextField" binding="parameterField6">
+        <constraints>
+          <grid row="11" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="7a94d" class="javax.swing.JLabel" binding="parameterLabel7">
+        <constraints>
+          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Unknown:"/>
+        </properties>
+      </component>
+      <component id="76db6" class="javax.swing.JTextField" binding="parameterField7">
+        <constraints>
+          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="1ff9d" class="javax.swing.JLabel" binding="parameterLabel8">
+        <constraints>
+          <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Unknown:"/>
+        </properties>
+      </component>
+      <component id="978b4" class="javax.swing.JTextField" binding="parameterField8">
+        <constraints>
+          <grid row="12" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="4a6cf" class="javax.swing.JLabel" binding="parameterLabel9">
+        <constraints>
+          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Unknown:"/>
+        </properties>
+      </component>
+      <component id="d9c3f" class="javax.swing.JTextField" binding="parameterField9">
+        <constraints>
+          <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="f3974" class="javax.swing.JLabel" binding="parameterLabel10">
+        <constraints>
+          <grid row="13" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Unknown:"/>
+        </properties>
+      </component>
+      <component id="9dbbc" class="javax.swing.JTextField" binding="parameterField10">
+        <constraints>
+          <grid row="13" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>

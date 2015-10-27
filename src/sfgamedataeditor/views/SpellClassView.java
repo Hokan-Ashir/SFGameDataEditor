@@ -86,10 +86,17 @@ public class SpellClassView extends AbstractLevelableEntity {
         }
     }
 
-    public void construct() {
+    public void construct(Map<Integer, Pair<String, List<String>>> spellBindMap) {
         for (Map.Entry<Pair<Integer, String>, List<Pair<Integer, Long>>> pairListEntry : spellMap
                 .entrySet()) {
-            spellViewMap.put(pairListEntry.getKey().getValue(), new SpellView(pairListEntry.getValue()));
+            Pair<String, List<String>> spellNameFieldNamePair = spellBindMap.get(pairListEntry.getKey().getKey());
+            List<String> fieldNameList;
+            if (spellNameFieldNamePair == null) {
+                fieldNameList = Collections.emptyList();
+            } else {
+                fieldNameList = spellNameFieldNamePair.getValue();
+            }
+            spellViewMap.put(pairListEntry.getKey().getValue(), new SpellView(pairListEntry.getValue(), fieldNameList));
         }
 
         generateUI();

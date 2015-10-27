@@ -1,5 +1,6 @@
 package sfgamedataeditor.xml;
 
+import javafx.util.Pair;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -11,7 +12,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SpellBindingExtractor {
@@ -20,8 +23,12 @@ public class SpellBindingExtractor {
     public static final String SPELL_TAG_NAME = "spell";
     public static final String ID_ATTRIBUTE = "id";
     public static final String NAME_ATTRIBUTE = "name";
+    // TODO add i18n support
+    private static final String LANGUAGE = "en";
+    private static final int NUMBER_OF_PARAMETER_FIELDS = 7;
+    private static final String FIELD_ATTRIBUTE = "field";
 
-    public static Map<Integer, String> getSpellMap() {
+    public static Map<Integer, Pair<String, List<String>>> getSpellMap() {
         File file = new File(SPELL_BINDING_FILE);
         DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
@@ -47,18 +54,26 @@ public class SpellBindingExtractor {
         //read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
         document.getDocumentElement().normalize();
 
-        Map<Integer, String> spellMap = new HashMap<>();
+        Map<Integer, Pair<String, List<String>>> spellMap = new HashMap<>();
 
         NodeList spellNodeList = document.getElementsByTagName(SPELL_TAG_NAME);
+        String nameAttribute = NAME_ATTRIBUTE + "_" + LANGUAGE;
         for (int i = 0; i < spellNodeList.getLength(); i++) {
             Node node = spellNodeList.item(i);
             NamedNodeMap attributes = node.getAttributes();
             for (int j = 0; j < attributes.getLength(); j++) {
                 Node idNode = attributes.getNamedItem(ID_ATTRIBUTE);
                 Integer id = Integer.valueOf(idNode.getNodeValue());
-                Node nameNode = attributes.getNamedItem(NAME_ATTRIBUTE);
+                Node nameNode = attributes.getNamedItem(nameAttribute);
                 String name = nameNode.getNodeValue();
-                spellMap.put(id, name);
+                List<String> parameterFieldsNames = new ArrayList<>();
+                for (int k = 0; k < NUMBER_OF_PARAMETER_FIELDS; k++) {
+                    Node fieldNode = attributes.getNamedItem(FIELD_ATTRIBUTE + String.valueOf(k));
+                    if (fieldNode != null) {
+                        parameterFieldsNames.add(fieldNode.getNodeValue());
+                    }
+                }
+                spellMap.put(id, new Pair<>(name, parameterFieldsNames));
             }
         }
 

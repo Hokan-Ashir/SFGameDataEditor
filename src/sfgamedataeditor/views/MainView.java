@@ -1,5 +1,6 @@
 package sfgamedataeditor.views;
 
+import javafx.util.Pair;
 import sfgamedataeditor.databind.FilesContainer;
 import sfgamedataeditor.databind.ISpellConstraint;
 import sfgamedataeditor.databind.SpellDataTuple;
@@ -14,8 +15,11 @@ import java.io.RandomAccessFile;
 import java.util.*;
 
 public class MainView implements IView {
-    public static final int SPELL_DATA_LENGTH = 76;
-    public static final int SPELL_NUMBER_DATA_LENGTH = 0x2;
+    private static final int SPELLS_DATA_END_OFFSET = 0x3fd13;
+    private static final int SPELL_DATA_LENGTH = 76;
+    private static final int SPELL_NUMBER_DATA_LENGTH = 0x2;
+    private static final int SPELLS_DATA_BEGIN_OFFSET = 0x20;
+
     private JButton loadSfmodFileButton;
     private JButton createSfmodFileButton;
     private JComboBox<String> modulesComboBox;
@@ -24,8 +28,6 @@ public class MainView implements IView {
     private JPanel mainPanel;
 
     private Map<String, AbstractLevelableEntity> modulesMap = new TreeMap<>();
-    public static final int SPELLS_DATA_BEGIN_OFFSET = 0x20;
-    private static final int SPELLS_DATA_END_OFFSET = 0x3fd13;
 
     public MainView() {
         constructModulesMap();
@@ -35,7 +37,7 @@ public class MainView implements IView {
     private void constructModulesMap() {
         modulesMap.put("Skills", new SkillView());
 
-        final Map<Integer, String> spellMap = SpellBindingExtractor.getSpellMap();
+        final Map<Integer, Pair<String, List<String>>> spellMap = SpellBindingExtractor.getSpellMap();
         List<ISpellConstraint> constraints = getSpellDataConstraints(spellMap);
         // TODO replace with combination of original and modification file
         RandomAccessFile file = FilesContainer.getOriginalFile();
@@ -62,26 +64,26 @@ public class MainView implements IView {
                 if (reachedSpellDataEnd) {
                     break;
                 } else {
-                    createAndAddSpellClassView(spellMap, constraints, file, buffer);
+                    createAndAddSpellClassView(spellMap, constraints.size(), file, buffer);
 
                 }
             }
 
-            constructSpellClassViews();
+            constructSpellClassViews(spellMap);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void createAndAddSpellClassView(Map<Integer, String> spellMap,
-            List<ISpellConstraint> constraints, RandomAccessFile file, byte[] buffer)
+    private void createAndAddSpellClassView(Map<Integer, Pair<String, List<String>>> spellMap, int constraintsSize,
+            RandomAccessFile file, byte[] buffer)
             throws IOException {
-        long spellOffset = file.getFilePointer() - constraints.size() - SPELL_NUMBER_DATA_LENGTH;
+        long spellOffset = file.getFilePointer() - constraintsSize - SPELL_NUMBER_DATA_LENGTH;
         String spellViewName = constructSpellSchoolName(buffer);
 
         byte spellLevel = buffer[4];
         byte spellID = buffer[0];
-        String spellName = spellMap.get((int) spellID & 0xFF);
+        String spellName = spellMap.get((int) spellID & 0xFF).getKey();
         SpellDataTuple tuple = new SpellDataTuple(spellOffset,
                                                     spellLevel,
                                                     spellName,
@@ -96,17 +98,17 @@ public class MainView implements IView {
         file.seek(spellOffset + SPELL_DATA_LENGTH);
     }
 
-    private void constructSpellClassViews() {
+    private void constructSpellClassViews(Map<Integer, Pair<String, List<String>>> spellMap) {
         for (AbstractLevelableEntity entity : modulesMap.values()) {
             if (!(entity instanceof SpellClassView)) {
                 continue;
             }
 
-            ((SpellClassView) entity).construct();
+            ((SpellClassView) entity).construct(spellMap);
         }
     }
 
-    List<ISpellConstraint> getSpellDataConstraints(final Map<Integer, String> spellMap) {
+    List<ISpellConstraint> getSpellDataConstraints(final Map<Integer, Pair<String, List<String>>> spellMap) {
         List<ISpellConstraint> constraints = new ArrayList<>();
         addSpellTypeConstraints(spellMap, constraints);
         addSpellRequirementConstraints(constraints);
@@ -170,7 +172,7 @@ public class MainView implements IView {
         }
     }
 
-    private void addSpellTypeConstraints(final Map<Integer, String> spellMap,
+    private void addSpellTypeConstraints(final Map<Integer, Pair<String, List<String>>> spellMap,
             List<ISpellConstraint> constraints) {
         constraints.add(new ISpellConstraint() {
             @Override
@@ -222,7 +224,8 @@ public class MainView implements IView {
 
         // TODO possibly, if ability is using by many different schools of magic,
         // it might be useful to return List/Array of "School - List<SubSchools>" pairs and add
-        // parsed spells to corresponding SpellClassViews
+        // parsed spells to corresponding SpellClassViews, this, however require synchronization,
+        // between different SpellClassViews, which can be hard to achieve
         return result;
     }
 

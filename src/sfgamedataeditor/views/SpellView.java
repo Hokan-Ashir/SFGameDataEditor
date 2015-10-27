@@ -7,12 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.*;
 import java.util.List;
 
 public class SpellView extends AbstractEntity implements IView {
+    private static final int NUMBER_OF_ABILITY_LEVELS = 20;
 
     private JPanel mainPanel;
     private JTextField numberField;
@@ -33,8 +33,8 @@ public class SpellView extends AbstractEntity implements IView {
     private JTextField maxRangeField;
     private JLabel castTypeLabel;
     private JTextField castTypeField;
-    private JLabel durationLabel;
-    private JTextField durationField;
+    private JLabel parameterLabel1;
+    private JTextField parameterField1;
     private JLabel requirementClassLabel2;
     private JComboBox<String> requirementClassComboBox;
     private JComboBox<String> requirementSubClassComboBox;
@@ -43,10 +43,10 @@ public class SpellView extends AbstractEntity implements IView {
     private JComboBox<String> requirementSubClassComboBox2;
     private JLabel requirementLevelLabel2;
     private JTextField requirementLevelField2;
-    private JLabel manaPerPeriodConsumingLabel;
-    private JTextField manaPerPeriodConsumingField;
-    private JLabel summoningCreatureIDLabel;
-    private JTextField summoningCreatureIDField;
+    private JLabel parameterLabel2;
+    private JTextField parameterField2;
+    private JLabel parameterLabel3;
+    private JTextField parameterField3;
     private JLabel requirementClassLabel3;
     private JComboBox<String> requirementClassComboBox3;
     private JLabel requirementSubClassLabel3;
@@ -55,14 +55,26 @@ public class SpellView extends AbstractEntity implements IView {
     private JTextField requirementLevelField3;
     private JLabel minRangeLabel;
     private JTextField minRangeField;
-
-    public static final int NUMBER_OF_ABILITY_LEVELS = 20;
+    private JLabel parameterLabel4;
+    private JTextField parameterField4;
+    private JLabel parameterLabel5;
+    private JTextField parameterField5;
+    private JLabel parameterLabel6;
+    private JTextField parameterField6;
+    private JLabel parameterLabel7;
+    private JTextField parameterField7;
+    private JLabel parameterLabel8;
+    private JTextField parameterField8;
+    private JLabel parameterLabel9;
+    private JTextField parameterField9;
+    private JLabel parameterLabel10;
+    private JTextField parameterField10;
 
     private List<Entity> entityList = new ArrayList<>();
     private Map<String, List<String>> classSubClassComboBoxContent = new LinkedHashMap<>();
     private List<Pair<Integer, Long>> spellLevelOffsets = new ArrayList<>(NUMBER_OF_ABILITY_LEVELS);
 
-    public SpellView(List<Pair<Integer, Long>> offsets) {
+    public SpellView(List<Pair<Integer, Long>> offsets, List<String> fieldNamesList) {
         this.spellLevelOffsets = offsets;
         this.spellLevelOffsets.sort(new Comparator<Pair<Integer, Long>>() {
             @Override
@@ -70,6 +82,26 @@ public class SpellView extends AbstractEntity implements IView {
                 return o1.getKey().compareTo(o2.getKey());
             }
         });
+
+        List<JLabel> parameterLabels = new ArrayList<JLabel>() {{
+            add(parameterLabel1);
+            add(parameterLabel2);
+            add(parameterLabel3);
+            add(parameterLabel4);
+            add(parameterLabel5);
+            add(parameterLabel6);
+            add(parameterLabel7);
+            add(parameterLabel8);
+            add(parameterLabel9);
+            add(parameterLabel10);
+        }};
+
+        for (int i = 0; i < parameterLabels.size(); i++) {
+            if (i < fieldNamesList.size()) {
+                parameterLabels.get(i).setText(fieldNamesList.get(i));
+            }
+        }
+
         initializeRequirementsComboBoxes();
         initializeEntityList();
     }
@@ -128,11 +160,16 @@ public class SpellView extends AbstractEntity implements IView {
             add(new EntityTuple<>(minRangeField, 26, 2));
             add(new EntityTuple<>(maxRangeField, 28, 2));
             add(new EntityTuple<>(castTypeField, 30, 2));
-            add(new EntityTuple<>(durationField, 32, 4));
-            add(new EntityTuple<>(manaPerPeriodConsumingField, 36, 4));
-            add(new EntityTuple<>(summoningCreatureIDField, 40, 2));
-            // TODO add spell additional parameters (number of targets for wave-like spells,
-            // spell-child effects for auras and frost/fire shields)
+            add(new EntityTuple<>(parameterField1, 32, 4));
+            add(new EntityTuple<>(parameterField2, 36, 4));
+            add(new EntityTuple<>(parameterField3, 40, 4));
+            add(new EntityTuple<>(parameterField4, 44, 4));
+            add(new EntityTuple<>(parameterField5, 48, 4));
+            add(new EntityTuple<>(parameterField6, 52, 4));
+            add(new EntityTuple<>(parameterField7, 56, 4));
+            add(new EntityTuple<>(parameterField8, 60, 4));
+            add(new EntityTuple<>(parameterField9, 64, 4));
+            add(new EntityTuple<>(parameterField10, 68, 4));
         }};
 
         for (EntityTuple entityTuple : entityTuples) {
