@@ -66,9 +66,12 @@ public class MainView implements IView {
                     String spellViewName = constructSpellSchoolName(buffer);
 
                     byte spellLevel = buffer[4];
-                    String spellName = spellMap.get((int) buffer[0] & 0xFF);
+                    byte spellID = buffer[0];
+                    String spellName = spellMap.get((int) spellID & 0xFF);
                     SpellDataTuple tuple = new SpellDataTuple(spellOffset,
-                            spellLevel, spellName, buffer[0]);
+                                                                spellLevel,
+                                                                spellName,
+                                                                spellID);
                     if (!modulesMap.containsKey(spellViewName)) {
                         modulesMap.put(spellViewName, new SpellClassView(tuple));
                     } else {

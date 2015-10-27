@@ -57,14 +57,17 @@ public class SpellView extends AbstractEntity implements IView {
     public static final int NUMBER_OF_ABILITY_LEVELS = 20;
 
     private List<Entity> entityList = new ArrayList<>();
-    private Integer spellType;
     private Map<String, List<String>> classSubClassComboBoxContent = new LinkedHashMap<>();
-    // TODO optimization, store only list of offsets, not level numbers itself
     private List<Pair<Integer, Long>> spellLevelOffsets = new ArrayList<>(NUMBER_OF_ABILITY_LEVELS);
 
-    public SpellView(Integer spellType, List<Pair<Integer, Long>> offsets) {
-        this.spellType = spellType;
+    public SpellView(List<Pair<Integer, Long>> offsets) {
         this.spellLevelOffsets = offsets;
+        this.spellLevelOffsets.sort(new Comparator<Pair<Integer, Long>>() {
+            @Override
+            public int compare(Pair<Integer, Long> o1, Pair<Integer, Long> o2) {
+                return o1.getKey().compareTo(o2.getKey());
+            }
+        });
         initializeRequirementsComboBoxes();
         initializeEntityList();
     }
@@ -74,13 +77,14 @@ public class SpellView extends AbstractEntity implements IView {
         // NOTE: order of this list is HIGHLY important, if you change it, you may
         // accidentally set (via this Editor) i.e "Iceburst" "White Magic - Nature" requirements
         // instead of "Elemental Magic - Ice"
-        classSubClassComboBoxContent.put("Light Combat Arts", Collections.<String>emptyList());
-        classSubClassComboBoxContent.put("Heavy Combat Arts", Collections.<String>emptyList());
-        classSubClassComboBoxContent.put("Archery", Collections.<String>emptyList());
-        classSubClassComboBoxContent.put("White Magic", new ArrayList<>(Arrays.asList("Life", "Nature", "Boons")));
-        classSubClassComboBoxContent.put("Elemental Magic", new ArrayList<>(Arrays.asList("Fire", "Ice", "Earth")));
-        classSubClassComboBoxContent.put("Mind Magic", new ArrayList<>(Arrays.asList("Enchantment", "Offensive", "Defensive")));
-        classSubClassComboBoxContent.put("Black Magic", new ArrayList<>(Arrays.asList("Death", "Necromancy", "Curses")));
+        classSubClassComboBoxContent.put("", Arrays.asList(""));
+        classSubClassComboBoxContent.put("Light Combat Arts", Arrays.asList("", "Piercing Weapon", "Light Blades", "Light Blunts", "Light Armor"));
+        classSubClassComboBoxContent.put("Heavy Combat Arts", Arrays.asList("", "Heavy Blades", "Heave Blunts", "Heavy Armor", "Shields"));
+        classSubClassComboBoxContent.put("Archery", Arrays.asList("", "Bows", "Crossbows"));
+        classSubClassComboBoxContent.put("White Magic", Arrays.asList("", "Life", "Nature", "Boons"));
+        classSubClassComboBoxContent.put("Elemental Magic", Arrays.asList("", "Fire", "Ice", "Earth"));
+        classSubClassComboBoxContent.put("Mind Magic", Arrays.asList("", "Enchantment", "Offensive", "Defensive"));
+        classSubClassComboBoxContent.put("Black Magic", Arrays.asList("", "Death", "Necromancy", "Curses"));
 
         for (String s : classSubClassComboBoxContent.keySet()) {
             requirementClassComboBox.addItem(s);
@@ -159,6 +163,21 @@ public class SpellView extends AbstractEntity implements IView {
         }
     }
 
+    public String getRangeOfPossibleSpellLevels() {
+        String result;
+        if (spellLevelOffsets.size() == 1) {
+            result = String.valueOf(spellLevelOffsets.get(0).getKey());
+        } else if (spellLevelOffsets.size() > 1) {
+            result = String.valueOf(spellLevelOffsets.get(0).getKey());
+            result += "-";
+            result += String.valueOf(spellLevelOffsets.get(spellLevelOffsets.size() - 1).getKey());
+        } else {
+            result = "";
+        }
+
+        return result;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -211,13 +230,5 @@ public class SpellView extends AbstractEntity implements IView {
                 subClassComboBox.addItem(subClass);
             }
         }
-    }
-
-    public List<Pair<Integer, Long>> getSpellLevelOffsets() {
-        return spellLevelOffsets;
-    }
-
-    public Integer getSpellType() {
-        return spellType;
     }
 }

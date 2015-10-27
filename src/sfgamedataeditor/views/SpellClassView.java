@@ -21,6 +21,7 @@ public class SpellClassView extends AbstractLevelableEntity {
     private JComboBox levelComboBox;
     private JComboBox spellNameComboBox;
     private JLabel spellNameLabel;
+    private JLabel possibleSpellLevels;
 
     java.util.Map<String, SpellView> spellViewMap = new TreeMap<>();
     private SpellView currentlySelectedSpellView;
@@ -55,6 +56,8 @@ public class SpellClassView extends AbstractLevelableEntity {
                     spellsPanel.add(currentlySelectedSpellView.getMainPanel(), gbc);
                     String levelItem = (String) levelComboBox.getSelectedItem();
                     currentlySelectedSpellView.setSpellLevel(Integer.valueOf(levelItem));
+                    possibleSpellLevels.setText("Available spell levels: " + currentlySelectedSpellView.getRangeOfPossibleSpellLevels());
+                    // TODO replace with combination of original and modification file
                     SpellClassView.this.loadDataFromFile(FilesContainer.getOriginalFile());
                 }
 
@@ -71,6 +74,7 @@ public class SpellClassView extends AbstractLevelableEntity {
             public void itemStateChanged(ItemEvent e) {
                 String levelItem = (String) levelComboBox.getSelectedItem();
                 currentlySelectedSpellView.setSpellLevel(Integer.valueOf(levelItem));
+                // TODO replace with combination of original and modification file
                 SpellClassView.this.loadDataFromFile(FilesContainer.getOriginalFile());
             }
         });
@@ -85,7 +89,7 @@ public class SpellClassView extends AbstractLevelableEntity {
     public void construct() {
         for (Map.Entry<Pair<Integer, String>, List<Pair<Integer, Long>>> pairListEntry : spellMap
                 .entrySet()) {
-            spellViewMap.put(pairListEntry.getKey().getValue(), new SpellView(pairListEntry.getKey().getKey(), pairListEntry.getValue()));
+            spellViewMap.put(pairListEntry.getKey().getValue(), new SpellView(pairListEntry.getValue()));
         }
 
         generateUI();
