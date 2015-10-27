@@ -18,8 +18,8 @@ public class SpellClassView extends AbstractLevelableEntity {
     private JPanel mainPanel;
     private JLabel levelLabel;
     private JPanel spellsPanel;
-    private JComboBox levelComboBox;
-    private JComboBox spellNameComboBox;
+    private JComboBox<Integer> levelComboBox;
+    private JComboBox<String> spellNameComboBox;
     private JLabel spellNameLabel;
     private JLabel possibleSpellLevels;
 

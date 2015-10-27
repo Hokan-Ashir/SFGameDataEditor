@@ -18,12 +18,12 @@ public class MainView implements IView {
     public static final int SPELL_NUMBER_DATA_LENGTH = 0x2;
     private JButton loadSfmodFileButton;
     private JButton createSfmodFileButton;
-    private JComboBox modulesComboBox;
+    private JComboBox<String> modulesComboBox;
     private JPanel modulesPanel;
     private JLabel modulesLabel;
     private JPanel mainPanel;
 
-    private Map<String, AbstractLevelableEntity> modulesMap = new LinkedHashMap<>();
+    private Map<String, AbstractLevelableEntity> modulesMap = new TreeMap<>();
     public static final int SPELLS_DATA_BEGIN_OFFSET = 0x20;
     private static final int SPELLS_DATA_END_OFFSET = 0x3fd13;
 
@@ -62,58 +62,90 @@ public class MainView implements IView {
                 if (reachedSpellDataEnd) {
                     break;
                 } else {
-                    long spellOffset = file.getFilePointer() - constraints.size() - SPELL_NUMBER_DATA_LENGTH;
-                    String spellViewName = constructSpellSchoolName(buffer);
-
-                    byte spellLevel = buffer[4];
-                    byte spellID = buffer[0];
-                    String spellName = spellMap.get((int) spellID & 0xFF);
-                    SpellDataTuple tuple = new SpellDataTuple(spellOffset,
-                                                                spellLevel,
-                                                                spellName,
-                                                                spellID);
-                    if (!modulesMap.containsKey(spellViewName)) {
-                        modulesMap.put(spellViewName, new SpellClassView(tuple));
-                    } else {
-                        SpellClassView view = (SpellClassView) modulesMap.get(spellViewName);
-                        view.addSpellTuple(tuple);
-                    }
-                    /*System.out.printf("spellViewName: " + spellViewName);
-                    System.out.printf("spellName: " + spellMap.get((int) buffer[0]));
-                    System.out.printf("offset: " + spellOffset);*/
-                    file.seek(spellOffset + SPELL_DATA_LENGTH);
+                    createAndAddSpellClassView(spellMap, constraints, file, buffer);
 
                 }
             }
 
-            for (AbstractLevelableEntity entity : modulesMap.values()) {
-                if (!(entity instanceof SpellClassView)) {
-                    continue;
-                }
-
-                ((SpellClassView) entity).construct();
-            }
+            constructSpellClassViews();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    private void createAndAddSpellClassView(Map<Integer, String> spellMap,
+            List<ISpellConstraint> constraints, RandomAccessFile file, byte[] buffer)
+            throws IOException {
+        long spellOffset = file.getFilePointer() - constraints.size() - SPELL_NUMBER_DATA_LENGTH;
+        String spellViewName = constructSpellSchoolName(buffer);
+
+        byte spellLevel = buffer[4];
+        byte spellID = buffer[0];
+        String spellName = spellMap.get((int) spellID & 0xFF);
+        SpellDataTuple tuple = new SpellDataTuple(spellOffset,
+                                                    spellLevel,
+                                                    spellName,
+                                                    spellID);
+        if (!modulesMap.containsKey(spellViewName)) {
+            modulesMap.put(spellViewName, new SpellClassView(tuple));
+        } else {
+            SpellClassView view = (SpellClassView) modulesMap.get(spellViewName);
+            view.addSpellTuple(tuple);
+        }
+
+        file.seek(spellOffset + SPELL_DATA_LENGTH);
+    }
+
+    private void constructSpellClassViews() {
+        for (AbstractLevelableEntity entity : modulesMap.values()) {
+            if (!(entity instanceof SpellClassView)) {
+                continue;
+            }
+
+            ((SpellClassView) entity).construct();
+        }
+    }
+
     List<ISpellConstraint> getSpellDataConstraints(final Map<Integer, String> spellMap) {
         List<ISpellConstraint> constraints = new ArrayList<>();
+        addSpellTypeConstraints(spellMap, constraints);
+        addSpellRequirementConstraints(constraints);
+        addZeroTrailConstraints(constraints);
+
+        // TODO try to avoid this constraint of non-zero mana usage
+        // this constraint needed for correct parsing, cause in cases
+        // spell number 01 00
+        // spell type   01 00
+        // spell school 05
+        // ...
+        // all constraints works and instead of getting "spell type" at first place
+        // you can get spell number, which is useless for spell data binding
+        addNonZeroManaUsageConstraint(constraints);
+
+        return constraints;
+    }
+
+    private void addNonZeroManaUsageConstraint(List<ISpellConstraint> constraints) {
         constraints.add(new ISpellConstraint() {
             @Override
             public boolean isValid(byte value) {
-                return spellMap.containsKey(value & 0xFF);
+                return value != 0;
             }
         });
+    }
 
-        constraints.add(new ISpellConstraint() {
-            @Override
-            public boolean isValid(byte value) {
-                return value == 0;
-            }
-        });
+    private void addZeroTrailConstraints(List<ISpellConstraint> constraints) {
+        for (int i = 0; i < 3; ++i) {
+            constraints.add(new ISpellConstraint() {
+                @Override
+                public boolean isValid(byte value) {
+                    return value == 0;
+                }
+            });
+        }
+    }
 
+    private void addSpellRequirementConstraints(List<ISpellConstraint> constraints) {
         for (int i = 0; i < 3; ++i) {
             constraints.add(new ISpellConstraint() {
                 @Override
@@ -136,32 +168,23 @@ public class MainView implements IView {
                 }
             });
         }
+    }
 
-        for (int i = 0; i < 3; ++i) {
-            constraints.add(new ISpellConstraint() {
-                @Override
-                public boolean isValid(byte value) {
-                    return value == 0;
-                }
-            });
-        }
-
-        // TODO try to avoid this constraint of non-zero mana usage
-        // this constraint needed for correct parsing, cause in cases
-        // spell number 01 00
-        // spell type   01 00
-        // spell school 05
-        // ...
-        // all constraints works and instead of getting "spell type" at first place
-        // you can get spell number, which is useless for spell data binding
+    private void addSpellTypeConstraints(final Map<Integer, String> spellMap,
+            List<ISpellConstraint> constraints) {
         constraints.add(new ISpellConstraint() {
             @Override
             public boolean isValid(byte value) {
-                return value != 0;
+                return spellMap.containsKey(value & 0xFF);
             }
         });
 
-        return constraints;
+        constraints.add(new ISpellConstraint() {
+            @Override
+            public boolean isValid(byte value) {
+                return value == 0;
+            }
+        });
     }
 
     private String constructSpellSchoolName(byte[] buffer) {
@@ -181,7 +204,7 @@ public class MainView implements IView {
             result += " : " + spellSubSchoolName1;
         }
 
-        if (!spellSchoolName2.isEmpty()) {
+        if (!spellSchoolName2.isEmpty() && !spellSchoolName1.equals(spellSchoolName2)) {
             result += "; " + spellSchoolName2;
         }
 
@@ -189,14 +212,17 @@ public class MainView implements IView {
             result += " : " + spellSubSchoolName2;
         }
 
-        if (!spellSchoolName3.isEmpty()) {
+        if (!spellSchoolName3.isEmpty() && !spellSchoolName1.equals(spellSchoolName3)) {
             result += "; " + spellSchoolName3;
         }
 
         if (!spellSubSchoolName3.isEmpty()) {
             result += " : " + spellSubSchoolName3;
         }
-        // TODO add unique-check
+
+        // TODO possibly, if ability is using by many different schools of magic,
+        // it might be useful to return List/Array of "School - List<SubSchools>" pairs and add
+        // parsed spells to corresponding SpellClassViews
         return result;
     }
 

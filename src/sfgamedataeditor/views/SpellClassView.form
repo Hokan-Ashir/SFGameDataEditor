@@ -2,11 +2,12 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.SpellClassView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="580" height="600"/>
+      <xy x="20" y="20" width="1300" height="600"/>
     </constraints>
     <properties>
-      <minimumSize width="580" height="600"/>
-      <preferredSize width="580" height="600"/>
+      <maximumSize width="1010" height="450"/>
+      <minimumSize width="1010" height="450"/>
+      <preferredSize width="1010" height="450"/>
     </properties>
     <border type="none"/>
     <children>
@@ -25,7 +26,7 @@
       <component id="c66a3" class="javax.swing.JComboBox" binding="spellNameComboBox">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <minimumSize width="200" height="23"/>
@@ -36,7 +37,7 @@
       <component id="90d33" class="javax.swing.JLabel" binding="spellNameLabel">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <maximumSize width="50" height="15"/>
@@ -47,7 +48,7 @@
       <component id="79682" class="javax.swing.JLabel" binding="levelLabel">
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text value="Level:"/>
@@ -56,7 +57,7 @@
       <component id="f1055" class="javax.swing.JComboBox" binding="levelComboBox">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="9" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <model>

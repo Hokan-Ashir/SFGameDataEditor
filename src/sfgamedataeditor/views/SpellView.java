@@ -36,11 +36,11 @@ public class SpellView extends AbstractEntity implements IView {
     private JLabel durationLabel;
     private JTextField durationField;
     private JLabel requirementClassLabel2;
-    private JComboBox requirementClassComboBox;
-    private JComboBox requirementSubClassComboBox;
-    private JComboBox requirementClassComboBox2;
+    private JComboBox<String> requirementClassComboBox;
+    private JComboBox<String> requirementSubClassComboBox;
+    private JComboBox<String> requirementClassComboBox2;
     private JLabel requirementSubClassLabel2;
-    private JComboBox requirementSubClassComboBox2;
+    private JComboBox<String> requirementSubClassComboBox2;
     private JLabel requirementLevelLabel2;
     private JTextField requirementLevelField2;
     private JLabel manaPerPeriodConsumingLabel;
@@ -48,11 +48,13 @@ public class SpellView extends AbstractEntity implements IView {
     private JLabel summoningCreatureIDLabel;
     private JTextField summoningCreatureIDField;
     private JLabel requirementClassLabel3;
-    private JComboBox requirementClassComboBox3;
+    private JComboBox<String> requirementClassComboBox3;
     private JLabel requirementSubClassLabel3;
-    private JComboBox requirementSubClassComboBox3;
+    private JComboBox<String> requirementSubClassComboBox3;
     private JLabel requirementLevelLabel3;
     private JTextField requirementLevelField3;
+    private JLabel minRangeLabel;
+    private JTextField minRangeField;
 
     public static final int NUMBER_OF_ABILITY_LEVELS = 20;
 
@@ -78,8 +80,10 @@ public class SpellView extends AbstractEntity implements IView {
         // accidentally set (via this Editor) i.e "Iceburst" "White Magic - Nature" requirements
         // instead of "Elemental Magic - Ice"
         classSubClassComboBoxContent.put("", Arrays.asList(""));
-        classSubClassComboBoxContent.put("Light Combat Arts", Arrays.asList("", "Piercing Weapon", "Light Blades", "Light Blunts", "Light Armor"));
-        classSubClassComboBoxContent.put("Heavy Combat Arts", Arrays.asList("", "Heavy Blades", "Heave Blunts", "Heavy Armor", "Shields"));
+        classSubClassComboBoxContent.put("Light Combat Arts", Arrays.asList("", "Piercing Weapon",
+                "Light Blades", "Light Blunts", "Light Armor"));
+        classSubClassComboBoxContent.put("Heavy Combat Arts", Arrays.asList("", "Heavy Blades",
+                "Heave Blunts", "Heavy Armor", "Shields"));
         classSubClassComboBoxContent.put("Archery", Arrays.asList("", "Bows", "Crossbows"));
         classSubClassComboBoxContent.put("White Magic", Arrays.asList("", "Life", "Nature", "Boons"));
         classSubClassComboBoxContent.put("Elemental Magic", Arrays.asList("", "Fire", "Ice", "Earth"));
@@ -121,7 +125,7 @@ public class SpellView extends AbstractEntity implements IView {
             add(new EntityTuple<>(manaUsageField, 16, 2));
             add(new EntityTuple<>(castTimeField, 18, 4));
             add(new EntityTuple<>(cooldownField, 22, 4));
-            // TODO add possible spell min range parameter (2 bytes offset)
+            add(new EntityTuple<>(minRangeField, 26, 2));
             add(new EntityTuple<>(maxRangeField, 28, 2));
             add(new EntityTuple<>(castTypeField, 30, 2));
             add(new EntityTuple<>(durationField, 32, 4));
