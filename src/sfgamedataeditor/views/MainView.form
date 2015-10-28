@@ -6,10 +6,10 @@
     </constraints>
     <properties>
       <enabled value="true"/>
-      <maximumSize width="1010" height="550"/>
-      <minimumSize width="1010" height="550"/>
+      <maximumSize width="1010" height="580"/>
+      <minimumSize width="1010" height="580"/>
       <opaque value="true"/>
-      <preferredSize width="1010" height="550"/>
+      <preferredSize width="1010" height="580"/>
     </properties>
     <border type="none"/>
     <children>

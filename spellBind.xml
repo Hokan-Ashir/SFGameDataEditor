@@ -1,113 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spellMap>
-    <spell id="1" name_en="Fireburst" field1="Initial damage:" field2="Additional damage:" field3="Number of additional damage:" field4="Interval between additional damage (ms.):"/>
+    <spell id="1" name_en="Fireburst" field1="Initial damage:" field2="Additional damage:" field3="Number of additional damage times:" field4="Interval between additional damage (ms.):"/>
     <spell id="2" name_en="Healing" field1="Heal:"/>
     <spell id="3" name_en="Death" field1="Damage:"/>
-    <spell id="4" name_en="Slowness"/>
-    <spell id="5" name_en="Poison"/>
-    <spell id="6" name_en="Invulnerability"/>
-    <spell id="7" name_en="CurePoison"/>
-    <spell id="9" name_en="Freeze"/>
-    <spell id="10" name_en="Fog"/>
-    <spell id="11" name_en="Illuminate"/>
-    <spell id="12" name_en="FireShield"/>
-    <spell id="13" name_en="FireBall" field1="Initial damage:" field2="Additional damage:" field3="Number of additional damage:" field4="Interval between additional damage (ms.):"/>
-    <spell id="14" name_en="IceBurst"/>
-    <spell id="15" name_en="IceShield"/>
-    <spell id="16" name_en="Decay"/>
+    <spell id="4" name_en="Slowness" field1="Walk speed decrease (%):" field2="Duration (ms.):"/>
+    <spell id="5" name_en="Poison" field1="Damage:" field2="Damage period (ms.):" field3="Amount of damage periods:"/>
+    <spell id="6" name_en="Invulnerability" field1="Duration (ms.):"/>
+    <spell id="7" name_en="CurePoison" field1="Min. level:" field2="Mid. level:" field3="Max. level:"/>
+    <spell id="9" name_en="Freeze" field1="Duration (ms.):"/>
+    <spell id="10" name_en="Fog" field1="???" field2="???" field3="???" field4="???"/>
+    <spell id="11" name_en="Illuminate" field1="???" field2="???" field3="???" field4="???"/>
+    <spell id="12" name_en="FireShield" field1="Duration (ms.):" field2="Damage effect number:"/>
+    <spell id="13" name_en="FireBall" field1="Initial damage:" field2="Additional damage:" field3="Number of additional damage times:" field4="Interval between additional damage (ms.):"/>
+    <spell id="14" name_en="IceBurst" field1="Initial damage:" field2="Interval between additional damage (ms.):" field3="Freeze time (ms.):"/>
+    <spell id="15" name_en="IceShield" field1="Duration (ms.):" field2="Freeze effect number:"/>
+    <spell id="16" name_en="Decay" field1="???" field2="???" field3="???"/>
     <spell id="17" name_en="DecayArea"/>
     <spell id="18" name_en="Pain" field1="Damage:"/>
-    <spell id="19" name_en="LifeTap"/>
+    <spell id="19" name_en="LifeTap" field1="Damage/Heal:"/>
     <spell id="20" name_en="SummonGoblin" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:" field3="Summoning creature ID:"/>
-    <spell id="21" name_en="Hypnotize"/>
+    <spell id="21" name_en="Hypnotize" field1="???" field2="???" field3="Max. creature level:"/>
     <spell id="22" name_en="IceShieldStun"/>
-    <spell id="23" name_en="Pestilence"/>
-    <spell id="24" name_en="CureDisease"/>
-    <spell id="25" name_en="Petrify"/>
-    <spell id="28" name_en="PainArea"/>
+    <spell id="23" name_en="Pestilence" field1="Initial damage:" field2="Interval between additional damage (ms.):" field3="Additional damage:" field4="???" field5="???"/>
+    <spell id="24" name_en="CureDisease" field1="Min. level:" field2="Mid. level:" field3="Max. level:"/>
+    <spell id="25" name_en="Petrify" field1="Min. level:" field2="Mid. level:" field3="Max. level:" field4="???" field5="Duration (s.):"/>
+    <spell id="28" name_en="PainArea" field1="Damage:" field2="???"/>
     <spell id="29" name_en="SummonSkeleton" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:" field3="Summoning creature ID:"/>
-    <spell id="30" name_en="RaiseDead"/>
+    <spell id="30" name_en="RaiseDead" field1="Number of rising creatures:" field2="???" field3="???"/>
     <spell id="31" name_en="SummonDemon" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:" field3="Summoning creature ID:"/>
-    <spell id="32" name_en="DeathGrasp"/>
+    <spell id="32" name_en="DeathGrasp" field1="Duration (s.):" field2="???" field3="???"/>
     <spell id="33" name_en="SummonChanneler" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:" field3="Summoning creature ID:"/>
-    <spell id="34" name_en="Inflexibility"/>
-    <spell id="35" name_en="Weaken"/>
-    <spell id="36" name_en="DarkBanishing"/>
-    <spell id="37" name_en="SlownessArea"/>
-    <spell id="38" name_en="InflexibilityArea"/>
+    <spell id="34" name_en="Inflexibility" field1="Decrease dexterity (%):" field2="Duration (ms.):"/>
+    <spell id="35" name_en="Weaken" field1="Decrease strength (%):" field2="Duration (ms.):"/>
+    <spell id="36" name_en="DarkBanishing" field1="Decrease black magic resistance (pt.):" field2="Duration (ms.):"/>
+    <spell id="37" name_en="SlownessArea" field1="???" field2="???" field3="Duration (ms.):"/>
+    <spell id="38" name_en="InflexibilityArea" field1="???" field2="???" field3="Duration (ms.):"/>
     <spell id="39" name_en="WeakenArea"/>
     <spell id="40" name_en="PlagueArea"/>
-    <spell id="41" name_en="Remediless"/>
+    <spell id="41" name_en="Remediless" field1="Duration (ms.):"/>
     <spell id="42" name_en="DarkMight"/>
-    <spell id="43" name_en="HealingArea"/>
-    <spell id="44" name_en="SentinelHealing"/>
-    <spell id="45" name_en="GreaterHealing"/>
-    <spell id="46" name_en="CharmAnimal"/>
-    <spell id="47" name_en="ThornShield"/>
-    <spell id="48" name_en="Quickness"/>
-    <spell id="49" name_en="QuicknessArea"/>
-    <spell id="50" name_en="Flexibility"/>
-    <spell id="51" name_en="FlexibilityArea"/>
-    <spell id="52" name_en="Strengthen"/>
-    <spell id="53" name_en="StrengthenArea"/>
-    <spell id="54" name_en="Guard"/>
-    <spell id="55" name_en="RemoveCurse"/>
-    <spell id="56" name_en="Regenerate"/>
-    <spell id="57" name_en="HolyMight"/>
-    <spell id="58" name_en="Hallow"/>
+    <spell id="43" name_en="HealingArea" field1="???" field2="Heal:"/>
+    <spell id="44" name_en="SentinelHealing" field1="???" field2="???" field3="???" field4="???"/>
+    <spell id="45" name_en="GreaterHealing" field1="Heal:"/>
+    <spell id="46" name_en="CharmAnimal" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:" field3="???" field4="???" field5="???" field6="???" field7="???"/>
+    <spell id="47" name_en="ThornShield" field1="Duration (ms.):" field2="Damage effect number:"/>
+    <spell id="48" name_en="Quickness" field1="Walking speed increase (%):" field2="Duration (ms.):"/>
+    <spell id="49" name_en="QuicknessArea" field1="???" field2="???" field3="Duration (ms.):"/>
+    <spell id="50" name_en="Flexibility" field1="Dexterity increase (%):" field2="Duration (ms.):"/>
+    <spell id="51" name_en="FlexibilityArea" field1="???" field2="???" field3="Duration (ms.):"/>
+    <spell id="52" name_en="Strengthen" field1="Strength increase (%):" field2="Duration (ms.):"/>
+    <spell id="53" name_en="StrengthenArea" field1="???" field2="???" field3="Duration (ms.):"/>
+    <spell id="54" name_en="Guard" field1="???" field2="Duration (ms.):"/>
+    <spell id="55" name_en="RemoveCurse" field1="Min. level:" field2="Mid. level:" field3="Max. level:"/>
+    <spell id="56" name_en="Regenerate" field1="HP restoring:" field2="HP regeneration period (ms.):" field3="Number of regeneration ticks:"/>
+    <spell id="57" name_en="HolyMight" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???"/>
+    <spell id="58" name_en="Hallow" field1="Damage:" field2="Damage interval (ms.):" field3="Number of damage ticks:"/>
     <spell id="60" name_en="FireShieldDamage"/>
     <spell id="61" name_en="ThornShieldDamage"/>
-    <spell id="62" name_en="Forget"/>
-    <spell id="63" name_en="SelfIllusion"/>
-    <spell id="64" name_en="Retention"/>
-    <spell id="65" name_en="Brilliance"/>
-    <spell id="66" name_en="SacrificeMana"/>
-    <spell id="67" name_en="ManaTap"/>
-    <spell id="68" name_en="ManaDrain"/>
-    <spell id="69" name_en="Shock"/>
-    <spell id="70" name_en="Disrupt"/>
-    <spell id="71" name_en="Fear"/>
-    <spell id="72" name_en="Confuse"/>
-    <spell id="73" name_en="RainOfFire"/>
-    <spell id="74" name_en="Blizzard"/>
+    <spell id="62" name_en="Forget" field1="???" field2="???" field3="???" field4="???"/>
+    <spell id="63" name_en="SelfIllusion" field1="Number of Illusions:" field2="???" field3="???" field4="???"/>
+    <spell id="64" name_en="Retention" field1="???" field2="Duration (ms.):"/>
+    <spell id="65" name_en="Brilliance" field1="Wisdom/Intelligence increase (%):" field2="Duration (ms.):"/>
+    <spell id="66" name_en="SacrificeMana" field1="Amount mana given:"/>
+    <spell id="67" name_en="ManaTap" field1="Amount mana burned:"/>
+    <spell id="68" name_en="ManaDrain" field1="Amount mana drained:"/>
+    <spell id="69" name_en="Shock" field1="???" field2="???" field3="???" field4="???"/>
+    <spell id="70" name_en="Disrupt" field1="Min. level:" field2="Mid. level:" field3="High level:" field4="Max. level:"/>
+    <spell id="71" name_en="Fear" field1="???" field2="???" field3="???" field4="Duration (ms.):"/>
+    <spell id="72" name_en="Confuse" field1="Duration(ms.):" field2="Max. creature level:"/>
+    <spell id="73" name_en="RainOfFire" field1="Firebursts interval (ms.):" field2="Number of firebusts:" field3="???" field4="???" field5="Fireburst number:"/>
+    <spell id="74" name_en="Blizzard" field1="Icebursts interval (ms.):" field2="Number of icebursts:" field3="???" field4="???" field5="Icebursts number:"/>
     <spell id="75" name_en="AcidCloud"/>
-    <spell id="76" name_en="StoneRain"/>
-    <spell id="77" name_en="WallOfRocks"/>
-    <spell id="78" name_en="RingOfRocks"/>
-    <spell id="79" name_en="Amok"/>
+    <spell id="76" name_en="StoneRain" field1="Rockbullets interval (ms.):" field2="Number of rockbullets:" field3="???" field4="???" field5="Rockbullet number:"/>
+    <spell id="77" name_en="WallOfRocks" field1="Number of rocks:" field2="Duration (ms.):"/>
+    <spell id="78" name_en="RingOfRocks" field1="Number of rocks:" field2="Duration (ms.):"/>
+    <spell id="79" name_en="Amok" field1="Duration (ms.):" field2="Max. level:"/>
     <spell id="81" name_en="Extinct" field1="Damage:" field2="Unknown:"/>
-    <spell id="82" name_en="DetectMetal"/>
-    <spell id="83" name_en="DetectMagic"/>
+    <spell id="82" name_en="DetectMetal" field1="Radius:"/>
+    <spell id="83" name_en="DetectMagic" field1="Radius:"/>
     <spell id="84" name_en="Arrow"/>
     <spell id="85" name_en="Berserk"/>
-    <spell id="86" name_en="Invisibility"/>
+    <spell id="86" name_en="Invisibility" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???"/>
     <spell id="87" name_en="Stone"/>
-    <spell id="88" name_en="AuraWeakness"/>
-    <spell id="89" name_en="AuraSuffocation"/>
-    <spell id="90" name_en="SuicideDeath"/>
-    <spell id="91" name_en="AuraLifeTap"/>
+    <spell id="88" name_en="AuraWeakness" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="Weaken effect number:" field8="???" field9="???"/>
+    <spell id="89" name_en="AuraSuffocation" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="Suffocation effect number:" field8="???" field9="???"/>
+    <spell id="90" name_en="SuicideDeath" field1="Damage target:" field2="Damage self:"/>
+    <spell id="91" name_en="AuraLifeTap" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="LifeTap effect number:" field8="???" field9="???"/>
     <spell id="92" name_en="SummonSpectre" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:" field3="Summoning creature ID:"/>
-    <spell id="93" name_en="FeignDeath"/>
-    <spell id="94" name_en="AuraSlowFighting"/>
-    <spell id="95" name_en="AuraInflexibility"/>
+    <spell id="93" name_en="FeignDeath" field1="???" field2="???" field3="???" field4="???" field5="???"/>
+    <spell id="94" name_en="AuraSlowFighting" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="SlowFighting effect number:" field8="???" field9="???"/>
+    <spell id="95" name_en="AuraInflexibility" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="Inflexibility effect number:" field8="???" field9="???"/>
     <spell id="96" name_en="DispelWhiteAura"/>
-    <spell id="97" name_en="AuraSlowWalking"/>
-    <spell id="98" name_en="AuraInability"/>
-    <spell id="99" name_en="Suffocation"/>
-    <spell id="100" name_en="Inability"/>
-    <spell id="101" name_en="SlowFighting"/>
-    <spell id="102" name_en="AuraStrength"/>
-    <spell id="103" name_en="AuraHealing"/>
-    <spell id="104" name_en="AuraEndurance"/>
-    <spell id="105" name_en="SuicideHeal"/>
+    <spell id="97" name_en="AuraSlowWalking" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="SlowWalking effect number:" field8="???" field9="???"/>
+    <spell id="98" name_en="AuraInability" field1="Min. level:" field2="Mid. level:" field3="Max. level:" field4="Duration (ms.):"/>
+    <spell id="99" name_en="Suffocation" field1="Stamina decrease (%):" field2="Duration (ms.):"/>
+    <spell id="100" name_en="Inability" field1="Agility decrease (%):" field2="Duration (ms.):"/>
+    <spell id="101" name_en="SlowFighting" field1="Fighting speed decrease (%):" field2="Duration (ms.):"/>
+    <spell id="102" name_en="AuraStrength" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="Strengthen effect number:" field8="???" field9="???"/>
+    <spell id="103" name_en="AuraHealing" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="Healing effect number:" field8="???" field9="???"/>
+    <spell id="104" name_en="AuraEndurance" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="Endurance effect number:" field8="???" field9="???"/>
+    <spell id="105" name_en="SuicideHeal" field1="Heal target:" field2="Damage self:"/>
     <spell id="106" name_en="SummonWolf" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:" field3="Summoning creature ID:"/>
     <spell id="107" name_en="AuraRegeneration"/>
     <spell id="108" name_en="DominateAnimal" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:" field3="Maximum creature level:"/>
     <spell id="109" name_en="SummonBear" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:" field3="Summoning creature ID:"/>
-    <spell id="110" name_en="AuraFastFighting"/>
-    <spell id="111" name_en="AuraFlexibility"/>
-    <spell id="112" name_en="DispelBlackAura"/>
-    <spell id="113" name_en="AuraFastWalking"/>
+    <spell id="110" name_en="AuraFastFighting" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="FastFighting effect number:" field8="???" field9="???"/>
+    <spell id="111" name_en="AuraFlexibility" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="Flexibility effect number:" field8="???" field9="???"/>
+    <spell id="112" name_en="DispelBlackAura" field1="Min. level:" field2="Mid. level:" field3="Max. level:" field4="Duration (ms.):"/>
+    <spell id="113" name_en="AuraFastWalking" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="FastWalking effect number:" field8="???" field9="???"/>
     <spell id="114" name_en="AuraLight"/>
     <spell id="115" name_en="AuraDexterity"/>
     <spell id="116" name_en="Dexterity"/>
@@ -134,8 +134,8 @@
     <spell id="136" name_en="IceElemental" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:" field3="Summoning creature ID:"/>
     <spell id="137" name_en="WaveOfIce"/>
     <spell id="138" name_en="ChillResistance"/>
-    <spell id="139" name_en="RockBullet"/>
-    <spell id="140" name_en="Conservation"/>
+    <spell id="139" name_en="RockBullet" field1="Damage:"/>
+    <spell id="140" name_en="Conservation" field1="Amount of absorbation:" field2="Duration:"/>
     <spell id="141" name_en="EarthElemental" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:" field3="Summoning creature ID:"/>
     <spell id="142" name_en="WaveOfRocks"/>
     <spell id="143" name_en="ArrowTower"/>

@@ -98,12 +98,27 @@ public class SpellView extends AbstractEntity implements IView {
 
         for (int i = 0; i < parameterLabels.size(); i++) {
             if (i < fieldNamesList.size()) {
-                parameterLabels.get(i).setText(fieldNamesList.get(i));
+                parameterLabels.get(i).setText(convertToMultiline(fieldNamesList.get(i)));
             }
         }
 
         initializeRequirementsComboBoxes();
         initializeEntityList();
+    }
+
+    private String convertToMultiline(String value) {
+        String[] subStrings = value.split(" ");
+        String result = "<html>";
+        int lastNewLineInjectionPosition = 0;
+        for (int i = 0; i < subStrings.length; ++i) {
+            result = result + subStrings[i] + " ";
+            if (result.length() - lastNewLineInjectionPosition > 12
+                    && i != subStrings.length - 1) {
+                result = result + "<br>";
+                lastNewLineInjectionPosition = result.length();
+            }
+        }
+        return result;
     }
 
     private void initializeRequirementsComboBoxes() {
