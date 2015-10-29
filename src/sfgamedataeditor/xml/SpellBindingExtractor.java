@@ -25,7 +25,7 @@ public class SpellBindingExtractor {
     public static final String NAME_ATTRIBUTE = "name";
     // TODO add i18n support
     private static final String LANGUAGE = "en";
-    private static final int NUMBER_OF_PARAMETER_FIELDS = 7;
+    private static final int NUMBER_OF_PARAMETER_FIELDS = 9;
     private static final String FIELD_ATTRIBUTE = "field";
 
     public static Map<Integer, Pair<String, List<String>>> getSpellMap() {
@@ -67,7 +67,7 @@ public class SpellBindingExtractor {
                 Node nameNode = attributes.getNamedItem(nameAttribute);
                 String name = nameNode.getNodeValue();
                 List<String> parameterFieldsNames = new ArrayList<>();
-                for (int k = 0; k < NUMBER_OF_PARAMETER_FIELDS; k++) {
+                for (int k = 1; k <= NUMBER_OF_PARAMETER_FIELDS; k++) {
                     Node fieldNode = attributes.getNamedItem(FIELD_ATTRIBUTE + String.valueOf(k));
                     if (fieldNode != null) {
                         parameterFieldsNames.add(fieldNode.getNodeValue());

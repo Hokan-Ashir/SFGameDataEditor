@@ -2,12 +2,12 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.SpellClassView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="1300" height="600"/>
+      <xy x="20" y="20" width="1300" height="630"/>
     </constraints>
     <properties>
-      <maximumSize width="1010" height="530"/>
-      <minimumSize width="1010" height="530"/>
-      <preferredSize width="1010" height="530"/>
+      <maximumSize width="1010" height="630"/>
+      <minimumSize width="1010" height="630"/>
+      <preferredSize width="1010" height="630"/>
     </properties>
     <border type="none"/>
     <children>

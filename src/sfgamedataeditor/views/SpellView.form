@@ -5,9 +5,9 @@
       <xy x="20" y="20" width="1200" height="550"/>
     </constraints>
     <properties>
-      <maximumSize width="950" height="420"/>
-      <minimumSize width="950" height="420"/>
-      <preferredSize width="950" height="420"/>
+      <maximumSize width="950" height="500"/>
+      <minimumSize width="950" height="500"/>
+      <preferredSize width="950" height="500"/>
     </properties>
     <border type="none"/>
     <children>
@@ -148,13 +148,13 @@
       <component id="5c31e" class="javax.swing.JLabel" binding="parameterLabel1">
         <constraints>
           <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="0" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="61" height="23"/>
-          <minimumSize width="61" height="23"/>
-          <preferredSize width="61" height="23"/>
-          <text value="Unknown:"/>
+          <maximumSize width="61" height="30"/>
+          <minimumSize width="61" height="30"/>
+          <preferredSize width="61" height="30"/>
+          <text value="Not used:"/>
         </properties>
       </component>
       <component id="e111a" class="javax.swing.JTextField" binding="parameterField1">
@@ -184,10 +184,10 @@
       <component id="1f6e3" class="javax.swing.JLabel" binding="parameterLabel3">
         <constraints>
           <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="0" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Unknown:"/>
+          <text value="Not used:"/>
         </properties>
       </component>
       <component id="1751f" class="javax.swing.JTextField" binding="parameterField3">
@@ -441,10 +441,10 @@
       <component id="a1fd8" class="javax.swing.JLabel" binding="parameterLabel2">
         <constraints>
           <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="5" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Unknown:"/>
+          <text value="Not used:"/>
         </properties>
       </component>
       <component id="1c97" class="javax.swing.JTextField" binding="parameterField2">
@@ -463,10 +463,10 @@
       <component id="ca4be" class="javax.swing.JLabel" binding="parameterLabel4">
         <constraints>
           <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="5" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Unknown:"/>
+          <text value="Not used:"/>
         </properties>
       </component>
       <component id="aea8a" class="javax.swing.JTextField" binding="parameterField4">
@@ -485,10 +485,10 @@
       <component id="8b45f" class="javax.swing.JLabel" binding="parameterLabel5">
         <constraints>
           <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="0" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Unknown:"/>
+          <text value="Not used:"/>
         </properties>
       </component>
       <component id="5e509" class="javax.swing.JTextField" binding="parameterField5">
@@ -507,10 +507,10 @@
       <component id="497ce" class="javax.swing.JLabel" binding="parameterLabel6">
         <constraints>
           <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="5" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Unknown:"/>
+          <text value="Not used:"/>
         </properties>
       </component>
       <component id="c74f8" class="javax.swing.JTextField" binding="parameterField6">
@@ -529,10 +529,10 @@
       <component id="7a94d" class="javax.swing.JLabel" binding="parameterLabel7">
         <constraints>
           <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="0" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Unknown:"/>
+          <text value="Not used:"/>
         </properties>
       </component>
       <component id="76db6" class="javax.swing.JTextField" binding="parameterField7">
@@ -551,10 +551,10 @@
       <component id="1ff9d" class="javax.swing.JLabel" binding="parameterLabel8">
         <constraints>
           <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="5" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Unknown:"/>
+          <text value="Not used:"/>
         </properties>
       </component>
       <component id="978b4" class="javax.swing.JTextField" binding="parameterField8">
@@ -573,10 +573,10 @@
       <component id="4a6cf" class="javax.swing.JLabel" binding="parameterLabel9">
         <constraints>
           <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="0" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Unknown:"/>
+          <text value="Not used:"/>
         </properties>
       </component>
       <component id="d9c3f" class="javax.swing.JTextField" binding="parameterField9">
@@ -595,10 +595,10 @@
       <component id="f3974" class="javax.swing.JLabel" binding="parameterLabel10">
         <constraints>
           <grid row="13" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="5" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Unknown:"/>
+          <text value="Not used:"/>
         </properties>
       </component>
       <component id="9dbbc" class="javax.swing.JTextField" binding="parameterField10">
