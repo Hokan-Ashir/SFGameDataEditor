@@ -24,7 +24,6 @@ public class SpellBindingExtractor {
     public static final String ID_ATTRIBUTE = "id";
     public static final String NAME_ATTRIBUTE = "name";
     // TODO add i18n support
-    private static final String LANGUAGE = "en";
     private static final int NUMBER_OF_PARAMETER_FIELDS = 9;
     private static final String FIELD_ATTRIBUTE = "field";
 
@@ -57,14 +56,13 @@ public class SpellBindingExtractor {
         Map<Integer, Pair<String, List<String>>> spellMap = new HashMap<>();
 
         NodeList spellNodeList = document.getElementsByTagName(SPELL_TAG_NAME);
-        String nameAttribute = NAME_ATTRIBUTE + "_" + LANGUAGE;
         for (int i = 0; i < spellNodeList.getLength(); i++) {
             Node node = spellNodeList.item(i);
             NamedNodeMap attributes = node.getAttributes();
             for (int j = 0; j < attributes.getLength(); j++) {
                 Node idNode = attributes.getNamedItem(ID_ATTRIBUTE);
                 Integer id = Integer.valueOf(idNode.getNodeValue());
-                Node nameNode = attributes.getNamedItem(nameAttribute);
+                Node nameNode = attributes.getNamedItem(NAME_ATTRIBUTE);
                 String name = nameNode.getNodeValue();
                 List<String> parameterFieldsNames = new ArrayList<>();
                 for (int k = 1; k <= NUMBER_OF_PARAMETER_FIELDS; k++) {

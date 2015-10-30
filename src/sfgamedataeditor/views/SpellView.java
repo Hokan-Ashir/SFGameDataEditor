@@ -189,10 +189,11 @@ public class SpellView extends AbstractEntity implements IView {
 
         for (EntityTuple entityTuple : entityTuples) {
             Entity entity;
-            if (entityTuple.component instanceof JTextField) {
-                entity = new TextFieldEntity((JTextField) entityTuple.component, entityTuple.offsetInBytes, entityTuple.lengthInBytes);
+            JComponent component = entityTuple.getComponent();
+            if (component instanceof JTextField) {
+                entity = new TextFieldEntity((JTextField) component, entityTuple.getOffsetInBytes(), entityTuple.getLengthInBytes());
             } else {
-                entity = new ComboBoxEntity((JComboBox) entityTuple.component, entityTuple.offsetInBytes, entityTuple.lengthInBytes);
+                entity = new ComboBoxEntity((JComboBox) component, entityTuple.getOffsetInBytes(), entityTuple.getLengthInBytes());
             }
             entity.setParent(this);
             getChildren().add(entity);
@@ -249,18 +250,6 @@ public class SpellView extends AbstractEntity implements IView {
     public void loadDataFromFile(RandomAccessFile file) {
         for (Entity entity : entityList) {
             entity.loadDataFromFile(file);
-        }
-    }
-
-    private static class EntityTuple<T extends JComponent> {
-        private T component;
-        private long offsetInBytes;
-        private int lengthInBytes;
-
-        public EntityTuple(T component, long offsetInBytes, int lengthInBytes) {
-            this.component = component;
-            this.offsetInBytes = offsetInBytes;
-            this.lengthInBytes = lengthInBytes;
         }
     }
 
