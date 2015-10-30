@@ -2,11 +2,12 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.skills.SkillView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="580" height="600"/>
+      <xy x="20" y="20" width="1010" height="710"/>
     </constraints>
     <properties>
-      <minimumSize width="580" height="600"/>
-      <preferredSize width="580" height="600"/>
+      <maximumSize width="1010" height="710"/>
+      <minimumSize width="1010" height="710"/>
+      <preferredSize width="1010" height="710"/>
     </properties>
     <border type="none"/>
     <children>
@@ -21,10 +22,11 @@
       </component>
       <grid id="6205c" binding="skillRequrementsPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="1.0"/>
+          <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.5" weighty="1.0"/>
         </constraints>
         <properties>
+          <maximumSize width="550" height="150"/>
           <minimumSize width="550" height="150"/>
           <preferredSize width="550" height="150"/>
         </properties>
@@ -34,9 +36,10 @@
       <component id="f1055" class="javax.swing.JComboBox" binding="levelComboBox">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="9" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="1.0"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="1.0"/>
         </constraints>
         <properties>
+          <maximumSize width="46" height="25"/>
           <model>
             <item value="1"/>
             <item value="2"/>

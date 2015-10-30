@@ -92,7 +92,7 @@
     <spell id="95" name_en="AuraInflexibility" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="Inflexibility effect number:" field8="???" field9="???"/>
     <spell id="96" name_en="DispelWhiteAura"/>
     <spell id="97" name_en="AuraSlowWalking" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="SlowWalking effect number:" field8="???" field9="???"/>
-    <spell id="98" name_en="AuraInability" field1="Min. level:" field2="Mid. level:" field3="Max. level:" field4="Duration (ms.):"/>
+    <spell id="98" name_en="AuraInability" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???" field7="Inability effect number:" field8="???" field9="???"/>
     <spell id="99" name_en="Suffocation" field1="Stamina decrease (%):" field2="Duration (ms.):"/>
     <spell id="100" name_en="Inability" field1="Agility decrease (%):" field2="Duration (ms.):"/>
     <spell id="101" name_en="SlowFighting" field1="Fighting speed decrease (%):" field2="Duration (ms.):"/>
