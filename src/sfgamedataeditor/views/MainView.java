@@ -15,10 +15,18 @@ import java.io.RandomAccessFile;
 import java.util.*;
 
 public class MainView implements IView {
+    private static final int SPELLS_DATA_BEGIN_OFFSET = 0x20;
     private static final int SPELLS_DATA_END_OFFSET = 0x3fd13;
     private static final int SPELL_DATA_LENGTH = 76;
     private static final int SPELL_NUMBER_DATA_LENGTH = 0x2;
-    private static final int SPELLS_DATA_BEGIN_OFFSET = 0x20;
+
+    private static final int SKILL_DATA_BEGIN_OFFSET = 0x03F85FD4;
+    private static final int SKILL_DATA_END_OFFSET = 0x03F864BF;
+    private static final int SKILL_SCHOOL_LEVEL_DATA_LENGTH = 0x2;
+
+    private static final int NUMBER_OF_ABILITY_SCHOOLS = 7;
+    private static final int NUMBER_OF_ABILITY_SUBSCHOOLS = 3;
+    private static final int NUMBER_OF_ABILITY_LEVELS = 20;
 
     private JButton loadSfmodFileButton;
     private JButton createSfmodFileButton;
@@ -35,7 +43,8 @@ public class MainView implements IView {
     }
 
     private void constructModulesMap() {
-        modulesMap.put("Skills", new SkillView());
+        Map<Integer, List<Pair<Integer, Long>>> skillOffsets = getSkillSchoolsOffsets();
+        modulesMap.put("Skills", new SkillView(skillOffsets));
 
         final Map<Integer, Pair<String, List<String>>> spellMap = SpellBindingExtractor.getSpellMap();
         List<ISpellConstraint> constraints = getSpellDataConstraints(spellMap);
@@ -73,6 +82,83 @@ public class MainView implements IView {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Map<Integer, List<Pair<Integer, Long>>> getSkillSchoolsOffsets() {
+        Map<Integer, List<Pair<Integer, Long>>> result = new HashMap<>();
+        // TODO replace with combination of original and modification file
+        RandomAccessFile file = FilesContainer.getOriginalFile();
+
+        List<ISpellConstraint> constraints = getSkillRequirementsConstraints();
+        try {
+            file.seek(SKILL_DATA_BEGIN_OFFSET);
+            boolean reachedSkillDataEnd = false;
+            byte[] buffer = new byte[constraints.size()];
+            while (true) {
+                for (int i = 0; i < constraints.size(); i++) {
+                    buffer[i] = file.readByte();
+                    if (constraints.get(i).isValid(buffer[i])) {
+                        continue;
+                    } else {
+                        file.seek(file.getFilePointer() - i + 1);
+                        i = -1;
+                    }
+
+                    if (file.getFilePointer() >= SKILL_DATA_END_OFFSET) {
+                        reachedSkillDataEnd = true;
+                        break;
+                    }
+                }
+
+                if (reachedSkillDataEnd) {
+                    break;
+                } else {
+                    long skillOffset = file.getFilePointer() - constraints.size() + SKILL_SCHOOL_LEVEL_DATA_LENGTH;
+                    int skillType = buffer[0] & 0xFF;
+                    List<Pair<Integer, Long>> offsets;
+                    if (!result.containsKey(skillType)) {
+                        offsets = new ArrayList<>();
+                    } else {
+                        offsets = result.get(skillType);
+                    }
+
+                    offsets.add(new Pair<>(buffer[1] & 0xFF, skillOffset));
+                    result.put(skillType, offsets);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    private List<ISpellConstraint> getSkillRequirementsConstraints() {
+        List<ISpellConstraint> constraints = new ArrayList<>();
+        constraints.add(new ISpellConstraint() {
+            @Override
+            public boolean isValid(byte value) {
+                return value >= 0 && value <= NUMBER_OF_ABILITY_SCHOOLS;
+            }
+        });
+
+        constraints.add(new ISpellConstraint() {
+            @Override
+            public boolean isValid(byte value) {
+                return value >= 0 && value <= NUMBER_OF_ABILITY_LEVELS;
+            }
+        });
+
+        for (int i = 0; i < 7; ++i) {
+            constraints.add(new ISpellConstraint() {
+                @Override
+                public boolean isValid(byte value) {
+                    return true;
+                }
+            });
+        }
+
+        return constraints;
     }
 
     private void createAndAddSpellClassView(Map<Integer, Pair<String, List<String>>> spellMap, int constraintsSize,
@@ -152,21 +238,21 @@ public class MainView implements IView {
             constraints.add(new ISpellConstraint() {
                 @Override
                 public boolean isValid(byte value) {
-                    return value <= 7 && value >= 0;
+                    return value <= NUMBER_OF_ABILITY_SCHOOLS && value >= 0;
                 }
             });
 
             constraints.add(new ISpellConstraint() {
                 @Override
                 public boolean isValid(byte value) {
-                    return value <= 3 && value >= 0;
+                    return value <= NUMBER_OF_ABILITY_SUBSCHOOLS && value >= 0;
                 }
             });
 
             constraints.add(new ISpellConstraint() {
                 @Override
                 public boolean isValid(byte value) {
-                    return value <= 20 && value >= 0;
+                    return value <= NUMBER_OF_ABILITY_LEVELS && value >= 0;
                 }
             });
         }

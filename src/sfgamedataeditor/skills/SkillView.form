@@ -20,15 +20,15 @@
           <text value="Level:"/>
         </properties>
       </component>
-      <grid id="6205c" binding="skillRequrementsPanel" layout-manager="GridBagLayout">
+      <grid id="6205c" binding="skillRequirementsPanel" layout-manager="GridBagLayout">
         <constraints>
           <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.5" weighty="1.0"/>
         </constraints>
         <properties>
-          <maximumSize width="550" height="150"/>
-          <minimumSize width="550" height="150"/>
-          <preferredSize width="550" height="150"/>
+          <maximumSize width="650" height="150"/>
+          <minimumSize width="650" height="150"/>
+          <preferredSize width="650" height="150"/>
         </properties>
         <border type="none"/>
         <children/>

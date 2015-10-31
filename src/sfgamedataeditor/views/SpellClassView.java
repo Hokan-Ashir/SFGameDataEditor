@@ -1,7 +1,6 @@
 package sfgamedataeditor.views;
 
 import javafx.util.Pair;
-import sfgamedataeditor.databind.AbstractEntity;
 import sfgamedataeditor.databind.FilesContainer;
 import sfgamedataeditor.databind.SpellDataTuple;
 
@@ -9,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.*;
 import java.util.List;
@@ -29,6 +27,22 @@ public class SpellClassView extends AbstractLevelableEntity {
 
     public SpellClassView(SpellDataTuple tuple) {
         addSpellTuple(tuple);
+    }
+
+    public void construct(Map<Integer, Pair<String, List<String>>> spellBindMap) {
+        for (Map.Entry<Pair<Integer, String>, List<Pair<Integer, Long>>> pairListEntry : spellMap
+                .entrySet()) {
+            Pair<String, List<String>> spellNameFieldNamePair = spellBindMap.get(pairListEntry.getKey().getKey());
+            List<String> fieldNameList;
+            if (spellNameFieldNamePair == null) {
+                fieldNameList = Collections.emptyList();
+            } else {
+                fieldNameList = spellNameFieldNamePair.getValue();
+            }
+            spellViewMap.put(pairListEntry.getKey().getValue(), new SpellView(pairListEntry.getValue(), fieldNameList));
+        }
+
+        generateUI();
     }
 
     private void generateUI() {
@@ -84,22 +98,6 @@ public class SpellClassView extends AbstractLevelableEntity {
         for (String s : spellViewMap.keySet()) {
             spellNameComboBox.addItem(s);
         }
-    }
-
-    public void construct(Map<Integer, Pair<String, List<String>>> spellBindMap) {
-        for (Map.Entry<Pair<Integer, String>, List<Pair<Integer, Long>>> pairListEntry : spellMap
-                .entrySet()) {
-            Pair<String, List<String>> spellNameFieldNamePair = spellBindMap.get(pairListEntry.getKey().getKey());
-            List<String> fieldNameList;
-            if (spellNameFieldNamePair == null) {
-                fieldNameList = Collections.emptyList();
-            } else {
-                fieldNameList = spellNameFieldNamePair.getValue();
-            }
-            spellViewMap.put(pairListEntry.getKey().getValue(), new SpellView(pairListEntry.getValue(), fieldNameList));
-        }
-
-        generateUI();
     }
 
     public void addSpellTuple(SpellDataTuple tuple) {

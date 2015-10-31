@@ -76,7 +76,7 @@ public class SpellView extends AbstractEntity implements IView {
 
     public SpellView(List<Pair<Integer, Long>> offsets, List<String> fieldNamesList) {
         this.spellLevelOffsets = offsets;
-        this.spellLevelOffsets.sort(new Comparator<Pair<Integer, Long>>() {
+        Collections.sort(this.spellLevelOffsets, new Comparator<Pair<Integer, Long>>() {
             @Override
             public int compare(Pair<Integer, Long> o1, Pair<Integer, Long> o2) {
                 return o1.getKey().compareTo(o2.getKey());
@@ -126,7 +126,7 @@ public class SpellView extends AbstractEntity implements IView {
         // NOTE: order of this list is HIGHLY important, if you change it, you may
         // accidentally set (via this Editor) i.e "Iceburst" "White Magic - Nature" requirements
         // instead of "Elemental Magic - Ice"
-        classSubClassComboBoxContent.put("", Arrays.asList(""));
+        classSubClassComboBoxContent.put("", Collections.singletonList(""));
         classSubClassComboBoxContent.put("Light Combat Arts", Arrays.asList("", "Piercing Weapon",
                 "Light Blades", "Light Blunts", "Light Armor"));
         classSubClassComboBoxContent.put("Heavy Combat Arts", Arrays.asList("", "Heavy Blades",

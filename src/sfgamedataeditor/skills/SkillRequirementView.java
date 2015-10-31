@@ -1,9 +1,11 @@
 package sfgamedataeditor.skills;
 
+import javafx.util.Pair;
 import sfgamedataeditor.databind.*;
 import sfgamedataeditor.views.IView;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +31,12 @@ public class SkillRequirementView extends AbstractEntity implements IView {
     private JSeparator skillNameSeparator;
 
     private List<Entity> entityList = new ArrayList<>();
+    private List<Pair<Integer, Long>> skillLevelOffsets;
 
-    // TODO pass List<Skill - Level> offsets and make setLevel method to publicly use it from
-    // SkillView class in level comboBox listener
-    public SkillRequirementView() {
+    public SkillRequirementView(List<Pair<Integer, Long>> offsets) {
+        this.skillLevelOffsets = offsets;
         initializeEntityList();
+        setSkillLevel(1);
     }
 
     // skill requirements offset range is: 03F85FD4 - 03F864BF
@@ -44,9 +47,9 @@ public class SkillRequirementView extends AbstractEntity implements IView {
             add(new EntityTuple<>(staminaField, 1, 1));
             add(new EntityTuple<>(agilityField, 2, 1));
             add(new EntityTuple<>(dexterityField, 3, 1));
-            add(new EntityTuple<>(intelligenceField, 4, 1));
-            add(new EntityTuple<>(wisdomField, 5, 1));
-            add(new EntityTuple<>(charismaField, 6, 1));
+            add(new EntityTuple<>(intelligenceField, 5, 1));
+            add(new EntityTuple<>(wisdomField, 6, 1));
+            add(new EntityTuple<>(charismaField, 4, 1));
         }};
 
         for (EntityTuple entityTuple : entityTuples) {
@@ -65,6 +68,25 @@ public class SkillRequirementView extends AbstractEntity implements IView {
 
     public void setSkillName(String skillName) {
         skillNameLabel.setText(skillName);
+    }
+
+    public void setSkillLevel(int level) {
+        if (skillLevelOffsets.isEmpty()) {
+            return;
+        }
+
+        Long offsetInFile = 0l;
+        for (Pair<Integer, Long> spellLevelOffset : skillLevelOffsets) {
+            if (spellLevelOffset.getKey() == level) {
+                offsetInFile = spellLevelOffset.getValue();
+                break;
+            }
+        }
+
+        setOffsetInFile(offsetInFile);
+        for (Component component : mainPanel.getComponents()) {
+            component.setVisible(offsetInFile != 0);
+        }
     }
 
     /**

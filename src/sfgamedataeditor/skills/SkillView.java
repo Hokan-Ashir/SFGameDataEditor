@@ -1,29 +1,27 @@
 package sfgamedataeditor.skills;
 
 import javafx.util.Pair;
-import sfgamedataeditor.databind.AbstractEntity;
+import sfgamedataeditor.databind.FilesContainer;
 import sfgamedataeditor.views.AbstractLevelableEntity;
-import sfgamedataeditor.views.ILevelableView;
-import sfgamedataeditor.views.IView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class SkillView extends AbstractLevelableEntity {
+    private static final int NUMBER_OF_ABILITY_SCHOOLS = 7;
+
     private JPanel mainPanel;
     private JComboBox levelComboBox;
     private JLabel levelLabel;
-    private JPanel skillRequrementsPanel;
+    private JPanel skillRequirementsPanel;
 
-    SkillRequirementView lightCombatArtsView = new SkillRequirementView();
-    SkillRequirementView heavyCombatArtsView = new SkillRequirementView();
-    SkillRequirementView archeryView = new SkillRequirementView();
-    SkillRequirementView blackMagicView = new SkillRequirementView();
-    SkillRequirementView whiteMagicView = new SkillRequirementView();
-    SkillRequirementView mindMagicView = new SkillRequirementView();
-    SkillRequirementView elementalMagicView = new SkillRequirementView();
+    List<SkillRequirementView> requirementViews = new ArrayList<>(NUMBER_OF_ABILITY_SCHOOLS);
 
     /**
      * {@inheritDoc}
@@ -33,32 +31,47 @@ public class SkillView extends AbstractLevelableEntity {
         return mainPanel;
     }
 
-    public SkillView() {
-        generateUi();
+    public SkillView(Map<Integer, java.util.List<Pair<Integer, Long>>> offsets) {
+        for (int i = 1; i <= NUMBER_OF_ABILITY_SCHOOLS; i++) {
+            requirementViews.add(new SkillRequirementView(offsets.get(i)));
+        }
+        generateUI();
     }
 
-    private void generateUi() {
-        java.util.List<Pair<SkillRequirementView, String>> viewList = new ArrayList<Pair<SkillRequirementView, String>>();
-        viewList.add(new Pair<>(lightCombatArtsView, "Light combat arts:"));
-        viewList.add(new Pair<>(heavyCombatArtsView, "Heavy combat arts:"));
-        viewList.add(new Pair<>(archeryView, "Archery:"));
-        viewList.add(new Pair<>(blackMagicView, "Black magic:"));
-        viewList.add(new Pair<>(whiteMagicView, "White magic:"));
-        viewList.add(new Pair<>(mindMagicView, "Mind magic:"));
-        viewList.add(new Pair<>(elementalMagicView, "Elemental magic:"));
+    private void generateUI() {
+        java.util.List<String> schoolNamesList = new ArrayList<>();
+        schoolNamesList.add("Light combat arts:");
+        schoolNamesList.add("Heavy combat arts:");
+        schoolNamesList.add("Archery:");
+        schoolNamesList.add("White magic:");
+        schoolNamesList.add("Elemental magic:");
+        schoolNamesList.add("Mind magic:");
+        schoolNamesList.add("Black magic:");
 
         int gridy = 0;
-        for (Pair<SkillRequirementView, String> skillRequirementViewStringPair : viewList) {
-            skillRequirementViewStringPair.getKey().setSkillName(skillRequirementViewStringPair.getValue());
+        for (int i = 0; i < requirementViews.size(); i++) {
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.gridx = 0;
             gbc.gridy = gridy;
             gbc.weightx = 1.0;
             gbc.weighty = 1.0;
-            skillRequrementsPanel.add(skillRequirementViewStringPair.getKey().getMainPanel(), gbc);
+            requirementViews.get(i).setSkillName(schoolNamesList.get(i));
+            skillRequirementsPanel.add(requirementViews.get(i).getMainPanel(), gbc);
 
             gridy++;
         }
+
+        levelComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                int level = Integer.valueOf((String) levelComboBox.getSelectedItem());
+                for (SkillRequirementView requirementView : requirementViews) {
+                    requirementView.setSkillLevel(level);
+                }
+                // TODO replace with combination of original and modification file
+                SkillView.this.loadDataFromFile(FilesContainer.getOriginalFile());
+            }
+        });
     }
 
     /**
@@ -82,6 +95,8 @@ public class SkillView extends AbstractLevelableEntity {
      */
     @Override
     public void loadDataFromFile(RandomAccessFile file) {
-
+        for (SkillRequirementView requirementView : requirementViews) {
+            requirementView.loadDataFromFile(file);
+        }
     }
 }
