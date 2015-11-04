@@ -1,4 +1,4 @@
-package sfgamedataeditor.databind;
+package sfgamedataeditor.views;
 
 public class SpellDataTuple {
     private long offset;

@@ -2,7 +2,8 @@ package sfgamedataeditor.skills;
 
 import javafx.util.Pair;
 import sfgamedataeditor.databind.FilesContainer;
-import sfgamedataeditor.views.AbstractLevelableEntity;
+import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
+import sfgamedataeditor.dataextraction.ObjectToOffsetExtractor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,14 +15,12 @@ import java.util.List;
 import java.util.Map;
 
 public class SkillView extends AbstractLevelableEntity {
-    private static final int NUMBER_OF_ABILITY_SCHOOLS = 7;
-
     private JPanel mainPanel;
     private JComboBox levelComboBox;
     private JLabel levelLabel;
     private JPanel skillRequirementsPanel;
 
-    List<SkillRequirementView> requirementViews = new ArrayList<>(NUMBER_OF_ABILITY_SCHOOLS);
+    List<SkillRequirementView> requirementViews = new ArrayList<>(ObjectToOffsetExtractor.NUMBER_OF_ABILITY_SCHOOLS);
 
     /**
      * {@inheritDoc}
@@ -32,7 +31,7 @@ public class SkillView extends AbstractLevelableEntity {
     }
 
     public SkillView(Map<Integer, java.util.List<Pair<Integer, Long>>> offsets) {
-        for (int i = 1; i <= NUMBER_OF_ABILITY_SCHOOLS; i++) {
+        for (int i = 1; i <= ObjectToOffsetExtractor.NUMBER_OF_ABILITY_SCHOOLS; i++) {
             requirementViews.add(new SkillRequirementView(offsets.get(i)));
         }
         generateUI();
@@ -66,7 +65,7 @@ public class SkillView extends AbstractLevelableEntity {
             public void itemStateChanged(ItemEvent e) {
                 int level = Integer.valueOf((String) levelComboBox.getSelectedItem());
                 for (SkillRequirementView requirementView : requirementViews) {
-                    requirementView.setSkillLevel(level);
+                    requirementView.setAbilityLevel(level);
                 }
                 // TODO replace with combination of original and modification file
                 SkillView.this.loadDataFromFile(FilesContainer.getOriginalFile());

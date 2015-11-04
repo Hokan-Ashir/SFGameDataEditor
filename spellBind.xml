@@ -11,7 +11,8 @@
     <spell id="10" name="Fog" field1="???" field2="???" field3="???" field4="???"/>
     <spell id="11" name="Illuminate" field1="???" field2="???" field3="???" field4="???"/>
     <spell id="12" name="FireShield" field1="Duration (ms.):" field2="Damage effect number:"/>
-    <spell id="13" name="FireBall" field1="Initial damage:" field2="Additional damage:" field3="Number of additional damage times:" field4="Interval between additional damage (ms.):"/>
+    <spell id="13" name="FireBall" field1="Initial damage:" field2="Additional damage:"
+           field3="Number of additional damage times:" field4="Interval between additional damage (ms.):" field5="???"/>
     <spell id="14" name="IceBurst" field1="Initial damage:" field2="Interval between additional damage (ms.):" field3="Freeze time (ms.):"/>
     <spell id="15" name="IceShield" field1="Duration (ms.):" field2="Freeze effect number:"/>
     <spell id="16" name="Decay" field1="???" field2="???" field3="???"/>

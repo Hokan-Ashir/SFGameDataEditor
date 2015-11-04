@@ -1,4 +1,4 @@
-package sfgamedataeditor.databind;
+package sfgamedataeditor.databind.entity;
 
 import javax.swing.*;
 import java.io.IOException;

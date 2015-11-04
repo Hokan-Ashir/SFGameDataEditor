@@ -1,6 +1,6 @@
-package sfgamedataeditor.views;
+package sfgamedataeditor.databind.entity;
 
-import sfgamedataeditor.databind.AbstractEntity;
+import sfgamedataeditor.views.ILevelableView;
 
 public abstract class AbstractLevelableEntity extends AbstractEntity implements ILevelableView {
 }

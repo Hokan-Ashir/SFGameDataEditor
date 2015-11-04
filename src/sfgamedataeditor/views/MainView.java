@@ -2,10 +2,11 @@ package sfgamedataeditor.views;
 
 import javafx.util.Pair;
 import sfgamedataeditor.databind.FilesContainer;
-import sfgamedataeditor.databind.ISpellConstraint;
-import sfgamedataeditor.databind.SpellDataTuple;
+import sfgamedataeditor.databind.IDataConstraint;
+import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
+import sfgamedataeditor.dataextraction.ObjectToOffsetExtractor;
+import sfgamedataeditor.dataextraction.XMLSpellBindingExtractor;
 import sfgamedataeditor.skills.SkillView;
-import sfgamedataeditor.xml.SpellBindingExtractor;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -19,14 +20,6 @@ public class MainView implements IView {
     private static final int SPELLS_DATA_END_OFFSET = 0x3fd13;
     private static final int SPELL_DATA_LENGTH = 76;
     private static final int SPELL_NUMBER_DATA_LENGTH = 0x2;
-
-    private static final int SKILL_DATA_BEGIN_OFFSET = 0x03F85FD4;
-    private static final int SKILL_DATA_END_OFFSET = 0x03F864BF;
-    private static final int SKILL_SCHOOL_LEVEL_DATA_LENGTH = 0x2;
-
-    private static final int NUMBER_OF_ABILITY_SCHOOLS = 7;
-    private static final int NUMBER_OF_ABILITY_SUBSCHOOLS = 3;
-    private static final int NUMBER_OF_ABILITY_LEVELS = 20;
 
     private JButton loadSfmodFileButton;
     private JButton createSfmodFileButton;
@@ -43,11 +36,11 @@ public class MainView implements IView {
     }
 
     private void constructModulesMap() {
-        Map<Integer, List<Pair<Integer, Long>>> skillOffsets = getSkillSchoolsOffsets();
+        Map<Integer, List<Pair<Integer, Long>>> skillOffsets = ObjectToOffsetExtractor.getSkillSchoolsOffsets();
         modulesMap.put("Skills", new SkillView(skillOffsets));
 
-        final Map<Integer, Pair<String, List<String>>> spellMap = SpellBindingExtractor.getSpellMap();
-        List<ISpellConstraint> constraints = getSpellDataConstraints(spellMap);
+        final Map<Integer, Pair<String, List<String>>> spellMap = XMLSpellBindingExtractor.getSpellMap();
+        List<IDataConstraint> constraints = getSpellDataConstraints(spellMap);
         // TODO replace with combination of original and modification file
         RandomAccessFile file = FilesContainer.getOriginalFile();
         try {
@@ -77,88 +70,11 @@ public class MainView implements IView {
 
                 }
             }
-
-            constructSpellClassViews(spellMap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private Map<Integer, List<Pair<Integer, Long>>> getSkillSchoolsOffsets() {
-        Map<Integer, List<Pair<Integer, Long>>> result = new HashMap<>();
-        // TODO replace with combination of original and modification file
-        RandomAccessFile file = FilesContainer.getOriginalFile();
-
-        List<ISpellConstraint> constraints = getSkillRequirementsConstraints();
-        try {
-            file.seek(SKILL_DATA_BEGIN_OFFSET);
-            boolean reachedSkillDataEnd = false;
-            byte[] buffer = new byte[constraints.size()];
-            while (true) {
-                for (int i = 0; i < constraints.size(); i++) {
-                    buffer[i] = file.readByte();
-                    if (constraints.get(i).isValid(buffer[i])) {
-                        continue;
-                    } else {
-                        file.seek(file.getFilePointer() - i + 1);
-                        i = -1;
-                    }
-
-                    if (file.getFilePointer() >= SKILL_DATA_END_OFFSET) {
-                        reachedSkillDataEnd = true;
-                        break;
-                    }
-                }
-
-                if (reachedSkillDataEnd) {
-                    break;
-                } else {
-                    long skillOffset = file.getFilePointer() - constraints.size() + SKILL_SCHOOL_LEVEL_DATA_LENGTH;
-                    int skillType = buffer[0] & 0xFF;
-                    List<Pair<Integer, Long>> offsets;
-                    if (!result.containsKey(skillType)) {
-                        offsets = new ArrayList<>();
-                    } else {
-                        offsets = result.get(skillType);
-                    }
-
-                    offsets.add(new Pair<>(buffer[1] & 0xFF, skillOffset));
-                    result.put(skillType, offsets);
-                }
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return result;
-    }
-
-    private List<ISpellConstraint> getSkillRequirementsConstraints() {
-        List<ISpellConstraint> constraints = new ArrayList<>();
-        constraints.add(new ISpellConstraint() {
-            @Override
-            public boolean isValid(byte value) {
-                return value >= 0 && value <= NUMBER_OF_ABILITY_SCHOOLS;
-            }
-        });
-
-        constraints.add(new ISpellConstraint() {
-            @Override
-            public boolean isValid(byte value) {
-                return value >= 0 && value <= NUMBER_OF_ABILITY_LEVELS;
-            }
-        });
-
-        for (int i = 0; i < 7; ++i) {
-            constraints.add(new ISpellConstraint() {
-                @Override
-                public boolean isValid(byte value) {
-                    return true;
-                }
-            });
-        }
-
-        return constraints;
+        constructSpellClassViews(spellMap);
     }
 
     private void createAndAddSpellClassView(Map<Integer, Pair<String, List<String>>> spellMap, int constraintsSize,
@@ -194,8 +110,8 @@ public class MainView implements IView {
         }
     }
 
-    List<ISpellConstraint> getSpellDataConstraints(final Map<Integer, Pair<String, List<String>>> spellMap) {
-        List<ISpellConstraint> constraints = new ArrayList<>();
+    List<IDataConstraint> getSpellDataConstraints(final Map<Integer, Pair<String, List<String>>> spellMap) {
+        List<IDataConstraint> constraints = new ArrayList<>();
         addSpellTypeConstraints(spellMap, constraints);
         addSpellRequirementConstraints(constraints);
         addZeroTrailConstraints(constraints);
@@ -213,8 +129,8 @@ public class MainView implements IView {
         return constraints;
     }
 
-    private void addNonZeroManaUsageConstraint(List<ISpellConstraint> constraints) {
-        constraints.add(new ISpellConstraint() {
+    private void addNonZeroManaUsageConstraint(List<IDataConstraint> constraints) {
+        constraints.add(new IDataConstraint() {
             @Override
             public boolean isValid(byte value) {
                 return value != 0;
@@ -222,9 +138,9 @@ public class MainView implements IView {
         });
     }
 
-    private void addZeroTrailConstraints(List<ISpellConstraint> constraints) {
+    private void addZeroTrailConstraints(List<IDataConstraint> constraints) {
         for (int i = 0; i < 3; ++i) {
-            constraints.add(new ISpellConstraint() {
+            constraints.add(new IDataConstraint() {
                 @Override
                 public boolean isValid(byte value) {
                     return value == 0;
@@ -233,41 +149,41 @@ public class MainView implements IView {
         }
     }
 
-    private void addSpellRequirementConstraints(List<ISpellConstraint> constraints) {
+    private void addSpellRequirementConstraints(List<IDataConstraint> constraints) {
         for (int i = 0; i < 3; ++i) {
-            constraints.add(new ISpellConstraint() {
+            constraints.add(new IDataConstraint() {
                 @Override
                 public boolean isValid(byte value) {
-                    return value <= NUMBER_OF_ABILITY_SCHOOLS && value >= 0;
+                    return value <= ObjectToOffsetExtractor.NUMBER_OF_ABILITY_SCHOOLS && value >= 0;
                 }
             });
 
-            constraints.add(new ISpellConstraint() {
+            constraints.add(new IDataConstraint() {
                 @Override
                 public boolean isValid(byte value) {
-                    return value <= NUMBER_OF_ABILITY_SUBSCHOOLS && value >= 0;
+                    return value <= ObjectToOffsetExtractor.NUMBER_OF_ABILITY_SUBSCHOOLS && value >= 0;
                 }
             });
 
-            constraints.add(new ISpellConstraint() {
+            constraints.add(new IDataConstraint() {
                 @Override
                 public boolean isValid(byte value) {
-                    return value <= NUMBER_OF_ABILITY_LEVELS && value >= 0;
+                    return value <= ObjectToOffsetExtractor.NUMBER_OF_ABILITY_LEVELS && value >= 0;
                 }
             });
         }
     }
 
     private void addSpellTypeConstraints(final Map<Integer, Pair<String, List<String>>> spellMap,
-            List<ISpellConstraint> constraints) {
-        constraints.add(new ISpellConstraint() {
+                                         List<IDataConstraint> constraints) {
+        constraints.add(new IDataConstraint() {
             @Override
             public boolean isValid(byte value) {
                 return spellMap.containsKey(value & 0xFF);
             }
         });
 
-        constraints.add(new ISpellConstraint() {
+        constraints.add(new IDataConstraint() {
             @Override
             public boolean isValid(byte value) {
                 return value == 0;

@@ -2,7 +2,7 @@ package sfgamedataeditor.views;
 
 import javafx.util.Pair;
 import sfgamedataeditor.databind.FilesContainer;
-import sfgamedataeditor.databind.SpellDataTuple;
+import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,7 +69,7 @@ public class SpellClassView extends AbstractLevelableEntity {
                     gbc.anchor = GridBagConstraints.NORTHWEST;
                     spellsPanel.add(currentlySelectedSpellView.getMainPanel(), gbc);
                     String levelItem = (String) levelComboBox.getSelectedItem();
-                    currentlySelectedSpellView.setSpellLevel(Integer.valueOf(levelItem));
+                    currentlySelectedSpellView.setAbilityLevel(Integer.valueOf(levelItem));
                     possibleSpellLevels.setText("Available spell levels: " + currentlySelectedSpellView.getRangeOfPossibleSpellLevels());
                     // TODO replace with combination of original and modification file
                     SpellClassView.this.loadDataFromFile(FilesContainer.getOriginalFile());
@@ -87,7 +87,7 @@ public class SpellClassView extends AbstractLevelableEntity {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String levelItem = (String) levelComboBox.getSelectedItem();
-                currentlySelectedSpellView.setSpellLevel(Integer.valueOf(levelItem));
+                currentlySelectedSpellView.setAbilityLevel(Integer.valueOf(levelItem));
                 // TODO replace with combination of original and modification file
                 SpellClassView.this.loadDataFromFile(FilesContainer.getOriginalFile());
             }

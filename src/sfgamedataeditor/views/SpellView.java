@@ -1,18 +1,18 @@
 package sfgamedataeditor.views;
 
 import javafx.util.Pair;
-import sfgamedataeditor.databind.*;
+import sfgamedataeditor.databind.entity.EntityContainer;
+import sfgamedataeditor.databind.entity.EntityTuple;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.RandomAccessFile;
 import java.util.*;
 import java.util.List;
 
-public class SpellView extends AbstractEntity implements IView {
-    private static final int NUMBER_OF_ABILITY_LEVELS = 20;
+public class SpellView extends EntityContainer implements IView {
+    private static final int LABEL_LINE_MAX_LENGTH = 12;
 
     private JPanel mainPanel;
     private JTextField numberField;
@@ -70,19 +70,17 @@ public class SpellView extends AbstractEntity implements IView {
     private JLabel parameterLabel10;
     private JTextField parameterField10;
 
-    private List<Entity> entityList = new ArrayList<>();
     private Map<String, List<String>> classSubClassComboBoxContent = new LinkedHashMap<>();
-    private List<Pair<Integer, Long>> spellLevelOffsets = new ArrayList<>(NUMBER_OF_ABILITY_LEVELS);
 
     public SpellView(List<Pair<Integer, Long>> offsets, List<String> fieldNamesList) {
-        this.spellLevelOffsets = offsets;
-        Collections.sort(this.spellLevelOffsets, new Comparator<Pair<Integer, Long>>() {
-            @Override
-            public int compare(Pair<Integer, Long> o1, Pair<Integer, Long> o2) {
-                return o1.getKey().compareTo(o2.getKey());
-            }
-        });
+        super(offsets);
 
+        setParameterLabelsNames(fieldNamesList);
+        initializeRequirementsComboBoxes();
+        initializeEntityList();
+    }
+
+    private void setParameterLabelsNames(List<String> fieldNamesList) {
         List<JLabel> parameterLabels = new ArrayList<JLabel>() {{
             add(parameterLabel1);
             add(parameterLabel2);
@@ -101,9 +99,6 @@ public class SpellView extends AbstractEntity implements IView {
                 parameterLabels.get(i).setText(convertToMultiline(fieldNamesList.get(i)));
             }
         }
-
-        initializeRequirementsComboBoxes();
-        initializeEntityList();
     }
 
     private String convertToMultiline(String value) {
@@ -112,7 +107,7 @@ public class SpellView extends AbstractEntity implements IView {
         int lastNewLineInjectionPosition = 0;
         for (int i = 0; i < subStrings.length; ++i) {
             result = result + subStrings[i] + " ";
-            if (result.length() - lastNewLineInjectionPosition > 12
+            if (result.length() - lastNewLineInjectionPosition > LABEL_LINE_MAX_LENGTH
                     && i != subStrings.length - 1) {
                 result = result + "<br>";
                 lastNewLineInjectionPosition = result.length();
@@ -154,9 +149,13 @@ public class SpellView extends AbstractEntity implements IView {
         classComboBox.setSelectedItem(null);
     }
 
-    private void initializeEntityList() {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected List<EntityTuple> createEntityTuples() {
         // inside spell offsets are taken from http://spellforcefanforum.hostoi.com/viewtopic.php?f=14&t=242
-        List<EntityTuple> entityTuples = new ArrayList<EntityTuple>() {{
+        return new ArrayList<EntityTuple>() {{
             add(new EntityTuple<>(numberField, 0, 2));
             add(new EntityTuple<>(typeField, 2, 2));
             add(new EntityTuple<>(requirementClassComboBox, 4, 1));
@@ -186,48 +185,29 @@ public class SpellView extends AbstractEntity implements IView {
             add(new EntityTuple<>(parameterField9, 64, 4));
             add(new EntityTuple<>(parameterField10, 68, 4));
         }};
-
-        for (EntityTuple entityTuple : entityTuples) {
-            Entity entity;
-            JComponent component = entityTuple.getComponent();
-            if (component instanceof JTextField) {
-                entity = new TextFieldEntity((JTextField) component, entityTuple.getOffsetInBytes(), entityTuple.getLengthInBytes());
-            } else {
-                entity = new ComboBoxEntity((JComboBox) component, entityTuple.getOffsetInBytes(), entityTuple.getLengthInBytes());
-            }
-            entity.setParent(this);
-            getChildren().add(entity);
-            entityList.add(entity);
-        }
     }
 
-    public void setSpellLevel(int spellLevel) {
-        if (spellLevelOffsets.isEmpty()) {
-            return;
-        }
-
-        Long offsetInFile = 0l;
-        for (Pair<Integer, Long> spellLevelOffset : spellLevelOffsets) {
-            if (spellLevelOffset.getKey() == spellLevel) {
-                offsetInFile = spellLevelOffset.getValue();
-                break;
-            }
-        }
-
-        setOffsetInFile(offsetInFile);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setAbilityLevel(int abilityLevel) {
+        super.setAbilityLevel(abilityLevel);
         for (Component component : mainPanel.getComponents()) {
-            component.setVisible(offsetInFile != 0);
+            component.setVisible(getOffsetInFile() != 0);
         }
     }
 
     public String getRangeOfPossibleSpellLevels() {
         String result;
-        if (spellLevelOffsets.size() == 1) {
-            result = String.valueOf(spellLevelOffsets.get(0).getKey());
-        } else if (spellLevelOffsets.size() > 1) {
-            result = String.valueOf(spellLevelOffsets.get(0).getKey());
+        List<Pair<Integer, Long>> abilityLevelOffsets = getAbilityLevelOffsets();
+        int size = abilityLevelOffsets.size();
+        if (size == 1) {
+            result = String.valueOf(abilityLevelOffsets.get(0).getKey());
+        } else if (size > 1) {
+            result = String.valueOf(abilityLevelOffsets.get(0).getKey());
             result += "-";
-            result += String.valueOf(spellLevelOffsets.get(spellLevelOffsets.size() - 1).getKey());
+            result += String.valueOf(abilityLevelOffsets.get(size - 1).getKey());
         } else {
             result = "";
         }
@@ -241,16 +221,6 @@ public class SpellView extends AbstractEntity implements IView {
     @Override
     public JPanel getMainPanel() {
         return mainPanel;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void loadDataFromFile(RandomAccessFile file) {
-        for (Entity entity : entityList) {
-            entity.loadDataFromFile(file);
-        }
     }
 
     private class ClassRequirementComboBoxListener implements ItemListener {

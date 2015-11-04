@@ -1,6 +1,6 @@
 package sfgamedataeditor.databind;
 
-public interface ISpellConstraint {
+public interface IDataConstraint {
 
     boolean isValid(byte value);
 }

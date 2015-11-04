@@ -1,4 +1,4 @@
-package sfgamedataeditor.xml;
+package sfgamedataeditor.dataextraction;
 
 import javafx.util.Pair;
 import org.w3c.dom.Document;
@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SpellBindingExtractor {
+public class XMLSpellBindingExtractor {
 
     private static final String SPELL_BINDING_FILE = "spellBind.xml";
     public static final String SPELL_TAG_NAME = "spell";
@@ -26,6 +26,10 @@ public class SpellBindingExtractor {
     // TODO add i18n support
     private static final int NUMBER_OF_PARAMETER_FIELDS = 9;
     private static final String FIELD_ATTRIBUTE = "field";
+
+    private XMLSpellBindingExtractor() {
+
+    }
 
     public static Map<Integer, Pair<String, List<String>>> getSpellMap() {
         File file = new File(SPELL_BINDING_FILE);

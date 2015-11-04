@@ -1,4 +1,6 @@
-package sfgamedataeditor.databind;
+package sfgamedataeditor.databind.entity;
+
+import sfgamedataeditor.databind.IDataManipulator;
 
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
