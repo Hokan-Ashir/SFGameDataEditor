@@ -1,8 +1,8 @@
 package sfgamedataeditor.skills;
 
 import javafx.util.Pair;
-import sfgamedataeditor.databind.FilesContainer;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
+import sfgamedataeditor.databind.files.FilesContainer;
 import sfgamedataeditor.dataextraction.ObjectToOffsetExtractor;
 
 import javax.swing.*;
@@ -67,8 +67,7 @@ public class SkillView extends AbstractLevelableEntity {
                 for (SkillRequirementView requirementView : requirementViews) {
                     requirementView.setAbilityLevel(level);
                 }
-                // TODO replace with combination of original and modification file
-                SkillView.this.loadDataFromFile(FilesContainer.getOriginalFile());
+                SkillView.this.loadDataFromFile(FilesContainer.getModificationFile());
             }
         });
     }

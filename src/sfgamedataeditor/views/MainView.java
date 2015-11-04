@@ -1,9 +1,9 @@
 package sfgamedataeditor.views;
 
 import javafx.util.Pair;
-import sfgamedataeditor.databind.FilesContainer;
 import sfgamedataeditor.databind.IDataConstraint;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
+import sfgamedataeditor.databind.files.FilesContainer;
 import sfgamedataeditor.dataextraction.ObjectToOffsetExtractor;
 import sfgamedataeditor.dataextraction.XMLSpellBindingExtractor;
 import sfgamedataeditor.skills.SkillView;
@@ -41,8 +41,7 @@ public class MainView implements IView {
 
         final Map<Integer, Pair<String, List<String>>> spellMap = XMLSpellBindingExtractor.getSpellMap();
         List<IDataConstraint> constraints = getSpellDataConstraints(spellMap);
-        // TODO replace with combination of original and modification file
-        RandomAccessFile file = FilesContainer.getOriginalFile();
+        RandomAccessFile file = FilesContainer.getModificationFile();
         try {
             file.seek(SPELLS_DATA_BEGIN_OFFSET);
             boolean reachedSpellDataEnd = false;
@@ -289,7 +288,7 @@ public class MainView implements IView {
                     for (Map.Entry<String, AbstractLevelableEntity> stringClassEntry : mainView.getModulesMap().entrySet()) {
                         if (item.equals(stringClassEntry.getKey())) {
                             AbstractLevelableEntity view = stringClassEntry.getValue();
-                            view.loadDataFromFile(FilesContainer.getOriginalFile());
+                            view.loadDataFromFile(FilesContainer.getModificationFile());
                             mainView.getModulesPanel().add(view.getMainPanel());
                         }
                     }

@@ -1,8 +1,8 @@
 package sfgamedataeditor.views;
 
 import javafx.util.Pair;
-import sfgamedataeditor.databind.FilesContainer;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
+import sfgamedataeditor.databind.files.FilesContainer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -71,8 +71,7 @@ public class SpellClassView extends AbstractLevelableEntity {
                     String levelItem = (String) levelComboBox.getSelectedItem();
                     currentlySelectedSpellView.setAbilityLevel(Integer.valueOf(levelItem));
                     possibleSpellLevels.setText("Available spell levels: " + currentlySelectedSpellView.getRangeOfPossibleSpellLevels());
-                    // TODO replace with combination of original and modification file
-                    SpellClassView.this.loadDataFromFile(FilesContainer.getOriginalFile());
+                    SpellClassView.this.loadDataFromFile(FilesContainer.getModificationFile());
                 }
 
                 spellsPanel.revalidate();
@@ -88,8 +87,7 @@ public class SpellClassView extends AbstractLevelableEntity {
             public void itemStateChanged(ItemEvent e) {
                 String levelItem = (String) levelComboBox.getSelectedItem();
                 currentlySelectedSpellView.setAbilityLevel(Integer.valueOf(levelItem));
-                // TODO replace with combination of original and modification file
-                SpellClassView.this.loadDataFromFile(FilesContainer.getOriginalFile());
+                SpellClassView.this.loadDataFromFile(FilesContainer.getModificationFile());
             }
         });
     }

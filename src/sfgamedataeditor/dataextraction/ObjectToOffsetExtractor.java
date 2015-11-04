@@ -1,8 +1,8 @@
 package sfgamedataeditor.dataextraction;
 
 import javafx.util.Pair;
-import sfgamedataeditor.databind.FilesContainer;
 import sfgamedataeditor.databind.IDataConstraint;
+import sfgamedataeditor.databind.files.FilesContainer;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -27,8 +27,7 @@ public class ObjectToOffsetExtractor {
 
     public static Map<Integer, List<Pair<Integer, Long>>> getSkillSchoolsOffsets() {
         Map<Integer, List<Pair<Integer, Long>>> result = new HashMap<>();
-        // TODO replace with combination of original and modification file
-        RandomAccessFile file = FilesContainer.getOriginalFile();
+        RandomAccessFile file = FilesContainer.getModificationFile();
 
         List<IDataConstraint> constraints = getSkillRequirementsConstraints();
         try {

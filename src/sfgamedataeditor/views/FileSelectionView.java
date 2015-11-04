@@ -1,6 +1,8 @@
 package sfgamedataeditor.views;
 
-import sfgamedataeditor.databind.FilesContainer;
+import org.mantlik.xdeltaencoder.XDeltaEncoder;
+import sfgamedataeditor.databind.files.FileData;
+import sfgamedataeditor.databind.files.FilesContainer;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -10,7 +12,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class FileSelectionView implements IView {
     private JPanel mainPanel;
@@ -54,14 +61,14 @@ public class FileSelectionView implements IView {
                 view.getOriginalFileField().setText(selectedFile.getAbsolutePath());
                 RandomAccessFile file;
                 try {
-                    file = new RandomAccessFile(selectedFile.getAbsolutePath(), "rw");
+                    file = new RandomAccessFile(selectedFile.getAbsolutePath(), "r");
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                     view.getOkButton().setEnabled(false);
                     return;
                 }
 
-                FilesContainer.setOriginalFile(file);
+                FilesContainer.setOriginalFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
                 view.getOkButton().setEnabled(true);
             }
         });
@@ -85,13 +92,13 @@ public class FileSelectionView implements IView {
                 view.getModificationFileField().setText(selectedFile.getAbsolutePath());
                 RandomAccessFile file;
                 try {
-                    file = new RandomAccessFile(selectedFile.getAbsolutePath(), "rw");
+                    file = new RandomAccessFile(selectedFile.getAbsolutePath(), "r");
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                     return;
                 }
 
-                FilesContainer.setModificationFile(file);
+                FilesContainer.setModificationFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
             }
         });
     }
@@ -102,17 +109,68 @@ public class FileSelectionView implements IView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JButton okButton = view.getOkButton();
-                okButton.setText("Processing data. Please wait ...");
-                int fontSize = okButton.getFont().getSize();
-                okButton.setPreferredSize(new Dimension(okButton.getText().length() * fontSize,
-                        okButton.getPreferredSize().height));
                 okButton.setEnabled(false);
                 view.getOriginalFileSelectorButton().setEnabled(false);
                 view.getModificationFileSelectorButton().setEnabled(false);
-                frame.pack();
-                view.getMainPanel().paintImmediately(view.getMainPanel().getBounds());
+                repaintButtonTextContent(okButton, "Creating temporary modification file. Please wait ...");
+                boolean creationSuccess = createTemporaryModificationFile();
+                if (!creationSuccess) {
+                    // TODO make temporary creation file failure notification
+                    okButton.setEnabled(true);
+                    view.getOriginalFileSelectorButton().setEnabled(true);
+                    view.getModificationFileSelectorButton().setEnabled(true);
+                    repaintButtonTextContent(okButton, "OK");
+                    return;
+                }
+
+                repaintButtonTextContent(okButton, "Processing data. Please wait ...");
                 MainView.showMainView();
                 frame.dispose();
+            }
+
+            private boolean createTemporaryModificationFile() {
+                String originalFileDirectory = FilesContainer.getOriginalFilePath();
+                String originalFileName = FilesContainer.getOriginalFileName();
+                String modificationFileName = originalFileName + ".mod";
+                String resultFilePath = originalFileDirectory + modificationFileName;
+
+                if (FilesContainer.getModificationFile() != null) {
+                    String originalFilePath = originalFileDirectory + originalFileName;
+                    String modificationFilePath = FilesContainer.getModificationFilePath() + FilesContainer.getModificationFileName();
+
+                    XDeltaEncoder.main(new String[]{"-d", originalFilePath, modificationFilePath, resultFilePath});
+                } else {
+                    Path originalFilePath = Paths.get(originalFileDirectory + originalFileName);
+                    Path modificationFilePath = Paths.get(originalFileDirectory + modificationFileName);
+                    try {
+                        Files.copy(originalFilePath, modificationFilePath, StandardCopyOption.REPLACE_EXISTING);
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                        return false;
+                    }
+                }
+
+                RandomAccessFile file;
+                try {
+                    file = new RandomAccessFile(originalFileDirectory + modificationFileName, "rw");
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                    return false;
+                }
+
+                FilesContainer.setModificationFile(new FileData(file, originalFileDirectory, modificationFileName));
+
+                return true;
+            }
+
+            private void repaintButtonTextContent(JButton okButton, String content) {
+                okButton.setText(content);
+                int fontSize = okButton.getFont().getSize();
+                okButton.setPreferredSize(new Dimension(okButton.getText().length() * fontSize,
+                        okButton.getPreferredSize().height));
+
+                frame.pack();
+                view.getMainPanel().paintImmediately(view.getMainPanel().getBounds());
             }
         });
     }
