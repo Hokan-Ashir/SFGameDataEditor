@@ -1,8 +1,8 @@
 package sfgamedataeditor.views;
 
-import org.mantlik.xdeltaencoder.XDeltaEncoder;
 import sfgamedataeditor.databind.files.FileData;
 import sfgamedataeditor.databind.files.FilesContainer;
+import sfgamedataeditor.dataextraction.FileUtils;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -12,12 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 public class FileSelectionView implements IView {
     private JPanel mainPanel;
@@ -113,7 +108,7 @@ public class FileSelectionView implements IView {
                 view.getOriginalFileSelectorButton().setEnabled(false);
                 view.getModificationFileSelectorButton().setEnabled(false);
                 repaintButtonTextContent(okButton, "Creating temporary modification file. Please wait ...");
-                boolean creationSuccess = createTemporaryModificationFile();
+                boolean creationSuccess = FileUtils.createTemporaryModificationFile();
                 if (!creationSuccess) {
                     // TODO make temporary creation file failure notification
                     okButton.setEnabled(true);
@@ -126,41 +121,6 @@ public class FileSelectionView implements IView {
                 repaintButtonTextContent(okButton, "Processing data. Please wait ...");
                 MainView.showMainView();
                 frame.dispose();
-            }
-
-            private boolean createTemporaryModificationFile() {
-                String originalFileDirectory = FilesContainer.getOriginalFilePath();
-                String originalFileName = FilesContainer.getOriginalFileName();
-                String modificationFileName = originalFileName + ".mod";
-                String resultFilePath = originalFileDirectory + modificationFileName;
-
-                if (FilesContainer.getModificationFile() != null) {
-                    String originalFilePath = originalFileDirectory + originalFileName;
-                    String modificationFilePath = FilesContainer.getModificationFilePath() + FilesContainer.getModificationFileName();
-
-                    XDeltaEncoder.main(new String[]{"-d", originalFilePath, modificationFilePath, resultFilePath});
-                } else {
-                    Path originalFilePath = Paths.get(originalFileDirectory + originalFileName);
-                    Path modificationFilePath = Paths.get(originalFileDirectory + modificationFileName);
-                    try {
-                        Files.copy(originalFilePath, modificationFilePath, StandardCopyOption.REPLACE_EXISTING);
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                        return false;
-                    }
-                }
-
-                RandomAccessFile file;
-                try {
-                    file = new RandomAccessFile(originalFileDirectory + modificationFileName, "rw");
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
-                    return false;
-                }
-
-                FilesContainer.setModificationFile(new FileData(file, originalFileDirectory, modificationFileName));
-
-                return true;
             }
 
             private void repaintButtonTextContent(JButton okButton, String content) {

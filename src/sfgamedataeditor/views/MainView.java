@@ -3,17 +3,27 @@ package sfgamedataeditor.views;
 import javafx.util.Pair;
 import sfgamedataeditor.databind.IDataConstraint;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
+import sfgamedataeditor.databind.files.FileData;
 import sfgamedataeditor.databind.files.FilesContainer;
+import sfgamedataeditor.dataextraction.FileUtils;
 import sfgamedataeditor.dataextraction.ObjectToOffsetExtractor;
 import sfgamedataeditor.dataextraction.XMLSpellBindingExtractor;
 import sfgamedataeditor.skills.SkillView;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.*;
+import java.util.List;
 
 public class MainView implements IView {
     private static final int SPELLS_DATA_BEGIN_OFFSET = 0x20;
@@ -29,10 +39,55 @@ public class MainView implements IView {
     private JPanel mainPanel;
 
     private Map<String, AbstractLevelableEntity> modulesMap = new TreeMap<>();
+    private AbstractLevelableEntity currentSelectedView;
 
     public MainView() {
+        loadSfmodFileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser chooser = new JFileChooser();
+                FileFilter fileFilter = new FileNameExtensionFilter(
+                        "Sfmod (SpellForce modifications files)", "sfmod");
+                chooser.setFileFilter(fileFilter);
+                chooser.setAcceptAllFileFilterUsed(false);
+                chooser.showOpenDialog(mainPanel);
+                File selectedFile = chooser.getSelectedFile();
+                if (selectedFile == null) {
+                    return;
+                }
+
+                RandomAccessFile file;
+                try {
+                    file = new RandomAccessFile(selectedFile.getAbsolutePath(), "r");
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                    return;
+                }
+
+                FilesContainer.setModificationFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
+
+                JPanel mainPanel = currentSelectedView.getMainPanel();
+                setComponentsEnableStatus(mainPanel, false);
+                mainPanel.paintImmediately(mainPanel.getBounds());
+                FileUtils.createTemporaryModificationFile();
+                setComponentsEnableStatus(mainPanel, true);
+                mainPanel.paintImmediately(mainPanel.getBounds());
+                currentSelectedView.loadDataFromFile(FilesContainer.getModificationFile());
+            }
+        });
+
         constructModulesMap();
         fillModulesNameComboBox();
+    }
+
+    private void setComponentsEnableStatus(JPanel panel, boolean isEnabled) {
+        for (Component component : panel.getComponents()) {
+            if (component instanceof JPanel) {
+                setComponentsEnableStatus((JPanel) component, isEnabled);
+            }
+
+            component.setEnabled(isEnabled);
+        }
     }
 
     private void constructModulesMap() {
@@ -288,6 +343,7 @@ public class MainView implements IView {
                     for (Map.Entry<String, AbstractLevelableEntity> stringClassEntry : mainView.getModulesMap().entrySet()) {
                         if (item.equals(stringClassEntry.getKey())) {
                             AbstractLevelableEntity view = stringClassEntry.getValue();
+                            mainView.setCurrentSelectedView(view);
                             view.loadDataFromFile(FilesContainer.getModificationFile());
                             mainView.getModulesPanel().add(view.getMainPanel());
                         }
@@ -321,5 +377,9 @@ public class MainView implements IView {
 
     public Map<String, AbstractLevelableEntity> getModulesMap() {
         return modulesMap;
+    }
+
+    public void setCurrentSelectedView(AbstractLevelableEntity currentSelectedView) {
+        this.currentSelectedView = currentSelectedView;
     }
 }
