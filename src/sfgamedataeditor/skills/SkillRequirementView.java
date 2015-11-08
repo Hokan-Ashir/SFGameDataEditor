@@ -33,7 +33,7 @@ public class SkillRequirementView extends EntityContainer implements IView {
     public SkillRequirementView(List<Pair<Integer, Long>> offsets) {
         super(offsets);
         initializeEntityList();
-        setAbilityLevel(1);
+        setAbilityDataOffsetByLevel(1);
     }
 
     /**
@@ -62,11 +62,8 @@ public class SkillRequirementView extends EntityContainer implements IView {
      * {@inheritDoc}
      */
     @Override
-    public void setAbilityLevel(int spellLevel) {
-        super.setAbilityLevel(spellLevel);
-        for (Component component : mainPanel.getComponents()) {
-            component.setVisible(getOffsetInFile() != 0);
-        }
+    protected Component[] getMainPanelComponents() {
+        return mainPanel.getComponents();
     }
 
     /**

@@ -4,8 +4,8 @@ import javafx.util.Pair;
 import sfgamedataeditor.databind.IDataConstraint;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
 import sfgamedataeditor.databind.files.FileData;
+import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.databind.files.FilesContainer;
-import sfgamedataeditor.dataextraction.FileUtils;
 import sfgamedataeditor.dataextraction.ObjectToOffsetExtractor;
 import sfgamedataeditor.dataextraction.XMLSpellBindingExtractor;
 import sfgamedataeditor.skills.SkillView;
@@ -42,6 +42,31 @@ public class MainView implements IView {
     private AbstractLevelableEntity currentSelectedView;
 
     public MainView() {
+        attachLoadSfmodFileButtonListener();
+        attachCreateSfmodFileButtonListener();
+
+        constructModulesMap();
+        fillModulesNameComboBox();
+    }
+
+    private void attachCreateSfmodFileButtonListener() {
+        createSfmodFileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                final String sfModFileName = JOptionPane.showInputDialog(null, "SfMod-file name:", "SfMod-file creation", JOptionPane.QUESTION_MESSAGE);
+                if (sfModFileName != null && !sfModFileName.isEmpty()) {
+                    setComponentsEnableStatus(mainPanel, false);
+                    mainPanel.paintImmediately(mainPanel.getBounds());
+                    // TODO add notifications about modification file creation beginning and ending
+                    FileUtils.createSfModFile(sfModFileName);
+                    setComponentsEnableStatus(mainPanel, true);
+                    mainPanel.paintImmediately(mainPanel.getBounds());
+                }
+            }
+        });
+    }
+
+    private void attachLoadSfmodFileButtonListener() {
         loadSfmodFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -69,15 +94,13 @@ public class MainView implements IView {
                 JPanel mainPanel = currentSelectedView.getMainPanel();
                 setComponentsEnableStatus(mainPanel, false);
                 mainPanel.paintImmediately(mainPanel.getBounds());
+                // TODO add notifications about modification file loading beginning and ending
                 FileUtils.createTemporaryModificationFile();
                 setComponentsEnableStatus(mainPanel, true);
                 mainPanel.paintImmediately(mainPanel.getBounds());
                 currentSelectedView.loadDataFromFile(FilesContainer.getModificationFile());
             }
         });
-
-        constructModulesMap();
-        fillModulesNameComboBox();
     }
 
     private void setComponentsEnableStatus(JPanel panel, boolean isEnabled) {

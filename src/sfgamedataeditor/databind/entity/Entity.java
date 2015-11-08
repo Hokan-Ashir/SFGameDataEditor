@@ -1,5 +1,7 @@
 package sfgamedataeditor.databind.entity;
 
+import sfgamedataeditor.databind.files.FilesContainer;
+
 import javax.swing.*;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -22,10 +24,50 @@ public abstract class Entity<T extends JComponent> extends AbstractEntity {
     @Override
     public void loadDataFromFile(RandomAccessFile file) {
         value = getValueFromFile(file, dataLength);
-        setFieldValue();
+        viewFieldValue();
     }
 
-    protected abstract void setFieldValue();
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void saveDataInFile(RandomAccessFile file) {
+        if (value == null) {
+            return;
+        }
+
+        long offset = getFullFileOffset();
+        try {
+            file.seek(offset);
+            for (int i = 0; i < value.length; i++) {
+                file.write(value[value.length - 1 - i]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected int getFieldValue() {
+        int temp = 0;
+        for (int i = 0; i < getValue().length; i++) {
+            temp += getValue()[i] << ((getValue().length - 1 - i) * 8);
+        }
+
+        return temp;
+    }
+
+    protected void setFieldValue(int value) {
+        int i = 0;
+        while (value > 0) {
+            getValue()[getValue().length - 1 - i] = value & 0xFF;
+            value >>= 8;
+            i++;
+        }
+
+        saveDataInFile(FilesContainer.getModificationFile());
+    }
+
+    protected abstract void viewFieldValue();
 
     private int[] getValueFromFile(RandomAccessFile file, int length) {
         long offset = getFullFileOffset();

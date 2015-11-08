@@ -32,7 +32,10 @@ public class SkillView extends AbstractLevelableEntity {
 
     public SkillView(Map<Integer, java.util.List<Pair<Integer, Long>>> offsets) {
         for (int i = 1; i <= ObjectToOffsetExtractor.NUMBER_OF_ABILITY_SCHOOLS; i++) {
-            requirementViews.add(new SkillRequirementView(offsets.get(i)));
+            SkillRequirementView view = new SkillRequirementView(offsets.get(i));
+            view.setParent(this);
+            getChildren().add(view);
+            requirementViews.add(view);
         }
         generateUI();
     }
@@ -63,9 +66,13 @@ public class SkillView extends AbstractLevelableEntity {
         levelComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() != ItemEvent.SELECTED) {
+                    return;
+                }
+
                 int level = Integer.valueOf((String) levelComboBox.getSelectedItem());
                 for (SkillRequirementView requirementView : requirementViews) {
-                    requirementView.setAbilityLevel(level);
+                    requirementView.setAbilityDataOffsetByLevel(level);
                 }
                 SkillView.this.loadDataFromFile(FilesContainer.getModificationFile());
             }

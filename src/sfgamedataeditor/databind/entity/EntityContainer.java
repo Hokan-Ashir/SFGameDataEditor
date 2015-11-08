@@ -3,6 +3,7 @@ package sfgamedataeditor.databind.entity;
 import javafx.util.Pair;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,20 +52,34 @@ public abstract class EntityContainer extends AbstractEntity {
         }
     }
 
-    public void setAbilityLevel(int spellLevel) {
+    public void setAbilityDataOffsetByLevel(int abilityLevel) {
+        for (Pair<Integer, Long> spellLevelOffset : abilityLevelOffsets) {
+            if (spellLevelOffset.getKey() == abilityLevel) {
+                setOffsetInFile(spellLevelOffset.getValue());
+            }
+        }
+    }
+
+    public void hideViewComponents() {
+        for (Component component : getMainPanelComponents()) {
+            component.setVisible(getOffsetInFile() != 0);
+        }
+    }
+
+    protected abstract Component[] getMainPanelComponents();
+
+    public boolean isAbilityHasLevel(int abilityLevel) {
         if (abilityLevelOffsets.isEmpty()) {
-            return;
+            return false;
         }
 
-        Long offsetInFile = 0l;
         for (Pair<Integer, Long> spellLevelOffset : abilityLevelOffsets) {
-            if (spellLevelOffset.getKey() == spellLevel) {
-                offsetInFile = spellLevelOffset.getValue();
-                break;
+            if (spellLevelOffset.getKey() == abilityLevel) {
+                return true;
             }
         }
 
-        setOffsetInFile(offsetInFile);
+        return false;
     }
 
     public List<Pair<Integer, Long>> getAbilityLevelOffsets() {

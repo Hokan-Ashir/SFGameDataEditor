@@ -1,8 +1,6 @@
-package sfgamedataeditor.dataextraction;
+package sfgamedataeditor.databind.files;
 
 import org.mantlik.xdeltaencoder.XDeltaEncoder;
-import sfgamedataeditor.databind.files.FileData;
-import sfgamedataeditor.databind.files.FilesContainer;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -51,5 +49,17 @@ public class FileUtils {
         FilesContainer.setModificationFile(new FileData(file, originalFileDirectory, modificationFileName));
 
         return true;
+    }
+
+    public static void createSfModFile(String sfModFileName) {
+        String originalFileDirectory = FilesContainer.getOriginalFilePath();
+        String originalFileName = FilesContainer.getOriginalFileName();
+        sfModFileName += ".sfmod";
+        String resultFilePath = originalFileDirectory + sfModFileName;
+
+        String originalFilePath = originalFileDirectory + originalFileName;
+        String modificationFilePath = FilesContainer.getModificationFilePath() + FilesContainer.getModificationFileName();
+
+        XDeltaEncoder.main(new String[]{originalFilePath, modificationFilePath, resultFilePath});
     }
 }

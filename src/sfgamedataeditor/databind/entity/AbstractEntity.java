@@ -16,7 +16,7 @@ public abstract class AbstractEntity implements IDataManipulator {
      * {@inheritDoc}
      */
     @Override
-    public final void saveDataInFile(RandomAccessFile file) {
+    public void saveDataInFile(RandomAccessFile file) {
         for (AbstractEntity child : children) {
             child.saveDataInFile(file);
         }

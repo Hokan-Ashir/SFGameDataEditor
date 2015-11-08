@@ -191,11 +191,8 @@ public class SpellView extends EntityContainer implements IView {
      * {@inheritDoc}
      */
     @Override
-    public void setAbilityLevel(int abilityLevel) {
-        super.setAbilityLevel(abilityLevel);
-        for (Component component : mainPanel.getComponents()) {
-            component.setVisible(getOffsetInFile() != 0);
-        }
+    protected Component[] getMainPanelComponents() {
+        return mainPanel.getComponents();
     }
 
     public String getRangeOfPossibleSpellLevels() {

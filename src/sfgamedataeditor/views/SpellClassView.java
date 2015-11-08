@@ -21,7 +21,7 @@ public class SpellClassView extends AbstractLevelableEntity {
     private JLabel spellNameLabel;
     private JLabel possibleSpellLevels;
 
-    java.util.Map<String, SpellView> spellViewMap = new TreeMap<>();
+    private Map<String, SpellView> spellViewMap = new TreeMap<>();
     private SpellView currentlySelectedSpellView;
     private Map<Pair<Integer, String>, List<Pair<Integer, Long>>> spellMap = new HashMap<>();
 
@@ -39,7 +39,10 @@ public class SpellClassView extends AbstractLevelableEntity {
             } else {
                 fieldNameList = spellNameFieldNamePair.getValue();
             }
-            spellViewMap.put(pairListEntry.getKey().getValue(), new SpellView(pairListEntry.getValue(), fieldNameList));
+            SpellView view = new SpellView(pairListEntry.getValue(), fieldNameList);
+            getChildren().add(view);
+            view.setParent(this);
+            spellViewMap.put(pairListEntry.getKey().getValue(), view);
         }
 
         generateUI();
@@ -68,9 +71,16 @@ public class SpellClassView extends AbstractLevelableEntity {
                     gbc.insets = new Insets(5, 5, 5, 5);
                     gbc.anchor = GridBagConstraints.NORTHWEST;
                     spellsPanel.add(currentlySelectedSpellView.getMainPanel(), gbc);
-                    String levelItem = (String) levelComboBox.getSelectedItem();
-                    currentlySelectedSpellView.setAbilityLevel(Integer.valueOf(levelItem));
                     possibleSpellLevels.setText("Available spell levels: " + currentlySelectedSpellView.getRangeOfPossibleSpellLevels());
+
+                    String levelItem = (String) levelComboBox.getSelectedItem();
+                    Integer abilityLevel = Integer.valueOf(levelItem);
+                    if (!currentlySelectedSpellView.isAbilityHasLevel(abilityLevel)) {
+                        currentlySelectedSpellView.hideViewComponents();
+                        return;
+                    }
+
+                    currentlySelectedSpellView.setAbilityDataOffsetByLevel(Integer.valueOf(levelItem));
                     SpellClassView.this.loadDataFromFile(FilesContainer.getModificationFile());
                 }
 
@@ -85,8 +95,18 @@ public class SpellClassView extends AbstractLevelableEntity {
         levelComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() != ItemEvent.SELECTED) {
+                    return;
+                }
+
                 String levelItem = (String) levelComboBox.getSelectedItem();
-                currentlySelectedSpellView.setAbilityLevel(Integer.valueOf(levelItem));
+                Integer abilityLevel = Integer.valueOf(levelItem);
+                if (!currentlySelectedSpellView.isAbilityHasLevel(abilityLevel)) {
+                    currentlySelectedSpellView.hideViewComponents();
+                    return;
+                }
+
+                currentlySelectedSpellView.setAbilityDataOffsetByLevel(abilityLevel);
                 SpellClassView.this.loadDataFromFile(FilesContainer.getModificationFile());
             }
         });

@@ -1,8 +1,8 @@
 package sfgamedataeditor.views;
 
 import sfgamedataeditor.databind.files.FileData;
+import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.databind.files.FilesContainer;
-import sfgamedataeditor.dataextraction.FileUtils;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -110,7 +110,9 @@ public class FileSelectionView implements IView {
                 repaintButtonTextContent(okButton, "Creating temporary modification file. Please wait ...");
                 boolean creationSuccess = FileUtils.createTemporaryModificationFile();
                 if (!creationSuccess) {
-                    // TODO make temporary creation file failure notification
+                    JOptionPane.showMessageDialog(null,
+                            "Error: Can't load create temporary modification file", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     okButton.setEnabled(true);
                     view.getOriginalFileSelectorButton().setEnabled(true);
                     view.getModificationFileSelectorButton().setEnabled(true);
