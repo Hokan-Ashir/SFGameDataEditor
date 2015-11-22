@@ -3,6 +3,7 @@ package sfgamedataeditor.views;
 import javafx.util.Pair;
 import sfgamedataeditor.databind.entity.EntityContainer;
 import sfgamedataeditor.databind.entity.EntityTuple;
+import sfgamedataeditor.dataextraction.XMLExtractor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,7 @@ public class SpellView extends EntityContainer implements IView {
     private JPanel mainPanel;
     private JTextField numberField;
     private JLabel numberLabel;
-    private JLabel typeLable;
+    private JLabel typeLabel;
     private JTextField typeField;
     private JLabel requirementClassLabel;
     private JLabel requirementSubClassLabel;
@@ -74,10 +75,31 @@ public class SpellView extends EntityContainer implements IView {
 
     public SpellView(List<Pair<Integer, Long>> offsets, List<String> fieldNamesList) {
         super(offsets);
+        setLabelText(numberLabel, "spellNumber");
+        setLabelText(typeLabel, "spellType");
+        setLabelText(requirementClassLabel, "spellRequirementClass");
+        setLabelText(requirementSubClassLabel, "spellRequirementSubClass");
+        setLabelText(requirementLevelLabel, "spellRequirementLevel");
+        setLabelText(requirementClassLabel2, "spellRequirementClass");
+        setLabelText(requirementSubClassLabel2, "spellRequirementSubClass");
+        setLabelText(requirementLevelLabel2, "spellRequirementLevel");
+        setLabelText(requirementClassLabel3, "spellRequirementClass");
+        setLabelText(requirementSubClassLabel3, "spellRequirementSubClass");
+        setLabelText(requirementLevelLabel3, "spellRequirementLevel");
+        setLabelText(manaUsageLabel, "spellManaUsage");
+        setLabelText(castTimeLabel, "spellCastTime");
+        setLabelText(cooldownLabel, "spellCooldown");
+        setLabelText(minRangeLabel, "spellMinRange");
+        setLabelText(maxRangeLabel, "spellMaxRange");
+        setLabelText(castTypeLabel, "spellCastType");
 
         setParameterLabelsNames(fieldNamesList);
         initializeRequirementsComboBoxes();
         initializeEntityList();
+    }
+
+    private void setLabelText(JLabel label, String tagName) {
+        label.setText(convertToMultiline(XMLExtractor.getTagValue(tagName)));
     }
 
     private void setParameterLabelsNames(List<String> fieldNamesList) {
@@ -97,6 +119,8 @@ public class SpellView extends EntityContainer implements IView {
         for (int i = 0; i < parameterLabels.size(); i++) {
             if (i < fieldNamesList.size()) {
                 parameterLabels.get(i).setText(convertToMultiline(fieldNamesList.get(i)));
+            } else {
+                parameterLabels.get(i).setText(XMLExtractor.getTagValue("spellParameterNotUsed"));
             }
         }
     }
@@ -122,15 +146,56 @@ public class SpellView extends EntityContainer implements IView {
         // accidentally set (via this Editor) i.e "Iceburst" "White Magic - Nature" requirements
         // instead of "Elemental Magic - Ice"
         classSubClassComboBoxContent.put("", Collections.singletonList(""));
-        classSubClassComboBoxContent.put("Light Combat Arts", Arrays.asList("", "Piercing Weapon",
-                "Light Blades", "Light Blunts", "Light Armor"));
-        classSubClassComboBoxContent.put("Heavy Combat Arts", Arrays.asList("", "Heavy Blades",
-                "Heave Blunts", "Heavy Armor", "Shields"));
-        classSubClassComboBoxContent.put("Archery", Arrays.asList("", "Bows", "Crossbows"));
-        classSubClassComboBoxContent.put("White Magic", Arrays.asList("", "Life", "Nature", "Boons"));
-        classSubClassComboBoxContent.put("Elemental Magic", Arrays.asList("", "Fire", "Ice", "Earth"));
-        classSubClassComboBoxContent.put("Mind Magic", Arrays.asList("", "Enchantment", "Offensive", "Defensive"));
-        classSubClassComboBoxContent.put("Black Magic", Arrays.asList("", "Death", "Necromancy", "Curses"));
+        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("lightCombatArts"),
+                Arrays.asList("",
+                        XMLExtractor.getTagValue("piercingWeapon"),
+                        XMLExtractor.getTagValue("lightBlades"),
+                        XMLExtractor.getTagValue("lightBlunts"),
+                        XMLExtractor.getTagValue("lightArmor")
+                )
+        );
+        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("heavyCombatArts"),
+                Arrays.asList("",
+                        XMLExtractor.getTagValue("heavyBlades"),
+                        XMLExtractor.getTagValue("heavyBlunts"),
+                        XMLExtractor.getTagValue("heavyArmor"),
+                        XMLExtractor.getTagValue("shields")
+                )
+        );
+        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("archery"),
+                Arrays.asList("",
+                        XMLExtractor.getTagValue("bows"),
+                        XMLExtractor.getTagValue("corssbows")
+                )
+        );
+        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("whiteMagic"),
+                Arrays.asList("",
+                        XMLExtractor.getTagValue("life"),
+                        XMLExtractor.getTagValue("nature"),
+                        XMLExtractor.getTagValue("boons")
+                )
+        );
+        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("elementalMagic"),
+                Arrays.asList("",
+                        XMLExtractor.getTagValue("fire"),
+                        XMLExtractor.getTagValue("ice"),
+                        XMLExtractor.getTagValue("earth")
+                )
+        );
+        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("mindMagic"),
+                Arrays.asList("",
+                        XMLExtractor.getTagValue("enchantment"),
+                        XMLExtractor.getTagValue("offensive"),
+                        XMLExtractor.getTagValue("defensive")
+                )
+        );
+        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("blackMagic"),
+                Arrays.asList("",
+                        XMLExtractor.getTagValue("death"),
+                        XMLExtractor.getTagValue("necromancy"),
+                        XMLExtractor.getTagValue("curses")
+                )
+        );
 
         for (String s : classSubClassComboBoxContent.keySet()) {
             requirementClassComboBox.addItem(s);

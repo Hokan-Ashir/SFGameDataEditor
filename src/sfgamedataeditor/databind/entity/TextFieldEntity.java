@@ -1,5 +1,7 @@
 package sfgamedataeditor.databind.entity;
 
+import sfgamedataeditor.dataextraction.XMLExtractor;
+
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -35,13 +37,13 @@ public class TextFieldEntity extends Entity<JTextField> {
                     value = Integer.parseInt(text);
                     if (value < 0) {
                         JOptionPane.showMessageDialog(null,
-                                "Error: Please enter number bigger than 0", "Error Massage",
+                                XMLExtractor.getTagValue("errorNumberLessThanZero"), XMLExtractor.getTagValue("error"),
                                 JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null,
-                            "Error: Please enter number", "Error Massage",
+                            XMLExtractor.getTagValue("errorNotANumber"), XMLExtractor.getTagValue("error"),
                             JOptionPane.ERROR_MESSAGE);
                     return;
                 }

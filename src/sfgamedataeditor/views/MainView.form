@@ -20,9 +20,9 @@
         </constraints>
         <properties>
           <margin top="0" left="0" bottom="0" right="0"/>
-          <maximumSize width="160" height="31"/>
-          <minimumSize width="160" height="31"/>
-          <preferredSize width="160" height="31"/>
+          <maximumSize width="200" height="31"/>
+          <minimumSize width="200" height="31"/>
+          <preferredSize width="200" height="31"/>
           <text value="Load .sfmod-file"/>
         </properties>
       </component>
@@ -33,9 +33,9 @@
         </constraints>
         <properties>
           <margin top="0" left="0" bottom="0" right="0"/>
-          <maximumSize width="160" height="31"/>
-          <minimumSize width="160" height="31"/>
-          <preferredSize width="160" height="31"/>
+          <maximumSize width="200" height="31"/>
+          <minimumSize width="200" height="31"/>
+          <preferredSize width="200" height="31"/>
           <text value="Create .sfmod-file"/>
         </properties>
       </component>

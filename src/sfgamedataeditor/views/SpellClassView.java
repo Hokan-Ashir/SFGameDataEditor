@@ -3,6 +3,7 @@ package sfgamedataeditor.views;
 import javafx.util.Pair;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
 import sfgamedataeditor.databind.files.FilesContainer;
+import sfgamedataeditor.dataextraction.XMLExtractor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +27,10 @@ public class SpellClassView extends AbstractLevelableEntity {
     private Map<Pair<Integer, String>, List<Pair<Integer, Long>>> spellMap = new HashMap<>();
 
     public SpellClassView(SpellDataTuple tuple) {
+        levelLabel.setText(XMLExtractor.getTagValue("levelLabel"));
+        spellNameLabel.setText(XMLExtractor.getTagValue("spellNameLabel"));
+        possibleSpellLevels.setText(XMLExtractor.getTagValue("possibleAbilityLevels"));
+
         addSpellTuple(tuple);
     }
 
@@ -71,7 +76,8 @@ public class SpellClassView extends AbstractLevelableEntity {
                     gbc.insets = new Insets(5, 5, 5, 5);
                     gbc.anchor = GridBagConstraints.NORTHWEST;
                     spellsPanel.add(currentlySelectedSpellView.getMainPanel(), gbc);
-                    possibleSpellLevels.setText("Available spell levels: " + currentlySelectedSpellView.getRangeOfPossibleSpellLevels());
+                    String possibleAbilityLevels = XMLExtractor.getTagValue("possibleAbilityLevels") + currentlySelectedSpellView.getRangeOfPossibleSpellLevels();
+                    possibleSpellLevels.setText(possibleAbilityLevels);
 
                     String levelItem = (String) levelComboBox.getSelectedItem();
                     Integer abilityLevel = Integer.valueOf(levelItem);

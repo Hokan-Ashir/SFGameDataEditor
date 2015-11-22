@@ -41,8 +41,9 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="50" height="15"/>
-          <minimumSize width="50" height="15"/>
+          <maximumSize width="250" height="15"/>
+          <minimumSize width="250" height="15"/>
+          <preferredSize width="250" height="15"/>
           <text value="Spell:"/>
         </properties>
       </component>

@@ -3,11 +3,11 @@ package sfgamedataeditor.views;
 import sfgamedataeditor.databind.files.FileData;
 import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.databind.files.FilesContainer;
+import sfgamedataeditor.dataextraction.XMLExtractor;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -15,6 +15,9 @@ import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 
 public class FileSelectionView implements IView {
+    public static final String CFF_FILE_EXTENSION = "cff";
+    public static final String SFMOD_FILE_EXTENSION = "sfmod";
+
     private JPanel mainPanel;
     private JTextField originalFileField;
     private JLabel originalFileLabel;
@@ -24,8 +27,14 @@ public class FileSelectionView implements IView {
     private JButton modificationFileSelectorButton;
     private JButton okButton;
 
-    public static void main(String[] args) {
-        final JFrame frame = new JFrame("SpellForce GameData.cff Editor : File Selection Dialog");
+    public FileSelectionView() {
+        originalFileLabel.setText(XMLExtractor.getTagValue("fileSelectionWindowOriginalFileTextFieldCaption"));
+        modificationFileLabel.setText(XMLExtractor.getTagValue("fileSelectionWindowModificationFileTextFieldCaption"));
+        okButton.setText(XMLExtractor.getTagValue("ok"));
+    }
+
+    public static void showFileSelectionView() {
+        final JFrame frame = new JFrame(XMLExtractor.getTagValue("fileSelectionWindowCaption"));
         final FileSelectionView view = new FileSelectionView();
         frame.setContentPane(view.getMainPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,7 +52,7 @@ public class FileSelectionView implements IView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser chooser = new JFileChooser();
-                FileFilter fileFilter = new FileNameExtensionFilter("Cff (SpellForce Gamedata files)", "cff");
+                FileFilter fileFilter = new FileNameExtensionFilter(XMLExtractor.getTagValue("cffFilesDescription"), CFF_FILE_EXTENSION);
                 chooser.setFileFilter(fileFilter);
                 chooser.setAcceptAllFileFilterUsed(false);
                 chooser.showOpenDialog(view.getMainPanel());
@@ -74,26 +83,25 @@ public class FileSelectionView implements IView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser chooser = new JFileChooser();
-                FileFilter fileFilter = new FileNameExtensionFilter(
-                        "Sfmod (SpellForce modifications files)", "sfmod");
+                FileFilter fileFilter = new FileNameExtensionFilter(XMLExtractor.getTagValue("sfmodFilesDescription"), SFMOD_FILE_EXTENSION);
                 chooser.setFileFilter(fileFilter);
                 chooser.setAcceptAllFileFilterUsed(false);
-                chooser.showOpenDialog(view.getMainPanel());
+                JPanel mainPanel = view.getMainPanel();
+                chooser.showOpenDialog(mainPanel);
                 File selectedFile = chooser.getSelectedFile();
                 if (selectedFile == null) {
                     return;
                 }
 
-                setComponentsEnableStatus(view.getMainPanel(), false);
-                view.getMainPanel().paintImmediately(view.getMainPanel().getBounds());
+                ViewTools.setComponentsEnableStatus(mainPanel, false);
                 if (!FileUtils.isModificationFileBasedOnOriginalFile(selectedFile.getPath())) {
-                    JOptionPane.showMessageDialog(null, "Sfmod-file \"" + selectedFile.getName() + "\" based on other original GameData.cff file", "Error", JOptionPane.ERROR_MESSAGE);
-                    setComponentsEnableStatus(view.getMainPanel(), true);
-                    view.getMainPanel().paintImmediately(view.getMainPanel().getBounds());
+                    String errorCaption = XMLExtractor.getTagValue("error");
+                    String errorMessage = XMLExtractor.getTagValue("sfmodFilePrefix") + selectedFile.getName() + XMLExtractor.getTagValue("basedOnAnotherCffFile");
+                    JOptionPane.showMessageDialog(null, errorMessage, errorCaption, JOptionPane.ERROR_MESSAGE);
+                    ViewTools.setComponentsEnableStatus(mainPanel, true);
                     return;
                 }
-                setComponentsEnableStatus(view.getMainPanel(), true);
-                view.getMainPanel().paintImmediately(view.getMainPanel().getBounds());
+                ViewTools.setComponentsEnableStatus(mainPanel, true);
 
                 view.getModificationFileField().setText(selectedFile.getAbsolutePath());
                 RandomAccessFile file;
@@ -118,44 +126,24 @@ public class FileSelectionView implements IView {
                 okButton.setEnabled(false);
                 view.getOriginalFileSelectorButton().setEnabled(false);
                 view.getModificationFileSelectorButton().setEnabled(false);
-                repaintButtonTextContent(okButton, "Creating temporary modification file. Please wait ...");
+                ViewTools.repaintButtonTextContent(okButton, frame, view.getMainPanel(), XMLExtractor.getTagValue("temporaryModificationFileCreation"));
                 boolean creationSuccess = FileUtils.createTemporaryModificationFile();
                 if (!creationSuccess) {
-                    JOptionPane.showMessageDialog(null,
-                            "Error: Can't load create temporary modification file", "Error",
-                            JOptionPane.ERROR_MESSAGE);
+                    String errorCaption = XMLExtractor.getTagValue("error");
+                    String errorMessage = XMLExtractor.getTagValue("temporaryModificationFileCreationError");
+                    JOptionPane.showMessageDialog(null, errorMessage, errorCaption, JOptionPane.ERROR_MESSAGE);
                     okButton.setEnabled(true);
                     view.getOriginalFileSelectorButton().setEnabled(true);
                     view.getModificationFileSelectorButton().setEnabled(true);
-                    repaintButtonTextContent(okButton, "OK");
+                    ViewTools.repaintButtonTextContent(okButton, frame, view.getMainPanel(), XMLExtractor.getTagValue("ok"));
                     return;
                 }
 
-                repaintButtonTextContent(okButton, "Processing data. Please wait ...");
+                ViewTools.repaintButtonTextContent(okButton, frame, view.getMainPanel(), XMLExtractor.getTagValue("processingData"));
                 MainView.showMainView();
                 frame.dispose();
             }
-
-            private void repaintButtonTextContent(JButton okButton, String content) {
-                okButton.setText(content);
-                int fontSize = okButton.getFont().getSize();
-                okButton.setPreferredSize(new Dimension(okButton.getText().length() * fontSize,
-                        okButton.getPreferredSize().height));
-
-                frame.pack();
-                view.getMainPanel().paintImmediately(view.getMainPanel().getBounds());
-            }
         });
-    }
-
-    private static void setComponentsEnableStatus(JPanel panel, boolean isEnabled) {
-        for (Component component : panel.getComponents()) {
-            if (component instanceof JPanel) {
-                setComponentsEnableStatus((JPanel) component, isEnabled);
-            }
-
-            component.setEnabled(isEnabled);
-        }
     }
 
     /**

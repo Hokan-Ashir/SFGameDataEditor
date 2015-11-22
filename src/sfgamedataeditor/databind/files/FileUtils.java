@@ -17,10 +17,11 @@ import java.util.zip.ZipException;
 
 public class FileUtils {
 
-    public static final String TMP_FILE_EXTENSION = ".tmp";
-    public static final String SFMOD_FILE_EXTENSION = ".sfmod";
-    public static final String MOD_FILE_EXTENSION = ".mod";
-    public static final int KEY_SIZE = 192;
+    private static final String TMP_FILE_EXTENSION = ".tmp";
+    private static final String SFMOD_FILE_EXTENSION = ".sfmod";
+    private static final String MOD_FILE_EXTENSION = ".mod";
+    private static final int KEY_SIZE = 192;
+    private static final String HASH_ALGORITHM = "SHA-512";
 
     private FileUtils() {
 
@@ -167,7 +168,7 @@ public class FileUtils {
     private static String getHashSHA_512(String filePath, String fileName) {
         MessageDigest md;
         try {
-            md = MessageDigest.getInstance("SHA-512");
+            md = MessageDigest.getInstance(HASH_ALGORITHM);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             return null;

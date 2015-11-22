@@ -42,7 +42,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="4e42" class="javax.swing.JLabel" binding="typeLable">
+      <component id="4e42" class="javax.swing.JLabel" binding="typeLabel">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
@@ -125,7 +125,7 @@
       <component id="a71ec" class="javax.swing.JLabel" binding="castTypeLabel">
         <constraints>
           <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="0" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <maximumSize width="85" height="23"/>

@@ -23,4 +23,14 @@ public class ViewTools {
             component.setEnabled(isEnabled);
         }
     }
+
+    public static void repaintButtonTextContent(JButton button, JFrame frame, JPanel panel, String content) {
+        button.setText(content);
+        int fontSize = button.getFont().getSize();
+        button.setPreferredSize(new Dimension(button.getText().length() * fontSize,
+                button.getPreferredSize().height));
+
+        frame.pack();
+        panel.paintImmediately(panel.getBounds());
+    }
 }

@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <common>
+        <ok>OK</ok>
+        <cancel>Отмена</cancel>
+        <message>Сообщение</message>
+        <error>Ошибка</error>
+        <errorNotANumber>Пожалуйста, введите число</errorNotANumber>
+        <errorNumberLessThanZero>Пожалуйств, введите число больше 0</errorNumberLessThanZero>
+
+        <fileSelectionWindowCaption>Редактор файлов SpellForce GameData.cff : Выбор файла</fileSelectionWindowCaption>
+        <fileSelectionWindowOriginalFileTextFieldCaption>Оригинальный файл:
+        </fileSelectionWindowOriginalFileTextFieldCaption>
+        <fileSelectionWindowModificationFileTextFieldCaption>SfMod файл:
+        </fileSelectionWindowModificationFileTextFieldCaption>
+        <cffFilesDescription>Cff (Файлы SpellForce Gamedata)</cffFilesDescription>
+        <sfmodFilesDescription>Sfmod (Файлы модификации SpellForce)</sfmodFilesDescription>
+        <sfmodFilePrefix>Sfmod-файл "</sfmodFilePrefix>
+        <basedOnAnotherCffFile>" сделан на основе другого оригинального файла GameData.cff</basedOnAnotherCffFile>
+        <temporaryModificationFileCreation>Создание временного файла модификации. Пожалуйста подождите ...
+        </temporaryModificationFileCreation>
+        <temporaryModificationFileCreationError>Не возможно загрузить временный файл модификации
+        </temporaryModificationFileCreationError>
+        <processingData>Обработка данных. Пожалуйста подождите ...</processingData>
+
+        <sfmodFilesCreationWindowCaption>Редактор файлов SpellForce GameData.cff : Редактирование параметров
+        </sfmodFilesCreationWindowCaption>
+        <loadSfModFileButtonCaption>Загрузить .sfmod-файл</loadSfModFileButtonCaption>
+        <createSfModFileButtonCaption>Создать .sfmod-файл</createSfModFileButtonCaption>
+        <newSfModFileName>Имя SfMod-файла:</newSfModFileName>
+        <newSfModFileCreationCaption>Создание SfMod-файла</newSfModFileCreationCaption>
+        <modulesListLabel>Список модулей:</modulesListLabel>
+
+        <successfullyLoaded>" успешно загружен</successfullyLoaded>
+        <successfullyCreated>" успешно создан</successfullyCreated>
+        <processingSfModFile>Sfmod-файл "</processingSfModFile>
+        <processingCreation>" создаётся</processingCreation>
+        <processingLoading>" загружается</processingLoading>
+        <closeMessageWindowProposition>Пожалуйста, закройте данное окно и дождитесь окончания процесса
+        </closeMessageWindowProposition>
+        <skillsView>Навыки</skillsView>
+        <lightCombatArts>Фехтование</lightCombatArts>
+        <piercingWeapon>Колющее оружие</piercingWeapon>
+        <lightBlades>Лёгкие клинки</lightBlades>
+        <lightBlunts>Лёгкие палицы</lightBlunts>
+        <lightArmor>Лёгкая броня</lightArmor>
+
+        <heavyCombatArts>Тяжёлое вооружение</heavyCombatArts>
+        <heavyBlades>Тяжёлые клинки</heavyBlades>
+        <heavyBlunts>Тяжёлые палицы</heavyBlunts>
+        <heavtArmor>Тяжёлая броня</heavtArmor>
+        <shields>Щиты</shields>
+
+        <archery>Стрельба</archery>
+        <bows>Луки</bows>
+        <corssBows>Арбалеты</corssBows>
+
+        <whiteMagic>Белая магия</whiteMagic>
+        <life>Жизнь</life>
+        <nature>Природа</nature>
+        <boons>Благословения</boons>
+
+        <elementalMagic>Магия стихий</elementalMagic>
+        <fire>Огонь</fire>
+        <ice>Лёд</ice>
+        <earth>Земля</earth>
+
+        <mindMagic>Магия разума</mindMagic>
+        <offensive>Атакующая</offensive>
+        <enchantent>Зачарование</enchantent>
+        <defensive>Защитная</defensive>
+
+        <blackMagic>Чёрная магия</blackMagic>
+        <death>Смерть</death>
+        <necromancy>Некромантия</necromancy>
+        <curses>Проклятья</curses>
+
+        <levelLabel>Уровень:</levelLabel>
+        <spellNameLabel>Заклинание:</spellNameLabel>
+        <possibleAbilityLevels>Доступные уровни заклинания:</possibleAbilityLevels>
+
+        <strength>Сила:</strength>
+        <stamina>Выносливость:</stamina>
+        <dexterity>Реакция:</dexterity>
+        <agility>Ловкость:</agility>
+        <intelligence>Разум:</intelligence>
+        <wisdom>Мудрость:</wisdom>
+        <charisma>Харизма:</charisma>
+
+        <spellNumber>Номер:</spellNumber>
+        <spellType>Тип:</spellType>
+        <spellRequirementClass>Требуемый класс:</spellRequirementClass>
+        <spellRequirementSubClass>Требуемый подкласс:</spellRequirementSubClass>
+        <spellRequirementLevel>Требуемый уровень:</spellRequirementLevel>
+        <spellManaUsage>Расход маны:</spellManaUsage>
+        <spellCastTime>Время применения заклинания (мс.):</spellCastTime>
+        <spellCooldown>Время повторного применения заклинания (мс.):</spellCooldown>
+        <spellMinRange>Мин. дистанция:</spellMinRange>
+        <spellMaxRange>Макс. дистанция:</spellMaxRange>
+        <spellCastType>Тип дейсвтия:</spellCastType>
+        <spellParameterNotUsed>Не используется:</spellParameterNotUsed>
+    </common>
+    <spellMap>
+        <spell id="1" name="Огненный сполох" field1="Начальный урон:" field2="Дополнительный урон:"
+               field3="Количество событий доп. урона:" field4="Интервал между события доп. урона (мс.):"/>
+        <spell id="2" name="Исцеление" field1="Исцеление:"/>
+        <spell id="3" name="Смерть" field1="Урон:"/>
+        <spell id="4" name="Замедление" field1="Уменьшение скорости ходьбы (%):" field2="Длительность (мс.):"/>
+        <spell id="5" name="Яд" field1="Урон:" field2="Период урона (мс.):" field3="Количество периодов:"/>
+        <spell id="6" name="Неуязвимость" field1="Длительность (мс.):"/>
+        <spell id="7" name="Исцеление яда" field1="Мин. уровень:" field2="Сред. уровень:" field3="Макс. уровень:"/>
+        <spell id="9" name="Заморозка" field1="Длительность (мс.):"/>
+        <spell id="10" name="Туман" field1="???" field2="???" field3="???" field4="???"/>
+        <spell id="11" name="Свет" field1="???" field2="???" field3="???" field4="???"/>
+        <spell id="12" name="Огненный щит" field1="Длительность (мс.):" field2="Номер эффекта урона:"/>
+        <spell id="13" name="Огненный шар" field1="Начальный урон:" field2="Дополнительный урон:"
+               field3="Количество событий доп. урона:" field4="Интервал между события доп. урона (мс.):" field5="???"/>
+        <spell id="14" name="Ледяная звезда" field1="Начальный урон:" field2="Интервал между события доп. урона (мс.):"
+               field3="Время заморозки (мс.):"/>
+        <spell id="15" name="Ледяной щит" field1="Длительность (мс.):" field2="Номер эффекта заморозки:"/>
+        <spell id="16" name="Разложение" field1="???" field2="???" field3="???"/>
+        <spell id="17" name="Массовой разложение"/>
+        <spell id="18" name="Агония" field1="Урон:"/>
+        <spell id="19" name="Вампиризм" field1="Урон/Исцеление:"/>
+        <spell id="20" name="Привыв гоблина-нежить" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="21" name="Гипноз" field1="???" field2="???" field3="Макс. уровень цели:"/>
+        <spell id="22" name="Эффект ледяного щита"/>
+        <spell id="23" name="Чума" field1="Начальный урон:" field2="Интервал между события доп. урона (мс.):"
+               field3="Дополнительный урон:" field4="???" field5="???"/>
+        <spell id="24" name="Исцеление болезни" field1="Мин. уровень:" field2="Сред. уровень:" field3="Макс. уровень:"/>
+        <spell id="25" name="Окаменение" field1="Мин. уровень:" field2="Сред. уровень:" field3="Макс. уровень:"
+               field4="???" field5="Длительность (с.):"/>
+        <spell id="28" name="Массовая агония" field1="Урон:" field2="???"/>
+        <spell id="29" name="Призыв скелета" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="30" name="Воскрешение" field1="Number of rising creatures:" field2="???" field3="???"/>
+        <spell id="31" name="Призыв демона" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="32" name="Хватка смерти" field1="Длительность (с.):" field2="???" field3="???"/>
+        <spell id="33" name="Призыв Channeler" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="34" name="Скованность" field1="Уменьшение реакции (%):" field2="Длительность (мс.):"/>
+        <spell id="35" name="Слабость" field1="Уменьшение силы (%):" field2="Длительность (мс.):"/>
+        <spell id="36" name="Темное изгнание" field1="Уменьшение сопротивления черной магии (п.):"
+               field2="Длительность (мс.):"/>
+        <spell id="37" name="Массовая медлительность" field1="???" field2="???" field3="Длительность (мс.):"/>
+        <spell id="38" name="Массовая скованность" field1="???" field2="???" field3="Длительность (мс.):"/>
+        <spell id="39" name="Массовая слабость"/>
+        <spell id="40" name="Массовая чума"/>
+        <spell id="41" name="Неизлечимость" field1="Длительность (мс.):"/>
+        <spell id="42" name="Темная мощь"/>
+        <spell id="43" name="Массовое исцеление" field1="???" field2="Исцеление:"/>
+        <spell id="44" name="Сторожевое исцеление" field1="???" field2="???" field3="???" field4="???"/>
+        <spell id="45" name="Великое исцеление" field1="Исцеление:"/>
+        <spell id="46" name="Зачаровать животное" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="???" field4="???" field5="???" field6="???"
+               field7="???"/>
+        <spell id="47" name="Шипастый щит" field1="Длительность (мс.):" field2="Номер эффекта урона:"/>
+        <spell id="48" name="Быстрота" field1="Увеличение скорости бега (%):" field2="Длительность (мс.):"/>
+        <spell id="49" name="Массовая быстрота" field1="???" field2="???" field3="Длительность (мс.):"/>
+        <spell id="50" name="Гибкость" field1="Увеличение реакции (%):" field2="Длительность (мс.):"/>
+        <spell id="51" name="Массовая гибкость" field1="???" field2="???" field3="Длительность (мс.):"/>
+        <spell id="52" name="Сила" field1="Увеличение силы (%):" field2="Длительность (мс.):"/>
+        <spell id="53" name="Массовая сила" field1="???" field2="???" field3="Длительность (мс.):"/>
+        <spell id="54" name="Страж" field1="???" field2="Длительность (мс.):"/>
+        <spell id="55" name="Удаление проклятья" field1="Мин. уровень:" field2="Сред. уровень:"
+               field3="Макс. уровень:"/>
+        <spell id="56" name="Восстановление" field1="Количество восстанавливаемого здоровья:"
+               field2="Период восстанавления здоровья (мс.):" field3="Количество периодов:"/>
+        <spell id="57" name="Святая мощь" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???"/>
+        <spell id="58" name="Освещяние" field1="Урон:" field2="Интервал урона (мс.):" field3="Количество интервалов:"/>
+        <spell id="60" name="Урон огненного щита"/>
+        <spell id="61" name="Урон шипастого щита"/>
+        <spell id="62" name="Забывчивость" field1="???" field2="???" field3="???" field4="???"/>
+        <spell id="63" name="Иллюзия" field1="Количество иллюзий:" field2="???" field3="???" field4="???"/>
+        <spell id="64" name="Удержание" field1="???" field2="Длительность (мс.):"/>
+        <spell id="65" name="Сияние" field1="Увеличение мудрости/разума (%):" field2="Длительность (мс.):"/>
+        <spell id="66" name="Жертвоприношение маны" field1="Количество передаваемой маны:"/>
+        <spell id="67" name="Кража маны" field1="Количество краденой маны:"/>
+        <spell id="68" name="Сжигание маны" field1="Количество сожженой маны:"/>
+        <spell id="69" name="Ментальный удар" field1="???" field2="???" field3="???" field4="???"/>
+        <spell id="70" name="Контрзаклятие" field1="Мин. уровень:" field2="Сред. уровень:" field3="Выс. уровень:"
+               field4="Макс. уровень:"/>
+        <spell id="71" name="Страх" field1="???" field2="???" field3="???" field4="Длительность (мс.):"/>
+        <spell id="72" name="Замешательство" field1="Длительность (мс.):" field2="Макс. уровень цели:"/>
+        <spell id="73" name="Огненный дождь" field1="Интервал огненных сполохов (мс.):"
+               field2="Количетсов огненных сполохов:" field3="???" field4="???"
+               field5="Номер эффекта огненного сполоха:"/>
+        <spell id="74" name="Буран" field1="Интервал ледяных звезд (мс.):" field2="Количество ледяных звезд:"
+               field3="???" field4="???" field5="Номер эффекта ледяной звезды:"/>
+        <spell id="75" name="Отравляющее облако"/>
+        <spell id="76" name="Камнепад" field1="Интервал ударов камня (мс.):" field2="Количетсво ударов камня:"
+               field3="???" field4="???" field5="Номер эффекта удара камня:"/>
+        <spell id="77" name="Стена камней" field1="Количество камней:" field2="Длительность (мс.):"/>
+        <spell id="78" name="Кольцо камней" field1="Количество камней:" field2="Длительность (мс.):"/>
+        <spell id="79" name="Безумие" field1="Длительность (мс.):" field2="Макс. уровень:"/>
+        <spell id="81" name="Уничтожение" field1="Урон:" field2="???"/>
+        <spell id="82" name="Обнаружение металла" field1="Радиус:"/>
+        <spell id="83" name="Обнаружение магии" field1="Радиус:"/>
+        <spell id="84" name="Стрела"/>
+        <spell id="85" name="Берсерк"/>
+        <spell id="86" name="Невидимость" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???"/>
+        <spell id="87" name="Камень"/>
+        <spell id="88" name="Аура слабости" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта слабости:" field8="???" field9="???"/>
+        <spell id="89" name="Аура удушения" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта удушья:" field8="???" field9="???"/>
+        <spell id="90" name="Самоубийство" field1="Урон цели:" field2="Урон себя:"/>
+        <spell id="91" name="Аура вампиризма" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта вампиризма:" field8="???" field9="???"/>
+        <spell id="92" name="Призыв призрака" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="93" name="Притворится мертвым" field1="???" field2="???" field3="???" field4="???" field5="???"/>
+        <spell id="94" name="Аура медленного боя" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта медленного боя:" field8="???" field9="???"/>
+        <spell id="95" name="Аура скованности" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта скованности:" field8="???" field9="???"/>
+        <spell id="96" name="Рассеивание светлой ауры"/>
+        <spell id="97" name="Аура замедления" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффект замедления:" field8="???" field9="???"/>
+        <spell id="98" name="Аура неумения" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта неумения:" field8="???" field9="???"/>
+        <spell id="99" name="Удушение" field1="Уменьшение стокости (%):" field2="Длительность (мс.):"/>
+        <spell id="100" name="Неумения" field1="Уменьшение ловкости (%):" field2="Длительность (мс.):"/>
+        <spell id="101" name="Медленный бой" field1="Уменьшение скорости боя (%):" field2="Длительность (мс.):"/>
+        <spell id="102" name="Аура силы" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???"
+               field7="Номер эффекта усиления:" field8="???" field9="???"/>
+        <spell id="103" name="Аура исцеления" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта исцеления:" field8="???" field9="???"/>
+        <spell id="104" name="Аура стойкости" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта стойкости:" field8="???" field9="???"/>
+        <spell id="105" name="Самоубийственное исцеление" field1="Исцеление цели:" field2="Урон себя:"/>
+        <spell id="106" name="Призыв волка" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="107" name="Аура восстановления" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта восстановления:" field8="???" field9="???"/>
+        <spell id="108" name="Подчинение животного" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Макс. уровень цели:"/>
+        <spell id="109" name="Призыв медведя" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="110" name="Аура быстрого боя" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта быстрого боя:" field8="???" field9="???"/>
+        <spell id="111" name="Аура гибности" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта гибкости:" field8="???" field9="???"/>
+        <spell id="112" name="Рассеять черную ауру" field1="Мин. уровень:" field2="Сред. уровень:"
+               field3="Макс. уровень:" field4="Длительность (мс.):"/>
+        <spell id="113" name="Аура быстрого бега" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта быстрого бега:" field8="???" field9="???"/>
+        <spell id="114" name="Аура света" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???"
+               field7="Номер эффекта освящения:" field8="???" field9="???"/>
+        <spell id="115" name="Аура гибкости" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта реакции:" field8="???" field9="???"/>
+        <spell id="116" name="Реакция" field1="Увеличение реакции (%):" field2="Длительность (мс.):"/>
+        <spell id="117" name="Стойкость" field3="Увеличение выносливости (%):" field2="Длительность (мс.):"/>
+        <spell id="118" name="Быстрый бой" field1="Увеличение скорости боя (%):" field2="Длительность (мс.):"/>
+        <spell id="119" name="Отвлечь внимание" field1="???" field2="???"/>
+        <spell id="120" name="Подчинение" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Макс. уровень цели:"/>
+        <spell id="121" name="Объект-иллюзия"/>
+        <spell id="122" name="Зачарование" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Макс. уровень цели:" field4="???" field5="???"
+               field6="???" field7="???"/>
+        <spell id="123" name="Подружиться" field1="Длительность (с.):"/>
+        <spell id="124" name="Разбить чары" field1="Длительность (с.):"/>
+        <spell id="125" name="Харизма" field1="Увеличение харизмы (%):" field2="Длительность (мс.):"/>
+        <spell id="126" name="Ударная волна" field1="???" field2="???" field3="???" field4="???" field5="???"/>
+        <spell id="127" name="Аура гипноза" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта гипноза:" field8="???" field9="???"/>
+        <spell id="128" name="Деморализация" field1="Длительность (мс.):" field2="Макс. уровень цели:"/>
+        <spell id="129" name="Сияющая аура" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта сияния:" field8="???" field9="???"/>
+        <spell id="130" name="Просвещение" field1="Увеличение разума/мудрости (%):" field2="Длительность (мс.):"/>
+        <spell id="131" name="Аура похищения маны" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта похищения маны:" field8="???" field9="???"/>
+        <spell id="132" name="Медитация"/>
+        <spell id="133" name="Огненный элементаль" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="134" name="Волна огня" field1="Количество целей:" field2="???" field3="???"
+               field4="Номер эффекта огненного сполоха:" field5="???"/>
+        <spell id="135" name="Огненное сопротивление" field1="Уменьшение ледяного сопротивления (п.):"
+               field2="Длительность (мс.):"/>
+        <spell id="136" name="Ледяной элементаль" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="137" name="Волна льда" field1="Количество целей:" field2="???" field3="???"
+               field4="Номер эффекта ледяной звезды:" field5="???"/>
+        <spell id="138" name="Ледяное сопротивление" field1="Уменьшение огненного сопротивления (п.):"
+               field2="Длительность (мс.):"/>
+        <spell id="139" name="Удар камня" field1="Урон:"/>
+        <spell id="140" name="Сохранение" field1="Количетсво поглощаемого физ. урона:" field2="Длительность (мс.):"/>
+        <spell id="141" name="Земляной элементаль" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="142" name="Волна камней" field1="Количество целей:" field2="???" field3="???"
+               field4="Номер эффекта удара камня:" field5="???"/>
+        <spell id="143" name="Башня лучников"/>
+        <spell id="144" name="Белая рука"/>
+        <spell id="145" name="Зимний страж"/>
+        <spell id="146" name="Аура вампиризма" field1="Урон/Исцеление:"/>
+        <spell id="147" name="Эффект огненного шара"/>
+        <spell id="148" name="Боевой клич" field1="Длительность (мс.):" field2="Модификатор урона (%):"
+               field3="Мин. количество целей:" field4="Макс. количество целей:"/>
+        <spell id="149" name="Благословение" field1="Исцеление (% общего здоровья):" field2="Мин. количество целей:"
+               field3="Макс. количество целей:"/>
+        <spell id="150" name="Покровительство" field1="Длительность (мс.):" field2="Модификатор сопротивления (%):"
+               field3="Мин. количество целей:" field4="Макс. количество целей:"/>
+        <spell id="151" name="Выносливость" field1="Длительность (мс.):" field2="Поглощение урона (%):"
+               field3="Мин. количество целей:" field4="Макс. количество целей:"/>
+        <spell id="152" name="Берсерк" field1="Длительность (мс.):" field2="Модификатор урона (%):"/>
+        <spell id="153" name="Благословение" field1="Исцеление (% общего здоровья):"/>
+        <spell id="154" name="Урытие" field1="Длительность (мс.):" field2="Модификатор сопротивления (%):"/>
+        <spell id="155" name="Стойкость" field1="Длительность (мс.):" field2="Поглощение урона (%):"/>
+        <spell id="156" name="Прицельный выстрел" field1="Длительность (мс.):" field2="Модификатор урона (%):"/>
+        <spell id="157" name="Стальная кожа" field1="Длительность (мс.):"/>
+        <spell id="158" name="Залп" field1="Длительность (мс.):" field2="Количество стрел:" field3="???"/>
+        <spell id="159" name="Поджигатель"/>
+        <spell id="160" name="Вспышка"/>
+        <spell id="161" name="Мозголом"/>
+        <spell id="162" name="Башня агонии"/>
+        <spell id="163" name="Камнеметатель"/>
+        <spell id="164" name="Защита от тёмной магии"/>
+        <spell id="165" name="DoNotTouchMe"/>
+        <spell id="166" name="Аура исцеления" field1="Исцеление:"/>
+        <spell id="167" name="Двойной гипноз" field1="???" field2="???" field3="???"/>
+        <spell id="168" name="Эффект ледяной стрелы"/>
+        <spell id="169" name="Эффект ледяного блока"/>
+        <spell id="170" name="Эффект огненного блока"/>
+        <spell id="171" name="Черная башня"/>
+        <spell id="172" name="Аура похищения маны" field1="Количество украденой маны:"/>
+        <spell id="173" name="Погибель огня" field1="Увеличение огненного сопротивления (п.):"
+               field2="Длительность (мс.):"/>
+        <spell id="174" name="Сущность тьмы" field1="???" field2="???" field3="???" field4="???"
+               field5="Длительность (мс.):"/>
+        <spell id="175" name="Сущность света" field1="Исцеление:" field2="Номер эффекта шипастого щита:" field3="???"
+               field4="???" field5="Длительность (мс.):"/>
+        <spell id="176" name="Сущность стихий" field1="Номер эффекта сущности стихий:"/>
+        <spell id="177" name="Сущность разума" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???"/>
+        <spell id="178" name="Сила тьмы" field1="???" field2="???" field3="???" field4="???"
+               field5="Длительность (мс.):"/>
+        <spell id="179" name="Сила света" field1="Исцеление:" field2="Номер эффекта шипастного щита:" field3="???"
+               field4="???" field5="Длительность (мс.):"/>
+        <spell id="180" name="Сила стихий" field1="Номер эффекта силы стихий:"/>
+        <spell id="181" name="Сила разума" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???"/>
+        <spell id="182" name="Эффект силы стихий" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="???"/>
+        <spell id="183" name="Эффект сущности стихий" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="???"/>
+        <spell id="184" name="Помощь" field1="???" field2="???" field3="Длительность (мс.):"/>
+        <spell id="185" name="Святое прикосновение"/>
+        <spell id="186" name="Возмездие" field1="???" field2="???" field3="???"/>
+        <spell id="187" name="Массовые корни" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???"/>
+        <spell id="188" name="Призыв гнева деревьев" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="189" name="Корни" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???"/>
+        <spell id="190" name="Цепное освящение" field1="Интервал прыжка (мс.):" field2="???"
+               field3="Мин. количество целей:" field4="Номер эффекта освящения:" field5="Макс. количество целей:"/>
+        <spell id="191" name="Подкрепление" field1="???"/>
+        <spell id="192" name="Аура вечности" field1="???" field2="???" field3="???" field4="???" field5="???"
+               field6="???" field7="Номер эффекта вечности:" field8="???" field9="???"/>
+        <spell id="193" name="Цепная агония" field1="Интервал прыжка (мс.):" field2="???"
+               field3="Мин. количество целей:" field4="Номер эффекта агонии:" field5="Макс. количество целей:"/>
+        <spell id="194" name="Каннибализм" field1="Количество затраченного здоровья:"
+               field2="Количество полученной маны:"/>
+        <spell id="195" name="Пытка" field1="???" field2="???" field3="???"/>
+        <spell id="196" name="Цепной вампиризм" field1="Интервал прыжка (мс.):" field2="???"
+               field3="Мин. количество целей:" field4="Номер эффекта вампиризма:" field5="Макс. количество целей:"/>
+        <spell id="197" name="Подчинить нежить" field1="???" field2="???" field3="???"/>
+        <spell id="198" name="Призыв клинка" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="199" name="Изменение" field1="Длительность (мс.):" field2="???" field3="???"/>
+        <spell id="200" name="Область тьмы" field1="Длительность (мс.):"
+               field2="Уменьшение сопротивления черной магии (pt.):" field3="???"/>
+        <spell id="201" name="Цепное изменение" field1="Интервал прыжка (мс.):" field2="???"
+               field3="Мин. количество целей:" field4="Номер эффекта изменения:" field5="Макс. количество целей:"/>
+        <spell id="202" name="Цепной огненный сполох" field1="Интервал прыжка (мс.):" field2="???"
+               field3="Мин. количество целей:" field4="Номер эффекта огненного сполоха:"
+               field5="Макс. количество целей:"/>
+        <spell id="203" name="Призыв огненного голема" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="204" name="Цепной огненный шар" field1="Интервал прыжка (мс.):" field2="???"
+               field3="Мин. количество целей:" field4="Номер эффекта огненного шара:" field5="Макс. количество целей:"/>
+        <spell id="205" name="Цепная ледяная звезда" field1="Интервал прыжка (мс.):" field2="???"
+               field3="Мин. количество целей:" field4="Номер эффекта ледяной звезды:" field5="Макс. количество целей:"/>
+        <spell id="206" name="Призыв ледяного голема" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="207" name="Массовая заморозка" field1="Длительность (мс.):" field2="???" field3="???"/>
+        <spell id="208" name="Цепной удар камня" field1="Интервал прыжка (мс.):" field2="???"
+               field3="Мин. количество целей:" field4="Номер эффекта удара камня:" field5="Макс. количество целей:"/>
+        <spell id="209" name="Призыв каменного голема" field1="Период между поглощениями маны (мс.):"
+               field2="Количество поглощаемой маны (п.):" field3="Номер призываемого существа:"/>
+        <spell id="210" name="Глиняные ноги" field1="???" field2="???" field3="???" field4="???"
+               field5="Длительность (с.):"/>
+        <spell id="211" name="Двойник" field1="???" field2="???" field3="???"/>
+        <spell id="212" name="Цепное зачарование" field1="Интервал прыжка (мс.):" field2="???"
+               field3="Мин. количество целей:" field4="Номер эффекта зачарования:" field5="Макс. количество целей:"/>
+        <spell id="213" name="Обратная связь" field1="???" field2="Длительность (мс.):"/>
+        <spell id="214" name="Цепной ментальный удар" field1="Интервал прыжка (мс.):" field2="???"
+               field3="Мин. количество целей:" field4="Номер эффекта ментального удара:"
+               field5="Макс. количество целей:"/>
+        <spell id="215" name="Массовый гипноз" field1="???" field2="???" field3="???" field4="???" field5="???"/>
+        <spell id="216" name="Массовое замешательство" field1="Длительность (мс.):" field2="???" field3="???"
+               field4="???"/>
+        <spell id="217" name="Цепное похищение маны" field1="Интервал прыжка (мс.):" field2="???"
+               field3="Мин. количество целей:" field4="Номер эффекта похищения маны:" field5="Макс. количество целей:"/>
+        <spell id="218" name="Щит маны" field1="Макс. количество поглощаемого урона:"/>
+        <spell id="219" name="Поглощение маны" field1="Количество поглощенной маны у союзника (п.):"
+               field2="Количество восстановленной маны себе (п.):"/>
+        <spell id="220" name="Жизнь взаймы" field1="Количество поглощенного здоровья у союзника (п.):"
+               field2="Количество восстановленного здоровья себе (п.):"/>
+        <spell id="221" name="Ответный удар" field1="Отражаемый урон (%):" field2="Длительность (мс.):"/>
+        <spell id="222" name="Критические удары" field1="Длительность (мс.):" field2="Вероятность убийства_1 (%):"
+               field3="Вероятность убийства_2 (%):" field4="Вероятность убийства_3 (%):"
+               field5="Вероятность убийства_4 (%):" field6="Предел здоровья для вероятности_1 (%):"
+               field7="Предел здоровья для вероятности_2(%):" field8="Предел здоровья для вероятности_3 (%):"
+               field9="Предел здоровья для вероятности_4 (%):"/>
+        <spell id="223" name="AuraSiegeHuman"/>
+        <spell id="225" name="AuraSiegeElf"/>
+        <spell id="226" name="AuraSiegeOrc"/>
+        <spell id="227" name="AuraSiegeTroll"/>
+        <spell id="228" name="AuraSiegeDarkElf"/>
+        <spell id="229" name="Вечность" field1="???" field2="???" field3="???" field4="???"
+               field5="Длительность (мс.):"/>
+        <spell id="230" name="Цепное освящение"/>
+        <spell id="231" name="Цепной вампиризм"/>
+        <spell id="232" name="Цепное похищение маны"/>
+        <spell id="233" name="Цепное изменение"/>
+        <spell id="234" name="Цепной огненный сполох"/>
+        <spell id="235" name="Цепная ледяная звезда"/>
+        <spell id="236" name="Цепной удар камня"/>
+        <spell id="237" name="Цепное зачарование"/>
+        <spell id="238" name="Цепной ментальный удар"/>
+        <spell id="239" name="Цепной огненный шар"/>
+        <spell id="240" name="Цепная агония"/>
+        <spell id="241" name="FakeSpellOneFigure"/>
+    </spellMap>
+</root>

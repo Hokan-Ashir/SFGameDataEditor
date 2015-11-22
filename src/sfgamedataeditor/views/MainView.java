@@ -7,7 +7,7 @@ import sfgamedataeditor.databind.files.FileData;
 import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.databind.files.FilesContainer;
 import sfgamedataeditor.dataextraction.ObjectToOffsetExtractor;
-import sfgamedataeditor.dataextraction.XMLSpellBindingExtractor;
+import sfgamedataeditor.dataextraction.XMLExtractor;
 import sfgamedataeditor.skills.SkillView;
 
 import javax.swing.*;
@@ -40,6 +40,10 @@ public class MainView implements IView {
     private AbstractLevelableEntity currentSelectedView;
 
     public MainView() {
+        loadSfmodFileButton.setText(XMLExtractor.getTagValue("loadSfModFileButtonCaption"));
+        createSfmodFileButton.setText(XMLExtractor.getTagValue("createSfModFileButtonCaption"));
+        modulesLabel.setText(XMLExtractor.getTagValue("modulesListLabel"));
+
         attachLoadSfmodFileButtonListener();
         attachCreateSfmodFileButtonListener();
 
@@ -51,15 +55,18 @@ public class MainView implements IView {
         createSfmodFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                final String sfModFileName = JOptionPane.showInputDialog(null, "SfMod-file name:", "SfMod-file creation", JOptionPane.QUESTION_MESSAGE);
+                final String sfModFileName = JOptionPane.showInputDialog(null, XMLExtractor.getTagValue("newSfModFileName"), XMLExtractor.getTagValue("newSfModFileCreationCaption"), JOptionPane.QUESTION_MESSAGE);
                 if (sfModFileName != null && !sfModFileName.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Processing Sfmod-file \"" + sfModFileName + "\" creation\n" +
-                            "Please, close this window and wait process to finish", "Message", JOptionPane.INFORMATION_MESSAGE);
+                    String messageCaption = XMLExtractor.getTagValue("message");
+                    String notificationMassage = XMLExtractor.getTagValue("processingSfModFile") + sfModFileName + XMLExtractor.getTagValue("processingCreation")
+                            + "\n" + XMLExtractor.getTagValue("closeMessageWindowProposition");
+                    JOptionPane.showMessageDialog(null, notificationMassage, messageCaption, JOptionPane.INFORMATION_MESSAGE);
                     ViewTools.setComponentsEnableStatus(mainPanel, false);
 
                     // TODO add notifications about modification file creation processing (NOT via dialog windows)
                     FileUtils.createSfModFile(sfModFileName);
-                    JOptionPane.showMessageDialog(null, "Sfmod-file \"" + sfModFileName + "\" successfully created", "Message", JOptionPane.INFORMATION_MESSAGE);
+                    String successfulMessage = XMLExtractor.getTagValue("sfmodFilePrefix") + sfModFileName + XMLExtractor.getTagValue("successfullyCreated");
+                    JOptionPane.showMessageDialog(null, successfulMessage, messageCaption, JOptionPane.INFORMATION_MESSAGE);
 
                     ViewTools.setComponentsEnableStatus(mainPanel, true);
                 }
@@ -73,7 +80,7 @@ public class MainView implements IView {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser chooser = new JFileChooser();
                 FileFilter fileFilter = new FileNameExtensionFilter(
-                        "Sfmod (SpellForce modifications files)", "sfmod");
+                        XMLExtractor.getTagValue("sfmodFilesDescription"), FileSelectionView.SFMOD_FILE_EXTENSION);
                 chooser.setFileFilter(fileFilter);
                 chooser.setAcceptAllFileFilterUsed(false);
                 chooser.showOpenDialog(mainPanel);
@@ -92,15 +99,19 @@ public class MainView implements IView {
 
                 FilesContainer.setModificationFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
 
-                JOptionPane.showMessageDialog(null, "Processing Sfmod-file \"" + selectedFile.getName() + "\" loading\n" +
-                        "Please, close this window and wait process to finish", "Message", JOptionPane.INFORMATION_MESSAGE);
+                String messageCaption = XMLExtractor.getTagValue("message");
+                String notificationMassage = XMLExtractor.getTagValue("processingSfModFile") + selectedFile.getName() + XMLExtractor.getTagValue("processingLoading")
+                        + "\n" + XMLExtractor.getTagValue("closeMessageWindowProposition");
+                JOptionPane.showMessageDialog(null, notificationMassage, messageCaption, JOptionPane.INFORMATION_MESSAGE);
                 ViewTools.setComponentsEnableStatus(mainPanel, false);
 
                 // TODO add notifications about modification file loading process (NOT via dialog windows)
                 FileUtils.createTemporaryModificationFile();
                 currentSelectedView.loadDataFromFile(FilesContainer.getModificationFile());
 
-                JOptionPane.showMessageDialog(null, "Sfmod-file \"" + FilesContainer.getModificationFileName() + "\" successfully loaded", "Message", JOptionPane.INFORMATION_MESSAGE);
+
+                String successfulMessage = XMLExtractor.getTagValue("sfmodFilePrefix") + FilesContainer.getModificationFileName() + XMLExtractor.getTagValue("successfullyLoaded");
+                JOptionPane.showMessageDialog(null, successfulMessage, messageCaption, JOptionPane.INFORMATION_MESSAGE);
                 ViewTools.setComponentsEnableStatus(mainPanel, true);
             }
         });
@@ -108,9 +119,9 @@ public class MainView implements IView {
 
     private void constructModulesMap() {
         Map<Integer, List<Pair<Integer, Long>>> skillOffsets = ObjectToOffsetExtractor.getSkillSchoolsOffsets();
-        modulesMap.put("Skills", new SkillView(skillOffsets));
+        modulesMap.put(XMLExtractor.getTagValue("skillsView"), new SkillView(skillOffsets));
 
-        final Map<Integer, Pair<String, List<String>>> spellMap = XMLSpellBindingExtractor.getSpellMap();
+        final Map<Integer, Pair<String, List<String>>> spellMap = XMLExtractor.getSpellMap();
         List<IDataConstraint> constraints = getSpellDataConstraints(spellMap);
         RandomAccessFile file = FilesContainer.getModificationFile();
         try {
@@ -304,13 +315,13 @@ public class MainView implements IView {
     private String getSpellSchoolName(byte value) {
         List<String> schoolNames = new ArrayList<String>() {{
             add("");
-            add("Light Combat Arts");
-            add("Heavy Combat Arts");
-            add("Archery");
-            add("White Magic");
-            add("Elemental Magic");
-            add("Mind Magic");
-            add("Death Magic");
+            add(XMLExtractor.getTagValue("lightCombatArts"));
+            add(XMLExtractor.getTagValue("heavyCombatArts"));
+            add(XMLExtractor.getTagValue("archery"));
+            add(XMLExtractor.getTagValue("whiteMagic"));
+            add(XMLExtractor.getTagValue("elementalMagic"));
+            add(XMLExtractor.getTagValue("mindMagic"));
+            add(XMLExtractor.getTagValue("blackMagic"));
         }};
 
         return schoolNames.get(value);
@@ -319,13 +330,19 @@ public class MainView implements IView {
     private String getSpellSubSchoolName(byte schoolValue, byte subSchoolValue) {
         Map<Integer, List<String>> subSchoolsMap = new HashMap<>();
         subSchoolsMap.put(0, new ArrayList<String>());
-        subSchoolsMap.put(1, Arrays.asList("", "Piercing Weapon", "Light Blades", "Light Blunts", "Light Armor"));
-        subSchoolsMap.put(2, Arrays.asList("", "Heavy Blades", "Heave Blunts", "Heavy Armor", "Shields"));
-        subSchoolsMap.put(3, Arrays.asList("", "Bows", "Crossbows"));
-        subSchoolsMap.put(4, Arrays.asList("", "Life", "Nature", "Boons"));
-        subSchoolsMap.put(5, Arrays.asList("", "Fire", "Ice", "Earth"));
-        subSchoolsMap.put(6, Arrays.asList("", "Enchantment", "Offensive", "Defensive"));
-        subSchoolsMap.put(7, Arrays.asList("", "Death", "Necromancy", "Curses"));
+        subSchoolsMap.put(1, Arrays.asList("", XMLExtractor.getTagValue("piecingWeapon"), XMLExtractor.getTagValue("lightBlades"),
+                XMLExtractor.getTagValue("lightBlunts"), XMLExtractor.getTagValue("lightArmor")));
+        subSchoolsMap.put(2, Arrays.asList("", XMLExtractor.getTagValue("heavyBlades"), XMLExtractor.getTagValue("heavyBlunts"),
+                XMLExtractor.getTagValue("heavyArmor"), XMLExtractor.getTagValue("shields")));
+        subSchoolsMap.put(3, Arrays.asList("", XMLExtractor.getTagValue("bows"), XMLExtractor.getTagValue("crossbows")));
+        subSchoolsMap.put(4, Arrays.asList("", XMLExtractor.getTagValue("life"), XMLExtractor.getTagValue("nature"),
+                XMLExtractor.getTagValue("boons")));
+        subSchoolsMap.put(5, Arrays.asList("", XMLExtractor.getTagValue("fire"), XMLExtractor.getTagValue("ice"),
+                XMLExtractor.getTagValue("earth")));
+        subSchoolsMap.put(6, Arrays.asList("", XMLExtractor.getTagValue("enchantment"), XMLExtractor.getTagValue("offensive"),
+                XMLExtractor.getTagValue("defensive")));
+        subSchoolsMap.put(7, Arrays.asList("", XMLExtractor.getTagValue("death"), XMLExtractor.getTagValue("necromancy"),
+                XMLExtractor.getTagValue("curses")));
 
         List<String> subSchools = subSchoolsMap.get((int) schoolValue);
         if (subSchools.isEmpty()) {
@@ -342,7 +359,7 @@ public class MainView implements IView {
     }
 
     public static void showMainView() {
-        JFrame frame = new JFrame("SpellForce GameData.cff Editor : Parameters Editor");
+        JFrame frame = new JFrame(XMLExtractor.getTagValue("sfmodFilesCreationWindowCaption"));
         final MainView mainView = new MainView();
         frame.setContentPane(mainView.getMainPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
