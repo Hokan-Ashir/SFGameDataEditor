@@ -13,7 +13,6 @@ import sfgamedataeditor.skills.SkillView;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -23,7 +22,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.*;
-import java.util.List;
 
 public class MainView implements IView {
     private static final int SPELLS_DATA_BEGIN_OFFSET = 0x20;
@@ -55,12 +53,15 @@ public class MainView implements IView {
             public void actionPerformed(ActionEvent e) {
                 final String sfModFileName = JOptionPane.showInputDialog(null, "SfMod-file name:", "SfMod-file creation", JOptionPane.QUESTION_MESSAGE);
                 if (sfModFileName != null && !sfModFileName.isEmpty()) {
-                    setComponentsEnableStatus(mainPanel, false);
-                    mainPanel.paintImmediately(mainPanel.getBounds());
-                    // TODO add notifications about modification file creation beginning and ending
+                    JOptionPane.showMessageDialog(null, "Processing Sfmod-file \"" + sfModFileName + "\" creation\n" +
+                            "Please, close this window and wait process to finish", "Message", JOptionPane.INFORMATION_MESSAGE);
+                    ViewTools.setComponentsEnableStatus(mainPanel, false);
+
+                    // TODO add notifications about modification file creation processing (NOT via dialog windows)
                     FileUtils.createSfModFile(sfModFileName);
-                    setComponentsEnableStatus(mainPanel, true);
-                    mainPanel.paintImmediately(mainPanel.getBounds());
+                    JOptionPane.showMessageDialog(null, "Sfmod-file \"" + sfModFileName + "\" successfully created", "Message", JOptionPane.INFORMATION_MESSAGE);
+
+                    ViewTools.setComponentsEnableStatus(mainPanel, true);
                 }
             }
         });
@@ -91,26 +92,18 @@ public class MainView implements IView {
 
                 FilesContainer.setModificationFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
 
-                JPanel mainPanel = currentSelectedView.getMainPanel();
-                setComponentsEnableStatus(mainPanel, false);
-                mainPanel.paintImmediately(mainPanel.getBounds());
-                // TODO add notifications about modification file loading beginning and ending
+                JOptionPane.showMessageDialog(null, "Processing Sfmod-file \"" + selectedFile.getName() + "\" loading\n" +
+                        "Please, close this window and wait process to finish", "Message", JOptionPane.INFORMATION_MESSAGE);
+                ViewTools.setComponentsEnableStatus(mainPanel, false);
+
+                // TODO add notifications about modification file loading process (NOT via dialog windows)
                 FileUtils.createTemporaryModificationFile();
-                setComponentsEnableStatus(mainPanel, true);
-                mainPanel.paintImmediately(mainPanel.getBounds());
                 currentSelectedView.loadDataFromFile(FilesContainer.getModificationFile());
+
+                JOptionPane.showMessageDialog(null, "Sfmod-file \"" + FilesContainer.getModificationFileName() + "\" successfully loaded", "Message", JOptionPane.INFORMATION_MESSAGE);
+                ViewTools.setComponentsEnableStatus(mainPanel, true);
             }
         });
-    }
-
-    private void setComponentsEnableStatus(JPanel panel, boolean isEnabled) {
-        for (Component component : panel.getComponents()) {
-            if (component instanceof JPanel) {
-                setComponentsEnableStatus((JPanel) component, isEnabled);
-            }
-
-            component.setEnabled(isEnabled);
-        }
     }
 
     private void constructModulesMap() {

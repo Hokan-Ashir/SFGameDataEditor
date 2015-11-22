@@ -1,8 +1,5 @@
 package sfgamedataeditor.views;
 
-import de.idyl.winzipaes.AesZipFileDecrypter;
-import de.idyl.winzipaes.AesZipFileEncrypter;
-import de.idyl.winzipaes.impl.*;
 import sfgamedataeditor.databind.files.FileData;
 import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.databind.files.FilesContainer;
@@ -15,10 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.zip.DataFormatException;
-import java.util.zip.ZipException;
 
 public class FileSelectionView implements IView {
     private JPanel mainPanel;
@@ -31,38 +25,6 @@ public class FileSelectionView implements IView {
     private JButton okButton;
 
     public static void main(String[] args) {
-        AESEncrypter encrypter = new AESEncrypterBC();
-        try {
-            encrypter.init("password", 192);
-        } catch (ZipException e) {
-            e.printStackTrace();
-        }
-        try {
-            AesZipFileEncrypter.zipAndEncrypt(new File("/home/hokan/out.sfmod"), new File("/home/hokan/zipResult.zip"), "password", encrypter);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        AESDecrypter decrypter = new AESDecrypterBC();
-        try {
-            decrypter.init("password", 192, encrypter.getSalt(), encrypter.getPwVerification());
-        } catch (ZipException e) {
-            e.printStackTrace();
-        }
-        try {
-            AesZipFileDecrypter aesZipFileDecrypter = new AesZipFileDecrypter(new File("/home/hokan/zipResult.zip"), decrypter);
-            java.util.List<ExtZipEntry> list = aesZipFileDecrypter.getEntryList();
-            for (ExtZipEntry extZipEntry : list) {
-                try {
-                    aesZipFileDecrypter.extractEntry(extZipEntry, new File("/home/hokan/zipExtractionResult"), "password");
-                } catch (DataFormatException e) {
-                    e.printStackTrace();
-                }
-            }
-            System.out.println();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         final JFrame frame = new JFrame("SpellForce GameData.cff Editor : File Selection Dialog");
         final FileSelectionView view = new FileSelectionView();
         frame.setContentPane(view.getMainPanel());
@@ -122,6 +84,17 @@ public class FileSelectionView implements IView {
                     return;
                 }
 
+                setComponentsEnableStatus(view.getMainPanel(), false);
+                view.getMainPanel().paintImmediately(view.getMainPanel().getBounds());
+                if (!FileUtils.isModificationFileBasedOnOriginalFile(selectedFile.getPath())) {
+                    JOptionPane.showMessageDialog(null, "Sfmod-file \"" + selectedFile.getName() + "\" based on other original GameData.cff file", "Error", JOptionPane.ERROR_MESSAGE);
+                    setComponentsEnableStatus(view.getMainPanel(), true);
+                    view.getMainPanel().paintImmediately(view.getMainPanel().getBounds());
+                    return;
+                }
+                setComponentsEnableStatus(view.getMainPanel(), true);
+                view.getMainPanel().paintImmediately(view.getMainPanel().getBounds());
+
                 view.getModificationFileField().setText(selectedFile.getAbsolutePath());
                 RandomAccessFile file;
                 try {
@@ -173,6 +146,16 @@ public class FileSelectionView implements IView {
                 view.getMainPanel().paintImmediately(view.getMainPanel().getBounds());
             }
         });
+    }
+
+    private static void setComponentsEnableStatus(JPanel panel, boolean isEnabled) {
+        for (Component component : panel.getComponents()) {
+            if (component instanceof JPanel) {
+                setComponentsEnableStatus((JPanel) component, isEnabled);
+            }
+
+            component.setEnabled(isEnabled);
+        }
     }
 
     /**
