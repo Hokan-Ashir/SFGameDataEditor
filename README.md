@@ -17,6 +17,7 @@ See "What it can't do" section below to be awared of restrictions.
  - XDeltaEncoder - for making binary differences between files (see https://github.com/mantlik/xdeltaencoder)
  - SHA-512 - for differencing original/modification files
  - Winzipaes - for encrypted zip-files creation (see https://code.google.com/p/winzipaes/ or MAVEN central repository)
+ - bouncycastle - for encryption via AES-algorithm (see http://www.bouncycastle.org/latest_releases.html)
  - Quite messy and excessively heavy architecture - as result too many class instances and too much memory eaten
 
 # What it can do
@@ -43,7 +44,8 @@ See "What it can't do" section below to be awared of restrictions.
 
 # How to launch it
  - Install, at least, Java 7 from Oracle site (see https://www.java.com/download/)
- - Copy SFGameDataEditor.jar, configuration_EN.xml AND/OR configuration_RU.xml, depending which language you would like
+ - Copy SFGameDataEditor.jar, configuration_EN.xml AND/OR configuration_RU.xml, depending which language you would like. Place them in one directory
+ - Copy bcprov-jdk15on-153.jar, winzipaes-1.0.1.jar, XDeltaEncoder.jar to the same directory, where you put SFGameDataEditor.jar and configuration files. You can find them here (https://github.com/Hokan-Ashir/SFGameDataEditor/tree/master/src/sfgamedataeditor) 
  - Double-click on SFGameDataEditor.jar OR run with "java -jar SFGameDataEditor.jar" comand in console
  
 # How to use it
@@ -69,25 +71,25 @@ See "What it can't do" section below to be awared of restrictions.
   
   ModificationFile = file which storing all your current changes
  - SfMod-file creation procedure
-    - TmpFile = XDeltaEncoder(OriginalFile, ModificationFile, DIFF)
-    - HASH = SHA-512(OriginalFile)
-    - SfMod-file = winzipaes(TmpFile, HASH)
+  - TmpFile = XDeltaEncoder(OriginalFile, ModificationFile, DIFF)
+  - HASH = SHA-512(OriginalFile)
+  - SfMod-file = winzipaes(TmpFile, HASH)
  - SfMod-file loading procedure
-    - HASH = SHA-512(OriginalFile)
-    - TmpFile = winzipaes(SfMod-file, HASH)
-    - ModificationFile = XDeltaEncoder(OriginalFile, TmpFile, MERGE)
+  - HASH = SHA-512(OriginalFile)
+  - TmpFile = winzipaes(SfMod-file, HASH)
+  - ModificationFile = XDeltaEncoder(OriginalFile, TmpFile, MERGE)
 
 # What YOU can do
  - Create modificated GameData.cff files for your own need, or distribute them with people, who can't access editor for some resons
  - Create sf-mod-files in terms of "mods" to original game, which people can use with ease, cause sf-mod-files have much lesser size
  - Create collections of sf-mod-files with this action chain: 
-    1. Load original file, i.e. GameData.cff
-    2. Load sf-mod-file_1 - on this stage you will have GameData.cff.mod with sf-mod-file_1 applied to it
-    3. Exit
-    4. Rename GameData.cff.mod to GameData.cff.mod1 i.e., for exclude name clashing
-    5. Load GameData.cff.mod1
-    6. Load sf-mod-file_2 - on this stage you will have GameData.cff.mod with sf-mod-file_1 AND sf-mod-file_2 applied to it
-    7. ...
+  - Load original file, i.e. GameData.cff
+  - Load sf-mod-file_1 - on this stage you will have GameData.cff.mod with sf-mod-file_1 applied to it
+  - Exit
+  - Rename GameData.cff.mod to GameData.cff.mod1 i.e., for exclude name clashing
+  - Load GameData.cff.mod1
+  - Load sf-mod-file_2 - on this stage you will have GameData.cff.mod with sf-mod-file_1 AND sf-mod-file_2 applied to it
+  - ...
 
 # How YOU can help
  - Report new issues about bugs, typos, code advises etc. via https://github.com/Hokan-Ashir/SFGameDataEditor/issues/new
