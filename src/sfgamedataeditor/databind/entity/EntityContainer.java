@@ -1,6 +1,6 @@
 package sfgamedataeditor.databind.entity;
 
-import javafx.util.Pair;
+import sfgamedataeditor.databind.Pair;
 
 import javax.swing.*;
 import java.awt.*;

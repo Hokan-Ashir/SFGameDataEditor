@@ -1,7 +1,7 @@
 package sfgamedataeditor.views;
 
-import javafx.util.Pair;
 import sfgamedataeditor.databind.IDataConstraint;
+import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
 import sfgamedataeditor.databind.files.FileData;
 import sfgamedataeditor.databind.files.FileUtils;

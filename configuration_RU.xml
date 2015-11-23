@@ -6,7 +6,7 @@
         <message>Сообщение</message>
         <error>Ошибка</error>
         <errorNotANumber>Пожалуйста, введите число</errorNotANumber>
-        <errorNumberLessThanZero>Пожалуйств, введите число больше 0</errorNumberLessThanZero>
+        <errorNumberLessThanZero>Пожалуйста, введите число больше 0</errorNumberLessThanZero>
 
         <fileSelectionWindowCaption>Редактор файлов SpellForce GameData.cff : Выбор файла</fileSelectionWindowCaption>
         <fileSelectionWindowOriginalFileTextFieldCaption>Оригинальный файл:
@@ -21,7 +21,7 @@
         </temporaryModificationFileCreation>
         <temporaryModificationFileCreationError>Не возможно загрузить временный файл модификации
         </temporaryModificationFileCreationError>
-        <processingData>Обработка данных. Пожалуйста подождите ...</processingData>
+        <processingData>Загрузка данных. Пожалуйста подождите ...</processingData>
 
         <sfmodFilesCreationWindowCaption>Редактор файлов SpellForce GameData.cff : Редактирование параметров
         </sfmodFilesCreationWindowCaption>

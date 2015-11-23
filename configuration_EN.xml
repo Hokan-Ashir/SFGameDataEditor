@@ -21,7 +21,7 @@
         </temporaryModificationFileCreation>
         <temporaryModificationFileCreationError>Can't load create temporary modification file
         </temporaryModificationFileCreationError>
-        <processingData>Processing data. Please wait ...</processingData>
+        <processingData>Loading data. Please wait ...</processingData>
 
         <sfmodFilesCreationWindowCaption>SpellForce GameData.cff Editor : Parameters Editor
         </sfmodFilesCreationWindowCaption>

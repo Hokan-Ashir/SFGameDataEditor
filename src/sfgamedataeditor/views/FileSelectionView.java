@@ -123,23 +123,20 @@ public class FileSelectionView implements IView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JButton okButton = view.getOkButton();
-                okButton.setEnabled(false);
-                view.getOriginalFileSelectorButton().setEnabled(false);
-                view.getModificationFileSelectorButton().setEnabled(false);
-                ViewTools.repaintButtonTextContent(okButton, frame, view.getMainPanel(), XMLExtractor.getTagValue("temporaryModificationFileCreation"));
+                JPanel mainPanel = view.getMainPanel();
+                ViewTools.setComponentsEnableStatus(mainPanel, false);
+                ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, XMLExtractor.getTagValue("temporaryModificationFileCreation"));
                 boolean creationSuccess = FileUtils.createTemporaryModificationFile();
                 if (!creationSuccess) {
                     String errorCaption = XMLExtractor.getTagValue("error");
                     String errorMessage = XMLExtractor.getTagValue("temporaryModificationFileCreationError");
                     JOptionPane.showMessageDialog(null, errorMessage, errorCaption, JOptionPane.ERROR_MESSAGE);
-                    okButton.setEnabled(true);
-                    view.getOriginalFileSelectorButton().setEnabled(true);
-                    view.getModificationFileSelectorButton().setEnabled(true);
-                    ViewTools.repaintButtonTextContent(okButton, frame, view.getMainPanel(), XMLExtractor.getTagValue("ok"));
+                    ViewTools.setComponentsEnableStatus(mainPanel, true);
+                    ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, XMLExtractor.getTagValue("ok"));
                     return;
                 }
 
-                ViewTools.repaintButtonTextContent(okButton, frame, view.getMainPanel(), XMLExtractor.getTagValue("processingData"));
+                ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, XMLExtractor.getTagValue("processingData"));
                 MainView.showMainView();
                 frame.dispose();
             }

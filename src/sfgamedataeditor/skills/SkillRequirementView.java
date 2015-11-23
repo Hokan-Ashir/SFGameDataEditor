@@ -1,6 +1,6 @@
 package sfgamedataeditor.skills;
 
-import javafx.util.Pair;
+import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.entity.EntityContainer;
 import sfgamedataeditor.databind.entity.EntityTuple;
 import sfgamedataeditor.dataextraction.XMLExtractor;

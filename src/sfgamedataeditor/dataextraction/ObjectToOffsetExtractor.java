@@ -1,7 +1,7 @@
 package sfgamedataeditor.dataextraction;
 
-import javafx.util.Pair;
 import sfgamedataeditor.databind.IDataConstraint;
+import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.files.FilesContainer;
 
 import java.io.IOException;
