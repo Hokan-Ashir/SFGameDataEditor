@@ -91,6 +91,7 @@ See "What it can't do" section below to be awared of restrictions.
 
 # How YOU can help
  - Report new issues about bugs, typos, code advises etc. via https://github.com/Hokan-Ashir/SFGameDataEditor/issues/new
+ - Report of spell parameters which you aware of, those which marked as "???"
  - Write French and German localization files, look a like existing "configuration_EN.xml" one
  - Download source code, change, refactor it, write me to commit changes
  - Fork this hub and make own version of editor
