@@ -92,7 +92,7 @@
         <spellRequirementClass>Requirement class:</spellRequirementClass>
         <spellRequirementSubClass>Requirement subclass:</spellRequirementSubClass>
         <spellRequirementLevel>Requirement level:</spellRequirementLevel>
-        <spellManaUsage>Mana usage:</spellManaUsage>
+        <spellManaUsage>Mana usage (activation):</spellManaUsage>
         <spellCastTime>Cast time (ms.):</spellCastTime>
         <spellCooldown>Cooldown (ms.):</spellCooldown>
         <spellMinRange>Min. range:</spellMinRange>
@@ -201,54 +201,54 @@
                field6="???"/>
         <spell id="87" name="Stone"/>
         <spell id="88" name="AuraWeakness" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???"
-               field7="Weaken effect number:" field8="???" field9="???"/>
+               field7="Weaken effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="89" name="AuraSuffocation" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="Suffocation effect number:" field8="???" field9="???"/>
+               field6="???" field7="Suffocation effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="90" name="SuicideDeath" field1="Damage target:" field2="Damage self:"/>
         <spell id="91" name="AuraLifeTap" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???"
-               field7="LifeTap effect number:" field8="???" field9="???"/>
+               field7="LifeTap effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="92" name="SummonSpectre" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:"
                field3="Summoning creature ID:"/>
         <spell id="93" name="FeignDeath" field1="???" field2="???" field3="???" field4="???" field5="???"/>
         <spell id="94" name="AuraSlowFighting" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="SlowFighting effect number:" field8="???" field9="???"/>
+               field6="???" field7="SlowFighting effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="95" name="AuraInflexibility" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="Inflexibility effect number:" field8="???" field9="???"/>
+               field6="???" field7="Inflexibility effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="96" name="DispelWhiteAura"/>
         <spell id="97" name="AuraSlowWalking" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="SlowWalking effect number:" field8="???" field9="???"/>
+               field6="???" field7="SlowWalking effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="98" name="AuraInability" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="Inability effect number:" field8="???" field9="???"/>
+               field6="???" field7="Inability effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="99" name="Suffocation" field1="Stamina decrease (%):" field2="Duration (ms.):"/>
         <spell id="100" name="Inability" field1="Agility decrease (%):" field2="Duration (ms.):"/>
         <spell id="101" name="SlowFighting" field1="Fighting speed decrease (%):" field2="Duration (ms.):"/>
         <spell id="102" name="AuraStrength" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="Strengthen effect number:" field8="???" field9="???"/>
+               field6="???" field7="Strengthen effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="103" name="AuraHealing" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???"
-               field7="Healing effect number:" field8="???" field9="???"/>
+               field7="Healing effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="104" name="AuraEndurance" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="Endurance effect number:" field8="???" field9="???"/>
+               field6="???" field7="Endurance effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="105" name="SuicideHeal" field1="Heal target:" field2="Damage self:"/>
         <spell id="106" name="SummonWolf" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:"
                field3="Summoning creature ID:"/>
         <spell id="107" name="AuraRegeneration" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="Regeneration effect number:" field8="???" field9="???"/>
+               field6="???" field7="Regeneration effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="108" name="DominateAnimal" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:"
                field3="Maximum creature level:"/>
         <spell id="109" name="SummonBear" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:"
                field3="Summoning creature ID:"/>
         <spell id="110" name="AuraFastFighting" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="FastFighting effect number:" field8="???" field9="???"/>
+               field6="???" field7="FastFighting effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="111" name="AuraFlexibility" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="Flexibility effect number:" field8="???" field9="???"/>
+               field6="???" field7="Flexibility effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="112" name="DispelBlackAura" field1="Min. level:" field2="Mid. level:" field3="Max. level:"
                field4="Duration (ms.):"/>
         <spell id="113" name="AuraFastWalking" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="FastWalking effect number:" field8="???" field9="???"/>
+               field6="???" field7="FastWalking effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="114" name="AuraLight" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???"
-               field7="Hallow effect number:" field8="???" field9="???"/>
+               field7="Hallow effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="115" name="AuraDexterity" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="Dexterity effect number:" field8="???" field9="???"/>
+               field6="???" field7="Dexterity effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="116" name="Dexterity" field1="Dexterity increase (%):" field2="Duration (ms.):"/>
         <spell id="117" name="Endurance" field3="Stamina increase (%):" field2="Duration (ms.):"/>
         <spell id="118" name="FastFighting" field1="Fighting speed increase (%):" field2="Duration (ms.):"/>
@@ -263,13 +263,13 @@
         <spell id="125" name="Charisma" field1="Charisma increase (%):" field2="Duration (ms.):"/>
         <spell id="126" name="Shockwave" field1="???" field2="???" field3="???" field4="???" field5="???"/>
         <spell id="127" name="AuraHypnotization" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="Hypnotize effect number:" field8="???" field9="???"/>
+               field6="???" field7="Hypnotize effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="128" name="Demoralization" field1="Duration (ms.):" field2="Max. creature level:"/>
         <spell id="129" name="AuraBrilliance" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="Brilliance effect number:" field8="???" field9="???"/>
+               field6="???" field7="Brilliance effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="130" name="Enlightenment" field1="Intelligence/Wisdom increase (%):" field2="Duration (ms.):"/>
         <spell id="131" name="AuraManaTap" field1="???" field2="???" field3="???" field4="???" field5="???" field6="???"
-               field7="ManaTap effect number:" field8="???" field9="???"/>
+               field7="ManaTap effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="132" name="Meditation"/>
         <spell id="133" name="FireElemental" field1="Consuming mana period (ms.):" field2="Mana pt./consuming period:"
                field3="Summoning creature ID:"/>
@@ -351,7 +351,7 @@
                field4="Hallow effect number:" field5="Max. hop number:"/>
         <spell id="191" name="Reinforcement" field1="???"/>
         <spell id="192" name="AuraEternity" field1="???" field2="???" field3="???" field4="???" field5="???"
-               field6="???" field7="Eternity effect number:" field8="???" field9="???"/>
+               field6="???" field7="Eternity effect number:" field8="???" field9="Target hop mana usage:"/>
         <spell id="193" name="ChainPain" field1="Hop interval (ms.):" field2="???" field3="Min. hop number:"
                field4="Pain effect number:" field5="Max. hop number:"/>
         <spell id="194" name="Cannibalize" field1="HP drained:" field2="Mana restored:"/>
