@@ -41,17 +41,19 @@ public class LanguageSelectionView {
 
         for (File child : directoryListing) {
             String name = child.getName().toLowerCase();
-            if (name.startsWith(CONFIGURATION_XML_FILE_PREFIX)
-                    && name.endsWith(XML_FILE_EXTENSION)) {
-                int prefixNameIndex = name.lastIndexOf(CONFIGURATION_XML_FILE_PREFIX) + CONFIGURATION_XML_FILE_PREFIX.length();
-                int extensionNameIndex = name.indexOf(XML_FILE_EXTENSION);
-                String fileLanguageExtension = name.substring(prefixNameIndex, extensionNameIndex);
-                String languageName = LANGUAGE_FILE_MAP.get(fileLanguageExtension);
-                boolean notExistsInComboBox = ((DefaultComboBoxModel) languageSelectionComboBox.getModel()).getIndexOf(languageName) == -1;
-                if (LANGUAGE_FILE_MAP.containsKey(fileLanguageExtension) && notExistsInComboBox) {
-                    languageSelectionComboBox.addItem(languageName);
-                    languageToFileMap.put(languageName, child.getName());
-                }
+            if (!(name.startsWith(CONFIGURATION_XML_FILE_PREFIX)
+                    && name.endsWith(XML_FILE_EXTENSION))) {
+                continue;
+            }
+
+            int prefixNameIndex = name.lastIndexOf(CONFIGURATION_XML_FILE_PREFIX) + CONFIGURATION_XML_FILE_PREFIX.length();
+            int extensionNameIndex = name.indexOf(XML_FILE_EXTENSION);
+            String fileLanguageExtension = name.substring(prefixNameIndex, extensionNameIndex);
+            String languageName = LANGUAGE_FILE_MAP.get(fileLanguageExtension);
+            boolean notExistsInComboBox = ((DefaultComboBoxModel) languageSelectionComboBox.getModel()).getIndexOf(languageName) == -1;
+            if (LANGUAGE_FILE_MAP.containsKey(fileLanguageExtension) && notExistsInComboBox) {
+                languageSelectionComboBox.addItem(languageName);
+                languageToFileMap.put(languageName, child.getName());
             }
         }
     }

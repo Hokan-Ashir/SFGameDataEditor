@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Class-Path: XDeltaEncoder.jar winzipaes-1.0.1.jar bcprov-jdk15on-153.j
- ar
-Main-Class: sfgamedataeditor.views.LanguageSelectionView
-
