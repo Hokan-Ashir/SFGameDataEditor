@@ -13,6 +13,7 @@ See "What it can't do" section below to be awared of restrictions.
 
 # What inside
  - Java 7 - for diamonds and multiple catch exceptions
+ - Maven - as build tool
  - Swing - for GUI, obviously
  - XDeltaEncoder - for making binary differences between files (see https://github.com/mantlik/xdeltaencoder)
  - SHA-512 - for differencing original/modification files
@@ -44,9 +45,8 @@ See "What it can't do" section below to be awared of restrictions.
 
 # How to launch it
  - Install, at least, Java 7 from Oracle site (see https://www.java.com/download/)
- - Copy SFGameDataEditor.jar, configuration_EN.xml AND/OR configuration_RU.xml, depending which language you would like. Place them in one directory
- - Copy bcprov-jdk15on-153.jar, winzipaes-1.0.1.jar, XDeltaEncoder.jar to the same directory, where you put SFGameDataEditor.jar and configuration files. You can find them here (https://github.com/Hokan-Ashir/SFGameDataEditor/tree/master/src/sfgamedataeditor) 
- - Double-click on SFGameDataEditor.jar OR run with "java -jar SFGameDataEditor.jar" comand in console
+ - Copy SFGameDataEditor-1.0-SNAPSHOT.jar, configuration_EN.xml AND/OR configuration_RU.xml, depending which language you would like. Place them in one directory
+ - Double-click on SFGameDataEditor-1.0-SNAPSHOT.jar OR run with "java -jar SFGameDataEditor.jar" comand in console
  
 # How to use it
  - After launch you can select editor's language, which is loading via configuration files
