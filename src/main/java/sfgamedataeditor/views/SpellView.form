@@ -24,7 +24,7 @@
           <maximumSize width="60" height="23"/>
           <minimumSize width="60" height="23"/>
           <preferredSize width="60" height="23"/>
-          <text value="Number:"/>
+          <text resource-bundle="messages" key="spellNumber"/>
           <verticalAlignment value="0"/>
         </properties>
       </component>
@@ -51,7 +51,7 @@
           <maximumSize width="55" height="23"/>
           <minimumSize width="55" height="23"/>
           <preferredSize width="55" height="23"/>
-          <text value="Type:"/>
+          <text resource-bundle="messages" key="spellType"/>
         </properties>
       </component>
       <component id="e3b0d" class="javax.swing.JTextField" binding="typeField">
@@ -73,7 +73,7 @@
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Requirement class:"/>
+          <text resource-bundle="messages" key="spellRequirementClass"/>
         </properties>
       </component>
       <component id="effaf" class="javax.swing.JLabel" binding="manaUsageLabel">
@@ -82,7 +82,7 @@
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Mana usage:"/>
+          <text resource-bundle="messages" key="spellManaUsage"/>
         </properties>
       </component>
       <component id="c0306" class="javax.swing.JTextField" binding="manaUsageField">
@@ -105,7 +105,7 @@
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Cast time (ms.):"/>
+          <text resource-bundle="messages" key="spellCastTime"/>
         </properties>
       </component>
       <component id="17912" class="javax.swing.JTextField" binding="castTimeField">
@@ -131,7 +131,7 @@
           <maximumSize width="85" height="23"/>
           <minimumSize width="85" height="23"/>
           <preferredSize width="85" height="23"/>
-          <text value="Cast type:"/>
+          <text resource-bundle="messages" key="spellCastType"/>
         </properties>
       </component>
       <component id="5d76c" class="javax.swing.JTextField" binding="castTypeField">
@@ -160,7 +160,7 @@
           <maximumSize width="61" height="15"/>
           <minimumSize width="61" height="15"/>
           <preferredSize width="61" height="15"/>
-          <text value="Not used:"/>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
       <component id="e111a" class="javax.swing.JTextField" binding="parameterField1">
@@ -193,7 +193,7 @@
           <gridbag top="5" left="0" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Not used:"/>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
       <component id="1751f" class="javax.swing.JTextField" binding="parameterField3">
@@ -215,7 +215,7 @@
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Min. range:"/>
+          <text resource-bundle="messages" key="spellMinRange"/>
         </properties>
       </component>
       <component id="2e12a" class="javax.swing.JTextField" binding="minRangeField">
@@ -237,7 +237,7 @@
           <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Requirement subclass:"/>
+          <text resource-bundle="messages" key="spellRequirementSubClass"/>
         </properties>
       </component>
       <component id="26732" class="javax.swing.JComboBox" binding="requirementSubClassComboBox2">
@@ -257,7 +257,7 @@
           <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Max. range:"/>
+          <text resource-bundle="messages" key="spellMaxRange"/>
         </properties>
       </component>
       <component id="859a8" class="javax.swing.JLabel" binding="cooldownLabel">
@@ -266,7 +266,7 @@
           <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Cooldown (ms.):"/>
+          <text resource-bundle="messages" key="spellCooldown"/>
         </properties>
       </component>
       <component id="52348" class="javax.swing.JTextField" binding="cooldownField">
@@ -301,7 +301,7 @@
           <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Requirement subclass:"/>
+          <text resource-bundle="messages" key="spellRequirementSubClass"/>
         </properties>
       </component>
       <component id="8490d" class="javax.swing.JLabel" binding="requirementClassLabel2">
@@ -313,7 +313,7 @@
           <maximumSize width="140" height="15"/>
           <minimumSize width="140" height="15"/>
           <preferredSize width="140" height="15"/>
-          <text value="Requirement class:"/>
+          <text resource-bundle="messages" key="spellRequirementClass"/>
         </properties>
       </component>
       <component id="69a5d" class="javax.swing.JComboBox" binding="requirementSubClassComboBox">
@@ -344,7 +344,7 @@
           <gridbag top="0" left="0" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Requirement class:"/>
+          <text resource-bundle="messages" key="spellRequirementClass"/>
         </properties>
       </component>
       <component id="7b4c7" class="javax.swing.JLabel" binding="requirementLevelLabel">
@@ -353,7 +353,7 @@
           <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Requirement level:"/>
+          <text resource-bundle="messages" key="spellRequirementLevel"/>
         </properties>
       </component>
       <component id="847df" class="javax.swing.JComboBox" binding="requirementClassComboBox3">
@@ -395,7 +395,7 @@
           <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Requirement level:"/>
+          <text resource-bundle="messages" key="spellRequirementLevel"/>
         </properties>
       </component>
       <component id="b71d9" class="javax.swing.JComboBox" binding="requirementSubClassComboBox3">
@@ -428,7 +428,7 @@
           <gridbag top="0" left="5" bottom="5" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Requirement level:"/>
+          <text resource-bundle="messages" key="spellRequirementLevel"/>
         </properties>
       </component>
       <component id="d86bf" class="javax.swing.JTextField" binding="requirementLevelField3">
@@ -450,7 +450,7 @@
           <gridbag top="5" left="5" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Not used:"/>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
       <component id="1c97" class="javax.swing.JTextField" binding="parameterField2">
@@ -472,7 +472,7 @@
           <gridbag top="5" left="5" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Not used:"/>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
       <component id="aea8a" class="javax.swing.JTextField" binding="parameterField4">
@@ -494,7 +494,7 @@
           <gridbag top="5" left="0" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Not used:"/>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
       <component id="5e509" class="javax.swing.JTextField" binding="parameterField5">
@@ -516,7 +516,7 @@
           <gridbag top="5" left="5" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Not used:"/>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
       <component id="c74f8" class="javax.swing.JTextField" binding="parameterField6">
@@ -538,7 +538,7 @@
           <gridbag top="5" left="0" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Not used:"/>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
       <component id="76db6" class="javax.swing.JTextField" binding="parameterField7">
@@ -560,7 +560,7 @@
           <gridbag top="5" left="5" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Not used:"/>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
       <component id="978b4" class="javax.swing.JTextField" binding="parameterField8">
@@ -582,7 +582,7 @@
           <gridbag top="5" left="0" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Not used:"/>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
       <component id="d9c3f" class="javax.swing.JTextField" binding="parameterField9">
@@ -604,7 +604,7 @@
           <gridbag top="5" left="5" bottom="15" right="15" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Not used:"/>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
       <component id="9dbbc" class="javax.swing.JTextField" binding="parameterField10">

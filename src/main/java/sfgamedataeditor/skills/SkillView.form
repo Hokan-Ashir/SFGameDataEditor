@@ -17,7 +17,7 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Level:"/>
+          <text resource-bundle="messages" key="levelLabel"/>
         </properties>
       </component>
       <grid id="6205c" binding="skillRequirementsPanel" layout-manager="GridBagLayout">

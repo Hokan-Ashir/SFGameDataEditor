@@ -1,9 +1,9 @@
 package sfgamedataeditor.views;
 
+import sfgamedataeditor.I18N;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.entity.EntityContainer;
 import sfgamedataeditor.databind.entity.EntityTuple;
-import sfgamedataeditor.dataextraction.XMLExtractor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -99,7 +99,7 @@ public class SpellView extends EntityContainer implements IView {
     }
 
     private void setLabelText(JLabel label, String tagName) {
-        label.setText(convertToMultiline(XMLExtractor.getTagValue(tagName)));
+        label.setText(convertToMultiline(I18N.getMessage(tagName)));
     }
 
     private void setParameterLabelsNames(List<String> fieldNamesList) {
@@ -120,7 +120,7 @@ public class SpellView extends EntityContainer implements IView {
             if (i < fieldNamesList.size()) {
                 parameterLabels.get(i).setText(convertToMultiline(fieldNamesList.get(i)));
             } else {
-                parameterLabels.get(i).setText(XMLExtractor.getTagValue("spellParameterNotUsed"));
+                parameterLabels.get(i).setText(I18N.getMessage("spellParameterNotUsed"));
             }
         }
     }
@@ -146,54 +146,54 @@ public class SpellView extends EntityContainer implements IView {
         // accidentally set (via this Editor) i.e "Iceburst" "White Magic - Nature" requirements
         // instead of "Elemental Magic - Ice"
         classSubClassComboBoxContent.put("", Collections.singletonList(""));
-        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("lightCombatArts"),
+        classSubClassComboBoxContent.put(I18N.getMessage("lightCombatArts"),
                 Arrays.asList("",
-                        XMLExtractor.getTagValue("piercingWeapon"),
-                        XMLExtractor.getTagValue("lightBlades"),
-                        XMLExtractor.getTagValue("lightBlunts"),
-                        XMLExtractor.getTagValue("lightArmor")
+                        I18N.getMessage("piercingWeapon"),
+                        I18N.getMessage("lightBlades"),
+                        I18N.getMessage("lightBlunts"),
+                        I18N.getMessage("lightArmor")
                 )
         );
-        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("heavyCombatArts"),
+        classSubClassComboBoxContent.put(I18N.getMessage("heavyCombatArts"),
                 Arrays.asList("",
-                        XMLExtractor.getTagValue("heavyBlades"),
-                        XMLExtractor.getTagValue("heavyBlunts"),
-                        XMLExtractor.getTagValue("heavyArmor"),
-                        XMLExtractor.getTagValue("shields")
+                        I18N.getMessage("heavyBlades"),
+                        I18N.getMessage("heavyBlunts"),
+                        I18N.getMessage("heavyArmor"),
+                        I18N.getMessage("shields")
                 )
         );
-        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("archery"),
+        classSubClassComboBoxContent.put(I18N.getMessage("archery"),
                 Arrays.asList("",
-                        XMLExtractor.getTagValue("bows"),
-                        XMLExtractor.getTagValue("corssbows")
+                        I18N.getMessage("bows"),
+                        I18N.getMessage("corssbows")
                 )
         );
-        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("whiteMagic"),
+        classSubClassComboBoxContent.put(I18N.getMessage("whiteMagic"),
                 Arrays.asList("",
-                        XMLExtractor.getTagValue("life"),
-                        XMLExtractor.getTagValue("nature"),
-                        XMLExtractor.getTagValue("boons")
+                        I18N.getMessage("life"),
+                        I18N.getMessage("nature"),
+                        I18N.getMessage("boons")
                 )
         );
-        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("elementalMagic"),
+        classSubClassComboBoxContent.put(I18N.getMessage("elementalMagic"),
                 Arrays.asList("",
-                        XMLExtractor.getTagValue("fire"),
-                        XMLExtractor.getTagValue("ice"),
-                        XMLExtractor.getTagValue("earth")
+                        I18N.getMessage("fire"),
+                        I18N.getMessage("ice"),
+                        I18N.getMessage("earth")
                 )
         );
-        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("mindMagic"),
+        classSubClassComboBoxContent.put(I18N.getMessage("mindMagic"),
                 Arrays.asList("",
-                        XMLExtractor.getTagValue("enchantment"),
-                        XMLExtractor.getTagValue("offensive"),
-                        XMLExtractor.getTagValue("defensive")
+                        I18N.getMessage("enchantment"),
+                        I18N.getMessage("offensive"),
+                        I18N.getMessage("defensive")
                 )
         );
-        classSubClassComboBoxContent.put(XMLExtractor.getTagValue("blackMagic"),
+        classSubClassComboBoxContent.put(I18N.getMessage("blackMagic"),
                 Arrays.asList("",
-                        XMLExtractor.getTagValue("death"),
-                        XMLExtractor.getTagValue("necromancy"),
-                        XMLExtractor.getTagValue("curses")
+                        I18N.getMessage("death"),
+                        I18N.getMessage("necromancy"),
+                        I18N.getMessage("curses")
                 )
         );
 

@@ -19,12 +19,12 @@ import java.util.Map;
 
 public class XMLExtractor {
 
-    private static String CONFIGURATION_XML;
     private static final String SPELL_TAG_NAME = "spell";
     private static final String ID_ATTRIBUTE = "id";
     private static final String NAME_ATTRIBUTE = "name";
     private static final int NUMBER_OF_PARAMETER_FIELDS = 9;
     private static final String FIELD_ATTRIBUTE = "field";
+    private static String CONFIGURATION_XML;
     private static Document document;
 
     private XMLExtractor() {
@@ -60,21 +60,6 @@ public class XMLExtractor {
         }
 
         return spellMap;
-    }
-
-    public static String getTagValue(String tagName) {
-        Document document = getXMLDocument();
-        if (document == null) {
-            return "";
-        }
-
-        NodeList spellNodeList = document.getElementsByTagName(tagName);
-        Node item = spellNodeList.item(0);
-        if (item == null) {
-            return "";
-        }
-
-        return item.getTextContent();
     }
 
     private static Document getXMLDocument() {

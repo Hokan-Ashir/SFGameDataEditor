@@ -1,10 +1,10 @@
 package sfgamedataeditor.skills;
 
+import sfgamedataeditor.I18N;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
 import sfgamedataeditor.databind.files.FilesContainer;
 import sfgamedataeditor.dataextraction.ObjectToOffsetExtractor;
-import sfgamedataeditor.dataextraction.XMLExtractor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,23 +16,14 @@ import java.util.List;
 import java.util.Map;
 
 public class SkillView extends AbstractLevelableEntity {
+    List<SkillRequirementView> requirementViews = new ArrayList<>(ObjectToOffsetExtractor.NUMBER_OF_ABILITY_SCHOOLS);
     private JPanel mainPanel;
     private JComboBox levelComboBox;
     private JLabel levelLabel;
     private JPanel skillRequirementsPanel;
 
-    List<SkillRequirementView> requirementViews = new ArrayList<>(ObjectToOffsetExtractor.NUMBER_OF_ABILITY_SCHOOLS);
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public JPanel getMainPanel() {
-        return mainPanel;
-    }
-
     public SkillView(Map<Integer, java.util.List<Pair<Integer, Long>>> offsets) {
-        levelLabel.setText(XMLExtractor.getTagValue("levelLabel"));
+        levelLabel.setText(I18N.getMessage("levelLabel"));
         for (int i = 1; i <= ObjectToOffsetExtractor.NUMBER_OF_ABILITY_SCHOOLS; i++) {
             SkillRequirementView view = new SkillRequirementView(offsets.get(i));
             view.setParent(this);
@@ -42,15 +33,23 @@ public class SkillView extends AbstractLevelableEntity {
         generateUI();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
     private void generateUI() {
         java.util.List<String> schoolNamesList = new ArrayList<>();
-        schoolNamesList.add(XMLExtractor.getTagValue("lightCombatArts"));
-        schoolNamesList.add(XMLExtractor.getTagValue("heavyCombatArts"));
-        schoolNamesList.add(XMLExtractor.getTagValue("archery"));
-        schoolNamesList.add(XMLExtractor.getTagValue("whiteMagic"));
-        schoolNamesList.add(XMLExtractor.getTagValue("elementalMagic"));
-        schoolNamesList.add(XMLExtractor.getTagValue("mindMagic"));
-        schoolNamesList.add(XMLExtractor.getTagValue("blackMagic"));
+        schoolNamesList.add(I18N.getMessage("lightCombatArts"));
+        schoolNamesList.add(I18N.getMessage("heavyCombatArts"));
+        schoolNamesList.add(I18N.getMessage("archery"));
+        schoolNamesList.add(I18N.getMessage("whiteMagic"));
+        schoolNamesList.add(I18N.getMessage("elementalMagic"));
+        schoolNamesList.add(I18N.getMessage("mindMagic"));
+        schoolNamesList.add(I18N.getMessage("blackMagic"));
 
         int gridy = 0;
         for (int i = 0; i < requirementViews.size(); i++) {

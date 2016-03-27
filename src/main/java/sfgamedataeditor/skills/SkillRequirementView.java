@@ -1,9 +1,9 @@
 package sfgamedataeditor.skills;
 
+import sfgamedataeditor.I18N;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.entity.EntityContainer;
 import sfgamedataeditor.databind.entity.EntityTuple;
-import sfgamedataeditor.dataextraction.XMLExtractor;
 import sfgamedataeditor.views.IView;
 
 import javax.swing.*;
@@ -33,13 +33,13 @@ public class SkillRequirementView extends EntityContainer implements IView {
 
     public SkillRequirementView(List<Pair<Integer, Long>> offsets) {
         super(offsets);
-        stregthLabel.setText(XMLExtractor.getTagValue("strength"));
-        staminaLabel.setText(XMLExtractor.getTagValue("stamina"));
-        dexterityLabel.setText(XMLExtractor.getTagValue("dexterity"));
-        agilityLabel.setText(XMLExtractor.getTagValue("agility"));
-        wisdomLabel.setText(XMLExtractor.getTagValue("wisdom"));
-        intelligenceLabel.setText(XMLExtractor.getTagValue("intelligence"));
-        charismaLabel.setText(XMLExtractor.getTagValue("charisma"));
+        stregthLabel.setText(I18N.getMessage("strength"));
+        staminaLabel.setText(I18N.getMessage("stamina"));
+        dexterityLabel.setText(I18N.getMessage("dexterity"));
+        agilityLabel.setText(I18N.getMessage("agility"));
+        wisdomLabel.setText(I18N.getMessage("wisdom"));
+        intelligenceLabel.setText(I18N.getMessage("intelligence"));
+        charismaLabel.setText(I18N.getMessage("charisma"));
 
         initializeEntityList();
         setAbilityDataOffsetByLevel(1);

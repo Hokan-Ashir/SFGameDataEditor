@@ -1,6 +1,6 @@
 package sfgamedataeditor.databind.entity;
 
-import sfgamedataeditor.dataextraction.XMLExtractor;
+import sfgamedataeditor.I18N;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -37,13 +37,13 @@ public class TextFieldEntity extends Entity<JTextField> {
                     value = Integer.parseInt(text);
                     if (value < 0) {
                         JOptionPane.showMessageDialog(null,
-                                XMLExtractor.getTagValue("errorNumberLessThanZero"), XMLExtractor.getTagValue("error"),
+                                I18N.getMessage("errorNumberLessThanZero"), I18N.getMessage("error"),
                                 JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null,
-                            XMLExtractor.getTagValue("errorNotANumber"), XMLExtractor.getTagValue("error"),
+                            I18N.getMessage("errorNotANumber"), I18N.getMessage("error"),
                             JOptionPane.ERROR_MESSAGE);
                     return;
                 }

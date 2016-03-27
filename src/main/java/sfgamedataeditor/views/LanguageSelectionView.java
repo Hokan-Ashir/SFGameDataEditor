@@ -1,5 +1,6 @@
 package sfgamedataeditor.views;
 
+import sfgamedataeditor.I18N;
 import sfgamedataeditor.dataextraction.XMLExtractor;
 
 import javax.swing.*;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class LanguageSelectionView {
@@ -30,6 +32,46 @@ public class LanguageSelectionView {
 
     public LanguageSelectionView() {
         generateUI();
+    }
+
+    public static void main(String[] args) {
+        final JFrame frame = new JFrame("SpellForce GameData.cff Editor : Language Selection Dialog");
+        final LanguageSelectionView view = new LanguageSelectionView();
+        frame.setContentPane(view.getMainPanel());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+
+        if (view.getLanguageSelectionComboBox().getItemCount() == 0) {
+            ViewTools.repaintButtonTextContent(view.getOkButton(), frame, view.getMainPanel(), "No configuration files");
+            view.getOkButton().setEnabled(false);
+            view.getLanguageSelectionComboBox().setEnabled(false);
+        }
+
+        view.getOkButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object selectedItem = view.getLanguageSelectionComboBox().getSelectedItem();
+                String countryLanguage = null;
+                for (Map.Entry<String, String> stringStringEntry : LANGUAGE_FILE_MAP.entrySet()) {
+                    if (stringStringEntry.getValue().equals(selectedItem)) {
+                        countryLanguage = stringStringEntry.getKey();
+                    }
+                }
+
+                Locale locale;
+                if (countryLanguage == null) {
+                    locale = Locale.getDefault();
+                } else {
+                    locale = new Locale(countryLanguage);
+                }
+                I18N.loadBundleMessages("messages", locale);
+                XMLExtractor.setConfigurationXml(view.getLanguageToFileMap().get(selectedItem));
+
+                FileSelectionView.showFileSelectionView();
+                frame.dispose();
+            }
+        });
     }
 
     private void generateUI() {
@@ -72,31 +114,5 @@ public class LanguageSelectionView {
 
     public Map<String, String> getLanguageToFileMap() {
         return languageToFileMap;
-    }
-
-    public static void main(String[] args) {
-        final JFrame frame = new JFrame("SpellForce GameData.cff Editor : Language Selection Dialog");
-        final LanguageSelectionView view = new LanguageSelectionView();
-        frame.setContentPane(view.getMainPanel());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-
-        if (view.getLanguageSelectionComboBox().getItemCount() == 0) {
-            ViewTools.repaintButtonTextContent(view.getOkButton(), frame, view.getMainPanel(), "No configuration files");
-            view.getOkButton().setEnabled(false);
-            view.getLanguageSelectionComboBox().setEnabled(false);
-        }
-
-        view.getOkButton().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Object selectedItem = view.getLanguageSelectionComboBox().getSelectedItem();
-                XMLExtractor.setConfigurationXml(view.getLanguageToFileMap().get(selectedItem));
-
-                FileSelectionView.showFileSelectionView();
-                frame.dispose();
-            }
-        });
     }
 }

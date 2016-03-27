@@ -32,7 +32,7 @@
             </constraints>
             <properties>
               <labelFor value="6d595"/>
-              <text value="Strength:"/>
+              <text resource-bundle="messages" key="strength"/>
             </properties>
           </component>
           <component id="6d595" class="javax.swing.JTextField" binding="strengthField">
@@ -58,7 +58,8 @@
               <gridbag weightx="0.0" weighty="1.0" ipadx="20"/>
             </constraints>
             <properties>
-              <text value="Stamina:"/>
+              <labelFor value="c1296"/>
+              <text resource-bundle="messages" key="stamina"/>
             </properties>
           </component>
           <component id="c1296" class="javax.swing.JTextField" binding="staminaField">
@@ -82,7 +83,8 @@
               <gridbag weightx="0.0" weighty="1.0" ipadx="20"/>
             </constraints>
             <properties>
-              <text value="Agility:"/>
+              <labelFor value="6b53e"/>
+              <text resource-bundle="messages" key="agility"/>
             </properties>
           </component>
           <component id="6b53e" class="javax.swing.JTextField" binding="agilityField">
@@ -106,7 +108,8 @@
               <gridbag weightx="0.0" weighty="1.0" ipadx="20"/>
             </constraints>
             <properties>
-              <text value="Dexterity:"/>
+              <labelFor value="c7427"/>
+              <text resource-bundle="messages" key="dexterity"/>
             </properties>
           </component>
           <component id="c7427" class="javax.swing.JTextField" binding="dexterityField">
@@ -131,7 +134,8 @@
               <gridbag weightx="0.0" weighty="1.0" ipadx="20"/>
             </constraints>
             <properties>
-              <text value="Intelligence:"/>
+              <labelFor value="b2418"/>
+              <text resource-bundle="messages" key="intelligence"/>
             </properties>
           </component>
           <component id="b2418" class="javax.swing.JTextField" binding="intelligenceField">
@@ -155,7 +159,8 @@
               <gridbag weightx="0.0" weighty="1.0" ipadx="20"/>
             </constraints>
             <properties>
-              <text value="Wisdom:"/>
+              <labelFor value="f618c"/>
+              <text resource-bundle="messages" key="wisdom"/>
             </properties>
           </component>
           <component id="f618c" class="javax.swing.JTextField" binding="wisdomField">
@@ -180,7 +185,8 @@
               <gridbag weightx="0.0" weighty="1.0" ipadx="20"/>
             </constraints>
             <properties>
-              <text value="Charisma:"/>
+              <labelFor value="d24e"/>
+              <text resource-bundle="messages" key="charisma"/>
             </properties>
           </component>
           <component id="d24e" class="javax.swing.JTextField" binding="charismaField">

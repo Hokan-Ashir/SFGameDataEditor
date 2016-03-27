@@ -1,5 +1,6 @@
 package sfgamedataeditor.views;
 
+import sfgamedataeditor.I18N;
 import sfgamedataeditor.databind.IDataConstraint;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
@@ -40,9 +41,9 @@ public class MainView implements IView {
     private AbstractLevelableEntity currentSelectedView;
 
     public MainView() {
-        loadSfmodFileButton.setText(XMLExtractor.getTagValue("loadSfModFileButtonCaption"));
-        createSfmodFileButton.setText(XMLExtractor.getTagValue("createSfModFileButtonCaption"));
-        modulesLabel.setText(XMLExtractor.getTagValue("modulesListLabel"));
+        loadSfmodFileButton.setText(I18N.getMessage("loadSfModFileButtonCaption"));
+        createSfmodFileButton.setText(I18N.getMessage("createSfModFileButtonCaption"));
+        modulesLabel.setText(I18N.getMessage("modulesListLabel"));
 
         attachLoadSfmodFileButtonListener();
         attachCreateSfmodFileButtonListener();
@@ -51,21 +52,55 @@ public class MainView implements IView {
         fillModulesNameComboBox();
     }
 
+    public static void showMainView() {
+        JFrame frame = new JFrame(I18N.getMessage("sfmodFilesCreationWindowCaption"));
+        final MainView mainView = new MainView();
+        frame.setContentPane(mainView.getMainPanel());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+
+        mainView.getModulesComboBox().addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    Object item = e.getItem();
+
+                    mainView.getModulesPanel().removeAll();
+                    for (Map.Entry<String, AbstractLevelableEntity> stringClassEntry : mainView.getModulesMap().entrySet()) {
+                        if (item.equals(stringClassEntry.getKey())) {
+                            AbstractLevelableEntity view = stringClassEntry.getValue();
+                            mainView.setCurrentSelectedView(view);
+                            view.loadDataFromFile(FilesContainer.getModificationFile());
+                            mainView.getModulesPanel().add(view.getMainPanel());
+                        }
+                    }
+
+                    mainView.getModulesPanel().revalidate();
+                    mainView.getModulesPanel().repaint();
+                }
+            }
+        });
+
+        mainView.getModulesComboBox().setSelectedItem(null);
+        mainView.getModulesComboBox().setSelectedIndex(0);
+    }
+
     private void attachCreateSfmodFileButtonListener() {
         createSfmodFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                final String sfModFileName = JOptionPane.showInputDialog(null, XMLExtractor.getTagValue("newSfModFileName"), XMLExtractor.getTagValue("newSfModFileCreationCaption"), JOptionPane.QUESTION_MESSAGE);
+                final String sfModFileName = JOptionPane.showInputDialog(null, I18N.getMessage("newSfModFileName"), I18N.getMessage("newSfModFileCreationCaption"), JOptionPane.QUESTION_MESSAGE);
                 if (sfModFileName != null && !sfModFileName.isEmpty()) {
-                    String messageCaption = XMLExtractor.getTagValue("message");
-                    String notificationMassage = XMLExtractor.getTagValue("processingSfModFile") + sfModFileName + XMLExtractor.getTagValue("processingCreation")
-                            + "\n" + XMLExtractor.getTagValue("closeMessageWindowProposition");
+                    String messageCaption = I18N.getMessage("message");
+                    String notificationMassage = I18N.getMessage("processingSfModFile") + sfModFileName + I18N.getMessage("processingCreation")
+                            + "\n" + I18N.getMessage("closeMessageWindowProposition");
                     JOptionPane.showMessageDialog(null, notificationMassage, messageCaption, JOptionPane.INFORMATION_MESSAGE);
                     ViewTools.setComponentsEnableStatus(mainPanel, false);
 
                     // TODO add notifications about modification file creation processing (NOT via dialog windows)
                     FileUtils.createSfModFile(sfModFileName);
-                    String successfulMessage = XMLExtractor.getTagValue("sfmodFilePrefix") + sfModFileName + XMLExtractor.getTagValue("successfullyCreated");
+                    String successfulMessage = I18N.getMessage("sfmodFilePrefix") + sfModFileName + I18N.getMessage("successfullyCreated");
                     JOptionPane.showMessageDialog(null, successfulMessage, messageCaption, JOptionPane.INFORMATION_MESSAGE);
 
                     ViewTools.setComponentsEnableStatus(mainPanel, true);
@@ -80,7 +115,7 @@ public class MainView implements IView {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser chooser = new JFileChooser();
                 FileFilter fileFilter = new FileNameExtensionFilter(
-                        XMLExtractor.getTagValue("sfmodFilesDescription"), FileSelectionView.SFMOD_FILE_EXTENSION);
+                        I18N.getMessage("sfmodFilesDescription"), FileSelectionView.SFMOD_FILE_EXTENSION);
                 chooser.setFileFilter(fileFilter);
                 chooser.setAcceptAllFileFilterUsed(false);
                 chooser.showOpenDialog(mainPanel);
@@ -99,9 +134,9 @@ public class MainView implements IView {
 
                 FilesContainer.setModificationFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
 
-                String messageCaption = XMLExtractor.getTagValue("message");
-                String notificationMassage = XMLExtractor.getTagValue("processingSfModFile") + selectedFile.getName() + XMLExtractor.getTagValue("processingLoading")
-                        + "\n" + XMLExtractor.getTagValue("closeMessageWindowProposition");
+                String messageCaption = I18N.getMessage("message");
+                String notificationMassage = I18N.getMessage("processingSfModFile") + selectedFile.getName() + I18N.getMessage("processingLoading")
+                        + "\n" + I18N.getMessage("closeMessageWindowProposition");
                 JOptionPane.showMessageDialog(null, notificationMassage, messageCaption, JOptionPane.INFORMATION_MESSAGE);
                 ViewTools.setComponentsEnableStatus(mainPanel, false);
 
@@ -110,7 +145,7 @@ public class MainView implements IView {
                 currentSelectedView.loadDataFromFile(FilesContainer.getModificationFile());
 
 
-                String successfulMessage = XMLExtractor.getTagValue("sfmodFilePrefix") + FilesContainer.getModificationFileName() + XMLExtractor.getTagValue("successfullyLoaded");
+                String successfulMessage = I18N.getMessage("sfmodFilePrefix") + FilesContainer.getModificationFileName() + I18N.getMessage("successfullyLoaded");
                 JOptionPane.showMessageDialog(null, successfulMessage, messageCaption, JOptionPane.INFORMATION_MESSAGE);
                 ViewTools.setComponentsEnableStatus(mainPanel, true);
             }
@@ -119,7 +154,7 @@ public class MainView implements IView {
 
     private void constructModulesMap() {
         Map<Integer, List<Pair<Integer, Long>>> skillOffsets = ObjectToOffsetExtractor.getSkillSchoolsOffsets();
-        modulesMap.put(XMLExtractor.getTagValue("skillsView"), new SkillView(skillOffsets));
+        modulesMap.put(I18N.getMessage("skillsView"), new SkillView(skillOffsets));
 
         final Map<Integer, Pair<String, List<String>>> spellMap = XMLExtractor.getSpellMap();
         List<IDataConstraint> constraints = getSpellDataConstraints(spellMap);
@@ -315,13 +350,13 @@ public class MainView implements IView {
     private String getSpellSchoolName(byte value) {
         List<String> schoolNames = new ArrayList<String>() {{
             add("");
-            add(XMLExtractor.getTagValue("lightCombatArts"));
-            add(XMLExtractor.getTagValue("heavyCombatArts"));
-            add(XMLExtractor.getTagValue("archery"));
-            add(XMLExtractor.getTagValue("whiteMagic"));
-            add(XMLExtractor.getTagValue("elementalMagic"));
-            add(XMLExtractor.getTagValue("mindMagic"));
-            add(XMLExtractor.getTagValue("blackMagic"));
+            add(I18N.getMessage("lightCombatArts"));
+            add(I18N.getMessage("heavyCombatArts"));
+            add(I18N.getMessage("archery"));
+            add(I18N.getMessage("whiteMagic"));
+            add(I18N.getMessage("elementalMagic"));
+            add(I18N.getMessage("mindMagic"));
+            add(I18N.getMessage("blackMagic"));
         }};
 
         return schoolNames.get(value);
@@ -330,19 +365,19 @@ public class MainView implements IView {
     private String getSpellSubSchoolName(byte schoolValue, byte subSchoolValue) {
         Map<Integer, List<String>> subSchoolsMap = new HashMap<>();
         subSchoolsMap.put(0, new ArrayList<String>());
-        subSchoolsMap.put(1, Arrays.asList("", XMLExtractor.getTagValue("piecingWeapon"), XMLExtractor.getTagValue("lightBlades"),
-                XMLExtractor.getTagValue("lightBlunts"), XMLExtractor.getTagValue("lightArmor")));
-        subSchoolsMap.put(2, Arrays.asList("", XMLExtractor.getTagValue("heavyBlades"), XMLExtractor.getTagValue("heavyBlunts"),
-                XMLExtractor.getTagValue("heavyArmor"), XMLExtractor.getTagValue("shields")));
-        subSchoolsMap.put(3, Arrays.asList("", XMLExtractor.getTagValue("bows"), XMLExtractor.getTagValue("crossbows")));
-        subSchoolsMap.put(4, Arrays.asList("", XMLExtractor.getTagValue("life"), XMLExtractor.getTagValue("nature"),
-                XMLExtractor.getTagValue("boons")));
-        subSchoolsMap.put(5, Arrays.asList("", XMLExtractor.getTagValue("fire"), XMLExtractor.getTagValue("ice"),
-                XMLExtractor.getTagValue("earth")));
-        subSchoolsMap.put(6, Arrays.asList("", XMLExtractor.getTagValue("enchantment"), XMLExtractor.getTagValue("offensive"),
-                XMLExtractor.getTagValue("defensive")));
-        subSchoolsMap.put(7, Arrays.asList("", XMLExtractor.getTagValue("death"), XMLExtractor.getTagValue("necromancy"),
-                XMLExtractor.getTagValue("curses")));
+        subSchoolsMap.put(1, Arrays.asList("", I18N.getMessage("piecingWeapon"), I18N.getMessage("lightBlades"),
+                I18N.getMessage("lightBlunts"), I18N.getMessage("lightArmor")));
+        subSchoolsMap.put(2, Arrays.asList("", I18N.getMessage("heavyBlades"), I18N.getMessage("heavyBlunts"),
+                I18N.getMessage("heavyArmor"), I18N.getMessage("shields")));
+        subSchoolsMap.put(3, Arrays.asList("", I18N.getMessage("bows"), I18N.getMessage("crossbows")));
+        subSchoolsMap.put(4, Arrays.asList("", I18N.getMessage("life"), I18N.getMessage("nature"),
+                I18N.getMessage("boons")));
+        subSchoolsMap.put(5, Arrays.asList("", I18N.getMessage("fire"), I18N.getMessage("ice"),
+                I18N.getMessage("earth")));
+        subSchoolsMap.put(6, Arrays.asList("", I18N.getMessage("enchantment"), I18N.getMessage("offensive"),
+                I18N.getMessage("defensive")));
+        subSchoolsMap.put(7, Arrays.asList("", I18N.getMessage("death"), I18N.getMessage("necromancy"),
+                I18N.getMessage("curses")));
 
         List<String> subSchools = subSchoolsMap.get((int) schoolValue);
         if (subSchools.isEmpty()) {
@@ -356,40 +391,6 @@ public class MainView implements IView {
         for (String s : modulesMap.keySet()) {
             modulesComboBox.addItem(s);
         }
-    }
-
-    public static void showMainView() {
-        JFrame frame = new JFrame(XMLExtractor.getTagValue("sfmodFilesCreationWindowCaption"));
-        final MainView mainView = new MainView();
-        frame.setContentPane(mainView.getMainPanel());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-
-        mainView.getModulesComboBox().addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    Object item = e.getItem();
-
-                    mainView.getModulesPanel().removeAll();
-                    for (Map.Entry<String, AbstractLevelableEntity> stringClassEntry : mainView.getModulesMap().entrySet()) {
-                        if (item.equals(stringClassEntry.getKey())) {
-                            AbstractLevelableEntity view = stringClassEntry.getValue();
-                            mainView.setCurrentSelectedView(view);
-                            view.loadDataFromFile(FilesContainer.getModificationFile());
-                            mainView.getModulesPanel().add(view.getMainPanel());
-                        }
-                    }
-
-                    mainView.getModulesPanel().revalidate();
-                    mainView.getModulesPanel().repaint();
-                }
-            }
-        });
-
-        mainView.getModulesComboBox().setSelectedItem(null);
-        mainView.getModulesComboBox().setSelectedIndex(0);
     }
 
     /**

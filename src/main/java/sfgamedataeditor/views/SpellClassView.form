@@ -44,7 +44,7 @@
           <maximumSize width="250" height="15"/>
           <minimumSize width="250" height="15"/>
           <preferredSize width="250" height="15"/>
-          <text value="Spell:"/>
+          <text resource-bundle="messages" key="spellNameLabel"/>
         </properties>
       </component>
       <component id="79682" class="javax.swing.JLabel" binding="levelLabel">
@@ -53,7 +53,7 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Level:"/>
+          <text resource-bundle="messages" key="levelLabel"/>
         </properties>
       </component>
       <component id="f1055" class="javax.swing.JComboBox" binding="levelComboBox">
@@ -92,7 +92,7 @@
           <gridbag top="0" left="15" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text value="Available spell levels:"/>
+          <text resource-bundle="messages" key="possibleAbilityLevels"/>
         </properties>
       </component>
     </children>

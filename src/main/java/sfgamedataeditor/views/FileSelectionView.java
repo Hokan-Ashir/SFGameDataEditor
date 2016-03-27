@@ -1,9 +1,9 @@
 package sfgamedataeditor.views;
 
+import sfgamedataeditor.I18N;
 import sfgamedataeditor.databind.files.FileData;
 import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.databind.files.FilesContainer;
-import sfgamedataeditor.dataextraction.XMLExtractor;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -28,13 +28,13 @@ public class FileSelectionView implements IView {
     private JButton okButton;
 
     public FileSelectionView() {
-        originalFileLabel.setText(XMLExtractor.getTagValue("fileSelectionWindowOriginalFileTextFieldCaption"));
-        modificationFileLabel.setText(XMLExtractor.getTagValue("fileSelectionWindowModificationFileTextFieldCaption"));
-        okButton.setText(XMLExtractor.getTagValue("ok"));
+        originalFileLabel.setText(I18N.getMessage("fileSelectionWindowOriginalFileTextFieldCaption"));
+        modificationFileLabel.setText(I18N.getMessage("fileSelectionWindowModificationFileTextFieldCaption"));
+        okButton.setText(I18N.getMessage("ok"));
     }
 
     public static void showFileSelectionView() {
-        final JFrame frame = new JFrame(XMLExtractor.getTagValue("fileSelectionWindowCaption"));
+        final JFrame frame = new JFrame(I18N.getMessage("fileSelectionWindowCaption"));
         final FileSelectionView view = new FileSelectionView();
         frame.setContentPane(view.getMainPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +52,7 @@ public class FileSelectionView implements IView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser chooser = new JFileChooser();
-                FileFilter fileFilter = new FileNameExtensionFilter(XMLExtractor.getTagValue("cffFilesDescription"), CFF_FILE_EXTENSION);
+                FileFilter fileFilter = new FileNameExtensionFilter(I18N.getMessage("cffFilesDescription"), CFF_FILE_EXTENSION);
                 chooser.setFileFilter(fileFilter);
                 chooser.setAcceptAllFileFilterUsed(false);
                 chooser.showOpenDialog(view.getMainPanel());
@@ -83,7 +83,7 @@ public class FileSelectionView implements IView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser chooser = new JFileChooser();
-                FileFilter fileFilter = new FileNameExtensionFilter(XMLExtractor.getTagValue("sfmodFilesDescription"), SFMOD_FILE_EXTENSION);
+                FileFilter fileFilter = new FileNameExtensionFilter(I18N.getMessage("sfmodFilesDescription"), SFMOD_FILE_EXTENSION);
                 chooser.setFileFilter(fileFilter);
                 chooser.setAcceptAllFileFilterUsed(false);
                 JPanel mainPanel = view.getMainPanel();
@@ -95,8 +95,8 @@ public class FileSelectionView implements IView {
 
                 ViewTools.setComponentsEnableStatus(mainPanel, false);
                 if (!FileUtils.isModificationFileBasedOnOriginalFile(selectedFile.getPath())) {
-                    String errorCaption = XMLExtractor.getTagValue("error");
-                    String errorMessage = XMLExtractor.getTagValue("sfmodFilePrefix") + selectedFile.getName() + XMLExtractor.getTagValue("basedOnAnotherCffFile");
+                    String errorCaption = I18N.getMessage("error");
+                    String errorMessage = I18N.getMessage("sfmodFilePrefix") + selectedFile.getName() + I18N.getMessage("basedOnAnotherCffFile");
                     JOptionPane.showMessageDialog(null, errorMessage, errorCaption, JOptionPane.ERROR_MESSAGE);
                     ViewTools.setComponentsEnableStatus(mainPanel, true);
                     return;
@@ -125,18 +125,18 @@ public class FileSelectionView implements IView {
                 JButton okButton = view.getOkButton();
                 JPanel mainPanel = view.getMainPanel();
                 ViewTools.setComponentsEnableStatus(mainPanel, false);
-                ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, XMLExtractor.getTagValue("temporaryModificationFileCreation"));
+                ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.getMessage("temporaryModificationFileCreation"));
                 boolean creationSuccess = FileUtils.createTemporaryModificationFile();
                 if (!creationSuccess) {
-                    String errorCaption = XMLExtractor.getTagValue("error");
-                    String errorMessage = XMLExtractor.getTagValue("temporaryModificationFileCreationError");
+                    String errorCaption = I18N.getMessage("error");
+                    String errorMessage = I18N.getMessage("temporaryModificationFileCreationError");
                     JOptionPane.showMessageDialog(null, errorMessage, errorCaption, JOptionPane.ERROR_MESSAGE);
                     ViewTools.setComponentsEnableStatus(mainPanel, true);
-                    ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, XMLExtractor.getTagValue("ok"));
+                    ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.getMessage("ok"));
                     return;
                 }
 
-                ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, XMLExtractor.getTagValue("processingData"));
+                ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.getMessage("processingData"));
                 MainView.showMainView();
                 frame.dispose();
             }
