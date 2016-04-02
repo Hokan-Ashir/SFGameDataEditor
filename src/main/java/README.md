@@ -94,7 +94,7 @@ See "What it can't do" section below to be awared of restrictions.
 # How YOU can help
  - Report new issues about bugs, typos, code advises etc. via https://github.com/Hokan-Ashir/SFGameDataEditor/issues/new
  - Report of spell parameters which you aware of, those which marked as "???"
- - Write French localization file, look a like existing "configuration_EN.xml" one, or correct existing ones
+ - Correct i18n files
  - Download source code, change, refactor it, write me to commit changes
  - Fork this hub and make own version of editor
 
@@ -103,7 +103,6 @@ See "What it can't do" section below to be awared of restrictions.
  - Add more flexible ability to merge multiple sf-mod files
  - Extend sf-mod-files format to include description
  - Extend with item, merchants, buildings, units views
- - Extend with French i18n
  - Replace i18n via XML with resouseBundle files 
  - Add i18n in JOptionPane windows
  - Replace message-windows processing with notifications and separate threads usage

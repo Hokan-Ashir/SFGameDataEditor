@@ -91,7 +91,7 @@
                field4="Max. Ebene:"/>
         <spell id="71" name="Angst" field1="???" field2="???" field3="???" field4="Dauer (ms).:"/>
         <spell id="72" name="Verwechseln" field1="Dauer (ms.):" field2="Max. Kreatur Ebene:"/>
-        <spell id="73" name="Regen des Feuer" field1="Feuerbursts interval (ms.):" field2="Anzahl der feuerbusts:"
+        <spell id="73" name="Regen des Feuer" field1="Feuerbursts interval (ms.):" field2="Anzahl der feuerbursts:"
                field3="???"
                field4="???" field5="Feuerburst Effekt-Nummer:"/>
         <spell id="74" name="Schneesturm" field1="Eisbursts interval (ms.):" field2="Anzahl der Eisbursts:" field3="???"

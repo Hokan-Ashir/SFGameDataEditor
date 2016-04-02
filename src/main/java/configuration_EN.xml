@@ -82,7 +82,7 @@
                field4="Max. level:"/>
         <spell id="71" name="Fear" field1="???" field2="???" field3="???" field4="Duration (ms.):"/>
         <spell id="72" name="Confuse" field1="Duration (ms.):" field2="Max. creature level:"/>
-        <spell id="73" name="RainOfFire" field1="Firebursts interval (ms.):" field2="Number of firebusts:" field3="???"
+        <spell id="73" name="RainOfFire" field1="Firebursts interval (ms.):" field2="Number of firebursts:" field3="???"
                field4="???" field5="Fireburst effect number:"/>
         <spell id="74" name="Blizzard" field1="Icebursts interval (ms.):" field2="Number of icebursts:" field3="???"
                field4="???" field5="Icebursts effect number:"/>
