@@ -46,7 +46,7 @@ See "What it can't do" section below to be awared of restrictions.
 # How to launch it
  - Install, at least, Java 7 from Oracle site (see https://www.java.com/download/)
  - Copy SFGameDataEditor-1.0-SNAPSHOT.jar, configuration_EN.xml AND/OR configuration_RU.xml, depending which language you would like. Place them in one directory
- - Double-click on SFGameDataEditor-1.0-SNAPSHOT.jar OR run with "java -jar SFGameDataEditor.jar" comand in console
+ - Double-click on SFGameDataEditor-1.0-SNAPSHOT.jar OR run with "java -jar SFGameDataEditor-1.0-SNAPSHOT.jar" comand in console
  
 # How to use it
  - After launch you can select editor's language, which is loading via configuration files
@@ -94,7 +94,7 @@ See "What it can't do" section below to be awared of restrictions.
 # How YOU can help
  - Report new issues about bugs, typos, code advises etc. via https://github.com/Hokan-Ashir/SFGameDataEditor/issues/new
  - Report of spell parameters which you aware of, those which marked as "???"
- - Write French and German localization files, look a like existing "configuration_EN.xml" one
+ - Write French localization file, look a like existing "configuration_EN.xml" one, or correct existing ones
  - Download source code, change, refactor it, write me to commit changes
  - Fork this hub and make own version of editor
 
@@ -103,7 +103,7 @@ See "What it can't do" section below to be awared of restrictions.
  - Add more flexible ability to merge multiple sf-mod files
  - Extend sf-mod-files format to include description
  - Extend with item, merchants, buildings, units views
- - Extend with French and German i18n
+ - Extend with French i18n
  - Replace i18n via XML with resouseBundle files 
  - Add i18n in JOptionPane windows
  - Replace message-windows processing with notifications and separate threads usage
