@@ -103,7 +103,6 @@ See "What it can't do" section below to be awared of restrictions.
  - Extend with item, merchants, buildings, units views
  - Replace i18n via XML with resouseBundle files
  - Add support for any language i18n possible
- - Replace message-windows processing with notifications and separate threads usage
 
 # Special thanks
  - This application won't be possible without information grabbed from this forum - http://spellforcefanforum.hostoi.com/index.php

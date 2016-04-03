@@ -1,10 +1,10 @@
 package sfgamedataeditor.skills;
 
-import sfgamedataeditor.I18N;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
 import sfgamedataeditor.databind.files.FilesContainer;
 import sfgamedataeditor.dataextraction.ObjectToOffsetExtractor;
+import sfgamedataeditor.utils.I18N;
 
 import javax.swing.*;
 import java.awt.*;

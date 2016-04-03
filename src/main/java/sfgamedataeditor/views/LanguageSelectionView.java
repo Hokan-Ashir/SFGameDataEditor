@@ -1,7 +1,7 @@
 package sfgamedataeditor.views;
 
-import sfgamedataeditor.I18N;
 import sfgamedataeditor.dataextraction.XMLExtractor;
+import sfgamedataeditor.utils.I18N;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -39,6 +39,7 @@ public class LanguageSelectionView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        ViewTools.centerFrame(frame);
 
         if (view.getLanguageSelectionComboBox().getItemCount() == 0) {
             ViewTools.repaintButtonTextContent(view.getOkButton(), frame, view.getMainPanel(), "No configuration files");

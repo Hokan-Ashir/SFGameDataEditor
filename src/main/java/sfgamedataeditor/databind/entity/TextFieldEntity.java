@@ -1,6 +1,8 @@
 package sfgamedataeditor.databind.entity;
 
-import sfgamedataeditor.I18N;
+import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.utils.Notification;
+import sfgamedataeditor.utils.NotificationType;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -36,15 +38,11 @@ public class TextFieldEntity extends Entity<JTextField> {
                 try {
                     value = Integer.parseInt(text);
                     if (value < 0) {
-                        JOptionPane.showMessageDialog(null,
-                                I18N.getMessage("errorNumberLessThanZero"), I18N.getMessage("error"),
-                                JOptionPane.ERROR_MESSAGE);
+                        new Notification(I18N.getMessage("errorNumberLessThanZero"), NotificationType.ERROR);
                         return;
                     }
                 } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null,
-                            I18N.getMessage("errorNotANumber"), I18N.getMessage("error"),
-                            JOptionPane.ERROR_MESSAGE);
+                    new Notification(I18N.getMessage("errorNotANumber"), NotificationType.ERROR);
                     return;
                 }
 

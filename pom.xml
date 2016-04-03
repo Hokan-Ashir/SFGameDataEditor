@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.hokan</groupId>
     <artifactId>SFGameDataEditor</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <repositories>
+        <repository>
+            <id>aparsons-github</id>
+            <url>https://github.com/aparsons/maven-repository/raw/master</url>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>
@@ -71,6 +79,9 @@
                                     </excludes>
                                 </filter>
                             </filters>
+                            <minimizeJar>
+                                true
+                            </minimizeJar>
                         </configuration>
                     </execution>
                 </executions>
@@ -85,13 +96,16 @@
             <artifactId>winzipaes</artifactId>
             <version>1.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>ch.swingfx</groupId>
+            <artifactId>twinkle</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
         <dependency>
-            <groupId>org.mantlik</groupId>
-            <artifactId>XDeltaEncoder</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/java/sfgamedataeditor/XDeltaEncoder.jar</systemPath>
+            <groupId>net.sf.trove4j</groupId>
+            <artifactId>trove4j</artifactId>
+            <version>2.0.2</version>
         </dependency>
     </dependencies>
 </project>

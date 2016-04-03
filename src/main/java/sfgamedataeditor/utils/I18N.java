@@ -1,4 +1,4 @@
-package sfgamedataeditor;
+package sfgamedataeditor.utils;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

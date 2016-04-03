@@ -3,7 +3,7 @@ package sfgamedataeditor.databind.files;
 import de.idyl.winzipaes.AesZipFileDecrypter;
 import de.idyl.winzipaes.AesZipFileEncrypter;
 import de.idyl.winzipaes.impl.*;
-import org.mantlik.xdeltaencoder.XDeltaEncoder;
+import xdeltaencoder.org.mantlik.xdeltaencoder.XDeltaEncoder;
 
 import java.io.*;
 import java.nio.file.Files;

@@ -1,9 +1,11 @@
 package sfgamedataeditor.views;
 
-import sfgamedataeditor.I18N;
 import sfgamedataeditor.databind.files.FileData;
 import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.databind.files.FilesContainer;
+import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.utils.Notification;
+import sfgamedataeditor.utils.NotificationType;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -40,6 +42,7 @@ public class FileSelectionView implements IView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        ViewTools.centerFrame(frame);
 
         view.getOkButton().setEnabled(false);
         addOpenParametersEditorListener(frame, view);
@@ -95,9 +98,8 @@ public class FileSelectionView implements IView {
 
                 ViewTools.setComponentsEnableStatus(mainPanel, false);
                 if (!FileUtils.isModificationFileBasedOnOriginalFile(selectedFile.getPath())) {
-                    String errorCaption = I18N.getMessage("error");
                     String errorMessage = I18N.getMessage("sfmodFilePrefix") + selectedFile.getName() + I18N.getMessage("basedOnAnotherCffFile");
-                    JOptionPane.showMessageDialog(null, errorMessage, errorCaption, JOptionPane.ERROR_MESSAGE);
+                    new Notification(errorMessage, NotificationType.ERROR);
                     ViewTools.setComponentsEnableStatus(mainPanel, true);
                     return;
                 }
@@ -128,9 +130,8 @@ public class FileSelectionView implements IView {
                 ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.getMessage("temporaryModificationFileCreation"));
                 boolean creationSuccess = FileUtils.createTemporaryModificationFile();
                 if (!creationSuccess) {
-                    String errorCaption = I18N.getMessage("error");
                     String errorMessage = I18N.getMessage("temporaryModificationFileCreationError");
-                    JOptionPane.showMessageDialog(null, errorMessage, errorCaption, JOptionPane.ERROR_MESSAGE);
+                    new Notification(errorMessage, NotificationType.ERROR);
                     ViewTools.setComponentsEnableStatus(mainPanel, true);
                     ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.getMessage("ok"));
                     return;

@@ -41,4 +41,9 @@ public class ViewTools {
         frame.pack();
         panel.paintImmediately(panel.getBounds());
     }
+
+    public static void centerFrame(JFrame frame) {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setLocation(screenSize.width / 2 - frame.getWidth() / 2, screenSize.height / 2 - frame.getHeight() / 2);
+    }
 }

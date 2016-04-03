@@ -1,9 +1,9 @@
 package sfgamedataeditor.skills;
 
-import sfgamedataeditor.I18N;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.entity.EntityContainer;
 import sfgamedataeditor.databind.entity.EntityTuple;
+import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.IView;
 
 import javax.swing.*;

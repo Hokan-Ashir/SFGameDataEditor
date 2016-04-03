@@ -1,9 +1,9 @@
 package sfgamedataeditor.views;
 
-import sfgamedataeditor.I18N;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
 import sfgamedataeditor.databind.files.FilesContainer;
+import sfgamedataeditor.utils.I18N;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,5 @@
 package sfgamedataeditor.views;
 
-import sfgamedataeditor.I18N;
 import sfgamedataeditor.databind.IDataConstraint;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
@@ -10,6 +9,8 @@ import sfgamedataeditor.databind.files.FilesContainer;
 import sfgamedataeditor.dataextraction.ObjectToOffsetExtractor;
 import sfgamedataeditor.dataextraction.XMLExtractor;
 import sfgamedataeditor.skills.SkillView;
+import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.utils.Notification;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -59,6 +60,7 @@ public class MainView implements IView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        ViewTools.centerFrame(frame);
 
         mainView.getModulesComboBox().addItemListener(new ItemListener() {
             @Override
@@ -92,16 +94,14 @@ public class MainView implements IView {
             public void actionPerformed(ActionEvent e) {
                 final String sfModFileName = JOptionPane.showInputDialog(null, I18N.getMessage("newSfModFileName"), I18N.getMessage("newSfModFileCreationCaption"), JOptionPane.QUESTION_MESSAGE);
                 if (sfModFileName != null && !sfModFileName.isEmpty()) {
-                    String messageCaption = I18N.getMessage("message");
                     String notificationMassage = I18N.getMessage("processingSfModFile") + sfModFileName + I18N.getMessage("processingCreation")
                             + "\n" + I18N.getMessage("closeMessageWindowProposition");
-                    JOptionPane.showMessageDialog(null, notificationMassage, messageCaption, JOptionPane.INFORMATION_MESSAGE);
+                    new Notification(notificationMassage);
                     ViewTools.setComponentsEnableStatus(mainPanel, false);
 
-                    // TODO add notifications about modification file creation processing (NOT via dialog windows)
                     FileUtils.createSfModFile(sfModFileName);
                     String successfulMessage = I18N.getMessage("sfmodFilePrefix") + sfModFileName + I18N.getMessage("successfullyCreated");
-                    JOptionPane.showMessageDialog(null, successfulMessage, messageCaption, JOptionPane.INFORMATION_MESSAGE);
+                    new Notification(successfulMessage);
 
                     ViewTools.setComponentsEnableStatus(mainPanel, true);
                 }
@@ -134,19 +134,17 @@ public class MainView implements IView {
 
                 FilesContainer.setModificationFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
 
-                String messageCaption = I18N.getMessage("message");
                 String notificationMassage = I18N.getMessage("processingSfModFile") + selectedFile.getName() + I18N.getMessage("processingLoading")
                         + "\n" + I18N.getMessage("closeMessageWindowProposition");
-                JOptionPane.showMessageDialog(null, notificationMassage, messageCaption, JOptionPane.INFORMATION_MESSAGE);
+                new Notification(notificationMassage);
                 ViewTools.setComponentsEnableStatus(mainPanel, false);
 
-                // TODO add notifications about modification file loading process (NOT via dialog windows)
                 FileUtils.createTemporaryModificationFile();
                 currentSelectedView.loadDataFromFile(FilesContainer.getModificationFile());
 
 
                 String successfulMessage = I18N.getMessage("sfmodFilePrefix") + FilesContainer.getModificationFileName() + I18N.getMessage("successfullyLoaded");
-                JOptionPane.showMessageDialog(null, successfulMessage, messageCaption, JOptionPane.INFORMATION_MESSAGE);
+                new Notification(successfulMessage);
                 ViewTools.setComponentsEnableStatus(mainPanel, true);
             }
         });
