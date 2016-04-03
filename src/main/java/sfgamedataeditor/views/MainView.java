@@ -365,7 +365,7 @@ public class MainView implements IView {
     private String getSpellSubSchoolName(byte schoolValue, byte subSchoolValue) {
         Map<Integer, List<String>> subSchoolsMap = new HashMap<>();
         subSchoolsMap.put(0, new ArrayList<String>());
-        subSchoolsMap.put(1, Arrays.asList("", I18N.getMessage("piecingWeapon"), I18N.getMessage("lightBlades"),
+        subSchoolsMap.put(1, Arrays.asList("", I18N.getMessage("piercingWeapon"), I18N.getMessage("lightBlades"),
                 I18N.getMessage("lightBlunts"), I18N.getMessage("lightArmor")));
         subSchoolsMap.put(2, Arrays.asList("", I18N.getMessage("heavyBlades"), I18N.getMessage("heavyBlunts"),
                 I18N.getMessage("heavyArmor"), I18N.getMessage("shields")));

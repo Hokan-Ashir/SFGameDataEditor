@@ -35,13 +35,11 @@ See "What it can't do" section below to be awared of restrictions.
  - Almost no validations on entering values
  
  Text fields has only "enter only digit", "enter value greater than zero" validation. So if you will enter, i.e. 65536 in 2-bytes field (which has maximum value of 65535), you may expect application will crush and stun forever
- - No other languages except English and Russian, yet ability to extend with French and German languages
- 
- You can easily change localizations by changing xml-configuration files or write new ones, like French or German
+ - No other languages except English, Russian, German and French
  
  NOTE: 
  
- File name format MUST look like "configuration_XX.xml", where XX is language signature, FR for French and DE for German. Register irrelevant
+ Localization name format MUST look like "configuration_XX.xml", where XX is language signature. Register irrelevant
 
 # How to launch it
  - Install, at least, Java 7 from Oracle site (see https://www.java.com/download/)
@@ -105,6 +103,7 @@ See "What it can't do" section below to be awared of restrictions.
  - Extend with item, merchants, buildings, units views
  - Replace i18n via XML with resouseBundle files 
  - Add i18n in JOptionPane windows
+ - Add support for any language i18n possible
  - Replace message-windows processing with notifications and separate threads usage
 
 # Special thanks

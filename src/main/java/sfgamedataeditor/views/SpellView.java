@@ -165,7 +165,7 @@ public class SpellView extends EntityContainer implements IView {
         classSubClassComboBoxContent.put(I18N.getMessage("archery"),
                 Arrays.asList("",
                         I18N.getMessage("bows"),
-                        I18N.getMessage("corssbows")
+                        I18N.getMessage("crossbows")
                 )
         );
         classSubClassComboBoxContent.put(I18N.getMessage("whiteMagic"),
