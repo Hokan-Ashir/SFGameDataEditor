@@ -8,9 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class LanguageSelectionView {
     private static final String CONFIGURATION_XML_FILE_PREFIX = "configuration_";
@@ -61,17 +59,58 @@ public class LanguageSelectionView {
 
                 Locale locale;
                 if (countryLanguage == null) {
+                    // TODO show "no such locale detected, english locale will be used by default"
                     locale = Locale.getDefault();
                 } else {
                     locale = new Locale(countryLanguage);
                 }
                 I18N.loadBundleMessages("messages", locale);
+                initializeDefaultSwingComponentsI18N();
                 XMLExtractor.setConfigurationXml(view.getLanguageToFileMap().get(selectedItem));
 
                 FileSelectionView.showFileSelectionView();
                 frame.dispose();
             }
         });
+    }
+
+    private static void initializeDefaultSwingComponentsI18N() {
+        List<String> componentPropertyList = new ArrayList<String>() {{
+            add("FileChooser.openDialogTitleText");
+            add("FileChooser.saveDialogTitleText");
+            add("FileChooser.lookInLabelText");
+            add("FileChooser.saveInLabelText");
+            add("FileChooser.upFolderToolTipText");
+            add("FileChooser.homeFolderToolTipText");
+            add("FileChooser.newFolderToolTipText");
+            add("FileChooser.listViewButtonToolTipText");
+            add("FileChooser.detailsViewButtonToolTipText");
+            add("FileChooser.fileNameHeaderText");
+            add("FileChooser.fileSizeHeaderText");
+            add("FileChooser.fileTypeHeaderText");
+            add("FileChooser.fileDateHeaderText");
+            add("FileChooser.fileAttrHeaderText");
+            add("FileChooser.fileNameLabelText");
+            add("FileChooser.filesOfTypeLabelText");
+            add("FileChooser.openButtonText");
+            add("FileChooser.openButtonToolTipText");
+            add("FileChooser.saveButtonText");
+            add("FileChooser.saveButtonToolTipText");
+            add("FileChooser.directoryOpenButtonText");
+            add("FileChooser.directoryOpenButtonToolTipText");
+            add("FileChooser.cancelButtonText");
+            add("FileChooser.cancelButtonToolTipText");
+            add("FileChooser.newFolderErrorText");
+            add("FileChooser.acceptAllFileFilterText");
+            add("OptionPane.yesButtonText");
+            add("OptionPane.noButtonText");
+            add("OptionPane.cancelButtonText");
+            add("ProgressMonitor.progressText");
+        }};
+
+        for (String s : componentPropertyList) {
+            UIManager.put(s, I18N.getMessage(s));
+        }
     }
 
     private void generateUI() {

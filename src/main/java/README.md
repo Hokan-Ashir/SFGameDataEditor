@@ -101,8 +101,7 @@ See "What it can't do" section below to be awared of restrictions.
  - Add more flexible ability to merge multiple sf-mod files
  - Extend sf-mod-files format to include description
  - Extend with item, merchants, buildings, units views
- - Replace i18n via XML with resouseBundle files 
- - Add i18n in JOptionPane windows
+ - Replace i18n via XML with resouseBundle files
  - Add support for any language i18n possible
  - Replace message-windows processing with notifications and separate threads usage
 
