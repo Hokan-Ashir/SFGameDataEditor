@@ -3,6 +3,7 @@ package sfgamedataeditor.databind.files;
 import de.idyl.winzipaes.AesZipFileDecrypter;
 import de.idyl.winzipaes.AesZipFileEncrypter;
 import de.idyl.winzipaes.impl.*;
+import org.apache.log4j.Logger;
 import xdeltaencoder.org.mantlik.xdeltaencoder.XDeltaEncoder;
 
 import java.io.*;
@@ -15,7 +16,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.zip.DataFormatException;
 import java.util.zip.ZipException;
 
-public class FileUtils {
+public final class FileUtils {
+
+    private static final Logger LOGGER = Logger.getLogger(FileUtils.class);
 
     private static final String TMP_FILE_EXTENSION = ".tmp";
     private static final String SFMOD_FILE_EXTENSION = ".sfmod";
@@ -48,11 +51,11 @@ public class FileUtils {
                     try {
                         aesZipFileDecrypter.extractEntry(extZipEntry, new File(tempExtractedFilePath), password);
                     } catch (DataFormatException e) {
-                        e.printStackTrace();
+                        LOGGER.error(e.getMessage(), e);
                     }
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage(), e);
             }
 
             XDeltaEncoder.main(new String[]{"-d", originalFilePath, tempExtractedFilePath, modificationFileDirectory});
@@ -60,7 +63,7 @@ public class FileUtils {
             try {
                 Files.delete(Paths.get(tempExtractedFilePath));
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage(), e);
             }
 
         } else {
@@ -68,8 +71,8 @@ public class FileUtils {
             Path modificationFilePath = Paths.get(originalFileDirectory + modificationFileName);
             try {
                 Files.copy(originalFilePath, modificationFilePath, StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException e1) {
-                e1.printStackTrace();
+            } catch (IOException e) {
+                LOGGER.error(e.getMessage(), e);
                 return false;
             }
         }
@@ -77,8 +80,8 @@ public class FileUtils {
         RandomAccessFile file;
         try {
             file = new RandomAccessFile(originalFileDirectory + modificationFileName, "rw");
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
+        } catch (FileNotFoundException e) {
+            LOGGER.error(e.getMessage(), e);
             return false;
         }
 
@@ -102,7 +105,7 @@ public class FileUtils {
         try {
             Files.delete(Paths.get(tempDiffFilePath));
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
     }
 
@@ -112,7 +115,7 @@ public class FileUtils {
         try {
             encrypter.init(password, KEY_SIZE);
         } catch (ZipException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
 
         sfModFileName += SFMOD_FILE_EXTENSION;
@@ -120,7 +123,7 @@ public class FileUtils {
         try {
             AesZipFileEncrypter.zipAndEncrypt(new File(tempDiffFilePath), new File(resultFilePath), password, encrypter);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
     }
 
@@ -140,18 +143,18 @@ public class FileUtils {
                 try {
                     aesZipFileDecrypter.extractEntry(extZipEntry, new File(tempExtractedFilePath), password);
                 } catch (DataFormatException e) {
-                    e.printStackTrace();
+                    LOGGER.error(e.getMessage(), e);
                     return false;
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
             return false;
         } finally {
             try {
                 Files.delete(Paths.get(tempExtractedFilePath));
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage(), e);
             }
         }
 
@@ -170,7 +173,7 @@ public class FileUtils {
         try {
             md = MessageDigest.getInstance(HASH_ALGORITHM);
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
             return null;
 
         }
@@ -179,7 +182,7 @@ public class FileUtils {
         try {
             fis = new FileInputStream(filePath + fileName);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
             return null;
         }
 
@@ -191,7 +194,7 @@ public class FileUtils {
                 md.update(dataBytes, 0, nread);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
             return null;
         }
 

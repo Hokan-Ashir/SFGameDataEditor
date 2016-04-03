@@ -1,5 +1,6 @@
 package sfgamedataeditor.databind.entity;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.databind.files.FilesContainer;
 
 import javax.swing.*;
@@ -7,6 +8,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public abstract class Entity<T extends JComponent> extends AbstractEntity {
+
+    private static final Logger LOGGER = Logger.getLogger(Entity.class);
 
     private int[] value;
     private T component;
@@ -43,7 +46,7 @@ public abstract class Entity<T extends JComponent> extends AbstractEntity {
                 file.write(value[value.length - 1 - i]);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
     }
 
@@ -79,7 +82,7 @@ public abstract class Entity<T extends JComponent> extends AbstractEntity {
                 data[i] = file.readUnsignedByte();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
 
         return data;

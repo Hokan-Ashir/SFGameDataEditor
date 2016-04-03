@@ -1,5 +1,6 @@
 package sfgamedataeditor.dataextraction;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -17,7 +18,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class XMLExtractor {
+public final class XMLExtractor {
+
+    private static final Logger LOGGER = Logger.getLogger(XMLExtractor.class);
 
     private static final String SPELL_TAG_NAME = "spell";
     private static final String ID_ATTRIBUTE = "id";
@@ -73,18 +76,15 @@ public class XMLExtractor {
         try {
             builder = builderFactory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
             return null;
         }
 
         Document document;
         try {
             document = builder.parse(file);
-        } catch (SAXException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (SAXException | IOException e) {
+            LOGGER.error(e.getMessage(), e);
             return null;
         }
 

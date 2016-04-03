@@ -1,5 +1,6 @@
 package sfgamedataeditor.views;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.databind.files.FileData;
 import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.databind.files.FilesContainer;
@@ -19,7 +20,7 @@ import java.io.RandomAccessFile;
 public class FileSelectionView implements IView {
     public static final String CFF_FILE_EXTENSION = "cff";
     public static final String SFMOD_FILE_EXTENSION = "sfmod";
-
+    private static final Logger LOGGER = Logger.getLogger(FileSelectionView.class);
     private JPanel mainPanel;
     private JTextField originalFileField;
     private JLabel originalFileLabel;
@@ -69,8 +70,8 @@ public class FileSelectionView implements IView {
                 RandomAccessFile file;
                 try {
                     file = new RandomAccessFile(selectedFile.getAbsolutePath(), "r");
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
+                } catch (FileNotFoundException ex) {
+                    LOGGER.error(ex.getMessage(), ex);
                     view.getOkButton().setEnabled(false);
                     return;
                 }
@@ -109,8 +110,8 @@ public class FileSelectionView implements IView {
                 RandomAccessFile file;
                 try {
                     file = new RandomAccessFile(selectedFile.getAbsolutePath(), "r");
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
+                } catch (FileNotFoundException ex) {
+                    LOGGER.error(ex.getMessage(), ex);
                     return;
                 }
 

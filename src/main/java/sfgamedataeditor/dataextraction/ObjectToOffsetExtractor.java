@@ -1,5 +1,6 @@
 package sfgamedataeditor.dataextraction;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.databind.IDataConstraint;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.files.FilesContainer;
@@ -11,15 +12,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ObjectToOffsetExtractor {
-
-    private static final int SKILL_DATA_BEGIN_OFFSET = 0x03F85FD4;
-    private static final int SKILL_DATA_END_OFFSET = 0x03F864BF;
-    private static final int SKILL_SCHOOL_LEVEL_DATA_LENGTH = 0x2;
+public final class ObjectToOffsetExtractor {
 
     public static final int NUMBER_OF_ABILITY_SCHOOLS = 7;
     public static final int NUMBER_OF_ABILITY_SUBSCHOOLS = 3;
     public static final int NUMBER_OF_ABILITY_LEVELS = 20;
+    private static final Logger LOGGER = Logger.getLogger(ObjectToOffsetExtractor.class);
+    private static final int SKILL_DATA_BEGIN_OFFSET = 0x03F85FD4;
+    private static final int SKILL_DATA_END_OFFSET = 0x03F864BF;
+    private static final int SKILL_SCHOOL_LEVEL_DATA_LENGTH = 0x2;
 
     private ObjectToOffsetExtractor() {
 
@@ -67,7 +68,7 @@ public class ObjectToOffsetExtractor {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
 
         return result;

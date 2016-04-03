@@ -1,5 +1,6 @@
 package sfgamedataeditor.views;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.databind.IDataConstraint;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.entity.AbstractLevelableEntity;
@@ -26,6 +27,8 @@ import java.io.RandomAccessFile;
 import java.util.*;
 
 public class MainView implements IView {
+    private static final Logger LOGGER = Logger.getLogger(MainView.class);
+
     private static final int SPELLS_DATA_BEGIN_OFFSET = 0x20;
     private static final int SPELLS_DATA_END_OFFSET = 0x3fd13;
     private static final int SPELL_DATA_LENGTH = 76;
@@ -127,8 +130,8 @@ public class MainView implements IView {
                 RandomAccessFile file;
                 try {
                     file = new RandomAccessFile(selectedFile.getAbsolutePath(), "r");
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
+                } catch (FileNotFoundException ex) {
+                    LOGGER.error(ex.getMessage(), ex);
                     return;
                 }
 
@@ -185,7 +188,7 @@ public class MainView implements IView {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
         }
 
         constructSpellClassViews(spellMap);
