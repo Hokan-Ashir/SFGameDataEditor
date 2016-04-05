@@ -1,19 +1,13 @@
 package sfgamedataeditor.views;
 
-import sfgamedataeditor.dataextraction.XMLExtractor;
 import sfgamedataeditor.utils.I18N;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class LanguageSelectionView {
-    private static final String CONFIGURATION_XML_FILE_PREFIX = "configuration_";
-    private static final String XML_FILE_EXTENSION = ".xml";
-
     private static final Map<String, String> LANGUAGE_FILE_MAP = new HashMap<String, String>() {{
         put("en", "English");
         put("ru", "Russian");
@@ -21,15 +15,15 @@ public class LanguageSelectionView {
         put("de", "German");
     }};
 
-    private Map<String, String> languageToFileMap = new HashMap<>();
-
     private JButton okButton;
     private JComboBox languageSelectionComboBox;
     private JLabel languageSelectionLabel;
     private JPanel mainPanel;
 
     public LanguageSelectionView() {
-        generateUI();
+        for (String s : LANGUAGE_FILE_MAP.values()) {
+            languageSelectionComboBox.addItem(s);
+        }
     }
 
     public static void main(String[] args) {
@@ -67,7 +61,6 @@ public class LanguageSelectionView {
                 }
                 I18N.loadBundleMessages("messages", locale);
                 initializeDefaultSwingComponentsI18N();
-                XMLExtractor.setConfigurationXml(view.getLanguageToFileMap().get(selectedItem));
 
                 FileSelectionView.showFileSelectionView();
                 frame.dispose();
@@ -114,32 +107,6 @@ public class LanguageSelectionView {
         }
     }
 
-    private void generateUI() {
-        File currentDirectory = new File(Paths.get(".").toAbsolutePath().normalize().toString());
-        File[] directoryListing = currentDirectory.listFiles();
-        if (directoryListing == null) {
-            return;
-        }
-
-        for (File child : directoryListing) {
-            String name = child.getName().toLowerCase();
-            if (!(name.startsWith(CONFIGURATION_XML_FILE_PREFIX)
-                    && name.endsWith(XML_FILE_EXTENSION))) {
-                continue;
-            }
-
-            int prefixNameIndex = name.lastIndexOf(CONFIGURATION_XML_FILE_PREFIX) + CONFIGURATION_XML_FILE_PREFIX.length();
-            int extensionNameIndex = name.indexOf(XML_FILE_EXTENSION);
-            String fileLanguageExtension = name.substring(prefixNameIndex, extensionNameIndex);
-            String languageName = LANGUAGE_FILE_MAP.get(fileLanguageExtension);
-            boolean notExistsInComboBox = ((DefaultComboBoxModel) languageSelectionComboBox.getModel()).getIndexOf(languageName) == -1;
-            if (LANGUAGE_FILE_MAP.containsKey(fileLanguageExtension) && notExistsInComboBox) {
-                languageSelectionComboBox.addItem(languageName);
-                languageToFileMap.put(languageName, child.getName());
-            }
-        }
-    }
-
     public JPanel getMainPanel() {
         return mainPanel;
     }
@@ -150,9 +117,5 @@ public class LanguageSelectionView {
 
     public JComboBox getLanguageSelectionComboBox() {
         return languageSelectionComboBox;
-    }
-
-    public Map<String, String> getLanguageToFileMap() {
-        return languageToFileMap;
     }
 }

@@ -8,7 +8,7 @@ import sfgamedataeditor.databind.files.FileData;
 import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.databind.files.FilesContainer;
 import sfgamedataeditor.dataextraction.ObjectToOffsetExtractor;
-import sfgamedataeditor.dataextraction.XMLExtractor;
+import sfgamedataeditor.dataextraction.SpellMap;
 import sfgamedataeditor.skills.SkillView;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
@@ -157,7 +157,7 @@ public class MainView implements IView {
         Map<Integer, List<Pair<Integer, Long>>> skillOffsets = ObjectToOffsetExtractor.getSkillSchoolsOffsets();
         modulesMap.put(I18N.getMessage("skillsView"), new SkillView(skillOffsets));
 
-        final Map<Integer, Pair<String, List<String>>> spellMap = XMLExtractor.getSpellMap();
+        final Map<Integer, Pair<String, List<String>>> spellMap = SpellMap.getSpellMap();
         List<IDataConstraint> constraints = getSpellDataConstraints(spellMap);
         RandomAccessFile file = FilesContainer.getModificationFile();
         try {

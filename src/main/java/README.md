@@ -43,7 +43,7 @@ See "What it can't do" section below to be awared of restrictions.
 
 # How to launch it
  - Install, at least, Java 7 from Oracle site (see https://www.java.com/download/)
- - Copy SFGameDataEditor-1.0-SNAPSHOT.jar, configuration_EN.xml AND/OR configuration_RU.xml, depending which language you would like. Place them in one directory
+ - Copy SFGameDataEditor-1.0-SNAPSHOT.jar
  - Double-click on SFGameDataEditor-1.0-SNAPSHOT.jar OR run with "java -jar SFGameDataEditor-1.0-SNAPSHOT.jar" comand in console
  
 # How to use it
@@ -101,7 +101,6 @@ See "What it can't do" section below to be awared of restrictions.
  - Add more flexible ability to merge multiple sf-mod files
  - Extend sf-mod-files format to include description
  - Extend with item, merchants, buildings, units views
- - Replace i18n via XML with resouseBundle files
  - Add support for any language i18n possible
 
 # Special thanks
