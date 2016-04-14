@@ -1,6 +1,7 @@
 package sfgamedataeditor.views;
 
 import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 
 public class LanguageSelectionView {
-    private static final Map<String, String> LANGUAGE_FILE_MAP = new HashMap<String, String>() {{
+    private static final Map<String, String> LANGUAGE_FILE_MAP = new TreeMap<String, String>() {{
         put("en", "English");
         put("ru", "Russian");
         put("fr", "French");

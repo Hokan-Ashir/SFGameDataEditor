@@ -30,16 +30,12 @@ See "What it can't do" section below to be awared of restrictions.
 
 # What it can't do
  - Set ability mana usage field to 0
- 
  Because of specific spell data seaching mechanisms, to determine where spell data begins application uses "non-zero mana usage" assumption
  - Almost no validations on entering values
- 
  Text fields has only "enter only digit", "enter value greater than zero" validation. So if you will enter, i.e. 65536 in 2-bytes field (which has maximum value of 65535), you may expect application will crush and stun forever
  - No other languages except English, Russian, German and French
- 
- NOTE: 
- 
- Localization name format MUST look like "configuration_XX.xml", where XX is language signature. Register irrelevant
+ NOTE:
+ Localization name format MUST look like "messages_XX.properties", where XX is language signature. Register irrelevant
 
 # How to launch it
  - Install, at least, Java 7 from Oracle site (see https://www.java.com/download/)
@@ -51,14 +47,10 @@ See "What it can't do" section below to be awared of restrictions.
  - Then you must select, at least, original file (or already modificated file, see NOTE below); and sf-mod file optionaly
  - After changing different parameters you can create sfmod-file, which will consists of changes you made via "Create sf-mod file" button
  - You can also load sf-mod-file during editing with "Load sf-mod file" button
- 
  WARNING:
- 
  This will erase all your current changed
  - Also after closing application you will get "GameData.cff.mod" file in the same directory, where original GameData.cff, which includes all your changes
- 
  NOTE:
- 
  Because of compatibilty, editor stores hash of original file based on which sf-mod-file created. 
  This is made to exclude file format errors. 
  So if you will try to load sf-mod file, which was created not based on original file, you selected, you will have corresponding message.
@@ -78,7 +70,7 @@ See "What it can't do" section below to be awared of restrictions.
   - ModificationFile = XDeltaEncoder(OriginalFile, TmpFile, MERGE)
 
 # What YOU can do
- - Create modificated GameData.cff files for your own need, or distribute them with people, who can't access editor for some resons
+ - Create modified GameData.cff files for your own need, or distribute them with people, who can't access editor for some reasons
  - Create sf-mod-files in terms of "mods" to original game, which people can use with ease, cause sf-mod-files have much lesser size
  - Create collections of sf-mod-files with this action chain: 
   - Load original file, i.e. GameData.cff
@@ -97,7 +89,6 @@ See "What it can't do" section below to be awared of restrictions.
  - Fork this hub and make own version of editor
 
 # TODO
- - Complete architecture redesign to minimize number of class instances, increase extensibility, make cleaner and module code
  - Add more flexible ability to merge multiple sf-mod files
  - Extend sf-mod-files format to include description
  - Extend with item, merchants, buildings, units views

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.common.NotImplementedView">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="900" height="740"/>
+    </constraints>
+    <properties>
+      <maximumSize width="900" height="740"/>
+      <minimumSize width="900" height="740"/>
+      <preferredSize width="900" height="740"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="8f4dc" class="javax.swing.JLabel" binding="notImplementedLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Not Implemented"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

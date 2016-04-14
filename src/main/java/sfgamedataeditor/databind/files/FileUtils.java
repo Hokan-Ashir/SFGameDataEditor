@@ -31,14 +31,14 @@ public final class FileUtils {
     }
 
     public static boolean createTemporaryModificationFile() {
-        String originalFileDirectory = FilesContainer.getOriginalFilePath();
-        String originalFileName = FilesContainer.getOriginalFileName();
+        String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
+        String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
         String modificationFileName = originalFileName + MOD_FILE_EXTENSION;
         String modificationFileDirectory = originalFileDirectory + modificationFileName;
 
-        if (FilesContainer.getModificationFile() != null) {
+        if (FilesContainer.INSTANCE.getModificationFile() != null) {
             String originalFilePath = originalFileDirectory + originalFileName;
-            String sfModificationFilePath = FilesContainer.getModificationFilePath() + FilesContainer.getModificationFileName();
+            String sfModificationFilePath = FilesContainer.INSTANCE.getModificationFilePath() + FilesContainer.INSTANCE.getModificationFileName();
             String tempExtractedFilePath = originalFilePath + TMP_FILE_EXTENSION;
 
             String password = getHashSHA_512(originalFileDirectory, originalFileName);
@@ -85,18 +85,18 @@ public final class FileUtils {
             return false;
         }
 
-        FilesContainer.setModificationFile(new FileData(file, originalFileDirectory, modificationFileName));
+        FilesContainer.INSTANCE.setModificationFile(new FileData(file, originalFileDirectory, modificationFileName));
 
         return true;
     }
 
     public static void createSfModFile(String sfModFileName) {
-        String originalFileDirectory = FilesContainer.getOriginalFilePath();
-        String originalFileName = FilesContainer.getOriginalFileName();
+        String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
+        String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
         String originalFilePath = originalFileDirectory + originalFileName;
         String tempDiffFilePath = originalFilePath + TMP_FILE_EXTENSION;
 
-        String modificationFilePath = FilesContainer.getModificationFilePath() + FilesContainer.getModificationFileName();
+        String modificationFilePath = FilesContainer.INSTANCE.getModificationFilePath() + FilesContainer.INSTANCE.getModificationFileName();
 
         XDeltaEncoder.main(new String[]{originalFilePath, modificationFilePath, tempDiffFilePath});
 
@@ -128,8 +128,8 @@ public final class FileUtils {
     }
 
     public static boolean isModificationFileBasedOnOriginalFile(String sfModificationFilePath) {
-        String originalFileDirectory = FilesContainer.getOriginalFilePath();
-        String originalFileName = FilesContainer.getOriginalFileName();
+        String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
+        String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
         String originalFilePath = originalFileDirectory + originalFileName;
         String tempExtractedFilePath = originalFilePath + TMP_FILE_EXTENSION;
 

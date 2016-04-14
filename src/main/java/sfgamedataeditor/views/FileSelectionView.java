@@ -7,6 +7,7 @@ import sfgamedataeditor.databind.files.FilesContainer;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
 import sfgamedataeditor.utils.NotificationType;
+import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -17,7 +18,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 
-public class FileSelectionView implements IView {
+public class FileSelectionView {
     public static final String CFF_FILE_EXTENSION = "cff";
     public static final String SFMOD_FILE_EXTENSION = "sfmod";
     private static final Logger LOGGER = Logger.getLogger(FileSelectionView.class);
@@ -62,7 +63,7 @@ public class FileSelectionView implements IView {
                 chooser.showOpenDialog(view.getMainPanel());
                 File selectedFile = chooser.getSelectedFile();
                 if (selectedFile == null) {
-                    view.getOkButton().setEnabled(FilesContainer.getOriginalFile() != null);
+                    view.getOkButton().setEnabled(FilesContainer.INSTANCE.getOriginalFile() != null);
                     return;
                 }
 
@@ -76,7 +77,7 @@ public class FileSelectionView implements IView {
                     return;
                 }
 
-                FilesContainer.setOriginalFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
+                FilesContainer.INSTANCE.setOriginalFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
                 view.getOkButton().setEnabled(true);
             }
         });
@@ -115,7 +116,7 @@ public class FileSelectionView implements IView {
                     return;
                 }
 
-                FilesContainer.setModificationFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
+                FilesContainer.INSTANCE.setModificationFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
             }
         });
     }
@@ -139,16 +140,12 @@ public class FileSelectionView implements IView {
                 }
 
                 ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.getMessage("processingData"));
-                MainView.showMainView();
+                ModulesView.showModulesView();
                 frame.dispose();
             }
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public JPanel getMainPanel() {
         return mainPanel;
     }

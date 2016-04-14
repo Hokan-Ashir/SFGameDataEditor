@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public final class SpellMap {
+public enum SpellMap {
+    INSTANCE;
+
     private static final int NUMBER_OF_PARAMETER_FIELDS = 9;
     private static final String FIELD_ATTRIBUTE = "field";
     private static final String NAME_ATTRIBUTE = "name";
@@ -250,11 +252,14 @@ public final class SpellMap {
         put(241, "FakeSpellOneFigure");
     }};
 
-    private SpellMap() {
-    }
+    private Map<Integer, Pair<String, List<String>>> spellMap;
 
-    public static Map<Integer, Pair<String, List<String>>> getSpellMap() {
-        Map<Integer, Pair<String, List<String>>> map = new HashMap<>();
+    public Map<Integer, Pair<String, List<String>>> getSpellMap() {
+        if (spellMap != null) {
+            return spellMap;
+        }
+
+        spellMap = new HashMap<>();
         for (Map.Entry<Integer, String> integerStringEntry : SpellMap.SPELLMAP.entrySet()) {
             String spellName = I18N.getMessage(integerStringEntry.getValue() + "." + NAME_ATTRIBUTE);
             List<String> spellParameters = new ArrayList<>();
@@ -271,9 +276,9 @@ public final class SpellMap {
                     // spell may have, its easier and unifiable to catch exceptions
                 }
             }
-            map.put(integerStringEntry.getKey(), new Pair<>(spellName, spellParameters));
+            spellMap.put(integerStringEntry.getKey(), new Pair<>(spellName, spellParameters));
         }
 
-        return map;
+        return spellMap;
     }
 }

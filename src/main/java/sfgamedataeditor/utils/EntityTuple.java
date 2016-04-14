@@ -1,4 +1,4 @@
-package sfgamedataeditor.databind.entity;
+package sfgamedataeditor.utils;
 
 import javax.swing.*;
 

@@ -2,14 +2,13 @@ package sfgamedataeditor.databind.files;
 
 import java.io.RandomAccessFile;
 
-public final class FilesContainer {
-    private static FileData originalFileData;
-    private static FileData modificationFileData;
+public enum FilesContainer {
+    INSTANCE;
 
-    private FilesContainer() {
-    }
+    private FileData originalFileData;
+    private FileData modificationFileData;
 
-    public static RandomAccessFile getOriginalFile() {
+    public RandomAccessFile getOriginalFile() {
         if (originalFileData == null) {
             return null;
         }
@@ -17,7 +16,11 @@ public final class FilesContainer {
         return originalFileData.getFile();
     }
 
-    public static RandomAccessFile getModificationFile() {
+    public void setOriginalFile(FileData originalFileData) {
+        this.originalFileData = originalFileData;
+    }
+
+    public RandomAccessFile getModificationFile() {
         if (modificationFileData == null) {
             return null;
         }
@@ -25,15 +28,11 @@ public final class FilesContainer {
         return modificationFileData.getFile();
     }
 
-    public static void setOriginalFile(FileData originalFileData) {
-        FilesContainer.originalFileData = originalFileData;
+    public void setModificationFile(FileData modificationFileData) {
+        this.modificationFileData = modificationFileData;
     }
 
-    public static void setModificationFile(FileData modificationFileData) {
-        FilesContainer.modificationFileData = modificationFileData;
-    }
-
-    public static String getOriginalFilePath() {
+    public String getOriginalFilePath() {
         if (originalFileData == null) {
             return null;
         }
@@ -41,7 +40,7 @@ public final class FilesContainer {
         return originalFileData.getPath();
     }
 
-    public static String getOriginalFileName() {
+    public String getOriginalFileName() {
         if (originalFileData == null) {
             return null;
         }
@@ -49,7 +48,7 @@ public final class FilesContainer {
         return originalFileData.getName();
     }
 
-    public static String getModificationFilePath() {
+    public String getModificationFilePath() {
         if (modificationFileData == null) {
             return null;
         }
@@ -57,7 +56,7 @@ public final class FilesContainer {
         return modificationFileData.getPath();
     }
 
-    public static String getModificationFileName() {
+    public String getModificationFileName() {
         if (modificationFileData == null) {
             return null;
         }

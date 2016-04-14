@@ -1,4 +1,4 @@
-package sfgamedataeditor.views;
+package sfgamedataeditor.views.utility;
 
 import javax.swing.*;
 import java.awt.*;
