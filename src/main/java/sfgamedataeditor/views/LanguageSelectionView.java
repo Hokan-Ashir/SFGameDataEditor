@@ -60,7 +60,7 @@ public class LanguageSelectionView {
                 } else {
                     locale = new Locale(countryLanguage);
                 }
-                I18N.loadBundleMessages("messages", locale);
+                I18N.INSTANCE.loadBundleMessages("messages", locale);
                 initializeDefaultSwingComponentsI18N();
 
                 FileSelectionView.showFileSelectionView();
@@ -104,7 +104,7 @@ public class LanguageSelectionView {
         }};
 
         for (String s : componentPropertyList) {
-            UIManager.put(s, I18N.getMessage(s));
+            UIManager.put(s, I18N.INSTANCE.getMessage(s));
         }
     }
 

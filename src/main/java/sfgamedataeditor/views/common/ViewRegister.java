@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum ViewRegister {
-    INSTNANCE;
+    INSTANCE;
 
     private Map<Class<? extends AbstractView>, AbstractView> viewRegister = new HashMap<>();
 

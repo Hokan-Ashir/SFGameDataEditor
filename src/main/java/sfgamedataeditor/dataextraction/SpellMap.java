@@ -261,11 +261,11 @@ public enum SpellMap {
 
         spellMap = new HashMap<>();
         for (Map.Entry<Integer, String> integerStringEntry : SpellMap.SPELLMAP.entrySet()) {
-            String spellName = I18N.getMessage(integerStringEntry.getValue() + "." + NAME_ATTRIBUTE);
+            String spellName = I18N.INSTANCE.getMessage(integerStringEntry.getValue() + "." + NAME_ATTRIBUTE);
             List<String> spellParameters = new ArrayList<>();
             for (int i = 0; i < NUMBER_OF_PARAMETER_FIELDS; ++i) {
                 try {
-                    spellParameters.add(I18N.getMessage(integerStringEntry.getValue() + "." + FIELD_ATTRIBUTE + String.valueOf(i + 1)));
+                    spellParameters.add(I18N.INSTANCE.getMessage(integerStringEntry.getValue() + "." + FIELD_ATTRIBUTE + String.valueOf(i + 1)));
                 } catch (Exception e) {
                     // TODO ignore this exception, this is happening when i18n can't find
                     // corresponding value in ResourceBundle, read from file

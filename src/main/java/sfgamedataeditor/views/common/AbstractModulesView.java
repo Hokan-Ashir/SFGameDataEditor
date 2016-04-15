@@ -28,7 +28,7 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
                 }
 
                 Class<? extends AbstractView> viewClass = comboBoxMapping.get(selectedItem);
-                AbstractView view = ViewRegister.INSTNANCE.getView(viewClass, AbstractModulesView.this);
+                AbstractView view = ViewRegister.INSTANCE.getView(viewClass, AbstractModulesView.this);
                 view.show();
             }
         });
@@ -70,6 +70,9 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
         modulesLabel.setText(text);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JPanel getSubModulesPanel() {
         return subModulesPanel;

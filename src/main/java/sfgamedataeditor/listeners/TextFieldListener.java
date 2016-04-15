@@ -18,16 +18,25 @@ public class TextFieldListener implements DocumentListener {
         this.field = field;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void insertUpdate(DocumentEvent e) {
         changeValue();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void removeUpdate(DocumentEvent e) {
         changeValue();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void changedUpdate(DocumentEvent e) {
         changeValue();
@@ -43,11 +52,11 @@ public class TextFieldListener implements DocumentListener {
         try {
             value = Integer.parseInt(text);
             if (value < 0) {
-                new Notification(I18N.getMessage("errorNumberLessThanZero"), NotificationType.ERROR);
+                new Notification(I18N.INSTANCE.getMessage("errorNumberLessThanZero"), NotificationType.ERROR);
                 return;
             }
         } catch (NumberFormatException e) {
-            new Notification(I18N.getMessage("errorNotANumber"), NotificationType.ERROR);
+            new Notification(I18N.INSTANCE.getMessage("errorNotANumber"), NotificationType.ERROR);
             return;
         }
 

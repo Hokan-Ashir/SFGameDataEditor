@@ -15,6 +15,9 @@ public class ComboBoxListener implements ItemListener {
         this.comboBox = comboBox;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() != ItemEvent.SELECTED) {

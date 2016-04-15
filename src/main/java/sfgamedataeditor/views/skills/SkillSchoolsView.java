@@ -10,9 +10,12 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
 
     public SkillSchoolsView(ModulesView parentView) {
         super(parentView);
-        setModulesLabelText(I18N.getMessage("skillSchools"));
+        setModulesLabelText(I18N.INSTANCE.getMessage("skillSchools"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void fillComboBoxMapping() {
         for (String s : Mappings.INSTANCE.SKILL_SCHOOL_MAP.keySet()) {
@@ -20,6 +23,9 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void show() {
         getParentView().getSubModulesPanel().removeAll();

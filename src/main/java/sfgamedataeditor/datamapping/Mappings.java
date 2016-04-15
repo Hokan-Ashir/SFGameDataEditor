@@ -8,19 +8,19 @@ public enum Mappings {
     INSTANCE;
 
     public Map<String, Integer> SKILL_SCHOOL_MAP = new HashMap<String, Integer>() {{
-        put(I18N.getMessage("lightCombatArts"), 1);
-        put(I18N.getMessage("heavyCombatArts"), 2);
-        put(I18N.getMessage("archery"), 3);
-        put(I18N.getMessage("whiteMagic"), 4);
-        put(I18N.getMessage("elementalMagic"), 5);
-        put(I18N.getMessage("mindMagic"), 6);
-        put(I18N.getMessage("blackMagic"), 7);
+        put(I18N.INSTANCE.getMessage("lightCombatArts"), 1);
+        put(I18N.INSTANCE.getMessage("heavyCombatArts"), 2);
+        put(I18N.INSTANCE.getMessage("archery"), 3);
+        put(I18N.INSTANCE.getMessage("whiteMagic"), 4);
+        put(I18N.INSTANCE.getMessage("elementalMagic"), 5);
+        put(I18N.INSTANCE.getMessage("mindMagic"), 6);
+        put(I18N.INSTANCE.getMessage("blackMagic"), 7);
     }};
 
     public Map<String, SpellRequirementTuple> SPELL_SCHOOL_MAP = new HashMap<String, SpellRequirementTuple>() {{
-        put(I18N.getMessage("lightCombatArts"), new SpellRequirementTuple(1));
-        put(I18N.getMessage("heavyCombatArts"), new SpellRequirementTuple(2));
-        put(I18N.getMessage("archery"), new SpellRequirementTuple(3));
+        put(I18N.INSTANCE.getMessage("lightCombatArts"), new SpellRequirementTuple(1));
+        put(I18N.INSTANCE.getMessage("heavyCombatArts"), new SpellRequirementTuple(2));
+        put(I18N.INSTANCE.getMessage("archery"), new SpellRequirementTuple(3));
         put(getMessage("whiteMagic", "all"), new SpellRequirementTuple(4, 1, 4, 2, 4, 3));
         put(getMessage("whiteMagic", "life", "nature"), new SpellRequirementTuple(4, 1, 4, 2));
         put(getMessage("whiteMagic", "life", "boons"), new SpellRequirementTuple(4, 1, 4, 3));
@@ -56,65 +56,65 @@ public enum Mappings {
         // accidentally set (via this Editor) i.e "Iceburst" "White Magic - Nature" requirements
         // instead of "Elemental Magic - Ice"
         put("", Collections.singletonList(""));
-        put(I18N.getMessage("lightCombatArts"),
+        put(I18N.INSTANCE.getMessage("lightCombatArts"),
                 Arrays.asList("",
-                        I18N.getMessage("piercingWeapon"),
-                        I18N.getMessage("lightBlades"),
-                        I18N.getMessage("lightBlunts"),
-                        I18N.getMessage("lightArmor")
+                        I18N.INSTANCE.getMessage("piercingWeapon"),
+                        I18N.INSTANCE.getMessage("lightBlades"),
+                        I18N.INSTANCE.getMessage("lightBlunts"),
+                        I18N.INSTANCE.getMessage("lightArmor")
                 )
         );
-        put(I18N.getMessage("heavyCombatArts"),
+        put(I18N.INSTANCE.getMessage("heavyCombatArts"),
                 Arrays.asList("",
-                        I18N.getMessage("heavyBlades"),
-                        I18N.getMessage("heavyBlunts"),
-                        I18N.getMessage("heavyArmor"),
-                        I18N.getMessage("shields")
+                        I18N.INSTANCE.getMessage("heavyBlades"),
+                        I18N.INSTANCE.getMessage("heavyBlunts"),
+                        I18N.INSTANCE.getMessage("heavyArmor"),
+                        I18N.INSTANCE.getMessage("shields")
                 )
         );
-        put(I18N.getMessage("archery"),
+        put(I18N.INSTANCE.getMessage("archery"),
                 Arrays.asList("",
-                        I18N.getMessage("bows"),
-                        I18N.getMessage("crossbows")
+                        I18N.INSTANCE.getMessage("bows"),
+                        I18N.INSTANCE.getMessage("crossbows")
                 )
         );
-        put(I18N.getMessage("whiteMagic"),
+        put(I18N.INSTANCE.getMessage("whiteMagic"),
                 Arrays.asList("",
-                        I18N.getMessage("life"),
-                        I18N.getMessage("nature"),
-                        I18N.getMessage("boons")
+                        I18N.INSTANCE.getMessage("life"),
+                        I18N.INSTANCE.getMessage("nature"),
+                        I18N.INSTANCE.getMessage("boons")
                 )
         );
-        put(I18N.getMessage("elementalMagic"),
+        put(I18N.INSTANCE.getMessage("elementalMagic"),
                 Arrays.asList("",
-                        I18N.getMessage("fire"),
-                        I18N.getMessage("ice"),
-                        I18N.getMessage("earth")
+                        I18N.INSTANCE.getMessage("fire"),
+                        I18N.INSTANCE.getMessage("ice"),
+                        I18N.INSTANCE.getMessage("earth")
                 )
         );
-        put(I18N.getMessage("mindMagic"),
+        put(I18N.INSTANCE.getMessage("mindMagic"),
                 Arrays.asList("",
-                        I18N.getMessage("enchantment"),
-                        I18N.getMessage("offensive"),
-                        I18N.getMessage("defensive")
+                        I18N.INSTANCE.getMessage("enchantment"),
+                        I18N.INSTANCE.getMessage("offensive"),
+                        I18N.INSTANCE.getMessage("defensive")
                 )
         );
-        put(I18N.getMessage("blackMagic"),
+        put(I18N.INSTANCE.getMessage("blackMagic"),
                 Arrays.asList("",
-                        I18N.getMessage("death"),
-                        I18N.getMessage("necromancy"),
-                        I18N.getMessage("curses")
+                        I18N.INSTANCE.getMessage("death"),
+                        I18N.INSTANCE.getMessage("necromancy"),
+                        I18N.INSTANCE.getMessage("curses")
                 )
         );
     }};
 
     private String getMessage(String mainSchool, String... subSchools) {
         StringBuilder builder = new StringBuilder();
-        builder.append(I18N.getMessage(mainSchool));
+        builder.append(I18N.INSTANCE.getMessage(mainSchool));
         if (subSchools != null) {
             builder.append(" : ");
             for (String subSchool : subSchools) {
-                builder.append(I18N.getMessage(subSchool));
+                builder.append(I18N.INSTANCE.getMessage(subSchool));
                 builder.append(" ");
             }
             builder.deleteCharAt(builder.length() - 1);

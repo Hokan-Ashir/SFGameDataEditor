@@ -11,9 +11,12 @@ public class NotImplementedView extends AbstractView<ModulesView> {
 
     public NotImplementedView(ModulesView parentView) {
         super(parentView);
-        notImplementedLabel.setText(I18N.getMessage("notImplemented"));
+        notImplementedLabel.setText(I18N.INSTANCE.getMessage("notImplemented"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void show() {
         getParentView().getSubModulesPanel().removeAll();

@@ -32,13 +32,13 @@ public class FileSelectionView {
     private JButton okButton;
 
     public FileSelectionView() {
-        originalFileLabel.setText(I18N.getMessage("fileSelectionWindowOriginalFileTextFieldCaption"));
-        modificationFileLabel.setText(I18N.getMessage("fileSelectionWindowModificationFileTextFieldCaption"));
-        okButton.setText(I18N.getMessage("ok"));
+        originalFileLabel.setText(I18N.INSTANCE.getMessage("fileSelectionWindowOriginalFileTextFieldCaption"));
+        modificationFileLabel.setText(I18N.INSTANCE.getMessage("fileSelectionWindowModificationFileTextFieldCaption"));
+        okButton.setText(I18N.INSTANCE.getMessage("ok"));
     }
 
     public static void showFileSelectionView() {
-        final JFrame frame = new JFrame(I18N.getMessage("fileSelectionWindowCaption"));
+        final JFrame frame = new JFrame(I18N.INSTANCE.getMessage("fileSelectionWindowCaption"));
         final FileSelectionView view = new FileSelectionView();
         frame.setContentPane(view.getMainPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,7 +57,7 @@ public class FileSelectionView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser chooser = new JFileChooser();
-                FileFilter fileFilter = new FileNameExtensionFilter(I18N.getMessage("cffFilesDescription"), CFF_FILE_EXTENSION);
+                FileFilter fileFilter = new FileNameExtensionFilter(I18N.INSTANCE.getMessage("cffFilesDescription"), CFF_FILE_EXTENSION);
                 chooser.setFileFilter(fileFilter);
                 chooser.setAcceptAllFileFilterUsed(false);
                 chooser.showOpenDialog(view.getMainPanel());
@@ -88,7 +88,7 @@ public class FileSelectionView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser chooser = new JFileChooser();
-                FileFilter fileFilter = new FileNameExtensionFilter(I18N.getMessage("sfmodFilesDescription"), SFMOD_FILE_EXTENSION);
+                FileFilter fileFilter = new FileNameExtensionFilter(I18N.INSTANCE.getMessage("sfmodFilesDescription"), SFMOD_FILE_EXTENSION);
                 chooser.setFileFilter(fileFilter);
                 chooser.setAcceptAllFileFilterUsed(false);
                 JPanel mainPanel = view.getMainPanel();
@@ -100,7 +100,7 @@ public class FileSelectionView {
 
                 ViewTools.setComponentsEnableStatus(mainPanel, false);
                 if (!FileUtils.isModificationFileBasedOnOriginalFile(selectedFile.getPath())) {
-                    String errorMessage = I18N.getMessage("sfmodFilePrefix") + selectedFile.getName() + I18N.getMessage("basedOnAnotherCffFile");
+                    String errorMessage = I18N.INSTANCE.getMessage("sfmodFilePrefix") + selectedFile.getName() + I18N.INSTANCE.getMessage("basedOnAnotherCffFile");
                     new Notification(errorMessage, NotificationType.ERROR);
                     ViewTools.setComponentsEnableStatus(mainPanel, true);
                     return;
@@ -129,17 +129,17 @@ public class FileSelectionView {
                 JButton okButton = view.getOkButton();
                 JPanel mainPanel = view.getMainPanel();
                 ViewTools.setComponentsEnableStatus(mainPanel, false);
-                ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.getMessage("temporaryModificationFileCreation"));
+                ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.INSTANCE.getMessage("temporaryModificationFileCreation"));
                 boolean creationSuccess = FileUtils.createTemporaryModificationFile();
                 if (!creationSuccess) {
-                    String errorMessage = I18N.getMessage("temporaryModificationFileCreationError");
+                    String errorMessage = I18N.INSTANCE.getMessage("temporaryModificationFileCreationError");
                     new Notification(errorMessage, NotificationType.ERROR);
                     ViewTools.setComponentsEnableStatus(mainPanel, true);
-                    ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.getMessage("ok"));
+                    ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.INSTANCE.getMessage("ok"));
                     return;
                 }
 
-                ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.getMessage("processingData"));
+                ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.INSTANCE.getMessage("processingData"));
                 ModulesView.showModulesView();
                 frame.dispose();
             }

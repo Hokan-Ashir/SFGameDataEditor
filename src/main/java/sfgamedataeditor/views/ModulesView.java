@@ -12,19 +12,17 @@ import javax.swing.*;
 
 public class ModulesView extends AbstractModulesView {
 
-    private ButtonsView<ModulesView> viewButtonsView;
-
     public ModulesView(AbstractModulesView parentView) {
         super(parentView);
         getMainPanel().setLayout(new BoxLayout(getMainPanel(), BoxLayout.Y_AXIS));
-        setModulesLabelText(I18N.getMessage("modulesList"));
-        viewButtonsView = new ButtonsView<>(this);
+        setModulesLabelText(I18N.INSTANCE.getMessage("modulesList"));
+        ButtonsView<ModulesView> viewButtonsView = new ButtonsView<>(this);
         getMainPanel().add(viewButtonsView.getMainPanel());
         selectFirstComboBoxItem();
     }
 
     public static void showModulesView() {
-        JFrame frame = new JFrame(I18N.getMessage("sfmodFilesCreationWindowCaption"));
+        JFrame frame = new JFrame(I18N.INSTANCE.getMessage("sfmodFilesCreationWindowCaption"));
         final ModulesView modulesView = new ModulesView(null);
         frame.setContentPane(modulesView.getMainPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,18 +31,24 @@ public class ModulesView extends AbstractModulesView {
         ViewTools.centerFrame(frame);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void show() {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void fillComboBoxMapping() {
-        getComboBoxMapping().put(I18N.getMessage("skills"), SkillSchoolsView.class);
-        getComboBoxMapping().put(I18N.getMessage("spells"), SpellSchoolsView.class);
-        getComboBoxMapping().put(I18N.getMessage("merchants"), NotImplementedView.class);
-        getComboBoxMapping().put(I18N.getMessage("buildings"), NotImplementedView.class);
-        getComboBoxMapping().put(I18N.getMessage("units"), NotImplementedView.class);
-        getComboBoxMapping().put(I18N.getMessage("items"), NotImplementedView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("skills"), SkillSchoolsView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("spells"), SpellSchoolsView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("merchants"), NotImplementedView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("buildings"), NotImplementedView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("units"), NotImplementedView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("items"), NotImplementedView.class);
     }
 }

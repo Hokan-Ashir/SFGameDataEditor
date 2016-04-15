@@ -116,23 +116,23 @@ public class SpellParameterView extends AbstractView<SpellsView> {
     }
 
     private void setCommonLabelsI18nNames() {
-        numberLabel.setText(I18N.getMessage("spellNumber"));
-        typeLabel.setText(I18N.getMessage("spellType"));
-        requirementClassLabel.setText(I18N.getMessage("spellRequirementClass"));
-        requirementSubClassLabel.setText(I18N.getMessage("spellRequirementSubClass"));
-        requirementLevelLabel.setText(I18N.getMessage("spellRequirementLevel"));
-        requirementClassLabel2.setText(I18N.getMessage("spellRequirementClass"));
-        requirementSubClassLabel2.setText(I18N.getMessage("spellRequirementSubClass"));
-        requirementLevelLabel2.setText(I18N.getMessage("spellRequirementLevel"));
-        requirementClassLabel3.setText(I18N.getMessage("spellRequirementClass"));
-        requirementSubClassLabel3.setText(I18N.getMessage("spellRequirementSubClass"));
-        requirementLevelLabel3.setText(I18N.getMessage("spellRequirementLevel"));
-        manaUsageLabel.setText(I18N.getMessage("spellManaUsage"));
-        castTimeLabel.setText(I18N.getMessage("spellCastTime"));
-        cooldownLabel.setText(I18N.getMessage("spellCooldown"));
-        minRangeLabel.setText(I18N.getMessage("spellMinRange"));
-        maxRangeLabel.setText(I18N.getMessage("spellMaxRange"));
-        castTypeLabel.setText(I18N.getMessage("spellCastType"));
+        numberLabel.setText(I18N.INSTANCE.getMessage("spellNumber"));
+        typeLabel.setText(I18N.INSTANCE.getMessage("spellType"));
+        requirementClassLabel.setText(I18N.INSTANCE.getMessage("spellRequirementClass"));
+        requirementSubClassLabel.setText(I18N.INSTANCE.getMessage("spellRequirementSubClass"));
+        requirementLevelLabel.setText(I18N.INSTANCE.getMessage("spellRequirementLevel"));
+        requirementClassLabel2.setText(I18N.INSTANCE.getMessage("spellRequirementClass"));
+        requirementSubClassLabel2.setText(I18N.INSTANCE.getMessage("spellRequirementSubClass"));
+        requirementLevelLabel2.setText(I18N.INSTANCE.getMessage("spellRequirementLevel"));
+        requirementClassLabel3.setText(I18N.INSTANCE.getMessage("spellRequirementClass"));
+        requirementSubClassLabel3.setText(I18N.INSTANCE.getMessage("spellRequirementSubClass"));
+        requirementLevelLabel3.setText(I18N.INSTANCE.getMessage("spellRequirementLevel"));
+        manaUsageLabel.setText(I18N.INSTANCE.getMessage("spellManaUsage"));
+        castTimeLabel.setText(I18N.INSTANCE.getMessage("spellCastTime"));
+        cooldownLabel.setText(I18N.INSTANCE.getMessage("spellCooldown"));
+        minRangeLabel.setText(I18N.INSTANCE.getMessage("spellMinRange"));
+        maxRangeLabel.setText(I18N.INSTANCE.getMessage("spellMaxRange"));
+        castTypeLabel.setText(I18N.INSTANCE.getMessage("spellCastType"));
     }
 
     private void attachFieldListeners() {
@@ -232,13 +232,18 @@ public class SpellParameterView extends AbstractView<SpellsView> {
         entities.add(new EntityTuple<>(parameterField10, blockOffset + 68, 4));
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void show() {
         updateData();
         reattachView();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateData() {
         int selectedSpellId = getSelectedSpellId();
@@ -278,7 +283,7 @@ public class SpellParameterView extends AbstractView<SpellsView> {
                     if (i < spellParameterNames.size()) {
                         parameterLabels.get(i).setText(convertToMultiline(spellParameterNames.get(i)));
                     } else {
-                        parameterLabels.get(i).setText(I18N.getMessage("spellParameterNotUsed"));
+                        parameterLabels.get(i).setText(I18N.INSTANCE.getMessage("spellParameterNotUsed"));
                     }
                 }
                 break;

@@ -28,8 +28,8 @@ public class ButtonsView<T extends AbstractView & Containerable> extends Abstrac
 
     public ButtonsView(T parentView) {
         super(parentView);
-        loadSfmodFileButton.setText(I18N.getMessage("loadSfModFileButtonCaption"));
-        createSfmodFileButton.setText(I18N.getMessage("createSfModFileButtonCaption"));
+        loadSfmodFileButton.setText(I18N.INSTANCE.getMessage("loadSfModFileButtonCaption"));
+        createSfmodFileButton.setText(I18N.INSTANCE.getMessage("createSfModFileButtonCaption"));
 
         attachLoadSfmodFileButtonListener();
         attachCreateSfmodFileButtonListener();
@@ -39,15 +39,15 @@ public class ButtonsView<T extends AbstractView & Containerable> extends Abstrac
         createSfmodFileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                final String sfModFileName = JOptionPane.showInputDialog(null, I18N.getMessage("newSfModFileName"), I18N.getMessage("newSfModFileCreationCaption"), JOptionPane.QUESTION_MESSAGE);
+                final String sfModFileName = JOptionPane.showInputDialog(null, I18N.INSTANCE.getMessage("newSfModFileName"), I18N.INSTANCE.getMessage("newSfModFileCreationCaption"), JOptionPane.QUESTION_MESSAGE);
                 if (sfModFileName != null && !sfModFileName.isEmpty()) {
-                    String notificationMassage = I18N.getMessage("processingSfModFile") + sfModFileName + I18N.getMessage("processingCreation")
-                            + "\n" + I18N.getMessage("closeMessageWindowProposition");
+                    String notificationMassage = I18N.INSTANCE.getMessage("processingSfModFile") + sfModFileName + I18N.INSTANCE.getMessage("processingCreation")
+                            + "\n" + I18N.INSTANCE.getMessage("closeMessageWindowProposition");
                     new Notification(notificationMassage);
                     ViewTools.setComponentsEnableStatus(getParentView().getSubModulesPanel(), false);
 
                     FileUtils.createSfModFile(sfModFileName);
-                    String successfulMessage = I18N.getMessage("sfmodFilePrefix") + sfModFileName + I18N.getMessage("successfullyCreated");
+                    String successfulMessage = I18N.INSTANCE.getMessage("sfmodFilePrefix") + sfModFileName + I18N.INSTANCE.getMessage("successfullyCreated");
                     new Notification(successfulMessage);
 
                     ViewTools.setComponentsEnableStatus(getParentView().getSubModulesPanel(), true);
@@ -62,7 +62,7 @@ public class ButtonsView<T extends AbstractView & Containerable> extends Abstrac
             public void actionPerformed(ActionEvent e) {
                 JFileChooser chooser = new JFileChooser();
                 FileFilter fileFilter = new FileNameExtensionFilter(
-                        I18N.getMessage("sfmodFilesDescription"), FileSelectionView.SFMOD_FILE_EXTENSION);
+                        I18N.INSTANCE.getMessage("sfmodFilesDescription"), FileSelectionView.SFMOD_FILE_EXTENSION);
                 chooser.setFileFilter(fileFilter);
                 chooser.setAcceptAllFileFilterUsed(false);
                 chooser.showOpenDialog(getParentView().getSubModulesPanel());
@@ -81,21 +81,24 @@ public class ButtonsView<T extends AbstractView & Containerable> extends Abstrac
 
                 FilesContainer.INSTANCE.setModificationFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
 
-                String notificationMassage = I18N.getMessage("processingSfModFile") + selectedFile.getName() + I18N.getMessage("processingLoading")
-                        + "\n" + I18N.getMessage("closeMessageWindowProposition");
+                String notificationMassage = I18N.INSTANCE.getMessage("processingSfModFile") + selectedFile.getName() + I18N.INSTANCE.getMessage("processingLoading")
+                        + "\n" + I18N.INSTANCE.getMessage("closeMessageWindowProposition");
                 new Notification(notificationMassage);
                 ViewTools.setComponentsEnableStatus(getParentView().getSubModulesPanel(), false);
 
                 FileUtils.createTemporaryModificationFile();
                 getParentView().updateData();
 
-                String successfulMessage = I18N.getMessage("sfmodFilePrefix") + FilesContainer.INSTANCE.getModificationFileName() + I18N.getMessage("successfullyLoaded");
+                String successfulMessage = I18N.INSTANCE.getMessage("sfmodFilePrefix") + FilesContainer.INSTANCE.getModificationFileName() + I18N.INSTANCE.getMessage("successfullyLoaded");
                 new Notification(successfulMessage);
                 ViewTools.setComponentsEnableStatus(getParentView().getSubModulesPanel(), true);
             }
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void show() {
 

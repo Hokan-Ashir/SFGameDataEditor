@@ -13,10 +13,11 @@ import java.util.*;
 public enum OffsetProvider {
     INSTANCE;
 
-    public static final int NUMBER_OF_ABILITY_SCHOOLS = 7;
-    public static final int NUMBER_OF_ABILITY_SUBSCHOOLS = 3;
-    public static final int NUMBER_OF_ABILITY_LEVELS = 20;
     private static final Logger LOGGER = Logger.getLogger(OffsetProvider.class);
+
+    private static final int NUMBER_OF_ABILITY_SCHOOLS = 7;
+    private static final int NUMBER_OF_ABILITY_SUBSCHOOLS = 3;
+    private static final int NUMBER_OF_ABILITY_LEVELS = 20;
     private static final int SKILL_SCHOOL_LEVEL_DATA_LENGTH = 0x2;
     private static final int SPELL_DATA_LENGTH = 76;
     private static final int SPELL_NUMBER_DATA_LENGTH = 0x2;

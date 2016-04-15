@@ -53,13 +53,13 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
     }
 
     private void setLabelsI18nNames() {
-        stregthLabel.setText(I18N.getMessage("strength"));
-        staminaField.setText(I18N.getMessage("stamina"));
-        dexterityLabel.setText(I18N.getMessage("dexterity"));
-        agilityLabel.setText(I18N.getMessage("agility"));
-        intelligenceLabel.setText(I18N.getMessage("intelligence"));
-        wisdomLabel.setText(I18N.getMessage("wisdom"));
-        charismaLabel.setText(I18N.getMessage("charisma"));
+        stregthLabel.setText(I18N.INSTANCE.getMessage("strength"));
+        staminaField.setText(I18N.INSTANCE.getMessage("stamina"));
+        dexterityLabel.setText(I18N.INSTANCE.getMessage("dexterity"));
+        agilityLabel.setText(I18N.INSTANCE.getMessage("agility"));
+        intelligenceLabel.setText(I18N.INSTANCE.getMessage("intelligence"));
+        wisdomLabel.setText(I18N.INSTANCE.getMessage("wisdom"));
+        charismaLabel.setText(I18N.INSTANCE.getMessage("charisma"));
     }
 
     private void attachTextFieldListeners() {
@@ -99,12 +99,18 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
         }};
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void show() {
         updateData();
         reattachView();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateData() {
         long skillParametersOffset = getSkillParametersOffset();

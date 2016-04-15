@@ -11,7 +11,7 @@ public class LevelableView<T extends AbstractView> extends AbstractView<T> {
 
     public LevelableView(T parentView) {
         super(parentView);
-        levelLabel.setText(I18N.getMessage("levelLabel"));
+        levelLabel.setText(I18N.INSTANCE.getMessage("levelLabel"));
     }
 
     public JPanel getMainPanel() {
@@ -26,6 +26,9 @@ public class LevelableView<T extends AbstractView> extends AbstractView<T> {
         return levelComboBox;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void show() {
 

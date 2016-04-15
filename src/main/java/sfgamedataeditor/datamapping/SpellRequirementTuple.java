@@ -63,6 +63,9 @@ public class SpellRequirementTuple {
         return subSchoolRequirement3;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
@@ -74,6 +77,9 @@ public class SpellRequirementTuple {
                 .append(subSchoolRequirement3).toHashCode();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

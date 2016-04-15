@@ -34,19 +34,19 @@ public class Notification {
         Color messageFontColor;
         switch (type) {
             case INFO:
-                title = I18N.getMessage("info");
+                title = I18N.INSTANCE.getMessage("info");
                 background = new ColorBackground(new Color(0, 0, 0, 255));
                 titleFontColor = new Color(255, 220, 86, 255);
                 messageFontColor = new Color(255, 255, 255, 255);
                 break;
             case WARNING:
-                title = I18N.getMessage("warning");
+                title = I18N.INSTANCE.getMessage("warning");
                 background = new ColorBackground(new Color(255, 181, 178, 255));
                 titleFontColor = new Color(250, 130, 118, 255);
                 messageFontColor = new Color(250, 130, 118, 255);
                 break;
             case ERROR:
-                title = I18N.getMessage("error");
+                title = I18N.INSTANCE.getMessage("error");
                 background = new ColorBackground(new Color(255, 52, 0, 252));
                 titleFontColor = new Color(255, 255, 255, 255);
                 messageFontColor = new Color(255, 255, 255, 255);

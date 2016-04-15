@@ -9,9 +9,12 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
 
     public SpellSchoolsView(ModulesView parentView) {
         super(parentView);
-        setModulesLabelText(I18N.getMessage("spellSchools"));
+        setModulesLabelText(I18N.INSTANCE.getMessage("spellSchools"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void fillComboBoxMapping() {
         for (String s : Mappings.INSTANCE.SPELL_SCHOOL_MAP.keySet()) {
@@ -19,6 +22,9 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void show() {
         getParentView().getSubModulesPanel().removeAll();

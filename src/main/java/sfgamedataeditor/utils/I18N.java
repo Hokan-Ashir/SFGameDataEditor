@@ -3,18 +3,16 @@ package sfgamedataeditor.utils;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public final class I18N {
-    private static ResourceBundle BUNDLE;
+public enum I18N {
+    INSTANCE;
 
-    private I18N() {
+    private ResourceBundle bundle;
 
+    public void loadBundleMessages(String fileName, Locale locale) {
+        bundle = ResourceBundle.getBundle(fileName, locale);
     }
 
-    public static void loadBundleMessages(String fileName, Locale locale) {
-        I18N.BUNDLE = ResourceBundle.getBundle(fileName, locale);
-    }
-
-    public static String getMessage(String key) {
-        return BUNDLE.getString(key);
+    public String getMessage(String key) {
+        return bundle.getString(key);
     }
 }

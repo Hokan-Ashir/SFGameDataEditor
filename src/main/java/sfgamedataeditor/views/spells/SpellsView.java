@@ -14,13 +14,19 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
 
     public SpellsView(SpellSchoolsView parentView) {
         super(parentView);
-        setModulesLabelText(I18N.getMessage("spells"));
+        setModulesLabelText(I18N.INSTANCE.getMessage("spells"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void fillComboBoxMapping() {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void show() {
         clearComboBoxAndMapping();
