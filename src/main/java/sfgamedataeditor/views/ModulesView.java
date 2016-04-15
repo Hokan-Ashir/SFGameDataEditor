@@ -1,10 +1,14 @@
 package sfgamedataeditor.views;
 
 import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.buildings.BuildingRacesView;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.NotImplementedView;
+import sfgamedataeditor.views.items.ItemTypesView;
+import sfgamedataeditor.views.merchants.MerchantLocationsView;
 import sfgamedataeditor.views.skills.SkillSchoolsView;
 import sfgamedataeditor.views.spells.SpellSchoolsView;
+import sfgamedataeditor.views.units.UnitsRacesView;
 import sfgamedataeditor.views.utility.ButtonsView;
 import sfgamedataeditor.views.utility.ViewTools;
 
@@ -46,9 +50,9 @@ public class ModulesView extends AbstractModulesView {
     protected void fillComboBoxMapping() {
         getComboBoxMapping().put(I18N.INSTANCE.getMessage("skills"), SkillSchoolsView.class);
         getComboBoxMapping().put(I18N.INSTANCE.getMessage("spells"), SpellSchoolsView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage("merchants"), NotImplementedView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage("buildings"), NotImplementedView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage("units"), NotImplementedView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage("items"), NotImplementedView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("merchants"), MerchantLocationsView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("buildings"), BuildingRacesView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("units"), UnitsRacesView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("items"), ItemTypesView.class);
     }
 }
