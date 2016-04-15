@@ -1,11 +1,11 @@
-package sfgamedataeditor.views.items.misc;
+package sfgamedataeditor.views.items.miscellaneous;
 
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.items.ItemTypesView;
 
-public class MiscListView extends AbstractModulesView<ItemTypesView> {
+public class MiscellaneousListView extends AbstractModulesView<ItemTypesView> {
 
-    public MiscListView(ItemTypesView parentView) {
+    public MiscellaneousListView(ItemTypesView parentView) {
         super(parentView);
     }
 

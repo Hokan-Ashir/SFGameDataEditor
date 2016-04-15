@@ -1,9 +1,19 @@
 package sfgamedataeditor.databind.files;
 
+import org.apache.log4j.Logger;
+
+import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public enum FilesContainer {
     INSTANCE;
+
+    private static final Logger LOGGER = Logger.getLogger(FilesContainer.class);
+
+    /**
+     * length of GameData.cff file on version v1.1
+     */
+    private static final long GAME_DATA_CFF_V11_FILE_LENGTH = 39442356L;
 
     private FileData originalFileData;
     private FileData modificationFileData;
@@ -62,5 +72,15 @@ public enum FilesContainer {
         }
 
         return modificationFileData.getName();
+    }
+
+    public boolean isVersion11() {
+        try {
+            return getModificationFile().length() == GAME_DATA_CFF_V11_FILE_LENGTH;
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+
+        return false;
     }
 }

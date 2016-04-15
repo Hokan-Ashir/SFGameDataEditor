@@ -54,7 +54,7 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
 
     private void setLabelsI18nNames() {
         stregthLabel.setText(I18N.INSTANCE.getMessage("strength"));
-        staminaField.setText(I18N.INSTANCE.getMessage("stamina"));
+        staminaLabel.setText(I18N.INSTANCE.getMessage("stamina"));
         dexterityLabel.setText(I18N.INSTANCE.getMessage("dexterity"));
         agilityLabel.setText(I18N.INSTANCE.getMessage("agility"));
         intelligenceLabel.setText(I18N.INSTANCE.getMessage("intelligence"));

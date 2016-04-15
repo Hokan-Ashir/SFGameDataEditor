@@ -4,7 +4,8 @@ import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.ModulesView;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.items.armor.ArmorListView;
-import sfgamedataeditor.views.items.misc.MiscListView;
+import sfgamedataeditor.views.items.buildingscrolls.BuildingPlansListView;
+import sfgamedataeditor.views.items.miscellaneous.MiscellaneousListView;
 import sfgamedataeditor.views.items.runes.RuneRacesListView;
 import sfgamedataeditor.views.items.spellscrolls.SpellScrollsListView;
 import sfgamedataeditor.views.items.weapons.WeaponsListView;
@@ -20,11 +21,12 @@ public class ItemTypesView extends AbstractModulesView<ModulesView> {
      */
     @Override
     protected void fillComboBoxMapping() {
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage(""), WeaponsListView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage(""), ArmorListView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage(""), SpellScrollsListView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage(""), RuneRacesListView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage(""), MiscListView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("items.weapons"), WeaponsListView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("items.armor"), ArmorListView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("items.spellScrolls"), SpellScrollsListView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("items.runes"), RuneRacesListView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("items.buildingPlans"), BuildingPlansListView.class);
+        getComboBoxMapping().put(I18N.INSTANCE.getMessage("items.miscellaneous"), MiscellaneousListView.class);
     }
 
     /**

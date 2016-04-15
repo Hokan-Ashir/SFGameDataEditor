@@ -1,22 +1,45 @@
 package sfgamedataeditor.dataextraction;
 
+import sfgamedataeditor.databind.files.FilesContainer;
+
 public enum DataOffsetProvider {
     INSTANCE;
 
-    // TODO replace all methods with file acquiring according to its size
-    public int getSpellDataBeginOffset() {
-        return 0x20;
+    private static long spellDataBeginOffset;
+    private static long spellDataEndOffset;
+    private static long skillDataBeginOffset;
+    private static long skillDataEndOffset;
+
+    static {
+        boolean isVersion11 = FilesContainer.INSTANCE.isVersion11();
+
+        if (isVersion11) {
+            spellDataBeginOffset = 0x20;
+            // TODO find appropriate offset
+            spellDataEndOffset = 0x3fd13;
+            skillDataBeginOffset = 0x2577bd4;
+            skillDataEndOffset = 0x2577ec8;
+        } else {
+            spellDataBeginOffset = 0x20;
+            spellDataEndOffset = 0x3fd13;
+            skillDataBeginOffset = 0x03F85FD4;
+            skillDataEndOffset = 0x03F864BF;
+        }
     }
 
-    public int getSpellDataEndOffset() {
-        return 0x3fd13;
+    public long getSpellDataBeginOffset() {
+        return spellDataBeginOffset;
     }
 
-    public int getSkillDataBeginOffset() {
-        return 0x03F85FD4;
+    public long getSpellDataEndOffset() {
+        return spellDataEndOffset;
     }
 
-    public int getSkillDataEndOffset() {
-        return 0x03F864BF;
+    public long getSkillDataBeginOffset() {
+        return skillDataBeginOffset;
+    }
+
+    public long getSkillDataEndOffset() {
+        return skillDataEndOffset;
     }
 }

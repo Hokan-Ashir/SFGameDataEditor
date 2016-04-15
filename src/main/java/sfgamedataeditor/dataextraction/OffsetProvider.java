@@ -54,8 +54,8 @@ public enum OffsetProvider {
             }
         };
 
-        int skillDataBeginOffset = DataOffsetProvider.INSTANCE.getSkillDataBeginOffset();
-        int skillDataEndOffset = DataOffsetProvider.INSTANCE.getSkillDataEndOffset();
+        long skillDataBeginOffset = DataOffsetProvider.INSTANCE.getSkillDataBeginOffset();
+        long skillDataEndOffset = DataOffsetProvider.INSTANCE.getSkillDataEndOffset();
         skillSchoolOffsetMap = extractDataFromFile(constraints, operation, skillDataBeginOffset, skillDataEndOffset, SKILL_SCHOOL_LEVEL_DATA_LENGTH);
         return skillSchoolOffsetMap;
     }
@@ -123,14 +123,14 @@ public enum OffsetProvider {
             }
         };
 
-        int spellDataBeginOffset = DataOffsetProvider.INSTANCE.getSpellDataBeginOffset();
-        int spellDataEndOffset = DataOffsetProvider.INSTANCE.getSpellDataEndOffset();
+        long spellDataBeginOffset = DataOffsetProvider.INSTANCE.getSpellDataBeginOffset();
+        long spellDataEndOffset = DataOffsetProvider.INSTANCE.getSpellDataEndOffset();
         spellOffsetMap = extractDataFromFile(constraints, operation, spellDataBeginOffset, spellDataEndOffset, SPELL_NUMBER_DATA_LENGTH);
         return spellOffsetMap;
     }
 
     private Map<Integer, List<Pair<Integer, Long>>> extractDataFromFile(List<IDataConstraint> constraints, IOperation operation,
-                                                                        int dataBeginOffset, int dataEndOffset, int singleDataObjectSize) {
+            long dataBeginOffset, long dataEndOffset, int singleDataObjectSize) {
         Map<Integer, List<Pair<Integer, Long>>> result = new HashMap<>();
         RandomAccessFile file = FilesContainer.INSTANCE.getModificationFile();
         try {
@@ -157,8 +157,8 @@ public enum OffsetProvider {
             return requirementTupleSetMap;
         }
 
-        int spellDataBeginOffset = DataOffsetProvider.INSTANCE.getSpellDataBeginOffset();
-        int spellDataEndOffset = DataOffsetProvider.INSTANCE.getSpellDataEndOffset();
+        long spellDataBeginOffset = DataOffsetProvider.INSTANCE.getSpellDataBeginOffset();
+        long spellDataEndOffset = DataOffsetProvider.INSTANCE.getSpellDataEndOffset();
         final Map<Integer, Pair<String, List<String>>> spellMap = SpellMap.INSTANCE.getSpellMap();
         List<IDataConstraint> constraints = getSpellDataConstraints(spellMap);
         requirementTupleSetMap = new HashMap<>();
@@ -205,7 +205,7 @@ public enum OffsetProvider {
         return requirementTupleSetMap;
     }
 
-    private boolean populateBufferWithData(List<IDataConstraint> constraints, int dataEndOffset, RandomAccessFile file, byte[] buffer) throws IOException {
+    private boolean populateBufferWithData(List<IDataConstraint> constraints, long dataEndOffset, RandomAccessFile file, byte[] buffer) throws IOException {
         boolean reachedSpellDataEnd = false;
         for (int i = 0; i < constraints.size(); i++) {
             buffer[i] = file.readByte();
