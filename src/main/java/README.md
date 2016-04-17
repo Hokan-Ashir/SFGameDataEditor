@@ -19,7 +19,6 @@ See "What it can't do" section below to be awared of restrictions.
  - SHA-512 - for differencing original/modification files
  - Winzipaes - for encrypted zip-files creation (see https://code.google.com/p/winzipaes/ or MAVEN central repository)
  - bouncycastle - for encryption via AES-algorithm (see http://www.bouncycastle.org/latest_releases.html)
- - Quite messy and excessively heavy architecture - as result too many class instances and too much memory eaten
 
 # What it can do
  - Editing skill requirements, i.e how many strength you need to level-up your Heavy Combat Art skill to level 7
@@ -30,7 +29,7 @@ See "What it can't do" section below to be awared of restrictions.
 
 # What it can't do
  - Set ability mana usage field to 0
- Because of specific spell data seaching mechanisms, to determine where spell data begins application uses "non-zero mana usage" assumption
+ Because of specific spell data searching mechanisms, to determine where spell data begins application uses "non-zero mana usage" assumption
  - Almost no validations on entering values
  Text fields has only "enter only digit", "enter value greater than zero" validation. So if you will enter, i.e. 65536 in 2-bytes field (which has maximum value of 65535), you may expect application will crush and stun forever
  - No other languages except English, Russian, German and French
@@ -51,7 +50,7 @@ See "What it can't do" section below to be awared of restrictions.
  This will erase all your current changed
  - Also after closing application you will get "GameData.cff.mod" file in the same directory, where original GameData.cff, which includes all your changes
  NOTE:
- Because of compatibilty, editor stores hash of original file based on which sf-mod-file created. 
+ Because of compatibility, editor stores hash of original file based on which sf-mod-file created. 
  This is made to exclude file format errors. 
  So if you will try to load sf-mod file, which was created not based on original file, you selected, you will have corresponding message.
  

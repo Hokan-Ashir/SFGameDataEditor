@@ -1,5 +1,6 @@
 package sfgamedataeditor.views.common;
 
+import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.utils.I18N;
 
 public class RacesView<T extends AbstractView> extends AbstractModulesView<T> {
@@ -13,19 +14,14 @@ public class RacesView<T extends AbstractView> extends AbstractModulesView<T> {
      */
     @Override
     protected void fillComboBoxMapping() {
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage("race.humans"), NotImplementedView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage("race.elves"), NotImplementedView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage("race.dwarves"), NotImplementedView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage("race.orcs"), NotImplementedView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage("race.trolls"), NotImplementedView.class);
-        getComboBoxMapping().put(I18N.INSTANCE.getMessage("race.darkElves"), NotImplementedView.class);
+        ClassTuple tuple = new ClassTuple(NotImplementedView.class, this);
+        ShowNotImplementedViewEvent event = new ShowNotImplementedViewEvent(tuple);
+        addMapping(I18N.INSTANCE.getMessage("race.humans"), event);
+        addMapping(I18N.INSTANCE.getMessage("race.elves"), event);
+        addMapping(I18N.INSTANCE.getMessage("race.dwarves"), event);
+        addMapping(I18N.INSTANCE.getMessage("race.orcs"), event);
+        addMapping(I18N.INSTANCE.getMessage("race.trolls"), event);
+        addMapping(I18N.INSTANCE.getMessage("race.darkElves"), event);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void show() {
-
-    }
 }

@@ -1,14 +1,19 @@
 package sfgamedataeditor.views.common;
 
+import sfgamedataeditor.events.EventHandlerRegister;
+import sfgamedataeditor.events.ShowViewEvent;
+
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 public abstract class AbstractModulesView<T extends AbstractView> extends AbstractView<T> implements Containerable {
 
-    private Map<String, Class<? extends AbstractView>> comboBoxMapping = new TreeMap<>();
+    private Map<String, List<ShowViewEvent>> comboBoxMapping = new TreeMap<>();
     private JComboBox<String> modulesComboBox;
     private JPanel subModulesPanel;
     private JLabel modulesLabel;
@@ -22,16 +27,27 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
         modulesComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() != ItemEvent.SELECTED) {
+                    return;
+                }
+
                 Object selectedItem = modulesComboBox.getSelectedItem();
                 if (selectedItem == null) {
                     return;
                 }
 
-                Class<? extends AbstractView> viewClass = comboBoxMapping.get(selectedItem);
-                AbstractView view = ViewRegister.INSTANCE.getView(viewClass, AbstractModulesView.this);
-                view.show();
+                getChildren().clear();
+                List<ShowViewEvent> events = comboBoxMapping.get(selectedItem);
+                for (ShowViewEvent event : events) {
+                    setEventParameter(event);
+                    EventHandlerRegister.INSTANCE.fireEvent(event);
+                }
             }
         });
+    }
+
+    protected void setEventParameter(ShowViewEvent event) {
+        // TODO make abstract
     }
 
     protected abstract void fillComboBoxMapping();
@@ -58,8 +74,20 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
         modulesComboBox.setSelectedIndex(0);
     }
 
-    public Map<String, Class<? extends AbstractView>> getComboBoxMapping() {
-        return comboBoxMapping;
+    protected void addMapping(String name, List<ShowViewEvent> events) {
+        comboBoxMapping.put(name, events);
+    }
+
+    protected void addMapping(String name, ShowViewEvent event) {
+        List<ShowViewEvent> events;
+        if (!comboBoxMapping.containsKey(name)) {
+            events = new ArrayList<>();
+            comboBoxMapping.put(name, events);
+        } else {
+            events = comboBoxMapping.get(name);
+        }
+
+        events.add(event);
     }
 
     public Object getSelectedModuleValue() {
@@ -80,5 +108,24 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
 
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    @Override
+    public void clearAllComponents() {
+        super.clearAllComponents();
+        subModulesPanel.removeAll();
+    }
+
+    @Override
+    public void repaint() {
+        super.repaint();
+        subModulesPanel.revalidate();
+        subModulesPanel.repaint();
+    }
+
+    @Override
+    public void addChildView(AbstractView view) {
+        super.addChildView(view);
+        subModulesPanel.add(view.getMainPanel());
     }
 }

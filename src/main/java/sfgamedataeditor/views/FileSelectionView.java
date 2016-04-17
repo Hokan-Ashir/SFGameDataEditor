@@ -7,6 +7,7 @@ import sfgamedataeditor.databind.files.FilesContainer;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
 import sfgamedataeditor.utils.NotificationType;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
@@ -140,7 +141,7 @@ public class FileSelectionView {
                 }
 
                 ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.INSTANCE.getMessage("processingData"));
-                ModulesView.showModulesView();
+                MainView.showMainView();
                 frame.dispose();
             }
         });

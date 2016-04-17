@@ -46,11 +46,4 @@ public class LevelableView<T extends AbstractView> extends AbstractView<T> {
         return levelComboBox;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void show() {
-
-    }
 }
