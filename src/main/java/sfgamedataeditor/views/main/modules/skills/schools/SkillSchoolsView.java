@@ -22,10 +22,9 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
     private final SkillEventParameter parameter;
 
     public SkillSchoolsView(ModulesView parentView) {
-        super(parentView);
-        parameter = new SkillEventParameter(0, 1);
+        super(parentView, I18N.INSTANCE.getMessage("skillSchools"));
+        parameter = new SkillEventParameter();
         EventHandlerRegister.INSTANCE.addEventHandler(new SkillEventHandler());
-        setModulesLabelText(I18N.INSTANCE.getMessage("skillSchools"));
     }
 
     /**

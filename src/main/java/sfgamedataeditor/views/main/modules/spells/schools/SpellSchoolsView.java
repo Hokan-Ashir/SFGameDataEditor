@@ -17,9 +17,8 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
     private SpellEventParameter parameter = new SpellEventParameter(null);
 
     public SpellSchoolsView(ModulesView parentView) {
-        super(parentView);
+        super(parentView, I18N.INSTANCE.getMessage("spellSchools"));
         EventHandlerRegister.INSTANCE.addEventHandler(new SpellEventHandler());
-        setModulesLabelText(I18N.INSTANCE.getMessage("spellSchools"));
     }
 
     /**

@@ -27,11 +27,10 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
     private List<ShowViewEvent> subViewEvents;
 
     public SpellsView(SpellSchoolsView parentView) {
-        super(parentView);
-        parameter = new SpellParameterEventParameter(0, 1);
+        super(parentView, I18N.INSTANCE.getMessage("spells"));
+        parameter = new SpellParameterEventParameter();
 
         initializeSubViewEventList();
-        setModulesLabelText(I18N.INSTANCE.getMessage("spells"));
     }
 
     private void initializeSubViewEventList() {

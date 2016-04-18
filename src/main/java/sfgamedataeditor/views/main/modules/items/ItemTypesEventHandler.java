@@ -3,16 +3,16 @@ package sfgamedataeditor.views.main.modules.items;
 import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.events.EventHandler;
 import sfgamedataeditor.views.main.modules.buildings.ShowBuildingRacesViewEvent;
-import sfgamedataeditor.views.main.modules.items.armor.ShowArmorListViewEvent;
+import sfgamedataeditor.views.main.modules.items.armor.ShowArmorTypeListViewEvent;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.ShowMiscellaneousViewEvent;
 import sfgamedataeditor.views.main.modules.items.runes.ShowRuneRacesViewEvent;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.ShowSpellScrollsViewEvent;
-import sfgamedataeditor.views.main.modules.items.weapons.ShowWeaponListViewEvent;
+import sfgamedataeditor.views.main.modules.items.weapons.ShowWeaponTypesListViewEvent;
 
 public class ItemTypesEventHandler {
 
     @EventHandler
-    public void onShowArmorListView(ShowArmorListViewEvent event) {
+    public void onShowArmorListView(ShowArmorTypeListViewEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 
@@ -37,7 +37,7 @@ public class ItemTypesEventHandler {
     }
 
     @EventHandler
-    public void onShowWeaponsListView(ShowWeaponListViewEvent event) {
+    public void onShowWeaponsListView(ShowWeaponTypesListViewEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 

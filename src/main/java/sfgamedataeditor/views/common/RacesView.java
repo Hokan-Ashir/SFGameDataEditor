@@ -6,7 +6,7 @@ import sfgamedataeditor.utils.I18N;
 public class RacesView<T extends AbstractView> extends AbstractModulesView<T> {
 
     public RacesView(T parentView) {
-        super(parentView);
+        super(parentView, I18N.INSTANCE.getMessage("races"));
     }
 
     /**

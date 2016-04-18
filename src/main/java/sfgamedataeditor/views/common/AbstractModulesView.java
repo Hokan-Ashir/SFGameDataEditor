@@ -19,8 +19,9 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
     private JLabel modulesLabel;
     private JPanel mainPanel;
 
-    public AbstractModulesView(T parentView) {
+    public AbstractModulesView(T parentView, String viewName) {
         super(parentView);
+        modulesLabel.setText(viewName);
         subModulesPanel.setLayout(new BoxLayout(subModulesPanel, BoxLayout.Y_AXIS));
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         initializeComboBox();
@@ -92,10 +93,6 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
 
     public Object getSelectedModuleValue() {
         return modulesComboBox.getSelectedItem();
-    }
-
-    public void setModulesLabelText(String text) {
-        modulesLabel.setText(text);
     }
 
     /**

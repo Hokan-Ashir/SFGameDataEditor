@@ -4,9 +4,9 @@ import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.ShowViewEvent;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 
-public class ShowArmorListViewEvent extends ShowViewEvent<ArmorListView, ItemTypesView, Object> {
+public class ShowArmorTypeListViewEvent extends ShowViewEvent<ArmorTypeListView, ItemTypesView, Object> {
 
-    public ShowArmorListViewEvent(ClassTuple<ArmorListView, ItemTypesView> tuple) {
+    public ShowArmorTypeListViewEvent(ClassTuple<ArmorTypeListView, ItemTypesView> tuple) {
         super(tuple);
     }
 }

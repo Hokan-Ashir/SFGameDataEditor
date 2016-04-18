@@ -5,6 +5,9 @@ public class SkillEventParameter {
     private int skillSchoolId;
     private int skillLevel;
 
+    public SkillEventParameter() {
+    }
+
     public SkillEventParameter(int skillSchoolId, int skillLevel) {
         this.skillSchoolId = skillSchoolId;
         this.skillLevel = skillLevel;

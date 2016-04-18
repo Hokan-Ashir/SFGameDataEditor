@@ -21,9 +21,8 @@ import sfgamedataeditor.views.main.modules.units.UnitsRacesView;
 public class ModulesView extends AbstractModulesView<MainView> {
 
     public ModulesView(MainView parentView) {
-        super(parentView);
+        super(parentView, I18N.INSTANCE.getMessage("modulesList"));
         EventHandlerRegister.INSTANCE.addEventHandler(new ModulesEventHandler());
-        setModulesLabelText(I18N.INSTANCE.getMessage("modulesList"));
         selectFirstComboBoxItem();
     }
 

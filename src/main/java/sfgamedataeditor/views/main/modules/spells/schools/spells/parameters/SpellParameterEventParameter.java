@@ -5,6 +5,9 @@ public class SpellParameterEventParameter {
     private int spellId;
     private int spellLevel;
 
+    public SpellParameterEventParameter() {
+    }
+
     public SpellParameterEventParameter(int spellId, int spellLevel) {
         this.spellId = spellId;
         this.spellLevel = spellLevel;
