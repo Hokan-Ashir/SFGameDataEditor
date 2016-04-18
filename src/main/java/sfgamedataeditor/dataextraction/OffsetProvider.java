@@ -1,7 +1,6 @@
 package sfgamedataeditor.dataextraction;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.databind.IDataConstraint;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.files.FilesContainer;
 import sfgamedataeditor.datamapping.SpellRequirementTuple;
@@ -15,13 +14,6 @@ public enum OffsetProvider {
 
     private static final Logger LOGGER = Logger.getLogger(OffsetProvider.class);
 
-    private static final int NUMBER_OF_ABILITY_SCHOOLS = 7;
-    private static final int NUMBER_OF_ABILITY_SUBSCHOOLS = 3;
-    private static final int NUMBER_OF_ABILITY_LEVELS = 20;
-    private static final int SKILL_SCHOOL_LEVEL_DATA_LENGTH = 0x2;
-    private static final int SPELL_DATA_LENGTH = 76;
-    private static final int SPELL_NUMBER_DATA_LENGTH = 0x2;
-
     private Map<Integer, List<Pair<Integer, Long>>> skillSchoolOffsetMap;
     private Map<Integer, List<Pair<Integer, Long>>> spellOffsetMap;
     private Map<SpellRequirementTuple, Set<Integer>> requirementTupleSetMap;
@@ -31,16 +23,11 @@ public enum OffsetProvider {
             return skillSchoolOffsetMap;
         }
 
-        final List<IDataConstraint> constraints = getSkillRequirementsConstraints();
-        IOperation operation = new IOperation() {
+        skillSchoolOffsetMap = new HashMap<>();
+
+        Operation operation = new Operation<Map<Integer, List<Pair<Integer, Long>>>>() {
             @Override
-            public void operation(byte[] buffer, RandomAccessFile file, int constraintsSize, int singleDataObjectSize, Map<Integer, List<Pair<Integer, Long>>> resultMap) {
-                long skillOffset = 0;
-                try {
-                    skillOffset = file.getFilePointer() - constraintsSize + singleDataObjectSize;
-                } catch (IOException e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
+            public void process(byte[] buffer, long offset, Map<Integer, List<Pair<Integer, Long>>> resultMap) {
                 int skillType = buffer[0] & 0xFF;
                 List<Pair<Integer, Long>> offsets;
                 if (!resultMap.containsKey(skillType)) {
@@ -49,43 +36,15 @@ public enum OffsetProvider {
                     offsets = resultMap.get(skillType);
                 }
 
-                offsets.add(new Pair<>(buffer[1] & 0xFF, skillOffset));
+                offsets.add(new Pair<>(buffer[1] & 0xFF, offset));
                 resultMap.put(skillType, offsets);
             }
         };
 
-        long skillDataBeginOffset = DataOffsetProvider.INSTANCE.getSkillDataBeginOffset();
-        long skillDataEndOffset = DataOffsetProvider.INSTANCE.getSkillDataEndOffset();
-        skillSchoolOffsetMap = extractDataFromFile(constraints, operation, skillDataBeginOffset, skillDataEndOffset, SKILL_SCHOOL_LEVEL_DATA_LENGTH);
+        List<Pair<Integer, Integer>> skillOffsets = DataOffsetProvider.INSTANCE.getSkillOffsets();
+        int dataLength = DataOffsetProvider.INSTANCE.getSkillDataLength();
+        readData(skillOffsets, dataLength, skillSchoolOffsetMap, operation);
         return skillSchoolOffsetMap;
-    }
-
-    private List<IDataConstraint> getSkillRequirementsConstraints() {
-        List<IDataConstraint> constraints = new ArrayList<>();
-        constraints.add(new IDataConstraint() {
-            @Override
-            public boolean isValid(byte value) {
-                return value >= 0 && value <= NUMBER_OF_ABILITY_SCHOOLS;
-            }
-        });
-
-        constraints.add(new IDataConstraint() {
-            @Override
-            public boolean isValid(byte value) {
-                return value >= 0 && value <= NUMBER_OF_ABILITY_LEVELS;
-            }
-        });
-
-        for (int i = 0; i < 7; ++i) {
-            constraints.add(new IDataConstraint() {
-                @Override
-                public boolean isValid(byte value) {
-                    return true;
-                }
-            });
-        }
-
-        return constraints;
     }
 
     public Map<Integer, List<Pair<Integer, Long>>> getSpellOffsets() {
@@ -93,19 +52,15 @@ public enum OffsetProvider {
             return spellOffsetMap;
         }
 
-        final Map<Integer, Pair<String, List<String>>> spellMap = SpellMap.INSTANCE.getSpellMap();
-        List<IDataConstraint> constraints = getSpellDataConstraints(spellMap);
-        IOperation operation = new IOperation() {
+        spellOffsetMap = new HashMap<>();
+
+        Operation operation = new Operation<Map<Integer, List<Pair<Integer, Long>>>>() {
             @Override
-            public void operation(byte[] buffer, RandomAccessFile file, int constraintsSize, int singleDataObjectSize, Map<Integer, List<Pair<Integer, Long>>> resultMap) {
-                long spellOffset = 0;
-                try {
-                    spellOffset = file.getFilePointer() - constraintsSize - singleDataObjectSize;
-                } catch (IOException e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
-                int spellType = buffer[0] & 0xFF;
-                int spellLevel = buffer[4];
+            public void process(byte[] buffer, long offset, Map<Integer, List<Pair<Integer, Long>>> resultMap) {
+                int spellType = buffer[2] & 0xFF;
+                // TODO triple spell requirements may not have same level, nor it can be
+                // placed in first requirement tuple
+                int spellLevel = buffer[6] & 0xFF;
                 List<Pair<Integer, Long>> offsets;
                 if (!resultMap.containsKey(spellType)) {
                     offsets = new ArrayList<>();
@@ -113,43 +68,15 @@ public enum OffsetProvider {
                     offsets = resultMap.get(spellType);
                 }
 
-                offsets.add(new Pair<>(spellLevel, spellOffset));
+                offsets.add(new Pair<>(spellLevel, offset));
                 resultMap.put(spellType, offsets);
-                try {
-                    file.seek(spellOffset + SPELL_DATA_LENGTH);
-                } catch (IOException e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
             }
         };
 
-        long spellDataBeginOffset = DataOffsetProvider.INSTANCE.getSpellDataBeginOffset();
-        long spellDataEndOffset = DataOffsetProvider.INSTANCE.getSpellDataEndOffset();
-        spellOffsetMap = extractDataFromFile(constraints, operation, spellDataBeginOffset, spellDataEndOffset, SPELL_NUMBER_DATA_LENGTH);
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getSpellOffsets();
+        int dataLength = DataOffsetProvider.INSTANCE.getSpellDataLength();
+        readData(offsets, dataLength, spellOffsetMap, operation);
         return spellOffsetMap;
-    }
-
-    private Map<Integer, List<Pair<Integer, Long>>> extractDataFromFile(List<IDataConstraint> constraints, IOperation operation,
-            long dataBeginOffset, long dataEndOffset, int singleDataObjectSize) {
-        Map<Integer, List<Pair<Integer, Long>>> result = new HashMap<>();
-        RandomAccessFile file = FilesContainer.INSTANCE.getModificationFile();
-        try {
-            file.seek(dataBeginOffset);
-            byte[] buffer = new byte[constraints.size()];
-            while (true) {
-                boolean reachedSpellDataEnd = populateBufferWithData(constraints, dataEndOffset, file, buffer);
-                if (reachedSpellDataEnd) {
-                    break;
-                } else {
-                    operation.operation(buffer, file, constraints.size(), singleDataObjectSize, result);
-
-                }
-            }
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-
-        return result;
     }
 
     public Map<SpellRequirementTuple, Set<Integer>> getRequirementToSpellMap() {
@@ -157,72 +84,32 @@ public enum OffsetProvider {
             return requirementTupleSetMap;
         }
 
-        long spellDataBeginOffset = DataOffsetProvider.INSTANCE.getSpellDataBeginOffset();
-        long spellDataEndOffset = DataOffsetProvider.INSTANCE.getSpellDataEndOffset();
-        final Map<Integer, Pair<String, List<String>>> spellMap = SpellMap.INSTANCE.getSpellMap();
-        List<IDataConstraint> constraints = getSpellDataConstraints(spellMap);
         requirementTupleSetMap = new HashMap<>();
-        RandomAccessFile file = FilesContainer.INSTANCE.getModificationFile();
-        try {
-            file.seek(spellDataBeginOffset);
-            byte[] buffer = new byte[constraints.size()];
-            while (true) {
-                boolean reachedSpellDataEnd = populateBufferWithData(constraints, spellDataEndOffset, file, buffer);
-                if (reachedSpellDataEnd) {
-                    break;
+
+        Operation operation = new Operation<Map<SpellRequirementTuple, Set<Integer>>>() {
+            @Override
+            public void process(byte[] buffer, long offset, Map<SpellRequirementTuple, Set<Integer>> resultMap) {
+                int spellType = buffer[2] & 0xFF;
+                SpellRequirementTuple requirementTuple = new SpellRequirementTuple(convertToInteger(buffer[4]),
+                        convertToInteger(buffer[5]), convertToInteger(buffer[7]), convertToInteger(buffer[8]),
+                        convertToInteger(buffer[10]), convertToInteger(buffer[11]));
+                Set<Integer> spellList;
+                if (!requirementTupleSetMap.containsKey(requirementTuple)) {
+                    spellList = new TreeSet<>();
                 } else {
-                    long spellOffset = 0;
-                    try {
-                        spellOffset = file.getFilePointer() - constraints.size() - SPELL_NUMBER_DATA_LENGTH;
-                    } catch (IOException e) {
-                        LOGGER.error(e.getMessage(), e);
-                    }
-                    int spellType = buffer[0] & 0xFF;
-                    SpellRequirementTuple requirementTuple = new SpellRequirementTuple(convertToInteger(buffer[2]),
-                            convertToInteger(buffer[3]), convertToInteger(buffer[5]), convertToInteger(buffer[6]),
-                            convertToInteger(buffer[8]), convertToInteger(buffer[9]));
-                    Set<Integer> spellList;
-                    if (!requirementTupleSetMap.containsKey(requirementTuple)) {
-                        spellList = new TreeSet<>();
-                    } else {
-                        spellList = requirementTupleSetMap.get(requirementTuple);
-                    }
-
-                    spellList.add(spellType);
-                    requirementTupleSetMap.put(requirementTuple, spellList);
-
-                    try {
-                        file.seek(spellOffset + SPELL_DATA_LENGTH);
-                    } catch (IOException e) {
-                        LOGGER.error(e.getMessage(), e);
-                    }
+                    spellList = requirementTupleSetMap.get(requirementTuple);
                 }
+
+                spellList.add(spellType);
+                requirementTupleSetMap.put(requirementTuple, spellList);
             }
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
+        };
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getSpellOffsets();
+        int dataLength = DataOffsetProvider.INSTANCE.getSpellDataLength();
+        readData(offsets, dataLength, requirementTupleSetMap, operation);
 
         return requirementTupleSetMap;
-    }
-
-    private boolean populateBufferWithData(List<IDataConstraint> constraints, long dataEndOffset, RandomAccessFile file, byte[] buffer) throws IOException {
-        boolean reachedSpellDataEnd = false;
-        for (int i = 0; i < constraints.size(); i++) {
-            buffer[i] = file.readByte();
-            if (constraints.get(i).isValid(buffer[i])) {
-                continue;
-            } else {
-                file.seek(file.getFilePointer() - i + 1);
-                i = -1;
-            }
-
-            if (file.getFilePointer() >= dataEndOffset) {
-                reachedSpellDataEnd = true;
-                break;
-            }
-        }
-
-        return reachedSpellDataEnd;
     }
 
     private Integer convertToInteger(byte value) {
@@ -233,88 +120,24 @@ public enum OffsetProvider {
         }
     }
 
-    private List<IDataConstraint> getSpellDataConstraints(final Map<Integer, Pair<String, List<String>>> spellMap) {
-        List<IDataConstraint> constraints = new ArrayList<>();
-        addSpellTypeConstraints(spellMap, constraints);
-        addSpellRequirementConstraints(constraints);
-        addZeroTrailConstraints(constraints);
-
-        // TODO try to avoid this constraint of non-zero mana usage
-        // this constraint needed for correct parsing, cause in cases
-        // spell number 01 00
-        // spell type   01 00
-        // spell school 05
-        // ...
-        // all constraints works and instead of getting "spell type" at first place
-        // you can get spell number, which is useless for spell data binding
-        addNonZeroManaUsageConstraint(constraints);
-
-        return constraints;
-    }
-
-    private void addNonZeroManaUsageConstraint(List<IDataConstraint> constraints) {
-        constraints.add(new IDataConstraint() {
-            @Override
-            public boolean isValid(byte value) {
-                return value != 0;
-            }
-        });
-    }
-
-    private void addZeroTrailConstraints(List<IDataConstraint> constraints) {
-        for (int i = 0; i < 3; ++i) {
-            constraints.add(new IDataConstraint() {
-                @Override
-                public boolean isValid(byte value) {
-                    return value == 0;
+    private <T> void readData(List<Pair<Integer, Integer>> dataOffsets, int dataLength, T data, Operation<T> operation) {
+        RandomAccessFile file = FilesContainer.INSTANCE.getModificationFile();
+        try {
+            for (Pair<Integer, Integer> pair : dataOffsets) {
+                file.seek(pair.getKey());
+                byte[] buffer = new byte[dataLength];
+                while (file.getFilePointer() < pair.getValue()) {
+                    file.read(buffer);
+                    long offset = file.getFilePointer() - dataLength;
+                    operation.process(buffer, offset, data);
                 }
-            });
+            }
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
         }
     }
 
-    private void addSpellRequirementConstraints(List<IDataConstraint> constraints) {
-        for (int i = 0; i < 3; ++i) {
-            constraints.add(new IDataConstraint() {
-                @Override
-                public boolean isValid(byte value) {
-                    return value <= OffsetProvider.NUMBER_OF_ABILITY_SCHOOLS && value >= 0;
-                }
-            });
-
-            constraints.add(new IDataConstraint() {
-                @Override
-                public boolean isValid(byte value) {
-                    return value <= OffsetProvider.NUMBER_OF_ABILITY_SUBSCHOOLS && value >= 0;
-                }
-            });
-
-            constraints.add(new IDataConstraint() {
-                @Override
-                public boolean isValid(byte value) {
-                    return value <= OffsetProvider.NUMBER_OF_ABILITY_LEVELS && value >= 0;
-                }
-            });
-        }
-    }
-
-    private void addSpellTypeConstraints(final Map<Integer, Pair<String, List<String>>> spellMap,
-                                         List<IDataConstraint> constraints) {
-        constraints.add(new IDataConstraint() {
-            @Override
-            public boolean isValid(byte value) {
-                return spellMap.containsKey(value & 0xFF);
-            }
-        });
-
-        constraints.add(new IDataConstraint() {
-            @Override
-            public boolean isValid(byte value) {
-                return value == 0;
-            }
-        });
-    }
-
-    private interface IOperation {
-        void operation(byte[] buffer, RandomAccessFile file, int constraintsSize, int singleDataObjectSize, Map<Integer, List<Pair<Integer, Long>>> resultMap);
+    private interface Operation<T> {
+        void process(byte[] buffer, long offset, T resultMap);
     }
 }

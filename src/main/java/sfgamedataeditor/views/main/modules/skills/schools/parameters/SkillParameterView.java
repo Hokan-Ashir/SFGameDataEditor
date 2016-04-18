@@ -92,7 +92,7 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
         // with format - SCHOOL LEVEL STR STA AGI DEX CHA INT WIS, each 1 byte length
         List<JTextField> fields = getViewFields();
 
-        int incrementalOffset = 0;
+        int incrementalOffset = 2;
         for (JTextField field : fields) {
             entities.add(new EntityTuple<>(field, blockOffset + incrementalOffset, 1));
             incrementalOffset++;
