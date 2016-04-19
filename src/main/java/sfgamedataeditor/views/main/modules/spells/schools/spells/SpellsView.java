@@ -52,6 +52,9 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
     protected void fillComboBoxMapping() {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateData(Object data) {
         SpellEventParameter parameter = (SpellEventParameter) data;
@@ -74,6 +77,9 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void setEventParameter(ShowViewEvent event) {
         // TODO get rid of instance of calls

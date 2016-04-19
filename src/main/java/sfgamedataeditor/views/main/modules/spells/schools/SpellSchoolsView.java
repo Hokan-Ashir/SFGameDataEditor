@@ -33,6 +33,9 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void setEventParameter(ShowViewEvent event) {
         parameter.setSpellSchoolRequirement(getSpellRequirement());

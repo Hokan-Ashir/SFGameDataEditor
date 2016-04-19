@@ -34,6 +34,10 @@ public class LevelableView<T extends AbstractView> extends AbstractView<T> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public JPanel getMainPanel() {
         return mainPanel;
     }

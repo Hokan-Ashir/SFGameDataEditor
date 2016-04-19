@@ -49,17 +49,26 @@ public class MainView extends AbstractView {
         EventHandlerRegister.INSTANCE.fireEvent(event);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JPanel getMainPanel() {
         return mainPanel;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void clearAllComponents() {
         super.clearAllComponents();
         mainPanel.removeAll();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void repaint() {
         super.repaint();
@@ -67,6 +76,9 @@ public class MainView extends AbstractView {
         mainPanel.repaint();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addChildView(AbstractView view) {
         super.addChildView(view);

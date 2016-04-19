@@ -13,6 +13,9 @@ public class NotImplementedView<T extends AbstractView> extends AbstractView<T> 
         notImplementedLabel.setText(I18N.INSTANCE.getMessage("notImplemented"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JPanel getMainPanel() {
         return mainPanel;

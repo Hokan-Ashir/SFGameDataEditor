@@ -10,6 +10,9 @@ public class ArmorTypeListView extends AbstractModulesView<ItemTypesView> {
         super(parentView, I18N.INSTANCE.getMessage("armorTypes"));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void fillComboBoxMapping() {
 

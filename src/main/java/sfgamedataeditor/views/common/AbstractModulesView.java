@@ -103,16 +103,26 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
         return subModulesPanel;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public JPanel getMainPanel() {
         return mainPanel;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void clearAllComponents() {
         super.clearAllComponents();
         subModulesPanel.removeAll();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void repaint() {
         super.repaint();
@@ -120,6 +130,9 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
         subModulesPanel.repaint();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addChildView(AbstractView view) {
         super.addChildView(view);

@@ -46,6 +46,9 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void setEventParameter(ShowViewEvent event) {
         // TODO get rid of instance of

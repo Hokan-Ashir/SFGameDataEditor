@@ -38,6 +38,9 @@ public class ButtonsView extends AbstractView<MainView> {
         loadSfmodFileButton.addActionListener(new LoadSfModFileButtonListener());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JPanel getMainPanel() {
         return mainPanel;
@@ -47,6 +50,9 @@ public class ButtonsView extends AbstractView<MainView> {
 
         private ModulesView modulesView = (ModulesView) ViewRegister.INSTANCE.getView(new ClassTuple<>(ModulesView.class, getParentView()));
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             final String sfModFileName = JOptionPane.showInputDialog(null, I18N.INSTANCE.getMessage("newSfModFileName"), I18N.INSTANCE.getMessage("newSfModFileCreationCaption"), JOptionPane.QUESTION_MESSAGE);
@@ -69,6 +75,9 @@ public class ButtonsView extends AbstractView<MainView> {
 
         private ModulesView modulesView = (ModulesView) ViewRegister.INSTANCE.getView(new ClassTuple<>(ModulesView.class, getParentView()));
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             JFileChooser chooser = new JFileChooser();

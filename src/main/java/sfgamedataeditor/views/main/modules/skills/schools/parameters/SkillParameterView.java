@@ -50,14 +50,16 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
         view.getLevelComboBox().addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    // TODO get rid of multiple event instances
-                    ClassTuple tuple = new ClassTuple<>(SkillParameterView.class, getParentView());
-                    ShowSkillParameterViewEvent event = new ShowSkillParameterViewEvent(tuple);
-                    SkillEventParameter eventParameter = new SkillEventParameter(parameter.getSkillSchoolId(), view.getSelectedLevel());
-                    event.setObjectParameter(eventParameter);
-                    EventHandlerRegister.INSTANCE.fireEvent(event);
+                if (e.getStateChange() != ItemEvent.SELECTED) {
+                    return;
                 }
+
+                // TODO get rid of multiple event instances
+                ClassTuple tuple = new ClassTuple<>(SkillParameterView.class, getParentView());
+                ShowSkillParameterViewEvent event = new ShowSkillParameterViewEvent(tuple);
+                SkillEventParameter eventParameter = new SkillEventParameter(parameter.getSkillSchoolId(), view.getSelectedLevel());
+                event.setObjectParameter(eventParameter);
+                EventHandlerRegister.INSTANCE.fireEvent(event);
             }
         });
         attachTextFieldListeners();
@@ -122,6 +124,9 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
         setFieldsData(skillParametersOffset);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JPanel getMainPanel() {
         return mainPanel;

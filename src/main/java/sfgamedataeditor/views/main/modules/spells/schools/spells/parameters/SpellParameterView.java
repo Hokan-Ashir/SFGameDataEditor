@@ -113,14 +113,16 @@ public class SpellParameterView extends AbstractView<SpellsView> {
         view.getLevelComboBox().addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    // TODO get rid of multiple new event instances
-                    ClassTuple tuple = new ClassTuple(SpellParameterView.class, getParentView());
-                    ShowSpellParameterViewEvent event = new ShowSpellParameterViewEvent(tuple);
-                    SpellParameterEventParameter eventParameter = new SpellParameterEventParameter(parameter.getSpellId(), view.getSelectedLevel());
-                    event.setObjectParameter(eventParameter);
-                    EventHandlerRegister.INSTANCE.fireEvent(event);
+                if (e.getStateChange() != ItemEvent.SELECTED) {
+                    return;
                 }
+
+                // TODO get rid of multiple new event instances
+                ClassTuple tuple = new ClassTuple(SpellParameterView.class, getParentView());
+                ShowSpellParameterViewEvent event = new ShowSpellParameterViewEvent(tuple);
+                SpellParameterEventParameter eventParameter = new SpellParameterEventParameter(parameter.getSpellId(), view.getSelectedLevel());
+                event.setObjectParameter(eventParameter);
+                EventHandlerRegister.INSTANCE.fireEvent(event);
             }
         });
         setCommonLabelsI18nNames();
@@ -244,6 +246,9 @@ public class SpellParameterView extends AbstractView<SpellsView> {
         entities.add(new EntityTuple<>(parameterField10, blockOffset + 68, 4));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateData(Object data) {
         // TODO get rid of class casting

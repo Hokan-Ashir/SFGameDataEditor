@@ -36,12 +36,6 @@ public class LanguageSelectionView {
         frame.setVisible(true);
         ViewTools.centerFrame(frame);
 
-        if (view.getLanguageSelectionComboBox().getItemCount() == 0) {
-            ViewTools.repaintButtonTextContent(view.getOkButton(), frame, view.getMainPanel(), "No configuration files");
-            view.getOkButton().setEnabled(false);
-            view.getLanguageSelectionComboBox().setEnabled(false);
-        }
-
         view.getOkButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
