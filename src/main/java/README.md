@@ -28,8 +28,6 @@ See "What it can't do" section below to be awared of restrictions.
  - Merging sf-mod files with your GameData.cff files to get modificated data, which you can test in game
 
 # What it can't do
- - Set ability mana usage field to 0
- Because of specific spell data searching mechanisms, to determine where spell data begins application uses "non-zero mana usage" assumption
  - Almost no validations on entering values
  Text fields has only "enter only digit", "enter value greater than zero" validation. So if you will enter, i.e. 65536 in 2-bytes field (which has maximum value of 65535), you may expect application will crush and stun forever
  - No other languages except English, Russian, German and French
