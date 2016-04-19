@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.ShowViewEvent;
 import sfgamedataeditor.views.common.AbstractView;
+import sfgamedataeditor.views.main.MainView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -67,5 +68,22 @@ public enum ViewRegister {
         }
 
         return null;
+    }
+
+    public void updateAllCurrentViews() {
+        // TODO make this use-case work:
+        // user selected Fire/Fireball-1 and change its spell requirements to
+        // Elemental magic/Ice-1, made sfmod-file, then load it,
+        // cause all maps in Mappings class stays the same
+        // Fireball-1's requrements still considered as Elemental magic/Fire-1
+        MainView view = (MainView) getView(new ClassTuple<>(MainView.class, null));
+        updateDataRecursively(view);
+    }
+
+    private <T extends AbstractView> void updateDataRecursively(AbstractView<T> parent) {
+        parent.updateData(null);
+        for (AbstractView<T> tAbstractView : parent.getChildren()) {
+            updateDataRecursively(tAbstractView);
+        }
     }
 }

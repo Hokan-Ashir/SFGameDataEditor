@@ -6,6 +6,9 @@ public class SpellEventParameter {
 
     private SpellRequirementTuple spellSchoolRequirement;
 
+    public SpellEventParameter() {
+    }
+
     public SpellEventParameter(SpellRequirementTuple spellSchoolRequirement) {
         this.spellSchoolRequirement = spellSchoolRequirement;
     }

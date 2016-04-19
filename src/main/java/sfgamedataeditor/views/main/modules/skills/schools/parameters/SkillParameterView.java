@@ -118,8 +118,11 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
      */
     @Override
     public void updateData(Object o) {
-        // TODO get rid of class casting
-        parameter = (SkillEventParameter) o;
+        if (o != null) {
+            // TODO get rid of class casting
+            parameter = (SkillEventParameter) o;
+        }
+
         long skillParametersOffset = getSkillParametersOffset(parameter.getSkillSchoolId(), parameter.getSkillLevel());
         setFieldsData(skillParametersOffset);
     }

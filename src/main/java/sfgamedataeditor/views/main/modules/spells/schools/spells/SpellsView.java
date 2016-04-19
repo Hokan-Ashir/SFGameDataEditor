@@ -23,12 +23,14 @@ import java.util.Set;
 
 public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
 
-    private final SpellParameterEventParameter parameter;
+    private final SpellParameterEventParameter spellParameterEventParameter;
     private List<ShowViewEvent> subViewEvents;
+    private SpellEventParameter spellEventParameter;
 
     public SpellsView(SpellSchoolsView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("spells"));
-        parameter = new SpellParameterEventParameter();
+        spellParameterEventParameter = new SpellParameterEventParameter();
+        spellEventParameter = new SpellEventParameter();
 
         initializeSubViewEventList();
     }
@@ -57,24 +59,36 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
      */
     @Override
     public void updateData(Object data) {
-        SpellEventParameter parameter = (SpellEventParameter) data;
+        if (data != null) {
+            // TODO get rid of class casting
+            spellEventParameter = (SpellEventParameter) data;
+        }
+        // TODO make this use-case work:
+        // user selected Fire/Fireball-1, changed mana usage from 30 to 34
+        // made sf-mod file and load it; cause of reloading
+        // list of spells according to spellRequirement
+        // all is fine, but instead of "Fireball" selected spell
+        // it is first one ("Acid cloud" by default) in spell comboBox
+
         clearComboBoxAndMapping();
 
-        SpellRequirementTuple schoolRequirement = parameter.getSpellSchoolRequirement();
+        SpellRequirementTuple schoolRequirement = spellEventParameter.getSpellSchoolRequirement();
         Map<SpellRequirementTuple, Set<Integer>> requirementToSpellMap = OffsetProvider.INSTANCE.getRequirementToSpellMap();
         Set<Integer> spellIds = requirementToSpellMap.get(schoolRequirement);
-        if (spellIds != null && !spellIds.isEmpty()) {
-            for (Integer spellId : spellIds) {
-                if (!OffsetProvider.INSTANCE.getSpellOffsets().containsKey(spellId)) {
-                    continue;
-                }
+        if (spellIds == null || spellIds.isEmpty()) {
+            return;
+        }
 
-                String spellName = SpellMap.INSTANCE.getSpellMap().get(spellId).getKey();
-                addMapping(spellName, subViewEvents);
+        for (Integer spellId : spellIds) {
+            if (!OffsetProvider.INSTANCE.getSpellOffsets().containsKey(spellId)) {
+                continue;
             }
 
-            reinitializeComboBox();
+            String spellName = SpellMap.INSTANCE.getSpellMap().get(spellId).getKey();
+            addMapping(spellName, subViewEvents);
         }
+
+        reinitializeComboBox();
     }
 
     /**
@@ -84,14 +98,14 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
     protected void setEventParameter(ShowViewEvent event) {
         // TODO get rid of instance of calls
         if (event instanceof ShowSpellParameterViewEvent) {
-            parameter.setSpellId(getSelectedSpellId());
+            spellParameterEventParameter.setSpellId(getSelectedSpellId());
 
             LevelableView<SpellsView> levelableView = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, this));
             if (levelableView != null) {
-                parameter.setSpellLevel(levelableView.getSelectedLevel());
+                spellParameterEventParameter.setSpellLevel(levelableView.getSelectedLevel());
             }
 
-            event.setObjectParameter(parameter);
+            event.setObjectParameter(spellParameterEventParameter);
         }
     }
 

@@ -107,7 +107,7 @@ public class ButtonsView extends AbstractView<MainView> {
             ViewTools.setComponentsEnableStatus(modulesView.getSubModulesPanel(), false);
 
             FileUtils.createTemporaryModificationFile();
-            // TODO update data
+            ViewRegister.INSTANCE.updateAllCurrentViews();
 
             String successfulMessage = I18N.INSTANCE.getMessage("sfmodFilePrefix") + FilesContainer.INSTANCE.getModificationFileName() + I18N.INSTANCE.getMessage("successfullyLoaded");
             new Notification(successfulMessage);

@@ -251,8 +251,11 @@ public class SpellParameterView extends AbstractView<SpellsView> {
      */
     @Override
     public void updateData(Object data) {
-        // TODO get rid of class casting
-        parameter = (SpellParameterEventParameter) data;
+        if (data != null) {
+            // TODO get rid of class casting
+            parameter = (SpellParameterEventParameter) data;
+        }
+
         int selectedSpellId = parameter.getSpellId();
         int selectedLevel = parameter.getSpellLevel();
         List<Pair<Integer, Long>> spellLevelToOffsetList = OffsetProvider.INSTANCE.getSpellOffsets().get(selectedSpellId);
@@ -279,6 +282,9 @@ public class SpellParameterView extends AbstractView<SpellsView> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JPanel getMainPanel() {
         return mainPanel;

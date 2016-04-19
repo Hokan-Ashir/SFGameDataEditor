@@ -12,24 +12,15 @@ import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 
-public class MainView extends AbstractView {
+public class MainView extends AbstractView<AbstractView> {
     private JPanel mainPanel;
 
     public MainView(AbstractView parentView) {
         super(parentView);
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         EventHandlerRegister.INSTANCE.addEventHandler(new MainEventHandler());
-    }
-
-    public static void showMainView() {
-        JFrame frame = new JFrame(I18N.INSTANCE.getMessage("sfmodFilesCreationWindowCaption"));
-        final MainView view = new MainView(null);
-        frame.setContentPane(view.getMainPanel());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        ViewTools.centerFrame(frame);
-        showViews(view);
+        createAndShowMainFrame();
+        showViews(this);
     }
 
     private static void showViews(MainView view) {
@@ -47,6 +38,15 @@ public class MainView extends AbstractView {
         ClassTuple tuple = new ClassTuple<>(ButtonsView.class, view);
         ShowButtonsViewEvent event = new ShowButtonsViewEvent(tuple);
         EventHandlerRegister.INSTANCE.fireEvent(event);
+    }
+
+    private void createAndShowMainFrame() {
+        JFrame frame = new JFrame(I18N.INSTANCE.getMessage("sfmodFilesCreationWindowCaption"));
+        frame.setContentPane(mainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+        ViewTools.centerFrame(frame);
     }
 
     /**

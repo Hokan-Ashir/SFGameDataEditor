@@ -59,9 +59,21 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
     }
 
     protected void reinitializeComboBox() {
+        // to not trigger item change events (and so event firing) cancel
+        // listening to item change events for time of
+        // combobox population
+        ItemListener[] listeners = modulesComboBox.getItemListeners();
+        for (ItemListener listener : listeners) {
+            modulesComboBox.removeItemListener(listener);
+        }
+
         modulesComboBox.removeAllItems();
         for (String s : comboBoxMapping.keySet()) {
             modulesComboBox.addItem(s);
+        }
+
+        for (ItemListener listener : listeners) {
+            modulesComboBox.addItemListener(listener);
         }
     }
 
