@@ -89,6 +89,10 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
         }
 
         reinitializeComboBox();
+
+        // TODO make this use-case work:
+        // if user selects school with no spells (wouldn't be so, if make parsing data correct)
+        // application must clean up previously selected spell parameter view
     }
 
     /**

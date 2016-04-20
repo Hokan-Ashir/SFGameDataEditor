@@ -274,6 +274,11 @@ public enum SpellMap {
                     // in SpellMap.SPELLMAP variable
                     // but due to non-common mechanism of determine how many parameters
                     // spell may have, its easier and unifiable to catch exceptions
+                    //
+                    // moreover some spells has different amount of unnamed parameters
+                    // so they are marked as stubs in resourceBundle files like (spellName.fieldX = ???)
+                    // in this case trying to identify ALL possible fields is much more
+                    // effective using try-catch mechanism
                 }
             }
             spellMap.put(integerStringEntry.getKey(), new Pair<>(spellName, spellParameters));
