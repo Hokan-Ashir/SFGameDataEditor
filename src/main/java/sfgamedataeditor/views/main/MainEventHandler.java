@@ -4,8 +4,9 @@ import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.events.EventHandler;
 import sfgamedataeditor.views.common.ShowLevelableViewEvent;
 import sfgamedataeditor.views.common.ShowNotImplementedViewEvent;
-import sfgamedataeditor.views.main.modules.ShowButtonsViewEvent;
-import sfgamedataeditor.views.main.modules.ShowModulesViewEvent;
+import sfgamedataeditor.views.main.modules.common.buttons.ShowButtonsViewEvent;
+import sfgamedataeditor.views.main.modules.common.eventhistory.ShowEventHistoryViewEvent;
+import sfgamedataeditor.views.main.modules.common.modules.ShowModulesViewEvent;
 
 public class MainEventHandler {
 
@@ -21,6 +22,11 @@ public class MainEventHandler {
 
     @EventHandler
     public void onShowLevelableView(ShowLevelableViewEvent event) {
+        ViewRegister.INSTANCE.process(event);
+    }
+
+    @EventHandler
+    public void onShowEventHistoryView(ShowEventHistoryViewEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 

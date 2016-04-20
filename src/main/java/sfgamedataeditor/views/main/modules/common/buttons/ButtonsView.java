@@ -1,4 +1,4 @@
-package sfgamedataeditor.views.main.modules;
+package sfgamedataeditor.views.main.modules.common.buttons;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.ViewRegister;
@@ -11,6 +11,7 @@ import sfgamedataeditor.utils.Notification;
 import sfgamedataeditor.views.FileSelectionView;
 import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;

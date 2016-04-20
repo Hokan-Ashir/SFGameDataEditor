@@ -7,7 +7,7 @@ import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.ShowViewEvent;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.main.modules.ModulesView;
+import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.ShowSpellsViewEvent;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellEventParameter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;

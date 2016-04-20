@@ -9,7 +9,7 @@ import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.LevelableView;
 import sfgamedataeditor.views.common.ShowLevelableViewEvent;
-import sfgamedataeditor.views.main.modules.ModulesView;
+import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.ShowSkillParameterViewEvent;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillEventParameter;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;

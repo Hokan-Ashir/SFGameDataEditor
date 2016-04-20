@@ -2,7 +2,7 @@ package sfgamedataeditor.views.main.modules.items;
 
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.ShowViewEvent;
-import sfgamedataeditor.views.main.modules.ModulesView;
+import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 
 public class ShowItemTypesViewEvent extends ShowViewEvent<ItemTypesView, ModulesView, Object> {
 

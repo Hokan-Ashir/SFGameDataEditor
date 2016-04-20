@@ -4,10 +4,11 @@ import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractView;
-import sfgamedataeditor.views.main.modules.ButtonsView;
-import sfgamedataeditor.views.main.modules.ModulesView;
-import sfgamedataeditor.views.main.modules.ShowButtonsViewEvent;
-import sfgamedataeditor.views.main.modules.ShowModulesViewEvent;
+import sfgamedataeditor.views.main.modules.common.buttons.ButtonsView;
+import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
+import sfgamedataeditor.views.main.modules.common.buttons.ShowButtonsViewEvent;
+import sfgamedataeditor.views.main.modules.common.modules.ShowModulesViewEvent;
+import sfgamedataeditor.views.main.modules.common.eventhistory.*;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
@@ -20,22 +21,29 @@ public class MainView extends AbstractView<AbstractView> {
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         EventHandlerRegister.INSTANCE.addEventHandler(new MainEventHandler());
         createAndShowMainFrame();
-        showViews(this);
+        showViews();
     }
 
-    private static void showViews(MainView view) {
-        showModulesView(view);
-        showButtonsView(view);
+    private void showViews() {
+        showEventHistoryView();
+        showModulesView();
+        showButtonsView();
     }
 
-    private static void showModulesView(MainView view) {
-        ClassTuple tuple = new ClassTuple<>(ModulesView.class, view);
+    private void showEventHistoryView() {
+        ClassTuple tuple = new ClassTuple<>(EventHistoryView.class, this);
+        ShowEventHistoryViewEvent event = new ShowEventHistoryViewEvent(tuple);
+        EventHandlerRegister.INSTANCE.fireEvent(event);
+    }
+
+    private void showModulesView() {
+        ClassTuple tuple = new ClassTuple<>(ModulesView.class, this);
         ShowModulesViewEvent event = new ShowModulesViewEvent(tuple);
         EventHandlerRegister.INSTANCE.fireEvent(event);
     }
 
-    private static void showButtonsView(MainView view) {
-        ClassTuple tuple = new ClassTuple<>(ButtonsView.class, view);
+    private void showButtonsView() {
+        ClassTuple tuple = new ClassTuple<>(ButtonsView.class, this);
         ShowButtonsViewEvent event = new ShowButtonsViewEvent(tuple);
         EventHandlerRegister.INSTANCE.fireEvent(event);
     }

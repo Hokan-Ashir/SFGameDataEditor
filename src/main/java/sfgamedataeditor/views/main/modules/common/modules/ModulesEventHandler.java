@@ -1,4 +1,4 @@
-package sfgamedataeditor.views.main.modules;
+package sfgamedataeditor.views.main.modules.common.modules;
 
 import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.events.EventHandler;
