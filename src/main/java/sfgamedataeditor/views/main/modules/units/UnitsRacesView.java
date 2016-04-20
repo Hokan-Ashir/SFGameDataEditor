@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.units;
 
-import sfgamedataeditor.views.common.RacesView;
+import sfgamedataeditor.views.common.races.RacesView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 
 public class UnitsRacesView extends RacesView<ModulesView> {

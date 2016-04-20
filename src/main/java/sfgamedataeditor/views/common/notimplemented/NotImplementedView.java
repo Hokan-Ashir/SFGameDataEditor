@@ -1,6 +1,7 @@
-package sfgamedataeditor.views.common;
+package sfgamedataeditor.views.common.notimplemented;
 
 import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.common.AbstractView;
 
 import javax.swing.*;
 

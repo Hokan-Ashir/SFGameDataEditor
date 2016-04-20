@@ -2,8 +2,8 @@ package sfgamedataeditor.views.main;
 
 import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.events.EventHandler;
-import sfgamedataeditor.views.common.ShowLevelableViewEvent;
-import sfgamedataeditor.views.common.ShowNotImplementedViewEvent;
+import sfgamedataeditor.views.common.levelable.ShowLevelableViewEvent;
+import sfgamedataeditor.views.common.notimplemented.ShowNotImplementedViewEvent;
 import sfgamedataeditor.views.main.modules.common.buttons.ShowButtonsViewEvent;
 import sfgamedataeditor.views.main.modules.common.eventhistory.ShowEventHistoryViewEvent;
 import sfgamedataeditor.views.main.modules.common.modules.ShowModulesViewEvent;

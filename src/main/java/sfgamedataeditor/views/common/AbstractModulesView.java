@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public abstract class AbstractModulesView<T extends AbstractView> extends AbstractView<T> implements Containerable {
+public abstract class AbstractModulesView<T extends AbstractView> extends AbstractView<T> {
 
     private Map<String, List<ShowViewEvent>> comboBoxMapping = new TreeMap<>();
     private JComboBox<String> modulesComboBox;
@@ -110,7 +110,6 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
     /**
      * {@inheritDoc}
      */
-    @Override
     public JPanel getSubModulesPanel() {
         return subModulesPanel;
     }

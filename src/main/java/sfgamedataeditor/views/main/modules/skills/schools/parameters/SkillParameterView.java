@@ -10,7 +10,7 @@ import sfgamedataeditor.listeners.TextFieldListener;
 import sfgamedataeditor.utils.EntityTuple;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractView;
-import sfgamedataeditor.views.common.LevelableView;
+import sfgamedataeditor.views.common.levelable.LevelableView;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
 
 import javax.swing.*;

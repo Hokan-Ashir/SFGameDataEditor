@@ -4,8 +4,8 @@ import sfgamedataeditor.datamapping.Mappings;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.common.NotImplementedView;
-import sfgamedataeditor.views.common.ShowNotImplementedViewEvent;
+import sfgamedataeditor.views.common.notimplemented.NotImplementedView;
+import sfgamedataeditor.views.common.notimplemented.ShowNotImplementedViewEvent;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 
 public class SpellScrollsListView extends AbstractModulesView<ItemTypesView> {
