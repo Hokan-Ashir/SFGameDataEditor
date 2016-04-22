@@ -84,8 +84,8 @@ public class SpellParameterView extends AbstractView<SpellsView> {
     private JTextField parameterField8;
     private JLabel parameterLabel9;
     private JTextField parameterField9;
-    private JLabel parameterLabel10;
-    private JTextField parameterField10;
+    private JSeparator parametersSeparator;
+    private JLabel parametersLabel;
 
     // TODO get rid of this as private variable
     private LevelableView<SpellsView> view = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, getParentView()));
@@ -101,7 +101,6 @@ public class SpellParameterView extends AbstractView<SpellsView> {
         add(parameterLabel7);
         add(parameterLabel8);
         add(parameterLabel9);
-        add(parameterLabel10);
     }};
 
     private Map<JTextField, TextFieldListener> textListeners = new HashMap<>();
@@ -109,6 +108,7 @@ public class SpellParameterView extends AbstractView<SpellsView> {
 
     public SpellParameterView(SpellsView parentView) {
         super(parentView);
+        parametersLabel.setText(I18N.INSTANCE.getMessage("spellParameters"));
         initializeRequirementsComboBoxes();
         view.getLevelComboBox().addItemListener(new ItemListener() {
             @Override
@@ -177,7 +177,6 @@ public class SpellParameterView extends AbstractView<SpellsView> {
             add(parameterField7);
             add(parameterField8);
             add(parameterField9);
-            add(parameterField10);
         }};
 
         for (JComponent component : components) {
@@ -243,7 +242,6 @@ public class SpellParameterView extends AbstractView<SpellsView> {
         entities.add(new EntityTuple<>(parameterField7, blockOffset + 56, 4));
         entities.add(new EntityTuple<>(parameterField8, blockOffset + 60, 4));
         entities.add(new EntityTuple<>(parameterField9, blockOffset + 64, 4));
-        entities.add(new EntityTuple<>(parameterField10, blockOffset + 68, 4));
     }
 
     /**

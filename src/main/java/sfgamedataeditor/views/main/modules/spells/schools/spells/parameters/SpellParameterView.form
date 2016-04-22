@@ -7,130 +7,12 @@
     <properties>
       <alignmentX value="1.0"/>
       <alignmentY value="1.0"/>
-      <maximumSize width="600" height="700"/>
-      <minimumSize width="600" height="700"/>
-      <preferredSize width="600" height="700"/>
+      <maximumSize width="600" height="650"/>
+      <minimumSize width="600" height="650"/>
+      <preferredSize width="600" height="650"/>
     </properties>
     <border type="none"/>
     <children>
-      <component id="18300" class="javax.swing.JTextField" binding="numberField">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="9" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="e3b0d" class="javax.swing.JTextField" binding="typeField">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
-      <component id="c0306" class="javax.swing.JTextField" binding="manaUsageField">
-        <constraints>
-          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="17912" class="javax.swing.JTextField" binding="castTimeField">
-        <constraints>
-          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="5d76c" class="javax.swing.JTextField" binding="castTypeField">
-        <constraints>
-          <grid row="17" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
-      <component id="e111a" class="javax.swing.JTextField" binding="parameterField1">
-        <constraints>
-          <grid row="19" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
-      <component id="5e9fa" class="javax.swing.JComboBox" binding="requirementClassComboBox">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="165" height="23"/>
-          <minimumSize width="165" height="23"/>
-          <preferredSize width="165" height="23"/>
-        </properties>
-      </component>
-      <component id="1751f" class="javax.swing.JTextField" binding="parameterField3">
-        <constraints>
-          <grid row="21" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
-      <component id="2e12a" class="javax.swing.JTextField" binding="minRangeField">
-        <constraints>
-          <grid row="15" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
       <component id="26732" class="javax.swing.JComboBox" binding="requirementSubClassComboBox2">
         <constraints>
           <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -171,28 +53,6 @@
       <component id="69a5d" class="javax.swing.JComboBox" binding="requirementSubClassComboBox">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="165" height="23"/>
-          <minimumSize width="165" height="23"/>
-          <preferredSize width="165" height="23"/>
-        </properties>
-      </component>
-      <component id="78862" class="javax.swing.JComboBox" binding="requirementClassComboBox2">
-        <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="165" height="23"/>
-          <minimumSize width="165" height="23"/>
-          <preferredSize width="165" height="23"/>
-        </properties>
-      </component>
-      <component id="847df" class="javax.swing.JComboBox" binding="requirementClassComboBox3">
-        <constraints>
-          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -264,33 +124,7 @@
           <preferredSize width="90" height="23"/>
         </properties>
       </component>
-      <component id="aea8a" class="javax.swing.JTextField" binding="parameterField4">
-        <constraints>
-          <grid row="21" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
-      <component id="5e509" class="javax.swing.JTextField" binding="parameterField5">
-        <constraints>
-          <grid row="23" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
-      <component id="c74f8" class="javax.swing.JTextField" binding="parameterField6">
+      <component id="978b4" class="javax.swing.JTextField" binding="parameterField8">
         <constraints>
           <grid row="23" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -301,85 +135,6 @@
           <maximumSize width="90" height="23"/>
           <minimumSize width="90" height="23"/>
           <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
-      <component id="76db6" class="javax.swing.JTextField" binding="parameterField7">
-        <constraints>
-          <grid row="25" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
-      <component id="978b4" class="javax.swing.JTextField" binding="parameterField8">
-        <constraints>
-          <grid row="25" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
-      <component id="d9c3f" class="javax.swing.JTextField" binding="parameterField9">
-        <constraints>
-          <grid row="27" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
-      <component id="9dbbc" class="javax.swing.JTextField" binding="parameterField10">
-        <constraints>
-          <grid row="27" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="23"/>
-          <minimumSize width="90" height="23"/>
-          <preferredSize width="90" height="23"/>
-        </properties>
-      </component>
-      <component id="70c4" class="javax.swing.JLabel" binding="numberLabel">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <alignmentX value="0.0"/>
-          <horizontalAlignment value="2"/>
-          <maximumSize width="60" height="23"/>
-          <minimumSize width="60" height="23"/>
-          <preferredSize width="60" height="23"/>
-          <text resource-bundle="messages" key="spellNumber"/>
-          <verticalAlignment value="0"/>
-        </properties>
-      </component>
-      <component id="4e42" class="javax.swing.JLabel" binding="typeLabel">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="55" height="23"/>
-          <minimumSize width="55" height="23"/>
-          <preferredSize width="55" height="23"/>
-          <text resource-bundle="messages" key="spellType"/>
         </properties>
       </component>
       <component id="7b4c7" class="javax.swing.JLabel" binding="requirementLevelLabel">
@@ -400,24 +155,6 @@
           <text resource-bundle="messages" key="spellRequirementSubClass"/>
         </properties>
       </component>
-      <component id="ed357" class="javax.swing.JLabel" binding="requirementClassLabel">
-        <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text resource-bundle="messages" key="spellRequirementClass"/>
-        </properties>
-      </component>
-      <component id="498be" class="javax.swing.JLabel" binding="requirementClassLabel3">
-        <constraints>
-          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text resource-bundle="messages" key="spellRequirementClass"/>
-        </properties>
-      </component>
       <component id="85828" class="javax.swing.JLabel" binding="requirementSubClassLabel2">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
@@ -425,18 +162,6 @@
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellRequirementSubClass"/>
-        </properties>
-      </component>
-      <component id="8490d" class="javax.swing.JLabel" binding="requirementClassLabel2">
-        <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="140" height="15"/>
-          <minimumSize width="140" height="15"/>
-          <preferredSize width="140" height="15"/>
-          <text resource-bundle="messages" key="spellRequirementClass"/>
         </properties>
       </component>
       <component id="b4980" class="javax.swing.JLabel" binding="requirementLevelLabel2">
@@ -466,15 +191,6 @@
           <text value="Requirement subclass:"/>
         </properties>
       </component>
-      <component id="effaf" class="javax.swing.JLabel" binding="manaUsageLabel">
-        <constraints>
-          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text resource-bundle="messages" key="spellManaUsage"/>
-        </properties>
-      </component>
       <component id="859a8" class="javax.swing.JLabel" binding="cooldownLabel">
         <constraints>
           <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -482,15 +198,6 @@
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellCooldown"/>
-        </properties>
-      </component>
-      <component id="60c0a" class="javax.swing.JLabel" binding="castTimeLabel">
-        <constraints>
-          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text resource-bundle="messages" key="spellCastTime"/>
         </properties>
       </component>
       <component id="42b13" class="javax.swing.JLabel" binding="maxRangeLabel">
@@ -502,27 +209,6 @@
           <text resource-bundle="messages" key="spellMaxRange"/>
         </properties>
       </component>
-      <component id="808b9" class="javax.swing.JLabel" binding="minRangeLabel">
-        <constraints>
-          <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text resource-bundle="messages" key="spellMinRange"/>
-        </properties>
-      </component>
-      <component id="a71ec" class="javax.swing.JLabel" binding="castTypeLabel">
-        <constraints>
-          <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="85" height="23"/>
-          <minimumSize width="85" height="23"/>
-          <preferredSize width="85" height="23"/>
-          <text resource-bundle="messages" key="spellCastType"/>
-        </properties>
-      </component>
       <component id="a1fd8" class="javax.swing.JLabel" binding="parameterLabel2">
         <constraints>
           <grid row="18" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -532,13 +218,223 @@
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
-      <component id="ca4be" class="javax.swing.JLabel" binding="parameterLabel4">
+      <component id="1ff9d" class="javax.swing.JLabel" binding="parameterLabel8">
         <constraints>
-          <grid row="20" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="22" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
+        </properties>
+      </component>
+      <component id="60c0a" class="javax.swing.JLabel" binding="castTimeLabel">
+        <constraints>
+          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text resource-bundle="messages" key="spellCastTime"/>
+        </properties>
+      </component>
+      <component id="5d76c" class="javax.swing.JTextField" binding="castTypeField">
+        <constraints>
+          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="a71ec" class="javax.swing.JLabel" binding="castTypeLabel">
+        <constraints>
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="85" height="23"/>
+          <minimumSize width="85" height="23"/>
+          <preferredSize width="85" height="23"/>
+          <text resource-bundle="messages" key="spellCastType"/>
+        </properties>
+      </component>
+      <component id="70c4" class="javax.swing.JLabel" binding="numberLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <alignmentX value="0.0"/>
+          <horizontalAlignment value="2"/>
+          <maximumSize width="60" height="23"/>
+          <minimumSize width="60" height="23"/>
+          <preferredSize width="60" height="23"/>
+          <text resource-bundle="messages" key="spellNumber"/>
+          <verticalAlignment value="0"/>
+        </properties>
+      </component>
+      <component id="18300" class="javax.swing.JTextField" binding="numberField">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="9" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="4e42" class="javax.swing.JLabel" binding="typeLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="55" height="23"/>
+          <minimumSize width="55" height="23"/>
+          <preferredSize width="55" height="23"/>
+          <text resource-bundle="messages" key="spellType"/>
+        </properties>
+      </component>
+      <component id="e3b0d" class="javax.swing.JTextField" binding="typeField">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="ed357" class="javax.swing.JLabel" binding="requirementClassLabel">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text resource-bundle="messages" key="spellRequirementClass"/>
+        </properties>
+      </component>
+      <component id="5e9fa" class="javax.swing.JComboBox" binding="requirementClassComboBox">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="165" height="23"/>
+          <minimumSize width="165" height="23"/>
+          <preferredSize width="165" height="23"/>
+        </properties>
+      </component>
+      <component id="8490d" class="javax.swing.JLabel" binding="requirementClassLabel2">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="120" height="15"/>
+          <minimumSize width="120" height="15"/>
+          <preferredSize width="120" height="15"/>
+          <text resource-bundle="messages" key="spellRequirementClass"/>
+        </properties>
+      </component>
+      <component id="78862" class="javax.swing.JComboBox" binding="requirementClassComboBox2">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="165" height="23"/>
+          <minimumSize width="165" height="23"/>
+          <preferredSize width="165" height="23"/>
+        </properties>
+      </component>
+      <component id="498be" class="javax.swing.JLabel" binding="requirementClassLabel3">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text resource-bundle="messages" key="spellRequirementClass"/>
+        </properties>
+      </component>
+      <component id="847df" class="javax.swing.JComboBox" binding="requirementClassComboBox3">
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="165" height="23"/>
+          <minimumSize width="165" height="23"/>
+          <preferredSize width="165" height="23"/>
+        </properties>
+      </component>
+      <component id="effaf" class="javax.swing.JLabel" binding="manaUsageLabel">
+        <constraints>
+          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text resource-bundle="messages" key="spellManaUsage"/>
+        </properties>
+      </component>
+      <component id="c0306" class="javax.swing.JTextField" binding="manaUsageField">
+        <constraints>
+          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="17912" class="javax.swing.JTextField" binding="castTimeField">
+        <constraints>
+          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="808b9" class="javax.swing.JLabel" binding="minRangeLabel">
+        <constraints>
+          <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text resource-bundle="messages" key="spellMinRange"/>
+        </properties>
+      </component>
+      <component id="2e12a" class="javax.swing.JTextField" binding="minRangeField">
+        <constraints>
+          <grid row="15" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
         </properties>
       </component>
       <component id="5c31e" class="javax.swing.JLabel" binding="parameterLabel1">
@@ -557,16 +453,20 @@
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
-      <component id="1f6e3" class="javax.swing.JLabel" binding="parameterLabel3">
+      <component id="e111a" class="javax.swing.JTextField" binding="parameterField1">
         <constraints>
-          <grid row="20" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="19" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text resource-bundle="messages" key="spellParameterNotUsed"/>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
         </properties>
       </component>
-      <component id="8b45f" class="javax.swing.JLabel" binding="parameterLabel5">
+      <component id="7a94d" class="javax.swing.JLabel" binding="parameterLabel7">
         <constraints>
           <grid row="22" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
@@ -575,49 +475,143 @@
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
+      <component id="76db6" class="javax.swing.JTextField" binding="parameterField7">
+        <constraints>
+          <grid row="23" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="1f6e3" class="javax.swing.JLabel" binding="parameterLabel3">
+        <constraints>
+          <grid row="18" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
+        </properties>
+      </component>
+      <component id="1751f" class="javax.swing.JTextField" binding="parameterField3">
+        <constraints>
+          <grid row="19" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="ca4be" class="javax.swing.JLabel" binding="parameterLabel4">
+        <constraints>
+          <grid row="20" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
+        </properties>
+      </component>
+      <component id="aea8a" class="javax.swing.JTextField" binding="parameterField4">
+        <constraints>
+          <grid row="21" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="8b45f" class="javax.swing.JLabel" binding="parameterLabel5">
+        <constraints>
+          <grid row="20" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text resource-bundle="messages" key="spellParameterNotUsed"/>
+        </properties>
+      </component>
+      <component id="5e509" class="javax.swing.JTextField" binding="parameterField5">
+        <constraints>
+          <grid row="21" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
       <component id="497ce" class="javax.swing.JLabel" binding="parameterLabel6">
         <constraints>
-          <grid row="22" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="20" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
-      <component id="7a94d" class="javax.swing.JLabel" binding="parameterLabel7">
+      <component id="c74f8" class="javax.swing.JTextField" binding="parameterField6">
         <constraints>
-          <grid row="24" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="21" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text resource-bundle="messages" key="spellParameterNotUsed"/>
-        </properties>
-      </component>
-      <component id="1ff9d" class="javax.swing.JLabel" binding="parameterLabel8">
-        <constraints>
-          <grid row="24" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text resource-bundle="messages" key="spellParameterNotUsed"/>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
         </properties>
       </component>
       <component id="4a6cf" class="javax.swing.JLabel" binding="parameterLabel9">
         <constraints>
-          <grid row="26" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="22" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
-      <component id="f3974" class="javax.swing.JLabel" binding="parameterLabel10">
+      <component id="d9c3f" class="javax.swing.JTextField" binding="parameterField9">
         <constraints>
-          <grid row="26" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="23" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <text resource-bundle="messages" key="spellParameterNotUsed"/>
+          <maximumSize width="90" height="23"/>
+          <minimumSize width="90" height="23"/>
+          <preferredSize width="90" height="23"/>
+        </properties>
+      </component>
+      <component id="c10d1" class="javax.swing.JSeparator" binding="parametersSeparator">
+        <constraints>
+          <grid row="17" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="10ca4" class="javax.swing.JLabel" binding="parametersLabel">
+        <constraints>
+          <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Parameters:"/>
         </properties>
       </component>
     </children>
