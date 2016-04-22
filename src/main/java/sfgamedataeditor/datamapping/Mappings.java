@@ -110,7 +110,7 @@ public enum Mappings {
     private String getMessage(String mainSchool, String... subSchools) {
         StringBuilder builder = new StringBuilder();
         builder.append(I18N.INSTANCE.getMessage(mainSchool));
-        if (subSchools != null) {
+        if (subSchools != null && subSchools.length != 0) {
             builder.append(" : ");
             for (String subSchool : subSchools) {
                 builder.append(I18N.INSTANCE.getMessage(subSchool));
