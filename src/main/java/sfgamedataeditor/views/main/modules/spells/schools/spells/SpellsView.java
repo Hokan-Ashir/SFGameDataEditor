@@ -4,7 +4,6 @@ import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.dataextraction.OffsetProvider;
 import sfgamedataeditor.dataextraction.SpellMap;
-import sfgamedataeditor.datamapping.SpellRequirementTuple;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.ShowViewEvent;
 import sfgamedataeditor.utils.I18N;
@@ -72,9 +71,9 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
 
         clearComboBoxAndMapping();
 
-        SpellRequirementTuple schoolRequirement = spellEventParameter.getSpellSchoolRequirement();
-        Map<SpellRequirementTuple, Set<Integer>> requirementToSpellMap = OffsetProvider.INSTANCE.getRequirementToSpellMap();
-        Set<Integer> spellIds = requirementToSpellMap.get(schoolRequirement);
+        String spellSchoolName = spellEventParameter.getSpellSchoolName();
+        Map<String, Set<Integer>> spellSchoolsToSpellsMap = OffsetProvider.INSTANCE.getSpellSchoolsToSpellsMap();
+        Set<Integer> spellIds = spellSchoolsToSpellsMap.get(spellSchoolName);
         if (spellIds == null || spellIds.isEmpty()) {
             return;
         }

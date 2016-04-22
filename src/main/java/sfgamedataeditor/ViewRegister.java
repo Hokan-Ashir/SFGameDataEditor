@@ -1,6 +1,7 @@
 package sfgamedataeditor;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.dataextraction.OffsetProvider;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.ShowViewEvent;
 import sfgamedataeditor.views.common.AbstractView;
@@ -71,6 +72,7 @@ public enum ViewRegister {
     }
 
     public void updateAllCurrentViews() {
+        OffsetProvider.INSTANCE.recreateAllMaps();
         // TODO make this use-case work:
         // user selected Fire/Fireball-1 and change its spell requirements to
         // Elemental magic/Ice-1, made sfmod-file, then load it,

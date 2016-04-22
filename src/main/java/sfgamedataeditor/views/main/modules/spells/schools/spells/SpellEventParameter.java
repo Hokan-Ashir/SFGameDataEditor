@@ -1,23 +1,21 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
-import sfgamedataeditor.datamapping.SpellRequirementTuple;
-
 public class SpellEventParameter {
 
-    private SpellRequirementTuple spellSchoolRequirement;
+    private String spellSchoolName;
 
     public SpellEventParameter() {
     }
 
-    public SpellEventParameter(SpellRequirementTuple spellSchoolRequirement) {
-        this.spellSchoolRequirement = spellSchoolRequirement;
+    public SpellEventParameter(String spellSchoolName) {
+        this.spellSchoolName = spellSchoolName;
     }
 
-    public SpellRequirementTuple getSpellSchoolRequirement() {
-        return spellSchoolRequirement;
+    public String getSpellSchoolName() {
+        return spellSchoolName;
     }
 
-    public void setSpellSchoolRequirement(SpellRequirementTuple spellSchoolRequirement) {
-        this.spellSchoolRequirement = spellSchoolRequirement;
+    public void setSpellSchoolName(String spellSchoolName) {
+        this.spellSchoolName = spellSchoolName;
     }
 }

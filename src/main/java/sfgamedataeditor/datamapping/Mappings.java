@@ -17,39 +17,38 @@ public enum Mappings {
         put(I18N.INSTANCE.getMessage("blackMagic"), 7);
     }};
 
-    public Map<String, SpellRequirementTuple> SPELL_SCHOOL_MAP = new HashMap<String, SpellRequirementTuple>() {{
-        put(I18N.INSTANCE.getMessage("lightCombatArts"), new SpellRequirementTuple(1));
-        put(I18N.INSTANCE.getMessage("heavyCombatArts"), new SpellRequirementTuple(2));
-        put(I18N.INSTANCE.getMessage("archery"), new SpellRequirementTuple(3));
-        put(getMessage("whiteMagic", "all"), new SpellRequirementTuple(4, 1, 4, 2, 4, 3));
-        put(getMessage("whiteMagic", "life", "nature"), new SpellRequirementTuple(4, 1, 4, 2));
-        put(getMessage("whiteMagic", "life", "boons"), new SpellRequirementTuple(4, 1, 4, 3));
-        put(getMessage("whiteMagic", "nature", "boons"), new SpellRequirementTuple(4, 2, 4, 3));
-        put(getMessage("whiteMagic", "life"), new SpellRequirementTuple(4, 1));
-        put(getMessage("whiteMagic", "nature"), new SpellRequirementTuple(4, 2));
-        put(getMessage("whiteMagic", "boons"), new SpellRequirementTuple(4, 3));
-        put(getMessage("elementalMagic", "all"), new SpellRequirementTuple(5, 1, 5, 2, 5, 3));
-        put(getMessage("elementalMagic", "fire", "ice"), new SpellRequirementTuple(5, 1, 5, 2));
-        put(getMessage("elementalMagic", "fire", "earth"), new SpellRequirementTuple(5, 1, 5, 3));
-        put(getMessage("elementalMagic", "ice", "earth"), new SpellRequirementTuple(5, 2, 5, 3));
-        put(getMessage("elementalMagic", "fire"), new SpellRequirementTuple(5, 1));
-        put(getMessage("elementalMagic", "ice"), new SpellRequirementTuple(5, 2));
-        put(getMessage("elementalMagic", "earth"), new SpellRequirementTuple(5, 3));
-        put(getMessage("mindMagic", "all"), new SpellRequirementTuple(6, 1, 6, 2, 6, 3));
-        put(getMessage("mindMagic", "offensive", "enchantment"), new SpellRequirementTuple(6, 1, 6, 2));
-        put(getMessage("mindMagic", "offensive", "defensive"), new SpellRequirementTuple(6, 1, 6, 3));
-        put(getMessage("mindMagic", "enchantment", "defensive"), new SpellRequirementTuple(6, 2, 6, 3));
-        put(getMessage("mindMagic", "offensive"), new SpellRequirementTuple(6, 1));
-        put(getMessage("mindMagic", "enchantment"), new SpellRequirementTuple(6, 2));
-        put(getMessage("mindMagic", "defensive"), new SpellRequirementTuple(6, 3));
-        put(getMessage("blackMagic", "all"), new SpellRequirementTuple(7, 1, 7, 2, 7, 3));
-        put(getMessage("blackMagic", "death", "necromancy"), new SpellRequirementTuple(7, 1, 7, 2));
-        put(getMessage("blackMagic", "death", "curses"), new SpellRequirementTuple(7, 1, 7, 3));
-        put(getMessage("blackMagic", "necromancy", "curses"), new SpellRequirementTuple(7, 2, 7, 3));
-        put(getMessage("blackMagic", "death"), new SpellRequirementTuple(7, 1));
-        put(getMessage("blackMagic", "necromancy"), new SpellRequirementTuple(7, 2));
-        put(getMessage("blackMagic", "curses"), new SpellRequirementTuple(7, 3));
+    public Map<Integer, String> SPELL_SCHOOL_MAP = new HashMap<Integer, String>() {{
+        put(10, getMessage("lightCombatArts"));
+        put(11, getMessage("lightCombatArts", "piercingWeapon"));
+        put(12, getMessage("lightCombatArts", "lightBlades"));
+        put(13, getMessage("lightCombatArts", "lightBlunts"));
+        put(14, getMessage("lightCombatArts", "lightArmor"));
+        put(20, getMessage("heavyCombatArts"));
+        put(21, getMessage("heavyCombatArts", "heavyBlades"));
+        put(22, getMessage("heavyCombatArts", "heavyBlunts"));
+        put(23, getMessage("heavyCombatArts", "heavyArmor"));
+        put(24, getMessage("heavyCombatArts", "shields"));
+        put(30, getMessage("archery"));
+        put(31, getMessage("archery", "bows"));
+        put(32, getMessage("archery", "crossbows"));
+        put(40, getMessage("whiteMagic"));
+        put(41, getMessage("whiteMagic", "life"));
+        put(42, getMessage("whiteMagic", "nature"));
+        put(43, getMessage("whiteMagic", "boons"));
+        put(50, getMessage("elementalMagic"));
+        put(51, getMessage("elementalMagic", "fire"));
+        put(52, getMessage("elementalMagic", "ice"));
+        put(53, getMessage("elementalMagic", "earth"));
+        put(60, getMessage("mindMagic"));
+        put(61, getMessage("mindMagic", "enchantment"));
+        put(62, getMessage("mindMagic", "offensive"));
+        put(63, getMessage("mindMagic", "defensive"));
+        put(70, getMessage("blackMagic"));
+        put(71, getMessage("blackMagic", "death"));
+        put(72, getMessage("blackMagic", "necromancy"));
+        put(73, getMessage("blackMagic", "curses"));
     }};
+
     public Map<String, List<String>> CLASS_SUBCLASS_COMBOBOX_MAP = new LinkedHashMap<String, List<String>>() {{
         // order of spell class/subclass mapping is taken from http://spellforcefanforum.hostoi.com/viewtopic.php?f=14&t=241
         // NOTE: order of this list is HIGHLY important, if you change it, you may

@@ -3,7 +3,7 @@ package sfgamedataeditor.dataextraction;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.files.FilesContainer;
-import sfgamedataeditor.datamapping.SpellRequirementTuple;
+import sfgamedataeditor.datamapping.Mappings;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -16,13 +16,18 @@ public enum OffsetProvider {
 
     private Map<Integer, List<Pair<Integer, Long>>> skillSchoolOffsetMap;
     private Map<Integer, List<Pair<Integer, Long>>> spellOffsetMap;
-    private Map<SpellRequirementTuple, Set<Integer>> requirementTupleSetMap;
+    private Map<String, Set<Integer>> spellSchoolsToSpellsMap;
 
     public Map<Integer, List<Pair<Integer, Long>>> getSkillSchoolsOffsets() {
         if (skillSchoolOffsetMap != null) {
             return skillSchoolOffsetMap;
         }
 
+        createSkillOffsetMap();
+        return skillSchoolOffsetMap;
+    }
+
+    private void createSkillOffsetMap() {
         skillSchoolOffsetMap = new HashMap<>();
 
         Operation operation = new Operation<Map<Integer, List<Pair<Integer, Long>>>>() {
@@ -44,7 +49,6 @@ public enum OffsetProvider {
         List<Pair<Integer, Integer>> skillOffsets = DataOffsetProvider.INSTANCE.getSkillOffsets();
         int dataLength = DataOffsetProvider.INSTANCE.getSkillDataLength();
         readData(skillOffsets, dataLength, skillSchoolOffsetMap, operation);
-        return skillSchoolOffsetMap;
     }
 
     public Map<Integer, List<Pair<Integer, Long>>> getSpellOffsets() {
@@ -52,6 +56,11 @@ public enum OffsetProvider {
             return spellOffsetMap;
         }
 
+        createSpellOffsetMap();
+        return spellOffsetMap;
+    }
+
+    private void createSpellOffsetMap() {
         spellOffsetMap = new HashMap<>();
 
         Operation operation = new Operation<Map<Integer, List<Pair<Integer, Long>>>>() {
@@ -76,48 +85,68 @@ public enum OffsetProvider {
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getSpellOffsets();
         int dataLength = DataOffsetProvider.INSTANCE.getSpellDataLength();
         readData(offsets, dataLength, spellOffsetMap, operation);
-        return spellOffsetMap;
     }
 
-    public Map<SpellRequirementTuple, Set<Integer>> getRequirementToSpellMap() {
-        if (requirementTupleSetMap != null) {
-            return requirementTupleSetMap;
+    public Map<String, Set<Integer>> getSpellSchoolsToSpellsMap() {
+        if (spellSchoolsToSpellsMap != null) {
+            return spellSchoolsToSpellsMap;
         }
 
-        requirementTupleSetMap = new HashMap<>();
+        createSpellSchoolsToSpellsMap();
 
-        Operation operation = new Operation<Map<SpellRequirementTuple, Set<Integer>>>() {
+        return spellSchoolsToSpellsMap;
+    }
+
+    private void createSpellSchoolsToSpellsMap() {
+        spellSchoolsToSpellsMap = new HashMap<>();
+
+        Operation operation = new Operation<Map<String, Set<Integer>>>() {
             @Override
-            public void process(byte[] buffer, long offset, Map<SpellRequirementTuple, Set<Integer>> resultMap) {
+            public void process(byte[] buffer, long offset, Map<String, Set<Integer>> resultMap) {
                 int spellType = buffer[2] & 0xFF;
-                SpellRequirementTuple requirementTuple = new SpellRequirementTuple(convertToInteger(buffer[4]),
-                        convertToInteger(buffer[5]), convertToInteger(buffer[7]), convertToInteger(buffer[8]),
-                        convertToInteger(buffer[10]), convertToInteger(buffer[11]));
-                Set<Integer> spellList;
-                if (!requirementTupleSetMap.containsKey(requirementTuple)) {
-                    spellList = new TreeSet<>();
-                } else {
-                    spellList = requirementTupleSetMap.get(requirementTuple);
-                }
+                List<String> spellSchoolNames = createSpellSchoolNames(buffer);
+                for (String spellSchoolName : spellSchoolNames) {
+                    Set<Integer> spellList;
+                    if (!resultMap.containsKey(spellSchoolName)) {
+                        spellList = new TreeSet<>();
+                    } else {
+                        spellList = resultMap.get(spellSchoolName);
+                    }
 
-                spellList.add(spellType);
-                requirementTupleSetMap.put(requirementTuple, spellList);
+                    spellList.add(spellType);
+                    resultMap.put(spellSchoolName, spellList);
+                }
             }
         };
 
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getSpellOffsets();
         int dataLength = DataOffsetProvider.INSTANCE.getSpellDataLength();
-        readData(offsets, dataLength, requirementTupleSetMap, operation);
-
-        return requirementTupleSetMap;
+        readData(offsets, dataLength, spellSchoolsToSpellsMap, operation);
     }
 
-    private Integer convertToInteger(byte value) {
-        if (value == 0) {
-            return null;
-        } else {
-            return (int) value;
+    private List<String> createSpellSchoolNames(byte[] buffer) {
+        int schoolRequirement1 = buffer[4] & 0xFF;
+        int subSchoolRequirement1 = buffer[5] & 0xFF;
+        int schoolRequirement2 = buffer[7] & 0xFF;
+        int subSchoolRequirement2 = buffer[8] & 0xFF;
+        int schoolRequirement3 = buffer[10] & 0xFF;
+        int subSchoolRequirement3 = buffer[11] & 0xFF;
+
+        List<String> result = new ArrayList<>();
+        addSchoolName(schoolRequirement1, subSchoolRequirement1, result);
+        addSchoolName(schoolRequirement2, subSchoolRequirement2, result);
+        addSchoolName(schoolRequirement3, subSchoolRequirement3, result);
+
+        return result;
+    }
+
+    private void addSchoolName(int schoolRequirement, int subSchoolRequirement, List<String> result) {
+        int school1 = schoolRequirement * 10 + subSchoolRequirement;
+        if (!Mappings.INSTANCE.SPELL_SCHOOL_MAP.containsKey(school1)) {
+            return;
         }
+
+        result.add(Mappings.INSTANCE.SPELL_SCHOOL_MAP.get(school1));
     }
 
     private <T> void readData(List<Pair<Integer, Integer>> dataOffsets, int dataLength, T data, Operation<T> operation) {
@@ -134,6 +163,20 @@ public enum OffsetProvider {
             }
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
+        }
+    }
+
+    public void recreateAllMaps() {
+        if (spellOffsetMap != null) {
+            createSpellOffsetMap();
+        }
+
+        if (skillSchoolOffsetMap != null) {
+            createSkillOffsetMap();
+        }
+
+        if (spellSchoolsToSpellsMap != null) {
+            createSpellSchoolsToSpellsMap();
         }
     }
 
