@@ -310,24 +310,7 @@ public class SpellParameterView extends AbstractView<SpellsView> {
 
     private void setLevelComboBoxItem(int spellLevel) {
         JComboBox<String> comboBox = view.getLevelComboBox();
-        int minimumSpellLevel = Integer.valueOf(comboBox.getItemAt(0));
-        int maximumSpellLevel = Integer.valueOf(comboBox.getItemAt(comboBox.getItemCount() - 1));
-
-        // case when user selected i.e Death-3, then selected
-        // Cannibalize, game doesn't have Cannibalize-3, cause
-        // its Shadow of Phoenix spell and has level range [13; 20]
-        // if this happens, we select first level from combobox
-        // same work for spells that have spell range [1; 12]
-        if (spellLevel <= maximumSpellLevel && spellLevel >= minimumSpellLevel) {
-            if (spellLevel > (maximumSpellLevel - minimumSpellLevel)) {
-                spellLevel %= minimumSpellLevel;
-            } else {
-                spellLevel--;
-            }
-            comboBox.setSelectedIndex(spellLevel);
-        } else {
-            comboBox.setSelectedIndex(0);
-        }
+        comboBox.setSelectedItem(String.valueOf(spellLevel));
     }
 
     private void setSpellParameterLabelNames() {
