@@ -7,19 +7,19 @@ import sfgamedataeditor.views.common.AbstractView;
 public class ClassTuple<T extends AbstractView<V>, V extends AbstractView> {
 
     private Class<T> viewClass;
-    private V parentViewInstance;
+    private Class<V> parentViewClass;
 
-    public ClassTuple(Class<T> viewClass, V parentViewInstance) {
+    public ClassTuple(Class<T> viewClass, Class<V> parentViewClass) {
         this.viewClass = viewClass;
-        this.parentViewInstance = parentViewInstance;
+        this.parentViewClass = parentViewClass;
     }
 
     public Class<T> getViewClass() {
         return viewClass;
     }
 
-    public V getParentViewInstance() {
-        return parentViewInstance;
+    public Class<V> getParentViewClass() {
+        return parentViewClass;
     }
 
     /**
@@ -28,7 +28,7 @@ public class ClassTuple<T extends AbstractView<V>, V extends AbstractView> {
     @Override
     public int hashCode() {
         return new HashCodeBuilder().
-                append(viewClass).append(parentViewInstance).build();
+                append(viewClass).append(parentViewClass).build();
     }
 
     /**
@@ -50,6 +50,6 @@ public class ClassTuple<T extends AbstractView<V>, V extends AbstractView> {
 
         ClassTuple other = (ClassTuple) obj;
         return new EqualsBuilder().append(viewClass, other.getViewClass()).
-                append(parentViewInstance, other.getParentViewInstance()).build();
+                append(parentViewClass, other.getParentViewClass()).build();
     }
 }

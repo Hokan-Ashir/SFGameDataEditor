@@ -4,13 +4,11 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.databind.files.FileData;
 import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.databind.files.FilesContainer;
-import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
 import sfgamedataeditor.utils.NotificationType;
-import sfgamedataeditor.views.main.MainView;
-import sfgamedataeditor.views.main.ShowMainViewEvent;
+import sfgamedataeditor.views.main.MainViewMetaEvent;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
@@ -145,7 +143,8 @@ public class FileSelectionView {
                 }
 
                 ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.INSTANCE.getMessage("processingData"));
-                EventHandlerRegister.INSTANCE.fireEvent(new ShowMainViewEvent(new ClassTuple<>(MainView.class, null)));
+                MainViewMetaEvent event = new MainViewMetaEvent();
+                EventHandlerRegister.INSTANCE.fireEvent(event);
                 frame.dispose();
             }
         });

@@ -118,7 +118,7 @@ class EventDispatcher {
  * is the component, that deliver / dispatch the {@link ShowViewEvent}s to the registered {@link EventHandler}.
  *
  * @author Hannes Dorfmann
- * @see #fireEvent(ShowViewEvent)
+ * @see #fireEvent(AbstractMetaEvent)
  * @see #addHandler(Object)
  * @see #removeHandler(Object)
  */
@@ -126,7 +126,7 @@ public class EventBus {
 
     private static final EventMethodCache eventMethodChache = new EventMethodCache();
     private static boolean caching = true;
-    private final Map<Class<? extends ShowViewEvent>, Set<EventDispatcher>> handlerMap;
+    private final Map<Class<? extends AbstractMetaEvent>, Set<EventDispatcher>> handlerMap;
 
 
     public EventBus() {
@@ -147,8 +147,8 @@ public class EventBus {
      * This method is a little helper method and is only used by the {@link EventBus} internally.
      */
     @SuppressWarnings("unchecked")
-    private Class<? extends ShowViewEvent> getEventClass(Method m) {
-        return (Class<? extends ShowViewEvent>) m.getParameterTypes()[0];
+    private Class<? extends AbstractMetaEvent> getEventClass(Method m) {
+        return (Class<? extends AbstractMetaEvent>) m.getParameterTypes()[0];
     }
 
     /**
@@ -201,7 +201,7 @@ public class EventBus {
 
         Class<?> c = clazz;
         while (c != null) {
-            if (c.equals(ShowViewEvent.class))
+            if (c.equals(AbstractMetaEvent.class))
                 return true;
 
             c = c.getSuperclass();
@@ -235,7 +235,7 @@ public class EventBus {
     /**
      * Add a {@link EventDispatcher} for the passed {@link ShowViewEvent}-Class
      */
-    private void addEventDispatcher(Class<? extends ShowViewEvent> eventClass,
+    private void addEventDispatcher(Class<? extends AbstractMetaEvent> eventClass,
                                     EventDispatcher disp) {
 
         Set<EventDispatcher> dispatchers = handlerMap.get(eventClass);
@@ -274,7 +274,7 @@ public class EventBus {
      * @return true if at least one {@link EventHandler} is registered and has received the passed event,
      * otherwise false
      */
-    public boolean fireEvent(ShowViewEvent event) {
+    public boolean fireEvent(AbstractMetaEvent event) {
 
         Set<EventDispatcher> dispatchers = handlerMap.get(event.getClass());
         if (dispatchers == null || dispatchers.isEmpty())
@@ -285,6 +285,4 @@ public class EventBus {
 
         return true;
     }
-
-
 }

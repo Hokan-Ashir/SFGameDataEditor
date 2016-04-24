@@ -1,17 +1,15 @@
 package sfgamedataeditor.views.main.modules.items;
 
-import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
-import sfgamedataeditor.views.main.modules.items.armor.ArmorTypeListView;
-import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansListView;
-import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
-import sfgamedataeditor.views.main.modules.items.runes.RuneRacesListView;
-import sfgamedataeditor.views.main.modules.items.spellscrolls.SpellScrollsListView;
-import sfgamedataeditor.views.main.modules.items.weapons.ShowWeaponTypesListViewEvent;
-import sfgamedataeditor.views.main.modules.items.weapons.WeaponsTypesListView;
+import sfgamedataeditor.views.main.modules.items.armor.ArmorTypesMetaEvent;
+import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansMetaEvent;
+import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousMetaEvent;
+import sfgamedataeditor.views.main.modules.items.runes.RuneRacesMetaEvent;
+import sfgamedataeditor.views.main.modules.items.spellscrolls.SpellScrollsMetaEvent;
+import sfgamedataeditor.views.main.modules.items.weapons.WeaponTypesMetaEvent;
 
 public class ItemTypesView extends AbstractModulesView<ModulesView> {
 
@@ -34,38 +32,32 @@ public class ItemTypesView extends AbstractModulesView<ModulesView> {
     }
 
     private void addWeaponsListMapping() {
-        ClassTuple tuple = new ClassTuple<>(WeaponsTypesListView.class, this);
-        ShowWeaponTypesListViewEvent event = new ShowWeaponTypesListViewEvent(tuple);
+        WeaponTypesMetaEvent event = new WeaponTypesMetaEvent();
         addMapping(I18N.INSTANCE.getMessage("items.weapons"), event);
     }
 
     private void addArmorListMapping() {
-        ClassTuple tuple = new ClassTuple<>(ArmorTypeListView.class, this);
-        ShowWeaponTypesListViewEvent event = new ShowWeaponTypesListViewEvent(tuple);
+        ArmorTypesMetaEvent event = new ArmorTypesMetaEvent();
         addMapping(I18N.INSTANCE.getMessage("items.armor"), event);
     }
 
     private void addSpellScrollsMapping() {
-        ClassTuple tuple = new ClassTuple<>(SpellScrollsListView.class, this);
-        ShowWeaponTypesListViewEvent event = new ShowWeaponTypesListViewEvent(tuple);
+        SpellScrollsMetaEvent event = new SpellScrollsMetaEvent();
         addMapping(I18N.INSTANCE.getMessage("items.spellScrolls"), event);
     }
 
     private void addRuneListMapping() {
-        ClassTuple tuple = new ClassTuple<>(RuneRacesListView.class, this);
-        ShowWeaponTypesListViewEvent event = new ShowWeaponTypesListViewEvent(tuple);
+        RuneRacesMetaEvent event = new RuneRacesMetaEvent();
         addMapping(I18N.INSTANCE.getMessage("items.runes"), event);
     }
 
     private void addBuildingPlansMapping() {
-        ClassTuple tuple = new ClassTuple<>(BuildingPlansListView.class, this);
-        ShowWeaponTypesListViewEvent event = new ShowWeaponTypesListViewEvent(tuple);
+        BuildingPlansMetaEvent event = new BuildingPlansMetaEvent();
         addMapping(I18N.INSTANCE.getMessage("items.buildingPlans"), event);
     }
 
     private void addMiscellaneousMapping() {
-        ClassTuple tuple = new ClassTuple<>(MiscellaneousListView.class, this);
-        ShowWeaponTypesListViewEvent event = new ShowWeaponTypesListViewEvent(tuple);
+        MiscellaneousMetaEvent event = new MiscellaneousMetaEvent();
         addMapping(I18N.INSTANCE.getMessage("items.miscellaneous"), event);
     }
 

@@ -2,20 +2,16 @@ package sfgamedataeditor.views.main.modules.skills.schools;
 
 import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.datamapping.Mappings;
+import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
-import sfgamedataeditor.events.ShowViewEvent;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.levelable.LevelableView;
-import sfgamedataeditor.views.common.levelable.ShowLevelableViewEvent;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.ShowSkillParameterViewEvent;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillEventParameter;
-import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
-
-import java.util.ArrayList;
-import java.util.List;
+import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParametersMetaEvent;
 
 public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
 
@@ -32,17 +28,9 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
      */
     @Override
     protected void fillComboBoxMapping() {
-        ClassTuple tuple1 = new ClassTuple(LevelableView.class, this);
-        ShowLevelableViewEvent levelableViewEvent = new ShowLevelableViewEvent(tuple1);
-        List<ShowViewEvent> events = new ArrayList<>();
-
-        ClassTuple tuple = new ClassTuple<>(SkillParameterView.class, this);
-        ShowSkillParameterViewEvent skillParameterViewEvent = new ShowSkillParameterViewEvent(tuple);
-
-        events.add(levelableViewEvent);
-        events.add(skillParameterViewEvent);
+        SkillParametersMetaEvent event = new SkillParametersMetaEvent();
         for (String s : Mappings.INSTANCE.SKILL_SCHOOL_MAP.keySet()) {
-            addMapping(s, events);
+            addMapping(s, event);
         }
     }
 
@@ -50,18 +38,15 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
      * {@inheritDoc}
      */
     @Override
-    protected void setEventParameter(ShowViewEvent event) {
-        // TODO get rid of instance of
-        if (event instanceof ShowSkillParameterViewEvent) {
-            parameter.setSkillSchoolId(getSelectedSchoolId());
+    protected void setEventParameter(AbstractMetaEvent event) {
+        parameter.setSkillSchoolId(getSelectedSchoolId());
 
-            LevelableView<SkillSchoolsView> levelableView = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, this));
-            if (levelableView != null) {
-                parameter.setSkillLevel(levelableView.getSelectedLevel());
-            }
-
-            event.setObjectParameter(parameter);
+        LevelableView<SkillSchoolsView> levelableView = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SkillSchoolsView.class));
+        if (levelableView != null) {
+            parameter.setSkillLevel(levelableView.getSelectedLevel());
         }
+
+        event.setEventParameter(ShowSkillParameterViewEvent.class, parameter);
     }
 
     private int getSelectedSchoolId() {

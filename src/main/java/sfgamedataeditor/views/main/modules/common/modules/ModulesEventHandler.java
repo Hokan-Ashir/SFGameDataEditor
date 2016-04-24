@@ -2,42 +2,42 @@ package sfgamedataeditor.views.main.modules.common.modules;
 
 import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.events.EventHandler;
-import sfgamedataeditor.views.main.modules.buildings.ShowBuildingRacesViewEvent;
-import sfgamedataeditor.views.main.modules.items.ShowItemTypesViewEvent;
-import sfgamedataeditor.views.main.modules.merchants.ShowMerchantsLocationsViewEvent;
-import sfgamedataeditor.views.main.modules.skills.schools.ShowSkillSchoolsViewEvent;
-import sfgamedataeditor.views.main.modules.spells.schools.ShowSpellSchoolsViewEvent;
-import sfgamedataeditor.views.main.modules.units.ShowUnitsRacesViewEvent;
+import sfgamedataeditor.views.main.modules.buildings.BuildingRacesMetaEvent;
+import sfgamedataeditor.views.main.modules.items.ItemTypesMetaEvent;
+import sfgamedataeditor.views.main.modules.merchants.MerchantLocationsMetaEvent;
+import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsMetaEvent;
+import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsMetaEvent;
+import sfgamedataeditor.views.main.modules.units.UnitRacesMetaEvent;
 
 public class ModulesEventHandler {
 
     @EventHandler
-    public void onShowSkillSchoolsView(ShowSkillSchoolsViewEvent event) {
+    public void onShowSkillSchoolsView(SkillSchoolsMetaEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 
     @EventHandler
-    public void onShowSpellSchoolsView(ShowSpellSchoolsViewEvent event) {
+    public void onShowSpellSchoolsView(SpellSchoolsMetaEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 
     @EventHandler
-    public void onShowMerchantLocationsView(ShowMerchantsLocationsViewEvent event) {
+    public void onShowMerchantLocationsView(MerchantLocationsMetaEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 
     @EventHandler
-    public void onShowBuildingRacesView(ShowBuildingRacesViewEvent event) {
+    public void onShowBuildingRacesView(BuildingRacesMetaEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 
     @EventHandler
-    public void onShowUnitRacesView(ShowUnitsRacesViewEvent event) {
+    public void onShowUnitRacesView(UnitRacesMetaEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 
     @EventHandler
-    public void onShowItemTypesView(ShowItemTypesViewEvent event) {
+    public void onShowItemTypesView(ItemTypesMetaEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 }

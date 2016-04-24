@@ -88,7 +88,7 @@ public class SpellParameterView extends AbstractView<SpellsView> {
     private JLabel parametersLabel;
 
     // TODO get rid of this as private variable
-    private LevelableView<SpellsView> view = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, getParentView()));
+    private LevelableView<SpellsView> view = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SpellsView.class));
     ;
     private List<EntityTuple> entities = new ArrayList<>();
     private List<JLabel> parameterLabels = new ArrayList<JLabel>() {{
@@ -118,10 +118,9 @@ public class SpellParameterView extends AbstractView<SpellsView> {
                 }
 
                 // TODO get rid of multiple new event instances
-                ClassTuple tuple = new ClassTuple(SpellParameterView.class, getParentView());
-                ShowSpellParameterViewEvent event = new ShowSpellParameterViewEvent(tuple);
+                SpellParameterViewMetaEvent event = new SpellParameterViewMetaEvent();
                 SpellParameterEventParameter eventParameter = new SpellParameterEventParameter(parameter.getSpellId(), view.getSelectedLevel());
-                event.setObjectParameter(eventParameter);
+                event.setEventParameter(ShowSpellParameterViewEvent.class, eventParameter);
                 EventHandlerRegister.INSTANCE.fireEvent(event);
             }
         });

@@ -46,7 +46,7 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
 
     public SkillParameterView(SkillSchoolsView parentView) {
         super(parentView);
-        final LevelableView<SkillSchoolsView> view = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, getParentView()));
+        final LevelableView<SkillSchoolsView> view = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SkillSchoolsView.class));
         view.getLevelComboBox().addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -55,10 +55,9 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
                 }
 
                 // TODO get rid of multiple event instances
-                ClassTuple tuple = new ClassTuple<>(SkillParameterView.class, getParentView());
-                ShowSkillParameterViewEvent event = new ShowSkillParameterViewEvent(tuple);
+                SkillParametersMetaEvent event = new SkillParametersMetaEvent();
                 SkillEventParameter eventParameter = new SkillEventParameter(parameter.getSkillSchoolId(), view.getSelectedLevel());
-                event.setObjectParameter(eventParameter);
+                event.setEventParameter(ShowSkillParameterViewEvent.class, eventParameter);
                 EventHandlerRegister.INSTANCE.fireEvent(event);
             }
         });

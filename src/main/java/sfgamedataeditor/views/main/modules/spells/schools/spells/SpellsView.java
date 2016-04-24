@@ -4,18 +4,16 @@ import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.dataextraction.OffsetProvider;
 import sfgamedataeditor.dataextraction.SpellMap;
+import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.ClassTuple;
-import sfgamedataeditor.events.ShowViewEvent;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.levelable.LevelableView;
-import sfgamedataeditor.views.common.levelable.ShowLevelableViewEvent;
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.ShowSpellParameterViewEvent;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterEventParameter;
-import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
+import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterViewMetaEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -23,27 +21,14 @@ import java.util.Set;
 public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
 
     private final SpellParameterEventParameter spellParameterEventParameter;
-    private List<ShowViewEvent> subViewEvents;
+    private final SpellParameterViewMetaEvent event;
     private SpellEventParameter spellEventParameter;
 
     public SpellsView(SpellSchoolsView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("spells"));
         spellParameterEventParameter = new SpellParameterEventParameter();
         spellEventParameter = new SpellEventParameter();
-
-        initializeSubViewEventList();
-    }
-
-    private void initializeSubViewEventList() {
-        ClassTuple tuple1 = new ClassTuple(LevelableView.class, this);
-        ShowLevelableViewEvent levelableViewEvent = new ShowLevelableViewEvent(tuple1);
-
-        ClassTuple tuple = new ClassTuple<>(SpellParameterView.class, this);
-        ShowSpellParameterViewEvent spellParameterViewEvent = new ShowSpellParameterViewEvent(tuple);
-
-        subViewEvents = new ArrayList<>();
-        subViewEvents.add(levelableViewEvent);
-        subViewEvents.add(spellParameterViewEvent);
+        event = new SpellParameterViewMetaEvent();
     }
 
     /**
@@ -84,7 +69,7 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
             }
 
             String spellName = SpellMap.INSTANCE.getSpellMap().get(spellId).getKey();
-            addMapping(spellName, subViewEvents);
+            addMapping(spellName, event);
         }
 
         reinitializeComboBox();
@@ -99,18 +84,15 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
      * {@inheritDoc}
      */
     @Override
-    protected void setEventParameter(ShowViewEvent event) {
-        // TODO get rid of instance of calls
-        if (event instanceof ShowSpellParameterViewEvent) {
-            spellParameterEventParameter.setSpellId(getSelectedSpellId());
+    protected void setEventParameter(AbstractMetaEvent event) {
+        spellParameterEventParameter.setSpellId(getSelectedSpellId());
 
-            LevelableView<SpellsView> levelableView = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, this));
-            if (levelableView != null) {
-                spellParameterEventParameter.setSpellLevel(levelableView.getSelectedLevel());
-            }
-
-            event.setObjectParameter(spellParameterEventParameter);
+        LevelableView<SpellsView> levelableView = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SpellsView.class));
+        if (levelableView != null) {
+            spellParameterEventParameter.setSpellLevel(levelableView.getSelectedLevel());
         }
+
+        event.setEventParameter(ShowSpellParameterViewEvent.class, spellParameterEventParameter);
     }
 
     private int getSelectedSpellId() {

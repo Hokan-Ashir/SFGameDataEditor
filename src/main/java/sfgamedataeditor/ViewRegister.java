@@ -2,12 +2,16 @@ package sfgamedataeditor;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.dataextraction.OffsetProvider;
+import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.ClassTuple;
+import sfgamedataeditor.events.PostProcess;
 import sfgamedataeditor.events.ShowViewEvent;
 import sfgamedataeditor.views.common.AbstractView;
+import sfgamedataeditor.views.common.NullView;
 import sfgamedataeditor.views.main.MainView;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,11 +20,20 @@ public enum ViewRegister {
 
     private static final Logger LOGGER = Logger.getLogger(ViewRegister.class);
 
-    private Map<ClassTuple, AbstractView> views = new HashMap<>();
+    private Map<ClassTuple, AbstractView> views = new HashMap<ClassTuple, AbstractView>() {{
+        put(new ClassTuple<>(NullView.class, AbstractView.class), new NullView(null));
+    }};
+
+    public void process(AbstractMetaEvent event) {
+        for (ShowViewEvent showViewEvent : event.getEventList()) {
+            process(showViewEvent);
+        }
+    }
 
     public void process(ShowViewEvent event) {
         AbstractView view = null;
         ClassTuple tuple = event.getTuple();
+        AbstractView parentViewInstance = getParentViewInstance(tuple);
         if (!views.containsKey(tuple)) {
             try {
                 // other way to do so, using more strict compilation checks is:
@@ -30,7 +43,7 @@ public enum ViewRegister {
                 // or
                 // class SomeClass<T extends ModulesView> extends AbstractView<T>
                 // to generify reflection calls, we simply use first declared constructor
-                view = (AbstractView) tuple.getViewClass().getDeclaredConstructors()[0].newInstance(tuple.getParentViewInstance());
+                view = (AbstractView) tuple.getViewClass().getDeclaredConstructors()[0].newInstance(parentViewInstance);
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
                 LOGGER.error(e.getMessage(), e);
             }
@@ -38,8 +51,10 @@ public enum ViewRegister {
             views.put(tuple, view);
         } else {
             view = views.get(tuple);
-            tuple.getParentViewInstance().addChild(view);
+            parentViewInstance.addChild(view);
         }
+
+        runPostProcessingMethods(view);
 
         AbstractView superParent = view.getParentView();
         if (superParent != null) {
@@ -51,6 +66,28 @@ public enum ViewRegister {
             showAllViewHierarchy(superParent);
         }
         view.updateData(event.getObjectParameter());
+    }
+
+    private void runPostProcessingMethods(AbstractView view) {
+        for (Method method : view.getClass().getDeclaredMethods()) {
+            if (method.isAnnotationPresent(PostProcess.class)) {
+                try {
+                    method.setAccessible(true);
+                    method.invoke(view);
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    LOGGER.error(e.getMessage(), e);
+                }
+            }
+        }
+    }
+
+    private AbstractView getParentViewInstance(ClassTuple tuple) {
+        for (AbstractView abstractView : views.values()) {
+            if (abstractView.getClass().equals(tuple.getParentViewClass())) {
+                return abstractView;
+            }
+        }
+        throw new RuntimeException("No parent view with class name " + tuple.getParentViewClass().getName() + " exists");
     }
 
     private <T extends AbstractView> void showAllViewHierarchy(AbstractView<T> parent) {

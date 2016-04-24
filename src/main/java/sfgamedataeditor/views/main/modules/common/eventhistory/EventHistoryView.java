@@ -12,16 +12,29 @@ public class EventHistoryView extends AbstractView<MainView> {
 
     public EventHistoryView(MainView parentView) {
         super(parentView);
+        undoButton.setEnabled(false);
+        redoButton.setEnabled(false);
         attachUndoButtonListener();
         attachRedoButtonListener();
     }
 
     private void attachUndoButtonListener() {
-        undoButton.addActionListener(new UndoButtonListener());
+        UndoButtonListener listener = new UndoButtonListener(redoButton, undoButton);
+        undoButton.addActionListener(listener);
     }
 
     private void attachRedoButtonListener() {
-        redoButton.addActionListener(new RedoButtonListener());
+        RedoButtonListener listener = new RedoButtonListener(redoButton, undoButton);
+        redoButton.addActionListener(listener);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateData(Object data) {
+        redoButton.setEnabled(EventHistory.INSTANCE.isRedoPossible());
+        undoButton.setEnabled(EventHistory.INSTANCE.isUndoPossible());
     }
 
     /**

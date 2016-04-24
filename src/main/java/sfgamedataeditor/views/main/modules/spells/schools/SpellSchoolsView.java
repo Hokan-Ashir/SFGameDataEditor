@@ -1,15 +1,14 @@
 package sfgamedataeditor.views.main.modules.spells.schools;
 
 import sfgamedataeditor.dataextraction.OffsetProvider;
-import sfgamedataeditor.events.ClassTuple;
+import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.EventHandlerRegister;
-import sfgamedataeditor.events.ShowViewEvent;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.ShowSpellsViewEvent;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellEventParameter;
-import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
+import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellViewMetaEvent;
 
 import java.util.Map;
 import java.util.Set;
@@ -28,8 +27,7 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
      */
     @Override
     protected void fillComboBoxMapping() {
-        ClassTuple tuple = new ClassTuple<>(SpellsView.class, this);
-        ShowSpellsViewEvent event = new ShowSpellsViewEvent(tuple);
+        SpellViewMetaEvent event = new SpellViewMetaEvent();
         Map<String, Set<Integer>> spellSchoolsToSpellsMap = OffsetProvider.INSTANCE.getSpellSchoolsToSpellsMap();
         for (String s : spellSchoolsToSpellsMap.keySet()) {
             addMapping(s, event);
@@ -40,9 +38,9 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
      * {@inheritDoc}
      */
     @Override
-    protected void setEventParameter(ShowViewEvent event) {
+    protected void setEventParameter(AbstractMetaEvent event) {
         String selectedSpellSchool = (String) getSelectedModuleValue();
         parameter.setSpellSchoolName(selectedSpellSchool);
-        event.setObjectParameter(parameter);
+        event.setEventParameter(ShowSpellsViewEvent.class, parameter);
     }
 }

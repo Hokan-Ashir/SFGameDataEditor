@@ -22,4 +22,9 @@ public class ShowViewEvent<T extends AbstractView<V>, V extends AbstractView, P>
     public void setObjectParameter(P objectParameter) {
         this.objectParameter = objectParameter;
     }
+
+    public String getEventDescription() {
+        // TODO override in child events
+        return "";
+    }
 }

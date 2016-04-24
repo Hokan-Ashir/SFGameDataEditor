@@ -1,19 +1,17 @@
 package sfgamedataeditor.views.common;
 
+import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.EventHandlerRegister;
-import sfgamedataeditor.events.ShowViewEvent;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 public abstract class AbstractModulesView<T extends AbstractView> extends AbstractView<T> {
 
-    private Map<String, List<ShowViewEvent>> comboBoxMapping = new TreeMap<>();
+    private Map<String, AbstractMetaEvent> comboBoxMapping = new TreeMap<>();
     private JComboBox<String> modulesComboBox;
     private JPanel subModulesPanel;
     private JLabel modulesLabel;
@@ -38,16 +36,14 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
                 }
 
                 getChildren().clear();
-                List<ShowViewEvent> events = comboBoxMapping.get(selectedItem);
-                for (ShowViewEvent event : events) {
-                    setEventParameter(event);
-                    EventHandlerRegister.INSTANCE.fireEvent(event);
-                }
+                AbstractMetaEvent metaEvent = comboBoxMapping.get(selectedItem);
+                setEventParameter(metaEvent);
+                EventHandlerRegister.INSTANCE.fireEvent(metaEvent);
             }
         });
     }
 
-    protected void setEventParameter(ShowViewEvent event) {
+    protected void setEventParameter(AbstractMetaEvent event) {
         // TODO make abstract
     }
 
@@ -87,20 +83,8 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
         modulesComboBox.setSelectedIndex(0);
     }
 
-    protected void addMapping(String name, List<ShowViewEvent> events) {
+    protected void addMapping(String name, AbstractMetaEvent events) {
         comboBoxMapping.put(name, events);
-    }
-
-    protected void addMapping(String name, ShowViewEvent event) {
-        List<ShowViewEvent> events;
-        if (!comboBoxMapping.containsKey(name)) {
-            events = new ArrayList<>();
-            comboBoxMapping.put(name, events);
-        } else {
-            events = comboBoxMapping.get(name);
-        }
-
-        events.add(event);
     }
 
     public Object getSelectedModuleValue() {

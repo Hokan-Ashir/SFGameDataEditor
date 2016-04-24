@@ -1,11 +1,9 @@
 package sfgamedataeditor.views.common.races;
 
-import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.AbstractView;
-import sfgamedataeditor.views.common.notimplemented.NotImplementedView;
-import sfgamedataeditor.views.common.notimplemented.ShowNotImplementedViewEvent;
+import sfgamedataeditor.views.common.notimplemented.NotImplementedMetaEvent;
 
 public class RacesView<T extends AbstractView> extends AbstractModulesView<T> {
 
@@ -18,8 +16,7 @@ public class RacesView<T extends AbstractView> extends AbstractModulesView<T> {
      */
     @Override
     protected void fillComboBoxMapping() {
-        ClassTuple tuple = new ClassTuple(NotImplementedView.class, this);
-        ShowNotImplementedViewEvent event = new ShowNotImplementedViewEvent(tuple);
+        NotImplementedMetaEvent event = new NotImplementedMetaEvent();
         addMapping(I18N.INSTANCE.getMessage("race.humans"), event);
         addMapping(I18N.INSTANCE.getMessage("race.elves"), event);
         addMapping(I18N.INSTANCE.getMessage("race.dwarves"), event);

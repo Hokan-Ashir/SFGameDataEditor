@@ -49,7 +49,7 @@ public class ButtonsView extends AbstractView<MainView> {
 
     private final class CreateSfModFileButtonListener implements ActionListener {
 
-        private ModulesView modulesView = (ModulesView) ViewRegister.INSTANCE.getView(new ClassTuple<>(ModulesView.class, getParentView()));
+        private ModulesView modulesView = (ModulesView) ViewRegister.INSTANCE.getView(new ClassTuple<>(ModulesView.class, MainView.class));
 
         /**
          * {@inheritDoc}
@@ -74,7 +74,7 @@ public class ButtonsView extends AbstractView<MainView> {
 
     private final class LoadSfModFileButtonListener implements ActionListener {
 
-        private ModulesView modulesView = (ModulesView) ViewRegister.INSTANCE.getView(new ClassTuple<>(ModulesView.class, getParentView()));
+        private ModulesView modulesView = (ModulesView) ViewRegister.INSTANCE.getView(new ClassTuple<>(ModulesView.class, MainView.class));
 
         /**
          * {@inheritDoc}

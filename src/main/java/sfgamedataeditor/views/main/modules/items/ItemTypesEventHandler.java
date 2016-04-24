@@ -2,42 +2,42 @@ package sfgamedataeditor.views.main.modules.items;
 
 import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.events.EventHandler;
-import sfgamedataeditor.views.main.modules.buildings.ShowBuildingRacesViewEvent;
-import sfgamedataeditor.views.main.modules.items.armor.ShowArmorTypeListViewEvent;
-import sfgamedataeditor.views.main.modules.items.miscellaneous.ShowMiscellaneousViewEvent;
-import sfgamedataeditor.views.main.modules.items.runes.ShowRuneRacesViewEvent;
-import sfgamedataeditor.views.main.modules.items.spellscrolls.ShowSpellScrollsViewEvent;
-import sfgamedataeditor.views.main.modules.items.weapons.ShowWeaponTypesListViewEvent;
+import sfgamedataeditor.views.main.modules.items.armor.ArmorTypesMetaEvent;
+import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansMetaEvent;
+import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousMetaEvent;
+import sfgamedataeditor.views.main.modules.items.runes.RuneRacesMetaEvent;
+import sfgamedataeditor.views.main.modules.items.spellscrolls.SpellScrollsMetaEvent;
+import sfgamedataeditor.views.main.modules.items.weapons.WeaponTypesMetaEvent;
 
 public class ItemTypesEventHandler {
 
     @EventHandler
-    public void onShowArmorListView(ShowArmorTypeListViewEvent event) {
+    public void onShowArmorListView(ArmorTypesMetaEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 
     @EventHandler
-    public void onShowBuildingRacesView(ShowBuildingRacesViewEvent event) {
+    public void onShowBuildingPlansView(BuildingPlansMetaEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 
     @EventHandler
-    public void onShowMiscellaneousView(ShowMiscellaneousViewEvent event) {
+    public void onShowMiscellaneousView(MiscellaneousMetaEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 
     @EventHandler
-    public void onShowRuneRacesView(ShowRuneRacesViewEvent event) {
+    public void onShowRuneRacesView(RuneRacesMetaEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 
     @EventHandler
-    public void onShowSpellScrollsView(ShowSpellScrollsViewEvent event) {
+    public void onShowSpellScrollsView(SpellScrollsMetaEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 
     @EventHandler
-    public void onShowWeaponsListView(ShowWeaponTypesListViewEvent event) {
+    public void onShowWeaponsListView(WeaponTypesMetaEvent event) {
         ViewRegister.INSTANCE.process(event);
     }
 
