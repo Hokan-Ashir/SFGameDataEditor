@@ -6,6 +6,7 @@ public class ShowViewEvent<T extends AbstractView<V>, V extends AbstractView, P>
 
     private ClassTuple<T, V> tuple;
     private P objectParameter;
+    private String description;
 
     public ShowViewEvent(ClassTuple<T, V> tuple) {
         this.tuple = tuple;
@@ -23,8 +24,12 @@ public class ShowViewEvent<T extends AbstractView<V>, V extends AbstractView, P>
         this.objectParameter = objectParameter;
     }
 
+    // TODO override in child events, maybe make abstract
+    protected void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getEventDescription() {
-        // TODO override in child events
-        return "";
+        return description;
     }
 }

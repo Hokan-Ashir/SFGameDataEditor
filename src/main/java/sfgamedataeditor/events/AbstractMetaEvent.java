@@ -34,4 +34,13 @@ public abstract class AbstractMetaEvent {
 
         eventMap.get(eventClass).setObjectParameter(parameter);
     }
+
+    public String getEventDescription() {
+        StringBuilder builder = new StringBuilder();
+        for (ShowViewEvent showViewEvent : eventMap.values()) {
+            builder.append(showViewEvent.getEventDescription());
+        }
+
+        return builder.toString();
+    }
 }
