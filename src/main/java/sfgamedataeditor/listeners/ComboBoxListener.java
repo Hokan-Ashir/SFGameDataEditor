@@ -1,17 +1,15 @@
 package sfgamedataeditor.listeners;
 
-import sfgamedataeditor.dataextraction.DataSavingUtils;
+import sfgamedataeditor.fieldwrapping.fields.ComboBox;
 
-import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class ComboBoxListener implements ItemListener {
 
-    private JComboBox comboBox;
-    private long offset;
+    private ComboBox comboBox;
 
-    public ComboBoxListener(JComboBox comboBox) {
+    public ComboBoxListener(ComboBox comboBox) {
         this.comboBox = comboBox;
     }
 
@@ -24,10 +22,6 @@ public class ComboBoxListener implements ItemListener {
             return;
         }
 
-        DataSavingUtils.saveDataInFile(offset, comboBox.getSelectedIndex());
-    }
-
-    public void setOffset(long offset) {
-        this.offset = offset;
+        comboBox.saveToFile();
     }
 }

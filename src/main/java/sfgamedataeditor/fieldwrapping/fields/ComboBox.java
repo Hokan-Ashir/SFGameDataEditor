@@ -1,8 +1,6 @@
 package sfgamedataeditor.fieldwrapping.fields;
 
-import sfgamedataeditor.fieldwrapping.fields.AbstractDataField;
 import sfgamedataeditor.listeners.ComboBoxListener;
-import sfgamedataeditor.utils.EntityTuple;
 
 import javax.swing.*;
 
@@ -10,10 +8,19 @@ public class ComboBox extends AbstractDataField<JComboBox> {
 
     private final ComboBoxListener listener;
 
-    public ComboBox(EntityTuple<JComboBox> tuple) {
-        super(tuple);
-        listener = new ComboBoxListener(tuple.getComponent());
-        tuple.getComponent().addItemListener(listener);
+    public ComboBox(JComboBox component, long fieldOffset, int lengthInBytes) {
+        super(component, fieldOffset, lengthInBytes);
+        JComboBox comboBox = getComponent();
+        listener = new ComboBoxListener(this);
+        comboBox.addItemListener(listener);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected int getFieldValue() {
+        return 0;
     }
 
     /**
@@ -25,13 +32,5 @@ public class ComboBox extends AbstractDataField<JComboBox> {
         component.removeItemListener(listener);
         component.setSelectedItem(component.getItemAt(value));
         component.addItemListener(listener);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected int getFieldValue() {
-        return 0;
     }
 }

@@ -3,7 +3,6 @@ package sfgamedataeditor.fieldwrapping.fields;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.EventHandlerRegister;
-import sfgamedataeditor.utils.EntityTuple;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,8 +15,8 @@ public class LinkableTextField extends AbstractDataField<JTextField> {
 
     private final JButton linkButton;
 
-    public LinkableTextField(EntityTuple<JTextField> tuple, Class<AbstractMetaEvent> eventClass) {
-        super(tuple);
+    public LinkableTextField(JTextField component, long fieldOffset, int lengthInBytes, Class<AbstractMetaEvent> eventClass) {
+        super(component, fieldOffset, lengthInBytes);
         AbstractMetaEvent event = null;
         try {
             event = eventClass.getConstructor().newInstance();
@@ -28,6 +27,7 @@ public class LinkableTextField extends AbstractDataField<JTextField> {
         linkButton = createLinkButton(event);
         getComponent().add(linkButton);
     }
+
 
     private JButton createLinkButton(AbstractMetaEvent event) {
         JButton button = new JButton(">>");
@@ -52,15 +52,15 @@ public class LinkableTextField extends AbstractDataField<JTextField> {
      * {@inheritDoc}
      */
     @Override
-    protected void setFieldValue(int value) {
-
+    protected int getFieldValue() {
+        return 0;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    protected int getFieldValue() {
-        return 0;
+    protected void setFieldValue(int value) {
+
     }
 }

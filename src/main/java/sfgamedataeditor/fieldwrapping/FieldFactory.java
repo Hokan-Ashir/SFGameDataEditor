@@ -1,31 +1,41 @@
 package sfgamedataeditor.fieldwrapping;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.fieldwrapping.fields.AbstractDataField;
+import sfgamedataeditor.fieldwrapping.fields.ComboBox;
 import sfgamedataeditor.fieldwrapping.fields.TextField;
-import sfgamedataeditor.utils.EntityTuple;
 
 import javax.swing.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
 public enum  FieldFactory {
     INSTANCE;
 
-    private Map<Class<JComponent>, Class<AbstractDataField>> fieldTypes = new HashMap<>();
+    private static final Logger LOGGER = Logger.getLogger(FieldFactory.class);
 
-    public <T extends AbstractDataField, C extends JComponent> T createField(Class<JComponent> componentClass, EntityTuple<C> tuple) {
-        // TODO
-        T field = (T) new TextField((EntityTuple<JTextField>) tuple);
-        /*if (!fieldTypes.containsKey(componentClass)) {
-            field = ...
-        } else {
-            field = fieldTypes.get(componentClass).getConstructor().newInstance()
-        }*/
+    private Map<Class<? extends JComponent>, Class<? extends AbstractDataField>> fieldTypes =
+            new HashMap<Class<? extends JComponent>, Class<? extends AbstractDataField>>() {{
+                put(JComboBox.class, ComboBox.class);
+                put(JTextField.class, TextField.class);
+            }};
 
-        return field;
-    }
+    public AbstractDataField createField(Class<? extends JComponent> componentClass, Object... parameters) {
+        if (!fieldTypes.containsKey(componentClass)) {
+            throw new RuntimeException("No class with name: " + componentClass.getName() + " exists in field factory");
+        }
 
-    public boolean isClassExistsInFactory(Class<JComponent> componentClass) {
-        return fieldTypes.containsKey(componentClass);
+        Class<? extends AbstractDataField> dataFieldClass = fieldTypes.get(componentClass);
+        AbstractDataField abstractDataField = null;
+        try {
+            abstractDataField = (AbstractDataField) dataFieldClass.getDeclaredConstructors()[0].newInstance(parameters);
+        } catch (InstantiationException | IllegalAccessException e) {
+            LOGGER.error(e.getMessage(), e);
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+        return abstractDataField;
     }
 }

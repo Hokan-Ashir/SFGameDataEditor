@@ -20,6 +20,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
@@ -29,6 +30,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -99,8 +101,8 @@
                         </goals>
                         <configuration>
                             <tasks>
-                                <copy file="${basedir}/target/${artifactId}-${version}.jar"
-                                      tofile="${basedir}/bin/${artifactId}-${version}.jar"/>
+                                <copy file="${project.basedir}/target/${project.artifactId}-${project.version}.jar"
+                                      tofile="${project.basedir}/bin/${project.artifactId}-${project.version}.jar"/>
                             </tasks>
                         </configuration>
                     </execution>

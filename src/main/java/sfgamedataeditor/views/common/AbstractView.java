@@ -1,10 +1,9 @@
 package sfgamedataeditor.views.common;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractView<T extends AbstractView> {
+public abstract class AbstractView<T extends AbstractView> implements IView {
     private T parentView;
     private List<AbstractView<T>> children = new ArrayList<>();
 
@@ -43,6 +42,4 @@ public abstract class AbstractView<T extends AbstractView> {
     public void addChildView(AbstractView view) {
         //System.out.println("Added cild: " + view.getClass().getName());
     }
-
-    public abstract JPanel getMainPanel();
 }

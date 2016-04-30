@@ -115,7 +115,7 @@ public enum ViewRegister {
         // Elemental magic/Ice-1, made sfmod-file, then load it,
         // cause all maps in Mappings class stays the same
         // Fireball-1's requrements still considered as Elemental magic/Fire-1
-        MainView view = (MainView) getView(new ClassTuple<>(MainView.class, null));
+        MainView view = (MainView) getView(new ClassTuple<>(MainView.class, NullView.class));
         updateDataRecursively(view);
     }
 

@@ -1,20 +1,18 @@
 package sfgamedataeditor.listeners;
 
-import sfgamedataeditor.dataextraction.DataSavingUtils;
+import sfgamedataeditor.fieldwrapping.fields.TextField;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
 import sfgamedataeditor.utils.NotificationType;
 
-import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class TextFieldListener implements DocumentListener {
 
-    private JTextField field;
-    private long offset;
+    private final TextField field;
 
-    public TextFieldListener(JTextField field) {
+    public TextFieldListener(TextField field) {
         this.field = field;
     }
 
@@ -44,7 +42,7 @@ public class TextFieldListener implements DocumentListener {
 
     private void changeValue() {
         int value;
-        String text = field.getText();
+        String text = field.getComponent().getText();
         if (text.isEmpty()) {
             return;
         }
@@ -60,10 +58,6 @@ public class TextFieldListener implements DocumentListener {
             return;
         }
 
-        DataSavingUtils.saveDataInFile(offset, value);
-    }
-
-    public void setOffset(long offset) {
-        this.offset = offset;
+        field.saveToFile();
     }
 }
