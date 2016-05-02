@@ -1,11 +1,11 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
-import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.dataextraction.OffsetProvider;
 import sfgamedataeditor.dataextraction.SpellMap;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
+import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.fieldwrapping.FieldsWrapperCreator;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.utils.I18N;

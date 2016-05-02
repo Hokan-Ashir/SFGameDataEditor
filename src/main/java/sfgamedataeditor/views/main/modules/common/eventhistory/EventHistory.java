@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.common.eventhistory;
 
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.EventHandlerRegister;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +19,13 @@ public enum EventHistory {
     }
 
     public void undo() {
-        fireCurrentEvent();
         currentEventIndex--;
+        fireCurrentEvent();
     }
 
     public void redo() {
-        fireCurrentEvent();
         currentEventIndex++;
+        fireCurrentEvent();
     }
 
     private void fireCurrentEvent() {
@@ -34,10 +34,20 @@ public enum EventHistory {
     }
 
     public boolean isRedoPossible() {
-        return currentEventIndex != events.size() - 1;
+        int nextIndex = currentEventIndex + 1;
+        if (nextIndex > events.size() - 1) {
+            return false;
+        }
+
+        return events.get(nextIndex) != null;
     }
 
     public boolean isUndoPossible() {
-        return currentEventIndex != -1;
+        int previousIndex = currentEventIndex - 1;
+        if (previousIndex < 0) {
+            return false;
+        }
+
+        return events.get(previousIndex) != null;
     }
 }

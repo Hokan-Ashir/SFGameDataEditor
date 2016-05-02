@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.EventCreator;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.views.common.levelable.LevelableView;
 import sfgamedataeditor.views.common.levelable.ShowLevelableViewEvent;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;

@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.common.buttons;
 
 import sfgamedataeditor.events.ClassTuple;
-import sfgamedataeditor.events.ShowViewEvent;
+import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.views.main.MainView;
 
 public class ShowButtonsViewEvent extends ShowViewEvent<ButtonsView, MainView, Object> {

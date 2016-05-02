@@ -21,7 +21,7 @@ public class ModulesView extends AbstractModulesView<MainView> {
 
     @PostProcess
     private void postProcess() {
-        selectFirstComboBoxItem();
+        //selectFirstComboBoxItem();
     }
 
     /**

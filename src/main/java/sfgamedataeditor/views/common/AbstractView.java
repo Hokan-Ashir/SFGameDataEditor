@@ -19,12 +19,21 @@ public abstract class AbstractView<T extends AbstractView> implements IView {
     }
 
     public boolean addChild(AbstractView<T> child) {
-        // TODO add check of already existsing child
+        if (children.contains(child)) {
+            return false;
+        }
+
         return children.add(child);
     }
 
     public T getParentView() {
         return parentView;
+    }
+
+    public void clearView() {
+        children.clear();
+        clearAllComponents();
+        repaint();
     }
 
     public void updateData(Object data) {

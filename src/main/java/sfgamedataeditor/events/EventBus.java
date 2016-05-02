@@ -1,5 +1,8 @@
 package sfgamedataeditor.events;
 
+import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.ShowViewEvent;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedHashSet;

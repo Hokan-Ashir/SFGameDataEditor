@@ -1,9 +1,10 @@
 package sfgamedataeditor.views.main.modules.items.runes;
 
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventCreator;
-import sfgamedataeditor.events.ShowViewEvent;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.ClearViewEvent;
+import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 
 public class RuneRacesMetaEvent extends AbstractMetaEvent {
@@ -14,7 +15,8 @@ public class RuneRacesMetaEvent extends AbstractMetaEvent {
     @Override
     protected void addEvents() {
         ShowRuneRacesViewEvent event = EventCreator.createEvent(RuneRacesListView.class, ItemTypesView.class, ShowRuneRacesViewEvent.class);
-        addEvent(event);
+        ClearViewEvent clearViewEvent = new ClearViewEvent(RuneRacesListView.class, ItemTypesView.class);
+        addEvents(event, clearViewEvent);
     }
 }
 

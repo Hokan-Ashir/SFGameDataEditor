@@ -1,8 +1,8 @@
 package sfgamedataeditor.views.main.modules.spells.schools;
 
 import sfgamedataeditor.dataextraction.OffsetProvider;
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.EventHandlerRegister;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
@@ -38,9 +38,9 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
      * {@inheritDoc}
      */
     @Override
-    protected void setEventParameter(AbstractMetaEvent event) {
+    protected void setEventParameter(AbstractMetaEvent metaEvent) {
         String selectedSpellSchool = (String) getSelectedModuleValue();
         parameter.setSpellSchoolName(selectedSpellSchool);
-        event.setEventParameter(ShowSpellsViewEvent.class, parameter);
+        metaEvent.setEventParameter(ShowSpellsViewEvent.class, parameter);
     }
 }

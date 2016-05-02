@@ -144,7 +144,7 @@ public class FileSelectionView {
 
                 ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.INSTANCE.getMessage("processingData"));
                 MainViewMetaEvent event = new MainViewMetaEvent();
-                EventHandlerRegister.INSTANCE.fireEvent(event);
+                EventHandlerRegister.INSTANCE.fireEventSilently(event);
                 frame.dispose();
             }
         });

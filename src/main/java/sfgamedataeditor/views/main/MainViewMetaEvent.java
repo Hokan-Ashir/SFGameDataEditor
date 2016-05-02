@@ -1,9 +1,9 @@
 package sfgamedataeditor.views.main;
 
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventCreator;
-import sfgamedataeditor.events.ShowViewEvent;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.views.common.NullView;
 
 public class MainViewMetaEvent extends AbstractMetaEvent {

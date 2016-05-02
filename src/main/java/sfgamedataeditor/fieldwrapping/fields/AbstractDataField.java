@@ -22,15 +22,6 @@ public abstract class AbstractDataField<T extends JComponent> implements IDataFi
         this.lengthInBytes = lengthInBytes;
     }
 
-    private static int getValue(int[] value) {
-        int temp = 0;
-        for (int i = 0; i < value.length; i++) {
-            temp += value[i] << ((value.length - 1 - i) * 8);
-        }
-
-        return temp;
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -82,6 +73,15 @@ public abstract class AbstractDataField<T extends JComponent> implements IDataFi
         }
 
         return data;
+    }
+
+    private int getValue(int[] value) {
+        int temp = 0;
+        for (int i = 0; i < value.length; i++) {
+            temp += value[i] << ((value.length - 1 - i) * 8);
+        }
+
+        return temp;
     }
 
     private void saveDataInFile(long offset, int dataLength, int fieldValue) {

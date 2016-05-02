@@ -1,5 +1,7 @@
 package sfgamedataeditor.events;
 
+import sfgamedataeditor.events.types.ShowViewEvent;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 

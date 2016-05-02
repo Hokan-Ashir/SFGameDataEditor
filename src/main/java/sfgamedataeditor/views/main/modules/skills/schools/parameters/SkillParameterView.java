@@ -1,10 +1,10 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
-import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.dataextraction.OffsetProvider;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
+import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.fieldwrapping.FieldsWrapperCreator;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.views.common.AbstractView;

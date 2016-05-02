@@ -1,7 +1,9 @@
 package sfgamedataeditor.views.common;
 
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.EventHandlerRegister;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.Event;
+import sfgamedataeditor.events.types.ShowViewEvent;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -43,8 +45,41 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
         });
     }
 
-    protected void setEventParameter(AbstractMetaEvent event) {
-        // TODO make abstract
+    // TODO make all this stuff about setting fired event modules name right and clean
+    // cause now, its total bullshit
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateData(Object data) {
+        if (data == null) {
+            return;
+        }
+
+        //modulesComboBox.setSelectedItem(data);
+        ((AbstractModulesView) getParentView()).setModulesComboBoxValue(data);
+    }
+
+    public void setModulesComboBoxValue(Object data) {
+        ItemListener[] listeners = modulesComboBox.getItemListeners();
+        for (ItemListener listener : listeners) {
+            modulesComboBox.removeItemListener(listener);
+        }
+
+        modulesComboBox.setSelectedItem(data);
+
+        for (ItemListener listener : listeners) {
+            modulesComboBox.addItemListener(listener);
+        }
+    }
+
+    protected void setEventParameter(AbstractMetaEvent metaEvent) {
+        for (Event event : metaEvent.getEventList()) {
+            if (ShowViewEvent.class.isAssignableFrom(event.getClass())) {
+                metaEvent.setEventParameter((Class<? extends ShowViewEvent>) event.getClass(), modulesComboBox.getSelectedItem());
+            }
+        }
     }
 
     protected abstract void fillComboBoxMapping();
@@ -78,13 +113,12 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
         comboBoxMapping.clear();
     }
 
-    protected void selectFirstComboBoxItem() {
+    protected void deselectAnyComboBoxObject() {
         modulesComboBox.setSelectedItem(null);
-        modulesComboBox.setSelectedIndex(0);
     }
 
-    protected void addMapping(String name, AbstractMetaEvent events) {
-        comboBoxMapping.put(name, events);
+    protected void addMapping(String name, AbstractMetaEvent event) {
+        comboBoxMapping.put(name, event);
     }
 
     public Object getSelectedModuleValue() {
@@ -104,6 +138,15 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
     @Override
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void clearView() {
+        super.clearView();
+        modulesComboBox.setSelectedItem(null);
     }
 
     /**

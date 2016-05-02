@@ -1,8 +1,8 @@
 package sfgamedataeditor.fieldwrapping.fields;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.EventHandlerRegister;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

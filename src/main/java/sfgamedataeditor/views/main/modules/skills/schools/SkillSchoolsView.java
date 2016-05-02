@@ -1,10 +1,10 @@
 package sfgamedataeditor.views.main.modules.skills.schools;
 
-import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.datamapping.Mappings;
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
+import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.levelable.LevelableView;
@@ -38,7 +38,7 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
      * {@inheritDoc}
      */
     @Override
-    protected void setEventParameter(AbstractMetaEvent event) {
+    protected void setEventParameter(AbstractMetaEvent metaEvent) {
         parameter.setSkillSchoolId(getSelectedSchoolId());
 
         LevelableView<SkillSchoolsView> levelableView = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SkillSchoolsView.class));
@@ -46,7 +46,7 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
             parameter.setSkillLevel(levelableView.getSelectedLevel());
         }
 
-        event.setEventParameter(ShowSkillParameterViewEvent.class, parameter);
+        metaEvent.setEventParameter(ShowSkillParameterViewEvent.class, parameter);
     }
 
     private int getSelectedSchoolId() {

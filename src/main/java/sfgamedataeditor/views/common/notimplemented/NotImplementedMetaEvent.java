@@ -1,9 +1,9 @@
 package sfgamedataeditor.views.common.notimplemented;
 
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventCreator;
-import sfgamedataeditor.events.ShowViewEvent;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.common.races.RacesView;
 

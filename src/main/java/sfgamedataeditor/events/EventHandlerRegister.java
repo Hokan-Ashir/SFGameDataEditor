@@ -1,6 +1,7 @@
 package sfgamedataeditor.events;
 
-import sfgamedataeditor.ViewRegister;
+import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistory;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryView;
@@ -15,8 +16,8 @@ public enum EventHandlerRegister {
     }
 
     public <T extends AbstractMetaEvent> void fireEvent(T event) {
-        eventBus.fireEvent(event);
         EventHistory.INSTANCE.addEventToHistory(event);
+        eventBus.fireEvent(event);
         updateEventHistoryButtonsState();
     }
 

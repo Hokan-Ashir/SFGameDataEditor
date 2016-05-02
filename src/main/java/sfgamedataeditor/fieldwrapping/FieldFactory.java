@@ -29,11 +29,10 @@ public enum  FieldFactory {
         Class<? extends AbstractDataField> dataFieldClass = fieldTypes.get(componentClass);
         AbstractDataField abstractDataField = null;
         try {
+            // TODO make more strict constructor search
             abstractDataField = (AbstractDataField) dataFieldClass.getDeclaredConstructors()[0].newInstance(parameters);
-        } catch (InstantiationException | IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             LOGGER.error(e.getMessage(), e);
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
         }
 
         return abstractDataField;

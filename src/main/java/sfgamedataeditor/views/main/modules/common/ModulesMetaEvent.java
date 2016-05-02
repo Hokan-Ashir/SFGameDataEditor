@@ -1,7 +1,8 @@
 package sfgamedataeditor.views.main.modules.common;
 
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.EventCreator;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.ClearViewEvent;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.common.buttons.ButtonsView;
 import sfgamedataeditor.views.main.modules.common.buttons.ShowButtonsViewEvent;
@@ -20,6 +21,7 @@ public class ModulesMetaEvent extends AbstractMetaEvent {
         ShowEventHistoryViewEvent eventHistoryViewEvent = EventCreator.createEvent(EventHistoryView.class, MainView.class, ShowEventHistoryViewEvent.class);
         ShowModulesViewEvent modulesViewEvent = EventCreator.createEvent(ModulesView.class, MainView.class, ShowModulesViewEvent.class);
         ShowButtonsViewEvent buttonsViewEvent = EventCreator.createEvent(ButtonsView.class, MainView.class, ShowButtonsViewEvent.class);
-        addEvents(eventHistoryViewEvent, modulesViewEvent, buttonsViewEvent);
+        ClearViewEvent clearViewEvent = new ClearViewEvent(ModulesView.class, MainView.class);
+        addEvents(eventHistoryViewEvent, modulesViewEvent, buttonsViewEvent, clearViewEvent);
     }
 }

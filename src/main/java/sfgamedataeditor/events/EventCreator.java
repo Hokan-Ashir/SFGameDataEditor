@@ -1,6 +1,7 @@
 package sfgamedataeditor.events;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.views.common.AbstractView;
 
 import java.lang.reflect.Constructor;

@@ -1,6 +1,6 @@
 package sfgamedataeditor.fieldwrapping;
 
-import sfgamedataeditor.events.AbstractMetaEvent;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

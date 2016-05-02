@@ -1,11 +1,11 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
-import sfgamedataeditor.ViewRegister;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.dataextraction.OffsetProvider;
 import sfgamedataeditor.dataextraction.SpellMap;
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.ClassTuple;
+import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.levelable.LevelableView;
@@ -73,18 +73,13 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
         }
 
         reinitializeComboBox();
-        selectFirstComboBoxItem();
-
-        // TODO make this use-case work:
-        // if user selects school with no spells (wouldn't be so, if make parsing data correct)
-        // application must clean up previously selected spell parameter view
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    protected void setEventParameter(AbstractMetaEvent event) {
+    protected void setEventParameter(AbstractMetaEvent metaEvent) {
         spellParameterEventParameter.setSpellId(getSelectedSpellId());
 
         LevelableView<SpellsView> levelableView = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SpellsView.class));
@@ -92,7 +87,7 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
             spellParameterEventParameter.setSpellLevel(levelableView.getSelectedLevel());
         }
 
-        event.setEventParameter(ShowSpellParameterViewEvent.class, spellParameterEventParameter);
+        metaEvent.setEventParameter(ShowSpellParameterViewEvent.class, spellParameterEventParameter);
     }
 
     private int getSelectedSpellId() {

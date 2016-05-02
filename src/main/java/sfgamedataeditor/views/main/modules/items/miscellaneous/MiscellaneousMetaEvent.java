@@ -1,9 +1,10 @@
 package sfgamedataeditor.views.main.modules.items.miscellaneous;
 
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventCreator;
-import sfgamedataeditor.events.ShowViewEvent;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.ClearViewEvent;
+import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 
 public class MiscellaneousMetaEvent extends AbstractMetaEvent {
@@ -14,7 +15,8 @@ public class MiscellaneousMetaEvent extends AbstractMetaEvent {
     @Override
     protected void addEvents() {
         ShowMiscellaneousViewEvent event = EventCreator.createEvent(MiscellaneousListView.class, ItemTypesView.class, ShowMiscellaneousViewEvent.class);
-        addEvent(event);
+        ClearViewEvent clearViewEvent = new ClearViewEvent(MiscellaneousListView.class, ItemTypesView.class);
+        addEvents(event, clearViewEvent);
     }
 }
 

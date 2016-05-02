@@ -1,9 +1,10 @@
 package sfgamedataeditor.views.main.modules.items.armor;
 
-import sfgamedataeditor.events.AbstractMetaEvent;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventCreator;
-import sfgamedataeditor.events.ShowViewEvent;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.ClearViewEvent;
+import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 
 public class ArmorTypesMetaEvent extends AbstractMetaEvent {
@@ -14,7 +15,8 @@ public class ArmorTypesMetaEvent extends AbstractMetaEvent {
     @Override
     protected void addEvents() {
         ShowArmorTypeListViewEvent event = EventCreator.createEvent(ArmorTypeListView.class, ItemTypesView.class, ShowArmorTypeListViewEvent.class);
-        addEvent(event);
+        ClearViewEvent clearViewEvent = new ClearViewEvent(ArmorTypeListView.class, ItemTypesView.class);
+        addEvents(event, clearViewEvent);
     }
 }
 

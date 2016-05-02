@@ -19,12 +19,12 @@ public class EventHistoryView extends AbstractView<MainView> {
     }
 
     private void attachUndoButtonListener() {
-        UndoButtonListener listener = new UndoButtonListener(redoButton, undoButton);
+        UndoButtonListener listener = new UndoButtonListener(undoButton, redoButton);
         undoButton.addActionListener(listener);
     }
 
     private void attachRedoButtonListener() {
-        RedoButtonListener listener = new RedoButtonListener(redoButton, undoButton);
+        RedoButtonListener listener = new RedoButtonListener(undoButton, redoButton);
         redoButton.addActionListener(listener);
     }
 
