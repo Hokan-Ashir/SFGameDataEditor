@@ -39,6 +39,7 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
      */
     @Override
     protected void setEventParameter(AbstractMetaEvent metaEvent) {
+        super.setEventParameter(metaEvent);
         parameter.setSkillSchoolId(getSelectedSchoolId());
 
         LevelableView<SkillSchoolsView> levelableView = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SkillSchoolsView.class));

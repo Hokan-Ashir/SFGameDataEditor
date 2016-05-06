@@ -3,6 +3,7 @@ package sfgamedataeditor.views.common;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.events.types.Event;
+import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.events.types.ShowViewEvent;
 
 import javax.swing.*;
@@ -47,27 +48,13 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
 
     // TODO make all this stuff about setting fired event modules name right and clean
     // cause now, its total bullshit
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void updateData(Object data) {
-        if (data == null) {
-            return;
-        }
-
-        //modulesComboBox.setSelectedItem(data);
-        ((AbstractModulesView) getParentView()).setModulesComboBoxValue(data);
-    }
-
-    public void setModulesComboBoxValue(Object data) {
+    public void setModulesComboBoxValue(Object value) {
         ItemListener[] listeners = modulesComboBox.getItemListeners();
         for (ItemListener listener : listeners) {
             modulesComboBox.removeItemListener(listener);
         }
 
-        modulesComboBox.setSelectedItem(data);
+        modulesComboBox.setSelectedItem(value);
 
         for (ItemListener listener : listeners) {
             modulesComboBox.addItemListener(listener);
@@ -76,8 +63,8 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
 
     protected void setEventParameter(AbstractMetaEvent metaEvent) {
         for (Event event : metaEvent.getEventList()) {
-            if (ShowViewEvent.class.isAssignableFrom(event.getClass())) {
-                metaEvent.setEventParameter((Class<? extends ShowViewEvent>) event.getClass(), modulesComboBox.getSelectedItem());
+            if (SetModuleNameEvent.class.isAssignableFrom(event.getClass())) {
+                ((SetModuleNameEvent) event).setModuleName(getSelectedModuleValue());
             }
         }
     }
