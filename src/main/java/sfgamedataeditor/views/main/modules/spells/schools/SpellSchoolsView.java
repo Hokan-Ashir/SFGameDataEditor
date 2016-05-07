@@ -39,6 +39,7 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
      */
     @Override
     protected void setEventParameter(AbstractMetaEvent metaEvent) {
+        super.setEventParameter(metaEvent);
         String selectedSpellSchool = (String) getSelectedModuleValue();
         parameter.setSpellSchoolName(selectedSpellSchool);
         metaEvent.setEventParameter(ShowSpellsViewEvent.class, parameter);

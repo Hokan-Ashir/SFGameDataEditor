@@ -80,6 +80,7 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
      */
     @Override
     protected void setEventParameter(AbstractMetaEvent metaEvent) {
+        super.setEventParameter(metaEvent);
         spellParameterEventParameter.setSpellId(getSelectedSpellId());
 
         LevelableView<SpellsView> levelableView = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SpellsView.class));
