@@ -113,10 +113,6 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
         comboBoxMapping.clear();
     }
 
-    protected void deselectAnyComboBoxObject() {
-        modulesComboBox.setSelectedItem(null);
-    }
-
     protected void addMapping(String name, AbstractMetaEvent event) {
         comboBoxMapping.put(name, event);
     }

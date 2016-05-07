@@ -28,8 +28,6 @@ See "What it can't do" section below to be awared of restrictions.
  - Merging sf-mod files with your GameData.cff files to get modificated data, which you can test in game
 
 # What it can't do
- - Almost no validations on entering values
- Text fields has only "enter only digit", "enter value greater than zero" validation. So if you will enter, i.e. 65536 in 2-bytes field (which has maximum value of 65535), you may expect application will crush and stun forever
  - No other languages except English, Russian, German and French
  NOTE:
  Localization name format MUST look like "messages_XX.properties", where XX is language signature. Register irrelevant
@@ -90,6 +88,8 @@ See "What it can't do" section below to be awared of restrictions.
  - Extend sf-mod-files format to include description
  - Extend with item, merchants, buildings, units views
  - Add support for any language i18n possible
+ - Place all subviews in more appropriate position, probably with grid layout
+ - Add database storage for all parsed data from GameData.cff file (i.e. HLSQL, H2, DerbyDb)
 
 # Special thanks
  - This application won't be possible without information grabbed from this forum - http://spellforcefanforum.hostoi.com/index.php

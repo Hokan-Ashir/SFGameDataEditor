@@ -53,6 +53,13 @@ public class TextFieldListener implements DocumentListener {
                 new Notification(I18N.INSTANCE.getMessage("errorNumberLessThanZero"), NotificationType.ERROR);
                 return;
             }
+
+            double maximumValue = field.getFieldMaximumValue();
+            if (value > maximumValue) {
+                new Notification(I18N.INSTANCE.getMessage("error.exceeds.max.value") + String.valueOf(maximumValue), NotificationType.ERROR);
+                return;
+            }
+
         } catch (NumberFormatException e) {
             new Notification(I18N.INSTANCE.getMessage("errorNotANumber"), NotificationType.ERROR);
             return;

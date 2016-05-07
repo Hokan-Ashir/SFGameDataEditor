@@ -44,6 +44,10 @@ public abstract class AbstractDataField<T extends JComponent> implements IDataFi
 
     protected abstract void setFieldValue(int value);
 
+    public double getFieldMaximumValue() {
+        return Math.pow(2.0, 8 * lengthInBytes) - 1;
+    }
+
     /**
      * {@inheritDoc}
      */
