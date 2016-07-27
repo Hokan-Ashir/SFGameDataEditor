@@ -13,8 +13,8 @@ public enum SpellMap {
 
     private static final int NUMBER_OF_PARAMETER_FIELDS = 9;
     private static final String FIELD_ATTRIBUTE = "field";
-    private static final String NAME_ATTRIBUTE = "name";
-    private static final Map<Integer, String> SPELLMAP = new HashMap<Integer, String>() {{
+    public static final String NAME_ATTRIBUTE = "name";
+    public static final Map<Integer, String> SPELLMAP = new HashMap<Integer, String>() {{
         put(1, "Fireburst");
         put(2, "Healing");
         put(3, "Death");

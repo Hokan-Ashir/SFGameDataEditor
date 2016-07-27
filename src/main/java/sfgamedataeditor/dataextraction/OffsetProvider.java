@@ -1,6 +1,7 @@
 package sfgamedataeditor.dataextraction;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.database.TableCreationUtils;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.databind.files.FilesContainer;
 import sfgamedataeditor.datamapping.Mappings;
@@ -28,6 +29,8 @@ public enum OffsetProvider {
     }
 
     private void createSkillOffsetMap() {
+        TableCreationUtils.createSkillNameTable();
+        TableCreationUtils.createSkillParametersTable();
         skillSchoolOffsetMap = new HashMap<>();
 
         Operation operation = new Operation<Map<Integer, List<Pair<Integer, Long>>>>() {
@@ -61,6 +64,8 @@ public enum OffsetProvider {
     }
 
     private void createSpellOffsetMap() {
+        TableCreationUtils.createSpellNameTable();
+        TableCreationUtils.createSpellParametersTable();
         spellOffsetMap = new HashMap<>();
 
         Operation operation = new Operation<Map<Integer, List<Pair<Integer, Long>>>>() {
