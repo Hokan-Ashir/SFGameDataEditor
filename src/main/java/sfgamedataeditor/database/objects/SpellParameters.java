@@ -2,6 +2,7 @@ package sfgamedataeditor.database.objects;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import sfgamedataeditor.fieldwrapping.Data;
 
 @DatabaseTable(tableName = "spell_parameters")
 public class SpellParameters {
@@ -9,110 +10,110 @@ public class SpellParameters {
     @DatabaseField(generatedId = true)
     private Integer id;
 
-    @Data(length = 2)
+    @Data(offset = 0, length = 2)
     @DatabaseField(canBeNull = false)
     private Integer spellNumber;
 
     //    TODO FK on SpellName
-    @Data(length = 2)
-    @DatabaseField(canBeNull = false)
-    private Integer spellNameId;
+    @Data(offset = 2, length = 2)
+    @DatabaseField(canBeNull = false, foreign = true, foreignColumnName = SpellName.SPELL_TYPE_KEY_COLUMN_NAME)
+    private SpellName spellNameId;
 
-    @Data
+    @Data(offset = 4, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer requirementClass1;
 
-    @Data
+    @Data(offset = 5, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer requirementSubClass1;
 
-    @Data
+    @Data(offset = 6, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer requirementLevel1;
 
-    @Data
+    @Data(offset = 7, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer requirementClass2;
 
-    @Data
+    @Data(offset = 8, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer requirementSubClass2;
 
-    @Data
+    @Data(offset = 9, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer requirementLevel2;
 
-    @Data
+    @Data(offset = 10, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer requirementClass3;
 
-    @Data
+    @Data(offset = 11, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer requirementSubClass3;
 
-    @Data
+    @Data(offset = 12, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer requirementLevel3;
 
     // TODO add possible spell skill requirements (3 bytes offset)
 
-    @Data(length = 2)
+    @Data(offset = 16, length = 2)
     @DatabaseField(canBeNull = false)
     private Integer manaUsage;
 
-    @Data(length = 4)
+    @Data(offset = 18, length = 4)
     @DatabaseField(canBeNull = false)
     private Integer castTime;
 
-    @Data(length = 4)
+    @Data(offset = 22, length = 4)
     @DatabaseField(canBeNull = false)
     private Integer cooldown;
 
-    @Data(length = 4)
+    @Data(offset = 26, length = 2)
     @DatabaseField(canBeNull = false)
     private Integer minRange;
 
-    @Data(length = 4)
+    @Data(offset = 28, length = 2)
     @DatabaseField(canBeNull = false)
     private Integer maxRange;
 
-    @Data(length = 2)
+    @Data(offset = 30, length = 2)
     @DatabaseField(canBeNull = false)
     private Integer castType;
 
-    @Data(length = 4)
+    @Data(offset = 32, length = 4)
     @DatabaseField(canBeNull = false)
     private Integer parameter1;
 
-    @Data(length = 4)
+    @Data(offset = 36, length = 4)
     @DatabaseField(canBeNull = false)
     private Integer parameter2;
 
-    @Data(length = 4)
+    @Data(offset = 40, length = 4)
     @DatabaseField(canBeNull = false)
     private Integer parameter3;
 
-    @Data(length = 4)
+    @Data(offset = 44, length = 4)
     @DatabaseField(canBeNull = false)
     private Integer parameter4;
 
-    @Data(length = 4)
+    @Data(offset = 48, length = 4)
     @DatabaseField(canBeNull = false)
     private Integer parameter5;
 
-    @Data(length = 4)
+    @Data(offset = 52, length = 4)
     @DatabaseField(canBeNull = false)
     private Integer parameter6;
 
-    @Data(length = 4)
+    @Data(offset = 56, length = 4)
     @DatabaseField(canBeNull = false)
     private Integer parameter7;
 
-    @Data(length = 4)
+    @Data(offset = 60, length = 4)
     @DatabaseField(canBeNull = false)
     private Integer parameter8;
 
-    @Data(length = 4)
+    @Data(offset = 64, length = 4)
     @DatabaseField(canBeNull = false)
     private Integer parameter9;
 
@@ -138,11 +139,11 @@ public class SpellParameters {
         this.spellNumber = spellNumber;
     }
 
-    public Integer getSpellNameId() {
+    public SpellName getSpellNameId() {
         return spellNameId;
     }
 
-    public void setSpellNameId(Integer spellNameId) {
+    public void setSpellNameId(SpellName spellNameId) {
         this.spellNameId = spellNameId;
     }
 

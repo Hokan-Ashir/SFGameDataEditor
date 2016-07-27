@@ -2,6 +2,7 @@ package sfgamedataeditor.database.objects;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import sfgamedataeditor.fieldwrapping.Data;
 
 @DatabaseTable(tableName = "skill_parameters")
 public class SkillParameters {
@@ -10,35 +11,39 @@ public class SkillParameters {
     private Integer id;
 
 //    TODO FK on SkillName
-    @Data
-    @DatabaseField(canBeNull = false)
-    private Integer skillNameId;
+    @Data(offset = 0, length = 1)
+    @DatabaseField(canBeNull = false, foreign = true/*, foreignColumnName = SkillName.SKILL_TYPE_COLUMN_NAME*/)
+    private SkillName skillType_id;
 
-    @Data
+    @Data(offset = 1, length = 1)
+    @DatabaseField(canBeNull = false)
+    private Integer level;
+
+    @Data(offset = 2, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer strengthRequired;
 
-    @Data
+    @Data(offset = 3, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer staminaRequired;
 
-    @Data
+    @Data(offset = 4, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer agilityRequired;
 
-    @Data
+    @Data(offset = 5, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer dexterityRequired;
 
-    @Data
+    @Data(offset = 6, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer charismaRequired;
 
-    @Data
+    @Data(offset = 7, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer intelligenceRequired;
 
-    @Data
+    @Data(offset = 8, length = 1)
     @DatabaseField(canBeNull = false)
     private Integer wisdomRequired;
 
@@ -56,12 +61,12 @@ public class SkillParameters {
         this.id = id;
     }
 
-    public Integer getSkillNameId() {
-        return skillNameId;
+    public SkillName getSkillType() {
+        return skillType_id;
     }
 
-    public void setSkillNameId(Integer skillNameId) {
-        this.skillNameId = skillNameId;
+    public void setSkillType(SkillName skillType) {
+        this.skillType_id = skillType;
     }
 
     public Integer getStrengthRequired() {
@@ -126,5 +131,13 @@ public class SkillParameters {
 
     public void setOffsetInFile(Long offsetInFile) {
         this.offsetInFile = offsetInFile;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 }

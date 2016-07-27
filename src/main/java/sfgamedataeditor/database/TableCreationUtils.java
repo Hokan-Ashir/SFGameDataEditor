@@ -6,10 +6,7 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import org.apache.log4j.Logger;
-import sfgamedataeditor.database.objects.SkillName;
-import sfgamedataeditor.database.objects.SkillParameters;
-import sfgamedataeditor.database.objects.SpellName;
-import sfgamedataeditor.database.objects.SpellParameters;
+import sfgamedataeditor.database.objects.*;
 import sfgamedataeditor.dataextraction.SpellMap;
 import sfgamedataeditor.utils.I18N;
 
@@ -98,6 +95,51 @@ public final class TableCreationUtils {
 
     public static void createSkillParametersTable() {
         createTable(SkillParameters.class);
+    }
+
+    public static void addRecordToSkillParametersTable(byte[] buffer) {
+        addRecordToTable(SkillParameters.class, buffer);
+    }
+
+    public static void addRecordToSpellParametersTable(byte[] buffer) {
+        addRecordToTable(SpellParameters.class, buffer);
+    }
+
+    private static <T> void addRecordToTable(Class<T> ormClass, byte[] buffer) {
+        ConnectionSource connectionSource = getConnectionSource();
+        Dao<T, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, ormClass);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return;
+        }
+
+        T object = createObject(ormClass, buffer);
+        try {
+            dao.create(object);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        } finally {
+            try {
+                connectionSource.close();
+            } catch (SQLException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        }
+    }
+
+    private static <T> T createObject(Class<T> objectClass, byte[] buffer) {
+        T object;
+        try {
+            object = objectClass.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+
+        ObjectDataMappingService.INSTANCE.fillObjectWithData(object, buffer);
+        return object;
     }
 
     public static void createSpellParametersTable() {

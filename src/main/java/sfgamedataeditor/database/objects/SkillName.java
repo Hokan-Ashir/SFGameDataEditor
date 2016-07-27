@@ -5,8 +5,11 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "skill_name")
 public class SkillName {
+
+    public static final String SKILL_TYPE_COLUMN_NAME = "skillType";
+
     @DatabaseField(id = true)
-    private Integer skillType;
+    private Integer skillType_id;
 
     @DatabaseField(canBeNull = false)
     private String name;
@@ -15,7 +18,7 @@ public class SkillName {
     }
 
     public Integer getSkillType() {
-        return skillType;
+        return skillType_id;
     }
 
     public String getName() {
@@ -24,7 +27,7 @@ public class SkillName {
 
     public SkillName(Integer skillType, String name) {
 
-        this.skillType = skillType;
+        this.skillType_id = skillType;
         this.name = name;
     }
 }
