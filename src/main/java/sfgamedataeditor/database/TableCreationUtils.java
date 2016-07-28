@@ -11,8 +11,11 @@ import sfgamedataeditor.dataextraction.SpellMap;
 import sfgamedataeditor.utils.I18N;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 public final class TableCreationUtils {
 
@@ -21,13 +24,13 @@ public final class TableCreationUtils {
     private TableCreationUtils() {}
 
     public static void createSpellNameTable() {
-        createTable(SpellName.class);
+        recreateTable(SpellName.class);
         fillSpellNameTableWithPredefinedNames();
     }
 
     private static void fillSpellNameTableWithPredefinedNames() {
         ConnectionSource connectionSource = getConnectionSource();
-        Dao<SpellName, String> dao;
+        final Dao<SpellName, String> dao;
         try {
              dao = DaoManager.createDao(connectionSource, SpellName.class);
         } catch (SQLException e) {
@@ -35,30 +38,42 @@ public final class TableCreationUtils {
             return;
         }
 
+        final List<SpellName> spellNames = new ArrayList<>();
 //        TODO make batch requests
 //        TODO make inner map, not static for all app instance, cause we need to instantiate it only once
         for (Map.Entry<Integer, String> integerStringEntry : SpellMap.SPELLMAP.entrySet()) {
             String i18nName = I18N.INSTANCE.getMessage(integerStringEntry.getValue() + "." + SpellMap.NAME_ATTRIBUTE);
             SpellName spellName = new SpellName(integerStringEntry.getKey(), i18nName);
+            spellNames.add(spellName);
+        }
+
+        try {
+            dao.callBatchTasks(new Callable<Void>() {
+                @Override
+                public Void call() throws Exception {
+                    for (SpellName spellName : spellNames) {
+                        dao.create(spellName);
+                    }
+
+                    return null;
+                }
+            });
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        } finally {
             try {
-                dao.create(spellName);
+                connectionSource.close();
             } catch (SQLException e) {
                 LOGGER.error(e.getMessage(), e);
-            } finally {
-                try {
-                    connectionSource.close();
-                } catch (SQLException e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
             }
         }
     }
 
     public static void createSkillNameTable() {
-        createTable(SkillName.class);
+        recreateTable(SkillName.class);
 
         ConnectionSource connectionSource = getConnectionSource();
-        Dao<SkillName, String> dao;
+        final Dao<SkillName, String> dao;
         try {
             dao = DaoManager.createDao(connectionSource, SkillName.class);
         } catch (SQLException e) {
@@ -66,7 +81,7 @@ public final class TableCreationUtils {
             return;
         }
 
-        Map<Integer, String> skillTypeToNameMap = new HashMap<Integer, String>() {{
+        final Map<Integer, String> skillTypeToNameMap = new HashMap<Integer, String>() {{
             put(1, I18N.INSTANCE.getMessage("lightCombatArts"));
             put(2, I18N.INSTANCE.getMessage("heavyCombatArts"));
             put(3, I18N.INSTANCE.getMessage("archery"));
@@ -76,36 +91,42 @@ public final class TableCreationUtils {
             put(7, I18N.INSTANCE.getMessage("blackMagic"));
         }};
 
-//        TODO make batch requests
-        for (Map.Entry<Integer, String> integerStringEntry : skillTypeToNameMap.entrySet()) {
-            SkillName spellName = new SkillName(integerStringEntry.getKey(), integerStringEntry.getValue());
+        try {
+            dao.callBatchTasks(new Callable<Void>() {
+                @Override
+                public Void call() throws Exception {
+                    for (Map.Entry<Integer, String> integerStringEntry : skillTypeToNameMap.entrySet()) {
+                        SkillName spellName = new SkillName(integerStringEntry.getKey(), integerStringEntry.getValue());
+                        dao.create(spellName);
+                    }
+
+                    return null;
+                }
+            });
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        } finally {
             try {
-                dao.create(spellName);
+                connectionSource.close();
             } catch (SQLException e) {
                 LOGGER.error(e.getMessage(), e);
-            } finally {
-                try {
-                    connectionSource.close();
-                } catch (SQLException e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
             }
         }
     }
 
     public static void createSkillParametersTable() {
-        createTable(SkillParameters.class);
+        recreateTable(SkillParameters.class);
     }
 
-    public static void addRecordToSkillParametersTable(byte[] buffer) {
-        addRecordToTable(SkillParameters.class, buffer);
+    public static void addRecordToSkillParametersTable(byte[] buffer, long offset) {
+        addRecordToTable(SkillParameters.class, buffer, offset);
     }
 
-    public static void addRecordToSpellParametersTable(byte[] buffer) {
-        addRecordToTable(SpellParameters.class, buffer);
+    public static void addRecordToSpellParametersTable(byte[] buffer, long offset) {
+        addRecordToTable(SpellParameters.class, buffer, offset);
     }
 
-    private static <T> void addRecordToTable(Class<T> ormClass, byte[] buffer) {
+    private static <T extends OffsetableObject> void addRecordToTable(Class<T> ormClass, byte[] buffer, long offset) {
         ConnectionSource connectionSource = getConnectionSource();
         Dao<T, String> dao;
         try {
@@ -116,6 +137,7 @@ public final class TableCreationUtils {
         }
 
         T object = createObject(ormClass, buffer);
+        object.setOffset(offset);
         try {
             dao.create(object);
         } catch (SQLException e) {
@@ -143,14 +165,15 @@ public final class TableCreationUtils {
     }
 
     public static void createSpellParametersTable() {
-        createTable(SpellParameters.class);
+        recreateTable(SpellParameters.class);
     }
 
-    private static void createTable(Class<?> ormObjectClass) {
+    private static void recreateTable(Class<?> ormObjectClass) {
         ConnectionSource connectionSource = getConnectionSource();
         if (connectionSource == null) return;
 
         try {
+            TableUtils.dropTable(connectionSource, ormObjectClass, false);
             TableUtils.createTableIfNotExists(connectionSource, ormObjectClass);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

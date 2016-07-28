@@ -5,15 +5,14 @@ import com.j256.ormlite.table.DatabaseTable;
 import sfgamedataeditor.fieldwrapping.Data;
 
 @DatabaseTable(tableName = "skill_parameters")
-public class SkillParameters {
+public class SkillParameters extends OffsetableObject {
 
     @DatabaseField(generatedId = true)
     private Integer id;
 
-//    TODO FK on SkillName
     @Data(offset = 0, length = 1)
-    @DatabaseField(canBeNull = false, foreign = true/*, foreignColumnName = SkillName.SKILL_TYPE_COLUMN_NAME*/)
-    private SkillName skillType_id;
+    @DatabaseField(canBeNull = false)
+    private Integer skillTypeId;
 
     @Data(offset = 1, length = 1)
     @DatabaseField(canBeNull = false)
@@ -47,9 +46,6 @@ public class SkillParameters {
     @DatabaseField(canBeNull = false)
     private Integer wisdomRequired;
 
-    @DatabaseField(canBeNull = false)
-    private Long offsetInFile;
-
     public SkillParameters() {
     }
 
@@ -61,12 +57,12 @@ public class SkillParameters {
         this.id = id;
     }
 
-    public SkillName getSkillType() {
-        return skillType_id;
+    public Integer getSkillType() {
+        return skillTypeId;
     }
 
-    public void setSkillType(SkillName skillType) {
-        this.skillType_id = skillType;
+    public void setSkillType(Integer skillType) {
+        this.skillTypeId = skillType;
     }
 
     public Integer getStrengthRequired() {
@@ -123,14 +119,6 @@ public class SkillParameters {
 
     public void setWisdomRequired(Integer wisdomRequired) {
         this.wisdomRequired = wisdomRequired;
-    }
-
-    public Long getOffsetInFile() {
-        return offsetInFile;
-    }
-
-    public void setOffsetInFile(Long offsetInFile) {
-        this.offsetInFile = offsetInFile;
     }
 
     public Integer getLevel() {

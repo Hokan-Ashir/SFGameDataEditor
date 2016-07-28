@@ -5,7 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import sfgamedataeditor.fieldwrapping.Data;
 
 @DatabaseTable(tableName = "spell_parameters")
-public class SpellParameters {
+public class SpellParameters extends OffsetableObject {
 
     @DatabaseField(generatedId = true)
     private Integer id;
@@ -14,10 +14,9 @@ public class SpellParameters {
     @DatabaseField(canBeNull = false)
     private Integer spellNumber;
 
-    //    TODO FK on SpellName
     @Data(offset = 2, length = 2)
-    @DatabaseField(canBeNull = false, foreign = true, foreignColumnName = SpellName.SPELL_TYPE_KEY_COLUMN_NAME)
-    private SpellName spellNameId;
+    @DatabaseField(canBeNull = false)
+    private Integer spellNameId;
 
     @Data(offset = 4, length = 1)
     @DatabaseField(canBeNull = false)
@@ -117,9 +116,6 @@ public class SpellParameters {
     @DatabaseField(canBeNull = false)
     private Integer parameter9;
 
-    @DatabaseField(canBeNull = false)
-    private Long offset;
-
     public SpellParameters() {
     }
 
@@ -139,11 +135,11 @@ public class SpellParameters {
         this.spellNumber = spellNumber;
     }
 
-    public SpellName getSpellNameId() {
+    public Integer getSpellNameId() {
         return spellNameId;
     }
 
-    public void setSpellNameId(SpellName spellNameId) {
+    public void setSpellNameId(Integer spellNameId) {
         this.spellNameId = spellNameId;
     }
 
@@ -337,13 +333,5 @@ public class SpellParameters {
 
     public void setParameter9(Integer parameter9) {
         this.parameter9 = parameter9;
-    }
-
-    public Long getOffset() {
-        return offset;
-    }
-
-    public void setOffset(Long offset) {
-        this.offset = offset;
     }
 }

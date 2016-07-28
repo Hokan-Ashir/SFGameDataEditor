@@ -17,11 +17,6 @@ public enum ObjectDataMappingService {
 
     public void fillObjectWithData(Object object, byte[] buffer) {
         Class<?> aClass = object.getClass();
-        if (!map.containsKey(aClass)) {
-            LOGGER.error("No annotation mapping data found for class " + aClass.getName());
-            return;
-        }
-
         Map<DataPair, Field> objectMapping = getObjectMapping(aClass);
         for (Map.Entry<DataPair, Field> dataPairFieldEntry : objectMapping.entrySet()) {
             int offset = dataPairFieldEntry.getKey().getOffset();
@@ -30,8 +25,9 @@ public enum ObjectDataMappingService {
 //            TODO check field object type, currently supports only integers
             int temp = getValue(buffer, offset, length);
             try {
-                Object fieldObject = dataPairFieldEntry.getValue().get(object);
-                fieldObject = temp;
+                Field field = dataPairFieldEntry.getValue();
+                field.setAccessible(true);
+                field.set(object, temp);
             } catch (IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);
             }
@@ -62,7 +58,7 @@ public enum ObjectDataMappingService {
     private int getValue(byte[] value, int offset, int length) {
         int temp = 0;
         for (int i = offset; i < offset + length; i++) {
-            temp += value[i] << ((length - i) * 8);
+            temp += value[i] << ((i - offset) * 8);
         }
 
         return temp;
