@@ -29,27 +29,14 @@ public enum OffsetProvider {
     }
 
     private void createSkillOffsetMap() {
+        TableCreationUtils.createSkillNameTable();
+        TableCreationUtils.createSkillParametersTable();
         skillSchoolOffsetMap = new HashMap<>();
-
-        Operation operation = new Operation<Map<Integer, List<Pair<Integer, Long>>>>() {
-            @Override
-            public void process(byte[] buffer, long offset, Map<Integer, List<Pair<Integer, Long>>> resultMap) {
-                int skillType = buffer[0] & 0xFF;
-                List<Pair<Integer, Long>> offsets;
-                if (!resultMap.containsKey(skillType)) {
-                    offsets = new ArrayList<>();
-                } else {
-                    offsets = resultMap.get(skillType);
-                }
-
-                offsets.add(new Pair<>(buffer[1] & 0xFF, offset));
-                resultMap.put(skillType, offsets);
-            }
-        };
 
         List<Pair<Integer, Integer>> skillOffsets = DataOffsetProvider.INSTANCE.getSkillOffsets();
         int dataLength = DataOffsetProvider.INSTANCE.getSkillDataLength();
-        readData(skillOffsets, dataLength, skillSchoolOffsetMap, operation);
+        List<Pair<byte[], Long>> offsettedData = readData(skillOffsets, dataLength);
+        TableCreationUtils.addRecordsToSkillParametersTable(offsettedData);
     }
 
     public Map<Integer, List<Pair<Integer, Long>>> getSpellOffsets() {
@@ -62,30 +49,14 @@ public enum OffsetProvider {
     }
 
     private void createSpellOffsetMap() {
+        TableCreationUtils.createSpellNameTable();
+        TableCreationUtils.createSpellParametersTable();
         spellOffsetMap = new HashMap<>();
-
-        Operation operation = new Operation<Map<Integer, List<Pair<Integer, Long>>>>() {
-            @Override
-            public void process(byte[] buffer, long offset, Map<Integer, List<Pair<Integer, Long>>> resultMap) {
-                int spellType = buffer[2] & 0xFF;
-                // TODO triple spell requirements may not have same level, nor it can be
-                // placed in first requirement tuple
-                int spellLevel = buffer[6] & 0xFF;
-                List<Pair<Integer, Long>> offsets;
-                if (!resultMap.containsKey(spellType)) {
-                    offsets = new ArrayList<>();
-                } else {
-                    offsets = resultMap.get(spellType);
-                }
-
-                offsets.add(new Pair<>(spellLevel, offset));
-                resultMap.put(spellType, offsets);
-            }
-        };
 
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getSpellOffsets();
         int dataLength = DataOffsetProvider.INSTANCE.getSpellDataLength();
-        readData(offsets, dataLength, spellOffsetMap, operation);
+        List<Pair<byte[], Long>> offsettedData = readData(offsets, dataLength);
+        TableCreationUtils.addRecordsToSpellParametersTable(offsettedData);
     }
 
     public Map<String, Set<Integer>> getSpellSchoolsToSpellsMap() {
@@ -100,29 +71,10 @@ public enum OffsetProvider {
 
     private void createSpellSchoolsToSpellsMap() {
         spellSchoolsToSpellsMap = new HashMap<>();
-
-        Operation operation = new Operation<Map<String, Set<Integer>>>() {
-            @Override
-            public void process(byte[] buffer, long offset, Map<String, Set<Integer>> resultMap) {
-                int spellType = buffer[2] & 0xFF;
-                List<String> spellSchoolNames = createSpellSchoolNames(buffer);
-                for (String spellSchoolName : spellSchoolNames) {
-                    Set<Integer> spellList;
-                    if (!resultMap.containsKey(spellSchoolName)) {
-                        spellList = new TreeSet<>();
-                    } else {
-                        spellList = resultMap.get(spellSchoolName);
-                    }
-
-                    spellList.add(spellType);
-                    resultMap.put(spellSchoolName, spellList);
-                }
-            }
-        };
-
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getSpellOffsets();
         int dataLength = DataOffsetProvider.INSTANCE.getSpellDataLength();
-        readData(offsets, dataLength, spellSchoolsToSpellsMap, operation);
+        List<Pair<byte[], Long>> offsettedData = readData(offsets, dataLength);
+        // TODO deal with schoolNames
     }
 
     private List<String> createSpellSchoolNames(byte[] buffer) {
@@ -150,7 +102,8 @@ public enum OffsetProvider {
         result.add(Mappings.INSTANCE.SPELL_SCHOOL_MAP.get(school1));
     }
 
-    private <T> void readData(List<Pair<Integer, Integer>> dataOffsets, int dataLength, T data, Operation<T> operation) {
+    private List<Pair<byte[], Long>> readData(List<Pair<Integer, Integer>> dataOffsets, int dataLength) {
+        List<Pair<byte[], Long>> result = new ArrayList<>();
         RandomAccessFile file = FilesContainer.INSTANCE.getModificationFile();
         try {
             for (Pair<Integer, Integer> pair : dataOffsets) {
@@ -159,12 +112,14 @@ public enum OffsetProvider {
                 while (file.getFilePointer() < pair.getValue()) {
                     file.read(buffer);
                     long offset = file.getFilePointer() - dataLength;
-                    operation.process(buffer, offset, data);
+                    result.add(new Pair<>(buffer, offset));
                 }
             }
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
+
+        return result;
     }
 
     public void recreateAllMaps() {
@@ -179,9 +134,5 @@ public enum OffsetProvider {
         if (spellSchoolsToSpellsMap != null) {
             createSpellSchoolsToSpellsMap();
         }
-    }
-
-    private interface Operation<T> {
-        void process(byte[] buffer, long offset, T resultMap);
     }
 }

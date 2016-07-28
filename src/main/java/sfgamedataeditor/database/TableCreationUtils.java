@@ -7,6 +7,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.objects.*;
+import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.dataextraction.SpellMap;
 import sfgamedataeditor.utils.I18N;
 
@@ -39,7 +40,6 @@ public final class TableCreationUtils {
         }
 
         final List<SpellName> spellNames = new ArrayList<>();
-//        TODO make batch requests
 //        TODO make inner map, not static for all app instance, cause we need to instantiate it only once
         for (Map.Entry<Integer, String> integerStringEntry : SpellMap.SPELLMAP.entrySet()) {
             String i18nName = I18N.INSTANCE.getMessage(integerStringEntry.getValue() + "." + SpellMap.NAME_ATTRIBUTE);
@@ -118,15 +118,15 @@ public final class TableCreationUtils {
         recreateTable(SkillParameters.class);
     }
 
-    public static void addRecordToSkillParametersTable(byte[] buffer, long offset) {
-        addRecordToTable(SkillParameters.class, buffer, offset);
+    public static void addRecordsToSkillParametersTable(List<Pair<byte[], Long>> offsettedData) {
+        addRecordsToTable(SkillParameters.class, offsettedData);
     }
 
-    public static void addRecordToSpellParametersTable(byte[] buffer, long offset) {
-        addRecordToTable(SpellParameters.class, buffer, offset);
+    public static void addRecordsToSpellParametersTable(List<Pair<byte[], Long>> offsettedData) {
+        addRecordsToTable(SpellParameters.class, offsettedData);
     }
 
-    private static <T extends OffsetableObject> void addRecordToTable(Class<T> ormClass, byte[] buffer, long offset) {
+    private static <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final List<Pair<byte[], Long>> offsetedData) {
         ConnectionSource connectionSource = getConnectionSource();
         Dao<T, String> dao;
         try {
@@ -136,11 +136,19 @@ public final class TableCreationUtils {
             return;
         }
 
-        T object = createObject(ormClass, buffer);
-        object.setOffset(offset);
         try {
-            dao.create(object);
-        } catch (SQLException e) {
+            dao.callBatchTasks(new Callable<Void>() {
+                @Override
+                public Void call() throws Exception {
+                    for (Pair<byte[], Long> longPair : offsetedData) {
+                        T object = createObject(ormClass, longPair.getKey());
+                        object.setOffset(longPair.getValue());
+                    }
+
+                    return null;
+                }
+            });
+        } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         } finally {
             try {
