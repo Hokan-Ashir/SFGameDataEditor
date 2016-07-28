@@ -29,14 +29,11 @@ public enum OffsetProvider {
     }
 
     private void createSkillOffsetMap() {
-        TableCreationUtils.createSkillNameTable();
-        TableCreationUtils.createSkillParametersTable();
         skillSchoolOffsetMap = new HashMap<>();
 
         Operation operation = new Operation<Map<Integer, List<Pair<Integer, Long>>>>() {
             @Override
             public void process(byte[] buffer, long offset, Map<Integer, List<Pair<Integer, Long>>> resultMap) {
-                TableCreationUtils.addRecordToSkillParametersTable(buffer, offset);
                 int skillType = buffer[0] & 0xFF;
                 List<Pair<Integer, Long>> offsets;
                 if (!resultMap.containsKey(skillType)) {
@@ -65,14 +62,11 @@ public enum OffsetProvider {
     }
 
     private void createSpellOffsetMap() {
-        TableCreationUtils.createSpellNameTable();
-        TableCreationUtils.createSpellParametersTable();
         spellOffsetMap = new HashMap<>();
 
         Operation operation = new Operation<Map<Integer, List<Pair<Integer, Long>>>>() {
             @Override
             public void process(byte[] buffer, long offset, Map<Integer, List<Pair<Integer, Long>>> resultMap) {
-                TableCreationUtils.addRecordToSpellParametersTable(buffer, offset);
                 int spellType = buffer[2] & 0xFF;
                 // TODO triple spell requirements may not have same level, nor it can be
                 // placed in first requirement tuple
