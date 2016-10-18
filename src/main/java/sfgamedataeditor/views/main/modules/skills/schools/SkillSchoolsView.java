@@ -45,6 +45,8 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
         LevelableView<SkillSchoolsView> levelableView = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SkillSchoolsView.class));
         if (levelableView != null) {
             parameter.setSkillLevel(levelableView.getSelectedLevel());
+        } else {
+            parameter.setSkillLevel(1);
         }
 
         metaEvent.setEventParameter(ShowSkillParameterViewEvent.class, parameter);

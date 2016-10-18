@@ -1,5 +1,7 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
+import sfgamedataeditor.database.TableCreationUtils;
+import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.dataextraction.OffsetProvider;
 import sfgamedataeditor.events.ClassTuple;
@@ -61,16 +63,8 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
     }
 
     private long getSkillParametersOffset(int skillSchoolId, int skillLevel) {
-        long skillParametersOffset = 0L;
-        Map<Integer, List<Pair<Integer, Long>>> skillSchoolsOffsets = OffsetProvider.INSTANCE.getSkillSchoolsOffsets();
-        for (Pair<Integer, Long> integerLongPair : skillSchoolsOffsets.get(skillSchoolId)) {
-            if (integerLongPair.getKey() == skillLevel) {
-                skillParametersOffset = integerLongPair.getValue();
-                break;
-            }
-        }
-
-        return skillParametersOffset;
+        List<SkillParameters> skillParameters = TableCreationUtils.getSkillParameters(skillSchoolId, skillLevel);
+        return skillParameters.get(0).getOffset();
     }
 
     private void setFieldsData(long skillParametersOffset) {

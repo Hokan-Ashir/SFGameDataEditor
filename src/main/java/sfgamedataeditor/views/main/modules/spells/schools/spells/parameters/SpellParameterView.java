@@ -1,7 +1,8 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
+import sfgamedataeditor.database.TableCreationUtils;
+import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.databind.Pair;
-import sfgamedataeditor.dataextraction.OffsetProvider;
 import sfgamedataeditor.dataextraction.SpellMap;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
@@ -16,9 +17,7 @@ import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SpellParameterView extends AbstractView<SpellsView> {
 
@@ -61,9 +60,11 @@ public class SpellParameterView extends AbstractView<SpellsView> {
 
         int selectedSpellId = parameter.getSpellId();
         int selectedLevel = parameter.getSpellLevel();
-        List<Pair<Integer, Long>> spellLevelToOffsetList = OffsetProvider.INSTANCE.getSpellOffsets().get(selectedSpellId);
-        setSpellAvaliableLevels(spellLevelToOffsetList, selectedLevel);
-        selectedLevel = updateSelectedLevel(selectedLevel);
+        Set<Integer> spellLevels = TableCreationUtils.getSpellLevels(selectedSpellId);
+        int spellMinLevel = (int) ((TreeSet)spellLevels).first();
+        int spellMaxLevel = (int) ((TreeSet)spellLevels).last();
+        setSpellAvaliableLevels(spellLevels, selectedLevel);
+        selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
         long spellOffset = getSpellParameterOffset(selectedSpellId, selectedLevel);
         for (IDataField dataField : dataFields) {
             dataField.setOffsetInBytes(spellOffset);
@@ -76,20 +77,17 @@ public class SpellParameterView extends AbstractView<SpellsView> {
     // in case user selected spell with level-range [1; 12] with level 5
     // then selected spell with level range [13; 20]
     // we have to select level 13 to appropriately load correct data
-    private int updateSelectedLevel(int selectedLevel) {
-        JComboBox<String> comboBox = view.getLevelComboBox();
-        int minimumSpellLevel = Integer.valueOf(comboBox.getItemAt(0));
-        int maximumSpellLevel = Integer.valueOf(comboBox.getItemAt(comboBox.getItemCount() - 1));
-
-
-        if (selectedLevel <= maximumSpellLevel && selectedLevel >= minimumSpellLevel) {
+    // and vice versa, if user selected spell with level range [13; 20]
+    // and then selected spell with level range [1; 12]
+    private int adjustSelectedLevel(int selectedLevel, int spellMinLevel, int spellMaxLevel) {
+        if (selectedLevel <= spellMaxLevel && selectedLevel >= spellMinLevel) {
             return selectedLevel;
         } else {
-            return minimumSpellLevel;
+            return spellMinLevel;
         }
     }
 
-    private void setSpellAvaliableLevels(List<Pair<Integer, Long>> spellLevelToOffsetList, int selectedLevel) {
+    private void setSpellAvaliableLevels(Set<Integer> spellLevels, int selectedLevel) {
         JComboBox<String> comboBox = view.getLevelComboBox();
         ItemListener[] listeners = comboBox.getItemListeners();
         for (ItemListener listener : listeners) {
@@ -97,8 +95,8 @@ public class SpellParameterView extends AbstractView<SpellsView> {
         }
 
         comboBox.removeAllItems();
-        for (Pair<Integer, Long> integerLongPair : spellLevelToOffsetList) {
-            comboBox.addItem(String.valueOf(integerLongPair.getKey()));
+        for (Integer spellLevel : spellLevels) {
+            comboBox.addItem(String.valueOf(spellLevel));
         }
 
         // TODO split this methods
@@ -149,16 +147,8 @@ public class SpellParameterView extends AbstractView<SpellsView> {
     }
 
     private long getSpellParameterOffset(int selectedSpellId, int selectedLevel) {
-        long skillParametersOffset = 0L;
-        Map<Integer, List<Pair<Integer, Long>>> spellOffsets = OffsetProvider.INSTANCE.getSpellOffsets();
-        for (Pair<Integer, Long> integerLongPair : spellOffsets.get(selectedSpellId)) {
-            if (integerLongPair.getKey() == selectedLevel) {
-                skillParametersOffset = integerLongPair.getValue();
-                break;
-            }
-        }
-
-        return skillParametersOffset;
+        List<SpellParameters> spellParameters = TableCreationUtils.getSpellParameters(selectedSpellId, selectedLevel);
+        return spellParameters.get(0).getOffset();
     }
 
     /**

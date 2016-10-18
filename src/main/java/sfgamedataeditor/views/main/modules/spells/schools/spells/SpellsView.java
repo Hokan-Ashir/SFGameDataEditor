@@ -1,5 +1,7 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
+import sfgamedataeditor.database.TableCreationUtils;
+import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.dataextraction.OffsetProvider;
 import sfgamedataeditor.dataextraction.SpellMap;
@@ -57,18 +59,14 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
         clearComboBoxAndMapping();
 
         String spellSchoolName = spellEventParameter.getSpellSchoolName();
-        Map<String, Set<Integer>> spellSchoolsToSpellsMap = OffsetProvider.INSTANCE.getSpellSchoolsToSpellsMap();
-        Set<Integer> spellIds = spellSchoolsToSpellsMap.get(spellSchoolName);
-        if (spellIds == null || spellIds.isEmpty()) {
-            return;
-        }
-
-        for (Integer spellId : spellIds) {
-            if (!OffsetProvider.INSTANCE.getSpellOffsets().containsKey(spellId)) {
+        List<SpellParameters> spells = TableCreationUtils.getSpells(spellSchoolName);
+        for (SpellParameters spellParameters : spells) {
+            Pair<String, List<String>> stringListPair = SpellMap.INSTANCE.getSpellMap().get(spellParameters.getSpellNameId());
+            if (stringListPair == null) {
                 continue;
             }
 
-            String spellName = SpellMap.INSTANCE.getSpellMap().get(spellId).getKey();
+            String spellName = stringListPair.getKey();
             addMapping(spellName, event);
         }
 
@@ -86,6 +84,8 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
         LevelableView<SpellsView> levelableView = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SpellsView.class));
         if (levelableView != null) {
             spellParameterEventParameter.setSpellLevel(levelableView.getSelectedLevel());
+        } else {
+            spellParameterEventParameter.setSpellLevel(1);
         }
 
         metaEvent.setEventParameter(ShowSpellParameterViewEvent.class, spellParameterEventParameter);

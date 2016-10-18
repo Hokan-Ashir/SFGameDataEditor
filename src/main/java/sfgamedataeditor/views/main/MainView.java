@@ -1,5 +1,7 @@
 package sfgamedataeditor.views.main;
 
+import sfgamedataeditor.database.TableCreationUtils;
+import sfgamedataeditor.dataextraction.OffsetProvider;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.PostProcess;
 import sfgamedataeditor.utils.I18N;
@@ -15,6 +17,9 @@ public class MainView extends AbstractView<NullView> {
 
     public MainView(NullView parentView) {
         super(parentView);
+        // TODO made this multithreaded, different tables, should not be harmed
+        OffsetProvider.INSTANCE.extractSkillsDataFromFile();
+        OffsetProvider.INSTANCE.extractSpellsDataFromFile();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         EventHandlerRegister.INSTANCE.addEventHandler(new MainEventHandler());
         createAndShowMainFrame();

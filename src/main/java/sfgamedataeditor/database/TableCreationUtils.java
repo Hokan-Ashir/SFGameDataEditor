@@ -3,26 +3,26 @@ package sfgamedataeditor.database;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.objects.*;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.dataextraction.SpellMap;
+import sfgamedataeditor.datamapping.Mappings;
 import sfgamedataeditor.utils.I18N;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Callable;
 
 public final class TableCreationUtils {
 
     private static final Logger LOGGER = Logger.getLogger(TableCreationUtils.class);
 
-    private TableCreationUtils() {}
+    private TableCreationUtils() {
+    }
 
     public static void createSpellNameTable() {
         recreateTable(SpellName.class);
@@ -33,7 +33,7 @@ public final class TableCreationUtils {
         ConnectionSource connectionSource = getConnectionSource();
         final Dao<SpellName, String> dao;
         try {
-             dao = DaoManager.createDao(connectionSource, SpellName.class);
+            dao = DaoManager.createDao(connectionSource, SpellName.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return;
@@ -114,6 +114,122 @@ public final class TableCreationUtils {
         }
     }
 
+    public static Set<Integer> getSpellLevels(int spellId) {
+        ConnectionSource connectionSource = getConnectionSource();
+        try {
+            Dao<SpellParameters, Integer> dao = DaoManager.createDao(connectionSource, SpellParameters.class);
+            List<SpellParameters> parameters = dao.queryBuilder().selectColumns("requirementLevel1", "requirementLevel2", "requirementLevel3").where().eq("spellNameId", spellId).query();
+            Set<Integer> spellLevels = new TreeSet<>();
+            for (SpellParameters parameter : parameters) {
+                Integer requirementLevel1 = parameter.getRequirementLevel1();
+                if (requirementLevel1 != 0) {
+                    spellLevels.add(requirementLevel1);
+                }
+
+                Integer requirementLevel2 = parameter.getRequirementLevel2();
+                if (requirementLevel2 != 0) {
+                    spellLevels.add(requirementLevel2);
+                }
+
+                Integer requirementLevel3 = parameter.getRequirementLevel3();
+                if (requirementLevel3 != 0) {
+                    spellLevels.add(requirementLevel3);
+                }
+            }
+
+            return spellLevels;
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptySet();
+        }
+    }
+
+    public static List<SpellParameters> getSpells(String spellSchoolName) {
+        ConnectionSource connectionSource = getConnectionSource();
+        List<SpellParameters> spellParameters = Collections.emptyList();
+        try {
+            Map<Integer, String> spellSchoolMap = Mappings.INSTANCE.SPELL_SCHOOL_MAP;
+            for (Map.Entry<Integer, String> integerStringEntry : spellSchoolMap.entrySet()) {
+                if (!integerStringEntry.getValue().equals(spellSchoolName)) {
+                    continue;
+                }
+
+                Integer spellSchoolId = integerStringEntry.getKey();
+                int spellSchoolClass = spellSchoolId / 10;
+                int spellSchoolSubClass = spellSchoolId % 10;
+                Dao<SpellParameters, Integer> dao = DaoManager.createDao(connectionSource, SpellParameters.class);
+                Where<SpellParameters, Integer> where = dao.queryBuilder().where();
+                Where<SpellParameters, Integer> spellRequirementClass1Where =
+                        where.eq("requirementClass1", spellSchoolClass)
+                                .and().eq("requirementSubClass1", spellSchoolSubClass);
+                Where<SpellParameters, Integer> spellRequirementClass2Where =
+                        where.eq("requirementClass2", spellSchoolClass)
+                                .and().eq("requirementSubClass2", spellSchoolSubClass);
+                Where<SpellParameters, Integer> spellRequirementClass3Where =
+                        where.eq("requirementClass3", spellSchoolClass)
+                                .and().eq("requirementSubClass3", spellSchoolSubClass);
+                spellParameters = where.or(spellRequirementClass1Where, spellRequirementClass2Where, spellRequirementClass3Where).query();
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
+        }
+
+        return spellParameters;
+    }
+
+    public static List<SpellParameters> getAllSpellParameters() {
+        ConnectionSource connectionSource = getConnectionSource();
+        try {
+            return DaoManager.createDao(connectionSource, SpellParameters.class).queryForAll();
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
+        }
+    }
+
+    public static List<SkillParameters> getSkillParameters(int skillSchoolId, int skillLevel) {
+        ConnectionSource connectionSource = getConnectionSource();
+        Dao<SkillParameters, ?> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, SkillParameters.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
+        }
+
+        try {
+            return dao.queryBuilder().where().eq("skillTypeId", skillSchoolId).and().eq("level", skillLevel).query();
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
+        }
+    }
+
+    public static List<SpellParameters> getSpellParameters(int selectedSpellId, int selectedLevel) {
+        ConnectionSource connectionSource = getConnectionSource();
+        Dao<SpellParameters, Integer> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, SpellParameters.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
+        }
+
+        try {
+            Where<SpellParameters, Integer> where = dao.queryBuilder().where();
+            Where<SpellParameters, Integer> spellNameId = where.eq("spellNameId", selectedSpellId);
+            Where<SpellParameters, Integer> or = where.or(where.eq("requirementLevel1", selectedLevel),
+                    where.eq("requirementLevel2", selectedLevel),
+                    where.eq("requirementLevel3", selectedLevel));
+            where.and(spellNameId, or);
+            return where.query();
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
+        }
+    }
+
     public static void createSkillParametersTable() {
         recreateTable(SkillParameters.class);
     }
@@ -128,7 +244,7 @@ public final class TableCreationUtils {
 
     private static <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final List<Pair<byte[], Long>> offsetedData) {
         ConnectionSource connectionSource = getConnectionSource();
-        Dao<T, String> dao;
+        final Dao<T, String> dao;
         try {
             dao = DaoManager.createDao(connectionSource, ormClass);
         } catch (SQLException e) {
@@ -143,6 +259,7 @@ public final class TableCreationUtils {
                     for (Pair<byte[], Long> longPair : offsetedData) {
                         T object = createObject(ormClass, longPair.getKey());
                         object.setOffset(longPair.getValue());
+                        dao.create(object);
                     }
 
                     return null;
@@ -181,7 +298,7 @@ public final class TableCreationUtils {
         if (connectionSource == null) return;
 
         try {
-            TableUtils.dropTable(connectionSource, ormObjectClass, false);
+            TableUtils.dropTable(connectionSource, ormObjectClass, true);
             TableUtils.createTableIfNotExists(connectionSource, ormObjectClass);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
@@ -197,7 +314,7 @@ public final class TableCreationUtils {
     private static ConnectionSource getConnectionSource() {
         ConnectionSource connectionSource;
         try {
-            String databaseUrl = "jdbc:h2:file:./database;DB_CLOSE_ON_EXIT=FALSE";
+            String databaseUrl = "jdbc:h2:file:./sfeditorDatabase;DB_CLOSE_ON_EXIT=FALSE";
             connectionSource =
                     new JdbcConnectionSource(databaseUrl);
         } catch (Exception e) {
