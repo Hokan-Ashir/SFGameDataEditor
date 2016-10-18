@@ -1,5 +1,6 @@
 package sfgamedataeditor.views.main.modules.common.eventhistory;
 
+import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.main.MainView;
 
@@ -12,6 +13,9 @@ public class EventHistoryView extends AbstractView<MainView> {
 
     public EventHistoryView(MainView parentView) {
         super(parentView);
+        undoButton.setText(I18N.INSTANCE.getMessage("undo"));
+        redoButton.setText(I18N.INSTANCE.getMessage("redo"));
+        
         undoButton.setEnabled(false);
         redoButton.setEnabled(false);
         attachUndoButtonListener();

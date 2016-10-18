@@ -100,6 +100,8 @@ public enum OffsetProvider {
     }
 
     public void recreateAllMaps() {
+        extractSkillsDataFromFile();
+        extractSpellsDataFromFile();
         if (spellSchoolsToSpellsMap != null) {
             createSpellSchoolsNames();
         }
