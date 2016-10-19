@@ -1,42 +1,46 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
+import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.fieldwrapping.Data;
+import sfgamedataeditor.fieldwrapping.MappedClass;
+import sfgamedataeditor.fieldwrapping.MappedColumn;
 import sfgamedataeditor.fieldwrapping.Wrapable;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.IView;
 
 import javax.swing.*;
 
+@MappedClass(mappedClass = SkillParameters.class)
 public class SkillParameterViewStub implements Wrapable, IView {
 
     // format - SCHOOL LEVEL STR STA AGI DEX CHA INT WIS, each 1 byte length
     private JPanel mainPanel;
 
-    @Data(offset = 2, length = 1)
+    @MappedColumn(name = "strengthRequired")
     private JTextField strengthField;
     private JLabel stregthLabel;
 
-    @Data(offset = 3, length = 1)
+    @MappedColumn(name = "staminaRequired")
     private JTextField staminaField;
     private JLabel staminaLabel;
 
-    @Data(offset = 4, length = 1)
+    @MappedColumn(name = "agilityRequired")
     private JTextField agilityField;
     private JLabel agilityLabel;
 
-    @Data(offset = 5, length = 1)
+    @MappedColumn(name = "dexterityRequired")
     private JTextField dexterityField;
     private JLabel dexterityLabel;
 
-    @Data(offset = 6, length = 1)
+    @MappedColumn(name = "charismaRequired")
     private JTextField charismaField;
     private JLabel charismaLabel;
 
-    @Data(offset = 7, length = 1)
+    @MappedColumn(name = "intelligenceRequired")
     private JTextField intelligenceField;
     private JLabel intelligenceLabel;
 
-    @Data(offset = 8, length = 1)
+    @MappedColumn(name = "wisdomRequired")
     private JTextField wisdomField;
     private JLabel wisdomLabel;
 

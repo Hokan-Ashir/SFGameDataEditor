@@ -1,34 +1,42 @@
 package sfgamedataeditor.fieldwrapping.fields;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.database.TableCreationUtils;
+import sfgamedataeditor.database.objects.OffsetableObject;
 import sfgamedataeditor.databind.files.FilesContainer;
+import sfgamedataeditor.fieldwrapping.Data;
 
 import javax.swing.*;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.lang.reflect.Field;
 
 public abstract class AbstractDataField<T extends JComponent> implements IDataField {
 
     private static final Logger LOGGER = Logger.getLogger(AbstractDataField.class);
 
-    private final T component;
-    private final long fieldOffset;
-    private final int lengthInBytes;
-    private long offsetInBytes;
+    private Field mappedField;
+    private T component;
+    private OffsetableObject mappedObject;
 
-    public AbstractDataField(T component, long fieldOffset, int lengthInBytes) {
+    public AbstractDataField(T component, Field mappedField) {
         this.component = component;
-        this.fieldOffset = fieldOffset;
-        this.lengthInBytes = lengthInBytes;
+        this.mappedField = mappedField;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void loadFromFile() {
-        int value = loadDataFromFile(offsetInBytes, lengthInBytes);
-        setFieldValue(value);
+    public void mapValues(OffsetableObject mappedObject) {
+        this.mappedObject = mappedObject;
+        try {
+            mappedField.setAccessible(true);
+            Object o = mappedField.get(mappedObject);
+            setFieldValue((Integer) o);
+        } catch (IllegalAccessException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
     }
 
     /**
@@ -36,8 +44,24 @@ public abstract class AbstractDataField<T extends JComponent> implements IDataFi
      */
     @Override
     public void saveToFile() {
+        // TODO get rid of it; this is the cause when:
+        // user first time select ANY spell
+        // data loading is processing through AbstractDataFields
+        // the data have been set to any ClassRequirements comboBox
+        // the listener (ClassRequirementComboBoxListener) on it is launched to set subClass comboBox value
+        // BUT there is no mapped object on this subClass comboBox, so NPE appears
+        if (mappedObject == null) {
+            return;
+        }
         int value = getFieldValue();
-        saveDataInFile(offsetInBytes, lengthInBytes, value);
+        mappedField.setAccessible(true);
+        try {
+            mappedField.set(mappedObject, value);
+        } catch (IllegalAccessException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+
+        TableCreationUtils.updateObject(mappedObject, mappedObject.getClass());
     }
 
     protected abstract int getFieldValue();
@@ -45,75 +69,12 @@ public abstract class AbstractDataField<T extends JComponent> implements IDataFi
     protected abstract void setFieldValue(int value);
 
     public double getFieldMaximumValue() {
+        Data annotation = mappedField.getAnnotation(Data.class);
+        int lengthInBytes = annotation.length();
         return Math.pow(2.0, 8 * lengthInBytes) - 1;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void setOffsetInBytes(long offsetInBytes) {
-        this.offsetInBytes = offsetInBytes + fieldOffset;
     }
 
     public T getComponent() {
         return component;
-    }
-
-    private int loadDataFromFile(long fileOffset, int dataLength) {
-        RandomAccessFile file = FilesContainer.INSTANCE.getModificationFile();
-        int[] value = getDataFromFile(file, fileOffset, dataLength);
-        return getValue(value);
-    }
-
-    private int[] getDataFromFile(RandomAccessFile file, long fileOffset, int length) {
-        int[] data = new int[length];
-        try {
-            file.seek(fileOffset);
-            for (int i = data.length - 1; i > -1; --i) {
-                data[i] = file.readUnsignedByte();
-            }
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-
-        return data;
-    }
-
-    private int getValue(int[] value) {
-        int temp = 0;
-        for (int i = 0; i < value.length; i++) {
-            temp += value[i] << ((value.length - 1 - i) * 8);
-        }
-
-        return temp;
-    }
-
-    private void saveDataInFile(long offset, int dataLength, int fieldValue) {
-        RandomAccessFile file = FilesContainer.INSTANCE.getModificationFile();
-        int[] value = getValue(fieldValue, dataLength);
-        if (value == null) {
-            return;
-        }
-
-        try {
-            file.seek(offset);
-            for (int i = 0; i < value.length; i++) {
-                file.write(value[value.length - 1 - i]);
-            }
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-    }
-
-    private int[] getValue(int value, int dataLength) {
-        int[] temp = new int[dataLength];
-        int i = 0;
-        while (value > 0) {
-            temp[temp.length - 1 - i] = value & 0xFF;
-            value >>= 8;
-            i++;
-        }
-
-        return temp;
     }
 }

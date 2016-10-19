@@ -3,13 +3,14 @@ package sfgamedataeditor.fieldwrapping.fields;
 import sfgamedataeditor.listeners.ComboBoxListener;
 
 import javax.swing.*;
+import java.lang.reflect.Field;
 
 public class ComboBox extends AbstractDataField<JComboBox> {
 
     private final ComboBoxListener listener;
 
-    public ComboBox(JComboBox component, long fieldOffset, int lengthInBytes) {
-        super(component, fieldOffset, lengthInBytes);
+    public ComboBox(JComboBox component, Field mappedField) {
+        super(component, mappedField);
         JComboBox comboBox = getComponent();
         listener = new ComboBoxListener(this);
         comboBox.addItemListener(listener);

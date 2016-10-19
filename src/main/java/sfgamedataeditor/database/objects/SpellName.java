@@ -15,14 +15,6 @@ public class SpellName {
     public SpellName() {
     }
 
-    public Integer getSpellType() {
-        return spellType;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public SpellName(Integer spellType, String name) {
         this.spellType = spellType;
         this.name = name;

@@ -58,12 +58,12 @@ public enum OffsetProvider {
     }
 
     private void extractSpellSchoolNamesFromSpell(SpellParameters spellParameter, Set<String> spellSchoolsNames) {
-        int schoolRequirement1 = spellParameter.getRequirementClass1();
-        int subSchoolRequirement1 = spellParameter.getRequirementSubClass1();
-        int schoolRequirement2 = spellParameter.getRequirementClass2();
-        int subSchoolRequirement2 = spellParameter.getRequirementSubClass2();
-        int schoolRequirement3 = spellParameter.getRequirementClass3();
-        int subSchoolRequirement3 = spellParameter.getRequirementSubClass3();
+        int schoolRequirement1 = spellParameter.requirementClass1;
+        int subSchoolRequirement1 = spellParameter.requirementSubClass1;
+        int schoolRequirement2 = spellParameter.requirementClass2;
+        int subSchoolRequirement2 = spellParameter.requirementSubClass2;
+        int schoolRequirement3 = spellParameter.requirementClass3;
+        int subSchoolRequirement3 = spellParameter.requirementSubClass3;
 
         addSchoolName(schoolRequirement1, subSchoolRequirement1, spellSchoolsNames);
         addSchoolName(schoolRequirement2, subSchoolRequirement2, spellSchoolsNames);

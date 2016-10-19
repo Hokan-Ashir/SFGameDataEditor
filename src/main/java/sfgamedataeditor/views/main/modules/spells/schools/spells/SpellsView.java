@@ -61,7 +61,7 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
         String spellSchoolName = spellEventParameter.getSpellSchoolName();
         List<SpellParameters> spells = TableCreationUtils.getSpells(spellSchoolName);
         for (SpellParameters spellParameters : spells) {
-            Pair<String, List<String>> stringListPair = SpellMap.INSTANCE.getSpellMap().get(spellParameters.getSpellNameId());
+            Pair<String, List<String>> stringListPair = SpellMap.INSTANCE.getSpellMap().get(spellParameters.spellNameId);
             if (stringListPair == null) {
                 continue;
             }

@@ -114,6 +114,16 @@ public final class TableCreationUtils {
         }
     }
 
+    public static <T extends OffsetableObject> void updateObject(OffsetableObject objectToSave, Class<T> tClass) {
+        ConnectionSource connectionSource = getConnectionSource();
+        try {
+            Dao<T, Integer> dao = DaoManager.createDao(connectionSource, tClass);
+            dao.update((T) objectToSave);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+    }
+
     public static Set<Integer> getSpellLevels(int spellId) {
         ConnectionSource connectionSource = getConnectionSource();
         try {
@@ -121,17 +131,17 @@ public final class TableCreationUtils {
             List<SpellParameters> parameters = dao.queryBuilder().selectColumns("requirementLevel1", "requirementLevel2", "requirementLevel3").where().eq("spellNameId", spellId).query();
             Set<Integer> spellLevels = new TreeSet<>();
             for (SpellParameters parameter : parameters) {
-                Integer requirementLevel1 = parameter.getRequirementLevel1();
+                Integer requirementLevel1 = parameter.requirementLevel1;
                 if (requirementLevel1 != 0) {
                     spellLevels.add(requirementLevel1);
                 }
 
-                Integer requirementLevel2 = parameter.getRequirementLevel2();
+                Integer requirementLevel2 = parameter.requirementLevel2;
                 if (requirementLevel2 != 0) {
                     spellLevels.add(requirementLevel2);
                 }
 
-                Integer requirementLevel3 = parameter.getRequirementLevel3();
+                Integer requirementLevel3 = parameter.requirementLevel3;
                 if (requirementLevel3 != 0) {
                     spellLevels.add(requirementLevel3);
                 }

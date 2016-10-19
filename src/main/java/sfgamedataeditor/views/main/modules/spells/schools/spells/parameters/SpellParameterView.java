@@ -1,6 +1,7 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
 import sfgamedataeditor.database.TableCreationUtils;
+import sfgamedataeditor.database.objects.OffsetableObject;
 import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.dataextraction.SpellMap;
@@ -65,10 +66,10 @@ public class SpellParameterView extends AbstractView<SpellsView> {
         int spellMaxLevel = (int) ((TreeSet)spellLevels).last();
         setSpellAvaliableLevels(spellLevels, selectedLevel);
         selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
-        long spellOffset = getSpellParameterOffset(selectedSpellId, selectedLevel);
+        List<SpellParameters> spellParameters = TableCreationUtils.getSpellParameters(selectedSpellId, selectedLevel);
+        SpellParameters spellParameter = spellParameters.get(0);
         for (IDataField dataField : dataFields) {
-            dataField.setOffsetInBytes(spellOffset);
-            dataField.loadFromFile();
+            dataField.mapValues(spellParameter);
         }
 
         setSpellParameterLabelNames();
@@ -144,11 +145,6 @@ public class SpellParameterView extends AbstractView<SpellsView> {
             }
         }
         return result;
-    }
-
-    private long getSpellParameterOffset(int selectedSpellId, int selectedLevel) {
-        List<SpellParameters> spellParameters = TableCreationUtils.getSpellParameters(selectedSpellId, selectedLevel);
-        return spellParameters.get(0).getOffset();
     }
 
     /**

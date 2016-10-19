@@ -7,6 +7,7 @@ import sfgamedataeditor.events.types.AbstractMetaEvent;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class LinkableTextField extends AbstractDataField<JTextField> {
@@ -15,8 +16,8 @@ public class LinkableTextField extends AbstractDataField<JTextField> {
 
     private final JButton linkButton;
 
-    public LinkableTextField(JTextField component, long fieldOffset, int lengthInBytes, Class<AbstractMetaEvent> eventClass) {
-        super(component, fieldOffset, lengthInBytes);
+    public LinkableTextField(JTextField component, Field mappedField, Class<AbstractMetaEvent> eventClass) {
+        super(component, mappedField);
         AbstractMetaEvent event = null;
         try {
             event = eventClass.getConstructor().newInstance();

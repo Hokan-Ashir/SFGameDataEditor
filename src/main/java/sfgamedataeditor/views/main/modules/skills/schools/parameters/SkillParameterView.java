@@ -1,9 +1,8 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
 import sfgamedataeditor.database.TableCreationUtils;
+import sfgamedataeditor.database.objects.OffsetableObject;
 import sfgamedataeditor.database.objects.SkillParameters;
-import sfgamedataeditor.databind.Pair;
-import sfgamedataeditor.dataextraction.OffsetProvider;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.processing.ViewRegister;
@@ -18,7 +17,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 public class SkillParameterView extends AbstractView<SkillSchoolsView> {
 
@@ -58,19 +56,14 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
             parameter = (SkillEventParameter) o;
         }
 
-        long skillParametersOffset = getSkillParametersOffset(parameter.getSkillSchoolId(), parameter.getSkillLevel());
-        setFieldsData(skillParametersOffset);
+        setFieldsData(parameter.getSkillSchoolId(), parameter.getSkillLevel());
     }
 
-    private long getSkillParametersOffset(int skillSchoolId, int skillLevel) {
+    private void setFieldsData(int skillSchoolId, int skillLevel) {
         List<SkillParameters> skillParameters = TableCreationUtils.getSkillParameters(skillSchoolId, skillLevel);
-        return skillParameters.get(0).getOffset();
-    }
-
-    private void setFieldsData(long skillParametersOffset) {
+        SkillParameters skillParameter = skillParameters.get(0);
         for (IDataField dataField : dataFields) {
-            dataField.setOffsetInBytes(skillParametersOffset);
-            dataField.loadFromFile();
+            dataField.mapValues(skillParameter);
         }
     }
 

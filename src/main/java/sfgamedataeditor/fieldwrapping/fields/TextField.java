@@ -3,13 +3,14 @@ package sfgamedataeditor.fieldwrapping.fields;
 import sfgamedataeditor.listeners.TextFieldListener;
 
 import javax.swing.*;
+import java.lang.reflect.Field;
 
 public class TextField extends AbstractDataField<JTextField> {
 
     private final TextFieldListener listener;
 
-    public TextField(JTextField component, long fieldOffset, int lengthInBytes) {
-        super(component, fieldOffset, lengthInBytes);
+    public TextField(JTextField component, Field mappedField) {
+        super(component, mappedField);
         listener = new TextFieldListener(this);
     }
 

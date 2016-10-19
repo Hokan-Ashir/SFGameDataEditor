@@ -1,9 +1,8 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
+import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.datamapping.Mappings;
-import sfgamedataeditor.fieldwrapping.Data;
-import sfgamedataeditor.fieldwrapping.Disabled;
-import sfgamedataeditor.fieldwrapping.Wrapable;
+import sfgamedataeditor.fieldwrapping.*;
 import sfgamedataeditor.listeners.ClassRequirementComboBoxListener;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.IView;
@@ -13,116 +12,117 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@MappedClass(mappedClass = SpellParameters.class)
 public class SpellParameterViewStub implements Wrapable, IView {
 
     // inside spell offsets are taken from http://spellforcefanforum.hostoi.com/viewtopic.php?f=14&t=242
     private JPanel mainPanel;
 
     @Disabled
-    @Data(offset = 0, length = 2)
+    @MappedColumn(name = "spellNumber")
     private JTextField numberField;
     private JLabel numberLabel;
 
     @Disabled
-    @Data(offset = 2, length = 2)
+    @MappedColumn(name = "spellNameId")
     private JTextField typeField;
     private JLabel typeLabel;
 
-    @Data(offset = 4, length = 1)
+    @MappedColumn(name = "requirementClass1")
     private JComboBox<String> requirementClassComboBox;
     private JLabel requirementClassLabel;
 
-    @Data(offset = 5, length = 1)
+    @MappedColumn(name = "requirementSubClass1")
     private JComboBox<String> requirementSubClassComboBox;
     private JLabel requirementSubClassLabel;
 
-    @Data(offset = 6, length = 1)
+    @MappedColumn(name = "requirementLevel1")
     private JTextField requirementLevelField;
     private JLabel requirementLevelLabel;
 
-    @Data(offset = 7, length = 1)
+    @MappedColumn(name = "requirementClass2")
     private JComboBox<String> requirementClassComboBox2;
     private JLabel requirementClassLabel2;
 
-    @Data(offset = 8, length = 1)
+    @MappedColumn(name = "requirementSubClass2")
     private JComboBox<String> requirementSubClassComboBox2;
     private JLabel requirementSubClassLabel2;
 
-    @Data(offset = 9, length = 1)
+    @MappedColumn(name = "requirementLevel2")
     private JTextField requirementLevelField2;
     private JLabel requirementLevelLabel2;
 
-    @Data(offset = 10, length = 1)
+    @MappedColumn(name = "requirementClass3")
     private JComboBox<String> requirementClassComboBox3;
     private JLabel requirementClassLabel3;
 
-    @Data(offset = 11, length = 1)
+    @MappedColumn(name = "requirementSubClass3")
     private JComboBox<String> requirementSubClassComboBox3;
     private JLabel requirementSubClassLabel3;
 
-    @Data(offset = 12, length = 1)
+    @MappedColumn(name = "requirementLevel3")
     private JTextField requirementLevelField3;
     private JLabel requirementLevelLabel3;
 
     // TODO add possible spell skill requirements (3 bytes offset)
 
-    @Data(offset = 16, length = 2)
+    @MappedColumn(name = "manaUsage")
     private JTextField manaUsageField;
     private JLabel manaUsageLabel;
 
-    @Data(offset = 18, length = 4)
+    @MappedColumn(name = "castTime")
     private JTextField castTimeField;
     private JLabel castTimeLabel;
 
-    @Data(offset = 22, length = 4)
+    @MappedColumn(name = "cooldown")
     private JTextField cooldownField;
     private JLabel cooldownLabel;
 
-    @Data(offset = 26, length = 2)
+    @MappedColumn(name = "minRange")
     private JTextField minRangeField;
     private JLabel minRangeLabel;
 
-    @Data(offset = 28, length = 2)
+    @MappedColumn(name = "maxRange")
     private JTextField maxRangeField;
     private JLabel maxRangeLabel;
 
-    @Data(offset = 30, length = 2)
+    @MappedColumn(name = "castType")
     private JTextField castTypeField;
     private JLabel castTypeLabel;
 
-    @Data(offset = 32, length = 4)
+    @MappedColumn(name = "parameter1")
     private JTextField parameterField1;
     private JLabel parameterLabel1;
 
-    @Data(offset = 36, length = 4)
+    @MappedColumn(name = "parameter2")
     private JTextField parameterField2;
     private JLabel parameterLabel2;
 
-    @Data(offset = 40, length = 4)
+    @MappedColumn(name = "parameter3")
     private JTextField parameterField3;
     private JLabel parameterLabel3;
 
-    @Data(offset = 44, length = 4)
+    @MappedColumn(name = "parameter4")
     private JTextField parameterField4;
     private JLabel parameterLabel4;
 
-    @Data(offset = 48, length = 4)
+    @MappedColumn(name = "parameter5")
     private JTextField parameterField5;
     private JLabel parameterLabel5;
 
-    @Data(offset = 52, length = 4)
+    @MappedColumn(name = "parameter6")
     private JTextField parameterField6;
     private JLabel parameterLabel6;
 
-    @Data(offset = 56, length = 4)
+    @MappedColumn(name = "parameter7")
     private JTextField parameterField7;
     private JLabel parameterLabel7;
 
-    @Data(offset = 60, length = 4)
+    @MappedColumn(name = "parameter8")
     private JTextField parameterField8;
     private JLabel parameterLabel8;
 
-    @Data(offset = 64, length = 4)
+    @MappedColumn(name = "parameter9")
     private JTextField parameterField9;
     private JLabel parameterLabel9;
 

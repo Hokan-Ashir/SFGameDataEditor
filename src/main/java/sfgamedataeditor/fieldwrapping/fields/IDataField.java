@@ -1,8 +1,8 @@
 package sfgamedataeditor.fieldwrapping.fields;
 
-public interface IDataField {
-    void loadFromFile();
-    void saveToFile();
+import sfgamedataeditor.database.objects.OffsetableObject;
 
-    void setOffsetInBytes(long offsetInBytes);
+public interface IDataField {
+    void saveToFile();
+    void mapValues(OffsetableObject mappedObject);
 }
