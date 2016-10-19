@@ -28,16 +28,16 @@ public abstract class AbstractMetaEvent {
     }
 
     // TODO get rid of "isAssignableFrom" call
-    public void setEventParameter(Class<? extends ShowViewEvent> eventClass, Object parameter) {
+    public void setEventParameter(Class<? extends Event> eventClass, Object parameter) {
         if (!eventMap.containsKey(eventClass)) {
             throw new RuntimeException("No event class " + eventClass.getName() + " exists in metaevent " + getClass().getName());
         }
 
-        if (!(ShowViewEvent.class.isAssignableFrom(eventClass))) {
+        if (!(Event.class.isAssignableFrom(eventClass))) {
             throw new RuntimeException("Class: " + eventClass.getName() + " not extends, nor implements " + ShowViewEvent.class.getName());
         }
 
-        ((ShowViewEvent) eventMap.get(eventClass)).setObjectParameter(parameter);
+        eventMap.get(eventClass).setObjectParameter(parameter);
     }
 
     public String getEventDescription() {

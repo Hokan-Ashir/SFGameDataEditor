@@ -7,6 +7,7 @@ import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.fieldwrapping.FieldsWrapperCreator;
 import sfgamedataeditor.fieldwrapping.MappedColumn;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
@@ -46,6 +47,7 @@ public class SpellParameterView extends AbstractView<SpellsView> {
                 SpellParameterViewMetaEvent event = new SpellParameterViewMetaEvent();
                 SpellParameterEventParameter eventParameter = new SpellParameterEventParameter(parameter.getSpellId(), view.getSelectedLevel());
                 event.setEventParameter(ShowSpellParameterViewEvent.class, eventParameter);
+                event.setEventParameter(SetModuleNameEvent.class, getParentView().getSelectedModuleValue());
                 EventHandlerRegister.INSTANCE.fireEvent(event);
             }
         });
@@ -141,15 +143,12 @@ public class SpellParameterView extends AbstractView<SpellsView> {
     }
 
     private String getParameterName(SpellName spellName, String fieldName) {
-        for (Field field : spellName.getClass().getDeclaredFields()) {
-            if (field.getName().equals(fieldName)) {
-                try {
-                    field.setAccessible(true);
-                    return (String) field.get(spellName);
-                } catch (IllegalAccessException e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
-            }
+        try {
+            Field field = spellName.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            return (String) field.get(spellName);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            LOGGER.error(e.getMessage(), e);
         }
 
         return null;

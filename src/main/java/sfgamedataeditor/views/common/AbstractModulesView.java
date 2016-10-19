@@ -64,7 +64,7 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
     protected void setEventParameter(AbstractMetaEvent metaEvent) {
         for (Event event : metaEvent.getEventList()) {
             if (SetModuleNameEvent.class.isAssignableFrom(event.getClass())) {
-                ((SetModuleNameEvent) event).setModuleName(getSelectedModuleValue());
+                event.setObjectParameter(getSelectedModuleValue());
             }
         }
     }

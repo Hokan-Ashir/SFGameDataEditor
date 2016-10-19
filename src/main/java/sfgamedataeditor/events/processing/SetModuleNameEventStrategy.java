@@ -11,6 +11,6 @@ public class SetModuleNameEventStrategy implements EventProcessingStrategy<SetMo
     @Override
     public void process(SetModuleNameEvent event) {
         final AbstractModulesView modulesView = event.getModulesView();
-        modulesView.setModulesComboBoxValue(event.getModuleName());
+        modulesView.setModulesComboBoxValue(event.getObjectParameter());
     }
 }

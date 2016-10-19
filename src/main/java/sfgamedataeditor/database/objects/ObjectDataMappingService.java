@@ -60,8 +60,11 @@ public enum ObjectDataMappingService {
             temp += value[i] << ((i - offset) * 8);
         }
 
-        // TODO check out, should it be done each processed chunck of data
-        return temp & 0xFF;
+        if (temp < 0) {
+            return temp & 0xFF;
+        } else {
+            return temp;
+        }
     }
 
     private static final class DataPair implements Comparable<DataPair> {

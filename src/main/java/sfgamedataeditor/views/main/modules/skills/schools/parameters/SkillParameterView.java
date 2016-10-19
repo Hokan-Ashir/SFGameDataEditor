@@ -6,6 +6,7 @@ import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.fieldwrapping.FieldsWrapperCreator;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.views.common.AbstractView;
@@ -41,6 +42,7 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
                 SkillParametersMetaEvent event = new SkillParametersMetaEvent();
                 SkillEventParameter eventParameter = new SkillEventParameter(parameter.getSkillSchoolId(), view.getSelectedLevel());
                 event.setEventParameter(ShowSkillParameterViewEvent.class, eventParameter);
+                event.setEventParameter(SetModuleNameEvent.class, getParentView().getSelectedModuleValue());
                 EventHandlerRegister.INSTANCE.fireEvent(event);
             }
         });
