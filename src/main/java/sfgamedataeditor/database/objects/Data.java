@@ -1,4 +1,4 @@
-package sfgamedataeditor.fieldwrapping;
+package sfgamedataeditor.database.objects;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -3,12 +3,9 @@ package sfgamedataeditor.fieldwrapping.fields;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.TableCreationUtils;
 import sfgamedataeditor.database.objects.OffsetableObject;
-import sfgamedataeditor.databind.files.FilesContainer;
-import sfgamedataeditor.fieldwrapping.Data;
+import sfgamedataeditor.database.objects.Data;
 
 import javax.swing.*;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.lang.reflect.Field;
 
 public abstract class AbstractDataField<T extends JComponent> implements IDataField {

@@ -1,28 +1,30 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.database.TableCreationUtils;
-import sfgamedataeditor.database.objects.OffsetableObject;
+import sfgamedataeditor.database.objects.SpellName;
 import sfgamedataeditor.database.objects.SpellParameters;
-import sfgamedataeditor.databind.Pair;
-import sfgamedataeditor.dataextraction.SpellMap;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.fieldwrapping.FieldsWrapperCreator;
+import sfgamedataeditor.fieldwrapping.MappedColumn;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
-import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.common.levelable.LevelableView;
+import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.lang.reflect.Field;
 import java.util.*;
 
 public class SpellParameterView extends AbstractView<SpellsView> {
 
-    private static final int LABEL_LINE_MAX_LENGTH = 12;
+    private static final Logger LOGGER = Logger.getLogger(SkillParameterView.class);
+
     private final SpellParameterViewStub stub;
     private final Collection<IDataField> dataFields;
     private SpellParameterEventParameter parameter;
@@ -114,37 +116,43 @@ public class SpellParameterView extends AbstractView<SpellsView> {
     }
 
     private void setSpellParameterLabelNames() {
-        List<JLabel> parameterLabels = stub.getParameterLabels();
         String selectedSpellName = (String) getParentView().getSelectedModuleValue();
-        for (Map.Entry<Integer, Pair<String, List<String>>> integerPairEntry : SpellMap.INSTANCE.getSpellMap().entrySet()) {
-            String spellName = integerPairEntry.getValue().getKey();
-            if (selectedSpellName.equals(spellName)) {
-                List<String> spellParameterNames = integerPairEntry.getValue().getValue();
-                for (int i = 0; i < parameterLabels.size(); i++) {
-                    if (i < spellParameterNames.size()) {
-                        parameterLabels.get(i).setText(convertToMultiline(spellParameterNames.get(i)));
-                    } else {
-                        parameterLabels.get(i).setText(I18N.INSTANCE.getMessage("spellParameterNotUsed"));
-                    }
-                }
-                break;
+        SpellName spellName = TableCreationUtils.getSpellName(selectedSpellName);
+        for (Field field : stub.getClass().getDeclaredFields()) {
+            MappedColumn annotation = field.getAnnotation(MappedColumn.class);
+            if (annotation == null) {
+                continue;
+            }
+
+            if (!annotation.daoClass().equals(SpellName.class)) {
+                continue;
+            }
+
+            String mappedFieldName = annotation.name();
+            String parameterName = getParameterName(spellName, mappedFieldName);
+            try {
+                field.setAccessible(true);
+                JLabel label = ((JLabel)field.get(stub));
+                label.setText(parameterName);
+            } catch (IllegalAccessException e) {
+                LOGGER.error(e.getMessage());
             }
         }
     }
 
-    private String convertToMultiline(String value) {
-        String[] subStrings = value.split(" ");
-        String result = "<html>";
-        int lastNewLineInjectionPosition = 0;
-        for (int i = 0; i < subStrings.length; ++i) {
-            result = result + subStrings[i] + " ";
-            if (result.length() - lastNewLineInjectionPosition > LABEL_LINE_MAX_LENGTH
-                    && i != subStrings.length - 1) {
-                result = result + "<br>";
-                lastNewLineInjectionPosition = result.length();
+    private String getParameterName(SpellName spellName, String fieldName) {
+        for (Field field : spellName.getClass().getDeclaredFields()) {
+            if (field.getName().equals(fieldName)) {
+                try {
+                    field.setAccessible(true);
+                    return (String) field.get(spellName);
+                } catch (IllegalAccessException e) {
+                    LOGGER.error(e.getMessage(), e);
+                }
             }
         }
-        return result;
+
+        return null;
     }
 
     /**

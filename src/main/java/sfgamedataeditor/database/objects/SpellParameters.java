@@ -2,7 +2,6 @@ package sfgamedataeditor.database.objects;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import sfgamedataeditor.fieldwrapping.Data;
 
 @DatabaseTable(tableName = "spell_parameters")
 public class SpellParameters extends OffsetableObject {

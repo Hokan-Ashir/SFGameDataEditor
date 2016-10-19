@@ -14,18 +14,17 @@ public final class FieldsWrapperCreator {
 
     public static Collection<IDataField> createFieldWrappers(Wrapable wrapable) {
         Collection<IDataField> wrappedFields = new ArrayList<>();
-        MappedClass mappedClass = wrapable.getClass().getAnnotation(MappedClass.class);
-        if (mappedClass == null) {
-            return Collections.emptyList();
-        }
-
         for (Field field : wrapable.getClass().getDeclaredFields()) {
             MappedColumn mappedColumn = field.getAnnotation(MappedColumn.class);
             if (mappedColumn == null) {
                 continue;
             }
 
-            Field mappedField = findMappedField(mappedColumn, mappedClass);
+            if (!mappedColumn.daoClass().isAssignableFrom(wrapable.getWrappableClass())) {
+                continue;
+            }
+
+            Field mappedField = findMappedField(mappedColumn);
             Object fieldComponent = null;
             try {
                 field.setAccessible(true);
@@ -54,9 +53,10 @@ public final class FieldsWrapperCreator {
         return wrappedFields;
     }
 
-    private static Field findMappedField(MappedColumn mappedColumn, MappedClass mappedClass) {
+    private static Field findMappedField(MappedColumn mappedColumn) {
         String name = mappedColumn.name();
-        Field[] declaredFields = mappedClass.mappedClass().getDeclaredFields();
+        Class<?> mappedClass = mappedColumn.daoClass();
+        Field[] declaredFields = mappedClass.getDeclaredFields();
         for (Field declaredField : declaredFields) {
             if (declaredField.getName().equals(name)) {
                 return declaredField;

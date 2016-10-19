@@ -1,7 +1,6 @@
 package sfgamedataeditor.database.objects;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.fieldwrapping.Data;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;

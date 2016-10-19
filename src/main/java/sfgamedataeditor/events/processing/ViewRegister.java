@@ -28,22 +28,4 @@ public enum ViewRegister {
 
         return null;
     }
-
-    public void updateAllCurrentViews() {
-        OffsetProvider.INSTANCE.recreateAllMaps();
-        // TODO make this use-case work:
-        // user selected Fire/Fireball-1 and change its spell requirements to
-        // Elemental magic/Ice-1, made sfmod-file, then load it,
-        // cause all maps in Mappings class stays the same
-        // Fireball-1's requrements still considered as Elemental magic/Fire-1
-        MainView view = (MainView) getView(new ClassTuple<>(MainView.class, NullView.class));
-        updateDataRecursively(view);
-    }
-
-    private <T extends AbstractView> void updateDataRecursively(AbstractView<T> parent) {
-        parent.updateData(null);
-        for (AbstractView<T> tAbstractView : parent.getChildren()) {
-            updateDataRecursively(tAbstractView);
-        }
-    }
 }

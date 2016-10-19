@@ -7,10 +7,37 @@ import com.j256.ormlite.table.DatabaseTable;
 public class SpellName {
 
     @DatabaseField(id = true)
-    private Integer spellType;
+    public Integer spellType;
 
     @DatabaseField(canBeNull = false)
-    private String name;
+    public String name;
+    
+    @DatabaseField
+    private String field1;
+
+    @DatabaseField
+    private String field2;
+
+    @DatabaseField
+    private String field3;
+
+    @DatabaseField
+    private String field4;
+
+    @DatabaseField
+    private String field5;
+
+    @DatabaseField
+    private String field6;
+
+    @DatabaseField
+    private String field7;
+
+    @DatabaseField
+    private String field8;
+
+    @DatabaseField
+    private String field9;
 
     public SpellName() {
     }

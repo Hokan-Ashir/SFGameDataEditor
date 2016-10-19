@@ -1,8 +1,6 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
 import sfgamedataeditor.database.objects.SkillParameters;
-import sfgamedataeditor.fieldwrapping.Data;
-import sfgamedataeditor.fieldwrapping.MappedClass;
 import sfgamedataeditor.fieldwrapping.MappedColumn;
 import sfgamedataeditor.fieldwrapping.Wrapable;
 import sfgamedataeditor.utils.I18N;
@@ -10,37 +8,36 @@ import sfgamedataeditor.views.common.IView;
 
 import javax.swing.*;
 
-@MappedClass(mappedClass = SkillParameters.class)
 public class SkillParameterViewStub implements Wrapable, IView {
 
     // format - SCHOOL LEVEL STR STA AGI DEX CHA INT WIS, each 1 byte length
     private JPanel mainPanel;
 
-    @MappedColumn(name = "strengthRequired")
+    @MappedColumn(name = "strengthRequired", daoClass = SkillParameters.class)
     private JTextField strengthField;
     private JLabel stregthLabel;
 
-    @MappedColumn(name = "staminaRequired")
+    @MappedColumn(name = "staminaRequired", daoClass = SkillParameters.class)
     private JTextField staminaField;
     private JLabel staminaLabel;
 
-    @MappedColumn(name = "agilityRequired")
+    @MappedColumn(name = "agilityRequired", daoClass = SkillParameters.class)
     private JTextField agilityField;
     private JLabel agilityLabel;
 
-    @MappedColumn(name = "dexterityRequired")
+    @MappedColumn(name = "dexterityRequired", daoClass = SkillParameters.class)
     private JTextField dexterityField;
     private JLabel dexterityLabel;
 
-    @MappedColumn(name = "charismaRequired")
+    @MappedColumn(name = "charismaRequired", daoClass = SkillParameters.class)
     private JTextField charismaField;
     private JLabel charismaLabel;
 
-    @MappedColumn(name = "intelligenceRequired")
+    @MappedColumn(name = "intelligenceRequired", daoClass = SkillParameters.class)
     private JTextField intelligenceField;
     private JLabel intelligenceLabel;
 
-    @MappedColumn(name = "wisdomRequired")
+    @MappedColumn(name = "wisdomRequired", daoClass = SkillParameters.class)
     private JTextField wisdomField;
     private JLabel wisdomLabel;
 
@@ -67,5 +64,13 @@ public class SkillParameterViewStub implements Wrapable, IView {
     @Override
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<?> getWrappableClass() {
+        return SkillParameters.class;
     }
 }
