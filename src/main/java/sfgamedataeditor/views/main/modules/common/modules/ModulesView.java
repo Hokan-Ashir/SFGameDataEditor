@@ -19,11 +19,6 @@ public class ModulesView extends AbstractModulesView<MainView> {
         EventHandlerRegister.INSTANCE.addEventHandler(new ModulesEventHandler());
     }
 
-    @PostProcess
-    private void postProcess() {
-        //selectFirstComboBoxItem();
-    }
-
     /**
      * {@inheritDoc}
      */

@@ -15,6 +15,8 @@ See "What it can't do" section below to be awared of restrictions.
  - Java 7 - for diamonds and multiple catch exceptions
  - Maven - as build tool
  - Swing - for GUI, obviously
+ - H2 - for storing parsed data in form of objects and tables
+ - ORMLite - for ORM surely
  - XDeltaEncoder - for making binary differences between files (see https://github.com/mantlik/xdeltaencoder)
  - SHA-512 - for differencing original/modification files
  - Winzipaes - for encrypted zip-files creation (see https://code.google.com/p/winzipaes/ or MAVEN central repository)
@@ -89,7 +91,7 @@ See "What it can't do" section below to be awared of restrictions.
  - Extend with item, merchants, buildings, units views
  - Add support for any language i18n possible
  - Place all subviews in more appropriate position, probably with grid layout
- - Add database storage for all parsed data from GameData.cff file (i.e. HLSQL, H2, DerbyDb)
+ - Rewrite all inner code to MVC/MVP-pattern
 
 # Special thanks
  - This application won't be possible without information grabbed from this forum - http://spellforcefanforum.hostoi.com/index.php

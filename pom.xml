@@ -81,9 +81,6 @@
                                     </excludes>
                                 </filter>
                             </filters>
-                            <minimizeJar>
-                                true
-                            </minimizeJar>
                         </configuration>
                     </execution>
                 </executions>
@@ -154,7 +151,6 @@
             <artifactId>ormlite-jdbc</artifactId>
             <version>4.48</version>
         </dependency>
-
 
         <dependency>
             <groupId>com.h2database</groupId>
