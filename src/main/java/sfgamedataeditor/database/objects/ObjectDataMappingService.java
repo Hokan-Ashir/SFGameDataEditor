@@ -67,6 +67,33 @@ public enum ObjectDataMappingService {
         }
     }
 
+    public byte[] serializeObject(Object daoObject) {
+        Class<?> aClass = daoObject.getClass();
+        Map<DataPair, Field> objectMapping = getObjectMapping(aClass);
+        DataPair lastDataPair = (DataPair) ((TreeMap) objectMapping).lastKey();
+        int objectByteLength = lastDataPair.getOffset() + lastDataPair.getLength();
+        byte[] result = new byte[objectByteLength];
+
+        for (Map.Entry<DataPair, Field> dataPairFieldEntry : objectMapping.entrySet()) {
+            int offset = dataPairFieldEntry.getKey().getOffset();
+            int length = dataPairFieldEntry.getKey().getLength();
+            Field field = dataPairFieldEntry.getValue();
+            field.setAccessible(true);
+            try {
+                int value = (int) field.get(daoObject);
+                for (int i = offset; i < offset + length; i++) {
+                    byte b = (byte) (value & 0xFF);
+                    result[i] = b;
+                    value >>= 8;
+                }
+            } catch (IllegalAccessException | ArrayIndexOutOfBoundsException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        }
+
+        return result;
+    }
+
     private static final class DataPair implements Comparable<DataPair> {
         private int length;
         private int offset;

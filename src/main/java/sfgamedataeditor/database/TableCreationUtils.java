@@ -23,7 +23,7 @@ public final class TableCreationUtils {
     private static final int LABEL_LINE_MAX_LENGTH = 12;
     private static final int NUMBER_OF_PARAMETER_FIELDS = 9;
     private static final String FIELD_ATTRIBUTE = "field";
-    public static final String NAME_ATTRIBUTE = "name";
+    private static final String NAME_ATTRIBUTE = "name";
 
     private TableCreationUtils() {
     }
@@ -510,16 +510,6 @@ public final class TableCreationUtils {
         return spellParameters;
     }
 
-    public static List<SpellParameters> getAllSpellParameters() {
-        ConnectionSource connectionSource = getConnectionSource();
-        try {
-            return DaoManager.createDao(connectionSource, SpellParameters.class).queryForAll();
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
-            return Collections.emptyList();
-        }
-    }
-
     public static List<SkillParameters> getSkillParameters(int skillSchoolId, int skillLevel) {
         ConnectionSource connectionSource = getConnectionSource();
         Dao<SkillParameters, ?> dao;
@@ -654,5 +644,25 @@ public final class TableCreationUtils {
             return null;
         }
         return connectionSource;
+    }
+
+    public static List<SkillParameters> getAllSkillParameters() {
+        return getAllTableData(SkillParameters.class);
+    }
+
+    public static List<SpellParameters> getAllSpellParameters() {
+        return getAllTableData(SpellParameters.class);
+    }
+
+    private static <T extends OffsetableObject> List<T> getAllTableData(Class<T> tableClass) {
+        ConnectionSource connectionSource = getConnectionSource();
+        Dao<T, ?> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, tableClass);
+            return dao.queryForAll();
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
+        }
     }
 }

@@ -4,6 +4,10 @@ import de.idyl.winzipaes.AesZipFileDecrypter;
 import de.idyl.winzipaes.AesZipFileEncrypter;
 import de.idyl.winzipaes.impl.*;
 import org.apache.log4j.Logger;
+import sfgamedataeditor.database.TableCreationUtils;
+import sfgamedataeditor.database.objects.ObjectDataMappingService;
+import sfgamedataeditor.database.objects.SkillParameters;
+import sfgamedataeditor.database.objects.SpellParameters;
 import xdeltaencoder.org.mantlik.xdeltaencoder.XDeltaEncoder;
 
 import java.io.*;
@@ -13,6 +17,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.zip.DataFormatException;
 import java.util.zip.ZipException;
 
@@ -91,6 +96,7 @@ public final class FileUtils {
     }
 
     public static void createSfModFile(String sfModFileName) {
+        dropDatabaseChangesIntoModificationFile();
         String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
         String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
         String originalFilePath = originalFileDirectory + originalFileName;
@@ -107,6 +113,34 @@ public final class FileUtils {
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
+    }
+
+    private static void dropDatabaseChangesIntoModificationFile() {
+        RandomAccessFile modificationFile = FilesContainer.INSTANCE.getModificationFile();
+        List<SkillParameters> allSkillParameters = TableCreationUtils.getAllSkillParameters();
+        for (SkillParameters allSkillParameter : allSkillParameters) {
+            Long offset = allSkillParameter.getOffset();
+            try {
+                modificationFile.seek(offset);
+                byte[] bytes = ObjectDataMappingService.INSTANCE.serializeObject(allSkillParameter);
+                modificationFile.write(bytes);
+            } catch (IOException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        }
+
+        List<SpellParameters> allSpellParameters = TableCreationUtils.getAllSpellParameters();
+        for (SpellParameters allSpellParameter : allSpellParameters) {
+            Long offset = allSpellParameter.getOffset();
+            try {
+                modificationFile.seek(offset);
+                byte[] bytes = ObjectDataMappingService.INSTANCE.serializeObject(allSpellParameter);
+                modificationFile.write(bytes);
+            } catch (IOException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        }
+
     }
 
     private static void zipAndEncryptDiffFile(String sfModFileName, String originalFileDirectory, String originalFileName, String tempDiffFilePath) {
