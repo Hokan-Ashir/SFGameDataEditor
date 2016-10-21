@@ -15,8 +15,6 @@ public enum DataFilesParser {
 
     private static final Logger LOGGER = Logger.getLogger(DataFilesParser.class);
 
-    private Set<String> spellSchoolsToSpellsMap;
-
     public void extractSkillsDataFromFile(RandomAccessFile file) {
         TableCreationUtils.createSkillNameTable();
         TableCreationUtils.createSkillParametersTable();
@@ -35,47 +33,6 @@ public enum DataFilesParser {
         int dataLength = DataOffsetProvider.INSTANCE.getSpellDataLength();
         List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
         TableCreationUtils.addRecordsToSpellParametersTable(offsettedData);
-    }
-
-    public Set<String> getSpellSchoolsNames() {
-        if (spellSchoolsToSpellsMap != null) {
-            return spellSchoolsToSpellsMap;
-        }
-
-        spellSchoolsToSpellsMap = createSpellSchoolsNames();
-        return spellSchoolsToSpellsMap;
-    }
-
-    private Set<String> createSpellSchoolsNames() {
-        Set<String> spellSchoolsNames = new HashSet<>();
-        List<SpellParameters> allSpellParameters = TableCreationUtils.getAllSpellParameters();
-        for (SpellParameters allSpellParameter : allSpellParameters) {
-            extractSpellSchoolNamesFromSpell(allSpellParameter, spellSchoolsNames);
-        }
-
-        return spellSchoolsNames;
-    }
-
-    private void extractSpellSchoolNamesFromSpell(SpellParameters spellParameter, Set<String> spellSchoolsNames) {
-        int schoolRequirement1 = spellParameter.requirementClass1;
-        int subSchoolRequirement1 = spellParameter.requirementSubClass1;
-        int schoolRequirement2 = spellParameter.requirementClass2;
-        int subSchoolRequirement2 = spellParameter.requirementSubClass2;
-        int schoolRequirement3 = spellParameter.requirementClass3;
-        int subSchoolRequirement3 = spellParameter.requirementSubClass3;
-
-        addSchoolName(schoolRequirement1, subSchoolRequirement1, spellSchoolsNames);
-        addSchoolName(schoolRequirement2, subSchoolRequirement2, spellSchoolsNames);
-        addSchoolName(schoolRequirement3, subSchoolRequirement3, spellSchoolsNames);
-    }
-
-    private void addSchoolName(int schoolRequirement, int subSchoolRequirement, Set<String> spellSchoolsNames) {
-        int schoolId = schoolRequirement * 10 + subSchoolRequirement;
-        if (!Mappings.INSTANCE.SPELL_SCHOOL_MAP.containsKey(schoolId)) {
-            return;
-        }
-
-        spellSchoolsNames.add(Mappings.INSTANCE.SPELL_SCHOOL_MAP.get(schoolId));
     }
 
     private List<Pair<byte[], Long>> readData(RandomAccessFile file, List<Pair<Integer, Integer>> dataOffsets, int dataLength) {
@@ -99,10 +56,9 @@ public enum DataFilesParser {
     }
 
     public void recreateAllMaps() {
+        // TODO check necessity and recreate tables if really needed
 //        extractSkillsDataFromFile();
 //        extractSpellsDataFromFile();
-        if (spellSchoolsToSpellsMap != null) {
-            createSpellSchoolsNames();
-        }
+//        TableCreationUtils.createSpellSchoolNameTable();
     }
 }

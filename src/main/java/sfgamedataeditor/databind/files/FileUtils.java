@@ -46,6 +46,7 @@ public final class FileUtils {
         // TODO made this multithreaded, different tables, should not be harmed
         DataFilesParser.INSTANCE.extractSkillsDataFromFile(fileData.getFile());
         DataFilesParser.INSTANCE.extractSpellsDataFromFile(fileData.getFile());
+        TableCreationUtils.createSpellSchoolNameTable();
 
         try {
             boolean isVersion11 = fileData.getFile().length() == GAME_DATA_CFF_V11_FILE_LENGTH;

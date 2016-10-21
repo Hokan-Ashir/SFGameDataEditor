@@ -1,5 +1,7 @@
 package sfgamedataeditor.views.main.modules.spells.schools;
 
+import sfgamedataeditor.database.TableCreationUtils;
+import sfgamedataeditor.database.objects.SpellSchoolName;
 import sfgamedataeditor.dataextraction.DataFilesParser;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
@@ -10,6 +12,7 @@ import sfgamedataeditor.views.main.modules.spells.schools.spells.ShowSpellsViewE
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellEventParameter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellViewMetaEvent;
 
+import java.util.List;
 import java.util.Set;
 
 public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
@@ -26,9 +29,9 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
      */
     @Override
     protected void fillComboBoxMapping() {
-        Set<String> spellSchoolsSet = DataFilesParser.INSTANCE.getSpellSchoolsNames();
-        for (String spellSchoolName : spellSchoolsSet) {
-            addMapping(spellSchoolName, new SpellViewMetaEvent());
+        List<SpellSchoolName> allSpellSchoolNames = TableCreationUtils.getAllSpellSchoolNames();
+        for (SpellSchoolName allSpellSchoolName : allSpellSchoolNames) {
+            addMapping(allSpellSchoolName.name, new SpellViewMetaEvent());
         }
     }
 

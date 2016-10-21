@@ -28,6 +28,77 @@ public final class TableCreationUtils {
     private TableCreationUtils() {
     }
 
+    public static void createSpellSchoolNameTable() {
+        recreateTable(SpellSchoolName.class);
+        fillSpellSchoolTable();
+    }
+
+    private static void fillSpellSchoolTable() {
+        final Set<String> spellSchoolsNames = createSpellSchoolsNames();
+
+        ConnectionSource connectionSource = getConnectionSource();
+        final Dao<SpellSchoolName, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, SpellSchoolName.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return;
+        }
+
+        try {
+            dao.callBatchTasks(new Callable<Void>() {
+                @Override
+                public Void call() throws Exception {
+                    for (String spellSchoolName : spellSchoolsNames) {
+                        dao.create(new SpellSchoolName(spellSchoolName));
+                    }
+
+                    return null;
+                }
+            });
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        } finally {
+            try {
+                connectionSource.close();
+            } catch (SQLException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        }
+    }
+
+    private static Set<String> createSpellSchoolsNames() {
+        Set<String> spellSchoolsNames = new HashSet<>();
+        List<SpellParameters> allSpellParameters = TableCreationUtils.getAllSpellParameters();
+        for (SpellParameters allSpellParameter : allSpellParameters) {
+            extractSpellSchoolNamesFromSpell(allSpellParameter, spellSchoolsNames);
+        }
+
+        return spellSchoolsNames;
+    }
+
+    private static void extractSpellSchoolNamesFromSpell(SpellParameters spellParameter, Set<String> spellSchoolsNames) {
+        int schoolRequirement1 = spellParameter.requirementClass1;
+        int subSchoolRequirement1 = spellParameter.requirementSubClass1;
+        int schoolRequirement2 = spellParameter.requirementClass2;
+        int subSchoolRequirement2 = spellParameter.requirementSubClass2;
+        int schoolRequirement3 = spellParameter.requirementClass3;
+        int subSchoolRequirement3 = spellParameter.requirementSubClass3;
+
+        addSchoolName(schoolRequirement1, subSchoolRequirement1, spellSchoolsNames);
+        addSchoolName(schoolRequirement2, subSchoolRequirement2, spellSchoolsNames);
+        addSchoolName(schoolRequirement3, subSchoolRequirement3, spellSchoolsNames);
+    }
+
+    private static void addSchoolName(int schoolRequirement, int subSchoolRequirement, Set<String> spellSchoolsNames) {
+        int schoolId = schoolRequirement * 10 + subSchoolRequirement;
+        if (!Mappings.INSTANCE.SPELL_SCHOOL_MAP.containsKey(schoolId)) {
+            return;
+        }
+
+        spellSchoolsNames.add(Mappings.INSTANCE.SPELL_SCHOOL_MAP.get(schoolId));
+    }
+
     public static void createSpellNameTable() {
         recreateTable(SpellName.class);
         fillSpellNameTableWithPredefinedNames();
@@ -646,6 +717,10 @@ public final class TableCreationUtils {
         return connectionSource;
     }
 
+    public static List<SpellSchoolName> getAllSpellSchoolNames() {
+        return getAllTableData(SpellSchoolName.class);
+    }
+
     public static List<SkillParameters> getAllSkillParameters() {
         return getAllTableData(SkillParameters.class);
     }
@@ -654,7 +729,7 @@ public final class TableCreationUtils {
         return getAllTableData(SpellParameters.class);
     }
 
-    private static <T extends OffsetableObject> List<T> getAllTableData(Class<T> tableClass) {
+    private static <T> List<T> getAllTableData(Class<T> tableClass) {
         ConnectionSource connectionSource = getConnectionSource();
         Dao<T, ?> dao;
         try {
