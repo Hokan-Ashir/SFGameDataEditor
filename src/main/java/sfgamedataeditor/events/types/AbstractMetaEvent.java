@@ -27,7 +27,6 @@ public abstract class AbstractMetaEvent {
         return eventMap.values();
     }
 
-    // TODO get rid of "isAssignableFrom" call
     public void setEventParameter(Class<? extends Event> eventClass, Object parameter) {
         if (!eventMap.containsKey(eventClass)) {
             throw new RuntimeException("No event class " + eventClass.getName() + " exists in metaevent " + getClass().getName());

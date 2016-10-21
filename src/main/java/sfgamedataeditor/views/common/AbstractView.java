@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractView<T extends AbstractView> implements IView {
-    private T parentView;
+    private final T parentView;
     private List<AbstractView<T>> children = new ArrayList<>();
 
     public AbstractView(T parentView) {

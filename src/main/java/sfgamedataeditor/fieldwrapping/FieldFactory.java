@@ -25,13 +25,16 @@ public enum  FieldFactory {
         if (!fieldTypes.containsKey(componentClass)) {
             throw new RuntimeException("No class with name: " + componentClass.getName() + " exists in field factory");
         }
+        Class<?>[] parametersClasses = new Class<?>[parameters.length];
+        for (int i = 0; i < parameters.length; i++) {
+            parametersClasses[i] = parameters[i].getClass();
+        }
 
         Class<? extends AbstractDataField> dataFieldClass = fieldTypes.get(componentClass);
         AbstractDataField abstractDataField = null;
         try {
-            // TODO make more strict constructor search
-            abstractDataField = (AbstractDataField) dataFieldClass.getDeclaredConstructors()[0].newInstance(parameters);
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            abstractDataField = dataFieldClass.getConstructor(parametersClasses).newInstance(parameters);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             LOGGER.error(e.getMessage(), e);
         }
 

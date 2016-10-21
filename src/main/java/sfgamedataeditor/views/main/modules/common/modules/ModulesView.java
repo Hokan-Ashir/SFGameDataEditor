@@ -1,7 +1,6 @@
 package sfgamedataeditor.views.main.modules.common.modules;
 
 import sfgamedataeditor.events.EventHandlerRegister;
-import sfgamedataeditor.events.PostProcess;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.MainView;

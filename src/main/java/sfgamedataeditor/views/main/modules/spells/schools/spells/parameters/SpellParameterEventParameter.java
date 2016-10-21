@@ -2,30 +2,30 @@ package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
 public class SpellParameterEventParameter {
 
-    private int spellId;
-    private int spellLevel;
+    private Integer spellId;
+    private Integer spellLevel;
 
     public SpellParameterEventParameter() {
     }
 
-    public SpellParameterEventParameter(int spellId, int spellLevel) {
+    public SpellParameterEventParameter(Integer spellId, Integer spellLevel) {
         this.spellId = spellId;
         this.spellLevel = spellLevel;
     }
 
-    public int getSpellId() {
+    public Integer getSpellId() {
         return spellId;
     }
 
-    public void setSpellId(int spellId) {
+    public void setSpellId(Integer spellId) {
         this.spellId = spellId;
     }
 
-    public int getSpellLevel() {
+    public Integer getSpellLevel() {
         return spellLevel;
     }
 
-    public void setSpellLevel(int spellLevel) {
+    public void setSpellLevel(Integer spellLevel) {
         this.spellLevel = spellLevel;
     }
 }

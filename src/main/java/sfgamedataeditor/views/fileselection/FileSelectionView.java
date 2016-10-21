@@ -29,7 +29,7 @@ public class FileSelectionView {
         final JFrame frame = new JFrame(I18N.INSTANCE.getMessage("fileSelectionWindowCaption"));
         final FileSelectionView view = new FileSelectionView();
         frame.setContentPane(view.getMainPanel());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         ViewTools.centerFrame(frame);

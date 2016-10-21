@@ -70,7 +70,7 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
     @Override
     protected void setEventParameter(AbstractMetaEvent metaEvent) {
         super.setEventParameter(metaEvent);
-        String selectedSpellName = (String) getSelectedModuleValue();
+        String selectedSpellName = getSelectedModuleValue();
         Integer spellId = TableCreationUtils.getSpellId(selectedSpellName);
         spellParameterEventParameter.setSpellId(spellId);
 

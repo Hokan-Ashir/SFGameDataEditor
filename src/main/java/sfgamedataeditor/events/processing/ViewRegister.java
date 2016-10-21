@@ -10,18 +10,18 @@ import java.util.Map;
 public enum ViewRegister {
     INSTANCE;
 
-    private Map<ClassTuple, AbstractView> views = new HashMap<ClassTuple, AbstractView>() {{
+    private Map<ClassTuple<?, ?>, AbstractView> views = new HashMap<ClassTuple<?, ?>, AbstractView>() {{
+        // add root to all views
         put(new ClassTuple<>(NullView.class, AbstractView.class), new NullView(null));
     }};
 
-    public Map<ClassTuple, AbstractView> getViews() {
+    public Map<ClassTuple<?, ?>, AbstractView> getViews() {
         return views;
     }
 
-    // TODO find more appropriate method-parameter signature
-    public AbstractView getView(ClassTuple tuple) {
+    public <T extends AbstractView<V>, V extends AbstractView> T getView(ClassTuple<T, V> tuple) {
         if (views.containsKey(tuple)) {
-            return views.get(tuple);
+            return (T) views.get(tuple);
         }
 
         return null;

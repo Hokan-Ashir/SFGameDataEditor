@@ -1,8 +1,5 @@
 package sfgamedataeditor.databind.files;
 
-import org.apache.log4j.Logger;
-
-import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public enum FilesContainer {

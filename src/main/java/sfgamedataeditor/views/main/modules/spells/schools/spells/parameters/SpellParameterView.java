@@ -20,7 +20,9 @@ import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Collection;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class SpellParameterView extends AbstractView<SpellsView> {
 
@@ -31,6 +33,7 @@ public class SpellParameterView extends AbstractView<SpellsView> {
     private SpellParameterEventParameter parameter;
     // TODO get rid of this as private variable
     private LevelableView<SpellsView> view = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SpellsView.class));
+    private SpellParameterViewMetaEvent event = new SpellParameterViewMetaEvent();
 
     public SpellParameterView(SpellsView parentView) {
         super(parentView);
@@ -43,8 +46,6 @@ public class SpellParameterView extends AbstractView<SpellsView> {
                     return;
                 }
 
-                // TODO get rid of multiple new event instances
-                SpellParameterViewMetaEvent event = new SpellParameterViewMetaEvent();
                 SpellParameterEventParameter eventParameter = new SpellParameterEventParameter(parameter.getSpellId(), view.getSelectedLevel());
                 event.setEventParameter(ShowSpellParameterViewEvent.class, eventParameter);
                 event.setEventParameter(SetModuleNameEvent.class, getParentView().getSelectedModuleValue());
@@ -70,8 +71,7 @@ public class SpellParameterView extends AbstractView<SpellsView> {
         int spellMaxLevel = (int) ((TreeSet)spellLevels).last();
         setSpellAvaliableLevels(spellLevels, selectedLevel);
         selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
-        List<SpellParameters> spellParameters = TableCreationUtils.getSpellParameters(selectedSpellId, selectedLevel);
-        SpellParameters spellParameter = spellParameters.get(0);
+        SpellParameters spellParameter = TableCreationUtils.getSpellParameter(selectedSpellId, selectedLevel);
         for (IDataField dataField : dataFields) {
             dataField.mapValues(spellParameter);
         }
@@ -118,7 +118,7 @@ public class SpellParameterView extends AbstractView<SpellsView> {
     }
 
     private void setSpellParameterLabelNames() {
-        String selectedSpellName = (String) getParentView().getSelectedModuleValue();
+        String selectedSpellName = getParentView().getSelectedModuleValue();
         SpellName spellName = TableCreationUtils.getSpellName(selectedSpellName);
         for (Field field : stub.getClass().getDeclaredFields()) {
             MappedColumn annotation = field.getAnnotation(MappedColumn.class);

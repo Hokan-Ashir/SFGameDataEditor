@@ -2,13 +2,12 @@ package sfgamedataeditor.dataextraction;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.TableCreationUtils;
-import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.databind.Pair;
-import sfgamedataeditor.datamapping.Mappings;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public enum DataFilesParser {
     INSTANCE;

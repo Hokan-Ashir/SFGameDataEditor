@@ -19,10 +19,10 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
      */
     @Override
     public void process(ShowViewEvent event) {
-        AbstractView view = null;
+        AbstractView view;
         ClassTuple tuple = event.getTuple();
         AbstractView parentViewInstance = getParentViewInstance(tuple);
-        Map<ClassTuple, AbstractView> views = ViewRegister.INSTANCE.getViews();
+        Map<ClassTuple<?, ?>, AbstractView> views = ViewRegister.INSTANCE.getViews();
         if (!views.containsKey(tuple)) {
             try {
                 // other way to do so, using more strict compilation checks is:
@@ -35,6 +35,7 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
                 view = (AbstractView) tuple.getViewClass().getDeclaredConstructors()[0].newInstance(parentViewInstance);
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
                 LOGGER.error(e.getMessage(), e);
+                return;
             }
 
             views.put(tuple, view);
@@ -72,7 +73,7 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
     }
 
     private AbstractView getParentViewInstance(ClassTuple tuple) {
-        Map<ClassTuple, AbstractView> views = ViewRegister.INSTANCE.getViews();
+        Map<ClassTuple<?, ?>, AbstractView> views = ViewRegister.INSTANCE.getViews();
         for (AbstractView abstractView : views.values()) {
             if (abstractView.getClass().equals(tuple.getParentViewClass())) {
                 return abstractView;

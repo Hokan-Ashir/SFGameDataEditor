@@ -52,7 +52,7 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
     }
 
     private int getSelectedSchoolId() {
-        String selectedSkillSchool = (String) getSelectedModuleValue();
+        String selectedSkillSchool = getSelectedModuleValue();
         return Mappings.INSTANCE.SKILL_SCHOOL_MAP.get(selectedSkillSchool);
     }
 }

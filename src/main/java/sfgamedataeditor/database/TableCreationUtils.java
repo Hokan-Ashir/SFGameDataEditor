@@ -581,32 +581,32 @@ public final class TableCreationUtils {
         return spellParameters;
     }
 
-    public static List<SkillParameters> getSkillParameters(int skillSchoolId, int skillLevel) {
+    public static SkillParameters getSkillParameter(int skillSchoolId, int skillLevel) {
         ConnectionSource connectionSource = getConnectionSource();
         Dao<SkillParameters, ?> dao;
         try {
             dao = DaoManager.createDao(connectionSource, SkillParameters.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptyList();
+            return new SkillParameters();
         }
 
         try {
-            return dao.queryBuilder().where().eq("skillTypeId", skillSchoolId).and().eq("level", skillLevel).query();
+            return dao.queryBuilder().where().eq("skillTypeId", skillSchoolId).and().eq("level", skillLevel).query().get(0);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptyList();
+            return new SkillParameters();
         }
     }
 
-    public static List<SpellParameters> getSpellParameters(int selectedSpellId, int selectedLevel) {
+    public static SpellParameters getSpellParameter(int selectedSpellId, int selectedLevel) {
         ConnectionSource connectionSource = getConnectionSource();
         Dao<SpellParameters, Integer> dao;
         try {
             dao = DaoManager.createDao(connectionSource, SpellParameters.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptyList();
+            return new SpellParameters();
         }
 
         try {
@@ -616,10 +616,10 @@ public final class TableCreationUtils {
                     where.eq("requirementLevel2", selectedLevel),
                     where.eq("requirementLevel3", selectedLevel));
             where.and(spellNameId, or);
-            return where.query();
+            return where.query().get(0);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptyList();
+            return new SpellParameters();
         }
     }
 

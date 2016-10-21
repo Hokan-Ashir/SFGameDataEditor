@@ -4,7 +4,6 @@ import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.events.types.Event;
 import sfgamedataeditor.events.types.SetModuleNameEvent;
-import sfgamedataeditor.events.types.ShowViewEvent;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -104,8 +103,8 @@ public abstract class AbstractModulesView<T extends AbstractView> extends Abstra
         comboBoxMapping.put(name, event);
     }
 
-    public Object getSelectedModuleValue() {
-        return modulesComboBox.getSelectedItem();
+    public String getSelectedModuleValue() {
+        return (String) modulesComboBox.getSelectedItem();
     }
 
     /**

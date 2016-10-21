@@ -5,7 +5,6 @@ import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.views.common.levelable.LevelableView;
 import sfgamedataeditor.views.common.levelable.ShowLevelableViewEvent;
-import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
 

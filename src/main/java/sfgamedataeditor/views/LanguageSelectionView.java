@@ -18,11 +18,11 @@ public class LanguageSelectionView {
     }};
 
     private JButton okButton;
-    private JComboBox languageSelectionComboBox;
+    private JComboBox<String> languageSelectionComboBox;
     private JLabel languageSelectionLabel;
     private JPanel mainPanel;
 
-    public LanguageSelectionView() {
+    private LanguageSelectionView() {
         for (String s : LANGUAGE_FILE_MAP.values()) {
             languageSelectionComboBox.addItem(s);
         }
@@ -32,7 +32,7 @@ public class LanguageSelectionView {
         final JFrame frame = new JFrame("SpellForce GameData.cff Editor : Language Selection Dialog");
         final LanguageSelectionView view = new LanguageSelectionView();
         frame.setContentPane(view.getMainPanel());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         ViewTools.centerFrame(frame);
@@ -107,11 +107,11 @@ public class LanguageSelectionView {
         return mainPanel;
     }
 
-    public JButton getOkButton() {
+    private JButton getOkButton() {
         return okButton;
     }
 
-    public JComboBox getLanguageSelectionComboBox() {
+    private JComboBox getLanguageSelectionComboBox() {
         return languageSelectionComboBox;
     }
 }

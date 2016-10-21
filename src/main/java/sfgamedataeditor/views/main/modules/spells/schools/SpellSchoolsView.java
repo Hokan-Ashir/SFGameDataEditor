@@ -2,7 +2,6 @@ package sfgamedataeditor.views.main.modules.spells.schools;
 
 import sfgamedataeditor.database.TableCreationUtils;
 import sfgamedataeditor.database.objects.SpellSchoolName;
-import sfgamedataeditor.dataextraction.DataFilesParser;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.utils.I18N;
@@ -13,7 +12,6 @@ import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellEventParam
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellViewMetaEvent;
 
 import java.util.List;
-import java.util.Set;
 
 public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
 
@@ -41,7 +39,7 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
     @Override
     protected void setEventParameter(AbstractMetaEvent metaEvent) {
         super.setEventParameter(metaEvent);
-        String selectedSpellSchool = (String) getSelectedModuleValue();
+        String selectedSpellSchool = getSelectedModuleValue();
         parameter.setSpellSchoolName(selectedSpellSchool);
         metaEvent.setEventParameter(ShowSpellsViewEvent.class, parameter);
     }

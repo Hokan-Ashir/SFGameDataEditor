@@ -3,13 +3,14 @@ package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 import sfgamedataeditor.database.objects.SpellName;
 import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.datamapping.Mappings;
-import sfgamedataeditor.fieldwrapping.*;
+import sfgamedataeditor.fieldwrapping.Disabled;
+import sfgamedataeditor.fieldwrapping.MappedColumn;
+import sfgamedataeditor.fieldwrapping.Wrapable;
 import sfgamedataeditor.listeners.ClassRequirementComboBoxListener;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.IView;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

@@ -43,7 +43,7 @@ public class LevelableView<T extends AbstractView> extends AbstractView<T> {
         return mainPanel;
     }
 
-    public int getSelectedLevel() {
+    public Integer getSelectedLevel() {
         return Integer.valueOf((String) levelComboBox.getSelectedItem());
     }
 

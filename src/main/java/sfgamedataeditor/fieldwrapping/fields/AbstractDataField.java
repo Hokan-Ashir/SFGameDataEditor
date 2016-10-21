@@ -2,8 +2,8 @@ package sfgamedataeditor.fieldwrapping.fields;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.TableCreationUtils;
-import sfgamedataeditor.database.objects.OffsetableObject;
 import sfgamedataeditor.database.objects.Data;
+import sfgamedataeditor.database.objects.OffsetableObject;
 
 import javax.swing.*;
 import java.lang.reflect.Field;

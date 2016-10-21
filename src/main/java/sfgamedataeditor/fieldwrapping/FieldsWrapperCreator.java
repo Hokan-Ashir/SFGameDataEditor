@@ -7,7 +7,6 @@ import javax.swing.*;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 public final class FieldsWrapperCreator {
     private FieldsWrapperCreator() {}
@@ -38,7 +37,7 @@ public final class FieldsWrapperCreator {
                     mappedField
             };
 
-            final Class<JComponent> type = (Class<JComponent>) field.getType();
+            final Class<? extends JComponent> type = (Class<? extends JComponent>) field.getType();
 
             final AbstractDataField dataField = FieldFactory.INSTANCE.createField(type, parameters);
             if (field.isAnnotationPresent(Disabled.class)) {
