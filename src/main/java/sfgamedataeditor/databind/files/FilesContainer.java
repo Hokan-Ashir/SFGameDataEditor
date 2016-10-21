@@ -8,15 +8,9 @@ import java.io.RandomAccessFile;
 public enum FilesContainer {
     INSTANCE;
 
-    private static final Logger LOGGER = Logger.getLogger(FilesContainer.class);
-
-    /**
-     * length of GameData.cff file on version v1.1
-     */
-    private static final long GAME_DATA_CFF_V11_FILE_LENGTH = 39442356L;
-
     private FileData originalFileData;
     private FileData modificationFileData;
+    private boolean isVersion11;
 
     public RandomAccessFile getOriginalFile() {
         if (originalFileData == null) {
@@ -75,12 +69,10 @@ public enum FilesContainer {
     }
 
     public boolean isVersion11() {
-        try {
-            return getModificationFile().length() == GAME_DATA_CFF_V11_FILE_LENGTH;
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
+        return isVersion11;
+    }
 
-        return false;
+    public void setIsVersion11(boolean isVersion11) {
+        this.isVersion11 = isVersion11;
     }
 }

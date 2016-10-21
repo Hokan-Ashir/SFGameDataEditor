@@ -8,6 +8,7 @@ import sfgamedataeditor.database.TableCreationUtils;
 import sfgamedataeditor.database.objects.ObjectDataMappingService;
 import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.database.objects.SpellParameters;
+import sfgamedataeditor.dataextraction.DataFilesParser;
 import xdeltaencoder.org.mantlik.xdeltaencoder.XDeltaEncoder;
 
 import java.io.*;
@@ -31,11 +32,44 @@ public final class FileUtils {
     private static final int KEY_SIZE = 192;
     private static final String HASH_ALGORITHM = "SHA-512";
 
+    /**
+     * length of GameData.cff file on version v1.1
+     */
+    private static final long GAME_DATA_CFF_V11_FILE_LENGTH = 39442356L;
+
     private FileUtils() {
 
     }
 
-    public static boolean createTemporaryModificationFile() {
+    public static void uploadDataIntoDatabase() {
+        FileData fileData = createTemporaryModificationFile();
+        // TODO made this multithreaded, different tables, should not be harmed
+        DataFilesParser.INSTANCE.extractSkillsDataFromFile(fileData.getFile());
+        DataFilesParser.INSTANCE.extractSpellsDataFromFile(fileData.getFile());
+
+        try {
+            boolean isVersion11 = fileData.getFile().length() == GAME_DATA_CFF_V11_FILE_LENGTH;
+            FilesContainer.INSTANCE.setIsVersion11(isVersion11);
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage());
+        }
+
+        String filePath = fileData.getPath() + fileData.getName();
+        try {
+            fileData.getFile().close();
+            Files.delete(Paths.get(filePath));
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+
+        try {
+            FilesContainer.INSTANCE.getOriginalFile().close();
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+    }
+
+    private static FileData createTemporaryModificationFile() {
         String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
         String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
         String modificationFileName = originalFileName + MOD_FILE_EXTENSION;
@@ -78,21 +112,17 @@ public final class FileUtils {
                 Files.copy(originalFilePath, modificationFilePath, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
-                return false;
             }
         }
 
-        RandomAccessFile file;
         try {
-            file = new RandomAccessFile(originalFileDirectory + modificationFileName, "rw");
+            RandomAccessFile file = new RandomAccessFile(originalFileDirectory + modificationFileName, "rw");
+            return new FileData(file, originalFileDirectory, modificationFileName);
         } catch (FileNotFoundException e) {
             LOGGER.error(e.getMessage(), e);
-            return false;
         }
 
-        FilesContainer.INSTANCE.setModificationFile(new FileData(file, originalFileDirectory, modificationFileName));
-
-        return true;
+        return null;
     }
 
     public static void createSfModFile(String sfModFileName) {
@@ -113,17 +143,43 @@ public final class FileUtils {
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
+
+        String filePath = FilesContainer.INSTANCE.getModificationFilePath() + FilesContainer.INSTANCE.getModificationFileName();
+        try {
+            Files.delete(Paths.get(filePath));
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
     }
 
-    private static void dropDatabaseChangesIntoModificationFile() {
-        RandomAccessFile modificationFile = FilesContainer.INSTANCE.getModificationFile();
+    public static void dropDatabaseChangesIntoModificationFile() {
+        String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
+        String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
+        String modificationFileName = originalFileName + MOD_FILE_EXTENSION;
+
+        Path originalFilePath = Paths.get(originalFileDirectory + originalFileName);
+        Path modificationFilePath = Paths.get(originalFileDirectory + modificationFileName);
+        try {
+            Files.copy(originalFilePath, modificationFilePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+
+        RandomAccessFile file;
+        try {
+            file = new RandomAccessFile(originalFileDirectory + modificationFileName, "rw");
+        } catch (FileNotFoundException e) {
+            LOGGER.error(e.getMessage(), e);
+            return;
+        }
+
         List<SkillParameters> allSkillParameters = TableCreationUtils.getAllSkillParameters();
         for (SkillParameters allSkillParameter : allSkillParameters) {
             Long offset = allSkillParameter.getOffset();
             try {
-                modificationFile.seek(offset);
+                file.seek(offset);
                 byte[] bytes = ObjectDataMappingService.INSTANCE.serializeObject(allSkillParameter);
-                modificationFile.write(bytes);
+                file.write(bytes);
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
             }
@@ -133,14 +189,19 @@ public final class FileUtils {
         for (SpellParameters allSpellParameter : allSpellParameters) {
             Long offset = allSpellParameter.getOffset();
             try {
-                modificationFile.seek(offset);
+                file.seek(offset);
                 byte[] bytes = ObjectDataMappingService.INSTANCE.serializeObject(allSpellParameter);
-                modificationFile.write(bytes);
+                file.write(bytes);
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
             }
         }
 
+        try {
+            file.close();
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
     }
 
     private static void zipAndEncryptDiffFile(String sfModFileName, String originalFileDirectory, String originalFileName, String tempDiffFilePath) {

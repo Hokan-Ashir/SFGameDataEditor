@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.spells.schools;
 
-import sfgamedataeditor.dataextraction.OffsetProvider;
+import sfgamedataeditor.dataextraction.DataFilesParser;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.utils.I18N;
@@ -27,7 +27,7 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
     @Override
     protected void fillComboBoxMapping() {
         SpellViewMetaEvent event = new SpellViewMetaEvent();
-        Set<String> spellSchoolsSet = OffsetProvider.INSTANCE.getSpellSchoolsNames();
+        Set<String> spellSchoolsSet = DataFilesParser.INSTANCE.getSpellSchoolsNames();
         for (String spellSchoolName : spellSchoolsSet) {
             addMapping(spellSchoolName, event);
         }

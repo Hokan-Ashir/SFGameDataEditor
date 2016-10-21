@@ -34,7 +34,7 @@ public abstract class AbstractMetaEvent {
         }
 
         if (!(Event.class.isAssignableFrom(eventClass))) {
-            throw new RuntimeException("Class: " + eventClass.getName() + " not extends, nor implements " + ShowViewEvent.class.getName());
+            throw new RuntimeException("Class: " + eventClass.getName() + " not extends, nor implements " + Event.class.getName());
         }
 
         eventMap.get(eventClass).setObjectParameter(parameter);

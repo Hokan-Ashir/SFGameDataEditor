@@ -1,10 +1,8 @@
 package sfgamedataeditor.events.processing;
 
-import sfgamedataeditor.dataextraction.OffsetProvider;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.common.NullView;
-import sfgamedataeditor.views.main.MainView;
 
 import java.util.HashMap;
 import java.util.Map;

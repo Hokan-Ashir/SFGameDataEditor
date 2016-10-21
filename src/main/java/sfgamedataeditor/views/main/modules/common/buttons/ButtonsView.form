@@ -6,10 +6,10 @@
     </constraints>
     <properties>
       <enabled value="true"/>
-      <maximumSize width="500" height="50"/>
-      <minimumSize width="500" height="50"/>
+      <maximumSize width="600" height="50"/>
+      <minimumSize width="600" height="50"/>
       <opaque value="true"/>
-      <preferredSize width="500" height="50"/>
+      <preferredSize width="600" height="50"/>
     </properties>
     <border type="none"/>
     <children>
@@ -30,7 +30,7 @@
       </component>
       <component id="60649" class="javax.swing.JButton" binding="createSfmodFileButton" default-binding="true">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="6" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -39,6 +39,20 @@
           <minimumSize width="200" height="31"/>
           <preferredSize width="200" height="31"/>
           <text value="Create .sfmod-file"/>
+        </properties>
+      </component>
+      <component id="93b62" class="javax.swing.JButton" binding="createModificatedFileButton">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <inheritsPopupMenu value="false"/>
+          <margin top="0" left="0" bottom="0" right="0"/>
+          <maximumSize width="200" height="31"/>
+          <minimumSize width="200" height="31"/>
+          <preferredSize width="200" height="31"/>
+          <text value="Create .mod-file"/>
         </properties>
       </component>
     </children>

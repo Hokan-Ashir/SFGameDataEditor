@@ -1,6 +1,7 @@
 package sfgamedataeditor.views;
 
 import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.fileselection.FileSelectionView;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
