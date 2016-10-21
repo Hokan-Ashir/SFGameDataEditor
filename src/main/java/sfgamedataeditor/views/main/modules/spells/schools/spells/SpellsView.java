@@ -18,14 +18,12 @@ import java.util.List;
 public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
 
     private final SpellParameterEventParameter spellParameterEventParameter;
-    private final SpellParameterViewMetaEvent event;
     private SpellEventParameter spellEventParameter;
 
     public SpellsView(SpellSchoolsView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("spells"));
         spellParameterEventParameter = new SpellParameterEventParameter();
         spellEventParameter = new SpellEventParameter();
-        event = new SpellParameterViewMetaEvent();
     }
 
     /**
@@ -59,7 +57,7 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
         for (SpellParameters spellParameters : spells) {
             String spellName = TableCreationUtils.getSpellName(spellParameters.spellNameId);
             if (spellName != null) {
-                addMapping(spellName, event);
+                addMapping(spellName, new SpellParameterViewMetaEvent());
             }
         }
 

@@ -26,10 +26,9 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
      */
     @Override
     protected void fillComboBoxMapping() {
-        SpellViewMetaEvent event = new SpellViewMetaEvent();
         Set<String> spellSchoolsSet = DataFilesParser.INSTANCE.getSpellSchoolsNames();
         for (String spellSchoolName : spellSchoolsSet) {
-            addMapping(spellSchoolName, event);
+            addMapping(spellSchoolName, new SpellViewMetaEvent());
         }
     }
 

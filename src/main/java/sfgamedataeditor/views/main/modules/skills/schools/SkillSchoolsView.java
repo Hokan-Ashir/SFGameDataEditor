@@ -28,9 +28,8 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
      */
     @Override
     protected void fillComboBoxMapping() {
-        SkillParametersMetaEvent event = new SkillParametersMetaEvent();
         for (String s : Mappings.INSTANCE.SKILL_SCHOOL_MAP.keySet()) {
-            addMapping(s, event);
+            addMapping(s, new SkillParametersMetaEvent());
         }
     }
 

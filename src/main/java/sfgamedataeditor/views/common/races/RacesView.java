@@ -16,13 +16,12 @@ public class RacesView<T extends AbstractView> extends AbstractModulesView<T> {
      */
     @Override
     protected void fillComboBoxMapping() {
-        NotImplementedMetaEvent event = new NotImplementedMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("race.humans"), event);
-        addMapping(I18N.INSTANCE.getMessage("race.elves"), event);
-        addMapping(I18N.INSTANCE.getMessage("race.dwarves"), event);
-        addMapping(I18N.INSTANCE.getMessage("race.orcs"), event);
-        addMapping(I18N.INSTANCE.getMessage("race.trolls"), event);
-        addMapping(I18N.INSTANCE.getMessage("race.darkElves"), event);
+        addMapping(I18N.INSTANCE.getMessage("race.humans"), new NotImplementedMetaEvent());
+        addMapping(I18N.INSTANCE.getMessage("race.elves"), new NotImplementedMetaEvent());
+        addMapping(I18N.INSTANCE.getMessage("race.dwarves"), new NotImplementedMetaEvent());
+        addMapping(I18N.INSTANCE.getMessage("race.orcs"), new NotImplementedMetaEvent());
+        addMapping(I18N.INSTANCE.getMessage("race.trolls"), new NotImplementedMetaEvent());
+        addMapping(I18N.INSTANCE.getMessage("race.darkElves"), new NotImplementedMetaEvent());
     }
 
 }
