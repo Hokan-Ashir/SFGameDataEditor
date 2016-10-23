@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.spells.schools;
 
-import sfgamedataeditor.database.TableCreationUtils;
 import sfgamedataeditor.database.objects.SpellSchoolName;
+import sfgamedataeditor.database.tableservices.SpellSchoolNameTableService;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.utils.I18N;
@@ -27,7 +27,7 @@ public class SpellSchoolsView extends AbstractModulesView<ModulesView> {
      */
     @Override
     protected void fillComboBoxMapping() {
-        List<SpellSchoolName> allSpellSchoolNames = TableCreationUtils.getAllSpellSchoolNames();
+        List<SpellSchoolName> allSpellSchoolNames = SpellSchoolNameTableService.INSTANCE.getAllSpellSchoolNames();
         for (SpellSchoolName allSpellSchoolName : allSpellSchoolNames) {
             addMapping(allSpellSchoolName.name, new SpellViewMetaEvent());
         }

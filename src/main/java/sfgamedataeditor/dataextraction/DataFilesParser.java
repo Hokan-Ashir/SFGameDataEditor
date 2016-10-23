@@ -1,7 +1,10 @@
 package sfgamedataeditor.dataextraction;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.database.TableCreationUtils;
+import sfgamedataeditor.database.tableservices.SkillNameTableService;
+import sfgamedataeditor.database.tableservices.SkillParametersTableService;
+import sfgamedataeditor.database.tableservices.SpellNameTableService;
+import sfgamedataeditor.database.tableservices.SpellParametersTableService;
 import sfgamedataeditor.databind.Pair;
 
 import java.io.IOException;
@@ -15,23 +18,23 @@ public enum DataFilesParser {
     private static final Logger LOGGER = Logger.getLogger(DataFilesParser.class);
 
     public void extractSkillsDataFromFile(RandomAccessFile file) {
-        TableCreationUtils.createSkillNameTable();
-        TableCreationUtils.createSkillParametersTable();
+        SkillNameTableService.INSTANCE.createSkillNameTable();
+        SkillParametersTableService.INSTANCE.createSkillParametersTable();
 
         List<Pair<Integer, Integer>> skillOffsets = DataOffsetProvider.INSTANCE.getSkillOffsets();
         int dataLength = DataOffsetProvider.INSTANCE.getSkillDataLength();
         List<Pair<byte[], Long>> offsettedData = readData(file, skillOffsets, dataLength);
-        TableCreationUtils.addRecordsToSkillParametersTable(offsettedData);
+        SkillParametersTableService.INSTANCE.addRecordsToSkillParametersTable(offsettedData);
     }
 
     public void extractSpellsDataFromFile(RandomAccessFile file) {
-        TableCreationUtils.createSpellNameTable();
-        TableCreationUtils.createSpellParametersTable();
+        SpellNameTableService.INSTANCE.createSpellNameTable();
+        SpellParametersTableService.INSTANCE.createSpellParametersTable();
 
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getSpellOffsets();
         int dataLength = DataOffsetProvider.INSTANCE.getSpellDataLength();
         List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
-        TableCreationUtils.addRecordsToSpellParametersTable(offsettedData);
+        SpellParametersTableService.INSTANCE.addRecordsToSpellParametersTable(offsettedData);
     }
 
     private List<Pair<byte[], Long>> readData(RandomAccessFile file, List<Pair<Integer, Integer>> dataOffsets, int dataLength) {

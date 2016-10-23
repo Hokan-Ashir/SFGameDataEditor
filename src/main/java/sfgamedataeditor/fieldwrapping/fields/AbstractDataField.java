@@ -1,9 +1,9 @@
 package sfgamedataeditor.fieldwrapping.fields;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.database.TableCreationUtils;
 import sfgamedataeditor.database.objects.Data;
 import sfgamedataeditor.database.objects.OffsetableObject;
+import sfgamedataeditor.database.tableservices.CommonTableService;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
@@ -58,7 +58,7 @@ public abstract class AbstractDataField<T extends JComponent> implements IDataFi
             LOGGER.error(e.getMessage(), e);
         }
 
-        TableCreationUtils.updateObject(mappedObject, mappedObject.getClass());
+        CommonTableService.INSTANCE.updateObject(mappedObject, mappedObject.getClass());
     }
 
     protected abstract int getFieldValue();

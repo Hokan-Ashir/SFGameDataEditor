@@ -1,7 +1,8 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
-import sfgamedataeditor.database.TableCreationUtils;
 import sfgamedataeditor.database.objects.SpellParameters;
+import sfgamedataeditor.database.tableservices.SpellNameTableService;
+import sfgamedataeditor.database.tableservices.SpellParametersTableService;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
@@ -53,9 +54,9 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
 
         String spellSchoolName = spellEventParameter.getSpellSchoolName();
         // TODO optimize Database requests
-        List<SpellParameters> spells = TableCreationUtils.getSpells(spellSchoolName);
+        List<SpellParameters> spells = SpellParametersTableService.INSTANCE.getSpells(spellSchoolName);
         for (SpellParameters spellParameters : spells) {
-            String spellName = TableCreationUtils.getSpellName(spellParameters.spellNameId);
+            String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParameters.spellNameId);
             if (spellName != null) {
                 addMapping(spellName, new SpellParameterViewMetaEvent());
             }
@@ -71,7 +72,7 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
     protected void setEventParameter(AbstractMetaEvent metaEvent) {
         super.setEventParameter(metaEvent);
         String selectedSpellName = getSelectedModuleValue();
-        Integer spellId = TableCreationUtils.getSpellId(selectedSpellName);
+        Integer spellId = SpellNameTableService.INSTANCE.getSpellId(selectedSpellName);
         spellParameterEventParameter.setSpellId(spellId);
 
         LevelableView<SpellsView> levelableView = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SpellsView.class));

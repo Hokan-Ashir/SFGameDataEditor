@@ -4,10 +4,12 @@ import de.idyl.winzipaes.AesZipFileDecrypter;
 import de.idyl.winzipaes.AesZipFileEncrypter;
 import de.idyl.winzipaes.impl.*;
 import org.apache.log4j.Logger;
-import sfgamedataeditor.database.TableCreationUtils;
 import sfgamedataeditor.database.objects.ObjectDataMappingService;
 import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.database.objects.SpellParameters;
+import sfgamedataeditor.database.tableservices.SkillParametersTableService;
+import sfgamedataeditor.database.tableservices.SpellParametersTableService;
+import sfgamedataeditor.database.tableservices.SpellSchoolNameTableService;
 import sfgamedataeditor.dataextraction.DataFilesParser;
 import xdeltaencoder.org.mantlik.xdeltaencoder.XDeltaEncoder;
 
@@ -46,7 +48,7 @@ public final class FileUtils {
         // TODO made this multithreaded, different tables, should not be harmed
         DataFilesParser.INSTANCE.extractSkillsDataFromFile(fileData.getFile());
         DataFilesParser.INSTANCE.extractSpellsDataFromFile(fileData.getFile());
-        TableCreationUtils.createSpellSchoolNameTable();
+        SpellSchoolNameTableService.INSTANCE.createSpellSchoolNameTable();
 
         try {
             boolean isVersion11 = fileData.getFile().length() == GAME_DATA_CFF_V11_FILE_LENGTH;
@@ -174,7 +176,7 @@ public final class FileUtils {
             return;
         }
 
-        List<SkillParameters> allSkillParameters = TableCreationUtils.getAllSkillParameters();
+        List<SkillParameters> allSkillParameters = SkillParametersTableService.INSTANCE.getAllSkillParameters();
         for (SkillParameters allSkillParameter : allSkillParameters) {
             Long offset = allSkillParameter.getOffset();
             try {
@@ -186,7 +188,7 @@ public final class FileUtils {
             }
         }
 
-        List<SpellParameters> allSpellParameters = TableCreationUtils.getAllSpellParameters();
+        List<SpellParameters> allSpellParameters = SpellParametersTableService.INSTANCE.getAllSpellParameters();
         for (SpellParameters allSpellParameter : allSpellParameters) {
             Long offset = allSpellParameter.getOffset();
             try {

@@ -1,9 +1,10 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.database.TableCreationUtils;
 import sfgamedataeditor.database.objects.SpellName;
 import sfgamedataeditor.database.objects.SpellParameters;
+import sfgamedataeditor.database.tableservices.SpellNameTableService;
+import sfgamedataeditor.database.tableservices.SpellParametersTableService;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.processing.ViewRegister;
@@ -66,12 +67,12 @@ public class SpellParameterView extends AbstractView<SpellsView> {
 
         int selectedSpellId = parameter.getSpellId();
         int selectedLevel = parameter.getSpellLevel();
-        Set<Integer> spellLevels = TableCreationUtils.getSpellLevels(selectedSpellId);
+        Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
         int spellMinLevel = (int) ((TreeSet)spellLevels).first();
         int spellMaxLevel = (int) ((TreeSet)spellLevels).last();
         setSpellAvaliableLevels(spellLevels, selectedLevel);
         selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
-        SpellParameters spellParameter = TableCreationUtils.getSpellParameter(selectedSpellId, selectedLevel);
+        SpellParameters spellParameter = SpellParametersTableService.INSTANCE.getSpellParameter(selectedSpellId, selectedLevel);
         for (IDataField dataField : dataFields) {
             dataField.mapValues(spellParameter);
         }
@@ -119,7 +120,7 @@ public class SpellParameterView extends AbstractView<SpellsView> {
 
     private void setSpellParameterLabelNames() {
         String selectedSpellName = getParentView().getSelectedModuleValue();
-        SpellName spellName = TableCreationUtils.getSpellName(selectedSpellName);
+        SpellName spellName = SpellNameTableService.INSTANCE.getSpellName(selectedSpellName);
         for (Field field : stub.getClass().getDeclaredFields()) {
             MappedColumn annotation = field.getAnnotation(MappedColumn.class);
             if (annotation == null) {

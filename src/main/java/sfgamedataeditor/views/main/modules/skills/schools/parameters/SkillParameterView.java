@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
-import sfgamedataeditor.database.TableCreationUtils;
 import sfgamedataeditor.database.objects.SkillParameters;
+import sfgamedataeditor.database.tableservices.SkillParametersTableService;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.processing.ViewRegister;
@@ -60,7 +60,7 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
     }
 
     private void setFieldsData(int skillSchoolId, int skillLevel) {
-        SkillParameters skillParameter = TableCreationUtils.getSkillParameter(skillSchoolId, skillLevel);
+        SkillParameters skillParameter = SkillParametersTableService.INSTANCE.getSkillParameter(skillSchoolId, skillLevel);
         for (IDataField dataField : dataFields) {
             dataField.mapValues(skillParameter);
         }
