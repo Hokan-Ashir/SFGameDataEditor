@@ -4,7 +4,7 @@ import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 
-public class MerchantLocationsView extends AbstractModulesView<ModulesView> {
+public class MerchantLocationsView extends AbstractModulesView<ModulesView, MerchantLocationsMetaEvent> {
 
     public MerchantLocationsView(ModulesView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("merchantLocations"));
@@ -18,4 +18,11 @@ public class MerchantLocationsView extends AbstractModulesView<ModulesView> {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<MerchantLocationsMetaEvent> getMetaEventClass() {
+        return MerchantLocationsMetaEvent.class;
+    }
 }

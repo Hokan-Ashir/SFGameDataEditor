@@ -5,13 +5,14 @@ import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesMetaEvent;
+import sfgamedataeditor.views.main.modules.common.ModulesMetaEvent;
 import sfgamedataeditor.views.main.modules.items.ItemTypesMetaEvent;
 import sfgamedataeditor.views.main.modules.merchants.MerchantLocationsMetaEvent;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsMetaEvent;
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsMetaEvent;
 import sfgamedataeditor.views.main.modules.units.UnitRacesMetaEvent;
 
-public class ModulesView extends AbstractModulesView<MainView> {
+public class ModulesView extends AbstractModulesView<MainView, ModulesMetaEvent> {
 
     public ModulesView(MainView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("modulesList"));
@@ -59,5 +60,13 @@ public class ModulesView extends AbstractModulesView<MainView> {
     private void addItemsMapping() {
         ItemTypesMetaEvent event = new ItemTypesMetaEvent();
         addMapping(I18N.INSTANCE.getMessage("items"), event);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<ModulesMetaEvent> getMetaEventClass() {
+        return ModulesMetaEvent.class;
     }
 }

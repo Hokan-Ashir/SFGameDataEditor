@@ -16,7 +16,7 @@ import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.Spel
 
 import java.util.List;
 
-public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
+public class SpellsView extends AbstractModulesView<SpellSchoolsView, SpellViewMetaEvent> {
 
     private final SpellParameterEventParameter spellParameterEventParameter;
     private SpellEventParameter spellEventParameter;
@@ -83,5 +83,13 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView> {
         }
 
         metaEvent.setEventParameter(ShowSpellParameterViewEvent.class, spellParameterEventParameter);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<SpellViewMetaEvent> getMetaEventClass() {
+        return SpellViewMetaEvent.class;
     }
 }

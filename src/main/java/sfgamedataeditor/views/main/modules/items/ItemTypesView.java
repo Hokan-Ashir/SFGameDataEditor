@@ -11,7 +11,7 @@ import sfgamedataeditor.views.main.modules.items.runes.RuneRacesMetaEvent;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.SpellScrollsMetaEvent;
 import sfgamedataeditor.views.main.modules.items.weapons.WeaponTypesMetaEvent;
 
-public class ItemTypesView extends AbstractModulesView<ModulesView> {
+public class ItemTypesView extends AbstractModulesView<ModulesView, ItemTypesMetaEvent> {
 
     public ItemTypesView(ModulesView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("itemTypes"));
@@ -61,4 +61,11 @@ public class ItemTypesView extends AbstractModulesView<ModulesView> {
         addMapping(I18N.INSTANCE.getMessage("items.miscellaneous"), event);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<ItemTypesMetaEvent> getMetaEventClass() {
+        return ItemTypesMetaEvent.class;
+    }
 }

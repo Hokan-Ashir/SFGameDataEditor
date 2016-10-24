@@ -13,7 +13,7 @@ import sfgamedataeditor.views.main.modules.skills.schools.parameters.ShowSkillPa
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillEventParameter;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParametersMetaEvent;
 
-public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
+public class SkillSchoolsView extends AbstractModulesView<ModulesView, SkillSchoolsMetaEvent> {
 
     private final SkillEventParameter parameter;
 
@@ -54,5 +54,13 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView> {
     private int getSelectedSchoolId() {
         String selectedSkillSchool = getSelectedModuleValue();
         return Mappings.INSTANCE.SKILL_SCHOOL_MAP.get(selectedSkillSchool);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<SkillSchoolsMetaEvent> getMetaEventClass() {
+        return SkillSchoolsMetaEvent.class;
     }
 }

@@ -5,7 +5,7 @@ import sfgamedataeditor.events.EventCreator;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.views.common.AbstractView;
-import sfgamedataeditor.views.common.races.RacesView;
+import sfgamedataeditor.views.common.races.AbstractRacesView;
 
 public class NotImplementedMetaEvent extends AbstractMetaEvent {
 
@@ -14,7 +14,7 @@ public class NotImplementedMetaEvent extends AbstractMetaEvent {
      */
     @Override
     protected void addEvents() {
-        ShowNotImplementedViewEvent event = EventCreator.createEvent(NotImplementedView.class, RacesView.class, ShowNotImplementedViewEvent.class);
+        ShowNotImplementedViewEvent event = EventCreator.createEvent(NotImplementedView.class, AbstractRacesView.class, ShowNotImplementedViewEvent.class);
         addEvent(event);
     }
 }

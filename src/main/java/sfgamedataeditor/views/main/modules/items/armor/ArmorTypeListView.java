@@ -4,7 +4,7 @@ import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 
-public class ArmorTypeListView extends AbstractModulesView<ItemTypesView> {
+public class ArmorTypeListView extends AbstractModulesView<ItemTypesView, ArmorTypesMetaEvent> {
 
     public ArmorTypeListView(ItemTypesView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("armorTypes"));
@@ -18,4 +18,11 @@ public class ArmorTypeListView extends AbstractModulesView<ItemTypesView> {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<ArmorTypesMetaEvent> getMetaEventClass() {
+        return ArmorTypesMetaEvent.class;
+    }
 }

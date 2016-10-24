@@ -11,7 +11,7 @@ import java.awt.event.ItemListener;
 import java.util.Map;
 import java.util.TreeMap;
 
-public abstract class AbstractModulesView<T extends AbstractView> extends AbstractView<T> {
+public abstract class AbstractModulesView<T extends AbstractView, E extends AbstractMetaEvent> extends AbstractView<T> implements Processable<E> {
 
     private Map<String, AbstractMetaEvent> comboBoxMapping = new TreeMap<>();
     private JComboBox<String> modulesComboBox;
