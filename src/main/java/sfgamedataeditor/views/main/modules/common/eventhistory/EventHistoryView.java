@@ -13,8 +13,8 @@ public class EventHistoryView extends AbstractView<MainView> {
 
     public EventHistoryView(MainView parentView) {
         super(parentView);
-        undoButton.setText(I18N.INSTANCE.getMessage("undo"));
-        redoButton.setText(I18N.INSTANCE.getMessage("redo"));
+        undoButton.setText(I18N.INSTANCE.getMessage("back"));
+        redoButton.setText(I18N.INSTANCE.getMessage("forward"));
         
         undoButton.setEnabled(false);
         redoButton.setEnabled(false);

@@ -138,6 +138,7 @@ public class SpellParameterViewStub implements Wrapable, IView {
 
     private JSeparator parametersSeparator;
     private JLabel parametersLabel;
+    private JPanel parametersPanel;
 
     public SpellParameterViewStub() {
         parametersLabel.setText(I18N.INSTANCE.getMessage("spellParameters"));

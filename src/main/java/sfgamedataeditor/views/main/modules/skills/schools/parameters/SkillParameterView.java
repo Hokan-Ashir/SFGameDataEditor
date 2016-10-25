@@ -9,6 +9,7 @@ import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.fieldwrapping.FieldsWrapperCreator;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.views.common.AbstractView;
+import sfgamedataeditor.views.common.Processable;
 import sfgamedataeditor.views.common.levelable.LevelableView;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
 
@@ -17,7 +18,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Collection;
 
-public class SkillParameterView extends AbstractView<SkillSchoolsView> {
+public class SkillParameterView extends AbstractView<SkillSchoolsView> implements Processable<SkillParametersMetaEvent> {
 
     private final SkillParameterViewStub stub;
     private final Collection<IDataField> dataFields;
@@ -72,5 +73,13 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> {
     @Override
     public JPanel getMainPanel() {
         return stub.getMainPanel();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<SkillParametersMetaEvent> getMetaEventClass() {
+        return SkillParametersMetaEvent.class;
     }
 }

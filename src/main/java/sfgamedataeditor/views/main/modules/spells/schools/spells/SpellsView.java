@@ -14,6 +14,7 @@ import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.Show
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterEventParameter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterViewMetaEvent;
 
+import javax.swing.*;
 import java.util.List;
 
 public class SpellsView extends AbstractModulesView<SpellSchoolsView, SpellViewMetaEvent> {
@@ -25,6 +26,7 @@ public class SpellsView extends AbstractModulesView<SpellSchoolsView, SpellViewM
         super(parentView, I18N.INSTANCE.getMessage("spells"));
         spellParameterEventParameter = new SpellParameterEventParameter();
         spellEventParameter = new SpellEventParameter();
+        getSubModulesPanel().setLayout(new BoxLayout(getSubModulesPanel(), BoxLayout.Y_AXIS));
     }
 
     /**

@@ -13,6 +13,7 @@ import sfgamedataeditor.fieldwrapping.FieldsWrapperCreator;
 import sfgamedataeditor.fieldwrapping.MappedColumn;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.views.common.AbstractView;
+import sfgamedataeditor.views.common.Processable;
 import sfgamedataeditor.views.common.levelable.LevelableView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
@@ -25,7 +26,7 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class SpellParameterView extends AbstractView<SpellsView> {
+public class SpellParameterView extends AbstractView<SpellsView> implements Processable<SpellParameterViewMetaEvent> {
 
     private static final Logger LOGGER = Logger.getLogger(SkillParameterView.class);
 
@@ -161,5 +162,13 @@ public class SpellParameterView extends AbstractView<SpellsView> {
     @Override
     public JPanel getMainPanel() {
         return stub.getMainPanel();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<SpellParameterViewMetaEvent> getMetaEventClass() {
+        return SpellParameterViewMetaEvent.class;
     }
 }

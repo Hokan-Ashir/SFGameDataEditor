@@ -5,8 +5,8 @@
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
     <properties>
-      <alignmentX value="0.5"/>
-      <alignmentY value="0.5"/>
+      <alignmentX value="0.0"/>
+      <alignmentY value="0.0"/>
       <autoscrolls value="false"/>
       <maximumSize width="200" height="50"/>
       <minimumSize width="200" height="50"/>
@@ -20,6 +20,10 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <margin top="5" left="5" bottom="5" right="5"/>
+          <maximumSize width="75" height="25"/>
+          <minimumSize width="75" height="25"/>
+          <preferredSize width="75" height="25"/>
           <text value="Undo"/>
         </properties>
       </component>
@@ -29,6 +33,10 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="-1.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <margin top="5" left="5" bottom="5" right="5"/>
+          <maximumSize width="75" height="25"/>
+          <minimumSize width="75" height="25"/>
+          <preferredSize width="75" height="25"/>
           <text value="Redo"/>
         </properties>
       </component>

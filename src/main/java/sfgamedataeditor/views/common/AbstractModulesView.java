@@ -22,8 +22,8 @@ public abstract class AbstractModulesView<T extends AbstractView, E extends Abst
     public AbstractModulesView(T parentView, String viewName) {
         super(parentView);
         modulesLabel.setText(viewName);
-        subModulesPanel.setLayout(new BoxLayout(subModulesPanel, BoxLayout.Y_AXIS));
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        subModulesPanel.setLayout(new BoxLayout(subModulesPanel, BoxLayout.LINE_AXIS));
+//        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
         initializeComboBox();
         modulesComboBox.addItemListener(new ItemListener() {
             @Override

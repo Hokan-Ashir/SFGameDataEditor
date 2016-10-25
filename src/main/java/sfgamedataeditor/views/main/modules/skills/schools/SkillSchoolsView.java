@@ -13,6 +13,8 @@ import sfgamedataeditor.views.main.modules.skills.schools.parameters.ShowSkillPa
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillEventParameter;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParametersMetaEvent;
 
+import javax.swing.*;
+
 public class SkillSchoolsView extends AbstractModulesView<ModulesView, SkillSchoolsMetaEvent> {
 
     private final SkillEventParameter parameter;
@@ -21,6 +23,7 @@ public class SkillSchoolsView extends AbstractModulesView<ModulesView, SkillScho
         super(parentView, I18N.INSTANCE.getMessage("skillSchools"));
         parameter = new SkillEventParameter();
         EventHandlerRegister.INSTANCE.addEventHandler(new SkillEventHandler());
+        getSubModulesPanel().setLayout(new BoxLayout(getSubModulesPanel(), BoxLayout.Y_AXIS));
     }
 
     /**
