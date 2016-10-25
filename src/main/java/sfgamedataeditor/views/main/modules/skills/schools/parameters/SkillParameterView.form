@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterViewStub">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="620" height="500"/>
+      <xy x="140" y="20" width="500" height="70"/>
     </constraints>
     <properties>
       <inheritsPopupMenu value="false"/>
@@ -57,9 +57,9 @@
               <gridbag weightx="0.0" weighty="0.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="23"/>
-              <minimumSize width="35" height="23"/>
-              <preferredSize width="35" height="23"/>
+              <maximumSize width="35" height="25"/>
+              <minimumSize width="35" height="25"/>
+              <preferredSize width="35" height="25"/>
             </properties>
           </component>
           <component id="6d595" class="javax.swing.JTextField" binding="strengthField">
@@ -72,10 +72,10 @@
               <gridbag weightx="0.0" weighty="0.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="23"/>
-              <minimumSize width="35" height="23"/>
+              <maximumSize width="35" height="25"/>
+              <minimumSize width="35" height="25"/>
               <opaque value="true"/>
-              <preferredSize width="35" height="23"/>
+              <preferredSize width="35" height="25"/>
               <text value=""/>
             </properties>
           </component>
@@ -99,9 +99,9 @@
               <gridbag weightx="0.0" weighty="0.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="23"/>
-              <minimumSize width="35" height="23"/>
-              <preferredSize width="35" height="23"/>
+              <maximumSize width="35" height="25"/>
+              <minimumSize width="35" height="25"/>
+              <preferredSize width="35" height="25"/>
             </properties>
           </component>
           <component id="92a8b" class="javax.swing.JLabel" binding="dexterityLabel">
@@ -124,9 +124,9 @@
               <gridbag weightx="0.0" weighty="1.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="23"/>
-              <minimumSize width="35" height="23"/>
-              <preferredSize width="35" height="23"/>
+              <maximumSize width="35" height="25"/>
+              <minimumSize width="35" height="25"/>
+              <preferredSize width="35" height="25"/>
               <text value=""/>
             </properties>
           </component>
@@ -150,9 +150,9 @@
               <gridbag weightx="0.0" weighty="1.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="23"/>
-              <minimumSize width="35" height="23"/>
-              <preferredSize width="35" height="23"/>
+              <maximumSize width="35" height="25"/>
+              <minimumSize width="35" height="25"/>
+              <preferredSize width="35" height="25"/>
             </properties>
           </component>
           <component id="3b860" class="javax.swing.JLabel" binding="wisdomLabel">
@@ -175,9 +175,9 @@
               <gridbag weightx="0.0" weighty="1.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="23"/>
-              <minimumSize width="35" height="23"/>
-              <preferredSize width="35" height="23"/>
+              <maximumSize width="35" height="25"/>
+              <minimumSize width="35" height="25"/>
+              <preferredSize width="35" height="25"/>
               <text value=""/>
             </properties>
           </component>
@@ -201,9 +201,9 @@
               <gridbag weightx="0.0" weighty="0.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="23"/>
-              <minimumSize width="35" height="23"/>
-              <preferredSize width="35" height="23"/>
+              <maximumSize width="35" height="25"/>
+              <minimumSize width="35" height="25"/>
+              <preferredSize width="35" height="25"/>
               <text value=""/>
             </properties>
           </component>

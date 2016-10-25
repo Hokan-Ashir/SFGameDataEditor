@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.fileselection.FileSelectionView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="500" height="200"/>
     </constraints>
     <properties>
       <minimumSize width="500" height="200"/>
@@ -39,8 +39,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="42" height="23"/>
-          <minimumSize width="42" height="23"/>
+          <maximumSize width="60" height="25"/>
+          <minimumSize width="60" height="25"/>
+          <preferredSize width="60" height="25"/>
           <text value="..."/>
         </properties>
       </component>
@@ -72,8 +73,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="42" height="23"/>
-          <minimumSize width="42" height="23"/>
+          <maximumSize width="60" height="25"/>
+          <minimumSize width="60" height="25"/>
+          <preferredSize width="60" height="25"/>
           <text value="..."/>
         </properties>
       </component>
@@ -84,9 +86,9 @@
         </constraints>
         <properties>
           <margin top="0" left="0" bottom="0" right="0"/>
-          <maximumSize width="50" height="23"/>
-          <minimumSize width="50" height="23"/>
-          <preferredSize width="50" height="23"/>
+          <maximumSize width="60" height="25"/>
+          <minimumSize width="60" height="25"/>
+          <preferredSize width="60" height="25"/>
           <rolloverEnabled value="true"/>
           <text resource-bundle="messages" key="ok"/>
         </properties>

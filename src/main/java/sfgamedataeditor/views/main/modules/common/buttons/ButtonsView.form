@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.main.modules.common.buttons.ButtonsView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="1400" height="800"/>
+      <xy x="518" y="256" width="600" height="50"/>
     </constraints>
     <properties>
       <alignmentX value="0.0"/>
@@ -24,9 +24,9 @@
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="11"/>
           <margin top="0" left="0" bottom="0" right="0"/>
-          <maximumSize width="200" height="31"/>
-          <minimumSize width="200" height="31"/>
-          <preferredSize width="200" height="31"/>
+          <maximumSize width="200" height="25"/>
+          <minimumSize width="200" height="25"/>
+          <preferredSize width="200" height="25"/>
           <text value="Load .sfmod-file"/>
         </properties>
       </component>
@@ -37,9 +37,9 @@
         </constraints>
         <properties>
           <margin top="0" left="0" bottom="0" right="0"/>
-          <maximumSize width="200" height="31"/>
-          <minimumSize width="200" height="31"/>
-          <preferredSize width="200" height="31"/>
+          <maximumSize width="200" height="25"/>
+          <minimumSize width="200" height="25"/>
+          <preferredSize width="200" height="25"/>
           <text value="Create .sfmod-file"/>
         </properties>
       </component>
@@ -51,9 +51,9 @@
         <properties>
           <inheritsPopupMenu value="false"/>
           <margin top="0" left="0" bottom="0" right="0"/>
-          <maximumSize width="200" height="31"/>
-          <minimumSize width="200" height="31"/>
-          <preferredSize width="200" height="31"/>
+          <maximumSize width="200" height="25"/>
+          <minimumSize width="200" height="25"/>
+          <preferredSize width="200" height="25"/>
           <text value="Create .mod-file"/>
         </properties>
       </component>

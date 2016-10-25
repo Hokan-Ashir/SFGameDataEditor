@@ -1,5 +1,6 @@
 package sfgamedataeditor.views;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.fileselection.FileSelectionView;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -10,6 +11,9 @@ import java.awt.event.ActionListener;
 import java.util.*;
 
 public class LanguageSelectionView {
+
+    private static final Logger LOGGER = Logger.getLogger(LanguageSelectionView.class);
+
     private static final Map<String, String> LANGUAGE_FILE_MAP = new TreeMap<String, String>() {{
         put("en", "English");
         put("ru", "Russian");
@@ -29,6 +33,13 @@ public class LanguageSelectionView {
     }
 
     public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+
         final JFrame frame = new JFrame("SpellForce GameData.cff Editor : Language Selection Dialog");
         final LanguageSelectionView view = new LanguageSelectionView();
         frame.setContentPane(view.getMainPanel());

@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterViewStub">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="1000" height="950"/>
+      <xy x="20" y="570" width="700" height="400"/>
     </constraints>
     <properties>
       <alignmentX value="1.0"/>
@@ -373,6 +373,7 @@
           <gridbag top="0" left="25" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <labelFor value="76db6"/>
           <maximumSize width="60" height="25"/>
           <minimumSize width="60" height="25"/>
           <preferredSize width="60" height="25"/>
@@ -398,6 +399,7 @@
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <labelFor value="978b4"/>
           <maximumSize width="60" height="25"/>
           <minimumSize width="60" height="25"/>
           <preferredSize width="60" height="25"/>
@@ -410,6 +412,7 @@
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <labelFor value="d9c3f"/>
           <maximumSize width="60" height="25"/>
           <minimumSize width="60" height="25"/>
           <preferredSize width="60" height="25"/>
@@ -435,6 +438,7 @@
           <gridbag top="0" left="25" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <labelFor value="aea8a"/>
           <maximumSize width="60" height="25"/>
           <minimumSize width="60" height="25"/>
           <preferredSize width="60" height="25"/>
@@ -473,6 +477,7 @@
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <labelFor value="5e509"/>
           <maximumSize width="60" height="25"/>
           <minimumSize width="60" height="25"/>
           <preferredSize width="60" height="25"/>
@@ -485,6 +490,7 @@
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <labelFor value="c74f8"/>
           <maximumSize width="60" height="25"/>
           <minimumSize width="60" height="25"/>
           <preferredSize width="60" height="25"/>
@@ -514,6 +520,7 @@
           <horizontalAlignment value="10"/>
           <horizontalTextPosition value="11"/>
           <inheritsPopupMenu value="false"/>
+          <labelFor value="e111a"/>
           <maximumSize width="60" height="25"/>
           <minimumSize width="60" height="25"/>
           <preferredSize width="60" height="25"/>
@@ -526,6 +533,7 @@
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <labelFor value="1c97"/>
           <maximumSize width="60" height="25"/>
           <minimumSize width="60" height="25"/>
           <preferredSize width="60" height="25"/>
@@ -538,6 +546,7 @@
           <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <labelFor value="1751f"/>
           <maximumSize width="60" height="25"/>
           <minimumSize width="60" height="25"/>
           <preferredSize width="60" height="25"/>
