@@ -2,11 +2,11 @@ package sfgamedataeditor.views.main.modules.merchants;
 
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
+import sfgamedataeditor.views.main.MainView;
 
-public class MerchantLocationsView extends AbstractModulesView<ModulesView, MerchantLocationsMetaEvent> {
+public class MerchantLocationsView extends AbstractModulesView<MainView, MerchantLocationsMetaEvent> {
 
-    public MerchantLocationsView(ModulesView parentView) {
+    public MerchantLocationsView(MainView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("merchantLocations"));
     }
 

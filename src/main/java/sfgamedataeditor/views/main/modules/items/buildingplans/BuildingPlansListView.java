@@ -1,12 +1,12 @@
 package sfgamedataeditor.views.main.modules.items.buildingplans;
 
 import sfgamedataeditor.views.common.races.AbstractRacesView;
-import sfgamedataeditor.views.main.modules.items.ItemTypesView;
+import sfgamedataeditor.views.main.MainView;
 
 // TODO separate building plans from unit plans
-public class BuildingPlansListView extends AbstractRacesView<ItemTypesView, BuildingPlansMetaEvent> {
+public class BuildingPlansListView extends AbstractRacesView<MainView, BuildingPlansMetaEvent> {
 
-    public BuildingPlansListView(ItemTypesView parentView) {
+    public BuildingPlansListView(MainView parentView) {
         super(parentView);
     }
 

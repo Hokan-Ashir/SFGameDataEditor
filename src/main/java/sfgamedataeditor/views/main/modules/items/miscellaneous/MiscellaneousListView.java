@@ -2,11 +2,11 @@ package sfgamedataeditor.views.main.modules.items.miscellaneous;
 
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.main.modules.items.ItemTypesView;
+import sfgamedataeditor.views.main.MainView;
 
-public class MiscellaneousListView extends AbstractModulesView<ItemTypesView, MiscellaneousMetaEvent> {
+public class MiscellaneousListView extends AbstractModulesView<MainView, MiscellaneousMetaEvent> {
 
-    public MiscellaneousListView(ItemTypesView parentView) {
+    public MiscellaneousListView(MainView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("miscellaneousTypes"));
     }
 

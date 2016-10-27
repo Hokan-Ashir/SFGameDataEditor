@@ -2,11 +2,11 @@ package sfgamedataeditor.views.main.modules.items.spellscrolls;
 
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.main.modules.items.ItemTypesView;
+import sfgamedataeditor.views.main.MainView;
 
-public class SpellScrollsListView extends AbstractModulesView<ItemTypesView, SpellScrollsMetaEvent> {
+public class SpellScrollsListView extends AbstractModulesView<MainView, SpellScrollsMetaEvent> {
 
-    public SpellScrollsListView(ItemTypesView parentView) {
+    public SpellScrollsListView(MainView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("spellSchools"));
     }
 

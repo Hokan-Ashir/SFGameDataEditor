@@ -170,17 +170,6 @@ public class SpellParameterView extends AbstractView<MainView> implements Proces
         return null;
     }
 
-//    // TODO why?
-//    /**
-//     * {@inheritDoc}
-//     */
-//    @Override
-//    public void repaint() {
-//        super.repaint();
-//        getMainPanel().invalidate();
-//        getMainPanel().repaint();
-//    }
-
     /**
      * {@inheritDoc}
      */

@@ -1,11 +1,11 @@
 package sfgamedataeditor.views.main.modules.buildings;
 
 import sfgamedataeditor.views.common.races.AbstractRacesView;
-import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
+import sfgamedataeditor.views.main.MainView;
 
-public class BuildingRacesView extends AbstractRacesView<ModulesView, BuildingRacesMetaEvent> {
+public class BuildingRacesView extends AbstractRacesView<MainView, BuildingRacesMetaEvent> {
 
-    public BuildingRacesView(ModulesView parentView) {
+    public BuildingRacesView(MainView parentView) {
         super(parentView);
     }
 

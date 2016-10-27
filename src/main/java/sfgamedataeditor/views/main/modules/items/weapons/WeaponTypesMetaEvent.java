@@ -4,7 +4,9 @@ import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventCreator;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.events.types.ClearViewEvent;
+import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.events.types.ShowViewEvent;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 
 public class WeaponTypesMetaEvent extends AbstractMetaEvent {
@@ -14,15 +16,16 @@ public class WeaponTypesMetaEvent extends AbstractMetaEvent {
      */
     @Override
     protected void addEvents() {
-        ShowWeaponTypesListViewEvent event = EventCreator.createEvent(WeaponsTypesListView.class, ItemTypesView.class, ShowWeaponTypesListViewEvent.class);
-        ClearViewEvent clearViewEvent = new ClearViewEvent(WeaponsTypesListView.class, ItemTypesView.class);
-        addEvents(event, clearViewEvent);
+        SetModuleNameEvent moduleNameEvent = new SetModuleNameEvent(ItemTypesView.class, MainView.class);
+        ShowWeaponTypesListViewEvent event = EventCreator.createEvent(WeaponsTypesListView.class, MainView.class, ShowWeaponTypesListViewEvent.class);
+        ClearViewEvent clearViewEvent = new ClearViewEvent<>(WeaponsTypesListView.class, MainView.class);
+        addEvents(moduleNameEvent, event, clearViewEvent);
     }
 }
 
-class ShowWeaponTypesListViewEvent extends ShowViewEvent<WeaponsTypesListView, ItemTypesView, Object> {
+class ShowWeaponTypesListViewEvent extends ShowViewEvent<WeaponsTypesListView, MainView, Object> {
 
-    public ShowWeaponTypesListViewEvent(ClassTuple<WeaponsTypesListView, ItemTypesView> tuple) {
+    public ShowWeaponTypesListViewEvent(ClassTuple<WeaponsTypesListView, MainView> tuple) {
         super(tuple);
     }
 }

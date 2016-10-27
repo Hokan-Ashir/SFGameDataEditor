@@ -1,11 +1,11 @@
 package sfgamedataeditor.views.main.modules.items.runes;
 
 import sfgamedataeditor.views.common.races.AbstractRacesView;
-import sfgamedataeditor.views.main.modules.items.ItemTypesView;
+import sfgamedataeditor.views.main.MainView;
 
-public class RuneRacesListView extends AbstractRacesView<ItemTypesView, RuneRacesMetaEvent> {
+public class RuneRacesListView extends AbstractRacesView<MainView, RuneRacesMetaEvent> {
 
-    public RuneRacesListView(ItemTypesView parentView) {
+    public RuneRacesListView(MainView parentView) {
         super(parentView);
     }
 

@@ -2,11 +2,11 @@ package sfgamedataeditor.views.main.modules.items.armor;
 
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.main.modules.items.ItemTypesView;
+import sfgamedataeditor.views.main.MainView;
 
-public class ArmorTypeListView extends AbstractModulesView<ItemTypesView, ArmorTypesMetaEvent> {
+public class ArmorTypeListView extends AbstractModulesView<MainView, ArmorTypesMetaEvent> {
 
-    public ArmorTypeListView(ItemTypesView parentView) {
+    public ArmorTypeListView(MainView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("armorTypes"));
     }
 

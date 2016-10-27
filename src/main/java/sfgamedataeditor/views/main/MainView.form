@@ -19,16 +19,16 @@
         </constraints>
         <properties>
           <autoscrolls value="true"/>
-          <maximumSize width="800" height="50"/>
-          <minimumSize width="800" height="50"/>
-          <preferredSize width="800" height="50"/>
+          <maximumSize width="800" height="25"/>
+          <minimumSize width="800" height="25"/>
+          <preferredSize width="800" height="25"/>
         </properties>
         <border type="etched"/>
         <children/>
       </grid>
       <grid id="f44d8" binding="contentPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag weightx="1.0" weighty="0.7"/>
         </constraints>
         <properties>

@@ -3,7 +3,7 @@ package sfgamedataeditor.views.main.modules.items;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.items.armor.ArmorTypesMetaEvent;
 import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansMetaEvent;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousMetaEvent;
@@ -11,9 +11,9 @@ import sfgamedataeditor.views.main.modules.items.runes.RuneRacesMetaEvent;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.SpellScrollsMetaEvent;
 import sfgamedataeditor.views.main.modules.items.weapons.WeaponTypesMetaEvent;
 
-public class ItemTypesView extends AbstractModulesView<ModulesView, ItemTypesMetaEvent> {
+public class ItemTypesView extends AbstractModulesView<MainView, ItemTypesMetaEvent> {
 
-    public ItemTypesView(ModulesView parentView) {
+    public ItemTypesView(MainView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("itemTypes"));
         EventHandlerRegister.INSTANCE.addEventHandler(new ItemTypesEventHandler());
     }

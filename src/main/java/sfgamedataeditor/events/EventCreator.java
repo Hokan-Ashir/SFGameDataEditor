@@ -14,10 +14,11 @@ public final class EventCreator {
     private EventCreator() {
     }
 
-    public static <T extends ShowViewEvent> T createEvent(Class<? extends AbstractView> childView,
-                                                          Class<? extends AbstractView> parentView,
+    public static <T extends ShowViewEvent, C extends AbstractView<P>, P extends AbstractView>
+                                            T createEvent(Class<C> childView,
+                                                          Class<P> parentView,
                                                           Class<T> eventClass) {
-        ClassTuple<? extends AbstractView, ? extends AbstractView> tuple = new ClassTuple<>(childView, parentView);
+        ClassTuple<C, P> tuple = new ClassTuple<>(childView, parentView);
         try {
             Constructor<T> declaredConstructor = eventClass.getDeclaredConstructor(ClassTuple.class);
             declaredConstructor.setAccessible(true);

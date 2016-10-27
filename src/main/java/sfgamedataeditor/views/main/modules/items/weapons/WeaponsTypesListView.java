@@ -2,11 +2,11 @@ package sfgamedataeditor.views.main.modules.items.weapons;
 
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.main.modules.items.ItemTypesView;
+import sfgamedataeditor.views.main.MainView;
 
-public class WeaponsTypesListView extends AbstractModulesView<ItemTypesView, WeaponTypesMetaEvent> {
+public class WeaponsTypesListView extends AbstractModulesView<MainView, WeaponTypesMetaEvent> {
 
-    public WeaponsTypesListView(ItemTypesView parentView) {
+    public WeaponsTypesListView(MainView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("weaponTypes"));
     }
 

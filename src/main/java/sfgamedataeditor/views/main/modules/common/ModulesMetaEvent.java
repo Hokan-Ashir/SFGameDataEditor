@@ -21,7 +21,7 @@ public class ModulesMetaEvent extends AbstractMetaEvent {
         ShowEventHistoryViewEvent eventHistoryViewEvent = EventCreator.createEvent(EventHistoryView.class, MainView.class, ShowEventHistoryViewEvent.class);
         ShowModulesViewEvent modulesViewEvent = EventCreator.createEvent(ModulesView.class, MainView.class, ShowModulesViewEvent.class);
         ShowButtonsViewEvent buttonsViewEvent = EventCreator.createEvent(ButtonsView.class, MainView.class, ShowButtonsViewEvent.class);
-        ClearViewEvent clearViewEvent = new ClearViewEvent(ModulesView.class, MainView.class);
+        ClearViewEvent clearViewEvent = new ClearViewEvent<>(ModulesView.class, MainView.class);
         addEvents(eventHistoryViewEvent, modulesViewEvent, buttonsViewEvent, clearViewEvent);
     }
 }

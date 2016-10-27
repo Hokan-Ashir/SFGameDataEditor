@@ -22,7 +22,7 @@ public class MainView extends AbstractView<NullView> {
 
     public MainView(NullView parentView) {
         super(parentView);
-//        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         navigationPanel.setLayout(new BoxLayout(navigationPanel, BoxLayout.X_AXIS));
         EventHandlerRegister.INSTANCE.addEventHandler(new MainEventHandler());
         createAndShowMainFrame();
@@ -69,16 +69,16 @@ public class MainView extends AbstractView<NullView> {
     @Override
     public void repaint() {
         super.repaint();
-        eventHistoryPanel.invalidate();
+        eventHistoryPanel.revalidate();
         eventHistoryPanel.repaint();
 
-        navigationPanel.invalidate();
+        navigationPanel.revalidate();
         navigationPanel.repaint();
 
-        contentPanel.invalidate();
+        contentPanel.revalidate();
         contentPanel.repaint();
 
-        buttonsPanel.invalidate();
+        buttonsPanel.revalidate();
         buttonsPanel.repaint();
     }
 

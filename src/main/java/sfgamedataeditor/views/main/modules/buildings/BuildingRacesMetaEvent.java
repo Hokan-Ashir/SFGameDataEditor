@@ -4,7 +4,9 @@ import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventCreator;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.events.types.ClearViewEvent;
+import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.events.types.ShowViewEvent;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 
 public class BuildingRacesMetaEvent extends AbstractMetaEvent {
@@ -14,15 +16,16 @@ public class BuildingRacesMetaEvent extends AbstractMetaEvent {
      */
     @Override
     protected void addEvents() {
-        ShowBuildingRacesViewEvent event = EventCreator.createEvent(BuildingRacesView.class, ModulesView.class, ShowBuildingRacesViewEvent.class);
-        ClearViewEvent clearViewEvent = new ClearViewEvent(BuildingRacesView.class, ModulesView.class);
-        addEvents(event, clearViewEvent);
+        SetModuleNameEvent moduleNameEvent = new SetModuleNameEvent(ModulesView.class, MainView.class);
+        ShowBuildingRacesViewEvent event = EventCreator.createEvent(BuildingRacesView.class, MainView.class, ShowBuildingRacesViewEvent.class);
+        ClearViewEvent clearViewEvent = new ClearViewEvent<>(BuildingRacesView.class, MainView.class);
+        addEvents(moduleNameEvent, event, clearViewEvent);
     }
 }
 
-class ShowBuildingRacesViewEvent extends ShowViewEvent<BuildingRacesView, ModulesView, Object> {
+class ShowBuildingRacesViewEvent extends ShowViewEvent<BuildingRacesView, MainView, Object> {
 
-    public ShowBuildingRacesViewEvent(ClassTuple<BuildingRacesView, ModulesView> tuple) {
+    public ShowBuildingRacesViewEvent(ClassTuple<BuildingRacesView, MainView> tuple) {
         super(tuple);
     }
 }

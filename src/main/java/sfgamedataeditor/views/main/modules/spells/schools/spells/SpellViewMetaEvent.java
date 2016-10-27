@@ -16,7 +16,7 @@ public class SpellViewMetaEvent extends AbstractMetaEvent {
     protected void addEvents() {
         SetModuleNameEvent moduleNameEvent = new SetModuleNameEvent(SpellSchoolsView.class, MainView.class);
         ShowSpellsViewEvent showSpellsViewEvent = EventCreator.createEvent(SpellsView.class, MainView.class, ShowSpellsViewEvent.class);
-        ClearViewEvent clearViewEvent = new ClearViewEvent(SpellsView.class, MainView.class);
+        ClearViewEvent clearViewEvent = new ClearViewEvent<>(SpellsView.class, MainView.class);
         addEvents(moduleNameEvent, showSpellsViewEvent, clearViewEvent);
     }
 }

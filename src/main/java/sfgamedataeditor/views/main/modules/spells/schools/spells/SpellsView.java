@@ -25,7 +25,6 @@ public class SpellsView extends AbstractModulesView<MainView, SpellViewMetaEvent
         super(parentView, I18N.INSTANCE.getMessage("spells"));
         spellParameterEventParameter = new SpellParameterEventParameter();
         spellEventParameter = new SpellEventParameter();
-//        getSubModulesPanel().setLayout(new BoxLayout(getSubModulesPanel(), BoxLayout.Y_AXIS));
     }
 
     /**

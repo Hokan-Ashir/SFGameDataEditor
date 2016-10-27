@@ -18,7 +18,7 @@ public class SkillSchoolsMetaEvent extends AbstractMetaEvent {
     protected void addEvents() {
         SetModuleNameEvent setModuleNameEvent = new SetModuleNameEvent(ModulesView.class, MainView.class);
         ShowSkillSchoolsViewEvent skillSchoolsViewEvent = EventCreator.createEvent(SkillSchoolsView.class, MainView.class, ShowSkillSchoolsViewEvent.class);
-        ClearViewEvent clearViewEvent = new ClearViewEvent(SkillSchoolsView.class, MainView.class);
+        ClearViewEvent clearViewEvent = new ClearViewEvent<>(SkillSchoolsView.class, MainView.class);
         addEvents(setModuleNameEvent, skillSchoolsViewEvent, clearViewEvent);
     }
 }
