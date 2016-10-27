@@ -71,9 +71,10 @@ public class SpellParameterView extends AbstractView<SpellsView> implements Proc
         int selectedSpellId = parameter.getSpellId();
         int selectedLevel = parameter.getSpellLevel();
         Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
-        int spellMinLevel = (int) ((TreeSet)spellLevels).first();
-        int spellMaxLevel = (int) ((TreeSet)spellLevels).last();
         setSpellAvaliableLevels(spellLevels, selectedLevel);
+
+        int spellMinLevel = (int) ((TreeSet) spellLevels).first();
+        int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
         selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
         SpellParameters spellParameter = SpellParametersTableService.INSTANCE.getSpellParameter(selectedSpellId, selectedLevel);
         for (IDataField dataField : dataFields) {
@@ -138,7 +139,7 @@ public class SpellParameterView extends AbstractView<SpellsView> implements Proc
             String parameterName = getParameterName(spellName, mappedFieldName);
             try {
                 field.setAccessible(true);
-                JLabel label = ((JLabel)field.get(stub));
+                JLabel label = ((JLabel) field.get(stub));
                 if (parameterName.equals(convertToMultiline(I18N.INSTANCE.getMessage("spellParameterNotUsed")))) {
                     label.setVisible(false);
                     label.getLabelFor().setVisible(false);

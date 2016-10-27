@@ -9,7 +9,7 @@ ability effect, spell type and so on.
 
 IMPORTANT: 
 
-See "What it can't do" section below to be awared of restrictions.
+See "What it can't do" section below to be aware of restrictions.
 
 # What inside
  - Java 7 - for diamonds and multiple catch exceptions
@@ -37,11 +37,11 @@ See "What it can't do" section below to be awared of restrictions.
 # How to launch it
  - Install, at least, Java 7 from Oracle site (see https://www.java.com/download/)
  - Copy SFGameDataEditor-1.0-SNAPSHOT.jar
- - Double-click on SFGameDataEditor-1.0-SNAPSHOT.jar OR run with "java -jar SFGameDataEditor-1.0-SNAPSHOT.jar" comand in console
+ - Double-click on SFGameDataEditor-1.0-SNAPSHOT.jar OR run with "java -jar SFGameDataEditor-1.0-SNAPSHOT.jar" command in console
  
 # How to use it
  - After launch you can select editor's language, which is loading via configuration files
- - Then you must select, at least, original file (or already modificated file, see NOTE below); and sf-mod file optionaly
+ - Then you must select, at least, original file (or already modificated file, see NOTE below); and sf-mod file optionally
  - After changing different parameters you can create sfmod-file, which will consists of changes you made via "Create sf-mod file" button
  - You can also load sf-mod-file during editing with "Load sf-mod file" button
  WARNING:

@@ -17,19 +17,20 @@ import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Collection;
+import java.util.List;
 
 public class SkillParameterView extends AbstractView<SkillSchoolsView> implements Processable<SkillParametersMetaEvent> {
 
     private final SkillParameterViewStub stub;
     private final Collection<IDataField> dataFields;
     private SkillEventParameter parameter;
+    private final LevelableView<SkillSchoolsView> view = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SkillSchoolsView.class));
 
     public SkillParameterView(SkillSchoolsView parentView) {
         super(parentView);
         this.stub = new SkillParameterViewStub();
         this.dataFields = FieldsWrapperCreator.createFieldWrappers(stub);
 
-        final LevelableView<SkillSchoolsView> view = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SkillSchoolsView.class));
         view.getLevelComboBox().addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -57,13 +58,34 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> implement
             parameter = (SkillEventParameter) o;
         }
 
+        fillPossibleSkillLevelsComboBox(parameter.getSkillSchoolId());
         setFieldsData(parameter.getSkillSchoolId(), parameter.getSkillLevel());
+    }
+
+    private void fillPossibleSkillLevelsComboBox(int skillSchoolId) {
+        JComboBox<String> comboBox = view.getLevelComboBox();
+        ItemListener[] listeners = comboBox.getItemListeners();
+        for (ItemListener listener : listeners) {
+            comboBox.removeItemListener(listener);
+        }
+
+        comboBox.removeAllItems();
+        List<SkillParameters> skillPossibleValues = SkillParametersTableService.INSTANCE.getSkillPossibleValues(skillSchoolId);
+        for (SkillParameters skillPossibleValue : skillPossibleValues) {
+            comboBox.addItem(String.valueOf(skillPossibleValue.level));
+        }
+
+        for (ItemListener listener : listeners) {
+            comboBox.addItemListener(listener);
+        }
     }
 
     private void setFieldsData(int skillSchoolId, int skillLevel) {
         SkillParameters skillParameter = SkillParametersTableService.INSTANCE.getSkillParameter(skillSchoolId, skillLevel);
-        for (IDataField dataField : dataFields) {
-            dataField.mapValues(skillParameter);
+        if (skillParameter != null) {
+            for (IDataField dataField : dataFields) {
+                dataField.mapValues(skillParameter);
+            }
         }
     }
 

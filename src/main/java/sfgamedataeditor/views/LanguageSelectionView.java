@@ -42,6 +42,7 @@ public class LanguageSelectionView {
 
         final JFrame frame = new JFrame("SpellForce GameData.cff Editor : Language Selection Dialog");
         final LanguageSelectionView view = new LanguageSelectionView();
+        frame.setResizable(false);
         frame.setContentPane(view.getMainPanel());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();

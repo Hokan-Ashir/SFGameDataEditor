@@ -33,18 +33,22 @@ public enum SpellParametersTableService {
             Set<Integer> spellLevels = new TreeSet<>();
             for (SpellParameters parameter : parameters) {
                 Integer requirementLevel1 = parameter.requirementLevel1;
-                if (requirementLevel1 != 0) {
-                    spellLevels.add(requirementLevel1);
-                }
-
                 Integer requirementLevel2 = parameter.requirementLevel2;
-                if (requirementLevel2 != 0) {
-                    spellLevels.add(requirementLevel2);
-                }
-
                 Integer requirementLevel3 = parameter.requirementLevel3;
-                if (requirementLevel3 != 0) {
-                    spellLevels.add(requirementLevel3);
+                if (requirementLevel1 != 0 || requirementLevel2 != 0 || requirementLevel3 != 0) {
+                    if (requirementLevel1 != 0) {
+                        spellLevels.add(requirementLevel1);
+                    }
+
+                    if (requirementLevel2 != 0) {
+                        spellLevels.add(requirementLevel2);
+                    }
+
+                    if (requirementLevel3 != 0) {
+                        spellLevels.add(requirementLevel3);
+                    }
+                } else {
+                    spellLevels.add(0);
                 }
             }
 
@@ -68,6 +72,7 @@ public enum SpellParametersTableService {
                 Integer spellSchoolId = integerStringEntry.getKey();
                 int spellSchoolClass = spellSchoolId / 10;
                 int spellSchoolSubClass = spellSchoolId % 10;
+
                 Dao<SpellParameters, Integer> dao = DaoManager.createDao(connectionSource, SpellParameters.class);
                 Where<SpellParameters, Integer> where = dao.queryBuilder().where();
                 Where<SpellParameters, Integer> spellRequirementClass1Where =
@@ -79,7 +84,11 @@ public enum SpellParametersTableService {
                 Where<SpellParameters, Integer> spellRequirementClass3Where =
                         where.eq("requirementClass3", spellSchoolClass)
                                 .and().eq("requirementSubClass3", spellSchoolSubClass);
-                spellParameters = where.or(spellRequirementClass1Where, spellRequirementClass2Where, spellRequirementClass3Where).query();
+                if (spellSchoolClass == 0 && spellSchoolSubClass == 0) {
+                    spellParameters = where.and(spellRequirementClass1Where, spellRequirementClass2Where, spellRequirementClass3Where).query();
+                } else {
+                    spellParameters = where.or(spellRequirementClass1Where, spellRequirementClass2Where, spellRequirementClass3Where).query();
+                }
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

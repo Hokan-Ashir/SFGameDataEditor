@@ -15,7 +15,7 @@ public class SkillParameters extends OffsetableObject {
 
     @Data(offset = 1, length = 1)
     @DatabaseField(canBeNull = false)
-    private Integer level;
+    public Integer level;
 
     @Data(offset = 2, length = 1)
     @DatabaseField(canBeNull = false)

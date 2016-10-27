@@ -8,6 +8,7 @@ import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.databind.Pair;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 public enum SkillParametersTableService {
@@ -30,14 +31,36 @@ public enum SkillParametersTableService {
             dao = DaoManager.createDao(connectionSource, SkillParameters.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return new SkillParameters();
+            return null;
         }
 
         try {
-            return dao.queryBuilder().where().eq("skillTypeId", skillSchoolId).and().eq("level", skillLevel).query().get(0);
+            List<SkillParameters> query = dao.queryBuilder().where().eq("skillTypeId", skillSchoolId).and().eq("level", skillLevel).query();
+            if (query.isEmpty()) {
+                return null;
+            }
+            return query.get(0);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return new SkillParameters();
+            return null;
+        }
+    }
+
+    public List<SkillParameters> getSkillPossibleValues(int skillSchoolId) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        Dao<SkillParameters, ?> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, SkillParameters.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
+        }
+
+        try {
+            return dao.queryBuilder().selectColumns("level").where().eq("skillTypeId", skillSchoolId).query();
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
         }
     }
 

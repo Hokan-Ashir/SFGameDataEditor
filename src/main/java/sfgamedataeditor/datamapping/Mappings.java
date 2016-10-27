@@ -8,6 +8,7 @@ public enum Mappings {
     INSTANCE;
 
     public Map<String, Integer> SKILL_SCHOOL_MAP = new HashMap<String, Integer>() {{
+        put(I18N.INSTANCE.getMessage("other"), 0);
         put(I18N.INSTANCE.getMessage("lightCombatArts"), 1);
         put(I18N.INSTANCE.getMessage("heavyCombatArts"), 2);
         put(I18N.INSTANCE.getMessage("archery"), 3);
@@ -18,6 +19,7 @@ public enum Mappings {
     }};
 
     public Map<Integer, String> SPELL_SCHOOL_MAP = new HashMap<Integer, String>() {{
+        put(0, getMessage("other"));
         put(10, getMessage("lightCombatArts"));
         put(11, getMessage("lightCombatArts", "piercingWeapon"));
         put(12, getMessage("lightCombatArts", "lightBlades"));

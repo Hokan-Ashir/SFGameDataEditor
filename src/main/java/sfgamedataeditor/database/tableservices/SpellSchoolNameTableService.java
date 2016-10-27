@@ -9,6 +9,7 @@ import sfgamedataeditor.database.objects.SpellSchoolName;
 import sfgamedataeditor.datamapping.Mappings;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -69,6 +70,16 @@ public enum  SpellSchoolNameTableService {
     }
 
     private void extractSpellSchoolNamesFromSpell(SpellParameters spellParameter, Set<String> spellSchoolsNames) {
+        List<String> possibleNonZeroSchoolNames = getPossibleNonZeroSchoolNames(spellParameter);
+        if (!possibleNonZeroSchoolNames.isEmpty()) {
+            spellSchoolsNames.addAll(possibleNonZeroSchoolNames);
+        } else {
+            // add spell school for "Other" spells, that is which have only zeros in school/subSchool requirement fields
+            spellSchoolsNames.add(Mappings.INSTANCE.SPELL_SCHOOL_MAP.get(0));
+        }
+    }
+
+    private List<String> getPossibleNonZeroSchoolNames(SpellParameters spellParameter) {
         int schoolRequirement1 = spellParameter.requirementClass1;
         int subSchoolRequirement1 = spellParameter.requirementSubClass1;
         int schoolRequirement2 = spellParameter.requirementClass2;
@@ -76,18 +87,21 @@ public enum  SpellSchoolNameTableService {
         int schoolRequirement3 = spellParameter.requirementClass3;
         int subSchoolRequirement3 = spellParameter.requirementSubClass3;
 
-        addSchoolName(schoolRequirement1, subSchoolRequirement1, spellSchoolsNames);
-        addSchoolName(schoolRequirement2, subSchoolRequirement2, spellSchoolsNames);
-        addSchoolName(schoolRequirement3, subSchoolRequirement3, spellSchoolsNames);
+        List<String> result = new ArrayList<>();
+        addNonZeroSchoolName(schoolRequirement1, subSchoolRequirement1, result);
+        addNonZeroSchoolName(schoolRequirement2, subSchoolRequirement2, result);
+        addNonZeroSchoolName(schoolRequirement3, subSchoolRequirement3, result);
+
+        return result;
     }
 
-    private void addSchoolName(int schoolRequirement, int subSchoolRequirement, Set<String> spellSchoolsNames) {
+    private void addNonZeroSchoolName(int schoolRequirement, int subSchoolRequirement, List<String> result) {
         int schoolId = schoolRequirement * 10 + subSchoolRequirement;
-        if (!Mappings.INSTANCE.SPELL_SCHOOL_MAP.containsKey(schoolId)) {
+        if (schoolId == 0) {
             return;
         }
 
-        spellSchoolsNames.add(Mappings.INSTANCE.SPELL_SCHOOL_MAP.get(schoolId));
+        result.add(Mappings.INSTANCE.SPELL_SCHOOL_MAP.get(schoolId));
     }
 
     public List<SpellSchoolName> getAllSpellSchoolNames() {

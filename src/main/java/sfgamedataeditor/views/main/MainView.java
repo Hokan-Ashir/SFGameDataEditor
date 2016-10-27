@@ -27,6 +27,7 @@ public class MainView extends AbstractView<NullView> {
 
     private void createAndShowMainFrame() {
         JFrame frame = new JFrame(I18N.INSTANCE.getMessage("sfmodFilesCreationWindowCaption"));
+        frame.setResizable(false);
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
