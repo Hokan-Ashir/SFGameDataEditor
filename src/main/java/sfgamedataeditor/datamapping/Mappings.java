@@ -18,39 +18,6 @@ public enum Mappings {
         put(I18N.INSTANCE.getMessage("blackMagic"), 7);
     }};
 
-    public Map<Integer, String> SPELL_SCHOOL_MAP = new HashMap<Integer, String>() {{
-        put(0, getMessage("other"));
-        put(10, getMessage("lightCombatArts"));
-        put(11, getMessage("lightCombatArts", "piercingWeapon"));
-        put(12, getMessage("lightCombatArts", "lightBlades"));
-        put(13, getMessage("lightCombatArts", "lightBlunts"));
-        put(14, getMessage("lightCombatArts", "lightArmor"));
-        put(20, getMessage("heavyCombatArts"));
-        put(21, getMessage("heavyCombatArts", "heavyBlades"));
-        put(22, getMessage("heavyCombatArts", "heavyBlunts"));
-        put(23, getMessage("heavyCombatArts", "heavyArmor"));
-        put(24, getMessage("heavyCombatArts", "shields"));
-        put(30, getMessage("archery"));
-        put(31, getMessage("archery", "bows"));
-        put(32, getMessage("archery", "crossbows"));
-        put(40, getMessage("whiteMagic"));
-        put(41, getMessage("whiteMagic", "life"));
-        put(42, getMessage("whiteMagic", "nature"));
-        put(43, getMessage("whiteMagic", "boons"));
-        put(50, getMessage("elementalMagic"));
-        put(51, getMessage("elementalMagic", "fire"));
-        put(52, getMessage("elementalMagic", "ice"));
-        put(53, getMessage("elementalMagic", "earth"));
-        put(60, getMessage("mindMagic"));
-        put(61, getMessage("mindMagic", "enchantment"));
-        put(62, getMessage("mindMagic", "offensive"));
-        put(63, getMessage("mindMagic", "defensive"));
-        put(70, getMessage("blackMagic"));
-        put(71, getMessage("blackMagic", "death"));
-        put(72, getMessage("blackMagic", "necromancy"));
-        put(73, getMessage("blackMagic", "curses"));
-    }};
-
     public Map<String, List<String>> CLASS_SUBCLASS_COMBOBOX_MAP = new LinkedHashMap<String, List<String>>() {{
         // order of spell class/subclass mapping is taken from http://spellforcefanforum.hostoi.com/viewtopic.php?f=14&t=241
         // NOTE: order of this list is HIGHLY important, if you change it, you may
@@ -108,19 +75,4 @@ public enum Mappings {
                 )
         );
     }};
-
-    private String getMessage(String mainSchool, String... subSchools) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(I18N.INSTANCE.getMessage(mainSchool));
-        if (subSchools != null && subSchools.length != 0) {
-            builder.append(" : ");
-            for (String subSchool : subSchools) {
-                builder.append(I18N.INSTANCE.getMessage(subSchool));
-                builder.append(" ");
-            }
-            builder.deleteCharAt(builder.length() - 1);
-        }
-
-        return builder.toString();
-    }
 }

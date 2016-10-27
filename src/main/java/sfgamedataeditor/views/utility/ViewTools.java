@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class ViewTools {
 
+    private static final int LABEL_LINE_MAX_LENGTH = 12;
     private static final double WIDTH_COEFFICIENT = 0.55;
 
     private ViewTools() {
@@ -45,5 +46,20 @@ public class ViewTools {
     public static void centerFrame(JFrame frame) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setLocation(screenSize.width / 2 - frame.getWidth() / 2, screenSize.height / 2 - frame.getHeight() / 2);
+    }
+
+    public static String convertToMultiline(String value) {
+        String[] subStrings = value.split(" ");
+        String result = "<html>";
+        int lastNewLineInjectionPosition = 0;
+        for (int i = 0; i < subStrings.length; ++i) {
+            result = result + subStrings[i] + " ";
+            if (result.length() - lastNewLineInjectionPosition > LABEL_LINE_MAX_LENGTH
+                    && i != subStrings.length - 1) {
+                result = result + "<br>";
+                lastNewLineInjectionPosition = result.length();
+            }
+        }
+        return result;
     }
 }

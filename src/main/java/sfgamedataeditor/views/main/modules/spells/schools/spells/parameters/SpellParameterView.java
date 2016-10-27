@@ -18,6 +18,7 @@ import sfgamedataeditor.views.common.Processable;
 import sfgamedataeditor.views.common.levelable.LevelableView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
+import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -140,7 +141,7 @@ public class SpellParameterView extends AbstractView<SpellsView> implements Proc
             try {
                 field.setAccessible(true);
                 JLabel label = ((JLabel) field.get(stub));
-                if (parameterName.equals(convertToMultiline(I18N.INSTANCE.getMessage("spellParameterNotUsed")))) {
+                if (parameterName.equals(ViewTools.convertToMultiline(I18N.INSTANCE.getMessage("spellParameterNotUsed")))) {
                     label.setVisible(false);
                     label.getLabelFor().setVisible(false);
                 } else {
@@ -156,22 +157,6 @@ public class SpellParameterView extends AbstractView<SpellsView> implements Proc
         repaint();
     }
 
-    private String convertToMultiline(String value) {
-        String[] subStrings = value.split(" ");
-        String result = "<html>";
-        int lastNewLineInjectionPosition = 0;
-        for (int i = 0; i < subStrings.length; ++i) {
-            result = result + subStrings[i] + " ";
-            if (result.length() - lastNewLineInjectionPosition > LABEL_LINE_MAX_LENGTH
-                    && i != subStrings.length - 1) {
-                result = result + "<br>";
-                lastNewLineInjectionPosition = result.length();
-            }
-        }
-        return result;
-    }
-
-    // TODO get rid of duplication with SpellNameTableService
     private String getParameterName(SpellName spellName, String fieldName) {
         try {
             Field field = spellName.getClass().getDeclaredField(fieldName);

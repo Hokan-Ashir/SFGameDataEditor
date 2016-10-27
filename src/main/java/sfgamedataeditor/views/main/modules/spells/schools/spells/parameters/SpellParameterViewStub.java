@@ -9,6 +9,7 @@ import sfgamedataeditor.fieldwrapping.Wrapable;
 import sfgamedataeditor.listeners.ClassRequirementComboBoxListener;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.IView;
+import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 import java.util.List;
@@ -147,23 +148,27 @@ public class SpellParameterViewStub implements Wrapable, IView {
     }
 
     private void setCommonLabelsI18nNames() {
-        numberLabel.setText(I18N.INSTANCE.getMessage("spellNumber"));
-        typeLabel.setText(I18N.INSTANCE.getMessage("spellType"));
-        requirementClassLabel.setText(I18N.INSTANCE.getMessage("spellRequirementClass"));
-        requirementSubClassLabel.setText(I18N.INSTANCE.getMessage("spellRequirementSubClass"));
-        requirementLevelLabel.setText(I18N.INSTANCE.getMessage("spellRequirementLevel"));
-        requirementClassLabel2.setText(I18N.INSTANCE.getMessage("spellRequirementClass"));
-        requirementSubClassLabel2.setText(I18N.INSTANCE.getMessage("spellRequirementSubClass"));
-        requirementLevelLabel2.setText(I18N.INSTANCE.getMessage("spellRequirementLevel"));
-        requirementClassLabel3.setText(I18N.INSTANCE.getMessage("spellRequirementClass"));
-        requirementSubClassLabel3.setText(I18N.INSTANCE.getMessage("spellRequirementSubClass"));
-        requirementLevelLabel3.setText(I18N.INSTANCE.getMessage("spellRequirementLevel"));
-        manaUsageLabel.setText(I18N.INSTANCE.getMessage("spellManaUsage"));
-        castTimeLabel.setText(I18N.INSTANCE.getMessage("spellCastTime"));
-        cooldownLabel.setText(I18N.INSTANCE.getMessage("spellCooldown"));
-        minRangeLabel.setText(I18N.INSTANCE.getMessage("spellMinRange"));
-        maxRangeLabel.setText(I18N.INSTANCE.getMessage("spellMaxRange"));
-        castTypeLabel.setText(I18N.INSTANCE.getMessage("spellCastType"));
+        setLabelText(numberLabel, "spellNumber");
+        setLabelText(typeLabel, "spellType");
+        setLabelText(requirementClassLabel, "spellRequirementClass");
+        setLabelText(requirementSubClassLabel, "spellRequirementSubClass");
+        setLabelText(requirementLevelLabel, "spellRequirementLevel");
+        setLabelText(requirementClassLabel2, "spellRequirementClass");
+        setLabelText(requirementSubClassLabel2, "spellRequirementSubClass");
+        setLabelText(requirementLevelLabel2, "spellRequirementLevel");
+        setLabelText(requirementClassLabel3, "spellRequirementClass");
+        setLabelText(requirementSubClassLabel3, "spellRequirementSubClass");
+        setLabelText(requirementLevelLabel3, "spellRequirementLevel");
+        setLabelText(manaUsageLabel, "spellManaUsage");
+        setLabelText(castTimeLabel, "spellCastTime");
+        setLabelText(cooldownLabel, "spellCooldown");
+        setLabelText(minRangeLabel, "spellMinRange");
+        setLabelText(maxRangeLabel, "spellMaxRange");
+        setLabelText(castTypeLabel, "spellCastType");
+    }
+
+    private void setLabelText(JLabel label, String not18nText) {
+        label.setText(ViewTools.convertToMultiline(I18N.INSTANCE.getMessage(not18nText)));
     }
 
     private void initializeRequirementsComboBoxes() {

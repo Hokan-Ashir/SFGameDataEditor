@@ -6,6 +6,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.objects.SpellName;
 import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.utility.ViewTools;
 
 import java.lang.reflect.Field;
 import java.sql.SQLException;
@@ -15,7 +16,6 @@ import java.util.concurrent.Callable;
 public enum SpellNameTableService {
     INSTANCE;
 
-    private static final int LABEL_LINE_MAX_LENGTH = 12;
     private static final int NUMBER_OF_PARAMETER_FIELDS = 9;
     private static final String FIELD_ATTRIBUTE = "field";
     private static final String NAME_ATTRIBUTE = "name";
@@ -318,28 +318,13 @@ public enum SpellNameTableService {
                     parameter = I18N.INSTANCE.getMessage("spellParameterNotUsed");
                 }
                 declaredField.setAccessible(true);
-                declaredField.set(spell, convertToMultiline(parameter));
+                declaredField.set(spell, ViewTools.convertToMultiline(parameter));
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);
             }
         }
 
         return spell;
-    }
-
-    private String convertToMultiline(String value) {
-        String[] subStrings = value.split(" ");
-        String result = "<html>";
-        int lastNewLineInjectionPosition = 0;
-        for (int i = 0; i < subStrings.length; ++i) {
-            result = result + subStrings[i] + " ";
-            if (result.length() - lastNewLineInjectionPosition > LABEL_LINE_MAX_LENGTH
-                    && i != subStrings.length - 1) {
-                result = result + "<br>";
-                lastNewLineInjectionPosition = result.length();
-            }
-        }
-        return result;
     }
 
     public Integer getSpellId(String spellName) {

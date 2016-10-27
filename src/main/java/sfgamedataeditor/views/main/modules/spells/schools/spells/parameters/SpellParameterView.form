@@ -113,8 +113,8 @@
       </component>
       <component id="7b4c7" class="javax.swing.JLabel" binding="requirementLevelLabel">
         <constraints>
-          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellRequirementLevel"/>
@@ -122,8 +122,8 @@
       </component>
       <component id="f7588" class="javax.swing.JLabel" binding="requirementSubClassLabel">
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+          <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellRequirementSubClass"/>
@@ -131,8 +131,8 @@
       </component>
       <component id="85828" class="javax.swing.JLabel" binding="requirementSubClassLabel2">
         <constraints>
-          <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+          <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellRequirementSubClass"/>
@@ -140,8 +140,8 @@
       </component>
       <component id="b4980" class="javax.swing.JLabel" binding="requirementLevelLabel2">
         <constraints>
-          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellRequirementLevel"/>
@@ -149,8 +149,8 @@
       </component>
       <component id="98fe3" class="javax.swing.JLabel" binding="requirementLevelLabel3">
         <constraints>
-          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellRequirementLevel"/>
@@ -158,8 +158,8 @@
       </component>
       <component id="157fd" class="javax.swing.JLabel" binding="requirementSubClassLabel3">
         <constraints>
-          <grid row="7" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+          <grid row="7" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text value="Requirement subclass:"/>
@@ -167,8 +167,8 @@
       </component>
       <component id="859a8" class="javax.swing.JLabel" binding="cooldownLabel">
         <constraints>
-          <grid row="11" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="11" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellCooldown"/>
@@ -176,8 +176,8 @@
       </component>
       <component id="42b13" class="javax.swing.JLabel" binding="maxRangeLabel">
         <constraints>
-          <grid row="13" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="13" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellMaxRange"/>
@@ -185,8 +185,8 @@
       </component>
       <component id="60c0a" class="javax.swing.JLabel" binding="castTimeLabel">
         <constraints>
-          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellCastTime"/>
@@ -207,8 +207,8 @@
       </component>
       <component id="a71ec" class="javax.swing.JLabel" binding="castTypeLabel">
         <constraints>
-          <grid row="9" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="9" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <maximumSize width="85" height="23"/>
@@ -219,8 +219,8 @@
       </component>
       <component id="ed357" class="javax.swing.JLabel" binding="requirementClassLabel">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellRequirementClass"/>
@@ -239,8 +239,8 @@
       </component>
       <component id="8490d" class="javax.swing.JLabel" binding="requirementClassLabel2">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <maximumSize width="120" height="15"/>
@@ -262,8 +262,8 @@
       </component>
       <component id="498be" class="javax.swing.JLabel" binding="requirementClassLabel3">
         <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellRequirementClass"/>
@@ -282,8 +282,8 @@
       </component>
       <component id="effaf" class="javax.swing.JLabel" binding="manaUsageLabel">
         <constraints>
-          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellManaUsage"/>
@@ -319,8 +319,8 @@
       </component>
       <component id="808b9" class="javax.swing.JLabel" binding="minRangeLabel">
         <constraints>
-          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <text resource-bundle="messages" key="spellMinRange"/>
@@ -341,8 +341,8 @@
       </component>
       <component id="70c4" class="javax.swing.JLabel" binding="numberLabel">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <alignmentX value="0.0"/>
@@ -369,8 +369,8 @@
       </component>
       <component id="7a94d" class="javax.swing.JLabel" binding="parameterLabel7">
         <constraints>
-          <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="25" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="25" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <labelFor value="76db6"/>
@@ -395,8 +395,8 @@
       </component>
       <component id="1ff9d" class="javax.swing.JLabel" binding="parameterLabel8">
         <constraints>
-          <grid row="7" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="7" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <labelFor value="978b4"/>
@@ -408,8 +408,8 @@
       </component>
       <component id="4a6cf" class="javax.swing.JLabel" binding="parameterLabel9">
         <constraints>
-          <grid row="7" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="7" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <labelFor value="d9c3f"/>
@@ -434,8 +434,8 @@
       </component>
       <component id="ca4be" class="javax.swing.JLabel" binding="parameterLabel4">
         <constraints>
-          <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="25" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="25" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <labelFor value="aea8a"/>
@@ -473,8 +473,8 @@
       </component>
       <component id="8b45f" class="javax.swing.JLabel" binding="parameterLabel5">
         <constraints>
-          <grid row="5" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="5" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <labelFor value="5e509"/>
@@ -486,8 +486,8 @@
       </component>
       <component id="497ce" class="javax.swing.JLabel" binding="parameterLabel6">
         <constraints>
-          <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="5" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <labelFor value="c74f8"/>
@@ -512,8 +512,8 @@
       </component>
       <component id="5c31e" class="javax.swing.JLabel" binding="parameterLabel1">
         <constraints>
-          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="25" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="25" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <autoscrolls value="false"/>
@@ -529,8 +529,8 @@
       </component>
       <component id="a1fd8" class="javax.swing.JLabel" binding="parameterLabel2">
         <constraints>
-          <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <labelFor value="1c97"/>
@@ -542,8 +542,8 @@
       </component>
       <component id="1f6e3" class="javax.swing.JLabel" binding="parameterLabel3">
         <constraints>
-          <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="3" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <labelFor value="1751f"/>
@@ -599,15 +599,6 @@
         </constraints>
         <properties/>
       </component>
-      <component id="10ca4" class="javax.swing.JLabel" binding="parametersLabel">
-        <constraints>
-          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="25" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <text value="Parameters:"/>
-        </properties>
-      </component>
       <component id="e3b0d" class="javax.swing.JTextField" binding="typeField">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="9" fill="0" indent="0" use-parent-layout="false">
@@ -635,10 +626,19 @@
           <text value=""/>
         </properties>
       </component>
+      <component id="10ca4" class="javax.swing.JLabel" binding="parametersLabel">
+        <constraints>
+          <grid row="1" column="4" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="25" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <text value="Parameters:"/>
+        </properties>
+      </component>
       <component id="4e42" class="javax.swing.JLabel" binding="typeLabel">
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <maximumSize width="55" height="23"/>
