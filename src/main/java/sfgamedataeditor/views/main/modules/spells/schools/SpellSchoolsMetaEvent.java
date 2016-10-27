@@ -17,15 +17,15 @@ public class SpellSchoolsMetaEvent extends AbstractMetaEvent {
     @Override
     protected void addEvents() {
         SetModuleNameEvent moduleNameEvent = new SetModuleNameEvent(ModulesView.class, MainView.class);
-        ShowSpellSchoolsViewEvent spellSchoolsViewEvent = EventCreator.createEvent(SpellSchoolsView.class, ModulesView.class, ShowSpellSchoolsViewEvent.class);
-        ClearViewEvent clearViewEvent = new ClearViewEvent(SpellSchoolsView.class, ModulesView.class);
+        ShowSpellSchoolsViewEvent spellSchoolsViewEvent = EventCreator.createEvent(SpellSchoolsView.class, MainView.class, ShowSpellSchoolsViewEvent.class);
+        ClearViewEvent clearViewEvent = new ClearViewEvent(SpellSchoolsView.class, MainView.class);
         addEvents(moduleNameEvent, spellSchoolsViewEvent, clearViewEvent);
     }
 }
 
-class ShowSpellSchoolsViewEvent extends ShowViewEvent<SpellSchoolsView, ModulesView, Object> {
+class ShowSpellSchoolsViewEvent extends ShowViewEvent<SpellSchoolsView, MainView, Object> {
 
-    public ShowSpellSchoolsViewEvent(ClassTuple<SpellSchoolsView, ModulesView> tuple) {
+    public ShowSpellSchoolsViewEvent(ClassTuple<SpellSchoolsView, MainView> tuple) {
         super(tuple);
     }
 }

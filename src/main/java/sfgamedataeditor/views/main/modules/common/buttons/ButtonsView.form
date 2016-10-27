@@ -8,10 +8,10 @@
       <alignmentX value="0.0"/>
       <alignmentY value="1.0"/>
       <enabled value="true"/>
-      <maximumSize width="600" height="50"/>
-      <minimumSize width="600" height="50"/>
+      <maximumSize width="600" height="40"/>
+      <minimumSize width="600" height="40"/>
       <opaque value="true"/>
-      <preferredSize width="600" height="50"/>
+      <preferredSize width="600" height="40"/>
     </properties>
     <border type="none"/>
     <children>

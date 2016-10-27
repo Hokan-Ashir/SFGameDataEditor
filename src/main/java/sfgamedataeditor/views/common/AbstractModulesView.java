@@ -15,14 +15,12 @@ public abstract class AbstractModulesView<T extends AbstractView, E extends Abst
 
     private Map<String, AbstractMetaEvent> comboBoxMapping = new TreeMap<>();
     private JComboBox<String> modulesComboBox;
-    private JPanel subModulesPanel;
-    private JLabel modulesLabel;
     private JPanel mainPanel;
 
     public AbstractModulesView(T parentView, String viewName) {
         super(parentView);
-        modulesLabel.setText(viewName);
-        subModulesPanel.setLayout(new BoxLayout(subModulesPanel, BoxLayout.LINE_AXIS));
+//        modulesLabel.setText(viewName);
+//        subModulesPanel.setLayout(new BoxLayout(subModulesPanel, BoxLayout.LINE_AXIS));
 //        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
         initializeComboBox();
         modulesComboBox.addItemListener(new ItemListener() {
@@ -110,13 +108,6 @@ public abstract class AbstractModulesView<T extends AbstractView, E extends Abst
     /**
      * {@inheritDoc}
      */
-    public JPanel getSubModulesPanel() {
-        return subModulesPanel;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public JPanel getMainPanel() {
         return mainPanel;
@@ -129,33 +120,5 @@ public abstract class AbstractModulesView<T extends AbstractView, E extends Abst
     public void clearView() {
         super.clearView();
         modulesComboBox.setSelectedItem(null);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void clearAllComponents() {
-        super.clearAllComponents();
-        subModulesPanel.removeAll();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void repaint() {
-        super.repaint();
-        subModulesPanel.revalidate();
-        subModulesPanel.repaint();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void addChildView(AbstractView view) {
-        super.addChildView(view);
-        subModulesPanel.add(view.getMainPanel());
     }
 }

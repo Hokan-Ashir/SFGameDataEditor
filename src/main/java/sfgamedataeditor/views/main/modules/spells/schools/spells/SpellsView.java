@@ -9,24 +9,23 @@ import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.levelable.LevelableView;
-import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.ShowSpellParameterViewEvent;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterEventParameter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterViewMetaEvent;
 
-import javax.swing.*;
 import java.util.List;
 
-public class SpellsView extends AbstractModulesView<SpellSchoolsView, SpellViewMetaEvent> {
+public class SpellsView extends AbstractModulesView<MainView, SpellViewMetaEvent> {
 
     private final SpellParameterEventParameter spellParameterEventParameter;
     private SpellEventParameter spellEventParameter;
 
-    public SpellsView(SpellSchoolsView parentView) {
+    public SpellsView(MainView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("spells"));
         spellParameterEventParameter = new SpellParameterEventParameter();
         spellEventParameter = new SpellEventParameter();
-        getSubModulesPanel().setLayout(new BoxLayout(getSubModulesPanel(), BoxLayout.Y_AXIS));
+//        getSubModulesPanel().setLayout(new BoxLayout(getSubModulesPanel(), BoxLayout.Y_AXIS));
     }
 
     /**

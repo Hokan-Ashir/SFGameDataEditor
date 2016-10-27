@@ -3,19 +3,27 @@ package sfgamedataeditor.views.main;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.PostProcess;
 import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.common.NullView;
 import sfgamedataeditor.views.main.modules.common.ModulesMetaEvent;
+import sfgamedataeditor.views.main.modules.common.buttons.ButtonsView;
+import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryView;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 
 public class MainView extends AbstractView<NullView> {
     private JPanel mainPanel;
+    private JPanel navigationPanel;
+    private JPanel contentPanel;
+    private JPanel eventHistoryPanel;
+    private JPanel buttonsPanel;
 
     public MainView(NullView parentView) {
         super(parentView);
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+//        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+        navigationPanel.setLayout(new BoxLayout(navigationPanel, BoxLayout.X_AXIS));
         EventHandlerRegister.INSTANCE.addEventHandler(new MainEventHandler());
         createAndShowMainFrame();
     }
@@ -49,7 +57,10 @@ public class MainView extends AbstractView<NullView> {
     @Override
     public void clearAllComponents() {
         super.clearAllComponents();
-        mainPanel.removeAll();
+        eventHistoryPanel.removeAll();
+        navigationPanel.removeAll();
+        contentPanel.removeAll();
+        buttonsPanel.removeAll();
     }
 
     /**
@@ -58,8 +69,17 @@ public class MainView extends AbstractView<NullView> {
     @Override
     public void repaint() {
         super.repaint();
-        mainPanel.invalidate();
-        mainPanel.repaint();
+        eventHistoryPanel.invalidate();
+        eventHistoryPanel.repaint();
+
+        navigationPanel.invalidate();
+        navigationPanel.repaint();
+
+        contentPanel.invalidate();
+        contentPanel.repaint();
+
+        buttonsPanel.invalidate();
+        buttonsPanel.repaint();
     }
 
     /**
@@ -68,6 +88,15 @@ public class MainView extends AbstractView<NullView> {
     @Override
     public void addChildView(AbstractView view) {
         super.addChildView(view);
-        mainPanel.add(view.getMainPanel());
+        // TODO get rid of instance of
+        if (view instanceof EventHistoryView) {
+            eventHistoryPanel.add(view.getMainPanel());
+        } else if (view instanceof AbstractModulesView) {
+            navigationPanel.add(view.getMainPanel());
+        } else if (view instanceof ButtonsView){
+            buttonsPanel.add(view.getMainPanel());
+        } else {
+            contentPanel.add(view.getMainPanel());
+        }
     }
 }

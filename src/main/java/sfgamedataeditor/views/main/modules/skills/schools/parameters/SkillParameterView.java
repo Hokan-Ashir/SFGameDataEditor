@@ -11,6 +11,7 @@ import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.common.Processable;
 import sfgamedataeditor.views.common.levelable.LevelableView;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
 
 import javax.swing.*;
@@ -19,14 +20,15 @@ import java.awt.event.ItemListener;
 import java.util.Collection;
 import java.util.List;
 
-public class SkillParameterView extends AbstractView<SkillSchoolsView> implements Processable<SkillParametersMetaEvent> {
+public class SkillParameterView extends AbstractView<MainView> implements Processable<SkillParametersMetaEvent> {
 
     private final SkillParameterViewStub stub;
     private final Collection<IDataField> dataFields;
     private SkillEventParameter parameter;
-    private final LevelableView<SkillSchoolsView> view = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SkillSchoolsView.class));
+    private final LevelableView<SkillSchoolsView> view = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, MainView.class));
+    private final SkillSchoolsView skillSchoolsView = (SkillSchoolsView) ViewRegister.INSTANCE.getView(new ClassTuple(SkillSchoolsView.class, MainView.class));
 
-    public SkillParameterView(SkillSchoolsView parentView) {
+    public SkillParameterView(MainView parentView) {
         super(parentView);
         this.stub = new SkillParameterViewStub();
         this.dataFields = FieldsWrapperCreator.createFieldWrappers(stub);
@@ -42,7 +44,7 @@ public class SkillParameterView extends AbstractView<SkillSchoolsView> implement
                 SkillParametersMetaEvent event = new SkillParametersMetaEvent();
                 SkillEventParameter eventParameter = new SkillEventParameter(parameter.getSkillSchoolId(), view.getSelectedLevel());
                 event.setEventParameter(ShowSkillParameterViewEvent.class, eventParameter);
-                event.setEventParameter(SetModuleNameEvent.class, getParentView().getSelectedModuleValue());
+                event.setEventParameter(SetModuleNameEvent.class, skillSchoolsView.getSelectedModuleValue());
                 EventHandlerRegister.INSTANCE.fireEvent(event);
             }
         });

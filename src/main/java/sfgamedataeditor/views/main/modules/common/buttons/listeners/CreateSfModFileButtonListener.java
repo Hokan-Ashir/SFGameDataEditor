@@ -5,8 +5,8 @@ import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
+import sfgamedataeditor.views.common.NullView;
 import sfgamedataeditor.views.main.MainView;
-import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 
 public class CreateSfModFileButtonListener implements ActionListener {
 
-    private ModulesView modulesView = (ModulesView) ViewRegister.INSTANCE.getView(new ClassTuple<>(ModulesView.class, MainView.class));
+    private MainView mainView = ViewRegister.INSTANCE.getView(new ClassTuple<>(MainView.class, NullView.class));
 
     /**
      * {@inheritDoc}
@@ -27,13 +27,13 @@ public class CreateSfModFileButtonListener implements ActionListener {
             String notificationMassage = I18N.INSTANCE.getMessage("processingSfModFile") + sfModFileName + I18N.INSTANCE.getMessage("processingCreation")
                     + "\n" + I18N.INSTANCE.getMessage("closeMessageWindowProposition");
             new Notification(notificationMassage);
-            ViewTools.setComponentsEnableStatus(modulesView.getSubModulesPanel(), false);
+            ViewTools.setComponentsEnableStatus(mainView.getMainPanel(), false);
 
             FileUtils.createSfModFile(sfModFileName);
             String successfulMessage = I18N.INSTANCE.getMessage("sfmodFilePrefix") + sfModFileName + I18N.INSTANCE.getMessage("successfullyCreated");
             new Notification(successfulMessage);
 
-            ViewTools.setComponentsEnableStatus(modulesView.getSubModulesPanel(), true);
+            ViewTools.setComponentsEnableStatus(mainView.getMainPanel(), true);
         }
     }
 }

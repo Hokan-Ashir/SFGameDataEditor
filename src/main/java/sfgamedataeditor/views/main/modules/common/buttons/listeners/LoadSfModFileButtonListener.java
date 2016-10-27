@@ -12,7 +12,6 @@ import sfgamedataeditor.utils.Notification;
 import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.common.NullView;
 import sfgamedataeditor.views.main.MainView;
-import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
@@ -29,7 +28,7 @@ public class LoadSfModFileButtonListener implements ActionListener {
     private static final String SFMOD_FILE_EXTENSION = "sfmod";
     private static final Logger LOGGER = Logger.getLogger(LoadSfModFileButtonListener.class);
 
-    private ModulesView modulesView = (ModulesView) ViewRegister.INSTANCE.getView(new ClassTuple<>(ModulesView.class, MainView.class));
+    private MainView mainView = ViewRegister.INSTANCE.getView(new ClassTuple<>(MainView.class, NullView.class));
 
     /**
      * {@inheritDoc}
@@ -41,7 +40,7 @@ public class LoadSfModFileButtonListener implements ActionListener {
                 I18N.INSTANCE.getMessage("sfmodFilesDescription"), SFMOD_FILE_EXTENSION);
         chooser.setFileFilter(fileFilter);
         chooser.setAcceptAllFileFilterUsed(false);
-        chooser.showOpenDialog(modulesView.getSubModulesPanel());
+        chooser.showOpenDialog(mainView.getMainPanel());
         File selectedFile = chooser.getSelectedFile();
         if (selectedFile == null) {
             return;
@@ -60,14 +59,14 @@ public class LoadSfModFileButtonListener implements ActionListener {
         String notificationMassage = I18N.INSTANCE.getMessage("processingSfModFile") + selectedFile.getName() + I18N.INSTANCE.getMessage("processingLoading")
                 + "\n" + I18N.INSTANCE.getMessage("closeMessageWindowProposition");
         new Notification(notificationMassage);
-        ViewTools.setComponentsEnableStatus(modulesView.getSubModulesPanel(), false);
+        ViewTools.setComponentsEnableStatus(mainView.getMainPanel(), false);
 
         FileUtils.uploadDataIntoDatabase();
         updateAllCurrentViews();
 
         String successfulMessage = I18N.INSTANCE.getMessage("sfmodFilePrefix") + FilesContainer.INSTANCE.getModificationFileName() + I18N.INSTANCE.getMessage("successfullyLoaded");
         new Notification(successfulMessage);
-        ViewTools.setComponentsEnableStatus(modulesView.getSubModulesPanel(), true);
+        ViewTools.setComponentsEnableStatus(mainView.getMainPanel(), true);
     }
 
     private void updateAllCurrentViews() {
@@ -77,8 +76,7 @@ public class LoadSfModFileButtonListener implements ActionListener {
         // Elemental magic/Ice-1, made sfmod-file, then load it,
         // cause all maps in Mappings class stays the same
         // Fireball-1's requrements still considered as Elemental magic/Fire-1
-        MainView view = (MainView) ViewRegister.INSTANCE.getView(new ClassTuple<>(MainView.class, NullView.class));
-        updateDataRecursively(view);
+        updateDataRecursively(mainView);
     }
 
     private <T extends AbstractView> void updateDataRecursively(AbstractView<T> parent) {

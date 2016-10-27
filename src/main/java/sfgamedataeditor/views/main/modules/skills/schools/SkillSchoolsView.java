@@ -8,22 +8,20 @@ import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.levelable.LevelableView;
-import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.ShowSkillParameterViewEvent;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillEventParameter;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParametersMetaEvent;
 
-import javax.swing.*;
-
-public class SkillSchoolsView extends AbstractModulesView<ModulesView, SkillSchoolsMetaEvent> {
+public class SkillSchoolsView extends AbstractModulesView<MainView, SkillSchoolsMetaEvent> {
 
     private final SkillEventParameter parameter;
 
-    public SkillSchoolsView(ModulesView parentView) {
+    public SkillSchoolsView(MainView parentView) {
         super(parentView, I18N.INSTANCE.getMessage("skillSchools"));
         parameter = new SkillEventParameter();
         EventHandlerRegister.INSTANCE.addEventHandler(new SkillEventHandler());
-        getSubModulesPanel().setLayout(new BoxLayout(getSubModulesPanel(), BoxLayout.Y_AXIS));
+//        getSubModulesPanel().setLayout(new BoxLayout(getSubModulesPanel(), BoxLayout.Y_AXIS));
     }
 
     /**

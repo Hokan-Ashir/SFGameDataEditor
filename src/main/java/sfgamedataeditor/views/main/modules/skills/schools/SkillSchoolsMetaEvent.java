@@ -17,15 +17,15 @@ public class SkillSchoolsMetaEvent extends AbstractMetaEvent {
     @Override
     protected void addEvents() {
         SetModuleNameEvent setModuleNameEvent = new SetModuleNameEvent(ModulesView.class, MainView.class);
-        ShowSkillSchoolsViewEvent skillSchoolsViewEvent = EventCreator.createEvent(SkillSchoolsView.class, ModulesView.class, ShowSkillSchoolsViewEvent.class);
-        ClearViewEvent clearViewEvent = new ClearViewEvent(SkillSchoolsView.class, ModulesView.class);
+        ShowSkillSchoolsViewEvent skillSchoolsViewEvent = EventCreator.createEvent(SkillSchoolsView.class, MainView.class, ShowSkillSchoolsViewEvent.class);
+        ClearViewEvent clearViewEvent = new ClearViewEvent(SkillSchoolsView.class, MainView.class);
         addEvents(setModuleNameEvent, skillSchoolsViewEvent, clearViewEvent);
     }
 }
 
-class ShowSkillSchoolsViewEvent extends ShowViewEvent<SkillSchoolsView, ModulesView, Object> {
+class ShowSkillSchoolsViewEvent extends ShowViewEvent<SkillSchoolsView, MainView, Object> {
 
-    public ShowSkillSchoolsViewEvent(ClassTuple<SkillSchoolsView, ModulesView> tuple) {
+    public ShowSkillSchoolsViewEvent(ClassTuple<SkillSchoolsView, MainView> tuple) {
         super(tuple);
     }
 }

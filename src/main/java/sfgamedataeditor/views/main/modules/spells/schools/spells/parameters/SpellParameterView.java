@@ -16,6 +16,7 @@ import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.common.Processable;
 import sfgamedataeditor.views.common.levelable.LevelableView;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -28,19 +29,19 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class SpellParameterView extends AbstractView<SpellsView> implements Processable<SpellParameterViewMetaEvent> {
+public class SpellParameterView extends AbstractView<MainView> implements Processable<SpellParameterViewMetaEvent> {
 
-    private static final int LABEL_LINE_MAX_LENGTH = 12;
     private static final Logger LOGGER = Logger.getLogger(SkillParameterView.class);
 
     private final SpellParameterViewStub stub;
     private final Collection<IDataField> dataFields;
     private SpellParameterEventParameter parameter;
     // TODO get rid of this as private variable
-    private LevelableView<SpellsView> view = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SpellsView.class));
+    private LevelableView<SpellsView> view = (LevelableView<SpellsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, MainView.class));
+    private SpellsView spellsView = (SpellsView) ViewRegister.INSTANCE.getView(new ClassTuple(SpellsView.class, MainView.class));
     private SpellParameterViewMetaEvent event = new SpellParameterViewMetaEvent();
 
-    public SpellParameterView(SpellsView parentView) {
+    public SpellParameterView(MainView parentView) {
         super(parentView);
         stub = new SpellParameterViewStub();
         dataFields = FieldsWrapperCreator.createFieldWrappers(stub);
@@ -53,7 +54,7 @@ public class SpellParameterView extends AbstractView<SpellsView> implements Proc
 
                 SpellParameterEventParameter eventParameter = new SpellParameterEventParameter(parameter.getSpellId(), view.getSelectedLevel());
                 event.setEventParameter(ShowSpellParameterViewEvent.class, eventParameter);
-                event.setEventParameter(SetModuleNameEvent.class, getParentView().getSelectedModuleValue());
+                event.setEventParameter(SetModuleNameEvent.class, spellsView.getSelectedModuleValue());
                 EventHandlerRegister.INSTANCE.fireEvent(event);
             }
         });
@@ -124,7 +125,7 @@ public class SpellParameterView extends AbstractView<SpellsView> implements Proc
     }
 
     private void setSpellParameterLabelNames() {
-        String selectedSpellName = getParentView().getSelectedModuleValue();
+        String selectedSpellName = spellsView.getSelectedModuleValue();
         SpellName spellName = SpellNameTableService.INSTANCE.getSpellName(selectedSpellName);
         for (Field field : stub.getClass().getDeclaredFields()) {
             MappedColumn annotation = field.getAnnotation(MappedColumn.class);
@@ -169,15 +170,16 @@ public class SpellParameterView extends AbstractView<SpellsView> implements Proc
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void repaint() {
-        super.repaint();
-        getMainPanel().invalidate();
-        getMainPanel().repaint();
-    }
+//    // TODO why?
+//    /**
+//     * {@inheritDoc}
+//     */
+//    @Override
+//    public void repaint() {
+//        super.repaint();
+//        getMainPanel().invalidate();
+//        getMainPanel().repaint();
+//    }
 
     /**
      * {@inheritDoc}
