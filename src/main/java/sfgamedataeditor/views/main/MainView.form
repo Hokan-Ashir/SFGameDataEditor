@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.main.MainView">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
+  <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
       <xy x="320" y="220" width="800" height="800"/>
     </constraints>
@@ -12,62 +12,85 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="eff0a" binding="navigationPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.1"/>
-        </constraints>
+      <scrollpane id="acfe5" binding="scrollPane">
+        <constraints border-constraint="Center"/>
         <properties>
-          <autoscrolls value="true"/>
-          <maximumSize width="800" height="25"/>
-          <minimumSize width="800" height="25"/>
-          <preferredSize width="800" height="25"/>
+          <doubleBuffered value="true"/>
+          <maximumSize width="800" height="800"/>
+          <minimumSize width="800" height="800"/>
+          <verticalScrollBarPolicy value="20"/>
         </properties>
         <border type="none"/>
-        <children/>
-      </grid>
-      <grid id="f44d8" binding="contentPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.7"/>
-        </constraints>
-        <properties>
-          <autoscrolls value="true"/>
-          <maximumSize width="800" height="650"/>
-          <minimumSize width="800" height="650"/>
-          <preferredSize width="800" height="650"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
-      <grid id="f82f7" binding="eventHistoryPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.1"/>
-        </constraints>
-        <properties>
-          <autoscrolls value="true"/>
-          <maximumSize width="800" height="50"/>
-          <minimumSize width="800" height="50"/>
-          <preferredSize width="800" height="50"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
-      <grid id="44c3c" binding="buttonsPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="1.0" weighty="0.1"/>
-        </constraints>
-        <properties>
-          <autoscrolls value="true"/>
-          <maximumSize width="800" height="500"/>
-          <minimumSize width="800" height="50"/>
-          <preferredSize width="800" height="50"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
+        <children>
+          <grid id="41645" binding="componentsPanel" layout-manager="GridBagLayout">
+            <constraints/>
+            <properties>
+              <maximumSize width="740" height="740"/>
+              <minimumSize width="740" height="740"/>
+              <preferredSize width="740" height="740"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="f82f7" binding="eventHistoryPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="0.1"/>
+                </constraints>
+                <properties>
+                  <autoscrolls value="true"/>
+                  <maximumSize width="800" height="50"/>
+                  <minimumSize width="800" height="50"/>
+                  <preferredSize width="800" height="50"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="f44d8" binding="contentPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <autoscrolls value="true"/>
+                  <maximumSize width="800" height="650"/>
+                  <minimumSize width="800" height="650"/>
+                  <preferredSize width="800" height="650"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="44c3c" binding="buttonsPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="0.1"/>
+                </constraints>
+                <properties>
+                  <autoscrolls value="true"/>
+                  <maximumSize width="800" height="500"/>
+                  <minimumSize width="800" height="50"/>
+                  <preferredSize width="800" height="50"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="eff0a" binding="navigationPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.1"/>
+                </constraints>
+                <properties>
+                  <autoscrolls value="true"/>
+                  <maximumSize width="800" height="25"/>
+                  <minimumSize width="800" height="25"/>
+                  <preferredSize width="800" height="25"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+            </children>
+          </grid>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>

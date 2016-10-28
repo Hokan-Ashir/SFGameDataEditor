@@ -19,6 +19,8 @@ public class MainView extends AbstractView<NullView> {
     private JPanel contentPanel;
     private JPanel eventHistoryPanel;
     private JPanel buttonsPanel;
+    private JScrollPane scrollPane;
+    private JPanel componentsPanel;
 
     public MainView(NullView parentView) {
         super(parentView);
