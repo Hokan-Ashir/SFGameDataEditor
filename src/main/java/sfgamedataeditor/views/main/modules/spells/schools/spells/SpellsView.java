@@ -8,8 +8,10 @@ import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.common.levelable.LevelableView;
 import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.ShowSpellParameterViewEvent;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterEventParameter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterViewMetaEvent;
@@ -91,5 +93,13 @@ public class SpellsView extends AbstractModulesView<MainView, SpellViewMetaEvent
     @Override
     public Class<SpellViewMetaEvent> getMetaEventClass() {
         return SpellViewMetaEvent.class;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<? extends AbstractView> getParentHierarchyClass() {
+        return ModulesView.class;
     }
 }

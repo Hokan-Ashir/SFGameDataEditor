@@ -4,10 +4,10 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
 
-public class PromptTextComboBoxRenderer extends BasicComboBoxRenderer {
-    private String prompt;
+public class PromptTextComboBoxRenderer<T extends String> extends BasicComboBoxRenderer {
+    private T prompt;
 
-    public PromptTextComboBoxRenderer(String prompt) {
+    public PromptTextComboBoxRenderer(T prompt) {
         this.prompt = prompt;
     }
 

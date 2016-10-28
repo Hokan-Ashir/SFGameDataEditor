@@ -22,8 +22,9 @@ public abstract class AbstractModulesView<T extends AbstractView, E extends Abst
 
     public AbstractModulesView(T parentView, String viewName) {
         super(parentView);
-        modulesComboBox.setRenderer(new PromptTextComboBoxRenderer(viewName));
+        modulesComboBox.setRenderer(new PromptTextComboBoxRenderer<>(viewName));
         modulesComboBox.setSelectedIndex(-1);
+        modulesComboBox.setToolTipText(viewName);
         initializeComboBox();
         modulesComboBox.addItemListener(new ItemListener() {
             @Override
@@ -32,7 +33,7 @@ public abstract class AbstractModulesView<T extends AbstractView, E extends Abst
                     return;
                 }
 
-                Object selectedItem = modulesComboBox.getSelectedItem();
+                String selectedItem = (String) modulesComboBox.getSelectedItem();
                 if (selectedItem == null) {
                     return;
                 }
@@ -95,6 +96,9 @@ public abstract class AbstractModulesView<T extends AbstractView, E extends Abst
     public String getSelectedModuleValue() {
         return (String) modulesComboBox.getSelectedItem();
     }
+
+    // TODO maybe set mode hard restriction (like AbstractModulesView)
+    public abstract Class<? extends AbstractView> getParentHierarchyClass();
 
     /**
      * {@inheritDoc}

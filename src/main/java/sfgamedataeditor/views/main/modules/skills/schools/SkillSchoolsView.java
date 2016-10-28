@@ -7,8 +7,10 @@ import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.common.levelable.LevelableView;
 import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.ShowSkillParameterViewEvent;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillEventParameter;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParametersMetaEvent;
@@ -63,5 +65,13 @@ public class SkillSchoolsView extends AbstractModulesView<MainView, SkillSchools
     @Override
     public Class<SkillSchoolsMetaEvent> getMetaEventClass() {
         return SkillSchoolsMetaEvent.class;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<? extends AbstractView> getParentHierarchyClass() {
+        return ModulesView.class;
     }
 }

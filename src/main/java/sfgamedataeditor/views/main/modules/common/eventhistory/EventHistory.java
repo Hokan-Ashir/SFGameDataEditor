@@ -2,6 +2,7 @@ package sfgamedataeditor.views.main.modules.common.eventhistory;
 
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.AbstractViewableMetaEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +14,21 @@ public enum EventHistory {
     private int currentEventIndex = -1;
 
     public boolean addEventToHistory(AbstractMetaEvent metaEvent) {
-        boolean isSuccess = events.add(metaEvent);
+        List<AbstractViewableMetaEvent> events = getEvents((AbstractViewableMetaEvent) metaEvent);
+        boolean isSuccess = this.events.add(metaEvent);
         currentEventIndex++;
         return isSuccess;
+    }
+
+    private List<AbstractViewableMetaEvent> getEvents(AbstractViewableMetaEvent metaEvent) {
+        List<AbstractViewableMetaEvent> events = new ArrayList<>();
+        AbstractViewableMetaEvent viewableMetaEvent = metaEvent.createParentMetaEvent();
+        if (viewableMetaEvent != null) {
+            events.add(viewableMetaEvent);
+            events.addAll(getEvents(viewableMetaEvent));
+        }
+
+        return events;
     }
 
     public void undo() {

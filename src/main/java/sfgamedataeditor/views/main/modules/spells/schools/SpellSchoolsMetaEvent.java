@@ -2,14 +2,15 @@ package sfgamedataeditor.views.main.modules.spells.schools;
 
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventCreator;
-import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.AbstractViewableMetaEvent;
 import sfgamedataeditor.events.types.ClearViewEvent;
 import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.main.modules.common.ModulesMetaEvent;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 
-public class SpellSchoolsMetaEvent extends AbstractMetaEvent {
+public class SpellSchoolsMetaEvent extends AbstractViewableMetaEvent<ModulesMetaEvent> {
 
     /**
      * {@inheritDoc}
@@ -20,6 +21,14 @@ public class SpellSchoolsMetaEvent extends AbstractMetaEvent {
         ShowSpellSchoolsViewEvent spellSchoolsViewEvent = EventCreator.createEvent(SpellSchoolsView.class, MainView.class, ShowSpellSchoolsViewEvent.class);
         ClearViewEvent clearViewEvent = new ClearViewEvent<>(SpellSchoolsView.class, MainView.class);
         addEvents(moduleNameEvent, spellSchoolsViewEvent, clearViewEvent);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ModulesMetaEvent createParentMetaEvent() {
+        return new ModulesMetaEvent();
     }
 }
 

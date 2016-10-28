@@ -3,6 +3,7 @@ package sfgamedataeditor.views.main.modules.common.modules;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesMetaEvent;
 import sfgamedataeditor.views.main.modules.common.ModulesMetaEvent;
@@ -68,5 +69,13 @@ public class ModulesView extends AbstractModulesView<MainView, ModulesMetaEvent>
     @Override
     public Class<ModulesMetaEvent> getMetaEventClass() {
         return ModulesMetaEvent.class;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<? extends AbstractView> getParentHierarchyClass() {
+        return MainView.class;
     }
 }

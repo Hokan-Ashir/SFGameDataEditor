@@ -3,7 +3,9 @@ package sfgamedataeditor.views.main.modules.items;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.items.armor.ArmorTypesMetaEvent;
 import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansMetaEvent;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousMetaEvent;
@@ -67,5 +69,13 @@ public class ItemTypesView extends AbstractModulesView<MainView, ItemTypesMetaEv
     @Override
     public Class<ItemTypesMetaEvent> getMetaEventClass() {
         return ItemTypesMetaEvent.class;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Class<? extends AbstractView> getParentHierarchyClass() {
+        return ModulesView.class;
     }
 }
