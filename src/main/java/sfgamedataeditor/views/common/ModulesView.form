@@ -14,7 +14,9 @@
       <opaque value="true"/>
       <preferredSize width="190" height="25"/>
     </properties>
-    <border type="none"/>
+    <border type="empty">
+      <size top="0" left="0" bottom="0" right="15"/>
+    </border>
     <children>
       <component id="972a1" class="javax.swing.JComboBox" binding="modulesComboBox">
         <constraints>
@@ -24,10 +26,12 @@
         <properties>
           <alignmentX value="1.0"/>
           <alignmentY value="0.0"/>
+          <focusCycleRoot value="false"/>
           <maximumSize width="190" height="25"/>
           <minimumSize width="190" height="25"/>
           <model/>
           <preferredSize width="190" height="25"/>
+          <toolTipText value="" noi18n="true"/>
         </properties>
       </component>
     </children>

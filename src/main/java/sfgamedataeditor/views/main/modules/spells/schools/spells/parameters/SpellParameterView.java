@@ -19,6 +19,7 @@ import sfgamedataeditor.views.common.levelable.LevelableView;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
+import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
@@ -99,24 +100,20 @@ public class SpellParameterView extends AbstractView<MainView> implements Proces
         }
     }
 
-    private void setSpellAvaliableLevels(Set<Integer> spellLevels, int selectedLevel) {
-        JComboBox<String> comboBox = view.getLevelComboBox();
-        ItemListener[] listeners = comboBox.getItemListeners();
-        for (ItemListener listener : listeners) {
-            comboBox.removeItemListener(listener);
-        }
+    private void setSpellAvaliableLevels(final Set<Integer> spellLevels, final int selectedLevel) {
+        final JComboBox<String> comboBox = view.getLevelComboBox();
+        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
+            @Override
+            protected void setValues() {
+                comboBox.removeAllItems();
+                for (Integer spellLevel : spellLevels) {
+                    comboBox.addItem(String.valueOf(spellLevel));
+                }
 
-        comboBox.removeAllItems();
-        for (Integer spellLevel : spellLevels) {
-            comboBox.addItem(String.valueOf(spellLevel));
-        }
-
-        // TODO split this methods
-        setLevelComboBoxItem(selectedLevel);
-
-        for (ItemListener listener : listeners) {
-            comboBox.addItemListener(listener);
-        }
+                // TODO split this methods
+                setLevelComboBoxItem(selectedLevel);
+            }
+        });
     }
 
     private void setLevelComboBoxItem(int spellLevel) {

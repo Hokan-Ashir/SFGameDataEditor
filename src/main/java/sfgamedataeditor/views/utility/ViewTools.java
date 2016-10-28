@@ -62,4 +62,8 @@ public class ViewTools {
         }
         return result;
     }
+
+    public static void setComboBoxValuesSilently(SilentComboBoxValuesSetter setter) {
+        setter.setValuesSilently();
+    }
 }

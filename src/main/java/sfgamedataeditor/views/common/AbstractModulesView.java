@@ -4,6 +4,9 @@ import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.types.AbstractMetaEvent;
 import sfgamedataeditor.events.types.Event;
 import sfgamedataeditor.events.types.SetModuleNameEvent;
+import sfgamedataeditor.views.PromptTextComboBoxRenderer;
+import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
+import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -19,9 +22,8 @@ public abstract class AbstractModulesView<T extends AbstractView, E extends Abst
 
     public AbstractModulesView(T parentView, String viewName) {
         super(parentView);
-//        modulesLabel.setText(viewName);
-//        subModulesPanel.setLayout(new BoxLayout(subModulesPanel, BoxLayout.LINE_AXIS));
-//        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+        modulesComboBox.setRenderer(new PromptTextComboBoxRenderer(viewName));
+        modulesComboBox.setSelectedIndex(-1);
         initializeComboBox();
         modulesComboBox.addItemListener(new ItemListener() {
             @Override
@@ -45,17 +47,13 @@ public abstract class AbstractModulesView<T extends AbstractView, E extends Abst
 
     // TODO make all this stuff about setting fired event modules name right and clean
     // cause now, its total bullshit
-    public void setModulesComboBoxValue(Object value) {
-        ItemListener[] listeners = modulesComboBox.getItemListeners();
-        for (ItemListener listener : listeners) {
-            modulesComboBox.removeItemListener(listener);
-        }
-
-        modulesComboBox.setSelectedItem(value);
-
-        for (ItemListener listener : listeners) {
-            modulesComboBox.addItemListener(listener);
-        }
+    public void setModulesComboBoxValue(final Object value) {
+        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(modulesComboBox) {
+            @Override
+            protected void setValues() {
+                modulesComboBox.setSelectedItem(value);
+            }
+        });
     }
 
     protected void setEventParameter(AbstractMetaEvent metaEvent) {
@@ -74,22 +72,15 @@ public abstract class AbstractModulesView<T extends AbstractView, E extends Abst
     }
 
     protected void reinitializeComboBox() {
-        // to not trigger item change events (and so event firing) cancel
-        // listening to item change events for time of
-        // combobox population
-        ItemListener[] listeners = modulesComboBox.getItemListeners();
-        for (ItemListener listener : listeners) {
-            modulesComboBox.removeItemListener(listener);
-        }
-
-        modulesComboBox.removeAllItems();
-        for (String s : comboBoxMapping.keySet()) {
-            modulesComboBox.addItem(s);
-        }
-
-        for (ItemListener listener : listeners) {
-            modulesComboBox.addItemListener(listener);
-        }
+        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(modulesComboBox) {
+            @Override
+            protected void setValues() {
+                modulesComboBox.removeAllItems();
+                for (String s : comboBoxMapping.keySet()) {
+                    modulesComboBox.addItem(s);
+                }
+            }
+        });
     }
 
     protected void clearComboBoxAndMapping() {

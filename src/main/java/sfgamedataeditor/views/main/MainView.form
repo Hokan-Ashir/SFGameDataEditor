@@ -23,7 +23,7 @@
           <minimumSize width="800" height="25"/>
           <preferredSize width="800" height="25"/>
         </properties>
-        <border type="etched"/>
+        <border type="none"/>
         <children/>
       </grid>
       <grid id="f44d8" binding="contentPanel" layout-manager="GridBagLayout">

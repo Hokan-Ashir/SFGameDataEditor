@@ -13,6 +13,8 @@ import sfgamedataeditor.views.common.Processable;
 import sfgamedataeditor.views.common.levelable.LevelableView;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
+import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
+import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -64,22 +66,18 @@ public class SkillParameterView extends AbstractView<MainView> implements Proces
         setFieldsData(parameter.getSkillSchoolId(), parameter.getSkillLevel());
     }
 
-    private void fillPossibleSkillLevelsComboBox(int skillSchoolId) {
-        JComboBox<String> comboBox = view.getLevelComboBox();
-        ItemListener[] listeners = comboBox.getItemListeners();
-        for (ItemListener listener : listeners) {
-            comboBox.removeItemListener(listener);
-        }
-
-        comboBox.removeAllItems();
-        List<SkillParameters> skillPossibleValues = SkillParametersTableService.INSTANCE.getSkillPossibleValues(skillSchoolId);
-        for (SkillParameters skillPossibleValue : skillPossibleValues) {
-            comboBox.addItem(String.valueOf(skillPossibleValue.level));
-        }
-
-        for (ItemListener listener : listeners) {
-            comboBox.addItemListener(listener);
-        }
+    private void fillPossibleSkillLevelsComboBox(final int skillSchoolId) {
+        final JComboBox<String> comboBox = view.getLevelComboBox();
+        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
+            @Override
+            protected void setValues() {
+                comboBox.removeAllItems();
+                List<SkillParameters> skillPossibleValues = SkillParametersTableService.INSTANCE.getSkillPossibleValues(skillSchoolId);
+                for (SkillParameters skillPossibleValue : skillPossibleValues) {
+                    comboBox.addItem(String.valueOf(skillPossibleValue.level));
+                }
+            }
+        });
     }
 
     private void setFieldsData(int skillSchoolId, int skillLevel) {
