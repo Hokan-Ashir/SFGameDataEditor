@@ -3,11 +3,11 @@ package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.fieldwrapping.MappedColumn;
 import sfgamedataeditor.fieldwrapping.Wrapable;
-import sfgamedataeditor.views.common.IView;
+import sfgamedataeditor.views.common.View;
 
 import javax.swing.*;
 
-public class SkillParameterViewStub implements Wrapable, IView {
+public class SkillParameterViewStub implements Wrapable, View {
 
     // format - SCHOOL LEVEL STR STA AGI DEX CHA INT WIS, each 1 byte length
     private JPanel mainPanel;
@@ -48,16 +48,6 @@ public class SkillParameterViewStub implements Wrapable, IView {
     @Override
     public JPanel getMainPanel() {
         return mainPanel;
-    }
-
-    @Override
-    public void render() {
-
-    }
-
-    @Override
-    public void unrender() {
-
     }
 
     /**

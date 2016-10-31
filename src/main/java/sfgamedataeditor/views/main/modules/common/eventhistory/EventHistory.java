@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.common.eventhistory;
 
-import sfgamedataeditor.events.EventHandlerRegister;
+import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.Event;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public enum EventHistory {
 
     private void fireCurrentEvent() {
         Event event = events.get(currentEventIndex);
-        EventHandlerRegister.INSTANCE.fireEventSilently(event);
+        EventProcessor.INSTANCE.process(event);
     }
 
     public boolean isRedoPossible() {

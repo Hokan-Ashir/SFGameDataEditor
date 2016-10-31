@@ -1,24 +1,11 @@
 package sfgamedataeditor.views.main.modules.units;
 
-import sfgamedataeditor.views.common.AbstractView;
+import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.views.common.races.AbstractRacesView;
-import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 
-public class UnitsRacesView extends AbstractRacesView<UnitRacesMetaEvent> {
-
-    /**
-     * {@inheritDoc}
-     */
+public class UnitsRacesView extends AbstractRacesView {
     @Override
-    public Class<UnitRacesMetaEvent> getMetaEventClass() {
-        return UnitRacesMetaEvent.class;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Class<? extends AbstractView> getParentHierarchyClass() {
-        return ModulesView.class;
+    public Class<? extends AbstractController> getControllerClass() {
+        return null;
     }
 }

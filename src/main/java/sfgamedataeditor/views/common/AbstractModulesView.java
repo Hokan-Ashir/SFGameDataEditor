@@ -1,6 +1,7 @@
 package sfgamedataeditor.views.common;
 
 import sfgamedataeditor.mvc.ShowViewDispatcher;
+import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.views.PromptTextComboBoxRenderer;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -11,9 +12,9 @@ import java.awt.event.ItemListener;
 import java.util.Map;
 import java.util.TreeMap;
 
-public abstract class AbstractModulesView extends AbstractView {
+public abstract class AbstractModulesView implements RenderableView {
 
-    private Map<String, Class<? extends AbstractView>> comboBoxMapping = new TreeMap<>();
+    private Map<String, Class<? extends RenderableView>> comboBoxMapping = new TreeMap<>();
     private JComboBox<String> modulesComboBox;
     private JPanel mainPanel;
 
@@ -34,15 +35,15 @@ public abstract class AbstractModulesView extends AbstractView {
                     return;
                 }
 
-                Class<? extends AbstractView> classViewToShow = comboBoxMapping.get(selectedItem);
-//                setEventParameter(metaEvent);
-                ShowViewDispatcher.INSTANCE.showView(classViewToShow, null);
+                Class<? extends RenderableView> classViewToShow = comboBoxMapping.get(selectedItem);
+                Model model = createModel();
+                ShowViewDispatcher.INSTANCE.showView(classViewToShow, model);
             }
         });
     }
 
-    // TODO make all this stuff about setting fired event modules name right and clean
-    // cause now, its total bullshit
+    protected abstract Model createModel();
+
     public void setModulesComboBoxValue(final Object value) {
         ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(modulesComboBox) {
             @Override
@@ -52,7 +53,15 @@ public abstract class AbstractModulesView extends AbstractView {
         });
     }
 
-//    protected void setEventParameter(AbstractMetaEvent metaEvent) {
+    public Map<String, Class<? extends RenderableView>> getComboBoxMapping() {
+        return comboBoxMapping;
+    }
+
+    public JComboBox<String> getModulesComboBox() {
+        return modulesComboBox;
+    }
+
+    //    protected void setEventParameter(AbstractMetaEvent metaEvent) {
 //        for (Event event : metaEvent.getEventList()) {
 //            if (SetModuleNameEvent.class.isAssignableFrom(event.getClass())) {
 //                event.setObjectParameter(getSelectedModuleValue());
@@ -67,7 +76,7 @@ public abstract class AbstractModulesView extends AbstractView {
         reinitializeComboBox();
     }
 
-    protected void reinitializeComboBox() {
+    public void reinitializeComboBox() {
         ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(modulesComboBox) {
             @Override
             protected void setValues() {
@@ -79,12 +88,7 @@ public abstract class AbstractModulesView extends AbstractView {
         });
     }
 
-    protected void clearComboBoxAndMapping() {
-        modulesComboBox.removeAllItems();
-        comboBoxMapping.clear();
-    }
-
-    protected void addMapping(String name, Class<? extends AbstractView> classViewToShow) {
+    public void addMapping(String name, Class<? extends RenderableView> classViewToShow) {
         comboBoxMapping.put(name, classViewToShow);
     }
 

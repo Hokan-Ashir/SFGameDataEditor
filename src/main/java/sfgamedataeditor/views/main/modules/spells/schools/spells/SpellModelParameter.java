@@ -1,13 +1,9 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
-public class SpellEventParameter {
-
+public class SpellModelParameter {
     private String spellSchoolName;
 
-    public SpellEventParameter() {
-    }
-
-    public SpellEventParameter(String spellSchoolName) {
+    public SpellModelParameter(String spellSchoolName) {
         this.spellSchoolName = spellSchoolName;
     }
 

@@ -1,11 +1,14 @@
 package sfgamedataeditor.views.main.modules.common.eventhistory;
 
+import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.common.AbstractView;
+import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.main.MainView;
 
 import javax.swing.*;
 
-public class EventHistoryView extends AbstractView {
+public class EventHistoryView implements RenderableView {
     private JPanel mainPanel;
     private JButton undoButton;
     private JButton redoButton;
@@ -38,11 +41,27 @@ public class EventHistoryView extends AbstractView {
         undoButton.setEnabled(isEnabled);
     }
 
+    @Override
+    public void render() {
+        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+        mainView.renderViewInsideEventHistoryPanel(this);
+    }
+
+    @Override
+    public void unrender() {
+
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    @Override
+    public Class<? extends AbstractController> getControllerClass() {
+        return null;
     }
 }

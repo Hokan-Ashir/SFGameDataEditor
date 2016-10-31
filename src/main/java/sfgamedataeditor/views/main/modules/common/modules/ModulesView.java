@@ -1,7 +1,11 @@
 package sfgamedataeditor.views.main.modules.common.modules;
 
+import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 import sfgamedataeditor.views.main.modules.merchants.MerchantLocationsView;
@@ -15,40 +19,37 @@ public class ModulesView extends AbstractModulesView {
         super(I18N.INSTANCE.getMessage("modulesList"));
     }
 
+    @Override
+    protected Model createModel() {
+        return new Model();
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     protected void fillComboBoxMapping() {
-        addSkillsMapping();
-        addSpellsMapping();
-        addMerchantsMapping();
-        addBuildingsMapping();
-        addUnitsMapping();
-        addItemsMapping();
-    }
-
-    private void addSkillsMapping() {
         addMapping(I18N.INSTANCE.getMessage("skills"), SkillSchoolsView.class);
-    }
-
-    private void addSpellsMapping() {
         addMapping(I18N.INSTANCE.getMessage("spells"), SpellSchoolsView.class);
-    }
-
-    private void addMerchantsMapping() {
         addMapping(I18N.INSTANCE.getMessage("merchants"), MerchantLocationsView.class);
-    }
-
-    private void addBuildingsMapping() {
         addMapping(I18N.INSTANCE.getMessage("buildings"), BuildingRacesView.class);
-    }
-
-    private void addUnitsMapping() {
         addMapping(I18N.INSTANCE.getMessage("units"), UnitsRacesView.class);
+        addMapping(I18N.INSTANCE.getMessage("items"), ItemTypesView.class);
     }
 
-    private void addItemsMapping() {
-        addMapping(I18N.INSTANCE.getMessage("items"), ItemTypesView.class);
+    @Override
+    public void render() {
+        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+        mainView.renderViewInsideNavigationPanel(this);
+    }
+
+    @Override
+    public void unrender() {
+
+    }
+
+    @Override
+    public Class<? extends AbstractController> getControllerClass() {
+        return ModulesController.class;
     }
 }

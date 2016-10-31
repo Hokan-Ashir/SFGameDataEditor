@@ -2,26 +2,19 @@ package sfgamedataeditor.views.main.modules.spells.schools;
 
 import sfgamedataeditor.database.objects.SpellSchoolName;
 import sfgamedataeditor.database.tableservices.SpellSchoolNameTableService;
-import sfgamedataeditor.events.EventHandlerRegister;
-import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.main.MainView;
-import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
-import sfgamedataeditor.views.main.modules.spells.schools.spells.ShowSpellsViewEvent;
-import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellEventParameter;
-import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellViewMetaEvent;
+import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
 
 import java.util.List;
 
-public class SpellSchoolsView extends AbstractModulesView<MainView, SpellSchoolsMetaEvent> {
+public class SpellSchoolsView extends AbstractModulesView {
 
-    private SpellEventParameter parameter = new SpellEventParameter(null);
-
-    public SpellSchoolsView(MainView parentView) {
-        super(parentView, I18N.INSTANCE.getMessage("spellSchools"));
-        EventHandlerRegister.INSTANCE.addEventHandler(new SpellEventHandler());
+    public SpellSchoolsView() {
+        super(I18N.INSTANCE.getMessage("spellSchools"));
     }
 
     /**
@@ -31,34 +24,34 @@ public class SpellSchoolsView extends AbstractModulesView<MainView, SpellSchools
     protected void fillComboBoxMapping() {
         List<SpellSchoolName> allSpellSchoolNames = SpellSchoolNameTableService.INSTANCE.getAllSpellSchoolNames();
         for (SpellSchoolName allSpellSchoolName : allSpellSchoolNames) {
-            addMapping(allSpellSchoolName.name, new SpellViewMetaEvent());
+            addMapping(allSpellSchoolName.name, SpellsView.class);
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    protected void setEventParameter(AbstractMetaEvent metaEvent) {
-        super.setEventParameter(metaEvent);
-        String selectedSpellSchool = getSelectedModuleValue();
-        parameter.setSpellSchoolName(selectedSpellSchool);
-        metaEvent.setEventParameter(ShowSpellsViewEvent.class, parameter);
+    public void render() {
+        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+        mainView.renderViewInsideNavigationPanel(this);
+    }
+
+    @Override
+    public void unrender() {
+
+    }
+
+    @Override
+    public Class<? extends AbstractController> getControllerClass() {
+        return null;
     }
 
     /**
      * {@inheritDoc}
      */
-    @Override
-    public Class<SpellSchoolsMetaEvent> getMetaEventClass() {
-        return SpellSchoolsMetaEvent.class;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Class<? extends AbstractView> getParentHierarchyClass() {
-        return ModulesView.class;
-    }
+//    @Override
+//    protected void setEventParameter(AbstractMetaEvent metaEvent) {
+//        super.setEventParameter(metaEvent);
+//        String selectedSpellSchool = getSelectedModuleValue();
+//        parameter.setSpellSchoolName(selectedSpellSchool);
+//        metaEvent.setEventParameter(ShowSpellsViewEvent.class, parameter);
+//    }
 }

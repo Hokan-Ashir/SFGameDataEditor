@@ -2,8 +2,10 @@ package sfgamedataeditor.views.main;
 
 import sfgamedataeditor.events.PostProcess;
 import sfgamedataeditor.mvc.ShowViewDispatcher;
+import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.common.AbstractView;
+import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.common.View;
 import sfgamedataeditor.views.main.modules.common.buttons.ButtonsView;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
@@ -11,7 +13,7 @@ import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 
-public class MainView extends AbstractView {
+public class MainView implements RenderableView {
     private JPanel mainPanel;
     private JPanel navigationPanel;
     private JPanel contentPanel;
@@ -43,11 +45,48 @@ public class MainView extends AbstractView {
         ViewTools.centerFrame(frame);
     }
 
+    public void renderViewInsideContentPanel(View view) {
+        renderViewInsidePanel(view, contentPanel);
+    }
+
+    public void renderViewInsideNavigationPanel(View view) {
+        renderViewInsidePanel(view, navigationPanel);
+    }
+
+    public void renderViewInsideEventHistoryPanel(View view) {
+        renderViewInsidePanel(view, eventHistoryPanel);
+    }
+
+    public void renderViewInsideButtonPanel(View view) {
+        renderViewInsidePanel(view, buttonsPanel);
+    }
+
+    private void renderViewInsidePanel(View view, JPanel panel) {
+        panel.add(view.getMainPanel());
+        panel.revalidate();
+        panel.repaint();
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    @Override
+    public void render() {
+
+    }
+
+    @Override
+    public void unrender() {
+
+    }
+
+    @Override
+    public Class<? extends AbstractController> getControllerClass() {
+        return null;
     }
 }

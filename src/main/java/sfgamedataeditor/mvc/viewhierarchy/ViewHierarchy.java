@@ -1,7 +1,10 @@
 package sfgamedataeditor.mvc.viewhierarchy;
 
-import sfgamedataeditor.views.common.AbstractView;
+import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
+import sfgamedataeditor.views.main.modules.common.buttons.ButtonsView;
+import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 import sfgamedataeditor.views.main.modules.items.armor.ArmorTypeListView;
@@ -23,16 +26,32 @@ import java.util.List;
 public enum  ViewHierarchy {
     INSTANCE;
 
-    private final ViewHierarchyNode rootNode = new ViewHierarchyNode(null, ModulesView.class);
+    private final ViewHierarchyNode rootNode = new ViewHierarchyNode(null, MainView.class);
 
     ViewHierarchy() {
-        rootNode.addChildren(createBuildingsNodes(rootNode),
-                createItemsNodes(rootNode),
-                createMerchantsNodes(rootNode),
-                createSkillNodes(rootNode),
-                createSpellNodes(rootNode),
-                createUnitNodes(rootNode)
+        rootNode.addChildren(createEventHistoryNodes(rootNode),
+                createModulesNodes(rootNode),
+                createButtonsNodes(rootNode));
+    }
+
+    private ViewHierarchyNode createButtonsNodes(ViewHierarchyNode rootNode) {
+        return new ViewHierarchyNode(rootNode, ButtonsView.class);
+    }
+
+    private ViewHierarchyNode createEventHistoryNodes(ViewHierarchyNode rootNode) {
+        return new ViewHierarchyNode(rootNode, EventHistoryView.class);
+    }
+
+    private ViewHierarchyNode createModulesNodes(ViewHierarchyNode rootNode) {
+        ViewHierarchyNode modules = new ViewHierarchyNode(rootNode, ModulesView.class);
+        modules.addChildren(createBuildingsNodes(modules),
+                createItemsNodes(modules),
+                createMerchantsNodes(modules),
+                createSkillNodes(modules),
+                createSpellNodes(modules),
+                createUnitNodes(modules)
         );
+        return modules;
     }
 
     private ViewHierarchyNode createMerchantsNodes(ViewHierarchyNode rootNode) {
@@ -76,8 +95,8 @@ public enum  ViewHierarchy {
         return new ViewHierarchyNode(rootNode, UnitsRacesView.class);
     }
     
-    public List<Class<? extends AbstractView>> getViewsToShow(Class<? extends AbstractView> leafViewClass) {
-        List<Class<? extends AbstractView>> viewBranch = new ArrayList<>();
+    public List<Class<? extends RenderableView>> getViewsToShow(Class<? extends RenderableView> leafViewClass) {
+        List<Class<? extends RenderableView>> viewBranch = new ArrayList<>();
         ViewHierarchyNode node = findLeafNode(leafViewClass);
         while (node != null) {
             viewBranch.add(node.getViewClass());
@@ -87,11 +106,11 @@ public enum  ViewHierarchy {
         return viewBranch;
     }
 
-    private ViewHierarchyNode findLeafNode(Class<? extends AbstractView> leafViewClass) {
+    private ViewHierarchyNode findLeafNode(Class<? extends RenderableView> leafViewClass) {
         return findNode(rootNode, leafViewClass);
     }
 
-    private ViewHierarchyNode findNode(ViewHierarchyNode node, Class<? extends AbstractView> leafViewClass) {
+    private ViewHierarchyNode findNode(ViewHierarchyNode node, Class<? extends RenderableView> leafViewClass) {
         if (node.getViewClass().equals(leafViewClass)) {
             return node;
         }

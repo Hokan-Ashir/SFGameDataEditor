@@ -4,7 +4,6 @@ import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.database.tableservices.SkillParametersTableService;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 
@@ -13,8 +12,8 @@ import java.util.List;
 
 public class SkillParameterController extends AbstractController<SkillParameterModel, SkillParameterView> {
 
-    public SkillParameterController(Model<SkillParameterModel> model, SkillParameterView view) {
-        super(model, view);
+    public SkillParameterController(SkillParameterView view) {
+        super(view);
     }
 
     @Override

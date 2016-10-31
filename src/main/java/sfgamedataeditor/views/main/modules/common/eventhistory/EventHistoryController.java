@@ -1,12 +1,11 @@
 package sfgamedataeditor.views.main.modules.common.eventhistory;
 
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.Model;
 
 public class EventHistoryController extends AbstractController<EventHistoryModelParameter, EventHistoryView> {
 
-    public EventHistoryController(Model<EventHistoryModelParameter> model, EventHistoryView view) {
-        super(model, view);
+    public EventHistoryController(EventHistoryView view) {
+        super(view);
     }
 
     @Override

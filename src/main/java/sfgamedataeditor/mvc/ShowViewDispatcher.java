@@ -1,7 +1,7 @@
 package sfgamedataeditor.mvc;
 
 import sfgamedataeditor.events.ClassTuple;
-import sfgamedataeditor.events.EventHandlerRegister;
+import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.events.types.Event;
 import sfgamedataeditor.mvc.commonevents.ShowViewEvent;
@@ -9,50 +9,53 @@ import sfgamedataeditor.mvc.commonevents.UnShowViewEvent;
 import sfgamedataeditor.mvc.commonevents.UpdateViewModelEvent;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.viewhierarchy.ViewHierarchy;
-import sfgamedataeditor.views.common.AbstractView;
+import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistory;
+import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryModel;
+import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryModelParameter;
+import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public enum  ShowViewDispatcher {
     INSTANCE;
 
-    private List<Class<? extends AbstractView>> viewsOnTheScreen = new ArrayList<>();
-    private Map<ClassTuple<? extends AbstractView, ? extends AbstractView>, AbstractModelCreator> creatorMap = new HashMap<>();
+    private List<Class<? extends RenderableView>> viewsOnTheScreen = new ArrayList<>();
+    private Map<ClassTuple<? extends RenderableView, ? extends RenderableView>, AbstractModelCreator> creatorMap = new HashMap<>();
 
     ShowViewDispatcher() {
 //        creatorMap.put()
     }
 
-    public void showView(Class<? extends AbstractView> viewClassToShow, Model model) {
+    public void showView(Class<? extends RenderableView> viewClassToShow, Model model) {
         boolean viewExistsOnScreen = isViewExistsOnScreen(viewClassToShow);
         if (viewExistsOnScreen) {
-            AbstractView view = ViewRegister.INSTANCE.getView(viewClassToShow);
+            RenderableView view = ViewRegister.INSTANCE.getView(viewClassToShow);
             UpdateViewModelEvent updateViewModelEvent = new UpdateViewModelEvent(view, model);
-            EventHandlerRegister.INSTANCE.fireEvent(updateViewModelEvent);
+            EventHistory.INSTANCE.addEventToHistory(updateViewModelEvent);
+            EventProcessor.INSTANCE.process(updateViewModelEvent);
+            updateEventHistoryButtonsState();
         } else {
-            List<Class<? extends AbstractView>> viewsToShow = ViewHierarchy.INSTANCE.getViewsToShow(viewClassToShow);
+            List<Class<? extends RenderableView>> viewsToShow = ViewHierarchy.INSTANCE.getViewsToShow(viewClassToShow);
             List<Event> eventsToProcess = createEventsToProcess(viewsToShow);
             List<Event> unrenderEvents = createUnRenderViewEventList(viewsToShow);
             eventsToProcess.addAll(unrenderEvents);
             for (Event eventsToProces : eventsToProcess) {
-                EventHandlerRegister.INSTANCE.fireEventSilently(eventsToProces);
+                EventProcessor.INSTANCE.process(eventsToProces);
             }
         }
     }
 
-    private List<Event> createEventsToProcess(List<Class<? extends AbstractView>> viewBranch) {
+    private List<Event> createEventsToProcess(List<Class<? extends RenderableView>> viewBranch) {
         List<Event> events = new ArrayList<>();
         // -2, not -1 for event before currently viewable view
         for (int i = viewBranch.size() - 2; i > -1; --i) {
             // TODO check border condition
-            Class<? extends AbstractView> viewI = viewBranch.get(i);
-            Class<? extends AbstractView> viewI1 = viewBranch.get(i + 1);
+            Class<? extends RenderableView> viewI = viewBranch.get(i);
+            Class<? extends RenderableView> viewI1 = viewBranch.get(i + 1);
             boolean existsOnScreen = isViewExistsOnScreen(viewI);
             if (existsOnScreen) {
-                AbstractView view = ViewRegister.INSTANCE.getView(viewI);
+                RenderableView view = ViewRegister.INSTANCE.getView(viewI);
                 AbstractModelCreator abstractModelCreator = creatorMap.get(new ClassTuple<>(viewI, viewI1));
                 Model model = abstractModelCreator.createModel();
                 UpdateViewModelEvent updateViewModelEvent = new UpdateViewModelEvent(view, model);
@@ -63,10 +66,21 @@ public enum  ShowViewDispatcher {
             }
         }
 
+        if (events.size() == 0 && viewBranch.size() != 0) {
+            for (Class<? extends RenderableView> aClass : viewBranch) {
+                ShowViewEvent event = new ShowViewEvent(aClass);
+                events.add(event);
+            }
+        }
+
         return events;
     }
 
-    private List<Event> createUnRenderViewEventList(List<Class<? extends AbstractView>> viewsToShow) {
+    private List<Event> createUnRenderViewEventList(List<Class<? extends RenderableView>> viewsToShow) {
+        if (viewsOnTheScreen.isEmpty()) {
+            return Collections.emptyList();
+        }
+
         List<Event> unrenderEvents = new ArrayList<>();
         for (int i = 0; i < viewsToShow.size(); i++) {
             if (viewsToShow.get(i).equals(viewsOnTheScreen.get(i))) {
@@ -82,7 +96,17 @@ public enum  ShowViewDispatcher {
         return unrenderEvents;
     }
 
-    private boolean isViewExistsOnScreen(Class<? extends AbstractView> view) {
+    private boolean isViewExistsOnScreen(Class<? extends RenderableView> view) {
         return viewsOnTheScreen.contains(view);
+    }
+
+    private void updateEventHistoryButtonsState() {
+        EventHistoryView view = ViewRegister.INSTANCE.getView(EventHistoryView.class);
+        boolean isRedoPossible = EventHistory.INSTANCE.isRedoPossible();
+        boolean isUndoPossible = EventHistory.INSTANCE.isUndoPossible();
+        EventHistoryModelParameter parameter = new EventHistoryModelParameter(isRedoPossible, isUndoPossible);
+        EventHistoryModel model = new EventHistoryModel(parameter);
+        UpdateViewModelEvent event = new UpdateViewModelEvent(view, model);
+        EventProcessor.INSTANCE.process(event);
     }
 }

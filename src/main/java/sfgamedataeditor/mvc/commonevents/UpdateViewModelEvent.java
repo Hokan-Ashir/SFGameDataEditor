@@ -2,19 +2,19 @@ package sfgamedataeditor.mvc.commonevents;
 
 import sfgamedataeditor.events.types.Event;
 import sfgamedataeditor.mvc.objects.Model;
-import sfgamedataeditor.views.common.AbstractView;
+import sfgamedataeditor.views.common.RenderableView;
 
 public class UpdateViewModelEvent extends Event {
 
     private final Model model;
-    private final AbstractView view;
+    private final RenderableView view;
 
-    public UpdateViewModelEvent(AbstractView view, Model model) {
+    public UpdateViewModelEvent(RenderableView view, Model model) {
         this.model = model;
         this.view = view;
     }
 
-    public AbstractView getView() {
+    public RenderableView getView() {
         return view;
     }
 

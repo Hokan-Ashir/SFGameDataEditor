@@ -2,9 +2,9 @@ package sfgamedataeditor.events;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import sfgamedataeditor.views.common.AbstractView;
+import sfgamedataeditor.views.common.RenderableView;
 
-public class ClassTuple<T extends AbstractView, V extends AbstractView> {
+public class ClassTuple<T extends RenderableView, V extends RenderableView> {
 
     private Class<T> viewClass;
     private Class<V> parentViewClass;

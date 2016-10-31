@@ -1,7 +1,7 @@
 package sfgamedataeditor.fieldwrapping.fields;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.events.EventHandlerRegister;
+import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.Event;
 
 import javax.swing.*;
@@ -44,7 +44,7 @@ public class LinkableTextField extends AbstractDataField<JTextField> {
         linkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EventHandlerRegister.INSTANCE.fireEvent(event);
+                EventProcessor.INSTANCE.process(event);
             }
         });
     }

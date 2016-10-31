@@ -1,6 +1,6 @@
 package sfgamedataeditor.mvc.viewhierarchy;
 
-import sfgamedataeditor.views.common.AbstractView;
+import sfgamedataeditor.views.common.RenderableView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,10 +8,10 @@ import java.util.List;
 
 public class ViewHierarchyNode {
     private final List<ViewHierarchyNode> children = new ArrayList<>();
-    private final Class<? extends AbstractView> viewClass;
+    private final Class<? extends RenderableView> viewClass;
     private final ViewHierarchyNode parentNode;
 
-    public ViewHierarchyNode(ViewHierarchyNode parentNode, Class<? extends AbstractView> viewClass) {
+    public ViewHierarchyNode(ViewHierarchyNode parentNode, Class<? extends RenderableView> viewClass) {
         this.viewClass = viewClass;
         this.parentNode = parentNode;
     }
@@ -20,7 +20,7 @@ public class ViewHierarchyNode {
         return parentNode;
     }
 
-    public Class<? extends AbstractView> getViewClass() {
+    public Class<? extends RenderableView> getViewClass() {
         return viewClass;
     }
 

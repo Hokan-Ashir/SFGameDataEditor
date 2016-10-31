@@ -1,8 +1,6 @@
 package sfgamedataeditor.views.fileselection;
 
-import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.TopEventHandler;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
@@ -22,7 +20,6 @@ public class FileSelectionView {
         originalFileLabel.setText(I18N.INSTANCE.getMessage("fileSelectionWindowOriginalFileTextFieldCaption"));
         modificationFileLabel.setText(I18N.INSTANCE.getMessage("fileSelectionWindowModificationFileTextFieldCaption"));
         okButton.setText(I18N.INSTANCE.getMessage("ok"));
-        EventHandlerRegister.INSTANCE.addEventHandler(new TopEventHandler());
     }
 
     public static void showFileSelectionView() {

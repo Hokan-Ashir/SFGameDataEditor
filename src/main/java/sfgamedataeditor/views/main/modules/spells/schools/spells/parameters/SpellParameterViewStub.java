@@ -8,14 +8,14 @@ import sfgamedataeditor.fieldwrapping.MappedColumn;
 import sfgamedataeditor.fieldwrapping.Wrapable;
 import sfgamedataeditor.listeners.ClassRequirementComboBoxListener;
 import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.common.IView;
+import sfgamedataeditor.views.common.View;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 import java.util.List;
 import java.util.Map;
 
-public class SpellParameterViewStub implements Wrapable, IView {
+public class SpellParameterViewStub implements Wrapable, View {
 
     // inside spell offsets are taken from http://spellforcefanforum.hostoi.com/viewtopic.php?f=14&t=242
     private JPanel mainPanel;

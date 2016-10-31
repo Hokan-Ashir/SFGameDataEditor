@@ -1,12 +1,13 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
-import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.fieldwrapping.FieldsWrapperCreator;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
-import sfgamedataeditor.views.common.AbstractView;
-import sfgamedataeditor.views.common.Processable;
+import sfgamedataeditor.mvc.ShowViewDispatcher;
+import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.views.common.RenderableView;
 import sfgamedataeditor.views.common.levelable.LevelableView;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
 
 import javax.swing.*;
@@ -14,11 +15,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Collection;
 
-public class SkillParameterView extends AbstractView implements Processable<SkillParametersMetaEvent> {
+public class SkillParameterView implements RenderableView {
 
     private final SkillParameterViewStub stub;
     private final Collection<IDataField> dataFields;
-    private SkillEventParameter parameter;
     // TODO merge levelView into SkillParameterView
     private final LevelableView<SkillSchoolsView> view = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(LevelableView.class);
     private final SkillSchoolsView skillSchoolsView = (SkillSchoolsView) ViewRegister.INSTANCE.getView(SkillSchoolsView.class);
@@ -34,12 +34,10 @@ public class SkillParameterView extends AbstractView implements Processable<Skil
                     return;
                 }
 
-                // TODO get rid of multiple event instances
-                SkillParametersMetaEvent event = new SkillParametersMetaEvent();
-                SkillEventParameter eventParameter = new SkillEventParameter(parameter.getSkillSchoolId(), view.getSelectedLevel());
-                event.setEventParameter(ShowSkillParameterViewEvent.class, eventParameter);
-                event.setEventParameter(SetModuleNameEvent.class, skillSchoolsView.getSelectedModuleValue());
-                EventHandlerRegister.INSTANCE.fireEvent(event);
+                // TODO set parameters
+                SkillParameterModelParameter parameter = new SkillParameterModelParameter(0, 0);
+                SkillParameterModel model = new SkillParameterModel(parameter);
+                ShowViewDispatcher.INSTANCE.showView(SkillParameterView.class, model);
             }
         });
     }
@@ -60,11 +58,19 @@ public class SkillParameterView extends AbstractView implements Processable<Skil
         return stub.getMainPanel();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Class<SkillParametersMetaEvent> getMetaEventClass() {
-        return SkillParametersMetaEvent.class;
+    public void render() {
+        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+        mainView.renderViewInsideContentPanel(this);
+    }
+
+    @Override
+    public void unrender() {
+
+    }
+
+    @Override
+    public Class<? extends AbstractController> getControllerClass() {
+        return SkillParameterController.class;
     }
 }

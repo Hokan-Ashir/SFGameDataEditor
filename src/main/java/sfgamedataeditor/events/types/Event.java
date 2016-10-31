@@ -1,8 +1,7 @@
 package sfgamedataeditor.events.types;
 
-public class Event<P> {
+public class Event {
     private String description;
-    private P objectParameter;
 
     public String getDescription() {
         return description;
@@ -11,13 +10,5 @@ public class Event<P> {
     // TODO override in child events, maybe make abstract
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public P getObjectParameter() {
-        return objectParameter;
-    }
-
-    public void setObjectParameter(P objectParameter) {
-        this.objectParameter = objectParameter;
     }
 }

@@ -1,7 +1,10 @@
 package sfgamedataeditor.views.main.modules.items;
 
+import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.items.armor.ArmorTypeListView;
 import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansListView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
@@ -20,35 +23,27 @@ public class ItemTypesView extends AbstractModulesView {
      */
     @Override
     protected void fillComboBoxMapping() {
-        addWeaponsListMapping();
-        addArmorListMapping();
-        addSpellScrollsMapping();
-        addRuneListMapping();
-        addBuildingPlansMapping();
-        addMiscellaneousMapping();
-    }
-
-    private void addWeaponsListMapping() {
         addMapping(I18N.INSTANCE.getMessage("items.weapons"), WeaponsTypesListView.class);
-    }
-
-    private void addArmorListMapping() {
         addMapping(I18N.INSTANCE.getMessage("items.armor"), ArmorTypeListView.class);
-    }
-
-    private void addSpellScrollsMapping() {
         addMapping(I18N.INSTANCE.getMessage("items.spellScrolls"), SpellScrollsListView.class);
-    }
-
-    private void addRuneListMapping() {
         addMapping(I18N.INSTANCE.getMessage("items.runes"), RuneRacesListView.class);
-    }
-
-    private void addBuildingPlansMapping() {
         addMapping(I18N.INSTANCE.getMessage("items.buildingPlans"), BuildingPlansListView.class);
+        addMapping(I18N.INSTANCE.getMessage("items.miscellaneous"), MiscellaneousListView.class);
     }
 
-    private void addMiscellaneousMapping() {
-        addMapping(I18N.INSTANCE.getMessage("items.miscellaneous"), MiscellaneousListView.class);
+    @Override
+    public void render() {
+        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+        mainView.renderViewInsideNavigationPanel(this);
+    }
+
+    @Override
+    public void unrender() {
+
+    }
+
+    @Override
+    public Class<? extends AbstractController> getControllerClass() {
+        return null;
     }
 }
