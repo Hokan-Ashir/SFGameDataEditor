@@ -50,6 +50,16 @@ public class SkillParameterViewStub implements Wrapable, IView {
         return mainPanel;
     }
 
+    @Override
+    public void render() {
+
+    }
+
+    @Override
+    public void unrender() {
+
+    }
+
     /**
      * {@inheritDoc}
      */

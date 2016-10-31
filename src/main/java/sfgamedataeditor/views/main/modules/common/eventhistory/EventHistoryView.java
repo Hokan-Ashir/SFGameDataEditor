@@ -2,17 +2,15 @@ package sfgamedataeditor.views.main.modules.common.eventhistory;
 
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractView;
-import sfgamedataeditor.views.main.MainView;
 
 import javax.swing.*;
 
-public class EventHistoryView extends AbstractView<MainView> {
+public class EventHistoryView extends AbstractView {
     private JPanel mainPanel;
     private JButton undoButton;
     private JButton redoButton;
 
-    public EventHistoryView(MainView parentView) {
-        super(parentView);
+    public EventHistoryView() {
         undoButton.setText(I18N.INSTANCE.getMessage("back"));
         redoButton.setText(I18N.INSTANCE.getMessage("forward"));
         
@@ -32,13 +30,12 @@ public class EventHistoryView extends AbstractView<MainView> {
         redoButton.addActionListener(listener);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void updateData(Object data) {
-        redoButton.setEnabled(EventHistory.INSTANCE.isRedoPossible());
-        undoButton.setEnabled(EventHistory.INSTANCE.isUndoPossible());
+    public void setRedoButtonStatus(boolean isEnabled) {
+        redoButton.setEnabled(isEnabled);
+    }
+
+    public void setUndoButtonStatus(boolean isEnabled) {
+        undoButton.setEnabled(isEnabled);
     }
 
     /**

@@ -1,6 +1,8 @@
 package sfgamedataeditor.events.processing;
 
-import sfgamedataeditor.events.types.*;
+import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.Event;
+import sfgamedataeditor.events.types.ShowViewEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +12,6 @@ public enum EventProcessor {
 
     private Map<Class<? extends Event>, EventProcessingStrategy> strategyMap = new HashMap<Class<? extends Event>, EventProcessingStrategy>() {{
         put(ShowViewEvent.class, new ShowViewEventProcessingStrategy());
-        put(ClearViewEvent.class, new ClearViewEventStrategy());
-        put(SetModuleNameEvent.class, new SetModuleNameEventStrategy());
     }};
 
     public void process(AbstractMetaEvent metaEvent) {

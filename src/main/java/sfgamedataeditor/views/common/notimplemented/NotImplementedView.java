@@ -5,12 +5,11 @@ import sfgamedataeditor.views.common.AbstractView;
 
 import javax.swing.*;
 
-public class NotImplementedView<T extends AbstractView> extends AbstractView<T> {
+public class NotImplementedView extends AbstractView {
     private JLabel notImplementedLabel;
     private JPanel mainPanel;
 
-    public NotImplementedView(T parentView) {
-        super(parentView);
+    public NotImplementedView() {
         notImplementedLabel.setText(I18N.INSTANCE.getMessage("notImplemented"));
     }
 

@@ -1,9 +1,9 @@
 package sfgamedataeditor.views.fileselection;
 
 import sfgamedataeditor.databind.files.FileUtils;
-import sfgamedataeditor.events.EventHandlerRegister;
+import sfgamedataeditor.mvc.ShowViewDispatcher;
 import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.main.MainViewMetaEvent;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
@@ -30,8 +30,7 @@ public class UploadDataButtonListener implements ActionListener {
         ViewTools.setComponentsEnableStatus(mainPanel, false);
         ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.INSTANCE.getMessage("processingData"));
         FileUtils.uploadDataIntoDatabase();
-        MainViewMetaEvent event = new MainViewMetaEvent();
-        EventHandlerRegister.INSTANCE.fireEventSilently(event);
+        ShowViewDispatcher.INSTANCE.showView(MainView.class, null);
         frame.dispose();
     }
 }

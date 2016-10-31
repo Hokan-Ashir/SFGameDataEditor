@@ -2,8 +2,6 @@ package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
 import sfgamedataeditor.events.EventCreator;
 import sfgamedataeditor.events.types.AbstractViewableMetaEvent;
-import sfgamedataeditor.events.types.ClearViewEvent;
-import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsMetaEvent;
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;

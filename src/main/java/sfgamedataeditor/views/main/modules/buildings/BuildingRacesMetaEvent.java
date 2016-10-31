@@ -3,11 +3,8 @@ package sfgamedataeditor.views.main.modules.buildings;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventCreator;
 import sfgamedataeditor.events.types.AbstractViewableMetaEvent;
-import sfgamedataeditor.events.types.ClearViewEvent;
-import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.views.main.MainView;
-import sfgamedataeditor.views.main.modules.common.ModulesMetaEvent;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 
 public class BuildingRacesMetaEvent extends AbstractViewableMetaEvent<ModulesMetaEvent> {
@@ -19,8 +16,7 @@ public class BuildingRacesMetaEvent extends AbstractViewableMetaEvent<ModulesMet
     protected void addEvents() {
         SetModuleNameEvent moduleNameEvent = new SetModuleNameEvent(ModulesView.class, MainView.class);
         ShowBuildingRacesViewEvent event = EventCreator.createEvent(BuildingRacesView.class, MainView.class, ShowBuildingRacesViewEvent.class);
-        ClearViewEvent clearViewEvent = new ClearViewEvent<>(BuildingRacesView.class, MainView.class);
-        addEvents(moduleNameEvent, event, clearViewEvent);
+        addEvents(moduleNameEvent, event);
     }
 
     /**

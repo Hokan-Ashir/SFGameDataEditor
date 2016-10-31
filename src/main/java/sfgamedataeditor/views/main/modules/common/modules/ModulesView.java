@@ -1,23 +1,18 @@
 package sfgamedataeditor.views.main.modules.common.modules;
 
-import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.common.AbstractView;
-import sfgamedataeditor.views.main.MainView;
-import sfgamedataeditor.views.main.modules.buildings.BuildingRacesMetaEvent;
-import sfgamedataeditor.views.main.modules.common.ModulesMetaEvent;
-import sfgamedataeditor.views.main.modules.items.ItemTypesMetaEvent;
-import sfgamedataeditor.views.main.modules.merchants.MerchantLocationsMetaEvent;
-import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsMetaEvent;
-import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsMetaEvent;
-import sfgamedataeditor.views.main.modules.units.UnitRacesMetaEvent;
+import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
+import sfgamedataeditor.views.main.modules.items.ItemTypesView;
+import sfgamedataeditor.views.main.modules.merchants.MerchantLocationsView;
+import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
+import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;
+import sfgamedataeditor.views.main.modules.units.UnitsRacesView;
 
-public class ModulesView extends AbstractModulesView<MainView, ModulesMetaEvent> {
+public class ModulesView extends AbstractModulesView {
 
-    public ModulesView(MainView parentView) {
-        super(parentView, I18N.INSTANCE.getMessage("modulesList"));
-        EventHandlerRegister.INSTANCE.addEventHandler(new ModulesEventHandler());
+    public ModulesView() {
+        super(I18N.INSTANCE.getMessage("modulesList"));
     }
 
     /**
@@ -34,48 +29,26 @@ public class ModulesView extends AbstractModulesView<MainView, ModulesMetaEvent>
     }
 
     private void addSkillsMapping() {
-        SkillSchoolsMetaEvent event = new SkillSchoolsMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("skills"), event);
+        addMapping(I18N.INSTANCE.getMessage("skills"), SkillSchoolsView.class);
     }
 
     private void addSpellsMapping() {
-        SpellSchoolsMetaEvent event = new SpellSchoolsMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("spells"), event);
+        addMapping(I18N.INSTANCE.getMessage("spells"), SpellSchoolsView.class);
     }
 
     private void addMerchantsMapping() {
-        MerchantLocationsMetaEvent event = new MerchantLocationsMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("merchants"), event);
+        addMapping(I18N.INSTANCE.getMessage("merchants"), MerchantLocationsView.class);
     }
 
     private void addBuildingsMapping() {
-        BuildingRacesMetaEvent event = new BuildingRacesMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("buildings"), event);
+        addMapping(I18N.INSTANCE.getMessage("buildings"), BuildingRacesView.class);
     }
 
     private void addUnitsMapping() {
-        UnitRacesMetaEvent event = new UnitRacesMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("units"), event);
+        addMapping(I18N.INSTANCE.getMessage("units"), UnitsRacesView.class);
     }
 
     private void addItemsMapping() {
-        ItemTypesMetaEvent event = new ItemTypesMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("items"), event);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Class<ModulesMetaEvent> getMetaEventClass() {
-        return ModulesMetaEvent.class;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Class<? extends AbstractView> getParentHierarchyClass() {
-        return MainView.class;
+        addMapping(I18N.INSTANCE.getMessage("items"), ItemTypesView.class);
     }
 }

@@ -4,7 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import sfgamedataeditor.views.common.AbstractView;
 
-public class ClassTuple<T extends AbstractView<V>, V extends AbstractView> {
+public class ClassTuple<T extends AbstractView, V extends AbstractView> {
 
     private Class<T> viewClass;
     private Class<V> parentViewClass;

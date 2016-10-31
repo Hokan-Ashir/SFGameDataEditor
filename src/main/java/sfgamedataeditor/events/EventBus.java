@@ -1,6 +1,7 @@
 package sfgamedataeditor.events;
 
 import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.Event;
 import sfgamedataeditor.events.types.ShowViewEvent;
 
 import java.lang.reflect.InvocationTargetException;
@@ -121,7 +122,7 @@ class EventDispatcher {
  * is the component, that deliver / dispatch the {@link ShowViewEvent}s to the registered {@link EventHandler}.
  *
  * @author Hannes Dorfmann
- * @see #fireEvent(AbstractMetaEvent)
+ * @see #fireEvent(Event)
  * @see #addHandler(Object)
  * @see #removeHandler(Object)
  */
@@ -129,7 +130,7 @@ public class EventBus {
 
     private static final EventMethodCache eventMethodChache = new EventMethodCache();
     private static boolean caching = true;
-    private final Map<Class<? extends AbstractMetaEvent>, Set<EventDispatcher>> handlerMap;
+    private final Map<Class<? extends Event>, Set<EventDispatcher>> handlerMap;
 
 
     public EventBus() {
@@ -150,8 +151,8 @@ public class EventBus {
      * This method is a little helper method and is only used by the {@link EventBus} internally.
      */
     @SuppressWarnings("unchecked")
-    private Class<? extends AbstractMetaEvent> getEventClass(Method m) {
-        return (Class<? extends AbstractMetaEvent>) m.getParameterTypes()[0];
+    private Class<? extends Event> getEventClass(Method m) {
+        return (Class<? extends Event>) m.getParameterTypes()[0];
     }
 
     /**
@@ -238,7 +239,7 @@ public class EventBus {
     /**
      * Add a {@link EventDispatcher} for the passed {@link ShowViewEvent}-Class
      */
-    private void addEventDispatcher(Class<? extends AbstractMetaEvent> eventClass,
+    private void addEventDispatcher(Class<? extends Event> eventClass,
                                     EventDispatcher disp) {
 
         Set<EventDispatcher> dispatchers = handlerMap.get(eventClass);
@@ -277,7 +278,7 @@ public class EventBus {
      * @return true if at least one {@link EventHandler} is registered and has received the passed event,
      * otherwise false
      */
-    public boolean fireEvent(AbstractMetaEvent event) {
+    public boolean fireEvent(Event event) {
 
         Set<EventDispatcher> dispatchers = handlerMap.get(event.getClass());
         if (dispatchers == null || dispatchers.isEmpty())

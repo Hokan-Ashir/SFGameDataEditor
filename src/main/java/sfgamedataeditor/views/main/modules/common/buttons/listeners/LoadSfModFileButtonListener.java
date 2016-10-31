@@ -4,13 +4,9 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.databind.files.FileData;
 import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.databind.files.FilesContainer;
-import sfgamedataeditor.dataextraction.DataFilesParser;
-import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
-import sfgamedataeditor.views.common.AbstractView;
-import sfgamedataeditor.views.common.NullView;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.ViewTools;
 
@@ -28,7 +24,7 @@ public class LoadSfModFileButtonListener implements ActionListener {
     private static final String SFMOD_FILE_EXTENSION = "sfmod";
     private static final Logger LOGGER = Logger.getLogger(LoadSfModFileButtonListener.class);
 
-    private MainView mainView = ViewRegister.INSTANCE.getView(new ClassTuple<>(MainView.class, NullView.class));
+    private MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
 
     /**
      * {@inheritDoc}
@@ -62,28 +58,12 @@ public class LoadSfModFileButtonListener implements ActionListener {
         ViewTools.setComponentsEnableStatus(mainView.getMainPanel(), false);
 
         FileUtils.uploadDataIntoDatabase();
-        updateAllCurrentViews();
+        // TODO check if this is necessarily
+//        updateAllCurrentViews();
 
         String successfulMessage = I18N.INSTANCE.getMessage("sfmodFilePrefix") + FilesContainer.INSTANCE.getModificationFileName() + I18N.INSTANCE.getMessage("successfullyLoaded");
         new Notification(successfulMessage);
         ViewTools.setComponentsEnableStatus(mainView.getMainPanel(), true);
-    }
-
-    private void updateAllCurrentViews() {
-        DataFilesParser.INSTANCE.recreateAllMaps();
-        // TODO make this use-case work:
-        // user selected Fire/Fireball-1 and change its spell requirements to
-        // Elemental magic/Ice-1, made sfmod-file, then load it,
-        // cause all maps in Mappings class stays the same
-        // Fireball-1's requrements still considered as Elemental magic/Fire-1
-        updateDataRecursively(mainView);
-    }
-
-    private <T extends AbstractView> void updateDataRecursively(AbstractView<T> parent) {
-        parent.updateData(null);
-        for (AbstractView<T> tAbstractView : parent.getChildren()) {
-            updateDataRecursively(tAbstractView);
-        }
     }
 }
 

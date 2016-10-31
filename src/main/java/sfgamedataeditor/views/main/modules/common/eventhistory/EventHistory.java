@@ -1,8 +1,7 @@
 package sfgamedataeditor.views.main.modules.common.eventhistory;
 
 import sfgamedataeditor.events.EventHandlerRegister;
-import sfgamedataeditor.events.types.AbstractMetaEvent;
-import sfgamedataeditor.events.types.AbstractViewableMetaEvent;
+import sfgamedataeditor.events.types.Event;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,25 +9,13 @@ import java.util.List;
 public enum EventHistory {
     INSTANCE;
 
-    private List<AbstractMetaEvent> events = new ArrayList<>();
+    private List<Event> events = new ArrayList<>();
     private int currentEventIndex = -1;
 
-    public boolean addEventToHistory(AbstractMetaEvent metaEvent) {
-        List<AbstractViewableMetaEvent> events = getEvents((AbstractViewableMetaEvent) metaEvent);
-        boolean isSuccess = this.events.add(metaEvent);
+    public boolean addEventToHistory(Event event) {
+        boolean isSuccess = this.events.add(event);
         currentEventIndex++;
         return isSuccess;
-    }
-
-    private List<AbstractViewableMetaEvent> getEvents(AbstractViewableMetaEvent metaEvent) {
-        List<AbstractViewableMetaEvent> events = new ArrayList<>();
-        AbstractViewableMetaEvent viewableMetaEvent = metaEvent.createParentMetaEvent();
-        if (viewableMetaEvent != null) {
-            events.add(viewableMetaEvent);
-            events.addAll(getEvents(viewableMetaEvent));
-        }
-
-        return events;
     }
 
     public void undo() {
@@ -42,7 +29,7 @@ public enum EventHistory {
     }
 
     private void fireCurrentEvent() {
-        AbstractMetaEvent event = events.get(currentEventIndex);
+        Event event = events.get(currentEventIndex);
         EventHandlerRegister.INSTANCE.fireEventSilently(event);
     }
 

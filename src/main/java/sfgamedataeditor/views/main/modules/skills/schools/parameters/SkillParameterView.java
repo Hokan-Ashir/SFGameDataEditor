@@ -1,37 +1,29 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
-import sfgamedataeditor.database.objects.SkillParameters;
-import sfgamedataeditor.database.tableservices.SkillParametersTableService;
-import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.fieldwrapping.FieldsWrapperCreator;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.common.Processable;
 import sfgamedataeditor.views.common.levelable.LevelableView;
-import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
-import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
-import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Collection;
-import java.util.List;
 
-public class SkillParameterView extends AbstractView<MainView> implements Processable<SkillParametersMetaEvent> {
+public class SkillParameterView extends AbstractView implements Processable<SkillParametersMetaEvent> {
 
     private final SkillParameterViewStub stub;
     private final Collection<IDataField> dataFields;
     private SkillEventParameter parameter;
-    private final LevelableView<SkillSchoolsView> view = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, MainView.class));
-    private final SkillSchoolsView skillSchoolsView = (SkillSchoolsView) ViewRegister.INSTANCE.getView(new ClassTuple(SkillSchoolsView.class, MainView.class));
+    // TODO merge levelView into SkillParameterView
+    private final LevelableView<SkillSchoolsView> view = (LevelableView<SkillSchoolsView>) ViewRegister.INSTANCE.getView(LevelableView.class);
+    private final SkillSchoolsView skillSchoolsView = (SkillSchoolsView) ViewRegister.INSTANCE.getView(SkillSchoolsView.class);
 
-    public SkillParameterView(MainView parentView) {
-        super(parentView);
+    public SkillParameterView() {
         this.stub = new SkillParameterViewStub();
         this.dataFields = FieldsWrapperCreator.createFieldWrappers(stub);
 
@@ -52,41 +44,12 @@ public class SkillParameterView extends AbstractView<MainView> implements Proces
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void updateData(Object o) {
-        if (o != null) {
-            // TODO get rid of class casting
-            parameter = (SkillEventParameter) o;
-        }
-
-        fillPossibleSkillLevelsComboBox(parameter.getSkillSchoolId());
-        setFieldsData(parameter.getSkillSchoolId(), parameter.getSkillLevel());
+    public Collection<IDataField> getDataFields() {
+        return dataFields;
     }
 
-    private void fillPossibleSkillLevelsComboBox(final int skillSchoolId) {
-        final JComboBox<String> comboBox = view.getLevelComboBox();
-        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
-            @Override
-            protected void setValues() {
-                comboBox.removeAllItems();
-                List<SkillParameters> skillPossibleValues = SkillParametersTableService.INSTANCE.getSkillPossibleValues(skillSchoolId);
-                for (SkillParameters skillPossibleValue : skillPossibleValues) {
-                    comboBox.addItem(String.valueOf(skillPossibleValue.level));
-                }
-            }
-        });
-    }
-
-    private void setFieldsData(int skillSchoolId, int skillLevel) {
-        SkillParameters skillParameter = SkillParametersTableService.INSTANCE.getSkillParameter(skillSchoolId, skillLevel);
-        if (skillParameter != null) {
-            for (IDataField dataField : dataFields) {
-                dataField.mapValues(skillParameter);
-            }
-        }
+    public JComboBox<String> getLevelComboBox() {
+        return view.getLevelComboBox();
     }
 
     /**

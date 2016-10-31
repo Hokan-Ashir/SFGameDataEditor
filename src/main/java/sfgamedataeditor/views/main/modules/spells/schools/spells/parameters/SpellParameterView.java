@@ -8,7 +8,6 @@ import sfgamedataeditor.database.tableservices.SpellParametersTableService;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.fieldwrapping.FieldsWrapperCreator;
 import sfgamedataeditor.fieldwrapping.MappedColumn;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;

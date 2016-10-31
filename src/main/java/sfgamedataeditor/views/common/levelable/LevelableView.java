@@ -5,13 +5,12 @@ import sfgamedataeditor.views.common.AbstractView;
 
 import javax.swing.*;
 
-public class LevelableView<T extends AbstractView> extends AbstractView<T> {
+public class LevelableView<T extends AbstractView> extends AbstractView {
     private JPanel mainPanel;
     private JComboBox<String> levelComboBox;
     private JLabel levelLabel;
 
     public LevelableView(T parentView) {
-        super(parentView);
         levelLabel.setText(I18N.INSTANCE.getMessage("levelLabel"));
     }
 

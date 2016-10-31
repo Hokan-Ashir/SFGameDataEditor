@@ -2,14 +2,9 @@ package sfgamedataeditor.views.main.modules.units;
 
 import sfgamedataeditor.views.common.AbstractView;
 import sfgamedataeditor.views.common.races.AbstractRacesView;
-import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 
-public class UnitsRacesView extends AbstractRacesView<MainView, UnitRacesMetaEvent> {
-
-    public UnitsRacesView(MainView parentView) {
-        super(parentView);
-    }
+public class UnitsRacesView extends AbstractRacesView<UnitRacesMetaEvent> {
 
     /**
      * {@inheritDoc}

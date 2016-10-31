@@ -3,7 +3,7 @@ package sfgamedataeditor.events.types;
 import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.views.common.AbstractView;
 
-public class ShowViewEvent<T extends AbstractView<V>, V extends AbstractView, P> extends Event<P> {
+public class ShowViewEvent<T extends AbstractView, V extends AbstractView, P> extends Event<P> {
 
     private ClassTuple<T, V> tuple;
 

@@ -2,7 +2,6 @@ package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
 import sfgamedataeditor.events.EventCreator;
 import sfgamedataeditor.events.types.AbstractViewableMetaEvent;
-import sfgamedataeditor.events.types.SetModuleNameEvent;
 import sfgamedataeditor.views.common.levelable.LevelableView;
 import sfgamedataeditor.views.common.levelable.ShowLevelableViewEvent;
 import sfgamedataeditor.views.main.MainView;

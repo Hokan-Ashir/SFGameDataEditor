@@ -1,23 +1,18 @@
 package sfgamedataeditor.views.main.modules.items;
 
-import sfgamedataeditor.events.EventHandlerRegister;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.common.AbstractView;
-import sfgamedataeditor.views.main.MainView;
-import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
-import sfgamedataeditor.views.main.modules.items.armor.ArmorTypesMetaEvent;
-import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansMetaEvent;
-import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousMetaEvent;
-import sfgamedataeditor.views.main.modules.items.runes.RuneRacesMetaEvent;
-import sfgamedataeditor.views.main.modules.items.spellscrolls.SpellScrollsMetaEvent;
-import sfgamedataeditor.views.main.modules.items.weapons.WeaponTypesMetaEvent;
+import sfgamedataeditor.views.main.modules.items.armor.ArmorTypeListView;
+import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansListView;
+import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
+import sfgamedataeditor.views.main.modules.items.runes.RuneRacesListView;
+import sfgamedataeditor.views.main.modules.items.spellscrolls.SpellScrollsListView;
+import sfgamedataeditor.views.main.modules.items.weapons.WeaponsTypesListView;
 
-public class ItemTypesView extends AbstractModulesView<MainView, ItemTypesMetaEvent> {
+public class ItemTypesView extends AbstractModulesView {
 
-    public ItemTypesView(MainView parentView) {
-        super(parentView, I18N.INSTANCE.getMessage("itemTypes"));
-        EventHandlerRegister.INSTANCE.addEventHandler(new ItemTypesEventHandler());
+    public ItemTypesView() {
+        super(I18N.INSTANCE.getMessage("itemTypes"));
     }
 
     /**
@@ -34,48 +29,26 @@ public class ItemTypesView extends AbstractModulesView<MainView, ItemTypesMetaEv
     }
 
     private void addWeaponsListMapping() {
-        WeaponTypesMetaEvent event = new WeaponTypesMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("items.weapons"), event);
+        addMapping(I18N.INSTANCE.getMessage("items.weapons"), WeaponsTypesListView.class);
     }
 
     private void addArmorListMapping() {
-        ArmorTypesMetaEvent event = new ArmorTypesMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("items.armor"), event);
+        addMapping(I18N.INSTANCE.getMessage("items.armor"), ArmorTypeListView.class);
     }
 
     private void addSpellScrollsMapping() {
-        SpellScrollsMetaEvent event = new SpellScrollsMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("items.spellScrolls"), event);
+        addMapping(I18N.INSTANCE.getMessage("items.spellScrolls"), SpellScrollsListView.class);
     }
 
     private void addRuneListMapping() {
-        RuneRacesMetaEvent event = new RuneRacesMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("items.runes"), event);
+        addMapping(I18N.INSTANCE.getMessage("items.runes"), RuneRacesListView.class);
     }
 
     private void addBuildingPlansMapping() {
-        BuildingPlansMetaEvent event = new BuildingPlansMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("items.buildingPlans"), event);
+        addMapping(I18N.INSTANCE.getMessage("items.buildingPlans"), BuildingPlansListView.class);
     }
 
     private void addMiscellaneousMapping() {
-        MiscellaneousMetaEvent event = new MiscellaneousMetaEvent();
-        addMapping(I18N.INSTANCE.getMessage("items.miscellaneous"), event);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Class<ItemTypesMetaEvent> getMetaEventClass() {
-        return ItemTypesMetaEvent.class;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Class<? extends AbstractView> getParentHierarchyClass() {
-        return ModulesView.class;
+        addMapping(I18N.INSTANCE.getMessage("items.miscellaneous"), MiscellaneousListView.class);
     }
 }

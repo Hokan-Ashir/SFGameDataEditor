@@ -1,11 +1,9 @@
 package sfgamedataeditor.views.main.modules.common.buttons.listeners;
 
 import sfgamedataeditor.databind.files.FileUtils;
-import sfgamedataeditor.events.ClassTuple;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
-import sfgamedataeditor.views.common.NullView;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.ViewTools;
 
@@ -14,7 +12,7 @@ import java.awt.event.ActionListener;
 
 public class CreateModificatedFileButtonListener implements ActionListener {
 
-    private MainView mainView = ViewRegister.INSTANCE.getView(new ClassTuple<>(MainView.class, NullView.class));
+    private MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
 
     /**
      * {@inheritDoc}

@@ -2,7 +2,7 @@ package sfgamedataeditor.fieldwrapping.fields;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.events.EventHandlerRegister;
-import sfgamedataeditor.events.types.AbstractMetaEvent;
+import sfgamedataeditor.events.types.Event;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,9 +16,9 @@ public class LinkableTextField extends AbstractDataField<JTextField> {
 
     private final JButton linkButton;
 
-    public LinkableTextField(JTextField component, Field mappedField, Class<AbstractMetaEvent> eventClass) {
+    public LinkableTextField(JTextField component, Field mappedField, Class<? extends Event> eventClass) {
         super(component, mappedField);
-        AbstractMetaEvent event = null;
+        Event event = null;
         try {
             event = eventClass.getConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
@@ -30,9 +30,9 @@ public class LinkableTextField extends AbstractDataField<JTextField> {
     }
 
 
-    private JButton createLinkButton(AbstractMetaEvent event) {
+    private JButton createLinkButton(Event event) {
         JButton button = new JButton(">>");
-        button.setToolTipText(event.getEventDescription());
+        button.setToolTipText(event.getDescription());
         // TODO set text or symbol
         // TODO set tooltip text based on metaevent description
         attachLinkEventListener(event);
@@ -40,7 +40,7 @@ public class LinkableTextField extends AbstractDataField<JTextField> {
         return button;
     }
 
-    private void attachLinkEventListener(final AbstractMetaEvent event) {
+    private void attachLinkEventListener(final Event event) {
         linkButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
