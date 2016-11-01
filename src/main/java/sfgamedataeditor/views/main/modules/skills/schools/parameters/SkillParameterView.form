@@ -2,14 +2,14 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterViewStub">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="140" y="20" width="500" height="70"/>
+      <xy x="140" y="20" width="600" height="70"/>
     </constraints>
     <properties>
       <inheritsPopupMenu value="false"/>
-      <maximumSize width="500" height="70"/>
-      <minimumSize width="500" height="70"/>
+      <maximumSize width="600" height="70"/>
+      <minimumSize width="600" height="70"/>
       <opaque value="true"/>
-      <preferredSize width="500" height="70"/>
+      <preferredSize width="600" height="70"/>
     </properties>
     <border type="none"/>
     <children>
@@ -34,6 +34,9 @@
             </constraints>
             <properties>
               <labelFor value="6d595"/>
+              <maximumSize width="55" height="25"/>
+              <minimumSize width="55" height="25"/>
+              <preferredSize width="55" height="25"/>
               <text resource-bundle="messages" key="strength"/>
             </properties>
           </component>
@@ -44,6 +47,9 @@
             </constraints>
             <properties>
               <labelFor value="c1296"/>
+              <maximumSize width="55" height="25"/>
+              <minimumSize width="55" height="25"/>
+              <preferredSize width="55" height="25"/>
               <text resource-bundle="messages" key="stamina"/>
             </properties>
           </component>
@@ -57,9 +63,9 @@
               <gridbag weightx="0.0" weighty="0.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="25"/>
-              <minimumSize width="35" height="25"/>
-              <preferredSize width="35" height="25"/>
+              <maximumSize width="45" height="25"/>
+              <minimumSize width="45" height="25"/>
+              <preferredSize width="45" height="25"/>
             </properties>
           </component>
           <component id="6d595" class="javax.swing.JTextField" binding="strengthField">
@@ -72,10 +78,10 @@
               <gridbag weightx="0.0" weighty="0.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="25"/>
-              <minimumSize width="35" height="25"/>
+              <maximumSize width="45" height="25"/>
+              <minimumSize width="45" height="25"/>
               <opaque value="true"/>
-              <preferredSize width="35" height="25"/>
+              <preferredSize width="45" height="25"/>
               <text value=""/>
             </properties>
           </component>
@@ -86,6 +92,9 @@
             </constraints>
             <properties>
               <labelFor value="6b53e"/>
+              <maximumSize width="55" height="25"/>
+              <minimumSize width="55" height="25"/>
+              <preferredSize width="55" height="25"/>
               <text resource-bundle="messages" key="agility"/>
             </properties>
           </component>
@@ -99,9 +108,9 @@
               <gridbag weightx="0.0" weighty="0.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="25"/>
-              <minimumSize width="35" height="25"/>
-              <preferredSize width="35" height="25"/>
+              <maximumSize width="45" height="25"/>
+              <minimumSize width="45" height="25"/>
+              <preferredSize width="45" height="25"/>
             </properties>
           </component>
           <component id="92a8b" class="javax.swing.JLabel" binding="dexterityLabel">
@@ -111,6 +120,9 @@
             </constraints>
             <properties>
               <labelFor value="c7427"/>
+              <maximumSize width="55" height="25"/>
+              <minimumSize width="55" height="25"/>
+              <preferredSize width="55" height="25"/>
               <text resource-bundle="messages" key="dexterity"/>
             </properties>
           </component>
@@ -124,9 +136,9 @@
               <gridbag weightx="0.0" weighty="1.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="25"/>
-              <minimumSize width="35" height="25"/>
-              <preferredSize width="35" height="25"/>
+              <maximumSize width="45" height="25"/>
+              <minimumSize width="45" height="25"/>
+              <preferredSize width="45" height="25"/>
               <text value=""/>
             </properties>
           </component>
@@ -137,6 +149,9 @@
             </constraints>
             <properties>
               <labelFor value="b2418"/>
+              <maximumSize width="55" height="25"/>
+              <minimumSize width="55" height="25"/>
+              <preferredSize width="55" height="25"/>
               <text resource-bundle="messages" key="intelligence"/>
             </properties>
           </component>
@@ -150,9 +165,9 @@
               <gridbag weightx="0.0" weighty="1.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="25"/>
-              <minimumSize width="35" height="25"/>
-              <preferredSize width="35" height="25"/>
+              <maximumSize width="45" height="25"/>
+              <minimumSize width="45" height="25"/>
+              <preferredSize width="45" height="25"/>
             </properties>
           </component>
           <component id="3b860" class="javax.swing.JLabel" binding="wisdomLabel">
@@ -162,6 +177,9 @@
             </constraints>
             <properties>
               <labelFor value="f618c"/>
+              <maximumSize width="55" height="25"/>
+              <minimumSize width="55" height="25"/>
+              <preferredSize width="55" height="25"/>
               <text resource-bundle="messages" key="wisdom"/>
             </properties>
           </component>
@@ -175,9 +193,9 @@
               <gridbag weightx="0.0" weighty="1.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="25"/>
-              <minimumSize width="35" height="25"/>
-              <preferredSize width="35" height="25"/>
+              <maximumSize width="45" height="25"/>
+              <minimumSize width="45" height="25"/>
+              <preferredSize width="45" height="25"/>
               <text value=""/>
             </properties>
           </component>
@@ -188,6 +206,9 @@
             </constraints>
             <properties>
               <labelFor value="d24e"/>
+              <maximumSize width="55" height="25"/>
+              <minimumSize width="55" height="25"/>
+              <preferredSize width="55" height="25"/>
               <text resource-bundle="messages" key="charisma"/>
             </properties>
           </component>
@@ -201,10 +222,33 @@
               <gridbag weightx="0.0" weighty="0.0" ipadx="10"/>
             </constraints>
             <properties>
-              <maximumSize width="35" height="25"/>
-              <minimumSize width="35" height="25"/>
-              <preferredSize width="35" height="25"/>
+              <maximumSize width="45" height="25"/>
+              <minimumSize width="45" height="25"/>
+              <preferredSize width="45" height="25"/>
               <text value=""/>
+            </properties>
+          </component>
+          <component id="68e75" class="javax.swing.JLabel" binding="levelLabel">
+            <constraints>
+              <grid row="0" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="55" height="25"/>
+              <minimumSize width="55" height="25"/>
+              <preferredSize width="55" height="25"/>
+              <text value="Level"/>
+            </properties>
+          </component>
+          <component id="382ce" class="javax.swing.JComboBox" binding="levelComboBox">
+            <constraints>
+              <grid row="1" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="45" height="25"/>
+              <minimumSize width="45" height="25"/>
+              <preferredSize width="45" height="25"/>
             </properties>
           </component>
         </children>

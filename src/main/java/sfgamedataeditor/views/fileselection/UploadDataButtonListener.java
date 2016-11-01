@@ -4,6 +4,9 @@ import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.mvc.ShowViewDispatcher;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.main.modules.common.buttons.ButtonsView;
+import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryView;
+import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
@@ -31,6 +34,9 @@ public class UploadDataButtonListener implements ActionListener {
         ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.INSTANCE.getMessage("processingData"));
         FileUtils.uploadDataIntoDatabase();
         ShowViewDispatcher.INSTANCE.showView(MainView.class, null);
+        ShowViewDispatcher.INSTANCE.showView(EventHistoryView.class, null);
+        ShowViewDispatcher.INSTANCE.showView(ModulesView.class, null);
+        ShowViewDispatcher.INSTANCE.showView(ButtonsView.class, null);
         frame.dispose();
     }
 }

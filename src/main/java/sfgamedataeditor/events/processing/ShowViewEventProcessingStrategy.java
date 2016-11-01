@@ -1,13 +1,12 @@
 package sfgamedataeditor.events.processing;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.events.PostProcess;
-import sfgamedataeditor.mvc.commonevents.ShowViewEvent;
+import sfgamedataeditor.events.types.ShowViewEvent;
+import sfgamedataeditor.events.types.ViewRenderedEvent;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.views.common.RenderableView;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Map;
 
 public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<ShowViewEvent> {
@@ -49,24 +48,12 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
             view = views.get(classViewToShow).getView();
         }
 
-        runPostProcessingMethods(view);
         AbstractController controller = views.get(classViewToShow).getController();
         if (controller != null) {
+            controller.setModel(event.getModel());
             controller.updateView();
         }
         view.render();
-    }
-
-    private void runPostProcessingMethods(RenderableView view) {
-        for (Method method : view.getClass().getDeclaredMethods()) {
-            if (method.isAnnotationPresent(PostProcess.class)) {
-                try {
-                    method.setAccessible(true);
-                    method.invoke(view);
-                } catch (IllegalAccessException | InvocationTargetException e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
-            }
-        }
+        EventProcessor.INSTANCE.process(new ViewRenderedEvent(classViewToShow));
     }
 }

@@ -1,14 +1,10 @@
 package sfgamedataeditor.views.common;
 
-import sfgamedataeditor.mvc.ShowViewDispatcher;
-import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.views.PromptTextComboBoxRenderer;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -23,34 +19,6 @@ public abstract class AbstractModulesView implements RenderableView {
         modulesComboBox.setSelectedIndex(-1);
         modulesComboBox.setToolTipText(viewName);
         initializeComboBox();
-        modulesComboBox.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() != ItemEvent.SELECTED) {
-                    return;
-                }
-
-                String selectedItem = (String) modulesComboBox.getSelectedItem();
-                if (selectedItem == null) {
-                    return;
-                }
-
-                Class<? extends RenderableView> classViewToShow = comboBoxMapping.get(selectedItem);
-                Model model = createModel();
-                ShowViewDispatcher.INSTANCE.showView(classViewToShow, model);
-            }
-        });
-    }
-
-    protected abstract Model createModel();
-
-    public void setModulesComboBoxValue(final Object value) {
-        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(modulesComboBox) {
-            @Override
-            protected void setValues() {
-                modulesComboBox.setSelectedItem(value);
-            }
-        });
     }
 
     public Map<String, Class<? extends RenderableView>> getComboBoxMapping() {

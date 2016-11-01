@@ -1,17 +1,15 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
+import java.util.List;
+
 public class SpellModelParameter {
-    private String spellSchoolName;
+    private List<String> listOfSpells;
 
-    public SpellModelParameter(String spellSchoolName) {
-        this.spellSchoolName = spellSchoolName;
+    public SpellModelParameter(List<String> listOfSpells) {
+        this.listOfSpells = listOfSpells;
     }
 
-    public String getSpellSchoolName() {
-        return spellSchoolName;
-    }
-
-    public void setSpellSchoolName(String spellSchoolName) {
-        this.spellSchoolName = spellSchoolName;
+    public List<String> getListOfSpells() {
+        return listOfSpells;
     }
 }

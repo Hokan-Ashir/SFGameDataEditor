@@ -2,7 +2,6 @@ package sfgamedataeditor.views.main.modules.common.modules;
 
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.MainView;
@@ -17,11 +16,6 @@ public class ModulesView extends AbstractModulesView {
 
     public ModulesView() {
         super(I18N.INSTANCE.getMessage("modulesList"));
-    }
-
-    @Override
-    protected Model createModel() {
-        return new Model();
     }
 
     /**

@@ -139,6 +139,8 @@ public class SpellParameterViewStub implements Wrapable, View {
 
     private JSeparator parametersSeparator;
     private JLabel parametersLabel;
+    private JComboBox<String> levelComboBox;
+    private JLabel levelLabel;
     private JPanel parametersPanel;
 
     public SpellParameterViewStub() {
@@ -188,6 +190,10 @@ public class SpellParameterViewStub implements Wrapable, View {
         ClassRequirementComboBoxListener listener = new ClassRequirementComboBoxListener(subClassComboBox);
         classComboBox.addItemListener(listener);
         classComboBox.setSelectedItem(null);
+    }
+
+    public JComboBox<String> getLevelComboBox() {
+        return levelComboBox;
     }
 
     /**

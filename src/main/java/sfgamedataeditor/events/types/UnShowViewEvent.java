@@ -1,6 +1,5 @@
-package sfgamedataeditor.mvc.commonevents;
+package sfgamedataeditor.events.types;
 
-import sfgamedataeditor.events.types.Event;
 import sfgamedataeditor.views.common.RenderableView;
 
 public class UnShowViewEvent extends Event {

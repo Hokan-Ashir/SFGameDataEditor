@@ -2,23 +2,46 @@ package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
 import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.database.tableservices.SkillParametersTableService;
+import sfgamedataeditor.events.processing.EventProcessor;
+import sfgamedataeditor.events.types.UpdateViewModelEvent;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
-public class SkillParameterController extends AbstractController<SkillParameterModel, SkillParameterView> {
+public class SkillParameterController extends AbstractController<SkillParameterModelParameter, SkillParameterView> {
 
     public SkillParameterController(SkillParameterView view) {
         super(view);
+        getView().getLevelComboBox().addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() != ItemEvent.SELECTED) {
+                    return;
+                }
+
+                String selectedItem = (String) getView().getLevelComboBox().getSelectedItem();
+                if (selectedItem == null) {
+                    return;
+                }
+
+                Model<SkillParameterModelParameter> model = getModel();
+                model.getParameter().setSkillLevel(Integer.valueOf(selectedItem));
+                UpdateViewModelEvent event = new UpdateViewModelEvent(SkillParameterView.class, model);
+                EventProcessor.INSTANCE.process(event);
+            }
+        });
     }
 
     @Override
     public void updateView() {
-        SkillParameterModelParameter parameter = getModel().getParameter().getParameter();
+        SkillParameterModelParameter parameter = getModel().getParameter();
         fillPossibleSkillLevelsComboBox(parameter.getSkillSchoolId());
         setFieldsData(parameter.getSkillSchoolId(), parameter.getSkillLevel());
     }

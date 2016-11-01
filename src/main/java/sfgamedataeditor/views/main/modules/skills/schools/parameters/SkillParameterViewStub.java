@@ -41,6 +41,12 @@ public class SkillParameterViewStub implements Wrapable, View {
     private JLabel wisdomLabel;
 
     private JPanel layoutPanel;
+    private JLabel levelLabel;
+    private JComboBox levelComboBox;
+
+    public JComboBox getLevelComboBox() {
+        return levelComboBox;
+    }
 
     /**
      * {@inheritDoc}

@@ -39,24 +39,4 @@ public class SpellsView extends AbstractModulesView {
     public Class<? extends AbstractController> getControllerClass() {
         return SpellController.class;
     }
-
-//    /**
-//     * {@inheritDoc}
-//     */
-//    @Override
-//    protected void setEventParameter(AbstractMetaEvent metaEvent) {
-//        super.setEventParameter(metaEvent);
-//        String selectedSpellName = getSelectedModuleValue();
-//        Integer spellId = SpellNameTableService.INSTANCE.getSpellId(selectedSpellName);
-//        spellParameterEventParameter.setSpellId(spellId);
-//
-//        LevelableView<SpellsView> levelableView = ViewRegister.INSTANCE.getView(new ClassTuple(LevelableView.class, SpellsView.class));
-//        if (levelableView != null) {
-//            spellParameterEventParameter.setSpellLevel(levelableView.getSelectedLevel());
-//        } else {
-//            spellParameterEventParameter.setSpellLevel(1);
-//        }
-//
-//        metaEvent.setEventParameter(ShowSpellParameterViewEvent.class, spellParameterEventParameter);
-//    }
 }

@@ -1,14 +1,9 @@
 package sfgamedataeditor.views.common;
 
-public class ModulesModel {
+import sfgamedataeditor.mvc.objects.Model;
 
-    private String moduleName;
-
-    public ModulesModel(String moduleName) {
-        this.moduleName = moduleName;
-    }
-
-    public String getModuleName() {
-        return moduleName;
+public class ModulesModel extends Model<ModuleParameter> {
+    public ModulesModel(ModuleParameter moduleName) {
+        super(moduleName);
     }
 }

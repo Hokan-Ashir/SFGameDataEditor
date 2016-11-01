@@ -604,7 +604,7 @@
           <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="9" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
-          <gridbag top="5" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+          <gridbag top="5" left="0" bottom="5" right="25" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <maximumSize width="60" height="25"/>
@@ -645,6 +645,30 @@
           <minimumSize width="55" height="23"/>
           <preferredSize width="55" height="23"/>
           <text resource-bundle="messages" key="spellType"/>
+        </properties>
+      </component>
+      <component id="462e9" class="javax.swing.JComboBox" binding="levelComboBox">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="45" height="25"/>
+          <minimumSize width="45" height="25"/>
+          <preferredSize width="45" height="25"/>
+        </properties>
+      </component>
+      <component id="45445" class="javax.swing.JLabel" binding="levelLabel">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <labelFor value="462e9"/>
+          <maximumSize width="55" height="25"/>
+          <minimumSize width="55" height="25"/>
+          <preferredSize width="55" height="25"/>
+          <text value="Level"/>
         </properties>
       </component>
     </children>

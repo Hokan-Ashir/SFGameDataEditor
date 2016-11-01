@@ -5,26 +5,49 @@ import sfgamedataeditor.database.objects.SpellName;
 import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.database.tableservices.SpellNameTableService;
 import sfgamedataeditor.database.tableservices.SpellParametersTableService;
+import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.events.types.UpdateViewModelEvent;
 import sfgamedataeditor.fieldwrapping.MappedColumn;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class SpellParameterController extends AbstractController<SpellParameterModel, SpellParameterView> {
+public class SpellParameterController extends AbstractController<SpellParameterModelParameter, SpellParameterView> {
 
     private static final Logger LOGGER = Logger.getLogger(SpellParameterController.class);
 
     public SpellParameterController(SpellParameterView view) {
         super(view);
+        getView().getLevelComboBox().addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() != ItemEvent.SELECTED) {
+                    return;
+                }
+
+                String selectedItem = (String) getView().getLevelComboBox().getSelectedItem();
+                if (selectedItem == null) {
+                    return;
+                }
+
+                Model<SpellParameterModelParameter> model = getModel();
+                model.getParameter().setSpellLevel(Integer.valueOf(selectedItem));
+                UpdateViewModelEvent event = new UpdateViewModelEvent(SpellParameterView.class, model);
+                EventProcessor.INSTANCE.process(event);
+            }
+        });
     }
 
     /**
@@ -32,7 +55,7 @@ public class SpellParameterController extends AbstractController<SpellParameterM
      */
     @Override
     public void updateView() {
-        SpellParameterModelParameter parameter = getModel().getParameter().getParameter();
+        SpellParameterModelParameter parameter = getModel().getParameter();
         int selectedSpellId = parameter.getSpellId();
         int selectedLevel = parameter.getSpellLevel();
         Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);

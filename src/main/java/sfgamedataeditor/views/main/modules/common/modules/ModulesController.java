@@ -1,9 +1,9 @@
 package sfgamedataeditor.views.main.modules.common.modules;
 
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.views.common.ModulesModel;
+import sfgamedataeditor.views.common.AbstractModulesController;
+import sfgamedataeditor.views.common.ModuleParameter;
 
-public class ModulesController extends AbstractController<ModulesModel, ModulesView> {
+public class ModulesController extends AbstractModulesController<ModuleParameter, ModulesView> {
     public ModulesController(ModulesView view) {
         super(view);
     }
@@ -11,11 +11,15 @@ public class ModulesController extends AbstractController<ModulesModel, ModulesV
     @Override
     public void updateView() {
         if (getModel() == null) {
-            getView().setModulesComboBoxValue(null);
+            setModulesComboBoxValue(null);
             return;
         }
 
         String moduleName = getModel().getParameter().getModuleName();
-        getView().setModulesComboBoxValue(moduleName);
+        if (isElementExistsInComboBox(moduleName)) {
+            setModulesComboBoxValue(moduleName);
+        } else {
+            setModulesComboBoxValue(null);
+        }
     }
 }

@@ -41,17 +41,6 @@ public class SpellSchoolsView extends AbstractModulesView {
 
     @Override
     public Class<? extends AbstractController> getControllerClass() {
-        return null;
+        return SpellSchoolsController.class;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-//    @Override
-//    protected void setEventParameter(AbstractMetaEvent metaEvent) {
-//        super.setEventParameter(metaEvent);
-//        String selectedSpellSchool = getSelectedModuleValue();
-//        parameter.setSpellSchoolName(selectedSpellSchool);
-//        metaEvent.setEventParameter(ShowSpellsViewEvent.class, parameter);
-//    }
 }

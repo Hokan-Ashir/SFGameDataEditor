@@ -16,4 +16,12 @@ public class SkillParameterModelParameter {
     public int getSkillLevel() {
         return skillLevel;
     }
+
+    public void setSkillSchoolId(int skillSchoolId) {
+        this.skillSchoolId = skillSchoolId;
+    }
+
+    public void setSkillLevel(int skillLevel) {
+        this.skillLevel = skillLevel;
+    }
 }
