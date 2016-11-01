@@ -1,10 +1,9 @@
 package sfgamedataeditor.views.common.races;
 
-import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.notimplemented.NotImplementedView;
-import sfgamedataeditor.views.main.MainView;
 
 public abstract class AbstractRacesView extends AbstractModulesView {
 
@@ -26,13 +25,7 @@ public abstract class AbstractRacesView extends AbstractModulesView {
     }
 
     @Override
-    public void render() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideNavigationPanel(this);
-    }
-
-    @Override
-    public void unrender() {
-
+    public Class<? extends AbstractController> getControllerClass() {
+        return AbstractRacesController.class;
     }
 }

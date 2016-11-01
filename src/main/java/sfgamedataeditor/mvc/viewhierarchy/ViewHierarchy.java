@@ -1,6 +1,6 @@
 package sfgamedataeditor.mvc.viewhierarchy;
 
-import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.common.ControllableView;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
 import sfgamedataeditor.views.main.modules.common.buttons.ButtonsView;
@@ -95,8 +95,8 @@ public enum  ViewHierarchy {
         return new ViewHierarchyNode(rootNode, UnitsRacesView.class);
     }
     
-    public List<Class<? extends RenderableView>> getViewsToShow(Class<? extends RenderableView> leafViewClass) {
-        List<Class<? extends RenderableView>> viewBranch = new ArrayList<>();
+    public List<Class<? extends ControllableView>> getViewsToShow(Class<? extends ControllableView> leafViewClass) {
+        List<Class<? extends ControllableView>> viewBranch = new ArrayList<>();
         ViewHierarchyNode node = findLeafNode(leafViewClass);
         while (node != null) {
             viewBranch.add(node.getViewClass());
@@ -106,11 +106,11 @@ public enum  ViewHierarchy {
         return viewBranch;
     }
 
-    private ViewHierarchyNode findLeafNode(Class<? extends RenderableView> leafViewClass) {
+    private ViewHierarchyNode findLeafNode(Class<? extends ControllableView> leafViewClass) {
         return findNode(rootNode, leafViewClass);
     }
 
-    private ViewHierarchyNode findNode(ViewHierarchyNode node, Class<? extends RenderableView> leafViewClass) {
+    private ViewHierarchyNode findNode(ViewHierarchyNode node, Class<? extends ControllableView> leafViewClass) {
         if (node.getViewClass().equals(leafViewClass)) {
             return node;
         }

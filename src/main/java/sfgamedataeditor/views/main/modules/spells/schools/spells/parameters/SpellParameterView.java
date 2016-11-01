@@ -1,16 +1,14 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
-import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.fieldwrapping.FieldsWrapperCreator;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.views.common.RenderableView;
-import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.common.ControllableView;
 
 import javax.swing.*;
 import java.util.Collection;
 
-public class SpellParameterView implements RenderableView {
+public class SpellParameterView implements ControllableView {
 
     private final SpellParameterViewStub stub;
     private final Collection<IDataField> dataFields;
@@ -38,17 +36,6 @@ public class SpellParameterView implements RenderableView {
     @Override
     public JPanel getMainPanel() {
         return stub.getMainPanel();
-    }
-
-    @Override
-    public void render() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideContentPanel(this);
-    }
-
-    @Override
-    public void unrender() {
-
     }
 
     @Override

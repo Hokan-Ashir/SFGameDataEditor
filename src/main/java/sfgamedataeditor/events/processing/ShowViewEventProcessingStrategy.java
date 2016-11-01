@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.events.types.ViewRenderedEvent;
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.common.ControllableView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -18,12 +18,12 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
      */
     @Override
     public void process(ShowViewEvent event) {
-        RenderableView view;
-        Class<? extends RenderableView> classViewToShow = event.getClassViewToShow();
-        Map<Class<? extends RenderableView>, ViewControllerPair> views = ViewRegister.INSTANCE.getViews();
+        ControllableView view;
+        Class<? extends ControllableView> classViewToShow = event.getClassViewToShow();
+        Map<Class<? extends ControllableView>, ViewControllerPair> views = ViewRegister.INSTANCE.getViews();
         if (!views.containsKey(classViewToShow)) {
             try {
-                view = (RenderableView) classViewToShow.getDeclaredConstructors()[0].newInstance();
+                view = (ControllableView) classViewToShow.getDeclaredConstructors()[0].newInstance();
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
                 LOGGER.error(e.getMessage(), e);
                 return;
@@ -44,16 +44,15 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
 
             ViewControllerPair pair = new ViewControllerPair(view, controller);
             views.put(classViewToShow, pair);
-        } else {
-            view = views.get(classViewToShow).getView();
         }
 
         AbstractController controller = views.get(classViewToShow).getController();
         if (controller != null) {
             controller.setModel(event.getModel());
             controller.updateView();
+            controller.renderView();
         }
-        view.render();
+
         EventProcessor.INSTANCE.process(new ViewRenderedEvent(classViewToShow));
     }
 }

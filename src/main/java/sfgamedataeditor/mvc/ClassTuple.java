@@ -2,9 +2,9 @@ package sfgamedataeditor.mvc;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.common.ControllableView;
 
-public class ClassTuple<T extends RenderableView, V extends RenderableView> {
+public class ClassTuple<T extends ControllableView, V extends ControllableView> {
 
     private Class<T> viewClass;
     private Class<V> parentViewClass;

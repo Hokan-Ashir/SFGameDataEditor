@@ -1,17 +1,15 @@
 package sfgamedataeditor.views.main.modules.common.buttons;
 
-import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.common.RenderableView;
-import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.common.ControllableView;
 import sfgamedataeditor.views.main.modules.common.buttons.listeners.CreateModificatedFileButtonListener;
 import sfgamedataeditor.views.main.modules.common.buttons.listeners.CreateSfModFileButtonListener;
 import sfgamedataeditor.views.main.modules.common.buttons.listeners.LoadSfModFileButtonListener;
 
 import javax.swing.*;
 
-public class ButtonsView implements RenderableView {
+public class ButtonsView implements ControllableView {
     private JButton loadSfmodFileButton;
     private JButton createSfmodFileButton;
     private JPanel mainPanel;
@@ -27,17 +25,6 @@ public class ButtonsView implements RenderableView {
         createModificatedFileButton.addActionListener(new CreateModificatedFileButtonListener());
     }
 
-    @Override
-    public void render() {
-        MainView view = ViewRegister.INSTANCE.getView(MainView.class);
-        view.renderViewInsideButtonPanel(this);
-    }
-
-    @Override
-    public void unrender() {
-
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -48,6 +35,6 @@ public class ButtonsView implements RenderableView {
 
     @Override
     public Class<? extends AbstractController> getControllerClass() {
-        return null;
+        return ButtonsController.class;
     }
 }

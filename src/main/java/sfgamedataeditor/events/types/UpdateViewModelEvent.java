@@ -1,19 +1,19 @@
 package sfgamedataeditor.events.types;
 
 import sfgamedataeditor.mvc.objects.Model;
-import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.common.ControllableView;
 
 public class UpdateViewModelEvent extends Event {
 
     private final Model model;
-    private final Class<? extends RenderableView> classViewToUpdate;
+    private final Class<? extends ControllableView> classViewToUpdate;
 
-    public UpdateViewModelEvent(Class<? extends RenderableView> classViewToUpdate, Model model) {
+    public UpdateViewModelEvent(Class<? extends ControllableView> classViewToUpdate, Model model) {
         this.model = model;
         this.classViewToUpdate = classViewToUpdate;
     }
 
-    public Class<? extends RenderableView> getView() {
+    public Class<? extends ControllableView> getView() {
         return classViewToUpdate;
     }
 

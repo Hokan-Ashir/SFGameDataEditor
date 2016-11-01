@@ -1,14 +1,12 @@
 package sfgamedataeditor.views.common.notimplemented;
 
-import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.common.RenderableView;
-import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.common.ControllableView;
 
 import javax.swing.*;
 
-public class NotImplementedView implements RenderableView {
+public class NotImplementedView implements ControllableView {
     private JLabel notImplementedLabel;
     private JPanel mainPanel;
 
@@ -22,17 +20,6 @@ public class NotImplementedView implements RenderableView {
     @Override
     public JPanel getMainPanel() {
         return mainPanel;
-    }
-
-    @Override
-    public void render() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideContentPanel(this);
-    }
-
-    @Override
-    public void unrender() {
-
     }
 
     @Override

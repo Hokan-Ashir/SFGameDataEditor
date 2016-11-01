@@ -1,13 +1,13 @@
 package sfgamedataeditor.events.types;
 
 import sfgamedataeditor.mvc.objects.Model;
-import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.common.ControllableView;
 
 public class ShowViewEvent extends Event {
-    private final Class<? extends RenderableView> classViewToShow;
+    private final Class<? extends ControllableView> classViewToShow;
     private final Model model;
 
-    public ShowViewEvent(Class<? extends RenderableView> classViewToShow, Model model) {
+    public ShowViewEvent(Class<? extends ControllableView> classViewToShow, Model model) {
         this.classViewToShow = classViewToShow;
         this.model = model;
     }
@@ -16,7 +16,7 @@ public class ShowViewEvent extends Event {
         return model;
     }
 
-    public Class<? extends RenderableView> getClassViewToShow() {
+    public Class<? extends ControllableView> getClassViewToShow() {
         return classViewToShow;
     }
 }

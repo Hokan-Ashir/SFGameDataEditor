@@ -8,6 +8,10 @@ public class UpdateViewModelEventStrategy implements EventProcessingStrategy<Upd
     @Override
     public void process(UpdateViewModelEvent event) {
         ViewControllerPair viewControllerPair = ViewRegister.INSTANCE.getViews().get(event.getView());
+        if (viewControllerPair == null) {
+            return;
+        }
+
         AbstractController controller = viewControllerPair.getController();
         if (controller == null) {
             return;

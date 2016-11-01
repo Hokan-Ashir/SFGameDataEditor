@@ -1,6 +1,6 @@
 package sfgamedataeditor.events.processing;
 
-import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.common.ControllableView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,13 +8,13 @@ import java.util.Map;
 public enum ViewRegister {
     INSTANCE;
 
-    private Map<Class<? extends RenderableView>, ViewControllerPair> views = new HashMap<>();
+    private Map<Class<? extends ControllableView>, ViewControllerPair> views = new HashMap<>();
 
-    public Map<Class<? extends RenderableView>, ViewControllerPair> getViews() {
+    public Map<Class<? extends ControllableView>, ViewControllerPair> getViews() {
         return views;
     }
 
-    public <T extends RenderableView> T getView(Class<T> viewClass) {
+    public <T extends ControllableView> T getView(Class<T> viewClass) {
         if (views.containsKey(viewClass)) {
             return (T) views.get(viewClass).getView();
         }

@@ -1,15 +1,15 @@
 package sfgamedataeditor.events.types;
 
-import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.common.ControllableView;
 
 public class ViewRenderedEvent extends Event {
-    private Class<? extends RenderableView> classViewRendered;
+    private Class<? extends ControllableView> classViewRendered;
 
-    public ViewRenderedEvent(Class<? extends RenderableView> classViewRendered) {
+    public ViewRenderedEvent(Class<? extends ControllableView> classViewRendered) {
         this.classViewRendered = classViewRendered;
     }
 
-    public Class<? extends RenderableView> getClassViewRendered() {
+    public Class<? extends ControllableView> getClassViewRendered() {
         return classViewRendered;
     }
 }

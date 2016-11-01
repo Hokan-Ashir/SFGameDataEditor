@@ -8,9 +8,9 @@ import javax.swing.*;
 import java.util.Map;
 import java.util.TreeMap;
 
-public abstract class AbstractModulesView implements RenderableView {
+public abstract class AbstractModulesView implements ControllableView {
 
-    private Map<String, Class<? extends RenderableView>> comboBoxMapping = new TreeMap<>();
+    private Map<String, Class<? extends ControllableView>> comboBoxMapping = new TreeMap<>();
     private JComboBox<String> modulesComboBox;
     private JPanel mainPanel;
 
@@ -21,7 +21,7 @@ public abstract class AbstractModulesView implements RenderableView {
         initializeComboBox();
     }
 
-    public Map<String, Class<? extends RenderableView>> getComboBoxMapping() {
+    public Map<String, Class<? extends ControllableView>> getComboBoxMapping() {
         return comboBoxMapping;
     }
 
@@ -56,7 +56,7 @@ public abstract class AbstractModulesView implements RenderableView {
         });
     }
 
-    public void addMapping(String name, Class<? extends RenderableView> classViewToShow) {
+    public void addMapping(String name, Class<? extends ControllableView> classViewToShow) {
         comboBoxMapping.put(name, classViewToShow);
     }
 

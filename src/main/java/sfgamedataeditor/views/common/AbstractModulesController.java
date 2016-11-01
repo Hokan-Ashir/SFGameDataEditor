@@ -1,8 +1,10 @@
 package sfgamedataeditor.views.common;
 
+import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.ShowViewDispatcher;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.Model;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 
@@ -60,9 +62,20 @@ public abstract class AbstractModulesController<M, V extends AbstractModulesView
                 return;
             }
 
-            Class<? extends RenderableView> classViewToShow = getView().getComboBoxMapping().get(selectedItem);
+            Class<? extends ControllableView> classViewToShow = getView().getComboBoxMapping().get(selectedItem);
             Model model = createModel();
             ShowViewDispatcher.INSTANCE.showView(classViewToShow, model);
         }
+    }
+
+    @Override
+    public void renderView() {
+        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+        mainView.renderViewInsideNavigationPanel(getView());
+    }
+
+    @Override
+    public void unRenderView() {
+
     }
 }

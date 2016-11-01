@@ -3,10 +3,12 @@ package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.database.tableservices.SkillParametersTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
+import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.events.types.UpdateViewModelEvent;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.Model;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 
@@ -44,6 +46,17 @@ public class SkillParameterController extends AbstractController<SkillParameterM
         SkillParameterModelParameter parameter = getModel().getParameter();
         fillPossibleSkillLevelsComboBox(parameter.getSkillSchoolId());
         setFieldsData(parameter.getSkillSchoolId(), parameter.getSkillLevel());
+    }
+
+    @Override
+    public void renderView() {
+        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+        mainView.renderViewInsideContentPanel(getView());
+    }
+
+    @Override
+    public void unRenderView() {
+
     }
 
     private void fillPossibleSkillLevelsComboBox(final int skillSchoolId) {

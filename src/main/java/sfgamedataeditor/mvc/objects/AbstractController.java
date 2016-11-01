@@ -1,8 +1,8 @@
 package sfgamedataeditor.mvc.objects;
 
-import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.common.ControllableView;
 
-public abstract class AbstractController<M, V extends RenderableView> {
+public abstract class AbstractController<M, V extends ControllableView> {
     private Model<M> model;
     private final V view;
 
@@ -23,4 +23,8 @@ public abstract class AbstractController<M, V extends RenderableView> {
     }
 
     public abstract void updateView();
+
+    public abstract void renderView();
+
+    public abstract void unRenderView();
 }

@@ -13,6 +13,7 @@ import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -70,6 +71,17 @@ public class SpellParameterController extends AbstractController<SpellParameterM
         }
 
         setSpellParameterLabelNames();
+    }
+
+    @Override
+    public void renderView() {
+        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+        mainView.renderViewInsideContentPanel(getView());
+    }
+
+    @Override
+    public void unRenderView() {
+
     }
 
     // in case user selected spell with level-range [1; 12] with level 5

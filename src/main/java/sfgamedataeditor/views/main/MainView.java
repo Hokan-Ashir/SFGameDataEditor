@@ -2,13 +2,13 @@ package sfgamedataeditor.views.main;
 
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.common.RenderableView;
+import sfgamedataeditor.views.common.ControllableView;
 import sfgamedataeditor.views.common.View;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 
-public class MainView implements RenderableView {
+public class MainView implements ControllableView {
     private JPanel mainPanel;
     private JPanel navigationPanel;
     private JPanel contentPanel;
@@ -61,16 +61,6 @@ public class MainView implements RenderableView {
     @Override
     public JPanel getMainPanel() {
         return mainPanel;
-    }
-
-    @Override
-    public void render() {
-
-    }
-
-    @Override
-    public void unrender() {
-
     }
 
     @Override

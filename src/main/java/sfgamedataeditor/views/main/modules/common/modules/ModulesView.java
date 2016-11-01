@@ -1,10 +1,8 @@
 package sfgamedataeditor.views.main.modules.common.modules;
 
-import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 import sfgamedataeditor.views.main.modules.merchants.MerchantLocationsView;
@@ -29,17 +27,6 @@ public class ModulesView extends AbstractModulesView {
         addMapping(I18N.INSTANCE.getMessage("buildings"), BuildingRacesView.class);
         addMapping(I18N.INSTANCE.getMessage("units"), UnitsRacesView.class);
         addMapping(I18N.INSTANCE.getMessage("items"), ItemTypesView.class);
-    }
-
-    @Override
-    public void render() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideNavigationPanel(this);
-    }
-
-    @Override
-    public void unrender() {
-
     }
 
     @Override
