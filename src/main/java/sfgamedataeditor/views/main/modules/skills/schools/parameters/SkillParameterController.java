@@ -56,7 +56,8 @@ public class SkillParameterController extends AbstractController<SkillParameterM
 
     @Override
     public void unRenderView() {
-
+        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+        mainView.unrenderViewInsideContentPanel(getView());
     }
 
     private void fillPossibleSkillLevelsComboBox(final int skillSchoolId) {

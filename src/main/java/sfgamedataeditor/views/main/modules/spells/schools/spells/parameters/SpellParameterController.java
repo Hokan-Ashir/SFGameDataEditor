@@ -81,7 +81,8 @@ public class SpellParameterController extends AbstractController<SpellParameterM
 
     @Override
     public void unRenderView() {
-
+        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+        mainView.unrenderViewInsideContentPanel(getView());
     }
 
     // in case user selected spell with level-range [1; 12] with level 5

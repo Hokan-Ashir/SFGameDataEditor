@@ -7,11 +7,13 @@ import sfgamedataeditor.events.types.UnShowViewEvent;
 import sfgamedataeditor.events.types.UpdateViewModelEvent;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.viewhierarchy.ViewHierarchy;
+import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.ControllableView;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistory;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryModel;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryModelParameter;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryView;
+import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 
 import java.util.*;
 
@@ -35,7 +37,7 @@ public enum  ShowViewDispatcher {
             List<Class<? extends ControllableView>> viewsToShow = ViewHierarchy.INSTANCE.getViewsToShow(viewClassToShow);
             List<Event> toProcess = createEventsToProcess(viewsToShow, model);
             eventsToProcess.addAll(toProcess);
-            List<Event> unrenderEvents = Collections.emptyList();//createUnRenderViewEventList(viewsToShow);
+            List<Event> unrenderEvents = createUnRenderViewEventList(viewsToShow);
             eventsToProcess.addAll(unrenderEvents);
         }
 
@@ -82,24 +84,66 @@ public enum  ShowViewDispatcher {
     }
 
     private List<Event> createUnRenderViewEventList(List<Class<? extends ControllableView>> viewsToShow) {
-        if (viewsOnTheScreen.isEmpty()) {
+        if (!viewsToShow.contains(ModulesView.class)) {
             return Collections.emptyList();
         }
 
-        List<Event> unrenderEvents = new ArrayList<>();
-        for (int i = 0; i < viewsToShow.size(); i++) {
-            if (viewsToShow.get(i).equals(viewsOnTheScreen.get(i))) {
-                continue;
-            }
+        List<Class<? extends ControllableView>> modulesViewsOnScreenToUnrender = getAbstractModulesViewsOnScreen();
 
-            for (int j = i; j < viewsOnTheScreen.size(); j++) {
-                UnShowViewEvent event = new UnShowViewEvent(viewsOnTheScreen.get(j));
-                unrenderEvents.add(event);
-            }
-            return unrenderEvents;
+        if (modulesViewsOnScreenToUnrender.isEmpty()) {
+            return Collections.emptyList();
         }
 
+        filterEventsOnScreenThatShouldBeRendered(viewsToShow, modulesViewsOnScreenToUnrender);
+
+        if (modulesViewsOnScreenToUnrender.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        int rootModuleViewIndexToUnrender = getRootIndexViewsOnScreenToUnrender(modulesViewsOnScreenToUnrender);
+        return createUnrenderEventList(rootModuleViewIndexToUnrender);
+    }
+
+    private void filterEventsOnScreenThatShouldBeRendered(List<Class<? extends ControllableView>> viewsToShow, List<Class<? extends ControllableView>> modulesViewsOnScreenToUnrender) {
+        for (Class<? extends ControllableView> aClass : viewsToShow) {
+            boolean moduleView = AbstractModulesView.class.isAssignableFrom(aClass) && !ModulesView.class.equals(aClass);
+            if (moduleView) {
+                if (modulesViewsOnScreenToUnrender.contains(aClass)) {
+                    modulesViewsOnScreenToUnrender.remove(aClass);
+                }
+            }
+        }
+    }
+
+    private List<Class<? extends ControllableView>> getAbstractModulesViewsOnScreen() {
+        List<Class<? extends ControllableView>> modulesViewsOnScreenToUnrender = new ArrayList<>();
+        for (Class<? extends ControllableView> aClass : viewsOnTheScreen) {
+            boolean moduleView = AbstractModulesView.class.isAssignableFrom(aClass) && !ModulesView.class.equals(aClass);
+            if (moduleView) {
+                modulesViewsOnScreenToUnrender.add(aClass);
+            }
+        }
+        return modulesViewsOnScreenToUnrender;
+    }
+
+    private List<Event> createUnrenderEventList(int rootModuleViewIndexToUnrender) {
+        List<Event> unrenderEvents = new ArrayList<>();
+        for (int i = rootModuleViewIndexToUnrender; i < viewsOnTheScreen.size(); i++) {
+            UnShowViewEvent event = new UnShowViewEvent(viewsOnTheScreen.get(i));
+            unrenderEvents.add(event);
+        }
         return unrenderEvents;
+    }
+
+    private int getRootIndexViewsOnScreenToUnrender(List<Class<? extends ControllableView>> modulesViewsOnScreenToUnrender) {
+        int rootModuleViewIndexToUnrender = Integer.MAX_VALUE;
+        for (Class<? extends ControllableView> aClass : modulesViewsOnScreenToUnrender) {
+            int i = viewsOnTheScreen.indexOf(aClass);
+            if (i < rootModuleViewIndexToUnrender) {
+                rootModuleViewIndexToUnrender = i;
+            }
+        }
+        return rootModuleViewIndexToUnrender;
     }
 
     private boolean isViewExistsOnScreen(Class<? extends ControllableView> view) {
