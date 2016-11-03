@@ -7,6 +7,6 @@ public class ViewRenderedEventProcessingStrategy implements EventProcessingStrat
 
     @Override
     public void process(ViewRenderedEvent event) {
-        ShowViewDispatcher.INSTANCE.registerRenderedView(event.getClassViewRendered());
+        ShowViewDispatcher.INSTANCE.registerRenderedView(event.getViewClass());
     }
 }

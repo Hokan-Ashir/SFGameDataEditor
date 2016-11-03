@@ -7,6 +7,6 @@ public class ViewUnrenderedEventProcessingStrategy implements EventProcessingStr
 
     @Override
     public void process(ViewUnrenderedEvent event) {
-        ShowViewDispatcher.INSTANCE.unregisterUnRenderedView(event.getClassViewUnrendered());
+        ShowViewDispatcher.INSTANCE.unregisterUnRenderedView(event.getViewClass());
     }
 }

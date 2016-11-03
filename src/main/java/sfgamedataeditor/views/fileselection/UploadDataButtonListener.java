@@ -33,10 +33,10 @@ public class UploadDataButtonListener implements ActionListener {
         ViewTools.setComponentsEnableStatus(mainPanel, false);
         ViewTools.repaintButtonTextContent(okButton, frame, mainPanel, I18N.INSTANCE.getMessage("processingData"));
         FileUtils.uploadDataIntoDatabase();
-        ShowViewDispatcher.INSTANCE.showView(MainView.class, null);
-        ShowViewDispatcher.INSTANCE.showView(EventHistoryView.class, null);
+        ShowViewDispatcher.INSTANCE.showViewSilently(MainView.class, null);
+        ShowViewDispatcher.INSTANCE.showViewSilently(EventHistoryView.class, null);
+        ShowViewDispatcher.INSTANCE.showViewSilently(ButtonsView.class, null);
         ShowViewDispatcher.INSTANCE.showView(ModulesView.class, null);
-        ShowViewDispatcher.INSTANCE.showView(ButtonsView.class, null);
         frame.dispose();
     }
 }

@@ -19,7 +19,7 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
     @Override
     public void process(ShowViewEvent event) {
         ControllableView view;
-        Class<? extends ControllableView> classViewToShow = event.getClassViewToShow();
+        Class<? extends ControllableView> classViewToShow = event.getViewClass();
         Map<Class<? extends ControllableView>, ViewControllerPair> views = ViewRegister.INSTANCE.getViews();
         if (!views.containsKey(classViewToShow)) {
             try {

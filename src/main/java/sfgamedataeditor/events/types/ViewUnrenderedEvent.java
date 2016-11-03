@@ -2,15 +2,8 @@ package sfgamedataeditor.events.types;
 
 import sfgamedataeditor.views.common.ControllableView;
 
-public class ViewUnrenderedEvent extends Event {
-
-    private Class<? extends ControllableView> classViewUnrendered;
-
+public class ViewUnrenderedEvent extends ViewEvent {
     public ViewUnrenderedEvent(Class<? extends ControllableView> classViewUnrendered) {
-        this.classViewUnrendered = classViewUnrendered;
-    }
-
-    public Class<? extends ControllableView> getClassViewUnrendered() {
-        return classViewUnrendered;
+        super(classViewUnrendered);
     }
 }

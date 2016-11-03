@@ -8,7 +8,7 @@ import sfgamedataeditor.views.common.ControllableView;
 public class UnShowEventProcessingStrategy implements EventProcessingStrategy<UnShowViewEvent> {
     @Override
     public void process(UnShowViewEvent event) {
-        Class<? extends ControllableView> classViewToUnShow = event.getClassViewToUnShow();
+        Class<? extends ControllableView> classViewToUnShow = event.getViewClass();
         ViewControllerPair viewControllerPair = ViewRegister.INSTANCE.getViews().get(classViewToUnShow);
         if (viewControllerPair == null) {
             return;
