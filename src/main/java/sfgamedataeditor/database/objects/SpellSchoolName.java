@@ -11,7 +11,7 @@ public class SpellSchoolName {
     @DatabaseField(id = true)
     public String name;
 
-    @DatabaseField(canBeNull = true)
+    @DatabaseField
     public Integer spellSchoolId;
 
     public SpellSchoolName() {

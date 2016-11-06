@@ -1,7 +1,8 @@
 package sfgamedataeditor.views.common;
 
+import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.ShowViewDispatcher;
+import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.views.main.MainView;
@@ -64,7 +65,7 @@ public abstract class AbstractModulesController<M, V extends AbstractModulesView
 
             Class<? extends ControllableView> classViewToShow = getView().getComboBoxMapping().get(selectedItem);
             Model model = createModel();
-            ShowViewDispatcher.INSTANCE.showView(classViewToShow, model);
+            EventProcessor.INSTANCE.process(new ShowContentViewEvent(classViewToShow, model));
         }
     }
 

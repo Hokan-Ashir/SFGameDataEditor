@@ -1,4 +1,4 @@
-package sfgamedataeditor.events.processing;
+package sfgamedataeditor.events.processing.strategies;
 
 import sfgamedataeditor.events.types.Event;
 

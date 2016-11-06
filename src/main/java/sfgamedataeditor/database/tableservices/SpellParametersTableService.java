@@ -123,4 +123,22 @@ public enum SpellParametersTableService {
     public List<SpellParameters> getAllSpellParameters() {
         return CommonTableService.INSTANCE.getAllTableData(SpellParameters.class);
     }
+
+    public SpellParameters getSpellParameters(int spellTypeId) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        Dao<SpellParameters, Integer> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, SpellParameters.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+
+        try {
+            return dao.queryBuilder().where().eq("spellNameId", spellTypeId).query().get(0);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+            return null;
+        }
+    }
 }

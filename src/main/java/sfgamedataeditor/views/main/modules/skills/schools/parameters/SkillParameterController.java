@@ -4,7 +4,7 @@ import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.database.tableservices.SkillParametersTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.events.types.UpdateViewModelEvent;
+import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.Model;
@@ -35,7 +35,7 @@ public class SkillParameterController extends AbstractController<SkillParameterM
 
                 Model<SkillParameterModelParameter> model = getModel();
                 model.getParameter().setSkillLevel(Integer.valueOf(selectedItem));
-                UpdateViewModelEvent event = new UpdateViewModelEvent(SkillParameterView.class, model);
+                ShowContentViewEvent event = new ShowContentViewEvent(SkillParameterView.class, model);
                 EventProcessor.INSTANCE.process(event);
             }
         });

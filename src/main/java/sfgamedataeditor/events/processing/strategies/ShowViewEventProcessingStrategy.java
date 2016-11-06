@@ -1,8 +1,9 @@
-package sfgamedataeditor.events.processing;
+package sfgamedataeditor.events.processing.strategies;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.events.processing.ViewControllerPair;
+import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.events.types.ShowViewEvent;
-import sfgamedataeditor.events.types.ViewRenderedEvent;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.views.common.ControllableView;
 
@@ -52,7 +53,5 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
             controller.updateView();
             controller.renderView();
         }
-
-        EventProcessor.INSTANCE.process(new ViewRenderedEvent(classViewToShow));
     }
 }

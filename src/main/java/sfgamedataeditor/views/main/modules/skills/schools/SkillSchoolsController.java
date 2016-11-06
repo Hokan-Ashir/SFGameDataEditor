@@ -28,7 +28,7 @@ public class SkillSchoolsController extends AbstractModulesController<ModulePara
     }
 
     @Override
-    protected <T extends Model<?>> T createModel() {
+    public <T extends Model<?>> T createModel() {
         String selectedSkillSchool = getView().getSelectedModuleValue();
         int skillSchoolId = Mappings.INSTANCE.SKILL_SCHOOL_MAP.get(selectedSkillSchool);
         SkillParameterModelParameter parameter = new SkillParameterModelParameter(skillSchoolId, 1);

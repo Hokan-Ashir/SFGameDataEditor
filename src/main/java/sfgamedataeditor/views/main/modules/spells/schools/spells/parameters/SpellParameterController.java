@@ -7,7 +7,7 @@ import sfgamedataeditor.database.tableservices.SpellNameTableService;
 import sfgamedataeditor.database.tableservices.SpellParametersTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.events.types.UpdateViewModelEvent;
+import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.fieldwrapping.MappedColumn;
 import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.mvc.objects.AbstractController;
@@ -45,7 +45,7 @@ public class SpellParameterController extends AbstractController<SpellParameterM
 
                 Model<SpellParameterModelParameter> model = getModel();
                 model.getParameter().setSpellLevel(Integer.valueOf(selectedItem));
-                UpdateViewModelEvent event = new UpdateViewModelEvent(SpellParameterView.class, model);
+                ShowContentViewEvent event = new ShowContentViewEvent(SpellParameterView.class, model);
                 EventProcessor.INSTANCE.process(event);
             }
         });

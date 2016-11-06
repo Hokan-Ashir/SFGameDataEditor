@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.common.eventhistory;
 
+import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowViewEvent;
-import sfgamedataeditor.mvc.ShowViewDispatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +30,7 @@ public enum EventHistory {
 
     private void fireCurrentEvent() {
         ShowViewEvent event = events.get(currentEventIndex);
-        ShowViewDispatcher.INSTANCE.showViewSilently(event.getViewClass(), event.getModel());
-//        EventProcessor.INSTANCE.process(event);
+        EventProcessor.INSTANCE.process(event);
     }
 
     public boolean isRedoPossible() {

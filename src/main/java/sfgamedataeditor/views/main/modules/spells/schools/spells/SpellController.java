@@ -33,10 +33,11 @@ public class SpellController extends AbstractModulesController<SpellModelParamet
         }
 
         getView().reinitializeComboBox();
+//        setModulesComboBoxValue(null);
     }
 
     @Override
-    protected <T extends Model<?>> T createModel() {
+    public <T extends Model<?>> T createModel() {
         String selectedSpellName = getView().getSelectedModuleValue();
         Integer spellId = SpellNameTableService.INSTANCE.getSpellId(selectedSpellName);
         SpellParameterModelParameter parameter = new SpellParameterModelParameter(spellId, 1);
