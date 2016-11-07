@@ -124,7 +124,7 @@ public enum SpellParametersTableService {
         return CommonTableService.INSTANCE.getAllTableData(SpellParameters.class);
     }
 
-    public SpellParameters getSpellParameters(int spellTypeId) {
+    public SpellParameters getSpellParametersBySpellType(int spellTypeId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         Dao<SpellParameters, Integer> dao;
         try {
@@ -140,5 +140,11 @@ public enum SpellParametersTableService {
             LOGGER.error(e.getMessage());
             return null;
         }
+    }
+
+    public List<SpellParameters> getSpellParametersBySpellSchool(int spellTypeId) {
+        SpellParameters spellParameter = getSpellParametersBySpellType(spellTypeId);
+        String spellSchoolName = SpellSchoolNameTableService.INSTANCE.getSpellSchoolName(spellParameter);
+        return getSpells(spellSchoolName);
     }
 }

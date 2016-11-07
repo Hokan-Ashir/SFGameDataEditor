@@ -13,7 +13,7 @@ import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public abstract class AbstractModulesController<M, V extends AbstractModulesView> extends AbstractController<M, V> {
+public abstract class AbstractModulesController<M, V extends AbstractModulesView, C extends Model> extends AbstractController<M, V> {
     public AbstractModulesController(V view) {
         super(view);
         final JComboBox<String> modulesComboBox = getView().getModulesComboBox();
@@ -24,10 +24,7 @@ public abstract class AbstractModulesController<M, V extends AbstractModulesView
         return new DefaultComboBoxListener();
     }
 
-    protected <T extends Model<?>> T createModel() {
-        ModuleParameter parameter = new ModuleParameter(getView().getSelectedModuleValue());
-        return (T) new ModulesModel(parameter);
-    }
+    protected abstract C createModel();
 
     protected boolean isElementExistsInComboBox(String value) {
         JComboBox<String> modulesComboBox = getView().getModulesComboBox();

@@ -164,4 +164,30 @@ public enum  SpellSchoolNameTableService {
             return new SpellSchoolName();
         }
     }
+
+    public String getSpellSchoolName(SpellParameters spellParameter) {
+        int spellSchoolId = getFirstNonZeroSpellSchoolId(spellParameter);
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        final Dao<SpellSchoolName, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, SpellSchoolName.class);
+            return dao.queryBuilder().selectColumns("name").where().eq("spellSchoolId", spellSchoolId).query().get(0).name;
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
+    private int getFirstNonZeroSpellSchoolId(SpellParameters spellParameter) {
+        int spellSchoolRequirement1 = spellParameter.requirementClass1 * 10 + spellParameter.requirementSubClass1;
+        int spellSchoolRequirement2 = spellParameter.requirementClass2 * 10 + spellParameter.requirementSubClass2;
+        int spellSchoolRequirement3 = spellParameter.requirementClass3 * 10 + spellParameter.requirementSubClass3;
+        if (spellSchoolRequirement1 != 0) {
+            return spellSchoolRequirement1;
+        } else if (spellSchoolRequirement2 != 0) {
+            return spellSchoolRequirement2;
+        } else {
+            return spellSchoolRequirement3;
+        }
+    }
 }

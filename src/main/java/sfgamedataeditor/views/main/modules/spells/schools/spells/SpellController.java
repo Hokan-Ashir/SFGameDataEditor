@@ -1,7 +1,6 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
 import sfgamedataeditor.database.tableservices.SpellNameTableService;
-import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModelParameter;
@@ -9,9 +8,17 @@ import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.Spel
 
 import java.util.List;
 
-public class SpellController extends AbstractModulesController<SpellModelParameter, SpellsView> {
+public class SpellController extends AbstractModulesController<SpellModelParameter, SpellsView, SpellParameterModel> {
     public SpellController(SpellsView view) {
         super(view);
+    }
+
+    @Override
+    protected SpellParameterModel createModel() {
+        String selectedSpellName = getView().getSelectedModuleValue();
+        Integer spellId = SpellNameTableService.INSTANCE.getSpellId(selectedSpellName);
+        SpellParameterModelParameter parameter = new SpellParameterModelParameter(spellId, 1);
+        return new SpellParameterModel(parameter);
     }
 
     /**
@@ -33,14 +40,6 @@ public class SpellController extends AbstractModulesController<SpellModelParamet
         }
 
         getView().reinitializeComboBox();
-//        setModulesComboBoxValue(null);
-    }
-
-    @Override
-    public <T extends Model<?>> T createModel() {
-        String selectedSpellName = getView().getSelectedModuleValue();
-        Integer spellId = SpellNameTableService.INSTANCE.getSpellId(selectedSpellName);
-        SpellParameterModelParameter parameter = new SpellParameterModelParameter(spellId, 1);
-        return (T) new SpellParameterModel(parameter);
+        setModulesComboBoxValue(getModel().getParameter().getSelectedSpell());
     }
 }

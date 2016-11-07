@@ -2,10 +2,16 @@ package sfgamedataeditor.views.main.modules.common.modules;
 
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.common.ModuleParameter;
+import sfgamedataeditor.views.common.ModulesModel;
 
-public class ModulesController extends AbstractModulesController<ModuleParameter, ModulesView> {
+public class ModulesController extends AbstractModulesController<ModuleParameter, ModulesView, ModulesModel> {
     public ModulesController(ModulesView view) {
         super(view);
+    }
+
+    @Override
+    protected ModulesModel createModel() {
+        return null;
     }
 
     @Override

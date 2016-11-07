@@ -1,8 +1,6 @@
 package sfgamedataeditor.events.processing.strategies.content.viewhierarchy;
 
-import sfgamedataeditor.events.processing.strategies.content.modelcreators.ModulesFromSkillSchoolsModelCreator;
-import sfgamedataeditor.events.processing.strategies.content.modelcreators.ModulesFromSpellSchoolsModelCreator;
-import sfgamedataeditor.events.processing.strategies.content.modelcreators.SpellSchoolsFromSpellsModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.*;
 import sfgamedataeditor.views.common.ControllableView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
@@ -26,7 +24,7 @@ import java.util.List;
 public enum  ViewHierarchy {
     INSTANCE;
 
-    private final ViewHierarchyNode rootNode = new ViewHierarchyNode(null, ModulesView.class, null);
+    private final ViewHierarchyNode rootNode = new ViewHierarchyNode(null, ModulesView.class, new ModulesModuleCreator());
 
     ViewHierarchy() {
         rootNode.addChildren(createBuildingsNodes(rootNode),
@@ -38,11 +36,11 @@ public enum  ViewHierarchy {
     }
 
     private ViewHierarchyNode createMerchantsNodes(ViewHierarchyNode rootNode) {
-        return new ViewHierarchyNode(rootNode, MerchantLocationsView.class, null);
+        return new ViewHierarchyNode(rootNode, MerchantLocationsView.class, new ModulesFromMerchantsModelCreator());
     }
 
     private ViewHierarchyNode createItemsNodes(ViewHierarchyNode rootNode) {
-        ViewHierarchyNode itemTypes = new ViewHierarchyNode(rootNode, ItemTypesView.class, null);
+        ViewHierarchyNode itemTypes = new ViewHierarchyNode(rootNode, ItemTypesView.class, new ModulesFromItemsModelCreator());
         ViewHierarchyNode armor = new ViewHierarchyNode(itemTypes, ArmorTypeListView.class, null);
         ViewHierarchyNode buildingPlans = new ViewHierarchyNode(itemTypes, ArmorTypeListView.class, null);
         ViewHierarchyNode miscellaneous = new ViewHierarchyNode(itemTypes, MiscellaneousListView.class, null);
@@ -54,12 +52,12 @@ public enum  ViewHierarchy {
     }
 
     private ViewHierarchyNode createBuildingsNodes(ViewHierarchyNode rootNode) {
-        return new ViewHierarchyNode(rootNode, BuildingRacesView.class, null);
+        return new ViewHierarchyNode(rootNode, BuildingRacesView.class, new ModulesFromBuildingsModelCreator());
     }
 
     private ViewHierarchyNode createSkillNodes(ViewHierarchyNode rootNode) {
         ViewHierarchyNode skillSchools = new ViewHierarchyNode(rootNode, SkillSchoolsView.class, new ModulesFromSkillSchoolsModelCreator());
-        ViewHierarchyNode skillParameters = new ViewHierarchyNode(skillSchools, SkillParameterView.class, null);
+        ViewHierarchyNode skillParameters = new ViewHierarchyNode(skillSchools, SkillParameterView.class, new SkillSchoolsFromSkillParameterModelCreator());
         skillSchools.addChild(skillParameters);
         return skillSchools;
     }
@@ -68,24 +66,14 @@ public enum  ViewHierarchy {
         ViewHierarchyNode spellSchools = new ViewHierarchyNode(rootNode, SpellSchoolsView.class, new ModulesFromSpellSchoolsModelCreator());
         ViewHierarchyNode spells = new ViewHierarchyNode(spellSchools, SpellsView.class, new SpellSchoolsFromSpellsModelCreator());
         spellSchools.addChild(spells);
-        ViewHierarchyNode spellParameters = new ViewHierarchyNode(spells, SpellParameterView.class, null);
+        ViewHierarchyNode spellParameters = new ViewHierarchyNode(spells, SpellParameterView.class, new SpellsFromSpellParameterModelCreator());
         spells.addChild(spellParameters);
 
         return spellSchools;
     }
 
     private ViewHierarchyNode createUnitNodes(ViewHierarchyNode rootNode) {
-        return new ViewHierarchyNode(rootNode, UnitsRacesView.class, null);
-    }
-    
-    public List<Class<? extends ControllableView>> getViewsToShow(Class<? extends ControllableView> leafViewClass) {
-        List<Class<? extends ControllableView>> viewBranch = new ArrayList<>();
-        List<ViewHierarchyNode> nodesToShow = getNodesToShow(leafViewClass);
-        for (ViewHierarchyNode viewHierarchyNode : nodesToShow) {
-            viewBranch.add(viewHierarchyNode.getViewClass());
-        }
-
-        return viewBranch;
+        return new ViewHierarchyNode(rootNode, UnitsRacesView.class, new ModulesFromUnitsModelCreator());
     }
 
     public List<ViewHierarchyNode> getNodesToShow(Class<? extends ControllableView> leafViewClass) {

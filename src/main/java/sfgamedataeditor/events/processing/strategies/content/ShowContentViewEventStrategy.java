@@ -29,14 +29,13 @@ public class ShowContentViewEventStrategy implements EventProcessingStrategy<Sho
         List<Model> models = new ArrayList<>();
         models.add(event.getModel());
         for (int i = 1; i < nodesToShow.size(); ++i) {
-            ViewHierarchyNode node = nodesToShow.get(i);
-            if (node.getModelCreator() != null) {
-                models.add(node.getModelCreator().createModel(models.get(i - 1)));
-            }
+            ViewHierarchyNode node = nodesToShow.get(i - 1);
+            models.add(node.getModelCreator().createModel(models.get(i - 1)));
         }
 
         for (int i = nodesToShow.size() - 1; i > -1; --i) {
             ViewHierarchyNode node = nodesToShow.get(i);
+            node.setRenderedOnScreen(true);
             EventProcessor.INSTANCE.process(new ShowViewEvent(node.getViewClass(), models.get(i)));
         }
     }
