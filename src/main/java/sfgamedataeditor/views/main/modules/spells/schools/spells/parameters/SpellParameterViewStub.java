@@ -167,6 +167,7 @@ public class SpellParameterViewStub implements Wrapable, View {
         setLabelText(minRangeLabel, "spellMinRange");
         setLabelText(maxRangeLabel, "spellMaxRange");
         setLabelText(castTypeLabel, "spellCastType");
+        setLabelText(levelLabel, "levelLabel");
     }
 
     private void setLabelText(JLabel label, String not18nText) {
