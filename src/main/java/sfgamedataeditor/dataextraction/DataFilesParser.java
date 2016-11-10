@@ -47,7 +47,6 @@ public enum DataFilesParser {
                     file.read(buffer);
                     long offset = file.getFilePointer() - dataLength;
                     result.add(new Pair<>(buffer.clone(), offset));
-                    file.seek(file.getFilePointer() + dataLength);
                 }
             }
         } catch (IOException e) {

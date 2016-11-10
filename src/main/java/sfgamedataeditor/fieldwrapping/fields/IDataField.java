@@ -3,6 +3,6 @@ package sfgamedataeditor.fieldwrapping.fields;
 import sfgamedataeditor.database.objects.OffsetableObject;
 
 public interface IDataField {
-    void saveToFile();
+    void setValueToField();
     void mapValues(OffsetableObject mappedObject);
 }

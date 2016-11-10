@@ -22,6 +22,6 @@ public class ComboBoxListener implements ItemListener {
             return;
         }
 
-        comboBox.saveToFile();
+        comboBox.setValueToField();
     }
 }

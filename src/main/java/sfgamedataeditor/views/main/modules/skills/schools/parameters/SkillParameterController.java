@@ -44,7 +44,7 @@ public class SkillParameterController extends AbstractController<SkillParameterM
     @Override
     public void updateView() {
         SkillParameterModelParameter parameter = getModel().getParameter();
-        fillPossibleSkillLevelsComboBox(parameter.getSkillSchoolId());
+        fillPossibleSkillLevelsComboBox(parameter);
         setFieldsData(parameter.getSkillSchoolId(), parameter.getSkillLevel());
     }
 
@@ -60,16 +60,17 @@ public class SkillParameterController extends AbstractController<SkillParameterM
         mainView.unrenderViewInsideContentPanel(getView());
     }
 
-    private void fillPossibleSkillLevelsComboBox(final int skillSchoolId) {
+    private void fillPossibleSkillLevelsComboBox(final SkillParameterModelParameter parameter) {
         final JComboBox<String> comboBox = getView().getLevelComboBox();
         ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
             @Override
             protected void setValues() {
                 comboBox.removeAllItems();
-                List<SkillParameters> skillPossibleValues = SkillParametersTableService.INSTANCE.getSkillPossibleValues(skillSchoolId);
+                List<SkillParameters> skillPossibleValues = SkillParametersTableService.INSTANCE.getSkillPossibleValues(parameter.getSkillSchoolId());
                 for (SkillParameters skillPossibleValue : skillPossibleValues) {
                     comboBox.addItem(String.valueOf(skillPossibleValue.level));
                 }
+                comboBox.setSelectedItem(String.valueOf(parameter.getSkillLevel()));
             }
         });
     }

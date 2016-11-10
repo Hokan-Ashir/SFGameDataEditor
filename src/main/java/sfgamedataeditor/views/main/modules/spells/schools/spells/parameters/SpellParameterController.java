@@ -108,15 +108,9 @@ public class SpellParameterController extends AbstractController<SpellParameterM
                     comboBox.addItem(String.valueOf(spellLevel));
                 }
 
-                // TODO split this methods
-                setLevelComboBoxItem(selectedLevel);
+                comboBox.setSelectedItem(String.valueOf(selectedLevel));
             }
         });
-    }
-
-    private void setLevelComboBoxItem(int spellLevel) {
-        JComboBox<String> comboBox = getView().getLevelComboBox();
-        comboBox.setSelectedItem(String.valueOf(spellLevel));
     }
 
     private void setSpellParameterLabelNames() {

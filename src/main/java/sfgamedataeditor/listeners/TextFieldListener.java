@@ -65,6 +65,6 @@ public class TextFieldListener implements DocumentListener {
             return;
         }
 
-        field.saveToFile();
+        field.setValueToField();
     }
 }

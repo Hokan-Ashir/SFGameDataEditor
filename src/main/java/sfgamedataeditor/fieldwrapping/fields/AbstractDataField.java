@@ -40,7 +40,7 @@ public abstract class AbstractDataField<T extends JComponent> implements IDataFi
      * {@inheritDoc}
      */
     @Override
-    public void saveToFile() {
+    public void setValueToField() {
         // TODO get rid of it; this is the cause when:
         // user first time select ANY spell
         // data loading is processing through AbstractDataFields
