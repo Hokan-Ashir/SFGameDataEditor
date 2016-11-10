@@ -63,4 +63,64 @@ public enum DataFilesParser {
 //        extractSpellsDataFromFile();
 //        TableCreationUtils.createSpellSchoolNameTable();
     }
+
+    private List<Pair<Long, Long>> getSpellSequencesOffsets(RandomAccessFile file) {
+        int dataLength = DataOffsetProvider.INSTANCE.getSpellDataLength();
+        int postfixLength = 8;
+        boolean foundSequence = false;
+        byte[] buffer = new byte[postfixLength];
+        List<Pair<Long, Long>> offsets = new ArrayList<>();
+        try {
+            while (file.getFilePointer() < file.length()) {
+                if (foundSequence) {
+                    file.skipBytes(dataLength - postfixLength);
+                }
+                file.read(buffer);
+
+                if (file.getFilePointer() >= file.length()) {
+                    break;
+                }
+
+                if (!isSuit(buffer)) {
+                    if (foundSequence) {
+                        long endOfSequence = file.getFilePointer() - dataLength;
+                        file.seek(endOfSequence);
+                        offsets.get(offsets.size() - 1).setValue(endOfSequence);
+                    } else {
+                        file.seek(file.getFilePointer() - postfixLength);
+                    }
+                    file.seek(file.getFilePointer() + 1);
+
+                    foundSequence = false;
+                } else {
+                    if (!foundSequence) {
+                        long beginningOfSequence = file.getFilePointer() - dataLength;
+                        offsets.add(new Pair<>(beginningOfSequence, 0L));
+                    }
+                    foundSequence = true;
+                }
+
+            }
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        try {
+            file.close();
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+
+        return offsets;
+    }
+
+    private boolean isSuit(byte[] buffer) {
+        return buffer[0] == 0x0
+                && buffer[1] == 0x0
+                && buffer[2] == 0x0
+                && buffer[3] == 0x0
+                && buffer[4] == 0x64
+                && buffer[5] == 0x0
+                && buffer[6] == 0x0
+                && buffer[7] == 0x0;
+    }
 }
