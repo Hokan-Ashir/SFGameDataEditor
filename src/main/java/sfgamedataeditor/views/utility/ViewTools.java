@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class ViewTools {
 
-    private static final int LABEL_LINE_MAX_LENGTH = 12;
+    private static final int LABEL_LINE_MAX_LENGTH = 30;
     private static final double WIDTH_COEFFICIENT = 0.55;
 
     private ViewTools() {

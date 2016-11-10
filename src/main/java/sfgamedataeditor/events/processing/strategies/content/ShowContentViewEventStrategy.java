@@ -12,6 +12,7 @@ import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.views.common.ControllableView;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistory;
+import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ public class ShowContentViewEventStrategy implements EventProcessingStrategy<Sho
     @Override
     public void process(ShowContentViewEvent event) {
         EventHistory.INSTANCE.addEventToHistory(event);
+        ViewRegister.INSTANCE.getView(EventHistoryView.class).setRedoButtonStatus(EventHistory.INSTANCE.isRedoPossible());
+        ViewRegister.INSTANCE.getView(EventHistoryView.class).setUndoButtonStatus(EventHistory.INSTANCE.isUndoPossible());
         List<ViewHierarchyNode> renderedNodes = ViewHierarchy.INSTANCE.getRenderedNodes();
         for (ViewHierarchyNode renderedNode : renderedNodes) {
             unrenderNode(renderedNode);

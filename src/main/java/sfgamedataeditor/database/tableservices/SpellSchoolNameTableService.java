@@ -131,7 +131,12 @@ public enum  SpellSchoolNameTableService {
             return;
         }
 
-        result.add(new SpellSchoolName(spellSchoolMap.get(schoolId), schoolId));
+        // case when spell doesn't belong to any spell school (not available to players i.e.)
+        String spellSchoolName = spellSchoolMap.get(schoolId);
+        if (spellSchoolName == null) {
+            return;
+        }
+        result.add(new SpellSchoolName(spellSchoolName, schoolId));
     }
 
     private String getMessage(String mainSchool, String... subSchools) {

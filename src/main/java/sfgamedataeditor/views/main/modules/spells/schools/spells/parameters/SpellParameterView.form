@@ -2,14 +2,14 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterViewStub">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="570" width="700" height="500"/>
+      <xy x="20" y="570" width="880" height="550"/>
     </constraints>
     <properties>
       <alignmentX value="1.0"/>
       <alignmentY value="1.0"/>
-      <maximumSize width="700" height="500"/>
-      <minimumSize width="700" height="500"/>
-      <preferredSize width="700" height="500"/>
+      <maximumSize width="880" height="500"/>
+      <minimumSize width="880" height="500"/>
+      <preferredSize width="880" height="500"/>
       <requestFocusEnabled value="true"/>
     </properties>
     <border type="none"/>
@@ -118,9 +118,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="95" height="40"/>
-          <minimumSize width="95" height="40"/>
-          <preferredSize width="95" height="40"/>
+          <maximumSize width="90" height="40"/>
+          <minimumSize width="90" height="40"/>
+          <preferredSize width="90" height="40"/>
           <text resource-bundle="messages" key="spellRequirementLevel"/>
         </properties>
       </component>
@@ -130,9 +130,9 @@
           <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="115" height="40"/>
-          <minimumSize width="115" height="40"/>
-          <preferredSize width="115" height="40"/>
+          <maximumSize width="165" height="40"/>
+          <minimumSize width="165" height="40"/>
+          <preferredSize width="165" height="40"/>
           <text resource-bundle="messages" key="spellRequirementSubClass"/>
         </properties>
       </component>
@@ -142,9 +142,9 @@
           <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="115" height="40"/>
-          <minimumSize width="115" height="40"/>
-          <preferredSize width="115" height="40"/>
+          <maximumSize width="165" height="40"/>
+          <minimumSize width="165" height="40"/>
+          <preferredSize width="165" height="40"/>
           <text resource-bundle="messages" key="spellRequirementSubClass"/>
         </properties>
       </component>
@@ -154,9 +154,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="95" height="40"/>
-          <minimumSize width="95" height="40"/>
-          <preferredSize width="95" height="40"/>
+          <maximumSize width="90" height="40"/>
+          <minimumSize width="90" height="40"/>
+          <preferredSize width="90" height="40"/>
           <text resource-bundle="messages" key="spellRequirementLevel"/>
         </properties>
       </component>
@@ -166,9 +166,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="95" height="40"/>
-          <minimumSize width="95" height="40"/>
-          <preferredSize width="95" height="40"/>
+          <maximumSize width="90" height="40"/>
+          <minimumSize width="90" height="40"/>
+          <preferredSize width="90" height="40"/>
           <text resource-bundle="messages" key="spellRequirementLevel"/>
         </properties>
       </component>
@@ -178,9 +178,9 @@
           <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="118" height="40"/>
-          <minimumSize width="118" height="40"/>
-          <preferredSize width="118" height="40"/>
+          <maximumSize width="165" height="40"/>
+          <minimumSize width="165" height="40"/>
+          <preferredSize width="165" height="40"/>
           <text value="Requirement subclass:"/>
         </properties>
       </component>
@@ -190,9 +190,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="85" height="40"/>
-          <minimumSize width="85" height="40"/>
-          <preferredSize width="85" height="40"/>
+          <maximumSize width="165" height="40"/>
+          <minimumSize width="165" height="40"/>
+          <preferredSize width="165" height="40"/>
           <text resource-bundle="messages" key="spellCooldown"/>
         </properties>
       </component>
@@ -202,9 +202,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="59" height="40"/>
-          <minimumSize width="59" height="40"/>
-          <preferredSize width="59" height="40"/>
+          <maximumSize width="165" height="40"/>
+          <minimumSize width="165" height="40"/>
+          <preferredSize width="165" height="40"/>
           <text resource-bundle="messages" key="spellMaxRange"/>
         </properties>
       </component>
@@ -214,9 +214,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="80" height="40"/>
-          <minimumSize width="80" height="40"/>
-          <preferredSize width="80" height="40"/>
+          <maximumSize width="165" height="40"/>
+          <minimumSize width="165" height="40"/>
+          <preferredSize width="165" height="40"/>
           <text resource-bundle="messages" key="spellCastTime"/>
         </properties>
       </component>
@@ -239,9 +239,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="85" height="40"/>
-          <minimumSize width="85" height="40"/>
-          <preferredSize width="85" height="40"/>
+          <maximumSize width="165" height="40"/>
+          <minimumSize width="165" height="40"/>
+          <preferredSize width="165" height="40"/>
           <text resource-bundle="messages" key="spellCastType"/>
         </properties>
       </component>
@@ -251,9 +251,9 @@
           <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="96" height="40"/>
-          <minimumSize width="96" height="40"/>
-          <preferredSize width="96" height="40"/>
+          <maximumSize width="165" height="40"/>
+          <minimumSize width="165" height="40"/>
+          <preferredSize width="165" height="40"/>
           <text resource-bundle="messages" key="spellRequirementClass"/>
         </properties>
       </component>
@@ -274,9 +274,9 @@
           <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="120" height="40"/>
-          <minimumSize width="120" height="40"/>
-          <preferredSize width="120" height="40"/>
+          <maximumSize width="165" height="40"/>
+          <minimumSize width="165" height="40"/>
+          <preferredSize width="165" height="40"/>
           <text resource-bundle="messages" key="spellRequirementClass"/>
         </properties>
       </component>
@@ -297,9 +297,9 @@
           <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="96" height="40"/>
-          <minimumSize width="96" height="40"/>
-          <preferredSize width="96" height="40"/>
+          <maximumSize width="165" height="40"/>
+          <minimumSize width="165" height="40"/>
+          <preferredSize width="165" height="40"/>
           <text resource-bundle="messages" key="spellRequirementClass"/>
         </properties>
       </component>
@@ -320,9 +320,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="127" height="40"/>
-          <minimumSize width="127" height="40"/>
-          <preferredSize width="127" height="40"/>
+          <maximumSize width="165" height="40"/>
+          <minimumSize width="165" height="40"/>
+          <preferredSize width="165" height="40"/>
           <text resource-bundle="messages" key="spellManaUsage"/>
         </properties>
       </component>
@@ -360,9 +360,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="57" height="40"/>
-          <minimumSize width="57" height="40"/>
-          <preferredSize width="57" height="40"/>
+          <maximumSize width="165" height="40"/>
+          <minimumSize width="165" height="40"/>
+          <preferredSize width="165" height="40"/>
           <text resource-bundle="messages" key="spellMinRange"/>
         </properties>
       </component>
@@ -387,9 +387,9 @@
         <properties>
           <alignmentX value="0.0"/>
           <horizontalAlignment value="2"/>
-          <maximumSize width="60" height="40"/>
-          <minimumSize width="60" height="40"/>
-          <preferredSize width="60" height="40"/>
+          <maximumSize width="90" height="40"/>
+          <minimumSize width="90" height="40"/>
+          <preferredSize width="90" height="40"/>
           <text resource-bundle="messages" key="spellNumber"/>
           <verticalAlignment value="0"/>
         </properties>
@@ -414,9 +414,9 @@
         </constraints>
         <properties>
           <labelFor value="76db6"/>
-          <maximumSize width="60" height="40"/>
-          <minimumSize width="60" height="40"/>
-          <preferredSize width="60" height="40"/>
+          <maximumSize width="140" height="40"/>
+          <minimumSize width="140" height="40"/>
+          <preferredSize width="140" height="40"/>
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
@@ -440,9 +440,9 @@
         </constraints>
         <properties>
           <labelFor value="978b4"/>
-          <maximumSize width="60" height="40"/>
-          <minimumSize width="60" height="40"/>
-          <preferredSize width="60" height="40"/>
+          <maximumSize width="140" height="40"/>
+          <minimumSize width="140" height="40"/>
+          <preferredSize width="140" height="40"/>
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
@@ -453,9 +453,9 @@
         </constraints>
         <properties>
           <labelFor value="d9c3f"/>
-          <maximumSize width="60" height="40"/>
-          <minimumSize width="60" height="40"/>
-          <preferredSize width="60" height="40"/>
+          <maximumSize width="140" height="40"/>
+          <minimumSize width="140" height="40"/>
+          <preferredSize width="140" height="40"/>
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
@@ -479,9 +479,9 @@
         </constraints>
         <properties>
           <labelFor value="aea8a"/>
-          <maximumSize width="60" height="40"/>
-          <minimumSize width="60" height="40"/>
-          <preferredSize width="60" height="40"/>
+          <maximumSize width="140" height="40"/>
+          <minimumSize width="140" height="40"/>
+          <preferredSize width="140" height="40"/>
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
@@ -518,9 +518,9 @@
         </constraints>
         <properties>
           <labelFor value="5e509"/>
-          <maximumSize width="60" height="40"/>
-          <minimumSize width="60" height="40"/>
-          <preferredSize width="60" height="40"/>
+          <maximumSize width="140" height="40"/>
+          <minimumSize width="140" height="40"/>
+          <preferredSize width="140" height="40"/>
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
@@ -531,9 +531,9 @@
         </constraints>
         <properties>
           <labelFor value="c74f8"/>
-          <maximumSize width="60" height="40"/>
-          <minimumSize width="60" height="40"/>
-          <preferredSize width="60" height="40"/>
+          <maximumSize width="140" height="40"/>
+          <minimumSize width="140" height="40"/>
+          <preferredSize width="140" height="40"/>
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
@@ -561,9 +561,9 @@
           <horizontalTextPosition value="11"/>
           <inheritsPopupMenu value="false"/>
           <labelFor value="e111a"/>
-          <maximumSize width="60" height="40"/>
-          <minimumSize width="60" height="40"/>
-          <preferredSize width="60" height="40"/>
+          <maximumSize width="140" height="40"/>
+          <minimumSize width="140" height="40"/>
+          <preferredSize width="140" height="40"/>
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
@@ -574,9 +574,9 @@
         </constraints>
         <properties>
           <labelFor value="1c97"/>
-          <maximumSize width="60" height="40"/>
-          <minimumSize width="60" height="40"/>
-          <preferredSize width="60" height="40"/>
+          <maximumSize width="140" height="40"/>
+          <minimumSize width="140" height="40"/>
+          <preferredSize width="140" height="40"/>
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
@@ -587,9 +587,9 @@
         </constraints>
         <properties>
           <labelFor value="1751f"/>
-          <maximumSize width="60" height="40"/>
-          <minimumSize width="60" height="40"/>
-          <preferredSize width="60" height="40"/>
+          <maximumSize width="140" height="40"/>
+          <minimumSize width="140" height="40"/>
+          <preferredSize width="140" height="40"/>
           <text resource-bundle="messages" key="spellParameterNotUsed"/>
         </properties>
       </component>
@@ -672,9 +672,9 @@
           <gridbag top="0" left="25" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="62" height="40"/>
-          <minimumSize width="62" height="40"/>
-          <preferredSize width="62" height="40"/>
+          <maximumSize width="90" height="40"/>
+          <minimumSize width="90" height="40"/>
+          <preferredSize width="90" height="40"/>
           <text value="Parameters:"/>
         </properties>
       </component>
@@ -684,9 +684,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="55" height="40"/>
-          <minimumSize width="55" height="40"/>
-          <preferredSize width="55" height="40"/>
+          <maximumSize width="90" height="40"/>
+          <minimumSize width="90" height="40"/>
+          <preferredSize width="90" height="40"/>
           <text resource-bundle="messages" key="spellType"/>
         </properties>
       </component>
@@ -708,9 +708,9 @@
         </constraints>
         <properties>
           <labelFor value="462e9"/>
-          <maximumSize width="55" height="40"/>
-          <minimumSize width="55" height="40"/>
-          <preferredSize width="55" height="40"/>
+          <maximumSize width="90" height="40"/>
+          <minimumSize width="90" height="40"/>
+          <preferredSize width="90" height="40"/>
           <text value="Level"/>
         </properties>
       </component>
