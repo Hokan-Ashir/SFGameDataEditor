@@ -57,14 +57,10 @@ public enum ObjectDataMappingService {
     private int getValue(byte[] value, int offset, int length) {
         int temp = 0;
         for (int i = offset; i < offset + length; i++) {
-            temp += value[i] << ((i - offset) * 8);
+            temp += (value[i] & 0xFF) << ((i - offset) * 8);
         }
 
-        if (temp < 0) {
-            return temp & 0xFF;
-        } else {
-            return temp;
-        }
+        return temp;
     }
 
     public byte[] serializeObject(Object daoObject) {
