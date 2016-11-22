@@ -9,8 +9,8 @@ import sfgamedataeditor.events.processing.strategies.content.viewhierarchy.ViewH
 import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.mvc.objects.Model;
-import sfgamedataeditor.views.common.ControllableView;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistory;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryView;
 

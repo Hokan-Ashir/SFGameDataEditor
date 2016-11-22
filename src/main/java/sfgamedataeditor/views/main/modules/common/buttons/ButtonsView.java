@@ -1,8 +1,8 @@
 package sfgamedataeditor.views.main.modules.common.buttons;
 
 import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.common.ControllableView;
 import sfgamedataeditor.views.main.modules.common.buttons.listeners.CreateModificatedFileButtonListener;
 import sfgamedataeditor.views.main.modules.common.buttons.listeners.CreateSfModFileButtonListener;
 import sfgamedataeditor.views.main.modules.common.buttons.listeners.LoadSfModFileButtonListener;

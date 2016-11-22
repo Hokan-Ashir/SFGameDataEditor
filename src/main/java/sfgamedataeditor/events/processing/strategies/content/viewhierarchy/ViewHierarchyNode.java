@@ -1,7 +1,7 @@
 package sfgamedataeditor.events.processing.strategies.content.viewhierarchy;
 
 import sfgamedataeditor.mvc.ModelCreator;
-import sfgamedataeditor.views.common.ControllableView;
+import sfgamedataeditor.mvc.objects.ControllableView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

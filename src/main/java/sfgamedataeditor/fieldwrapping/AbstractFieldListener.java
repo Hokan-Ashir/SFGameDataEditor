@@ -1,4 +1,4 @@
-package sfgamedataeditor.fieldwrapping.fields;
+package sfgamedataeditor.fieldwrapping;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.objects.Data;
@@ -8,15 +8,14 @@ import sfgamedataeditor.database.tableservices.CommonTableService;
 import javax.swing.*;
 import java.lang.reflect.Field;
 
-public abstract class AbstractDataField<T extends JComponent> implements IDataField {
-
-    private static final Logger LOGGER = Logger.getLogger(AbstractDataField.class);
+public abstract class AbstractFieldListener<T extends JComponent> {
+    private static final Logger LOGGER = Logger.getLogger(AbstractFieldListener.class);
 
     private Field mappedField;
     private T component;
     private OffsetableObject mappedObject;
 
-    public AbstractDataField(T component, Field mappedField) {
+    public AbstractFieldListener(T component, Field mappedField) {
         this.component = component;
         this.mappedField = mappedField;
     }
@@ -24,7 +23,6 @@ public abstract class AbstractDataField<T extends JComponent> implements IDataFi
     /**
      * {@inheritDoc}
      */
-    @Override
     public void mapValues(OffsetableObject mappedObject) {
         this.mappedObject = mappedObject;
         try {
@@ -39,7 +37,6 @@ public abstract class AbstractDataField<T extends JComponent> implements IDataFi
     /**
      * {@inheritDoc}
      */
-    @Override
     public void setValueToField() {
         // TODO get rid of it; this is the cause when:
         // user first time select ANY spell

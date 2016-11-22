@@ -1,7 +1,7 @@
 package sfgamedataeditor.events.processing.strategies.content.viewhierarchy;
 
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.*;
-import sfgamedataeditor.views.common.ControllableView;
+import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;

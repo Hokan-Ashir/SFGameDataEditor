@@ -1,9 +1,9 @@
 package sfgamedataeditor.views.main;
 
 import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.View;
 import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.common.ControllableView;
-import sfgamedataeditor.views.common.View;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;

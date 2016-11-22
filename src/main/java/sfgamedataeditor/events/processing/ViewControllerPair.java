@@ -1,7 +1,7 @@
 package sfgamedataeditor.events.processing;
 
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.views.common.ControllableView;
+import sfgamedataeditor.mvc.objects.ControllableView;
 
 public class ViewControllerPair {
     private final ControllableView view;

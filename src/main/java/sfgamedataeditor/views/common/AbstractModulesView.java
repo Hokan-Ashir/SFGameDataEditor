@@ -1,5 +1,6 @@
 package sfgamedataeditor.views.common;
 
+import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.views.PromptTextComboBoxRenderer;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;

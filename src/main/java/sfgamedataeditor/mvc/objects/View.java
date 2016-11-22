@@ -1,4 +1,4 @@
-package sfgamedataeditor.views.common;
+package sfgamedataeditor.mvc.objects;
 
 import javax.swing.*;
 

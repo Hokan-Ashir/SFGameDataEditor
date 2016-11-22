@@ -1,6 +1,6 @@
 package sfgamedataeditor.events.types;
 
-import sfgamedataeditor.views.common.ControllableView;
+import sfgamedataeditor.mvc.objects.ControllableView;
 
 public class ViewEvent extends Event {
     private final Class<? extends ControllableView> viewClass;

@@ -1,11 +1,11 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.database.tableservices.SkillParametersTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
-import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.views.main.MainView;
@@ -19,8 +19,11 @@ import java.util.List;
 
 public class SkillParameterController extends AbstractController<SkillParameterModelParameter, SkillParameterView> {
 
+    private static final Logger LOGGER = Logger.getLogger(SkillParameterController.class);
+
     public SkillParameterController(SkillParameterView view) {
         super(view);
+
         getView().getLevelComboBox().addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -77,10 +80,10 @@ public class SkillParameterController extends AbstractController<SkillParameterM
 
     private void setFieldsData(int skillSchoolId, int skillLevel) {
         SkillParameters skillParameter = SkillParametersTableService.INSTANCE.getSkillParameter(skillSchoolId, skillLevel);
-        if (skillParameter != null) {
-            for (IDataField dataField : getView().getDataFields()) {
-                dataField.mapValues(skillParameter);
-            }
-        }
+//        if (skillParameter != null) {
+//            for (IDataField dataField : getView().getDataFields()) {
+//                dataField.mapValues(skillParameter);
+//            }
+//        }
     }
 }

@@ -1,6 +1,6 @@
 package sfgamedataeditor.events.processing;
 
-import sfgamedataeditor.views.common.ControllableView;
+import sfgamedataeditor.mvc.objects.ControllableView;
 
 import java.util.HashMap;
 import java.util.Map;

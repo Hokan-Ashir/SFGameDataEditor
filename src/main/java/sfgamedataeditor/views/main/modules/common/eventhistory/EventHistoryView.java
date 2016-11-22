@@ -1,8 +1,8 @@
 package sfgamedataeditor.views.main.modules.common.eventhistory;
 
 import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.common.ControllableView;
 
 import javax.swing.*;
 

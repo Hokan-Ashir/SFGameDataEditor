@@ -1,11 +1,12 @@
 package sfgamedataeditor.events.processing.strategies;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.common.ViewCreator;
 import sfgamedataeditor.events.processing.ViewControllerPair;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.views.common.ControllableView;
+import sfgamedataeditor.mvc.objects.ControllableView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -23,12 +24,7 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
         Class<? extends ControllableView> classViewToShow = event.getViewClass();
         Map<Class<? extends ControllableView>, ViewControllerPair> views = ViewRegister.INSTANCE.getViews();
         if (!views.containsKey(classViewToShow)) {
-            try {
-                view = (ControllableView) classViewToShow.getDeclaredConstructors()[0].newInstance();
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-                LOGGER.error(e.getMessage(), e);
-                return;
-            }
+            view = (ControllableView) ViewCreator.INSTANCE.createView(classViewToShow, event.getModel());
 
             AbstractController controller = null;
             Class<? extends AbstractController> controllerClass = view.getControllerClass();

@@ -5,22 +5,15 @@ import sfgamedataeditor.database.objects.SpellName;
 import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.database.tableservices.SpellNameTableService;
 import sfgamedataeditor.database.tableservices.SpellParametersTableService;
-import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.fieldwrapping.MappedColumn;
-import sfgamedataeditor.fieldwrapping.fields.IDataField;
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
-import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.Set;
 import java.util.TreeSet;
@@ -31,24 +24,24 @@ public class SpellParameterController extends AbstractController<SpellParameterM
 
     public SpellParameterController(SpellParameterView view) {
         super(view);
-        getView().getLevelComboBox().addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() != ItemEvent.SELECTED) {
-                    return;
-                }
-
-                String selectedItem = (String) getView().getLevelComboBox().getSelectedItem();
-                if (selectedItem == null) {
-                    return;
-                }
-
-                Model<SpellParameterModelParameter> model = getModel();
-                model.getParameter().setSpellLevel(Integer.valueOf(selectedItem));
-                ShowContentViewEvent event = new ShowContentViewEvent(SpellParameterView.class, model);
-                EventProcessor.INSTANCE.process(event);
-            }
-        });
+//        getView().getLevelComboBox().addItemListener(new ItemListener() {
+//            @Override
+//            public void itemStateChanged(ItemEvent e) {
+//                if (e.getStateChange() != ItemEvent.SELECTED) {
+//                    return;
+//                }
+//
+//                String selectedItem = (String) getView().getLevelComboBox().getSelectedItem();
+//                if (selectedItem == null) {
+//                    return;
+//                }
+//
+//                Model<SpellParameterModelParameter> model = getModel();
+//                model.getParameter().setSpellLevel(Integer.valueOf(selectedItem));
+//                ShowContentViewEvent event = new ShowContentViewEvent(SpellParameterView.class, model);
+//                EventProcessor.INSTANCE.process(event);
+//            }
+//        });
     }
 
     /**
@@ -66,9 +59,9 @@ public class SpellParameterController extends AbstractController<SpellParameterM
         int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
         selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
         SpellParameters spellParameter = SpellParametersTableService.INSTANCE.getSpellParameter(selectedSpellId, selectedLevel);
-        for (IDataField dataField : getView().getDataFields()) {
-            dataField.mapValues(spellParameter);
-        }
+//        for (IDataField dataField : getView().getDataFields()) {
+//            dataField.mapValues(spellParameter);
+//        }
 
         setSpellParameterLabelNames();
     }
@@ -100,24 +93,24 @@ public class SpellParameterController extends AbstractController<SpellParameterM
 
     private void setSpellAvaliableLevels(final Set<Integer> spellLevels, final int selectedLevel) {
         final JComboBox<String> comboBox = getView().getLevelComboBox();
-        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
-            @Override
-            protected void setValues() {
-                comboBox.removeAllItems();
-                for (Integer spellLevel : spellLevels) {
-                    comboBox.addItem(String.valueOf(spellLevel));
-                }
-
-                comboBox.setSelectedItem(String.valueOf(selectedLevel));
-            }
-        });
+//        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
+//            @Override
+//            protected void setValues() {
+//                comboBox.removeAllItems();
+//                for (Integer spellLevel : spellLevels) {
+//                    comboBox.addItem(String.valueOf(spellLevel));
+//                }
+//
+//                comboBox.setSelectedItem(String.valueOf(selectedLevel));
+//            }
+//        });
     }
 
     private void setSpellParameterLabelNames() {
         SpellsView spellsView = ViewRegister.INSTANCE.getView(SpellsView.class);
         String selectedSpellName = spellsView.getSelectedModuleValue();
         SpellName spellName = SpellNameTableService.INSTANCE.getSpellName(selectedSpellName);
-        for (Field field : getView().getStub().getClass().getDeclaredFields()) {
+        for (Field field : getView().getClass().getDeclaredFields()) {
             MappedColumn annotation = field.getAnnotation(MappedColumn.class);
             if (annotation == null) {
                 continue;
@@ -131,7 +124,7 @@ public class SpellParameterController extends AbstractController<SpellParameterM
             String parameterName = getParameterName(spellName, mappedFieldName);
             try {
                 field.setAccessible(true);
-                JLabel label = ((JLabel) field.get(getView().getStub()));
+                JLabel label = ((JLabel) field.get(getView()));
                 if (parameterName.equals(ViewTools.convertToMultiline(I18N.INSTANCE.getMessage("spellParameterNotUsed")))) {
                     label.setVisible(false);
                     label.getLabelFor().setVisible(false);
