@@ -1,6 +1,8 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.common.GUIElement;
+import sfgamedataeditor.common.widgets.Widget;
 import sfgamedataeditor.database.objects.SpellName;
 import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.database.tableservices.SpellNameTableService;
@@ -49,6 +51,23 @@ public class SpellParameterController extends AbstractController<SpellParameterM
      */
     @Override
     public void updateView() {
+        Field[] declaredFields = getView().getClass().getDeclaredFields();
+        for (Field declaredField : declaredFields) {
+            GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
+            if (annotation == null) {
+                continue;
+            }
+
+            try {
+                declaredField.setAccessible(true);
+                JPanel panel = (JPanel) declaredField.get(getView());
+                Widget widget = (Widget) panel.getComponent(0);
+                widget.update(getModel());
+                widget.updateI18N();
+            } catch (IllegalAccessException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        }
         SpellParameterModelParameter parameter = getModel().getParameter();
         int selectedSpellId = parameter.getSpellId();
         int selectedLevel = parameter.getSpellLevel();

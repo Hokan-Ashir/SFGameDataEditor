@@ -7,6 +7,7 @@ import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.AbstractConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationsHolder;
 import sfgamedataeditor.common.widgets.AbstractWidget;
+import sfgamedataeditor.common.widgets.Disabled;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.View;
 
@@ -57,11 +58,25 @@ public enum ViewCreator {
                 if (inCache) {
                     widget = widgetsCache.getWidget(guiElementId, widgetClass);
                 } else {
-                    Field DTOField = annotation.DTOClass().getField(annotation.DTOColumnName());
+                    String dtoColumnName = annotation.DTOColumnName();
+                    Field DTOField;
+                    // if widget component doesn't bind to ANY DTO field
+                    if (!dtoColumnName.isEmpty()) {
+                        DTOField = annotation.DTOClass().getField(dtoColumnName);
+                    } else {
+                        DTOField = null;
+                    }
+
                     widget = widgetClass.getConstructor(Field.class).newInstance(DTOField);
+                    Disabled disabled = field.getAnnotation(Disabled.class);
+                    if (disabled != null) {
+                        widget.setEnabled(false);
+                    }
+
                     widgetsCache.addWidget(guiElementId, widget);
                 }
-                layoutPanel.add(widget.getMainPanel());
+
+                layoutPanel.add(widget);
             } catch (IllegalAccessException | NoSuchMethodException | NoSuchFieldException | InstantiationException | InvocationTargetException e) {
                 LOGGER.error(e.getMessage(), e);
                 throw new RuntimeException("Impossible to instantiate widget instance from class [" + widgetClass.getName() + "]");

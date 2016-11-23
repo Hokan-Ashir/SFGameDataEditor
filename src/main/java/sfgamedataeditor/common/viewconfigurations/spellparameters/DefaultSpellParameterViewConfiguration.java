@@ -2,6 +2,7 @@ package sfgamedataeditor.common.viewconfigurations.spellparameters;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.widgets.casttype.CastTypeForm;
+import sfgamedataeditor.common.widgets.combobox.level.ComboBoxWidget;
 import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassComboBoxWidget;
 import sfgamedataeditor.common.widgets.common.text.TextFieldWidget;
 
@@ -14,6 +15,7 @@ public class DefaultSpellParameterViewConfiguration extends AbstractConfiguratio
     protected void fillConfigurationMappings() {
         addViewMapping(GUIElements.NUMBER, TextFieldWidget.class);
         addViewMapping(GUIElements.NAME_ID, TextFieldWidget.class);
+        addViewMapping(GUIElements.SPELL_LEVEL, ComboBoxWidget.class);
         addViewMapping(GUIElements.REQUIREMENT_CLASS_1, RequirementClassComboBoxWidget.class);
         addViewMapping(GUIElements.REQUIREMENT_SUB_CLASS_1, RequirementClassComboBoxWidget.class);
         addViewMapping(GUIElements.REQUIREMENT_LEVEL_1, TextFieldWidget.class);

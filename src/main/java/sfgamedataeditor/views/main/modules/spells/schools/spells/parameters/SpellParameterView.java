@@ -2,6 +2,7 @@ package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.spellparameters.GUIElements;
+import sfgamedataeditor.common.widgets.Disabled;
 import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
@@ -18,12 +19,15 @@ public class SpellParameterView implements ControllableView {
     private JSeparator parametersSeparator;
     private JLabel parametersLabel;
 
+    @Disabled
     @GUIElement(GUIElementId = GUIElements.NUMBER, DTOColumnName = "spellNumber", DTOClass = SpellParameters.class)
     private JPanel numberPanel;
 
+    @Disabled
     @GUIElement(GUIElementId = GUIElements.NAME_ID, DTOColumnName = "spellNameId", DTOClass = SpellParameters.class)
     private JPanel nameIdPanel;
 
+    @GUIElement(GUIElementId = GUIElements.SPELL_LEVEL)
     private JPanel levelPanel;
 
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_1, DTOColumnName = "requirementClass1", DTOClass = SpellParameters.class)

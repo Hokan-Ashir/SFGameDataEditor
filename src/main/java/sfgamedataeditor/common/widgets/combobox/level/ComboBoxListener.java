@@ -1,4 +1,4 @@
-package sfgamedataeditor.common.widgets.combobox;
+package sfgamedataeditor.common.widgets.combobox.level;
 
 import sfgamedataeditor.fieldwrapping.AbstractFieldListener;
 

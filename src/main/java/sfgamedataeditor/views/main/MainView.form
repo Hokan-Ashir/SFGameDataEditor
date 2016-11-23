@@ -2,13 +2,13 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.main.MainView">
   <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="320" y="220" width="880" height="800"/>
+      <xy x="320" y="220" width="920" height="800"/>
     </constraints>
     <properties>
       <autoscrolls value="true"/>
-      <maximumSize width="880" height="700"/>
-      <minimumSize width="880" height="700"/>
-      <preferredSize width="880" height="700"/>
+      <maximumSize width="920" height="700"/>
+      <minimumSize width="920" height="700"/>
+      <preferredSize width="920" height="700"/>
     </properties>
     <border type="none"/>
     <children>
@@ -16,8 +16,8 @@
         <constraints border-constraint="Center"/>
         <properties>
           <doubleBuffered value="true"/>
-          <maximumSize width="880" height="675"/>
-          <minimumSize width="880" height="675"/>
+          <maximumSize width="920" height="675"/>
+          <minimumSize width="920" height="675"/>
           <verticalScrollBarPolicy value="20"/>
         </properties>
         <border type="none"/>
@@ -25,9 +25,9 @@
           <grid id="41645" binding="componentsPanel" layout-manager="GridBagLayout">
             <constraints/>
             <properties>
-              <maximumSize width="860" height="675"/>
-              <minimumSize width="860" height="675"/>
-              <preferredSize width="860" height="675"/>
+              <maximumSize width="900" height="675"/>
+              <minimumSize width="900" height="675"/>
+              <preferredSize width="900" height="675"/>
             </properties>
             <border type="none"/>
             <children>
@@ -38,9 +38,9 @@
                 </constraints>
                 <properties>
                   <autoscrolls value="true"/>
-                  <maximumSize width="860" height="50"/>
-                  <minimumSize width="860" height="50"/>
-                  <preferredSize width="860" height="50"/>
+                  <maximumSize width="900" height="50"/>
+                  <minimumSize width="900" height="50"/>
+                  <preferredSize width="900" height="50"/>
                 </properties>
                 <border type="etched"/>
                 <children/>
@@ -52,9 +52,9 @@
                 </constraints>
                 <properties>
                   <autoscrolls value="true"/>
-                  <maximumSize width="860" height="550"/>
-                  <minimumSize width="860" height="550"/>
-                  <preferredSize width="860" height="550"/>
+                  <maximumSize width="900" height="550"/>
+                  <minimumSize width="900" height="550"/>
+                  <preferredSize width="900" height="550"/>
                 </properties>
                 <border type="etched"/>
                 <children/>
@@ -66,23 +66,23 @@
                 </constraints>
                 <properties>
                   <autoscrolls value="true"/>
-                  <maximumSize width="860" height="50"/>
-                  <minimumSize width="860" height="50"/>
-                  <preferredSize width="860" height="50"/>
+                  <maximumSize width="900" height="50"/>
+                  <minimumSize width="900" height="50"/>
+                  <preferredSize width="900" height="50"/>
                 </properties>
                 <border type="etched"/>
                 <children/>
               </grid>
               <grid id="eff0a" binding="navigationPanel" layout-manager="GridBagLayout">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.1"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="0.1"/>
                 </constraints>
                 <properties>
                   <autoscrolls value="true"/>
-                  <maximumSize width="860" height="25"/>
-                  <minimumSize width="860" height="25"/>
-                  <preferredSize width="860" height="25"/>
+                  <maximumSize width="900" height="25"/>
+                  <minimumSize width="900" height="25"/>
+                  <preferredSize width="900" height="25"/>
                 </properties>
                 <border type="none"/>
                 <children/>

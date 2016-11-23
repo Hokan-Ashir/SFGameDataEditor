@@ -5,7 +5,6 @@ import sfgamedataeditor.mvc.objects.Model;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
-import java.util.EventListener;
 
 public class CastTypeForm extends AbstractWidget {
     private static final int FORM_WIDTH = 300;
@@ -19,6 +18,9 @@ public class CastTypeForm extends AbstractWidget {
     private JCheckBox isInstantAreaCheckBox;
     private JCheckBox isWorldTargetAreaCheckBox;
     private JCheckBox isAlliesAreaCheckBox;
+    private JLabel label;
+    private JSeparator parametersSeparator;
+    private JPanel parametersPanel;
 
     public CastTypeForm(Field DTOField) {
         super(DTOField);
@@ -37,11 +39,6 @@ public class CastTypeForm extends AbstractWidget {
 //        setMinimumSize(dimension);
 //        add(mainPanel);
 //    }
-
-    @Override
-    public void attachListener(EventListener listener) {
-
-    }
 
     @Override
     public void update(Model model) {
