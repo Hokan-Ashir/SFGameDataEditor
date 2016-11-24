@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.common.widgets.casttype.CastTypeForm">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.common.widgets.casttype.CastTypeWidget">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
       <xy x="20" y="20" width="300" height="150"/>
@@ -43,7 +43,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="a0598" class="javax.swing.JCheckBox" binding="isProjectileToEnemyCheckBox" default-binding="true">
+          <component id="bf998" class="javax.swing.JRadioButton" binding="isProjectileToEnemyRadioButton" default-binding="true">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="1.0"/>
@@ -55,7 +55,7 @@
               <text value="isProjectileToEnemy"/>
             </properties>
           </component>
-          <component id="cdffd" class="javax.swing.JCheckBox" binding="isWorldInstantAreaCheckBox" default-binding="true">
+          <component id="fb1de" class="javax.swing.JRadioButton" binding="isWorldInstantAreaRadioButton" default-binding="true">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="1.0"/>
@@ -67,7 +67,7 @@
               <text value="isWorldInstantArea"/>
             </properties>
           </component>
-          <component id="82bd3" class="javax.swing.JCheckBox" binding="isProjectileToAlliesCheckBox" default-binding="true">
+          <component id="aeeda" class="javax.swing.JRadioButton" binding="isProjectileToAlliesRadioButton" default-binding="true">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="1.0"/>
@@ -79,7 +79,7 @@
               <text value="isProjectileToAllies"/>
             </properties>
           </component>
-          <component id="13bf0" class="javax.swing.JCheckBox" binding="isWorldTargetAreaCheckBox" default-binding="true">
+          <component id="77dfc" class="javax.swing.JRadioButton" binding="isWorldTargetAreaRadioButton" default-binding="true">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="1.0"/>
@@ -91,7 +91,7 @@
               <text value="isWorldTargetArea"/>
             </properties>
           </component>
-          <component id="e45af" class="javax.swing.JCheckBox" binding="isTargetAreaCheckBox" default-binding="true">
+          <component id="f689b" class="javax.swing.JRadioButton" binding="isTargetAreaRadioButton" default-binding="true">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="1.0"/>
@@ -103,7 +103,7 @@
               <text value="isTargetArea"/>
             </properties>
           </component>
-          <component id="6959d" class="javax.swing.JCheckBox" binding="isAlliesAreaCheckBox" default-binding="true">
+          <component id="e0b6d" class="javax.swing.JRadioButton" binding="isAlliesAreaRadioButton" default-binding="true">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="1.0"/>
@@ -115,7 +115,7 @@
               <text value="isAlliesArea"/>
             </properties>
           </component>
-          <component id="77aaa" class="javax.swing.JCheckBox" binding="isInstantAreaCheckBox" default-binding="true">
+          <component id="79133" class="javax.swing.JRadioButton" binding="isInstantAreaRadioButton" default-binding="true">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="1.0" weighty="1.0"/>

@@ -1,16 +1,26 @@
 package sfgamedataeditor.common.widgets;
 
+import sfgamedataeditor.fieldwrapping.AbstractFieldListener;
+
 import javax.swing.*;
-import java.lang.reflect.Field;
 
-public abstract class AbstractWidget<T> extends JPanel implements Widget<T> {
-    private final Field DTOField;
+public abstract class AbstractWidget<T extends AbstractFieldListener> extends JPanel {
+    private AbstractFieldListener listener;
 
-    public AbstractWidget(Field DTOField) {
-        this.DTOField = DTOField;
+    public void setListener(AbstractFieldListener listener) {
+        this.listener = listener;
     }
 
-    public Field getDTOField() {
-        return DTOField;
+    public AbstractFieldListener getListener() {
+        return listener;
     }
+
+    public void attachListener(T listener) {
+        insertListener(listener);
+        this.listener = listener;
+    }
+
+    protected abstract void insertListener(T listener);
+    public abstract void updateI18N();
+    public abstract JPanel getMainPanel();
 }

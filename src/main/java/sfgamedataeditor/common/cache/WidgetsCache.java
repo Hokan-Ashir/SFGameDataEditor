@@ -1,7 +1,8 @@
 package sfgamedataeditor.common.cache;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
-import sfgamedataeditor.common.widgets.Widget;
+import sfgamedataeditor.databind.Pair;
+import sfgamedataeditor.fieldwrapping.AbstractFieldListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,16 +10,16 @@ import java.util.List;
 import java.util.Map;
 
 public class WidgetsCache {
-    private Map<Integer, List<AbstractWidget>> widgetMap = new HashMap<>();
+    private Map<Integer, List<Pair<AbstractWidget, AbstractFieldListener>>> widgetMap = new HashMap<>();
 
-    public boolean addWidget(Integer GUIComponentId, AbstractWidget widget) {
-        List<AbstractWidget> widgets = widgetMap.get(GUIComponentId);
-        if (widgets == null) {
-            widgets = new ArrayList<>();
-            widgetMap.put(GUIComponentId, widgets);
+    public boolean addWidgetListenerPair(Integer GUIComponentId, AbstractWidget widget, AbstractFieldListener listener) {
+        List<Pair<AbstractWidget, AbstractFieldListener>> pairs = widgetMap.get(GUIComponentId);
+        if (pairs == null) {
+            pairs = new ArrayList<>();
+            widgetMap.put(GUIComponentId, pairs);
         }
 
-        return widgets.add(widget);
+        return pairs.add(new Pair<>(widget, listener));
     }
 
     public boolean isWidgetExistsInCache(Integer GUIComponentId, Class<? extends AbstractWidget> widgetClass) {
@@ -26,13 +27,13 @@ public class WidgetsCache {
         if (isGUIComponentHaveCachedWidgets) {
             return true;
         } else {
-            List<AbstractWidget> widgets = widgetMap.get(GUIComponentId);
-            if (widgets == null) {
+            List<Pair<AbstractWidget, AbstractFieldListener>> pairs = widgetMap.get(GUIComponentId);
+            if (pairs == null) {
                 return false;
             }
 
-            for (Widget innerWidget : widgets) {
-                if (widgetClass.getClass().equals(innerWidget.getClass())) {
+            for (Pair<AbstractWidget, AbstractFieldListener> pair : pairs) {
+                if (widgetClass.getClass().equals(pair.getKey().getClass())) {
                     return true;
                 }
             }
@@ -42,13 +43,24 @@ public class WidgetsCache {
     }
 
     public AbstractWidget getWidget(Integer GUIComponentId, Class<? extends AbstractWidget> widgetClass) {
-        List<AbstractWidget> widgets = widgetMap.get(GUIComponentId);
-        for (AbstractWidget widget : widgets) {
-            if (widget.getClass().equals(widgetClass)) {
-                return widget;
+        List<Pair<AbstractWidget, AbstractFieldListener>> pairs = widgetMap.get(GUIComponentId);
+        for (Pair<AbstractWidget, AbstractFieldListener> pair : pairs) {
+            if (pair.getKey().getClass().equals(widgetClass)) {
+                return pair.getKey();
             }
         }
 
         throw new RuntimeException("No widget for class [" + widgetClass.getName() + "] found in cache [" + getClass().getName() + "]");
+    }
+
+    public AbstractFieldListener getListener(Integer GUIComponentId, Class<? extends AbstractFieldListener> listenerClass) {
+        List<Pair<AbstractWidget, AbstractFieldListener>> pairs = widgetMap.get(GUIComponentId);
+        for (Pair<AbstractWidget, AbstractFieldListener> pair : pairs) {
+            if (pair.getValue().getClass().equals(listenerClass)) {
+                return pair.getValue();
+            }
+        }
+
+        throw new RuntimeException("No listener for class [" + listenerClass.getName() + "] found in cache [" + getClass().getName() + "]");
     }
 }

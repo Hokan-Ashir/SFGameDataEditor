@@ -2,7 +2,9 @@ package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
-import sfgamedataeditor.common.widgets.Widget;
+import sfgamedataeditor.common.viewconfigurations.spellparameters.GUIElements;
+import sfgamedataeditor.common.widgets.AbstractWidget;
+import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxParameter;
 import sfgamedataeditor.database.objects.SpellName;
 import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.database.tableservices.SpellNameTableService;
@@ -51,6 +53,16 @@ public class SpellParameterController extends AbstractController<SpellParameterM
      */
     @Override
     public void updateView() {
+        SpellParameterModelParameter parameter = getModel().getParameter();
+        int selectedSpellId = parameter.getSpellId();
+        int selectedLevel = parameter.getSpellLevel();
+        Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
+
+        int spellMinLevel = (int) ((TreeSet) spellLevels).first();
+        int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
+        selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
+        SpellParameters spellParameter = SpellParametersTableService.INSTANCE.getSpellParameter(selectedSpellId, selectedLevel);
+
         Field[] declaredFields = getView().getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
             GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
@@ -61,28 +73,35 @@ public class SpellParameterController extends AbstractController<SpellParameterM
             try {
                 declaredField.setAccessible(true);
                 JPanel panel = (JPanel) declaredField.get(getView());
-                Widget widget = (Widget) panel.getComponent(0);
-                widget.update(getModel());
+                AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
+
+                if (annotation.GUIElementId() != GUIElements.SPELL_LEVEL) {
+                    widget.getListener().updateWidgetValue(spellParameter);
+                } else {
+                    LevelComboBoxParameter levelComboBoxParameter = new LevelComboBoxParameter(selectedLevel, spellLevels);
+                    widget.getListener().updateWidgetValue(levelComboBoxParameter);
+                }
+
                 widget.updateI18N();
             } catch (IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);
             }
         }
-        SpellParameterModelParameter parameter = getModel().getParameter();
-        int selectedSpellId = parameter.getSpellId();
-        int selectedLevel = parameter.getSpellLevel();
-        Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
-        setSpellAvaliableLevels(spellLevels, selectedLevel);
-
-        int spellMinLevel = (int) ((TreeSet) spellLevels).first();
-        int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
-        selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
-        SpellParameters spellParameter = SpellParametersTableService.INSTANCE.getSpellParameter(selectedSpellId, selectedLevel);
-//        for (IDataField dataField : getView().getDataFields()) {
-//            dataField.mapValues(spellParameter);
-//        }
-
-        setSpellParameterLabelNames();
+//        SpellParameterModelParameter parameter = getModel().getParameter();
+//        int selectedSpellId = parameter.getSpellId();
+//        int selectedLevel = parameter.getSpellLevel();
+//        Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
+//        setSpellAvaliableLevels(spellLevels, selectedLevel);
+//
+//        int spellMinLevel = (int) ((TreeSet) spellLevels).first();
+//        int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
+//        selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
+//        SpellParameters spellParameter = SpellParametersTableService.INSTANCE.getSpellParameter(selectedSpellId, selectedLevel);
+////        for (IDataField dataField : getView().getDataFields()) {
+////            dataField.updateWidgetValue(spellParameter);
+////        }
+//
+//        setSpellParameterLabelNames();
     }
 
     @Override

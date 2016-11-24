@@ -20,86 +20,77 @@ public class SpellParameterView implements ControllableView {
     private JLabel parametersLabel;
 
     @Disabled
-    @GUIElement(GUIElementId = GUIElements.NUMBER, DTOColumnName = "spellNumber", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.NUMBER, DTOColumnNames = "spellNumber", DTOClass = SpellParameters.class)
     private JPanel numberPanel;
 
     @Disabled
-    @GUIElement(GUIElementId = GUIElements.NAME_ID, DTOColumnName = "spellNameId", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.NAME_ID, DTOColumnNames = "spellNameId", DTOClass = SpellParameters.class)
     private JPanel nameIdPanel;
 
     @GUIElement(GUIElementId = GUIElements.SPELL_LEVEL)
     private JPanel levelPanel;
 
-    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_1, DTOColumnName = "requirementClass1", DTOClass = SpellParameters.class)
-    private JPanel requirementClassPanel1;
+    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_SUBCLASS_1, DTOColumnNames = {"requirementClass1", "requirementSubClass1"}, DTOClass = SpellParameters.class)
+    private JPanel requirementClassSubClassPanel1;
 
-    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_SUB_CLASS_1, DTOColumnName = "requirementSubClass1", DTOClass = SpellParameters.class)
-    private JPanel requirementSubClassPanel1;
-
-    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_LEVEL_1, DTOColumnName = "requirementLevel1", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_LEVEL_1, DTOColumnNames = "requirementLevel1", DTOClass = SpellParameters.class)
     private JPanel requirementLevelPanel1;
 
-    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_2, DTOColumnName = "requirementClass2", DTOClass = SpellParameters.class)
-    private JPanel requirementClassPanel2;
+    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_SUBCLASS_2, DTOColumnNames = {"requirementClass2", "requirementSubClass2"}, DTOClass = SpellParameters.class)
+    private JPanel requirementClassSubClassPanel2;
 
-    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_SUB_CLASS_2, DTOColumnName = "requirementSubClass2", DTOClass = SpellParameters.class)
-    private JPanel requirementSubClassPanel2;
-
-    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_LEVEL_2, DTOColumnName = "requirementLevel2", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_LEVEL_2, DTOColumnNames = "requirementLevel2", DTOClass = SpellParameters.class)
     private JPanel requirementLevelPanel2;
 
-    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_3, DTOColumnName = "requirementClass3", DTOClass = SpellParameters.class)
-    private JPanel requirementClassPanel3;
+    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_SUBCLASS_3, DTOColumnNames = {"requirementClass3", "requirementSubClass3"}, DTOClass = SpellParameters.class)
+    private JPanel requirementClassSubClassPanel3;
 
-    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_SUB_CLASS_3, DTOColumnName = "requirementSubClass3", DTOClass = SpellParameters.class)
-    private JPanel requirementSubClassPanel3;
-
-    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_LEVEL_3, DTOColumnName = "requirementLevel3", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_LEVEL_3, DTOColumnNames = "requirementLevel3", DTOClass = SpellParameters.class)
     private JPanel requirementLevelPanel3;
 
-    @GUIElement(GUIElementId = GUIElements.MANA_USAGE, DTOColumnName = "requirementSubClass1", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.MANA_USAGE, DTOColumnNames = "requirementSubClass1", DTOClass = SpellParameters.class)
     private JPanel manaActivationPanel;
 
-    @GUIElement(GUIElementId = GUIElements.CAST_TYPE, DTOColumnName = "castType", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.CAST_TYPE, DTOColumnNames = "castType", DTOClass = SpellParameters.class)
     private JPanel castTypePanel;
 
-    @GUIElement(GUIElementId = GUIElements.CAST_TIME, DTOColumnName = "castTime", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.CAST_TIME, DTOColumnNames = "castTime", DTOClass = SpellParameters.class)
     private JPanel castTimePanel;
 
-    @GUIElement(GUIElementId = GUIElements.COOLDOWN, DTOColumnName = "cooldown", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.COOLDOWN, DTOColumnNames = "cooldown", DTOClass = SpellParameters.class)
     private JPanel cooldownPanel;
 
-    @GUIElement(GUIElementId = GUIElements.MIN_RANGE, DTOColumnName = "minRange", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.MIN_RANGE, DTOColumnNames = "minRange", DTOClass = SpellParameters.class)
     private JPanel minRangePanel;
 
-    @GUIElement(GUIElementId = GUIElements.MAX_RANGE, DTOColumnName = "maxRange", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.MAX_RANGE, DTOColumnNames = "maxRange", DTOClass = SpellParameters.class)
     private JPanel maxRangePanel;
 
-    @GUIElement(GUIElementId = GUIElements.PARAMETER_1, DTOColumnName = "parameter1", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.PARAMETER_1, DTOColumnNames = "parameter1", DTOClass = SpellParameters.class)
     private JPanel parameter1Panel;
 
-    @GUIElement(GUIElementId = GUIElements.PARAMETER_2, DTOColumnName = "parameter2", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.PARAMETER_2, DTOColumnNames = "parameter2", DTOClass = SpellParameters.class)
     private JPanel parameter2Panel;
 
-    @GUIElement(GUIElementId = GUIElements.PARAMETER_3, DTOColumnName = "parameter3", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.PARAMETER_3, DTOColumnNames = "parameter3", DTOClass = SpellParameters.class)
     private JPanel parameter3Panel;
 
-    @GUIElement(GUIElementId = GUIElements.PARAMETER_4, DTOColumnName = "parameter4", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.PARAMETER_4, DTOColumnNames = "parameter4", DTOClass = SpellParameters.class)
     private JPanel parameter4Panel;
 
-    @GUIElement(GUIElementId = GUIElements.PARAMETER_5, DTOColumnName = "parameter5", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.PARAMETER_5, DTOColumnNames = "parameter5", DTOClass = SpellParameters.class)
     private JPanel parameter5Panel;
 
-    @GUIElement(GUIElementId = GUIElements.PARAMETER_6, DTOColumnName = "parameter6", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.PARAMETER_6, DTOColumnNames = "parameter6", DTOClass = SpellParameters.class)
     private JPanel parameter6Panel;
 
-    @GUIElement(GUIElementId = GUIElements.PARAMETER_7, DTOColumnName = "parameter7", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.PARAMETER_7, DTOColumnNames = "parameter7", DTOClass = SpellParameters.class)
     private JPanel parameter7Panel;
 
-    @GUIElement(GUIElementId = GUIElements.PARAMETER_8, DTOColumnName = "parameter8", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.PARAMETER_8, DTOColumnNames = "parameter8", DTOClass = SpellParameters.class)
     private JPanel parameter8Panel;
 
-    @GUIElement(GUIElementId = GUIElements.PARAMETER_9, DTOColumnName = "parameter9", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.PARAMETER_9, DTOColumnNames = "parameter9", DTOClass = SpellParameters.class)
     private JPanel parameter9Panel;
 
     public SpellParameterView() {
@@ -147,7 +138,7 @@ public class SpellParameterView implements ControllableView {
 //    }
 //
 //    private void attachSubClassListenerToClassComboBox(JComboBox classComboBox, JComboBox subClassComboBox) {
-//        ClassRequirementComboBoxListener listener = new ClassRequirementComboBoxListener(subClassComboBox);
+//        RequirementClassSubClassListener listener = new RequirementClassSubClassListener(subClassComboBox);
 //        classComboBox.addItemListener(listener);
 //        classComboBox.setSelectedItem(null);
 //    }

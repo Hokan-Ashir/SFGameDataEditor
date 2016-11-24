@@ -9,7 +9,9 @@ import sfgamedataeditor.databind.Pair;
 
 import java.sql.SQLException;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public enum SkillParametersTableService {
     INSTANCE;
@@ -46,21 +48,27 @@ public enum SkillParametersTableService {
         }
     }
 
-    public List<SkillParameters> getSkillPossibleValues(int skillSchoolId) {
+    public Set<Integer> getSkillPossibleLevels(int skillSchoolId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         Dao<SkillParameters, ?> dao;
         try {
             dao = DaoManager.createDao(connectionSource, SkillParameters.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptyList();
+            return Collections.emptySet();
         }
 
         try {
-            return dao.queryBuilder().selectColumns("level").where().eq("skillTypeId", skillSchoolId).query();
+            List<SkillParameters> skillParameterses = dao.queryBuilder().selectColumns("level").where().eq("skillTypeId", skillSchoolId).query();
+            Set<Integer> skillLevels = new HashSet<>();
+            for (SkillParameters skillParameterse : skillParameterses) {
+                skillLevels.add(skillParameterse.level);
+            }
+
+            return skillLevels;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptyList();
+            return Collections.emptySet();
         }
     }
 

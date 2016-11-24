@@ -1,5 +1,7 @@
 package sfgamedataeditor.common.widgets.common.text;
 
+import sfgamedataeditor.database.objects.Data;
+import sfgamedataeditor.database.objects.OffsetableObject;
 import sfgamedataeditor.fieldwrapping.AbstractFieldListener;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
@@ -10,11 +12,11 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.lang.reflect.Field;
 
-public class TextFieldListener extends AbstractFieldListener<JTextField> implements DocumentListener {
+public class TextFieldListener extends AbstractFieldListener<TextFieldWidget, OffsetableObject> implements DocumentListener {
 
 
-    public TextFieldListener(JTextField component, Field mappedField) {
-        super(component, mappedField);
+    public TextFieldListener(TextFieldWidget widget, Field[] mappedField) {
+        super(widget, mappedField);
     }
 
     /**
@@ -43,7 +45,7 @@ public class TextFieldListener extends AbstractFieldListener<JTextField> impleme
 
     private void changeValue() {
         int value;
-        String text = getComponent().getText();
+        String text = getWidget().getField().getText();
         if (text.isEmpty()) {
             return;
         }
@@ -69,16 +71,22 @@ public class TextFieldListener extends AbstractFieldListener<JTextField> impleme
         setValueToField();
     }
 
-    @Override
-    protected int getFieldValue() {
-        return Integer.parseInt(getComponent().getText());
+    private double getFieldMaximumValue() {
+        Data annotation = getMappedFields()[0].getAnnotation(Data.class);
+        int lengthInBytes = annotation.length();
+        return Math.pow(2.0, 8 * lengthInBytes) - 1;
     }
 
     @Override
-    protected void setFieldValue(int value) {
-        final JTextField component = getComponent();
+    protected int[] getFieldValues() {
+        return new int[]{Integer.parseInt(getWidget().getField().getText())};
+    }
+
+    @Override
+    protected void setFieldValues(int[] value) {
+        final JTextField component = getWidget().getField();
         component.getDocument().removeDocumentListener(this);
-        component.setText(String.valueOf(value));
+        component.setText(String.valueOf(value[0]));
         component.getDocument().addDocumentListener(this);
     }
 }

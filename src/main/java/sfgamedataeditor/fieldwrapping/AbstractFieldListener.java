@@ -1,34 +1,38 @@
 package sfgamedataeditor.fieldwrapping;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.database.objects.Data;
+import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.objects.OffsetableObject;
 import sfgamedataeditor.database.tableservices.CommonTableService;
 
-import javax.swing.*;
 import java.lang.reflect.Field;
 
-public abstract class AbstractFieldListener<T extends JComponent> {
+public abstract class AbstractFieldListener<T extends AbstractWidget, M> {
     private static final Logger LOGGER = Logger.getLogger(AbstractFieldListener.class);
 
-    private Field mappedField;
+    private Field[] mappedFields;
     private T component;
-    private OffsetableObject mappedObject;
+    private M mappedObject;
 
-    public AbstractFieldListener(T component, Field mappedField) {
+    public AbstractFieldListener(T component, Field... mappedFields) {
         this.component = component;
-        this.mappedField = mappedField;
+        this.mappedFields = mappedFields;
     }
 
     /**
      * {@inheritDoc}
      */
-    public void mapValues(OffsetableObject mappedObject) {
+    public void updateWidgetValue(M mappedObject) {
         this.mappedObject = mappedObject;
         try {
-            mappedField.setAccessible(true);
-            Object o = mappedField.get(mappedObject);
-            setFieldValue((Integer) o);
+            int[] values = new int[mappedFields.length];
+            for (int i = 0; i < mappedFields.length; ++i) {
+                mappedFields[i].setAccessible(true);
+                Object o = mappedFields[i].get(mappedObject);
+                values[i] = (Integer)o;
+            }
+
+            setFieldValues(values);
         } catch (IllegalAccessException e) {
             LOGGER.error(e.getMessage(), e);
         }
@@ -42,33 +46,34 @@ public abstract class AbstractFieldListener<T extends JComponent> {
         // user first time select ANY spell
         // data loading is processing through AbstractDataFields
         // the data have been set to any ClassRequirements comboBox
-        // the listener (ClassRequirementComboBoxListener) on it is launched to set subClass comboBox value
+        // the listener (RequirementClassSubClassListener) on it is launched to set subClass comboBox value
         // BUT there is no mapped object on this subClass comboBox, so NPE appears
         if (mappedObject == null) {
             return;
         }
-        int value = getFieldValue();
-        mappedField.setAccessible(true);
-        try {
-            mappedField.set(mappedObject, value);
-        } catch (IllegalAccessException e) {
-            LOGGER.error(e.getMessage(), e);
+        int values[] = getFieldValues();
+        for (int i = 0; i <mappedFields.length; ++i) {
+            mappedFields[i].setAccessible(true);
+            try {
+                mappedFields[i].set(mappedObject, values[i]);
+            } catch (IllegalAccessException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
         }
 
+        OffsetableObject mappedObject = (OffsetableObject) this.mappedObject;
         CommonTableService.INSTANCE.updateObject(mappedObject, mappedObject.getClass());
     }
 
-    protected abstract int getFieldValue();
-
-    protected abstract void setFieldValue(int value);
-
-    public double getFieldMaximumValue() {
-        Data annotation = mappedField.getAnnotation(Data.class);
-        int lengthInBytes = annotation.length();
-        return Math.pow(2.0, 8 * lengthInBytes) - 1;
+    protected Field[] getMappedFields() {
+        return mappedFields;
     }
 
-    public T getComponent() {
+    protected abstract int[] getFieldValues();
+
+    protected abstract void setFieldValues(int[] value);
+
+    public T getWidget() {
         return component;
     }
 }
