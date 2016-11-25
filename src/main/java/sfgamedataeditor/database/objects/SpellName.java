@@ -12,31 +12,31 @@ public class SpellName {
     @DatabaseField(canBeNull = false)
     public String name;
     
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String field1;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String field2;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String field3;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String field4;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String field5;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String field6;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String field7;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String field8;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String field9;
 
     public SpellName() {

@@ -78,12 +78,12 @@ public enum SpellNameTableService {
                 Field declaredField = spell.getClass().getDeclaredField(fieldName);
                 String parameter;
                 try {
-                    parameter = I18N.INSTANCE.getMessage(spellName + "." + fieldName);
+                    parameter = ViewTools.convertToMultiline(I18N.INSTANCE.getMessage(spellName + "." + fieldName));
                 } catch (MissingResourceException e) {
-                    parameter = I18N.INSTANCE.getMessage("spellParameterNotUsed");
+                    parameter = null;
                 }
                 declaredField.setAccessible(true);
-                declaredField.set(spell, ViewTools.convertToMultiline(parameter));
+                declaredField.set(spell, parameter);
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);
             }

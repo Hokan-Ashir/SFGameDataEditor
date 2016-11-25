@@ -14,6 +14,7 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
     private JLabel spellNameLabel;
     private JLabel spellLevelLabel;
     private JButton goToEffectParametersButton;
+    private JLabel titleLabel;
 
     public EffectNumberWidget() {
         // TODO fix later
@@ -44,8 +45,10 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
     }
 
     @Override
-    public void updateI18N() {
-
+    public void updateI18N(List<String> i18nStrings) {
+        titleLabel.setText(i18nStrings.get(0));
+        spellNameLabel.setText(i18nStrings.get(1));
+        spellLevelLabel.setText(i18nStrings.get(2));
     }
 
     @Override

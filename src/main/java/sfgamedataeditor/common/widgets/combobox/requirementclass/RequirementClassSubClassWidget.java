@@ -37,8 +37,9 @@ public class RequirementClassSubClassWidget extends AbstractWidget<RequirementCl
     }
 
     @Override
-    public void updateI18N() {
-
+    public void updateI18N(List<String> i18nStrings) {
+        requirementClassLabel.setText(i18nStrings.get(0));
+        requirementSubClassLabel.setText(i18nStrings.get(1));
     }
 
     @Override

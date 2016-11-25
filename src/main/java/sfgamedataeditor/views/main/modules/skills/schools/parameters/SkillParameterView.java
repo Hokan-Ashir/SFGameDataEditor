@@ -5,8 +5,6 @@ import sfgamedataeditor.common.viewconfigurations.skillparameters.GUIElements;
 import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
-import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 
@@ -38,26 +36,6 @@ public class SkillParameterView implements ControllableView {
 
     @GUIElement(GUIElementId = GUIElements.SKILL_LEVEL, DTOColumnNames = "level", DTOClass = SkillParameters.class)
     private JPanel levelPanel;
-
-    public SkillParameterView() {
-        setLabelsI18nNames();
-    }
-
-    private void setLabelsI18nNames() {
-        // TODO make i18n annotation, maybe via Spring framework
-//        setLabelText(stregthLabel, "strength");
-//        setLabelText(staminaLabel, "stamina");
-//        setLabelText(dexterityLabel, "dexterity");
-//        setLabelText(agilityLabel, "agility");
-//        setLabelText(intelligenceLabel, "intelligence");
-//        setLabelText(wisdomLabel, "wisdom");
-//        setLabelText(charismaLabel, "charisma");
-//        setLabelText(levelLabel, "levelLabel");
-    }
-
-    private void setLabelText(JLabel label, String not18nText) {
-        label.setText(ViewTools.convertToMultiline(I18N.INSTANCE.getMessage(not18nText)));
-    }
 
     /**
      * {@inheritDoc}

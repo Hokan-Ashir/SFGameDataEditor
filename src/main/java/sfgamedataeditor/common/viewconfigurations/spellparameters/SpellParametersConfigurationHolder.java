@@ -2,6 +2,7 @@ package sfgamedataeditor.common.viewconfigurations.spellparameters;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.AbstractConfigurationHolder;
+import sfgamedataeditor.common.viewconfigurations.spellparameters.configurations.*;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModelParameter;
 

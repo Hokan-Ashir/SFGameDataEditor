@@ -3,6 +3,7 @@ package sfgamedataeditor.common.widgets.combobox.level;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 
 import javax.swing.*;
+import java.util.List;
 
 public class LevelComboBoxWidget extends AbstractWidget<LevelComboBoxListener> {
     private JPanel mainPanel;
@@ -23,8 +24,8 @@ public class LevelComboBoxWidget extends AbstractWidget<LevelComboBoxListener> {
     }
 
     @Override
-    public void updateI18N() {
-
+    public void updateI18N(List<String> i18nStrings) {
+        label.setText(i18nStrings.get(0));
     }
 
     @Override

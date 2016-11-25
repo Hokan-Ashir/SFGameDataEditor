@@ -3,6 +3,7 @@ package sfgamedataeditor.common.widgets.textfield;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 
 import javax.swing.*;
+import java.util.List;
 
 public class TextFieldWidget extends AbstractWidget<TextFieldListener> {
     private JPanel mainPanel;
@@ -22,9 +23,15 @@ public class TextFieldWidget extends AbstractWidget<TextFieldListener> {
         field.getDocument().addDocumentListener(listener);
     }
 
+    // TODO get rid of this bullshit
     @Override
-    public void updateI18N() {
-
+    public void updateI18N(List<String> i18nStrings) {
+        if (i18nStrings.isEmpty()) {
+            setVisible(false);
+        } else {
+            setVisible(true);
+            label.setText(i18nStrings.get(0));
+        }
     }
 
     @Override

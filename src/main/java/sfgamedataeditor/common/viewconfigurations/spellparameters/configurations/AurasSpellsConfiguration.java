@@ -1,5 +1,6 @@
-package sfgamedataeditor.common.viewconfigurations.spellparameters;
+package sfgamedataeditor.common.viewconfigurations.spellparameters.configurations;
 
+import sfgamedataeditor.common.viewconfigurations.spellparameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.common.widgets.effectnumber.EffectNumberListener;

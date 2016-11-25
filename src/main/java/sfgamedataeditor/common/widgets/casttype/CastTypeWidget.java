@@ -3,10 +3,9 @@ package sfgamedataeditor.common.widgets.casttype;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 
 import javax.swing.*;
+import java.util.List;
 
 public class CastTypeWidget extends AbstractWidget<CastTypeFormListener> {
-    private static final int FORM_WIDTH = 300;
-    private static final int FORM_HEIGHT = 100;
 
     private JPanel mainPanel;
     private JRadioButton isProjectileToEnemyRadioButton;
@@ -23,21 +22,6 @@ public class CastTypeWidget extends AbstractWidget<CastTypeFormListener> {
     public CastTypeWidget() {
         add(getMainPanel());
     }
-
-    //    public CastTypeWidget() {
-    // need to set render parameters explicitly, if we want to use it as custom object in IDEA GUI designer palette,
-    // cause otherwise, this component doesn't know what to render  inside it
-    // moreover, to make it work; ANY custom component should be compiled to be shown inside
-    // editor, be descendant of JComponent and have public constructor without any parameters, cause
-    // otherwise GUI Editor have no idea how to create this component and which binary code it has
-//        setVisible(true);
-//        Dimension dimension = new Dimension(FORM_WIDTH, FORM_HEIGHT);
-//        setPreferredSize(dimension);
-//        setMaximumSize(dimension);
-//        setMinimumSize(dimension);
-//        add(mainPanel);
-//    }
-
 
     public JRadioButton getIsProjectileToEnemyRadioButton() {
         return isProjectileToEnemyRadioButton;
@@ -73,8 +57,15 @@ public class CastTypeWidget extends AbstractWidget<CastTypeFormListener> {
     }
 
     @Override
-    public void updateI18N() {
-
+    public void updateI18N(List<String> i18nStrings) {
+        label.setText(i18nStrings.get(0));
+        isProjectileToEnemyRadioButton.setText(i18nStrings.get(1));
+        isProjectileToAlliesRadioButton.setText(i18nStrings.get(2));
+        isTargetAreaRadioButton.setText(i18nStrings.get(3));
+        isWorldInstantAreaRadioButton.setText(i18nStrings.get(4));
+        isInstantAreaRadioButton.setText(i18nStrings.get(5));
+        isWorldTargetAreaRadioButton.setText(i18nStrings.get(6));
+        isAlliesAreaRadioButton.setText(i18nStrings.get(7));
     }
 
     @Override
