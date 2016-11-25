@@ -1,8 +1,8 @@
 package sfgamedataeditor.common.widgets.casttype;
 
+import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.objects.OffsetableObject;
 import sfgamedataeditor.databind.Pair;
-import sfgamedataeditor.fieldwrapping.AbstractFieldListener;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -11,9 +11,9 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CastTypeFormListener extends AbstractFieldListener<CastTypeWidget, OffsetableObject> implements ItemListener {
+public class CastTypeFormListener extends AbstractWidgetListener<CastTypeWidget, OffsetableObject> implements ItemListener {
 
-    private Map<JRadioButton, Pair<Integer, Integer>> radioButtonMapping = new HashMap<>();
+    private final Map<JRadioButton, Pair<Integer, Integer>> radioButtonMapping = new HashMap<>();
 
     public CastTypeFormListener(CastTypeWidget widget, Field[] mappedField) {
         super(widget, mappedField);

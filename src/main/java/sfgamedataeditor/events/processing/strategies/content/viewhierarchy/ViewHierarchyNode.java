@@ -12,7 +12,7 @@ public class ViewHierarchyNode {
     private final Class<? extends ControllableView> viewClass;
     private final ViewHierarchyNode parentNode;
     private boolean renderedOnScreen;
-    private ModelCreator modelCreator;
+    private final ModelCreator modelCreator;
 
     public ViewHierarchyNode(ViewHierarchyNode parentNode, Class<? extends ControllableView> viewClass, ModelCreator modelCreator) {
         this.viewClass = viewClass;

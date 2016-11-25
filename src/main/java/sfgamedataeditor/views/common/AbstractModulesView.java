@@ -11,32 +11,24 @@ import java.util.TreeMap;
 
 public abstract class AbstractModulesView implements ControllableView {
 
-    private Map<String, Class<? extends ControllableView>> comboBoxMapping = new TreeMap<>();
+    private final Map<String, Class<? extends ControllableView>> comboBoxMapping = new TreeMap<>();
     private JComboBox<String> modulesComboBox;
     private JPanel mainPanel;
 
-    public AbstractModulesView(String viewName) {
+    protected AbstractModulesView(String viewName) {
         modulesComboBox.setRenderer(new PromptTextComboBoxRenderer<>(viewName));
         modulesComboBox.setSelectedIndex(-1);
         modulesComboBox.setToolTipText(viewName);
         initializeComboBox();
     }
 
-    public Map<String, Class<? extends ControllableView>> getComboBoxMapping() {
+    protected Map<String, Class<? extends ControllableView>> getComboBoxMapping() {
         return comboBoxMapping;
     }
 
     public JComboBox<String> getModulesComboBox() {
         return modulesComboBox;
     }
-
-    //    protected void setEventParameter(AbstractMetaEvent metaEvent) {
-//        for (Event event : metaEvent.getEventList()) {
-//            if (SetModuleNameEvent.class.isAssignableFrom(event.getClass())) {
-//                event.setObjectParameter(getSelectedModuleValue());
-//            }
-//        }
-//    }
 
     protected abstract void fillComboBoxMapping();
 

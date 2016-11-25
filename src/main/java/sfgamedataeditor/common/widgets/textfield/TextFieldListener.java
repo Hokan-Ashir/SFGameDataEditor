@@ -1,8 +1,8 @@
 package sfgamedataeditor.common.widgets.textfield;
 
+import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.objects.Data;
 import sfgamedataeditor.database.objects.OffsetableObject;
-import sfgamedataeditor.fieldwrapping.AbstractFieldListener;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
 import sfgamedataeditor.utils.NotificationType;
@@ -12,7 +12,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.lang.reflect.Field;
 
-public class TextFieldListener extends AbstractFieldListener<TextFieldWidget, OffsetableObject> implements DocumentListener {
+public class TextFieldListener extends AbstractWidgetListener<TextFieldWidget, OffsetableObject> implements DocumentListener {
 
 
     public TextFieldListener(TextFieldWidget widget, Field[] mappedField) {

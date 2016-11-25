@@ -7,7 +7,7 @@ import sfgamedataeditor.views.common.notimplemented.NotImplementedView;
 
 public abstract class AbstractRacesView extends AbstractModulesView {
 
-    public AbstractRacesView() {
+    protected AbstractRacesView() {
         super(I18N.INSTANCE.getMessage("races"));
     }
 

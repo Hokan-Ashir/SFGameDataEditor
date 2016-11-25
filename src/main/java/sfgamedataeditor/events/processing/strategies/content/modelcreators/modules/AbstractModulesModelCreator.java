@@ -1,4 +1,4 @@
-package sfgamedataeditor.events.processing.strategies.content.modelcreators;
+package sfgamedataeditor.events.processing.strategies.content.modelcreators.modules;
 
 import sfgamedataeditor.mvc.ModelCreator;
 import sfgamedataeditor.utils.I18N;

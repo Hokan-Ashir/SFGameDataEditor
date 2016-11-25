@@ -24,7 +24,7 @@ public class LoadSfModFileButtonListener implements ActionListener {
     private static final String SFMOD_FILE_EXTENSION = "sfmod";
     private static final Logger LOGGER = Logger.getLogger(LoadSfModFileButtonListener.class);
 
-    private MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+    private final MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
 
     /**
      * {@inheritDoc}

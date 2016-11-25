@@ -5,7 +5,7 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
 
 public class PromptTextComboBoxRenderer<T extends String> extends BasicComboBoxRenderer {
-    private T prompt;
+    private final T prompt;
 
     public PromptTextComboBoxRenderer(T prompt) {
         this.prompt = prompt;

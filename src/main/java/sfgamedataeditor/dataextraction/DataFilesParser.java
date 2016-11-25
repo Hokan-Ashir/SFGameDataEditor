@@ -1,7 +1,6 @@
 package sfgamedataeditor.dataextraction;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.database.tableservices.SkillNameTableService;
 import sfgamedataeditor.database.tableservices.SkillParametersTableService;
 import sfgamedataeditor.database.tableservices.SpellNameTableService;
 import sfgamedataeditor.database.tableservices.SpellParametersTableService;
@@ -18,7 +17,6 @@ public enum DataFilesParser {
     private static final Logger LOGGER = Logger.getLogger(DataFilesParser.class);
 
     public void extractSkillsDataFromFile(RandomAccessFile file) {
-        SkillNameTableService.INSTANCE.createSkillNameTable();
         SkillParametersTableService.INSTANCE.createSkillParametersTable();
 
         List<Pair<Integer, Integer>> skillOffsets = DataOffsetProvider.INSTANCE.getSkillOffsets();

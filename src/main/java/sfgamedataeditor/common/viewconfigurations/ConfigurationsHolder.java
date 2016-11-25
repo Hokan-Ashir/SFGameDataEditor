@@ -12,7 +12,7 @@ import java.util.Map;
 public enum  ConfigurationsHolder {
     INSTANCE;
 
-    private Map<Class<? extends View>, AbstractConfigurationHolder> configurationHolderMap = new HashMap<>();
+    private final Map<Class<? extends View>, AbstractConfigurationHolder> configurationHolderMap = new HashMap<>();
 
     ConfigurationsHolder() {
         configurationHolderMap.put(SpellParameterView.class, new SpellParametersConfigurationHolder());

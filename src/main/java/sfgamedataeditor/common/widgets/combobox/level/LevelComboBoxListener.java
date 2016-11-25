@@ -1,6 +1,6 @@
 package sfgamedataeditor.common.widgets.combobox.level;
 
-import sfgamedataeditor.fieldwrapping.AbstractFieldListener;
+import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 
@@ -9,7 +9,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 
-public class LevelComboBoxListener extends AbstractFieldListener<LevelComboBoxWidget, LevelComboBoxParameter> implements ItemListener {
+public class LevelComboBoxListener extends AbstractWidgetListener<LevelComboBoxWidget, LevelComboBoxParameter> implements ItemListener {
 
     public LevelComboBoxListener(LevelComboBoxWidget widget, Field[] mappedField) {
         super(widget, mappedField);

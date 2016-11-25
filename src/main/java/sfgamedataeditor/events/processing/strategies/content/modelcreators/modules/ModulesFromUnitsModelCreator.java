@@ -1,4 +1,4 @@
-package sfgamedataeditor.events.processing.strategies.content.modelcreators;
+package sfgamedataeditor.events.processing.strategies.content.modelcreators.modules;
 
 public class ModulesFromUnitsModelCreator extends AbstractModulesModelCreator {
     @Override

@@ -4,7 +4,7 @@ public class Model<T> {
 
     private final T parameter;
 
-    public Model(T parameter) {
+    protected Model(T parameter) {
         this.parameter = parameter;
     }
 

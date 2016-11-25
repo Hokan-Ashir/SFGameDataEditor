@@ -15,8 +15,8 @@ import java.awt.*;
 
 public class Notification {
 
-    public static final int MINIMUM_NOTIFICATION_SIZE = 200;
-    public static final int MAXIMUM_NOTIFICATION_SIZE = 400;
+    private static final int MINIMUM_NOTIFICATION_SIZE = 200;
+    private static final int MAXIMUM_NOTIFICATION_SIZE = 400;
     private static final int DEFAULT_SHOWING_TIME = 3000;
 
     public Notification(String message) {
@@ -27,7 +27,7 @@ public class Notification {
         this(message, DEFAULT_SHOWING_TIME, type);
     }
 
-    public Notification(String message, int displayTime, NotificationType type) {
+    private Notification(String message, int displayTime, NotificationType type) {
         String title;
         IBackground background;
         Color titleFontColor;

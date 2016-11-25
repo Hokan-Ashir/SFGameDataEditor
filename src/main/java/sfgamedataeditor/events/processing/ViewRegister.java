@@ -8,7 +8,7 @@ import java.util.Map;
 public enum ViewRegister {
     INSTANCE;
 
-    private Map<Class<? extends ControllableView>, ViewControllerPair> views = new HashMap<>();
+    private final Map<Class<? extends ControllableView>, ViewControllerPair> views = new HashMap<>();
 
     public Map<Class<? extends ControllableView>, ViewControllerPair> getViews() {
         return views;

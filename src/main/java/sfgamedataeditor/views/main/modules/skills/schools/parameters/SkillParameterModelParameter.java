@@ -1,8 +1,8 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
 public class SkillParameterModelParameter {
-    private int skillSchoolId;
-    private int skillLevel;
+    private final int skillSchoolId;
+    private final int skillLevel;
 
     public SkillParameterModelParameter(int skillSchoolId, int skillLevel) {
         this.skillSchoolId = skillSchoolId;

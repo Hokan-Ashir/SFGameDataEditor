@@ -41,6 +41,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <labelFor value="79b9d"/>
           <text value="Language selection:"/>
         </properties>
       </component>

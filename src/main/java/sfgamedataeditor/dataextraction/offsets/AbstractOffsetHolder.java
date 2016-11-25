@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractOffsetHolder {
-    private List<Pair<Integer, Integer>> offsets = new ArrayList<>();
+    private final List<Pair<Integer, Integer>> offsets = new ArrayList<>();
     private int dataLength;
 
     public AbstractOffsetHolder() {

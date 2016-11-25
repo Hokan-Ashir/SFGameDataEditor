@@ -12,7 +12,7 @@ public enum ObjectDataMappingService {
 
     private static final Logger LOGGER = Logger.getLogger(ObjectDataMappingService.class);
 
-    private Map<Class<?>, Map<DataPair, Field>> map = new HashMap<>();
+    private final Map<Class<?>, Map<DataPair, Field>> map = new HashMap<>();
 
     public void fillObjectWithData(Object object, byte[] buffer) {
         Class<?> aClass = object.getClass();
@@ -91,8 +91,8 @@ public enum ObjectDataMappingService {
     }
 
     private static final class DataPair implements Comparable<DataPair> {
-        private int length;
-        private int offset;
+        private final int length;
+        private final int offset;
 
         public DataPair(int length, int offset) {
             this.length = length;

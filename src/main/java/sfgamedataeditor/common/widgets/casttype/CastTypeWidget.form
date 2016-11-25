@@ -132,4 +132,15 @@
       </grid>
     </children>
   </grid>
+  <buttonGroups>
+    <group name="radioButtonGroup">
+      <member id="bf998"/>
+      <member id="fb1de"/>
+      <member id="aeeda"/>
+      <member id="77dfc"/>
+      <member id="f689b"/>
+      <member id="e0b6d"/>
+      <member id="79133"/>
+    </group>
+  </buttonGroups>
 </form>

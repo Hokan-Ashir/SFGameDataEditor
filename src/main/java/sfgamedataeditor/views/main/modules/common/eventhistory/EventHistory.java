@@ -9,7 +9,7 @@ import java.util.List;
 public enum EventHistory {
     INSTANCE;
 
-    private List<ShowViewEvent> events = new ArrayList<>();
+    private final List<ShowViewEvent> events = new ArrayList<>();
     private int currentEventIndex = -1;
 
     public boolean addEventToHistory(ShowViewEvent event) {

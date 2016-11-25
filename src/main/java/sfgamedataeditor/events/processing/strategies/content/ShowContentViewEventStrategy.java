@@ -25,7 +25,7 @@ public class ShowContentViewEventStrategy implements EventProcessingStrategy<Sho
         ViewRegister.INSTANCE.getView(EventHistoryView.class).setUndoButtonStatus(EventHistory.INSTANCE.isUndoPossible());
         List<ViewHierarchyNode> renderedNodes = ViewHierarchy.INSTANCE.getRenderedNodes();
         for (ViewHierarchyNode renderedNode : renderedNodes) {
-            unrenderNode(renderedNode);
+            unRenderNode(renderedNode);
         }
 
         List<ViewHierarchyNode> nodesToShow = ViewHierarchy.INSTANCE.getNodesToShow(event.getViewClass());
@@ -43,7 +43,7 @@ public class ShowContentViewEventStrategy implements EventProcessingStrategy<Sho
         }
     }
 
-    private void unrenderNode(ViewHierarchyNode renderedNode) {
+    private void unRenderNode(ViewHierarchyNode renderedNode) {
         Class<? extends ControllableView> classViewToUnShow = renderedNode.getViewClass();
         ViewControllerPair viewControllerPair = ViewRegister.INSTANCE.getViews().get(classViewToUnShow);
         if (viewControllerPair == null) {

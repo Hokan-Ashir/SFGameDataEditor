@@ -4,7 +4,7 @@ public abstract class AbstractController<M, V extends ControllableView> {
     private Model<M> model;
     private final V view;
 
-    public AbstractController(V view) {
+    protected AbstractController(V view) {
         this.view = view;
     }
 
@@ -12,11 +12,11 @@ public abstract class AbstractController<M, V extends ControllableView> {
         this.model = model;
     }
 
-    public Model<M> getModel() {
+    protected Model<M> getModel() {
         return model;
     }
 
-    public V getView() {
+    protected V getView() {
         return view;
     }
 

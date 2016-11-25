@@ -7,10 +7,10 @@ import java.util.Map;
 
 public abstract class AbstractConfigurationHolder {
 
-    private Map<Model, AbstractConfiguration> configurationMap = new HashMap<>();
+    private final Map<Model, AbstractConfiguration> configurationMap = new HashMap<>();
     private AbstractConfiguration currentConfiguration;
 
-    public AbstractConfigurationHolder() {
+    protected AbstractConfigurationHolder() {
         fillConfigurationMapping();
     }
 

@@ -1,20 +1,19 @@
-package sfgamedataeditor.fieldwrapping;
+package sfgamedataeditor.common.widgets;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.objects.OffsetableObject;
 import sfgamedataeditor.database.tableservices.CommonTableService;
 
 import java.lang.reflect.Field;
 
-public abstract class AbstractFieldListener<T extends AbstractWidget, M> {
-    private static final Logger LOGGER = Logger.getLogger(AbstractFieldListener.class);
+public abstract class AbstractWidgetListener<T extends AbstractWidget, M> {
+    private static final Logger LOGGER = Logger.getLogger(AbstractWidgetListener.class);
 
-    private Field[] mappedFields;
-    private T component;
+    private final Field[] mappedFields;
+    private final T component;
     private M mappedObject;
 
-    public AbstractFieldListener(T component, Field... mappedFields) {
+    protected AbstractWidgetListener(T component, Field... mappedFields) {
         this.component = component;
         this.mappedFields = mappedFields;
     }

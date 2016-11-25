@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 
 public class CreateModificatedFileButtonListener implements ActionListener {
 
-    private MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+    private final MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
 
     /**
      * {@inheritDoc}

@@ -7,15 +7,10 @@ import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxParameter;
 import sfgamedataeditor.database.objects.SpellName;
 import sfgamedataeditor.database.objects.SpellParameters;
-import sfgamedataeditor.database.tableservices.SpellNameTableService;
 import sfgamedataeditor.database.tableservices.SpellParametersTableService;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.fieldwrapping.MappedColumn;
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.main.MainView;
-import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
-import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
@@ -87,21 +82,6 @@ public class SpellParameterController extends AbstractController<SpellParameterM
                 LOGGER.error(e.getMessage(), e);
             }
         }
-//        SpellParameterModelParameter parameter = getModel().getParameter();
-//        int selectedSpellId = parameter.getSpellId();
-//        int selectedLevel = parameter.getSpellLevel();
-//        Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
-//        setSpellAvaliableLevels(spellLevels, selectedLevel);
-//
-//        int spellMinLevel = (int) ((TreeSet) spellLevels).first();
-//        int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
-//        selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
-//        SpellParameters spellParameter = SpellParametersTableService.INSTANCE.getSpellParameter(selectedSpellId, selectedLevel);
-////        for (IDataField dataField : getView().getDataFields()) {
-////            dataField.updateWidgetValue(spellParameter);
-////        }
-//
-//        setSpellParameterLabelNames();
     }
 
     @Override
@@ -129,55 +109,40 @@ public class SpellParameterController extends AbstractController<SpellParameterM
         }
     }
 
-    private void setSpellAvaliableLevels(final Set<Integer> spellLevels, final int selectedLevel) {
-        final JComboBox<String> comboBox = getView().getLevelComboBox();
-//        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
-//            @Override
-//            protected void setValues() {
-//                comboBox.removeAllItems();
-//                for (Integer spellLevel : spellLevels) {
-//                    comboBox.addItem(String.valueOf(spellLevel));
-//                }
-//
-//                comboBox.setSelectedItem(String.valueOf(selectedLevel));
+//    private void setSpellParameterLabelNames() {
+//        SpellsView spellsView = ViewRegister.INSTANCE.getView(SpellsView.class);
+//        String selectedSpellName = spellsView.getSelectedModuleValue();
+//        SpellName spellName = SpellNameTableService.INSTANCE.getSpellName(selectedSpellName);
+//        for (Field field : getView().getClass().getDeclaredFields()) {
+//            MappedColumn annotation = field.getAnnotation(MappedColumn.class);
+//            if (annotation == null) {
+//                continue;
 //            }
-//        });
-    }
-
-    private void setSpellParameterLabelNames() {
-        SpellsView spellsView = ViewRegister.INSTANCE.getView(SpellsView.class);
-        String selectedSpellName = spellsView.getSelectedModuleValue();
-        SpellName spellName = SpellNameTableService.INSTANCE.getSpellName(selectedSpellName);
-        for (Field field : getView().getClass().getDeclaredFields()) {
-            MappedColumn annotation = field.getAnnotation(MappedColumn.class);
-            if (annotation == null) {
-                continue;
-            }
-
-            if (!annotation.daoClass().equals(SpellName.class)) {
-                continue;
-            }
-
-            String mappedFieldName = annotation.name();
-            String parameterName = getParameterName(spellName, mappedFieldName);
-            try {
-                field.setAccessible(true);
-                JLabel label = ((JLabel) field.get(getView()));
-                if (parameterName.equals(ViewTools.convertToMultiline(I18N.INSTANCE.getMessage("spellParameterNotUsed")))) {
-                    label.setVisible(false);
-                    label.getLabelFor().setVisible(false);
-                } else {
-                    label.setVisible(true);
-                    label.getLabelFor().setVisible(true);
-                    label.setText(parameterName);
-                }
-            } catch (IllegalAccessException e) {
-                LOGGER.error(e.getMessage());
-            }
-        }
-
-        getView().getMainPanel().repaint();
-    }
+//
+//            if (!annotation.daoClass().equals(SpellName.class)) {
+//                continue;
+//            }
+//
+//            String mappedFieldName = annotation.name();
+//            String parameterName = getParameterName(spellName, mappedFieldName);
+//            try {
+//                field.setAccessible(true);
+//                JLabel label = ((JLabel) field.get(getView()));
+//                if (parameterName.equals(ViewTools.convertToMultiline(I18N.INSTANCE.getMessage("spellParameterNotUsed")))) {
+//                    label.setVisible(false);
+//                    label.getLabelFor().setVisible(false);
+//                } else {
+//                    label.setVisible(true);
+//                    label.getLabelFor().setVisible(true);
+//                    label.setText(parameterName);
+//                }
+//            } catch (IllegalAccessException e) {
+//                LOGGER.error(e.getMessage());
+//            }
+//        }
+//
+//        getView().getMainPanel().repaint();
+//    }
 
     private String getParameterName(SpellName spellName, String fieldName) {
         try {

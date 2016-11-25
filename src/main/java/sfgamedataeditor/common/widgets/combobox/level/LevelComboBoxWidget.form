@@ -17,6 +17,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <labelFor value="2f043"/>
           <maximumSize width="60" height="25"/>
           <minimumSize width="60" height="25"/>
           <preferredSize width="60" height="25"/>

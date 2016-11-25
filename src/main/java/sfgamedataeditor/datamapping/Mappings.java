@@ -7,7 +7,7 @@ import java.util.*;
 public enum Mappings {
     INSTANCE;
 
-    public Map<String, Integer> SKILL_SCHOOL_MAP = new HashMap<String, Integer>() {{
+    public final Map<String, Integer> SKILL_SCHOOL_MAP = new HashMap<String, Integer>() {{
         put(I18N.INSTANCE.getMessage("lightCombatArts"), 1);
         put(I18N.INSTANCE.getMessage("heavyCombatArts"), 2);
         put(I18N.INSTANCE.getMessage("archery"), 3);
@@ -17,7 +17,7 @@ public enum Mappings {
         put(I18N.INSTANCE.getMessage("blackMagic"), 7);
     }};
 
-    public Map<String, List<String>> CLASS_SUBCLASS_COMBOBOX_MAP = new LinkedHashMap<String, List<String>>() {{
+    public final Map<String, List<String>> CLASS_SUBCLASS_COMBOBOX_MAP = new LinkedHashMap<String, List<String>>() {{
         // order of spell class/subclass mapping is taken from http://spellforcefanforum.hostoi.com/viewtopic.php?f=14&t=241
         // NOTE: order of this list is HIGHLY important, if you change it, you may
         // accidentally set (via this Editor) i.e "Iceburst" "White Magic - Nature" requirements

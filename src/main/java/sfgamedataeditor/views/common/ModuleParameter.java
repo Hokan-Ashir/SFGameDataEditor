@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.common;
 
 public class ModuleParameter {
-    private String moduleName;
+    private final String moduleName;
 
     public ModuleParameter(String moduleName) {
         this.moduleName = moduleName;

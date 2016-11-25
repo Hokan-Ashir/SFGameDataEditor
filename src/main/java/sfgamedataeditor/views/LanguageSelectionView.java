@@ -118,7 +118,7 @@ public class LanguageSelectionView {
         }
     }
 
-    public JPanel getMainPanel() {
+    private JPanel getMainPanel() {
         return mainPanel;
     }
 

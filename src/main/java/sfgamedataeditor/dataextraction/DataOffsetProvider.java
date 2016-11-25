@@ -10,8 +10,8 @@ import java.util.List;
 public enum DataOffsetProvider {
     INSTANCE;
 
-    AbstractOffsetHolder spellOffsets = new SpellsOffsetHolder();
-    AbstractOffsetHolder skillOffsets = new SkillsOffsetHolder();
+    private final AbstractOffsetHolder spellOffsets = new SpellsOffsetHolder();
+    private final AbstractOffsetHolder skillOffsets = new SkillsOffsetHolder();
 
     public List<Pair<Integer, Integer>> getSpellOffsets() {
         return spellOffsets.getOffsets();

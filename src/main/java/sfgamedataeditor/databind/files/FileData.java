@@ -3,9 +3,9 @@ package sfgamedataeditor.databind.files;
 import java.io.RandomAccessFile;
 
 public class FileData {
-    private RandomAccessFile file;
-    private String path;
-    private String name;
+    private final RandomAccessFile file;
+    private final String path;
+    private final String name;
 
     public FileData(RandomAccessFile file, String path, String name) {
         this.file = file;

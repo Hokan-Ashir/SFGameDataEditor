@@ -1,6 +1,10 @@
 package sfgamedataeditor.events.processing.strategies.content.viewhierarchy;
 
-import sfgamedataeditor.events.processing.strategies.content.modelcreators.*;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.ModulesModuleCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.SkillSchoolsFromSkillParameterModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.SpellSchoolsFromSpellsModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.SpellsFromSpellParameterModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.modules.*;
 import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;

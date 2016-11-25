@@ -8,7 +8,7 @@ package sfgamedataeditor.databind;
  * @param <V> type of storing value
  */
 public class Pair<K, V> {
-    private K key;
+    private final K key;
     private V value;
 
     public K getKey() {

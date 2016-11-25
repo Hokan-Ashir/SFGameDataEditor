@@ -8,7 +8,7 @@ import java.util.Map;
 public enum WidgetsCachesHolder {
     INSTANCE;
 
-    private Map<Class<? extends View>, WidgetsCache> cacheMap = new HashMap<>();
+    private final Map<Class<? extends View>, WidgetsCache> cacheMap = new HashMap<>();
 
     public WidgetsCache getWidgetsCache(Class<? extends View> viewClass) {
         boolean isCacheExists = cacheMap.containsKey(viewClass);

@@ -7,8 +7,8 @@ import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.AbstractConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationsHolder;
 import sfgamedataeditor.common.widgets.AbstractWidget;
+import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.common.widgets.Disabled;
-import sfgamedataeditor.fieldwrapping.AbstractFieldListener;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.View;
 
@@ -36,8 +36,6 @@ public enum ViewConfigurator {
             return;
         }
 
-        configurationHolder.setCurrentConfiguration(configuration);
-
         WidgetsCache widgetsCache = WidgetsCachesHolder.INSTANCE.getWidgetsCache(view.getClass());
 
         Field[] declaredFields = view.getClass().getDeclaredFields();
@@ -49,14 +47,14 @@ public enum ViewConfigurator {
 
             int guiElementId = annotation.GUIElementId();
             Class<? extends AbstractWidget> widgetClass = configuration.getWidgetClass(guiElementId);
-            Class<? extends AbstractFieldListener> listenerClass = configuration.getListenerClass(guiElementId);
+            Class<? extends AbstractWidgetListener> listenerClass = configuration.getListenerClass(guiElementId);
             boolean inCache = widgetsCache.isWidgetExistsInCache(guiElementId, widgetClass);
             try {
                 field.setAccessible(true);
                 JPanel layoutPanel = (JPanel) field.get(view);
                 layoutPanel.removeAll();
                 AbstractWidget widget;
-                AbstractFieldListener listener;
+                AbstractWidgetListener listener;
                 if (inCache) {
                     widget = widgetsCache.getWidget(guiElementId, widgetClass);
                 } else {
@@ -72,7 +70,7 @@ public enum ViewConfigurator {
                     }
 
                     widget = widgetClass.getConstructor().newInstance();
-                    listener = (AbstractFieldListener) listenerClass.getConstructors()[0].newInstance(widget, DTOFields);
+                    listener = (AbstractWidgetListener) listenerClass.getConstructors()[0].newInstance(widget, DTOFields);
                     widget.attachListener(listener);
                     Disabled disabled = field.getAnnotation(Disabled.class);
                     if (disabled != null) {
@@ -88,5 +86,7 @@ public enum ViewConfigurator {
                 throw new RuntimeException("Impossible to instantiate widget instance from class [" + widgetClass.getName() + "]");
             }
         }
+
+        configurationHolder.setCurrentConfiguration(configuration);
     }
 }

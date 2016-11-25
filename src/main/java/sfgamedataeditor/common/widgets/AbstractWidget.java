@@ -1,17 +1,15 @@
 package sfgamedataeditor.common.widgets;
 
-import sfgamedataeditor.fieldwrapping.AbstractFieldListener;
-
 import javax.swing.*;
 
-public abstract class AbstractWidget<T extends AbstractFieldListener> extends JPanel {
-    private AbstractFieldListener listener;
+public abstract class AbstractWidget<T extends AbstractWidgetListener> extends JPanel {
+    private AbstractWidgetListener listener;
 
-    public void setListener(AbstractFieldListener listener) {
+    public void setListener(AbstractWidgetListener listener) {
         this.listener = listener;
     }
 
-    public AbstractFieldListener getListener() {
+    public AbstractWidgetListener getListener() {
         return listener;
     }
 

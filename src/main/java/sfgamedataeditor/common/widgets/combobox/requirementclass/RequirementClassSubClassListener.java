@@ -1,8 +1,8 @@
 package sfgamedataeditor.common.widgets.combobox.requirementclass;
 
+import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.objects.OffsetableObject;
 import sfgamedataeditor.datamapping.Mappings;
-import sfgamedataeditor.fieldwrapping.AbstractFieldListener;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 
@@ -12,7 +12,7 @@ import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.List;
 
-public class RequirementClassSubClassListener extends AbstractFieldListener<RequirementClassSubClassWidget, OffsetableObject> implements ItemListener {
+public class RequirementClassSubClassListener extends AbstractWidgetListener<RequirementClassSubClassWidget, OffsetableObject> implements ItemListener {
 
 
     public RequirementClassSubClassListener(RequirementClassSubClassWidget widget, Field[] DTOField) {

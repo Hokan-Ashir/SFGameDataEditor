@@ -5,7 +5,7 @@ import java.awt.event.ItemListener;
 
 public abstract class SilentComboBoxValuesSetter<T> {
 
-    private JComboBox<T> comboBox;
+    private final JComboBox<T> comboBox;
 
     protected SilentComboBoxValuesSetter(JComboBox<T> comboBox) {
         this.comboBox = comboBox;

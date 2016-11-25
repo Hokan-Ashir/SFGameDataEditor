@@ -15,14 +15,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public abstract class AbstractModulesController<M, V extends AbstractModulesView, C extends Model> extends AbstractController<M, V> {
-    public AbstractModulesController(V view) {
+    protected AbstractModulesController(V view) {
         super(view);
         final JComboBox<String> modulesComboBox = getView().getModulesComboBox();
-        modulesComboBox.addItemListener(createComboBoxClickListener());
-    }
-
-    protected ItemListener createComboBoxClickListener() {
-        return new DefaultComboBoxListener();
+        modulesComboBox.addItemListener(new DefaultComboBoxListener());
     }
 
     protected abstract C createModel();
