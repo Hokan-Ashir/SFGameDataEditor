@@ -6,11 +6,12 @@ import sfgamedataeditor.common.widgets.effectnumber.EffectNumberListener;
 import sfgamedataeditor.common.widgets.effectnumber.EffectNumberWidget;
 import sfgamedataeditor.databind.Pair;
 
-public class IceOrFireShieldConfiguration extends DefaultSpellParameterViewConfiguration {
+// TODO, note, is has the same position of EffectNumberWidget as WavesSpellsConfiguration
+public class ChainSpellsConfiguration extends DefaultSpellParameterViewConfiguration {
 
     @Override
     protected void fillConfigurationMappings() {
         super.fillConfigurationMappings();
-        addViewMapping(GUIElements.PARAMETER_2, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(EffectNumberWidget.class, EffectNumberListener.class));
+        addViewMapping(GUIElements.PARAMETER_4, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(EffectNumberWidget.class, EffectNumberListener.class));
     }
 }

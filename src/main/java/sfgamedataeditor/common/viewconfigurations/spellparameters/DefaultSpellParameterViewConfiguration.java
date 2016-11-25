@@ -13,6 +13,8 @@ import sfgamedataeditor.common.widgets.textfield.TextFieldListener;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
 import sfgamedataeditor.databind.Pair;
 
+// TODO get rid of inheritance and maybe choose something like decoration
+// TODO get rid of unnecessary fields creation and storing in cache (not each spell should have 9 additional textFieldWidgets, that should be hidden)
 public class DefaultSpellParameterViewConfiguration extends AbstractConfiguration {
 
     /**
