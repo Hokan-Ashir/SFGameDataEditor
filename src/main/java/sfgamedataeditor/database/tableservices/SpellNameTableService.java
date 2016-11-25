@@ -134,4 +134,14 @@ public enum SpellNameTableService {
             return null;
         }
     }
+
+    public List<String> getAllSpellNames() {
+        List<SpellName> allTableData = CommonTableService.INSTANCE.getAllTableData(SpellName.class);
+        List<String> result = new ArrayList<>();
+        for (SpellName spellName : allTableData) {
+            result.add(spellName.name);
+        }
+
+        return result;
+    }
 }

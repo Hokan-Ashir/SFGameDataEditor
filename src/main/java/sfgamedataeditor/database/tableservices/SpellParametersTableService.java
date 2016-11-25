@@ -96,7 +96,60 @@ public enum SpellParametersTableService {
         return spellParameters;
     }
 
-    public SpellParameters getSpellParameter(int selectedSpellId, int selectedLevel) {
+    public SpellParameters getSpellParameterBySpellIdAndLevel(final int selectedSpellId, final int selectedLevel) {
+        return getSpellParameters(new WhereDecorator<SpellParameters, Integer>() {
+            @Override
+            public Where<SpellParameters, Integer> decorateWhere(Where<SpellParameters, Integer> where) {
+                try {
+                Where<SpellParameters, Integer> spellNameId = where.eq("spellNameId", selectedSpellId);
+                Where<SpellParameters, Integer> or;
+                    or = where.or(where.eq("requirementLevel1", selectedLevel),
+                            where.eq("requirementLevel2", selectedLevel),
+                            where.eq("requirementLevel3", selectedLevel));
+                    where.and(spellNameId, or);
+                    return where;
+                } catch (SQLException e) {
+                    LOGGER.error(e.getMessage());
+                }
+
+                return null;
+            }
+        });
+    }
+
+    public List<SpellParameters> getAllSpellParameters() {
+        return CommonTableService.INSTANCE.getAllTableData(SpellParameters.class);
+    }
+
+    public SpellParameters getSpellParametersBySpellType(final int spellTypeId) {
+        return getSpellParameters(new WhereDecorator<SpellParameters, Integer>() {
+            @Override
+            public Where<SpellParameters, Integer> decorateWhere(Where<SpellParameters, Integer> where) {
+                try {
+                    return where.eq("spellNameId", spellTypeId);
+                } catch (SQLException e) {
+                    LOGGER.error(e.getMessage(), e);
+                    return null;
+                }
+            }
+        });
+    }
+
+    public SpellParameters getSpellParametersBySpellNumber(final int spellNumber) {
+        return getSpellParameters(new WhereDecorator<SpellParameters, Integer>() {
+            @Override
+            public Where<SpellParameters, Integer> decorateWhere(Where<SpellParameters, Integer> where) {
+                try {
+                    return where.eq("spellNumber", spellNumber);
+                } catch (SQLException e) {
+                    LOGGER.error(e.getMessage(), e);
+                    return null;
+                }
+            }
+        });
+    }
+
+    private SpellParameters getSpellParameters(WhereDecorator<SpellParameters, Integer> decorator) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         Dao<SpellParameters, Integer> dao;
         try {
@@ -108,11 +161,7 @@ public enum SpellParametersTableService {
 
         try {
             Where<SpellParameters, Integer> where = dao.queryBuilder().where();
-            Where<SpellParameters, Integer> spellNameId = where.eq("spellNameId", selectedSpellId);
-            Where<SpellParameters, Integer> or = where.or(where.eq("requirementLevel1", selectedLevel),
-                    where.eq("requirementLevel2", selectedLevel),
-                    where.eq("requirementLevel3", selectedLevel));
-            where.and(spellNameId, or);
+            where = decorator.decorateWhere(where);
             return where.query().get(0);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
@@ -120,26 +169,8 @@ public enum SpellParametersTableService {
         }
     }
 
-    public List<SpellParameters> getAllSpellParameters() {
-        return CommonTableService.INSTANCE.getAllTableData(SpellParameters.class);
-    }
-
-    public SpellParameters getSpellParametersBySpellType(int spellTypeId) {
-        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
-        Dao<SpellParameters, Integer> dao;
-        try {
-            dao = DaoManager.createDao(connectionSource, SpellParameters.class);
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
-            return null;
-        }
-
-        try {
-            return dao.queryBuilder().where().eq("spellNameId", spellTypeId).query().get(0);
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage());
-            return null;
-        }
+    private interface WhereDecorator<T, ID> {
+        Where<T, ID> decorateWhere(Where<T, ID> where);
     }
 
     public List<SpellParameters> getSpellParametersBySpellSchool(int spellTypeId) {

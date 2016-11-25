@@ -56,7 +56,7 @@ public class SpellParameterController extends AbstractController<SpellParameterM
         int spellMinLevel = (int) ((TreeSet) spellLevels).first();
         int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
         selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
-        SpellParameters spellParameter = SpellParametersTableService.INSTANCE.getSpellParameter(selectedSpellId, selectedLevel);
+        SpellParameters spellParameter = SpellParametersTableService.INSTANCE.getSpellParameterBySpellIdAndLevel(selectedSpellId, selectedLevel);
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {

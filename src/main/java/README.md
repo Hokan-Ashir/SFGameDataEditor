@@ -12,7 +12,7 @@ IMPORTANT:
 See "What it can't do" section below to be aware of restrictions.
 
 # What inside
- - Java 7 - for diamonds and multiple catch exceptions
+ - Java 7 - for diamonds and multiple catch exceptions (Java 8 is not supported by IDEA GUI Designer)
  - Maven - as build tool
  - Swing - for GUI, obviously
  - H2 - for storing parsed data in form of objects and tables
@@ -30,6 +30,7 @@ See "What it can't do" section below to be aware of restrictions.
  - Merging sf-mod files with your GameData.cff files to get modificated data, which you can test in game
 
 # What it can't do
+ - Currently only support for changing Skill-to-characteristics requirements and Spells parameters
  - No other languages except English, Russian, German and French
  NOTE:
  Localization name format MUST look like "messages_XX.properties", where XX is language signature. Register irrelevant
@@ -89,9 +90,7 @@ See "What it can't do" section below to be aware of restrictions.
  - Add more flexible ability to merge multiple sf-mod files
  - Extend sf-mod-files format to include description
  - Extend with item, merchants, buildings, units views
- - Add support for any language i18n possible
- - Place all subviews in more appropriate position, probably with grid layout
- - Rewrite all inner code to MVC/MVP-pattern
+ - Add support for any language i18n possible 
 
 # Special thanks
  - This application won't be possible without information grabbed from this forum - http://spellforcefanforum.hostoi.com/index.php

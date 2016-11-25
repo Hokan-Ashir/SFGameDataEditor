@@ -24,8 +24,8 @@ public class WidgetsCache {
 
     public boolean isWidgetExistsInCache(Integer GUIComponentId, Class<? extends AbstractWidget> widgetClass) {
         boolean isGUIComponentHaveCachedWidgets = widgetMap.containsKey(GUIComponentId);
-        if (isGUIComponentHaveCachedWidgets) {
-            return true;
+        if (!isGUIComponentHaveCachedWidgets) {
+            return false;
         } else {
             List<Pair<AbstractWidget, AbstractWidgetListener>> pairs = widgetMap.get(GUIComponentId);
             if (pairs == null) {
