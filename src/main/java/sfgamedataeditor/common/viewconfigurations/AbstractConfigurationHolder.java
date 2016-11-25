@@ -8,6 +8,7 @@ import java.util.Map;
 public abstract class AbstractConfigurationHolder {
 
     private Map<Model, AbstractConfiguration> configurationMap = new HashMap<>();
+    private AbstractConfiguration currentConfiguration;
 
     public AbstractConfigurationHolder() {
         fillConfigurationMapping();
@@ -15,7 +16,7 @@ public abstract class AbstractConfigurationHolder {
 
     protected abstract void fillConfigurationMapping();
 
-    public void addConfiguration(Model model, AbstractConfiguration configuration) {
+    protected void addConfiguration(Model model, AbstractConfiguration configuration) {
         configurationMap.put(model, configuration);
     }
 
@@ -31,5 +32,13 @@ public abstract class AbstractConfigurationHolder {
         }
 
         return null;
+    }
+
+    public AbstractConfiguration getCurrentConfiguration() {
+        return currentConfiguration;
+    }
+
+    public void setCurrentConfiguration(AbstractConfiguration currentConfiguration) {
+        this.currentConfiguration = currentConfiguration;
     }
 }

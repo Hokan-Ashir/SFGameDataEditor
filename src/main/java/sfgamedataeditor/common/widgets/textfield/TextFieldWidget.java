@@ -1,4 +1,4 @@
-package sfgamedataeditor.common.widgets.common.text;
+package sfgamedataeditor.common.widgets.textfield;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
 

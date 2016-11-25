@@ -60,9 +60,8 @@ public class CastTypeFormListener extends AbstractFieldListener<CastTypeWidget, 
     @Override
     protected void setFieldValues(int[] value) {
         int castType = value[0];
-        // order of variables IS correct, cause in original file other byte order exists
-        int secondValueEffect = castType & 0xFF;
-        int firstValueEffect = (castType & 0xFF00) >> 8;
+        int firstValueEffect = castType & 0xFF;
+        int secondValueEffect = (castType & 0xFF00) >> 8;
 
         Pair<Integer, Integer> valuePair = new Pair<>(firstValueEffect, secondValueEffect);
         for (Map.Entry<JRadioButton, Pair<Integer, Integer>> jRadioButtonPairEntry : radioButtonMapping.entrySet()) {

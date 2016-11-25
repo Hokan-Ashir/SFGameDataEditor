@@ -41,7 +41,7 @@ public abstract class AbstractFieldListener<T extends AbstractWidget, M> {
     /**
      * {@inheritDoc}
      */
-    public void setValueToField() {
+    protected void setValueToField() {
         // TODO get rid of it; this is the cause when:
         // user first time select ANY spell
         // data loading is processing through AbstractDataFields
@@ -73,7 +73,7 @@ public abstract class AbstractFieldListener<T extends AbstractWidget, M> {
 
     protected abstract void setFieldValues(int[] value);
 
-    public T getWidget() {
+    protected T getWidget() {
         return component;
     }
 }

@@ -32,6 +32,12 @@ public enum ViewConfigurator {
             return;
         }
 
+        if (configuration.equals(configurationHolder.getCurrentConfiguration())) {
+            return;
+        }
+
+        configurationHolder.setCurrentConfiguration(configuration);
+
         WidgetsCache widgetsCache = WidgetsCachesHolder.INSTANCE.getWidgetsCache(view.getClass());
 
         Field[] declaredFields = view.getClass().getDeclaredFields();

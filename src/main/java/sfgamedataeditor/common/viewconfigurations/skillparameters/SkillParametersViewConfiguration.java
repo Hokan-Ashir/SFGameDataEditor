@@ -4,8 +4,8 @@ import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxListener;
 import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxWidget;
-import sfgamedataeditor.common.widgets.common.text.TextFieldListener;
-import sfgamedataeditor.common.widgets.common.text.TextFieldWidget;
+import sfgamedataeditor.common.widgets.textfield.TextFieldListener;
+import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
 import sfgamedataeditor.databind.Pair;
 import sfgamedataeditor.fieldwrapping.AbstractFieldListener;
 

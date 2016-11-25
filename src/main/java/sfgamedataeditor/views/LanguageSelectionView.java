@@ -21,6 +21,8 @@ public class LanguageSelectionView {
         put("de", "German");
     }};
 
+    private static final String MESSAGES_PROPERTIES_FILE_NAME = "messages";
+
     private JButton okButton;
     private JComboBox<String> languageSelectionComboBox;
     private JLabel languageSelectionLabel;
@@ -67,7 +69,8 @@ public class LanguageSelectionView {
                 } else {
                     locale = new Locale(countryLanguage);
                 }
-                I18N.INSTANCE.loadBundleMessages("messages", locale);
+
+                I18N.INSTANCE.loadBundleMessages(MESSAGES_PROPERTIES_FILE_NAME, locale);
                 initializeDefaultSwingComponentsI18N();
 
                 FileSelectionView.showFileSelectionView();
