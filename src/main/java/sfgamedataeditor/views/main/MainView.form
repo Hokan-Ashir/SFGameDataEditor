@@ -6,9 +6,9 @@
     </constraints>
     <properties>
       <autoscrolls value="true"/>
-      <maximumSize width="1070" height="700"/>
-      <minimumSize width="1070" height="700"/>
-      <preferredSize width="1070" height="700"/>
+      <maximumSize width="1070" height="800"/>
+      <minimumSize width="1070" height="800"/>
+      <preferredSize width="1070" height="800"/>
     </properties>
     <border type="none"/>
     <children>
@@ -16,8 +16,8 @@
         <constraints border-constraint="Center"/>
         <properties>
           <doubleBuffered value="true"/>
-          <maximumSize width="1070" height="675"/>
-          <minimumSize width="1070" height="675"/>
+          <maximumSize width="1070" height="775"/>
+          <minimumSize width="1070" height="775"/>
           <verticalScrollBarPolicy value="20"/>
         </properties>
         <border type="none"/>
@@ -25,9 +25,9 @@
           <grid id="41645" binding="componentsPanel" layout-manager="GridBagLayout">
             <constraints/>
             <properties>
-              <maximumSize width="1050" height="675"/>
-              <minimumSize width="1050" height="675"/>
-              <preferredSize width="1050" height="675"/>
+              <maximumSize width="1050" height="775"/>
+              <minimumSize width="1050" height="775"/>
+              <preferredSize width="1050" height="775"/>
             </properties>
             <border type="none"/>
             <children>
@@ -52,9 +52,9 @@
                 </constraints>
                 <properties>
                   <autoscrolls value="true"/>
-                  <maximumSize width="1050" height="550"/>
-                  <minimumSize width="1050" height="550"/>
-                  <preferredSize width="1050" height="550"/>
+                  <maximumSize width="1050" height="650"/>
+                  <minimumSize width="1050" height="650"/>
+                  <preferredSize width="1050" height="650"/>
                 </properties>
                 <border type="etched"/>
                 <children/>

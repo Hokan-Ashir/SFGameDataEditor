@@ -45,7 +45,7 @@ public abstract class AbstractWidgetListener<T extends AbstractWidget, M> {
         // user first time select ANY spell
         // data loading is processing through AbstractDataFields
         // the data have been set to any ClassRequirements comboBox
-        // the listener (RequirementClassSubClassListener) on it is launched to set subClass comboBox value
+        // the listener (RequirementClassSubClassWidgetListener) on it is launched to set subClass comboBox value
         // BUT there is no mapped object on this subClass comboBox, so NPE appears
         if (mappedObject == null) {
             return;

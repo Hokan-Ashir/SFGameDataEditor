@@ -12,10 +12,9 @@ import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.List;
 
-public class RequirementClassSubClassListener extends AbstractWidgetListener<RequirementClassSubClassWidget, OffsetableObject> implements ItemListener {
+public class RequirementClassSubClassWidgetListener extends AbstractWidgetListener<RequirementClassSubClassWidget, OffsetableObject> implements ItemListener {
 
-
-    public RequirementClassSubClassListener(RequirementClassSubClassWidget widget, Field[] DTOField) {
+    public RequirementClassSubClassWidgetListener(RequirementClassSubClassWidget widget, Field[] DTOField) {
         super(widget, DTOField);
     }
 

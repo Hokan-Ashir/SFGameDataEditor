@@ -2,14 +2,13 @@ package sfgamedataeditor.common.viewconfigurations;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
-import sfgamedataeditor.databind.Pair;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class AbstractConfiguration {
 
-    private final Map<Integer, Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>> widgetMap = new HashMap<>();
+    private final Map<Integer, ConfigurationWidgetParameter> widgetMap = new HashMap<>();
 
     protected AbstractConfiguration() {
         fillConfigurationMappings();
@@ -17,25 +16,34 @@ public abstract class AbstractConfiguration {
 
     protected abstract void fillConfigurationMappings();
 
-    protected void addViewMapping(Integer GUIComponentId, Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>> widget) {
-        widgetMap.put(GUIComponentId, widget);
+    protected void addViewMapping(Integer GUIComponentId, ConfigurationWidgetParameter parameter) {
+        widgetMap.put(GUIComponentId, parameter);
     }
 
     public Class<? extends AbstractWidget> getWidgetClass(Integer GUIComponentId) {
-        Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>> pair = widgetMap.get(GUIComponentId);
-        if (pair != null) {
-            return pair.getKey();
+        ConfigurationWidgetParameter parameter = widgetMap.get(GUIComponentId);
+        if (parameter != null) {
+            return parameter.getWidgetClass();
         }
 
         throw new RuntimeException("No widget class found for GUIComponentId [" + GUIComponentId + "]");
     }
 
     public Class<? extends AbstractWidgetListener> getListenerClass(Integer GUIComponentId) {
-        Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>> pair = widgetMap.get(GUIComponentId);
-        if (pair != null) {
-            return pair.getValue();
+        ConfigurationWidgetParameter parameter = widgetMap.get(GUIComponentId);
+        if (parameter != null) {
+            return parameter.getListenerClass();
         }
 
-        throw new RuntimeException("No widget class found for GUIComponentId [" + GUIComponentId + "]");
+        throw new RuntimeException("No listener class found for GUIComponentId [" + GUIComponentId + "]");
+    }
+
+    public String[] getI18NParameters(Integer GUIComponentId) {
+        ConfigurationWidgetParameter parameter = widgetMap.get(GUIComponentId);
+        if (parameter != null) {
+            return parameter.getI18nValues();
+        }
+
+        throw new RuntimeException("No i18n parameters found for GUIComponentId [" + GUIComponentId + "]");
     }
 }

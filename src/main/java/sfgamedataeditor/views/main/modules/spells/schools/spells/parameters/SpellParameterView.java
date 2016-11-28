@@ -7,7 +7,6 @@ import sfgamedataeditor.database.objects.SpellParameters;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 
@@ -16,7 +15,6 @@ public class SpellParameterView implements ControllableView {
     // inside spell offsets are taken from http://spellforcefanforum.hostoi.com/viewtopic.php?f=14&t=242
     private JPanel mainPanel;
 
-    private JSeparator parametersSeparator;
     private JLabel parametersLabel;
 
     @Disabled
@@ -92,59 +90,10 @@ public class SpellParameterView implements ControllableView {
 
     @GUIElement(GUIElementId = GUIElements.PARAMETER_9, DTOColumnNames = "parameter9", DTOClass = SpellParameters.class)
     private JPanel parameter9Panel;
+    private JPanel parametersPanel;
 
     public SpellParameterView() {
         parametersLabel.setText(I18N.INSTANCE.getMessage("spellParameters"));
-        setCommonLabelsI18nNames();
-//        initializeRequirementsComboBoxes();
-    }
-
-    private void setCommonLabelsI18nNames() {
-//        setLabelText(numberLabel, "spellNumber");
-//        setLabelText(typeLabel, "spellType");
-//        setLabelText(requirementClassLabel, "spellRequirementClass");
-//        setLabelText(requirementSubClassLabel, "spellRequirementSubClass");
-//        setLabelText(requirementLevelLabel, "spellRequirementLevel");
-//        setLabelText(requirementClassLabel2, "spellRequirementClass");
-//        setLabelText(requirementSubClassLabel2, "spellRequirementSubClass");
-//        setLabelText(requirementLevelLabel2, "spellRequirementLevel");
-//        setLabelText(requirementClassLabel3, "spellRequirementClass");
-//        setLabelText(requirementSubClassLabel3, "spellRequirementSubClass");
-//        setLabelText(requirementLevelLabel3, "spellRequirementLevel");
-//        setLabelText(manaUsageLabel, "spellManaUsage");
-//        setLabelText(castTimeLabel, "spellCastTime");
-//        setLabelText(cooldownLabel, "spellCooldown");
-//        setLabelText(minRangeLabel, "spellMinRange");
-//        setLabelText(maxRangeLabel, "spellMaxRange");
-//        setLabelText(castTypeLabel, "spellCastType");
-//        setLabelText(levelLabel, "levelLabel");
-    }
-
-    private void setLabelText(JLabel label, String not18nText) {
-        label.setText(ViewTools.convertToMultiline(I18N.INSTANCE.getMessage(not18nText)));
-    }
-
-//    private void initializeRequirementsComboBoxes() {
-//        Map<String, List<String>> map = Mappings.INSTANCE.CLASS_SUBCLASS_COMBOBOX_MAP;
-//        for (String s : map.keySet()) {
-//            requirementClassComboBox.addItem(s);
-//            requirementClassComboBox2.addItem(s);
-//            requirementClassComboBox3.addItem(s);
-//        }
-//
-//        attachSubClassListenerToClassComboBox(requirementClassComboBox, requirementSubClassComboBox);
-//        attachSubClassListenerToClassComboBox(requirementClassComboBox2, requirementSubClassComboBox2);
-//        attachSubClassListenerToClassComboBox(requirementClassComboBox3, requirementSubClassComboBox3);
-//    }
-//
-//    private void attachSubClassListenerToClassComboBox(JComboBox classComboBox, JComboBox subClassComboBox) {
-//        RequirementClassSubClassListener listener = new RequirementClassSubClassListener(subClassComboBox);
-//        classComboBox.addItemListener(listener);
-//        classComboBox.setSelectedItem(null);
-//    }
-
-    public JComboBox<String> getLevelComboBox() {
-        return null;
     }
 
     /**

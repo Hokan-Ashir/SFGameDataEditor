@@ -7,6 +7,8 @@
     <properties>
       <alignmentX value="0.5"/>
       <maximumSize width="60" height="50"/>
+      <minimumSize width="60" height="50"/>
+      <preferredSize width="60" height="50"/>
     </properties>
     <border type="none"/>
     <children>

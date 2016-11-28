@@ -1,18 +1,16 @@
 package sfgamedataeditor.common.viewconfigurations.spellparameters.configurations;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
+import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.viewconfigurations.spellparameters.GUIElements;
-import sfgamedataeditor.common.widgets.AbstractWidget;
-import sfgamedataeditor.common.widgets.AbstractWidgetListener;
-import sfgamedataeditor.common.widgets.casttype.CastTypeFormListener;
 import sfgamedataeditor.common.widgets.casttype.CastTypeWidget;
+import sfgamedataeditor.common.widgets.casttype.CastTypeWidgetListener;
 import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxListener;
 import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxWidget;
-import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassSubClassListener;
 import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassSubClassWidget;
-import sfgamedataeditor.common.widgets.textfield.TextFieldListener;
+import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassSubClassWidgetListener;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
-import sfgamedataeditor.databind.Pair;
+import sfgamedataeditor.common.widgets.textfield.TextFieldWidgetListener;
 
 // TODO get rid of inheritance and maybe choose something like decoration
 // TODO get rid of unnecessary fields creation and storing in cache (not each spell should have 9 additional textFieldWidgets, that should be hidden)
@@ -23,29 +21,53 @@ public class DefaultSpellParameterViewConfiguration extends AbstractConfiguratio
      */
     @Override
     protected void fillConfigurationMappings() {
-        addViewMapping(GUIElements.NUMBER, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.NAME_ID, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.SPELL_LEVEL, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(LevelComboBoxWidget.class, LevelComboBoxListener.class));
-        addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_1, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(RequirementClassSubClassWidget.class, RequirementClassSubClassListener.class));
-        addViewMapping(GUIElements.REQUIREMENT_LEVEL_1, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_2, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(RequirementClassSubClassWidget.class, RequirementClassSubClassListener.class));
-        addViewMapping(GUIElements.REQUIREMENT_LEVEL_2, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_3, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(RequirementClassSubClassWidget.class, RequirementClassSubClassListener.class));
-        addViewMapping(GUIElements.REQUIREMENT_LEVEL_3, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.MANA_USAGE, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.CAST_TIME, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.COOLDOWN, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.MIN_RANGE, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.MAX_RANGE, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.CAST_TYPE, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(CastTypeWidget.class, CastTypeFormListener.class));
-        addViewMapping(GUIElements.PARAMETER_1, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.PARAMETER_2, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.PARAMETER_3, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.PARAMETER_4, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.PARAMETER_5, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.PARAMETER_6, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.PARAMETER_7, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.PARAMETER_8, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
-        addViewMapping(GUIElements.PARAMETER_9, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(TextFieldWidget.class, TextFieldListener.class));
+        ConfigurationWidgetParameter number = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellNumber");
+        addViewMapping(GUIElements.NUMBER, number);
+
+        ConfigurationWidgetParameter nameId = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellType");
+        addViewMapping(GUIElements.NAME_ID, nameId);
+
+        ConfigurationWidgetParameter spellLevel = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, LevelComboBoxListener.class, "levelLabel");
+        addViewMapping(GUIElements.SPELL_LEVEL, spellLevel);
+
+        ConfigurationWidgetParameter requirementClass = new ConfigurationWidgetParameter(RequirementClassSubClassWidget.class, RequirementClassSubClassWidgetListener.class, "spellRequirementClass", "spellRequirementSubClass");
+        ConfigurationWidgetParameter requirementLevel = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellRequirementLevel");
+        addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_1, requirementClass);
+        addViewMapping(GUIElements.REQUIREMENT_LEVEL_1, requirementLevel);
+        addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_2, requirementClass);
+        addViewMapping(GUIElements.REQUIREMENT_LEVEL_2, requirementLevel);
+        addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_3, requirementClass);
+        addViewMapping(GUIElements.REQUIREMENT_LEVEL_3, requirementLevel);
+
+        ConfigurationWidgetParameter manaUsage = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellManaUsage");
+        addViewMapping(GUIElements.MANA_USAGE, manaUsage);
+
+        ConfigurationWidgetParameter spellCastTime = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellCastTime");
+        addViewMapping(GUIElements.CAST_TIME, spellCastTime);
+
+        ConfigurationWidgetParameter cooldown = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellCooldown");
+        addViewMapping(GUIElements.COOLDOWN, cooldown);
+
+        ConfigurationWidgetParameter minRange = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellMinRange");
+        addViewMapping(GUIElements.MIN_RANGE, minRange);
+
+        ConfigurationWidgetParameter maxRange = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellMaxRange");
+        addViewMapping(GUIElements.MAX_RANGE, maxRange);
+
+        ConfigurationWidgetParameter castType = new ConfigurationWidgetParameter(CastTypeWidget.class, CastTypeWidgetListener.class,
+                "spellCastType", "spellCastType.projectileToEnemy","spellCastType.projectileToAllies", "spellCastType.targetArea",
+                "spellCastType.worldInstantArea", "spellCastType.instantArea", "spellCastType.worldTargetArea", "spellCastType.alliesArea");
+        addViewMapping(GUIElements.CAST_TYPE, castType);
+
+        ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class);
+        addViewMapping(GUIElements.PARAMETER_1, parameter);
+        addViewMapping(GUIElements.PARAMETER_2, parameter);
+        addViewMapping(GUIElements.PARAMETER_3, parameter);
+        addViewMapping(GUIElements.PARAMETER_4, parameter);
+        addViewMapping(GUIElements.PARAMETER_5, parameter);
+        addViewMapping(GUIElements.PARAMETER_6, parameter);
+        addViewMapping(GUIElements.PARAMETER_7, parameter);
+        addViewMapping(GUIElements.PARAMETER_8, parameter);
+        addViewMapping(GUIElements.PARAMETER_9, parameter);
     }
 }

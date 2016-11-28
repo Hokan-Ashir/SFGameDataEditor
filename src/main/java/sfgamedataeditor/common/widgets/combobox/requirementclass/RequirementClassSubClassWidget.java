@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.List;
 import java.util.Map;
 
-public class RequirementClassSubClassWidget extends AbstractWidget<RequirementClassSubClassListener> {
+public class RequirementClassSubClassWidget extends AbstractWidget<RequirementClassSubClassWidgetListener> {
     private JPanel mainPanel;
     private JLabel requirementClassLabel;
     private JLabel requirementSubClassLabel;
@@ -32,7 +32,7 @@ public class RequirementClassSubClassWidget extends AbstractWidget<RequirementCl
     }
 
     @Override
-    protected void insertListener(RequirementClassSubClassListener listener) {
+    protected void insertListener(RequirementClassSubClassWidgetListener listener) {
         requirementClassComboBox.addItemListener(listener);
     }
 

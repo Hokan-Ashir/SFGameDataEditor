@@ -1,11 +1,9 @@
 package sfgamedataeditor.common.viewconfigurations.spellparameters.configurations;
 
+import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.viewconfigurations.spellparameters.GUIElements;
-import sfgamedataeditor.common.widgets.AbstractWidget;
-import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.common.widgets.effectnumber.EffectNumberListener;
 import sfgamedataeditor.common.widgets.effectnumber.EffectNumberWidget;
-import sfgamedataeditor.databind.Pair;
 
 // TODO, note, is has the same position of EffectNumberWidget as WavesSpellsConfiguration
 public class ChainSpellsConfiguration extends DefaultSpellParameterViewConfiguration {
@@ -13,6 +11,8 @@ public class ChainSpellsConfiguration extends DefaultSpellParameterViewConfigura
     @Override
     protected void fillConfigurationMappings() {
         super.fillConfigurationMappings();
-        addViewMapping(GUIElements.PARAMETER_4, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(EffectNumberWidget.class, EffectNumberListener.class));
+        // TODO add i18n
+        ConfigurationWidgetParameter effectNumber = new ConfigurationWidgetParameter(EffectNumberWidget.class, EffectNumberListener.class);
+        addViewMapping(GUIElements.PARAMETER_4, effectNumber);
     }
 }

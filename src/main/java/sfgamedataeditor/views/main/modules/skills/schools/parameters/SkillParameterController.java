@@ -9,21 +9,18 @@ import sfgamedataeditor.database.objects.SkillParameters;
 import sfgamedataeditor.database.tableservices.SkillParametersTableService;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.main.MainView;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Set;
 
 public class SkillParameterController extends AbstractController<SkillParameterModelParameter, SkillParameterView> {
 
     private static final Logger LOGGER = Logger.getLogger(SkillParameterController.class);
-    private Map<Integer, List<String>> i18nStrings = new HashMap<>();
 
     public SkillParameterController(SkillParameterView view) {
         super(view);
-        crateI18NMap();
 
 //        getView().getLevelComboBox().addItemListener(new ItemListener() {
 //            @Override
@@ -43,17 +40,6 @@ public class SkillParameterController extends AbstractController<SkillParameterM
 //                EventProcessor.INSTANCE.process(event);
 //            }
 //        });
-    }
-
-    private void crateI18NMap() {
-        i18nStrings.put(GUIElements.STRENGTH, Collections.singletonList(I18N.INSTANCE.getMessage("strength")));
-        i18nStrings.put(GUIElements.STAMINA, Collections.singletonList(I18N.INSTANCE.getMessage("stamina")));
-        i18nStrings.put(GUIElements.AGILITY, Collections.singletonList(I18N.INSTANCE.getMessage("agility")));
-        i18nStrings.put(GUIElements.DEXTERITY, Collections.singletonList(I18N.INSTANCE.getMessage("dexterity")));
-        i18nStrings.put(GUIElements.CHARISMA, Collections.singletonList(I18N.INSTANCE.getMessage("charisma")));
-        i18nStrings.put(GUIElements.INTELLIGENCE, Collections.singletonList(I18N.INSTANCE.getMessage("intelligence")));
-        i18nStrings.put(GUIElements.WISDOM, Collections.singletonList(I18N.INSTANCE.getMessage("wisdom")));
-        i18nStrings.put(GUIElements.SKILL_LEVEL, Collections.singletonList(I18N.INSTANCE.getMessage("levelLabel")));
     }
 
     @Override
@@ -83,8 +69,6 @@ public class SkillParameterController extends AbstractController<SkillParameterM
                     widget.getListener().updateWidgetValue(levelComboBoxParameter);
                 }
 
-                List<String> strings = i18nStrings.get(guiElementId);
-                widget.updateI18N(strings);
             } catch (IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);
             }

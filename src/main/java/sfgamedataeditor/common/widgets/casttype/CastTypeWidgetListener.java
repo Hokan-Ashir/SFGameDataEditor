@@ -11,18 +11,13 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CastTypeFormListener extends AbstractWidgetListener<CastTypeWidget, OffsetableObject> implements ItemListener {
+public class CastTypeWidgetListener extends AbstractWidgetListener<CastTypeWidget, OffsetableObject> implements ItemListener {
 
     private final Map<JRadioButton, Pair<Integer, Integer>> radioButtonMapping = new HashMap<>();
 
-    public CastTypeFormListener(CastTypeWidget widget, Field[] mappedField) {
+    public CastTypeWidgetListener(CastTypeWidget widget, Field[] mappedField) {
         super(widget, mappedField);
         initializeRadioButtonsMapping();
-
-
-        for (Map.Entry<JRadioButton, Pair<Integer, Integer>> jRadioButtonPairEntry : radioButtonMapping.entrySet()) {
-            jRadioButtonPairEntry.getKey().addItemListener(this);
-        }
     }
 
     private void initializeRadioButtonsMapping() {

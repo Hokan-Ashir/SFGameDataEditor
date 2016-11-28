@@ -1,17 +1,17 @@
 package sfgamedataeditor.common.viewconfigurations.spellparameters.configurations;
 
+import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.viewconfigurations.spellparameters.GUIElements;
-import sfgamedataeditor.common.widgets.AbstractWidget;
-import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.common.widgets.effectnumber.EffectNumberListener;
 import sfgamedataeditor.common.widgets.effectnumber.EffectNumberWidget;
-import sfgamedataeditor.databind.Pair;
 
 public class AurasSpellsConfiguration extends DefaultSpellParameterViewConfiguration {
 
     @Override
     protected void fillConfigurationMappings() {
         super.fillConfigurationMappings();
-        addViewMapping(GUIElements.PARAMETER_7, new Pair<Class<? extends AbstractWidget>, Class<? extends AbstractWidgetListener>>(EffectNumberWidget.class, EffectNumberListener.class));
+        // TODO add i18n
+        ConfigurationWidgetParameter effectNumber = new ConfigurationWidgetParameter(EffectNumberWidget.class, EffectNumberListener.class);
+        addViewMapping(GUIElements.PARAMETER_7, effectNumber);
     }
 }

@@ -5,7 +5,7 @@ import sfgamedataeditor.common.widgets.AbstractWidget;
 import javax.swing.*;
 import java.util.List;
 
-public class CastTypeWidget extends AbstractWidget<CastTypeFormListener> {
+public class CastTypeWidget extends AbstractWidget<CastTypeWidgetListener> {
 
     private JPanel mainPanel;
     private JRadioButton isProjectileToEnemyRadioButton;
@@ -52,8 +52,14 @@ public class CastTypeWidget extends AbstractWidget<CastTypeFormListener> {
     }
 
     @Override
-    public void insertListener(CastTypeFormListener listener) {
-
+    public void insertListener(CastTypeWidgetListener listener) {
+        isProjectileToEnemyRadioButton.addItemListener(listener);
+        isProjectileToAlliesRadioButton.addItemListener(listener);;
+        isTargetAreaRadioButton.addItemListener(listener);;
+        isWorldInstantAreaRadioButton.addItemListener(listener);;
+        isInstantAreaRadioButton.addItemListener(listener);;
+        isWorldTargetAreaRadioButton.addItemListener(listener);;
+        isAlliesAreaRadioButton.addItemListener(listener);;
     }
 
     @Override

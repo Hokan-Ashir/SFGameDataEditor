@@ -12,10 +12,10 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.lang.reflect.Field;
 
-public class TextFieldListener extends AbstractWidgetListener<TextFieldWidget, OffsetableObject> implements DocumentListener {
+public class TextFieldWidgetListener extends AbstractWidgetListener<TextFieldWidget, OffsetableObject> implements DocumentListener {
 
 
-    public TextFieldListener(TextFieldWidget widget, Field[] mappedField) {
+    public TextFieldWidgetListener(TextFieldWidget widget, Field[] mappedField) {
         super(widget, mappedField);
     }
 

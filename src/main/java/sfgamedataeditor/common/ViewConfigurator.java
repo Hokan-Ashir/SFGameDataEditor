@@ -15,6 +15,7 @@ import sfgamedataeditor.mvc.objects.View;
 import javax.swing.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 public enum ViewConfigurator {
     INSTANCE;
@@ -48,6 +49,7 @@ public enum ViewConfigurator {
             int guiElementId = annotation.GUIElementId();
             Class<? extends AbstractWidget> widgetClass = configuration.getWidgetClass(guiElementId);
             Class<? extends AbstractWidgetListener> listenerClass = configuration.getListenerClass(guiElementId);
+            String[] i18NParameters = configuration.getI18NParameters(guiElementId);
             boolean inCache = widgetsCache.isWidgetExistsInCache(guiElementId, widgetClass);
             try {
                 field.setAccessible(true);
@@ -72,6 +74,7 @@ public enum ViewConfigurator {
                     widget = widgetClass.getConstructor().newInstance();
                     listener = (AbstractWidgetListener) listenerClass.getConstructors()[0].newInstance(widget, DTOFields);
                     widget.attachListener(listener);
+                    widget.updateI18N(Arrays.asList(i18NParameters));
                     Disabled disabled = field.getAnnotation(Disabled.class);
                     if (disabled != null) {
                         widget.setEnabled(false);
@@ -80,6 +83,9 @@ public enum ViewConfigurator {
                     widgetsCache.addWidgetListenerPair(guiElementId, widget, listener);
                 }
 
+                widget.setMinimumSize(layoutPanel.getMinimumSize());
+                widget.setMaximumSize(layoutPanel.getMaximumSize());
+                widget.setPreferredSize(layoutPanel.getPreferredSize());
                 layoutPanel.add(widget);
             } catch (IllegalAccessException | NoSuchMethodException | NoSuchFieldException | InstantiationException | InvocationTargetException e) {
                 LOGGER.error(e.getMessage(), e);
