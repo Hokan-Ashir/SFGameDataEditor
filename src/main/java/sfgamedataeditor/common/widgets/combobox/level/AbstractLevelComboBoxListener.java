@@ -9,9 +9,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 
-public class LevelComboBoxListener extends AbstractWidgetListener<LevelComboBoxWidget, LevelComboBoxParameter> implements ItemListener {
+public abstract class AbstractLevelComboBoxListener extends AbstractWidgetListener<LevelComboBoxWidget, LevelComboBoxParameter> implements ItemListener {
 
-    public LevelComboBoxListener(LevelComboBoxWidget widget, Field[] mappedField) {
+    public AbstractLevelComboBoxListener(LevelComboBoxWidget widget, Field[] mappedField) {
         super(widget, mappedField);
     }
 
@@ -29,11 +29,10 @@ public class LevelComboBoxListener extends AbstractWidgetListener<LevelComboBoxW
             return;
         }
 
-//        Model<SpellParameterModelParameter> model = getModel();
-//        model.getParameter().setSpellLevel(Integer.valueOf(selectedItem));
-//        ShowContentViewEvent event = new ShowContentViewEvent(SpellParameterView.class, model);
-//        EventProcessor.INSTANCE.process(event);
+        processSelectedItemEvent(selectedItem);
     }
+
+    protected abstract void processSelectedItemEvent(String selectedItem);
 
     @Override
     public void updateWidgetValue(final LevelComboBoxParameter mappedObject) {

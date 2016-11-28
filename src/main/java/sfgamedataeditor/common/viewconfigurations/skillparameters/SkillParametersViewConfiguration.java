@@ -2,8 +2,8 @@ package sfgamedataeditor.common.viewconfigurations.skillparameters;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
-import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxListener;
 import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxWidget;
+import sfgamedataeditor.common.widgets.combobox.level.SkillLevelComboBoxListener;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidgetListener;
 
@@ -28,7 +28,7 @@ public class SkillParametersViewConfiguration extends AbstractConfiguration {
             addViewMapping(entry.getKey(), parameter);
         }
 
-        ConfigurationWidgetParameter levelParameter = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, LevelComboBoxListener.class, "levelLabel");
+        ConfigurationWidgetParameter levelParameter = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, SkillLevelComboBoxListener.class, "levelLabel");
         addViewMapping(GUIElements.SKILL_LEVEL, levelParameter);
     }
 }

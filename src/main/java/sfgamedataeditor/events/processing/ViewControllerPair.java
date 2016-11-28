@@ -3,20 +3,20 @@ package sfgamedataeditor.events.processing;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
 
-public class ViewControllerPair {
-    private final ControllableView view;
-    private final AbstractController controller;
+public class ViewControllerPair<V extends ControllableView, C extends AbstractController> {
+    private final V view;
+    private final C controller;
 
-    public ViewControllerPair(ControllableView view, AbstractController controller) {
+    public ViewControllerPair(V view, C controller) {
         this.view = view;
         this.controller = controller;
     }
 
-    public ControllableView getView() {
+    public V getView() {
         return view;
     }
 
-    public AbstractController getController() {
+    public C getController() {
         return controller;
     }
 }

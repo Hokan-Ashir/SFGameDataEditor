@@ -46,7 +46,7 @@ public class SpellParameterView implements ControllableView {
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_LEVEL_3, DTOColumnNames = "requirementLevel3", DTOClass = SpellParameters.class)
     private JPanel requirementLevelPanel3;
 
-    @GUIElement(GUIElementId = GUIElements.MANA_USAGE, DTOColumnNames = "requirementSubClass1", DTOClass = SpellParameters.class)
+    @GUIElement(GUIElementId = GUIElements.MANA_USAGE, DTOColumnNames = "manaUsage", DTOClass = SpellParameters.class)
     private JPanel manaActivationPanel;
 
     @GUIElement(GUIElementId = GUIElements.CAST_TYPE, DTOColumnNames = "castType", DTOClass = SpellParameters.class)

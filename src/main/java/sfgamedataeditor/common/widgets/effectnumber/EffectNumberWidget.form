@@ -2,10 +2,12 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.common.widgets.effectnumber.EffectNumberWidget">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="280" height="100"/>
+      <xy x="20" y="20" width="280" height="80"/>
     </constraints>
     <properties>
-      <maximumSize width="280" height="50"/>
+      <maximumSize width="280" height="80"/>
+      <minimumSize width="280" height="80"/>
+      <preferredSize width="280" height="80"/>
     </properties>
     <border type="none"/>
     <children>
@@ -75,9 +77,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="60" height="25"/>
-          <minimumSize width="60" height="25"/>
-          <preferredSize width="60" height="25"/>
+          <maximumSize width="280" height="25"/>
+          <minimumSize width="280" height="25"/>
+          <preferredSize width="280" height="25"/>
           <text value="Label"/>
         </properties>
       </component>

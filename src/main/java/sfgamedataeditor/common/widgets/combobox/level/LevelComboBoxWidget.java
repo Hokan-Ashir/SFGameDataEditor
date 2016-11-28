@@ -5,7 +5,7 @@ import sfgamedataeditor.common.widgets.AbstractWidget;
 import javax.swing.*;
 import java.util.List;
 
-public class LevelComboBoxWidget extends AbstractWidget<LevelComboBoxListener> {
+public class LevelComboBoxWidget extends AbstractWidget<AbstractLevelComboBoxListener> {
     private JPanel mainPanel;
     private JComboBox<String> comboBox;
     private JLabel label;
@@ -18,35 +18,8 @@ public class LevelComboBoxWidget extends AbstractWidget<LevelComboBoxListener> {
         return comboBox;
     }
 
-//    @Override
-//    public void setPreferredSize(Dimension preferredSize) {
-//        super.setPreferredSize(preferredSize);
-//        mainPanel.setPreferredSize(preferredSize);
-//
-//        comboBox.setPreferredSize(new Dimension(preferredSize.width, preferredSize.height / 2 - 5));
-//        label.setPreferredSize(new Dimension(preferredSize.width, preferredSize.height / 2 - 5));
-//    }
-//
-//    @Override
-//    public void setMinimumSize(Dimension minimumSize) {
-//        super.setMinimumSize(minimumSize);
-//        mainPanel.setMinimumSize(minimumSize);
-//
-//        comboBox.setMinimumSize(new Dimension(minimumSize.width, minimumSize.height / 2 - 5));
-//        label.setMinimumSize(new Dimension(minimumSize.width, minimumSize.height / 2 - 5));
-//    }
-//
-//    @Override
-//    public void setMaximumSize(Dimension maximumSize) {
-//        super.setMaximumSize(maximumSize);
-//        mainPanel.setMaximumSize(maximumSize);
-//
-//        comboBox.setMaximumSize(new Dimension(maximumSize.width, maximumSize.height / 2 - 5));
-//        label.setMaximumSize(new Dimension(maximumSize.width, maximumSize.height / 2 - 5));
-//    }
-
     @Override
-    public void insertListener(LevelComboBoxListener listener) {
+    public void insertListener(AbstractLevelComboBoxListener listener) {
         comboBox.addItemListener(listener);
     }
 

@@ -2,13 +2,13 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.main.MainView">
   <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="320" y="220" width="1070" height="800"/>
+      <xy x="320" y="220" width="1070" height="900"/>
     </constraints>
     <properties>
       <autoscrolls value="true"/>
-      <maximumSize width="1070" height="800"/>
-      <minimumSize width="1070" height="800"/>
-      <preferredSize width="1070" height="800"/>
+      <maximumSize width="1070" height="900"/>
+      <minimumSize width="1070" height="900"/>
+      <preferredSize width="1070" height="900"/>
     </properties>
     <border type="none"/>
     <children>
@@ -16,8 +16,9 @@
         <constraints border-constraint="Center"/>
         <properties>
           <doubleBuffered value="true"/>
-          <maximumSize width="1070" height="775"/>
-          <minimumSize width="1070" height="775"/>
+          <maximumSize width="1070" height="875"/>
+          <minimumSize width="1070" height="875"/>
+          <preferredSize width="1050" height="875"/>
           <verticalScrollBarPolicy value="20"/>
         </properties>
         <border type="none"/>
@@ -25,9 +26,9 @@
           <grid id="41645" binding="componentsPanel" layout-manager="GridBagLayout">
             <constraints/>
             <properties>
-              <maximumSize width="1050" height="775"/>
-              <minimumSize width="1050" height="775"/>
-              <preferredSize width="1050" height="775"/>
+              <maximumSize width="1050" height="875"/>
+              <minimumSize width="1050" height="875"/>
+              <preferredSize width="1050" height="875"/>
             </properties>
             <border type="none"/>
             <children>
@@ -52,9 +53,9 @@
                 </constraints>
                 <properties>
                   <autoscrolls value="true"/>
-                  <maximumSize width="1050" height="650"/>
-                  <minimumSize width="1050" height="650"/>
-                  <preferredSize width="1050" height="650"/>
+                  <maximumSize width="1050" height="750"/>
+                  <minimumSize width="1050" height="750"/>
+                  <preferredSize width="1050" height="750"/>
                 </properties>
                 <border type="etched"/>
                 <children/>

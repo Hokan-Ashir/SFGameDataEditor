@@ -5,8 +5,8 @@ import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.viewconfigurations.spellparameters.GUIElements;
 import sfgamedataeditor.common.widgets.casttype.CastTypeWidget;
 import sfgamedataeditor.common.widgets.casttype.CastTypeWidgetListener;
-import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxListener;
 import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxWidget;
+import sfgamedataeditor.common.widgets.combobox.level.SpellLevelComboBoxListener;
 import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassSubClassWidget;
 import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassSubClassWidgetListener;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
@@ -27,7 +27,7 @@ public class DefaultSpellParameterViewConfiguration extends AbstractConfiguratio
         ConfigurationWidgetParameter nameId = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellType");
         addViewMapping(GUIElements.NAME_ID, nameId);
 
-        ConfigurationWidgetParameter spellLevel = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, LevelComboBoxListener.class, "levelLabel");
+        ConfigurationWidgetParameter spellLevel = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, SpellLevelComboBoxListener.class, "levelLabel");
         addViewMapping(GUIElements.SPELL_LEVEL, spellLevel);
 
         ConfigurationWidgetParameter requirementClass = new ConfigurationWidgetParameter(RequirementClassSubClassWidget.class, RequirementClassSubClassWidgetListener.class, "spellRequirementClass", "spellRequirementSubClass");

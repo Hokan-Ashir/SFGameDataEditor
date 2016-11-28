@@ -11,6 +11,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class EffectNumberListener extends AbstractWidgetListener<EffectNumberWidget, OffsetableObject> implements ItemListener {
 
@@ -51,12 +52,21 @@ public class EffectNumberListener extends AbstractWidgetListener<EffectNumberWid
         Integer requirementLevel2 = spellParameters.requirementLevel2;
         Integer requirementLevel3 = spellParameters.requirementLevel3;
 
-        // TODO set correct value
-        spellLevelComboBox.getItemAt(0);
-//        if (requirementLevel1 != 0 || requirementLevel2 != 0 || requirementLevel3 != 0) {
-//        } else {
-//
-//        }
+        int spellMinLevel = (int) ((TreeSet) spellLevels).first();
+        Object selectedItem;
+        if (requirementLevel1 != 0 || requirementLevel2 != 0 || requirementLevel3 != 0) {
+            if (requirementLevel1 != 0) {
+                selectedItem = spellLevelComboBox.getItemAt(requirementLevel1 - spellMinLevel);
+            } else if (requirementLevel2 != 0) {
+                selectedItem = spellLevelComboBox.getItemAt(requirementLevel2 - spellMinLevel);
+            } else {
+                selectedItem = spellLevelComboBox.getItemAt(requirementLevel3 - spellMinLevel);
+            }
+        } else {
+            selectedItem = spellLevelComboBox.getItemAt(0);
+        }
+
+        spellLevelComboBox.setSelectedItem(selectedItem);
     }
 
     @Override

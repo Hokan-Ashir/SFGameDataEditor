@@ -12,7 +12,7 @@ public abstract class AbstractController<M, V extends ControllableView> {
         this.model = model;
     }
 
-    protected Model<M> getModel() {
+    public Model<M> getModel() {
         return model;
     }
 

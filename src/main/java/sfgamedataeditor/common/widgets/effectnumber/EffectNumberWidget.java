@@ -2,8 +2,10 @@ package sfgamedataeditor.common.widgets.effectnumber;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.tableservices.SpellNameTableService;
+import sfgamedataeditor.utils.I18N;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
@@ -18,6 +20,8 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
 
     public EffectNumberWidget() {
         // TODO fix later
+        spellNameLabel.setText(I18N.INSTANCE.getMessage("spellEffectNumber.spell"));
+        spellLevelLabel.setText(I18N.INSTANCE.getMessage("spellEffectNumber.level"));
         goToEffectParametersButton.setEnabled(false);
         fillSpellNameComboBoxValues();
         add(getMainPanel());
@@ -29,6 +33,21 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
         for (String allSpellName : allSpellNames) {
             spellNameComboBox.addItem(allSpellName);
         }
+    }
+
+    @Override
+    public void setMaximumSize(Dimension maximumSize) {
+        super.setMaximumSize(maximumSize);
+    }
+
+    @Override
+    public void setMinimumSize(Dimension minimumSize) {
+        super.setMinimumSize(minimumSize);
+    }
+
+    @Override
+    public void setPreferredSize(Dimension preferredSize) {
+        super.setPreferredSize(preferredSize);
     }
 
     public JComboBox<String> getSpellNameComboBox() {
@@ -46,9 +65,11 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
 
     @Override
     public void updateI18N(List<String> i18nStrings) {
+        if (i18nStrings.isEmpty()) {
+            return;
+        }
+
         titleLabel.setText(i18nStrings.get(0));
-        spellNameLabel.setText(i18nStrings.get(1));
-        spellLevelLabel.setText(i18nStrings.get(2));
     }
 
     @Override
