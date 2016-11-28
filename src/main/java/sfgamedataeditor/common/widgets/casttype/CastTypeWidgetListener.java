@@ -44,7 +44,7 @@ public class CastTypeWidgetListener extends AbstractWidgetListener<CastTypeWidge
             JRadioButton radioButton = jRadioButtonPairEntry.getKey();
             if (radioButton.isSelected()) {
                 Pair<Integer, Integer> pair = jRadioButtonPairEntry.getValue();
-                value = (pair.getKey() << 8) + pair.getValue();
+                value = (pair.getValue() << 8) + pair.getKey();
                 break;
             }
         }
@@ -79,5 +79,7 @@ public class CastTypeWidgetListener extends AbstractWidgetListener<CastTypeWidge
                 radioButton.setSelected(false);
             }
         }
+
+        setWidgetValueToDTOField();
     }
 }

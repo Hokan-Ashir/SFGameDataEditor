@@ -68,7 +68,7 @@ public class TextFieldWidgetListener extends AbstractWidgetListener<TextFieldWid
             return;
         }
 
-        setValueToField();
+        setWidgetValueToDTOField();
     }
 
     private double getFieldMaximumValue() {

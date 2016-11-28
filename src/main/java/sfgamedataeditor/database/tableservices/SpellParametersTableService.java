@@ -173,8 +173,8 @@ public enum SpellParametersTableService {
         Where<T, ID> decorateWhere(Where<T, ID> where);
     }
 
-    public List<SpellParameters> getSpellParametersBySpellSchool(int spellTypeId) {
-        SpellParameters spellParameter = getSpellParametersBySpellType(spellTypeId);
+    public List<SpellParameters> getSpellParametersBySpellSchool(int spellTypeId, int spellLevel) {
+        SpellParameters spellParameter = getSpellParameterBySpellIdAndLevel(spellTypeId, spellLevel);
         String spellSchoolName = SpellSchoolNameTableService.INSTANCE.getSpellSchoolName(spellParameter);
         return getSpells(spellSchoolName);
     }

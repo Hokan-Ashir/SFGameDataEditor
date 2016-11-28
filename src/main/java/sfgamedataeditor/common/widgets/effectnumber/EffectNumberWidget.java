@@ -5,7 +5,6 @@ import sfgamedataeditor.database.tableservices.SpellNameTableService;
 import sfgamedataeditor.utils.I18N;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.List;
 
 public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
@@ -35,21 +34,6 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
         }
     }
 
-    @Override
-    public void setMaximumSize(Dimension maximumSize) {
-        super.setMaximumSize(maximumSize);
-    }
-
-    @Override
-    public void setMinimumSize(Dimension minimumSize) {
-        super.setMinimumSize(minimumSize);
-    }
-
-    @Override
-    public void setPreferredSize(Dimension preferredSize) {
-        super.setPreferredSize(preferredSize);
-    }
-
     public JComboBox<String> getSpellNameComboBox() {
         return spellNameComboBox;
     }
@@ -61,6 +45,7 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
     @Override
     protected void insertListener(EffectNumberListener listener) {
         spellNameComboBox.addItemListener(listener);
+        spellLevelComboBox.addItemListener(listener);
     }
 
     @Override

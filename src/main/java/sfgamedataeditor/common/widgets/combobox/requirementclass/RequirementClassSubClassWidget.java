@@ -34,6 +34,7 @@ public class RequirementClassSubClassWidget extends AbstractWidget<RequirementCl
     @Override
     protected void insertListener(RequirementClassSubClassWidgetListener listener) {
         requirementClassComboBox.addItemListener(listener);
+        requirementSubClassComboBox.addItemListener(listener);
     }
 
     @Override

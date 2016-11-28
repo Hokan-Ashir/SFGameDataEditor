@@ -40,7 +40,7 @@ public abstract class AbstractWidgetListener<T extends AbstractWidget, M> {
     /**
      * {@inheritDoc}
      */
-    protected void setValueToField() {
+    protected void setWidgetValueToDTOField() {
         // TODO get rid of it; this is the cause when:
         // user first time select ANY spell
         // data loading is processing through AbstractDataFields

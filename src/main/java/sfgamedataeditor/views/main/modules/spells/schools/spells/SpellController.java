@@ -1,12 +1,15 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
 import sfgamedataeditor.database.tableservices.SpellNameTableService;
+import sfgamedataeditor.database.tableservices.SpellParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModelParameter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
 
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class SpellController extends AbstractModulesController<SpellModelParameter, SpellsView, SpellParameterModel> {
     public SpellController(SpellsView view) {
@@ -17,8 +20,26 @@ public class SpellController extends AbstractModulesController<SpellModelParamet
     protected SpellParameterModel createModel() {
         String selectedSpellName = getView().getSelectedModuleValue();
         Integer spellId = SpellNameTableService.INSTANCE.getSpellId(selectedSpellName);
-        SpellParameterModelParameter parameter = new SpellParameterModelParameter(spellId, 1);
+        Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(spellId);
+
+        int spellMinLevel = (int) ((TreeSet) spellLevels).first();
+        int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
+        int selectedLevel = adjustSelectedLevel(1, spellMinLevel, spellMaxLevel);
+        SpellParameterModelParameter parameter = new SpellParameterModelParameter(spellId, selectedLevel);
         return new SpellParameterModel(parameter);
+    }
+
+    // in case user selected spell with level-range [1; 12] with level 5
+    // then selected spell with level range [13; 20]
+    // we have to select level 13 to appropriately load correct data
+    // and vice versa, if user selected spell with level range [13; 20]
+    // and then selected spell with level range [1; 12]
+    private int adjustSelectedLevel(int selectedLevel, int spellMinLevel, int spellMaxLevel) {
+        if (selectedLevel <= spellMaxLevel && selectedLevel >= spellMinLevel) {
+            return selectedLevel;
+        } else {
+            return spellMinLevel;
+        }
     }
 
     /**
