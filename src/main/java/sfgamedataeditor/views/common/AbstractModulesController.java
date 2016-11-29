@@ -72,6 +72,6 @@ public abstract class AbstractModulesController<M, V extends AbstractModulesView
     @Override
     public void unRenderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unrenderViewInsideNavigationPanel(getView());
+        mainView.unRenderViewInsideNavigationPanel(getView());
     }
 }

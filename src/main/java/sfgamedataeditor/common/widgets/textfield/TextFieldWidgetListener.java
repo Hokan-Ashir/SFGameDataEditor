@@ -1,8 +1,8 @@
 package sfgamedataeditor.common.widgets.textfield;
 
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
-import sfgamedataeditor.database.objects.Data;
-import sfgamedataeditor.database.objects.OffsetableObject;
+import sfgamedataeditor.database.common.Data;
+import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
 import sfgamedataeditor.utils.NotificationType;

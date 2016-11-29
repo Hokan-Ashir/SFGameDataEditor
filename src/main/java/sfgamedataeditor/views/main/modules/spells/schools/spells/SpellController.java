@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
-import sfgamedataeditor.database.tableservices.SpellNameTableService;
-import sfgamedataeditor.database.tableservices.SpellParametersTableService;
+import sfgamedataeditor.database.spellname.SpellNameTableService;
+import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModelParameter;

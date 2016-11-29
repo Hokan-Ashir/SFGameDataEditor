@@ -1,8 +1,8 @@
 package sfgamedataeditor.common.widgets;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.database.objects.OffsetableObject;
-import sfgamedataeditor.database.tableservices.CommonTableService;
+import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.OffsetableObject;
 
 import java.lang.reflect.Field;
 

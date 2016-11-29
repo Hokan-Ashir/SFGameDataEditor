@@ -1,8 +1,8 @@
 package sfgamedataeditor.views.fileselection;
 
-import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowViewEvent;
+import sfgamedataeditor.files.FileUtils;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.common.buttons.ButtonsView;

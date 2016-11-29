@@ -1,11 +1,11 @@
 package sfgamedataeditor.common.widgets.effectnumber;
 
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
-import sfgamedataeditor.database.objects.OffsetableObject;
-import sfgamedataeditor.database.objects.SpellName;
-import sfgamedataeditor.database.objects.SpellParameters;
-import sfgamedataeditor.database.tableservices.SpellNameTableService;
-import sfgamedataeditor.database.tableservices.SpellParametersTableService;
+import sfgamedataeditor.database.common.OffsetableObject;
+import sfgamedataeditor.database.spellname.SpellNameObject;
+import sfgamedataeditor.database.spellname.SpellNameTableService;
+import sfgamedataeditor.database.spellparameters.SpellParametersObject;
+import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModel;
@@ -31,20 +31,20 @@ public class EffectNumberListener extends AbstractWidgetListener<EffectNumberWid
 
     @Override
     protected int[] getFieldValues() {
-        SpellParameters selectedSpell = getSelectedSpellParameterObject();
+        SpellParametersObject selectedSpell = getSelectedSpellParameterObject();
         return new int[] {selectedSpell.spellNumber};
     }
 
     @Override
     protected void setFieldValues(int[] value) {
         int spellNumber = value[0];
-        SpellParameters spellParameters = SpellParametersTableService.INSTANCE.getSpellParametersBySpellNumber(spellNumber);
-        setSelectedSpellName(spellParameters);
-        setSelectedSpellLevel(spellParameters);
+        SpellParametersObject spellParametersObject = SpellParametersTableService.INSTANCE.getSpellParametersBySpellNumber(spellNumber);
+        setSelectedSpellName(spellParametersObject);
+        setSelectedSpellLevel(spellParametersObject);
     }
 
-    private void setSelectedSpellName(SpellParameters spellParameters) {
-        String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParameters.spellNameId);
+    private void setSelectedSpellName(SpellParametersObject spellParametersObject) {
+        String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParametersObject.spellNameId);
         final JComboBox<String> spellNameComboBox = getWidget().getSpellNameComboBox();
         ComboBoxModel<String> comboBoxModel = spellNameComboBox.getModel();
         int size = comboBoxModel.getSize();
@@ -63,12 +63,12 @@ public class EffectNumberListener extends AbstractWidgetListener<EffectNumberWid
         }
     }
 
-    private void setSelectedSpellLevel(SpellParameters spellParameters) {
-        final Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(spellParameters.spellNameId);
+    private void setSelectedSpellLevel(SpellParametersObject spellParametersObject) {
+        final Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(spellParametersObject.spellNameId);
         final JComboBox<String> spellLevelComboBox = getWidget().getSpellLevelComboBox();
         setPossibleSpellLevels(spellLevels, spellLevelComboBox);
 
-        final Object selectedItem = getSelectedSpellLevel(spellParameters, (TreeSet) spellLevels, spellLevelComboBox);
+        final Object selectedItem = getSelectedSpellLevel(spellParametersObject, (TreeSet) spellLevels, spellLevelComboBox);
 
         ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(spellLevelComboBox) {
             @Override
@@ -78,10 +78,10 @@ public class EffectNumberListener extends AbstractWidgetListener<EffectNumberWid
         });
     }
 
-    private Object getSelectedSpellLevel(SpellParameters spellParameters, TreeSet spellLevels, JComboBox<String> spellLevelComboBox) {
-        Integer requirementLevel1 = spellParameters.requirementLevel1;
-        Integer requirementLevel2 = spellParameters.requirementLevel2;
-        Integer requirementLevel3 = spellParameters.requirementLevel3;
+    private Object getSelectedSpellLevel(SpellParametersObject spellParametersObject, TreeSet spellLevels, JComboBox<String> spellLevelComboBox) {
+        Integer requirementLevel1 = spellParametersObject.requirementLevel1;
+        Integer requirementLevel2 = spellParametersObject.requirementLevel2;
+        Integer requirementLevel3 = spellParametersObject.requirementLevel3;
 
         int spellMinLevel = (int) spellLevels.first();
         final Object selectedItem;
@@ -120,10 +120,10 @@ public class EffectNumberListener extends AbstractWidgetListener<EffectNumberWid
         setWidgetValueToDTOField();
     }
 
-    private Integer getSelectedSpellLevel(SpellParameters spellParameters) {
-        Integer requirementLevel1 = spellParameters.requirementLevel1;
-        Integer requirementLevel2 = spellParameters.requirementLevel2;
-        Integer requirementLevel3 = spellParameters.requirementLevel3;
+    private Integer getSelectedSpellLevel(SpellParametersObject spellParametersObject) {
+        Integer requirementLevel1 = spellParametersObject.requirementLevel1;
+        Integer requirementLevel2 = spellParametersObject.requirementLevel2;
+        Integer requirementLevel3 = spellParametersObject.requirementLevel3;
 
         int spellLevel;
         if (requirementLevel1 != 0 || requirementLevel2 != 0 || requirementLevel3 != 0) {
@@ -142,9 +142,9 @@ public class EffectNumberListener extends AbstractWidgetListener<EffectNumberWid
         return spellLevel;
     }
 
-    private SpellParameters getSelectedSpellParameterObject() {
+    private SpellParametersObject getSelectedSpellParameterObject() {
         String spellName = (String) getWidget().getSpellNameComboBox().getSelectedItem();
-        SpellName spellNameObject = SpellNameTableService.INSTANCE.getSpellName(spellName);
+        SpellNameObject spellNameObject = SpellNameTableService.INSTANCE.getSpellName(spellName);
 
         String spellLevel = (String) getWidget().getSpellLevelComboBox().getSelectedItem();
         return SpellParametersTableService.INSTANCE.getSpellParameterBySpellIdAndLevel(spellNameObject.spellType, Integer.parseInt(spellLevel));
@@ -152,7 +152,7 @@ public class EffectNumberListener extends AbstractWidgetListener<EffectNumberWid
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        SpellParameters selectedSpellParameterObject = getSelectedSpellParameterObject();
+        SpellParametersObject selectedSpellParameterObject = getSelectedSpellParameterObject();
         Integer selectedSpellLevel = getSelectedSpellLevel(selectedSpellParameterObject);
         Integer selectedSpellNameId = selectedSpellParameterObject.spellNameId;
         SpellParameterModelParameter parameter = new SpellParameterModelParameter(selectedSpellNameId, selectedSpellLevel);

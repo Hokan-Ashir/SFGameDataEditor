@@ -55,15 +55,15 @@ public class MainView implements ControllableView {
         panel.repaint();
     }
 
-    public void unrenderViewInsideContentPanel(View view) {
-        unrenderViewInsidePanel(view, contentPanel);
+    public void unRenderViewInsideContentPanel(View view) {
+        unRenderViewInsidePanel(view, contentPanel);
     }
 
-    public void unrenderViewInsideNavigationPanel(View view) {
-        unrenderViewInsidePanel(view, navigationPanel);
+    public void unRenderViewInsideNavigationPanel(View view) {
+        unRenderViewInsidePanel(view, navigationPanel);
     }
 
-    private void unrenderViewInsidePanel(View view, JPanel panel) {
+    private void unRenderViewInsidePanel(View view, JPanel panel) {
         panel.remove(view.getMainPanel());
         panel.revalidate();
         panel.repaint();

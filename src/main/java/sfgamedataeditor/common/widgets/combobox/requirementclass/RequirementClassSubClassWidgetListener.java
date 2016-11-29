@@ -1,7 +1,7 @@
 package sfgamedataeditor.common.widgets.combobox.requirementclass;
 
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
-import sfgamedataeditor.database.objects.OffsetableObject;
+import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.datamapping.Mappings;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;

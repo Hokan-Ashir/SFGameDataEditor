@@ -1,8 +1,8 @@
 package sfgamedataeditor.views.fileselection;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.databind.files.FileData;
-import sfgamedataeditor.databind.files.FilesContainer;
+import sfgamedataeditor.files.FileData;
+import sfgamedataeditor.files.FilesContainer;
 import sfgamedataeditor.utils.I18N;
 
 import javax.swing.*;

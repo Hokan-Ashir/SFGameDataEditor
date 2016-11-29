@@ -1,8 +1,8 @@
 package sfgamedataeditor.events.processing.strategies.content.modelcreators;
 
-import sfgamedataeditor.database.objects.SpellParameters;
-import sfgamedataeditor.database.tableservices.SpellNameTableService;
-import sfgamedataeditor.database.tableservices.SpellParametersTableService;
+import sfgamedataeditor.database.spellname.SpellNameTableService;
+import sfgamedataeditor.database.spellparameters.SpellParametersObject;
+import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
 import sfgamedataeditor.mvc.ModelCreator;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModelParameter;
@@ -16,10 +16,10 @@ public class SpellsFromSpellParameterModelCreator implements ModelCreator<SpellM
     public SpellModel createModel(SpellParameterModel childModel) {
         int spellId = childModel.getParameter().getSpellId();
         int spellLevel = childModel.getParameter().getSpellLevel();
-        List<SpellParameters> spellParametersBySpellSchool = SpellParametersTableService.INSTANCE.getSpellParametersBySpellSchool(spellId, spellLevel);
+        List<SpellParametersObject> spellParametersBySpellSchoolObject = SpellParametersTableService.INSTANCE.getSpellParametersBySpellSchool(spellId, spellLevel);
         List<String> listOfSpells = new ArrayList<>();
-        for (SpellParameters spellParameters : spellParametersBySpellSchool) {
-            String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParameters.spellNameId);
+        for (SpellParametersObject spellParametersObject : spellParametersBySpellSchoolObject) {
+            String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParametersObject.spellNameId);
             if (spellName == null) {
                 continue;
             }

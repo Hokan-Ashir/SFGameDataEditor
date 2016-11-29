@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.common.buttons.listeners;
 
-import sfgamedataeditor.databind.files.FileUtils;
 import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.files.FileUtils;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
 import sfgamedataeditor.views.main.MainView;

@@ -4,11 +4,11 @@ import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
+import sfgamedataeditor.views.main.modules.creatures.races.CreaturesRacesView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 import sfgamedataeditor.views.main.modules.merchants.MerchantLocationsView;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;
-import sfgamedataeditor.views.main.modules.units.UnitsRacesView;
 
 public class ModulesView extends AbstractModulesView {
 
@@ -25,7 +25,7 @@ public class ModulesView extends AbstractModulesView {
         addMapping(I18N.INSTANCE.getMessage("spells"), SpellSchoolsView.class);
         addMapping(I18N.INSTANCE.getMessage("merchants"), MerchantLocationsView.class);
         addMapping(I18N.INSTANCE.getMessage("buildings"), BuildingRacesView.class);
-        addMapping(I18N.INSTANCE.getMessage("units"), UnitsRacesView.class);
+        addMapping(I18N.INSTANCE.getMessage("creatures"), CreaturesRacesView.class);
         addMapping(I18N.INSTANCE.getMessage("items"), ItemTypesView.class);
     }
 

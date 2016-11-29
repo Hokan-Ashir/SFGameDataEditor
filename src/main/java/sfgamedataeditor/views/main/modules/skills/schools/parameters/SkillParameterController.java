@@ -5,8 +5,8 @@ import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.skillparameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxParameter;
-import sfgamedataeditor.database.objects.SkillParameters;
-import sfgamedataeditor.database.tableservices.SkillParametersTableService;
+import sfgamedataeditor.database.skillparameters.SkillParameterObject;
+import sfgamedataeditor.database.skillparameters.SkillParametersTableService;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.views.main.MainView;
@@ -21,25 +21,6 @@ public class SkillParameterController extends AbstractController<SkillParameterM
 
     public SkillParameterController(SkillParameterView view) {
         super(view);
-
-//        getView().getLevelComboBox().addItemListener(new ItemListener() {
-//            @Override
-//            public void itemStateChanged(ItemEvent e) {
-//                if (e.getStateChange() != ItemEvent.SELECTED) {
-//                    return;
-//                }
-//
-//                String selectedItem = (String) getView().getLevelComboBox().getSelectedItem();
-//                if (selectedItem == null) {
-//                    return;
-//                }
-//
-//                Model<SkillParameterModelParameter> model = getModel();
-//                model.getParameter().setSkillLevel(Integer.valueOf(selectedItem));
-//                ShowContentViewEvent event = new ShowContentViewEvent(SkillParameterView.class, model);
-//                EventProcessor.INSTANCE.process(event);
-//            }
-//        });
     }
 
     @Override
@@ -47,7 +28,7 @@ public class SkillParameterController extends AbstractController<SkillParameterM
         SkillParameterModelParameter parameter = getModel().getParameter();
         int selectedLevel = parameter.getSkillLevel();
         Set<Integer> getSkillPossibleLevels = SkillParametersTableService.INSTANCE.getSkillPossibleLevels(parameter.getSkillSchoolId());
-        SkillParameters skillParameter = SkillParametersTableService.INSTANCE.getSkillParameter(parameter.getSkillSchoolId(), selectedLevel);
+        SkillParameterObject skillParameter = SkillParametersTableService.INSTANCE.getSkillParameter(parameter.getSkillSchoolId(), selectedLevel);
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
@@ -84,6 +65,6 @@ public class SkillParameterController extends AbstractController<SkillParameterM
     @Override
     public void unRenderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unrenderViewInsideContentPanel(getView());
+        mainView.unRenderViewInsideContentPanel(getView());
     }
 }

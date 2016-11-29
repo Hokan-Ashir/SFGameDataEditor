@@ -1,8 +1,8 @@
 package sfgamedataeditor.views.main.modules.spells.schools;
 
-import sfgamedataeditor.database.objects.SpellParameters;
-import sfgamedataeditor.database.tableservices.SpellNameTableService;
-import sfgamedataeditor.database.tableservices.SpellParametersTableService;
+import sfgamedataeditor.database.spellname.SpellNameTableService;
+import sfgamedataeditor.database.spellparameters.SpellParametersObject;
+import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModel;
@@ -19,9 +19,9 @@ public class SpellSchoolsController extends AbstractModulesController<ModulePara
     @Override
     protected SpellModel createModel() {
         List<String> listOfSpells = new ArrayList<>();
-        List<SpellParameters> spellParameterses = SpellParametersTableService.INSTANCE.getSpells(getView().getSelectedModuleValue());
-        for (SpellParameters spellParameters : spellParameterses) {
-            String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParameters.spellNameId);
+        List<SpellParametersObject> spellParameterObjects = SpellParametersTableService.INSTANCE.getSpells(getView().getSelectedModuleValue());
+        for (SpellParametersObject spellParametersObject : spellParameterObjects) {
+            String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParametersObject.spellNameId);
             if (spellName == null) {
                 continue;
             }

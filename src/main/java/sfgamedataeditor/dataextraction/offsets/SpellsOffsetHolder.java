@@ -1,7 +1,7 @@
 package sfgamedataeditor.dataextraction.offsets;
 
-import sfgamedataeditor.databind.Pair;
-import sfgamedataeditor.databind.files.FilesContainer;
+import sfgamedataeditor.files.FilesContainer;
+import sfgamedataeditor.utils.Pair;
 
 public class SpellsOffsetHolder extends AbstractOffsetHolder {
 

@@ -5,10 +5,10 @@ import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.spellparameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxParameter;
-import sfgamedataeditor.database.objects.SpellName;
-import sfgamedataeditor.database.objects.SpellParameters;
-import sfgamedataeditor.database.tableservices.SpellNameTableService;
-import sfgamedataeditor.database.tableservices.SpellParametersTableService;
+import sfgamedataeditor.database.spellname.SpellNameObject;
+import sfgamedataeditor.database.spellname.SpellNameTableService;
+import sfgamedataeditor.database.spellparameters.SpellParametersObject;
+import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.utils.I18N;
@@ -40,24 +40,6 @@ public class SpellParameterController extends AbstractController<SpellParameterM
     public SpellParameterController(SpellParameterView view) {
         super(view);
         createI18NMap();
-//        getView().getLevelComboBox().addItemListener(new ItemListener() {
-//            @Override
-//            public void itemStateChanged(ItemEvent e) {
-//                if (e.getStateChange() != ItemEvent.SELECTED) {
-//                    return;
-//                }
-//
-//                String selectedItem = (String) getView().getLevelComboBox().getSelectedItem();
-//                if (selectedItem == null) {
-//                    return;
-//                }
-//
-//                Model<SpellParameterModelParameter> model = getModel();
-//                model.getParameter().setSpellLevel(Integer.valueOf(selectedItem));
-//                ShowContentViewEvent event = new ShowContentViewEvent(SpellParameterView.class, model);
-//                EventProcessor.INSTANCE.process(event);
-//            }
-//        });
     }
     
     private void createI18NMap() {
@@ -85,7 +67,7 @@ public class SpellParameterController extends AbstractController<SpellParameterM
         int spellMinLevel = (int) ((TreeSet) spellLevels).first();
         int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
         selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
-        SpellParameters spellParameter = SpellParametersTableService.INSTANCE.getSpellParameterBySpellIdAndLevel(selectedSpellId, selectedLevel);
+        SpellParametersObject spellParameter = SpellParametersTableService.INSTANCE.getSpellParameterBySpellIdAndLevel(selectedSpellId, selectedLevel);
         updateI18NWidgetsData(spellParameter);
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
@@ -118,10 +100,10 @@ public class SpellParameterController extends AbstractController<SpellParameterM
         }
     }
 
-    private void updateI18NWidgetsData(SpellParameters spellParameters) {
-        Integer spellNameId = spellParameters.spellNameId;
+    private void updateI18NWidgetsData(SpellParametersObject spellParametersObject) {
+        Integer spellNameId = spellParametersObject.spellNameId;
         String spellName = bundle.getString(String.valueOf(spellNameId));
-        SpellName spellNameObject = SpellNameTableService.INSTANCE.getSpellName(I18N.INSTANCE.getMessage(spellName + SPELL_I18N_NAME_POSTFIX));
+        SpellNameObject spellNameObject = SpellNameTableService.INSTANCE.getSpellName(I18N.INSTANCE.getMessage(spellName + SPELL_I18N_NAME_POSTFIX));
         for (Map.Entry<Integer, String> stringIntegerEntry : i18nDTOFieldsToGUIElementsIdsMap.entrySet()) {
             i18nStrings.get(stringIntegerEntry.getKey()).clear();
             try {
@@ -150,7 +132,7 @@ public class SpellParameterController extends AbstractController<SpellParameterM
     @Override
     public void unRenderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unrenderViewInsideContentPanel(getView());
+        mainView.unRenderViewInsideContentPanel(getView());
     }
 
     // in case user selected spell with level-range [1; 12] with level 5

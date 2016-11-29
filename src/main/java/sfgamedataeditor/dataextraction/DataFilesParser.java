@@ -1,10 +1,11 @@
 package sfgamedataeditor.dataextraction;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.database.tableservices.SkillParametersTableService;
-import sfgamedataeditor.database.tableservices.SpellNameTableService;
-import sfgamedataeditor.database.tableservices.SpellParametersTableService;
-import sfgamedataeditor.databind.Pair;
+import sfgamedataeditor.database.creatures.CreatureParametersTableService;
+import sfgamedataeditor.database.skillparameters.SkillParametersTableService;
+import sfgamedataeditor.database.spellname.SpellNameTableService;
+import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
+import sfgamedataeditor.utils.Pair;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -33,6 +34,16 @@ public enum DataFilesParser {
         int dataLength = DataOffsetProvider.INSTANCE.getSpellDataLength();
         List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
         SpellParametersTableService.INSTANCE.addRecordsToSpellParametersTable(offsettedData);
+    }
+
+
+    public void extractCreaturesDataFromFile(RandomAccessFile file) {
+        CreatureParametersTableService.INSTANCE.createCreatureParametersTable();
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getCreaturesOffsets();
+        int dataLength = DataOffsetProvider.INSTANCE.getCreatureDataLength();
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
+        CreatureParametersTableService.INSTANCE.addRecordsToSkillParametersTable(offsettedData);
     }
 
     private List<Pair<byte[], Long>> readData(RandomAccessFile file, List<Pair<Integer, Integer>> dataOffsets, int dataLength) {

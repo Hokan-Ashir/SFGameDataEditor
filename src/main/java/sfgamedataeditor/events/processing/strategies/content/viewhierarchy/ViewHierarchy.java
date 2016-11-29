@@ -1,13 +1,13 @@
 package sfgamedataeditor.events.processing.strategies.content.viewhierarchy;
 
-import sfgamedataeditor.events.processing.strategies.content.modelcreators.ModulesModuleCreator;
-import sfgamedataeditor.events.processing.strategies.content.modelcreators.SkillSchoolsFromSkillParameterModelCreator;
-import sfgamedataeditor.events.processing.strategies.content.modelcreators.SpellSchoolsFromSpellsModelCreator;
-import sfgamedataeditor.events.processing.strategies.content.modelcreators.SpellsFromSpellParameterModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.*;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.modules.*;
 import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
 import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
+import sfgamedataeditor.views.main.modules.creatures.races.CreaturesRacesView;
+import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesView;
+import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 import sfgamedataeditor.views.main.modules.items.armor.ArmorTypeListView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
@@ -20,7 +20,6 @@ import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParame
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
-import sfgamedataeditor.views.main.modules.units.UnitsRacesView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public enum  ViewHierarchy {
                 createMerchantsNodes(rootNode),
                 createSkillNodes(rootNode),
                 createSpellNodes(rootNode),
-                createUnitNodes(rootNode));
+                createCreaturesNodes(rootNode));
     }
 
     private ViewHierarchyNode createMerchantsNodes(ViewHierarchyNode rootNode) {
@@ -76,8 +75,14 @@ public enum  ViewHierarchy {
         return spellSchools;
     }
 
-    private ViewHierarchyNode createUnitNodes(ViewHierarchyNode rootNode) {
-        return new ViewHierarchyNode(rootNode, UnitsRacesView.class, new ModulesFromUnitsModelCreator());
+    private ViewHierarchyNode createCreaturesNodes(ViewHierarchyNode rootNode) {
+        ViewHierarchyNode creatureRaces = new ViewHierarchyNode(rootNode, CreaturesRacesView.class, new ModulesFromCreaturesModelCreator());
+        ViewHierarchyNode creatures = new ViewHierarchyNode(creatureRaces, CreaturesView.class, new CreatureRacesFromCreaturesModelCreator());
+        creatureRaces.addChild(creatures);
+        ViewHierarchyNode creatureParameters = new ViewHierarchyNode(creatures, CreaturesParametersView.class, new CreaturesFromCreatureParametersModelCreator());
+        creatures.addChild(creatureParameters);
+
+        return creatureRaces;
     }
 
     public List<ViewHierarchyNode> getNodesToShow(Class<? extends ControllableView> leafViewClass) {

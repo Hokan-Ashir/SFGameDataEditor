@@ -8,16 +8,16 @@ public class AbstractRacesController extends AbstractModulesController<ModulePar
 
     public AbstractRacesController(AbstractRacesView view) {
         super(view);
-        getView().getModulesComboBox().setEnabled(false);
     }
 
     @Override
     protected ModulesModel createModel() {
+        System.out.println();
         return null;
     }
 
     @Override
     public void updateView() {
-
+        System.out.println();
     }
 }

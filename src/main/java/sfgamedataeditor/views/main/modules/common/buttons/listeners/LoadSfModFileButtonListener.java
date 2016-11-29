@@ -1,10 +1,10 @@
 package sfgamedataeditor.views.main.modules.common.buttons.listeners;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.databind.files.FileData;
-import sfgamedataeditor.databind.files.FileUtils;
-import sfgamedataeditor.databind.files.FilesContainer;
 import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.files.FileData;
+import sfgamedataeditor.files.FileUtils;
+import sfgamedataeditor.files.FilesContainer;
 import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.utils.Notification;
 import sfgamedataeditor.views.main.MainView;
