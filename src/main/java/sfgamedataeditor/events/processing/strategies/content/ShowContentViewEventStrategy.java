@@ -12,6 +12,7 @@ import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistory;
+import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryController;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryView;
 
 import java.util.ArrayList;
@@ -20,9 +21,10 @@ import java.util.List;
 public class ShowContentViewEventStrategy implements EventProcessingStrategy<ShowContentViewEvent> {
     @Override
     public void process(ShowContentViewEvent event) {
-        EventHistory.INSTANCE.addEventToHistory(event);
-        ViewRegister.INSTANCE.getView(EventHistoryView.class).setRedoButtonStatus(EventHistory.INSTANCE.isRedoPossible());
-        ViewRegister.INSTANCE.getView(EventHistoryView.class).setUndoButtonStatus(EventHistory.INSTANCE.isUndoPossible());
+        if (event.isShouldBeRecordedInHistory()) {
+            updateEventHistory(event);
+        }
+
         List<ViewHierarchyNode> renderedNodes = ViewHierarchy.INSTANCE.getRenderedNodes();
         for (ViewHierarchyNode renderedNode : renderedNodes) {
             unRenderNode(renderedNode);
@@ -41,6 +43,13 @@ public class ShowContentViewEventStrategy implements EventProcessingStrategy<Sho
             node.setRenderedOnScreen(true);
             EventProcessor.INSTANCE.process(new ShowViewEvent(node.getViewClass(), models.get(i)));
         }
+    }
+
+    private void updateEventHistory(ShowContentViewEvent event) {
+        EventHistory.INSTANCE.addEventToHistory(event);
+        EventHistoryController controller = (EventHistoryController) ViewRegister.INSTANCE.getViews().get(EventHistoryView.class).getController();
+        controller.setRedoButtonStatus(EventHistory.INSTANCE.isRedoPossible());
+        controller.setUndoButtonStatus(EventHistory.INSTANCE.isUndoPossible());
     }
 
     private void unRenderNode(ViewHierarchyNode renderedNode) {

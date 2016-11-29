@@ -30,6 +30,7 @@ public enum EventHistory {
 
     private void fireCurrentEvent() {
         ShowViewEvent event = events.get(currentEventIndex);
+        event.setShouldBeRecordedInHistory(false);
         EventProcessor.INSTANCE.process(event);
     }
 

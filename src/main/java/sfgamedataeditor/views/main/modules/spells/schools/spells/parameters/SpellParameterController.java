@@ -24,8 +24,8 @@ public class SpellParameterController extends AbstractController<SpellParameterM
     private static final String SPELL_NAME_MAPPING_FILE_NAME = "spellNameMapping";
     private static final ResourceBundle bundle = ResourceBundle.getBundle(SPELL_NAME_MAPPING_FILE_NAME, Locale.getDefault());
     private static final String SPELL_I18N_NAME_POSTFIX = ".name";
-    private Map<Integer, List<String>> i18nStrings = new HashMap<>();
-    private Map<Integer, String> i18nDTOFieldsToGUIElementsIdsMap = new HashMap<Integer, String>() {{
+    private final Map<Integer, List<String>> i18nStrings = new HashMap<>();
+    private final Map<Integer, String> i18nDTOFieldsToGUIElementsIdsMap = new HashMap<Integer, String>() {{
         put(GUIElements.PARAMETER_1, "field1");
         put(GUIElements.PARAMETER_2, "field2");
         put(GUIElements.PARAMETER_3, "field3");

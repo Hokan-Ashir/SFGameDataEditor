@@ -54,12 +54,12 @@ public class CastTypeWidget extends AbstractWidget<CastTypeWidgetListener> {
     @Override
     public void insertListener(CastTypeWidgetListener listener) {
         isProjectileToEnemyRadioButton.addItemListener(listener);
-        isProjectileToAlliesRadioButton.addItemListener(listener);;
-        isTargetAreaRadioButton.addItemListener(listener);;
-        isWorldInstantAreaRadioButton.addItemListener(listener);;
-        isInstantAreaRadioButton.addItemListener(listener);;
-        isWorldTargetAreaRadioButton.addItemListener(listener);;
-        isAlliesAreaRadioButton.addItemListener(listener);;
+        isProjectileToAlliesRadioButton.addItemListener(listener);
+        isTargetAreaRadioButton.addItemListener(listener);
+        isWorldInstantAreaRadioButton.addItemListener(listener);
+        isInstantAreaRadioButton.addItemListener(listener);
+        isWorldTargetAreaRadioButton.addItemListener(listener);
+        isAlliesAreaRadioButton.addItemListener(listener);
     }
 
     @Override
