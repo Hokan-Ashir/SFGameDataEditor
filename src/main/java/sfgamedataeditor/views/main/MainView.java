@@ -3,8 +3,9 @@ package sfgamedataeditor.views.main;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.mvc.objects.View;
-import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
@@ -24,7 +25,7 @@ public class MainView implements ControllableView {
     }
 
     private void createAndShowMainFrame() {
-        JFrame frame = new JFrame(I18N.INSTANCE.getMessage("sfmodFilesCreationWindowCaption"));
+        JFrame frame = new JFrame(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "sfmodFilesCreationWindowCaption"));
         frame.setResizable(false);
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

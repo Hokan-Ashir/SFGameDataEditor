@@ -3,7 +3,8 @@ package sfgamedataeditor.views.fileselection;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.files.FileData;
 import sfgamedataeditor.files.FilesContainer;
-import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -31,7 +32,7 @@ public class OriginalFileSelectorListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser chooser = new JFileChooser();
-        FileFilter fileFilter = new FileNameExtensionFilter(I18N.INSTANCE.getMessage("cffFilesDescription"), CFF_FILE_EXTENSION);
+        FileFilter fileFilter = new FileNameExtensionFilter(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "cffFilesDescription"), CFF_FILE_EXTENSION);
         chooser.setFileFilter(fileFilter);
         chooser.setAcceptAllFileFilterUsed(false);
         chooser.showOpenDialog(view.getMainPanel());

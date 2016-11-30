@@ -2,7 +2,8 @@ package sfgamedataeditor.common.widgets.effectnumber;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.spellname.SpellNameTableService;
-import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.util.List;
@@ -19,8 +20,8 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
 
     public EffectNumberWidget() {
         // TODO fix later
-        spellNameLabel.setText(I18N.INSTANCE.getMessage("spellEffectNumber.spell"));
-        spellLevelLabel.setText(I18N.INSTANCE.getMessage("spellEffectNumber.level"));
+        spellNameLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "spellEffectNumber.spell"));
+        spellLevelLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "spellEffectNumber.level"));
         fillSpellNameComboBoxValues();
         add(getMainPanel());
     }

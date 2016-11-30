@@ -1,6 +1,6 @@
 package sfgamedataeditor.dataextraction.offsets;
 
-import sfgamedataeditor.utils.Pair;
+import sfgamedataeditor.views.utility.Pair;
 
 import java.util.ArrayList;
 import java.util.List;

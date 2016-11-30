@@ -1,10 +1,11 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures;
 
 import sfgamedataeditor.database.creatures.CreatureParameterObject;
+import sfgamedataeditor.database.creatures.CreatureParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModel;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModelParameter;
-import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
+import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
 
 import java.util.List;
 
@@ -16,19 +17,22 @@ public class CreaturesController extends AbstractModulesController<CreaturesMode
 
     @Override
     protected CreaturesParametersModel createModel() {
-        CreaturesParametersModelParameter parameter = new CreaturesParametersModelParameter(null);
+        String selectedCreatureName = getView().getSelectedModuleValue();
+        CreatureParameterObject creatureParameterObject = CreatureParametersTableService.INSTANCE.getCreatureParameterObjectByCreatureName(selectedCreatureName);
+        CreaturesParametersModelParameter parameter = new CreaturesParametersModelParameter(creatureParameterObject);
         return new CreaturesParametersModel(parameter);
     }
 
     @Override
     public void updateView() {
-        List<CreatureParameterObject> creatureParameterObjectList = getModel().getParameter().getCreatureParameterObjectList();
+        List<String> creatureParameterObjectList = getModel().getParameter().getCreatureNames();
         getView().clearComboBoxAndMapping();
 
-        for (CreatureParameterObject creature : creatureParameterObjectList) {
-            getView().addMapping(creature.name, SpellParameterView.class);
+        for (String creatureName : creatureParameterObjectList) {
+            getView().addMapping(creatureName, CreaturesParametersView.class);
         }
 
         getView().reinitializeComboBox();
+        setModulesComboBoxValue(getModel().getParameter().getSelectedCreatureName());
     }
 }

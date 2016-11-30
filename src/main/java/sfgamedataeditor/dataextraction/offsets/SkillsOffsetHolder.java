@@ -1,7 +1,7 @@
 package sfgamedataeditor.dataextraction.offsets;
 
 import sfgamedataeditor.files.FilesContainer;
-import sfgamedataeditor.utils.Pair;
+import sfgamedataeditor.views.utility.Pair;
 
 public class SkillsOffsetHolder extends AbstractOffsetHolder {
 

@@ -7,7 +7,8 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.spellparameters.SpellParametersObject;
 import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
-import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -142,11 +143,11 @@ public enum  SpellSchoolNameTableService {
 
     private String getMessage(String mainSchool, String... subSchools) {
         StringBuilder builder = new StringBuilder();
-        builder.append(I18N.INSTANCE.getMessage(mainSchool));
+        builder.append(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, mainSchool));
         if (subSchools != null && subSchools.length != 0) {
             builder.append(" : ");
             for (String subSchool : subSchools) {
-                builder.append(I18N.INSTANCE.getMessage(subSchool));
+                builder.append(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, subSchool));
                 builder.append(" ");
             }
             builder.deleteCharAt(builder.length() - 1);

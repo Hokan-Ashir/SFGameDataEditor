@@ -7,7 +7,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="d6e2" binding="name" layout-manager="GridBagLayout">
+      <grid id="29f81" binding="statsId" layout-manager="GridBagLayout">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
@@ -20,7 +20,7 @@
         <border type="etched"/>
         <children/>
       </grid>
-      <grid id="29f81" binding="statsId" layout-manager="GridBagLayout">
+      <grid id="ac45f" binding="level" layout-manager="GridBagLayout">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
@@ -33,7 +33,7 @@
         <border type="etched"/>
         <children/>
       </grid>
-      <grid id="ac45f" binding="level" layout-manager="GridBagLayout">
+      <grid id="8005d" binding="raceId" layout-manager="GridBagLayout">
         <constraints>
           <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
@@ -46,7 +46,7 @@
         <border type="etched"/>
         <children/>
       </grid>
-      <grid id="8005d" binding="raceId" layout-manager="GridBagLayout">
+      <grid id="d6e2" binding="agility" layout-manager="GridBagLayout">
         <constraints>
           <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>

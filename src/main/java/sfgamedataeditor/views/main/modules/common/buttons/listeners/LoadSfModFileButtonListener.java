@@ -5,10 +5,11 @@ import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.files.FileData;
 import sfgamedataeditor.files.FileUtils;
 import sfgamedataeditor.files.FilesContainer;
-import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.utils.Notification;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
+import sfgamedataeditor.views.utility.notification.Notification;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -33,7 +34,7 @@ public class LoadSfModFileButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         JFileChooser chooser = new JFileChooser();
         FileFilter fileFilter = new FileNameExtensionFilter(
-                I18N.INSTANCE.getMessage("sfmodFilesDescription"), SFMOD_FILE_EXTENSION);
+                I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "sfmodFilesDescription"), SFMOD_FILE_EXTENSION);
         chooser.setFileFilter(fileFilter);
         chooser.setAcceptAllFileFilterUsed(false);
         chooser.showOpenDialog(mainView.getMainPanel());
@@ -52,8 +53,10 @@ public class LoadSfModFileButtonListener implements ActionListener {
 
         FilesContainer.INSTANCE.setModificationFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
 
-        String notificationMassage = I18N.INSTANCE.getMessage("processingSfModFile") + selectedFile.getName() + I18N.INSTANCE.getMessage("processingLoading")
-                + "\n" + I18N.INSTANCE.getMessage("closeMessageWindowProposition");
+        String notificationMassage = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "processingSfModFile")
+                + selectedFile.getName()
+                + I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "processingLoading")
+                + "\n" + I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "closeMessageWindowProposition");
         new Notification(notificationMassage);
         ViewTools.setComponentsEnableStatus(mainView.getMainPanel(), false);
 
@@ -61,7 +64,9 @@ public class LoadSfModFileButtonListener implements ActionListener {
         // TODO check if this is necessarily
 //        updateAllCurrentViews();
 
-        String successfulMessage = I18N.INSTANCE.getMessage("sfmodFilePrefix") + FilesContainer.INSTANCE.getModificationFileName() + I18N.INSTANCE.getMessage("successfullyLoaded");
+        String successfulMessage = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "sfmodFilePrefix")
+                + FilesContainer.INSTANCE.getModificationFileName()
+                + I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "successfullyLoaded");
         new Notification(successfulMessage);
         ViewTools.setComponentsEnableStatus(mainView.getMainPanel(), true);
     }

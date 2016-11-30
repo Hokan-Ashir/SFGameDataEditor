@@ -13,12 +13,9 @@ public class CreatureParameterObject extends OffsetableObject {
     @DatabaseField(generatedId = true)
     private Integer id;
 
-    @DatabaseField(defaultValue = "Creature Name")
-    public String name;
-
     @Data(offset = 0, length = 2)
     @DatabaseField
-    private Integer statsId;
+    public Integer statsId;
 
     @Data(offset = 2, length = 2)
     @DatabaseField

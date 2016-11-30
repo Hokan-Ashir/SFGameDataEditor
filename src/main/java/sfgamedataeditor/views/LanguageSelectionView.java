@@ -1,9 +1,10 @@
 package sfgamedataeditor.views;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.fileselection.FileSelectionView;
 import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,8 +21,6 @@ public class LanguageSelectionView {
         put("fr", "French");
         put("de", "German");
     }};
-
-    private static final String MESSAGES_PROPERTIES_FILE_NAME = "messages";
 
     private JButton okButton;
     private JComboBox<String> languageSelectionComboBox;
@@ -70,7 +69,7 @@ public class LanguageSelectionView {
                     locale = new Locale(countryLanguage);
                 }
 
-                I18N.INSTANCE.loadBundleMessages(MESSAGES_PROPERTIES_FILE_NAME, locale);
+                I18NService.INSTANCE.loadBundleMessages(locale);
                 initializeDefaultSwingComponentsI18N();
 
                 FileSelectionView.showFileSelectionView();
@@ -114,7 +113,7 @@ public class LanguageSelectionView {
         }};
 
         for (String s : componentPropertyList) {
-            UIManager.put(s, I18N.INSTANCE.getMessage(s));
+            UIManager.put(s, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, s));
         }
     }
 

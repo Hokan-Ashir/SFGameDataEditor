@@ -1,13 +1,14 @@
 package sfgamedataeditor.views.main.modules.merchants;
 
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 public class MerchantLocationsView extends AbstractModulesView {
 
     public MerchantLocationsView() {
-        super(I18N.INSTANCE.getMessage("merchantLocations"));
+        super(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "merchantLocations"));
     }
 
     /**

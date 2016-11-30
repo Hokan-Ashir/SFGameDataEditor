@@ -1,7 +1,6 @@
 package sfgamedataeditor.views.main.modules.creatures.races;
 
-import sfgamedataeditor.database.creatures.CreatureParameterObject;
-import sfgamedataeditor.database.creatures.CreatureParametersTableService;
+import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.races.AbstractRacesView;
@@ -19,8 +18,8 @@ public class CreaturesRacesController extends AbstractModulesController<ModulePa
     @Override
     protected CreaturesModel createModel() {
         String selectedRaceName = getView().getSelectedModuleValue();
-        List<CreatureParameterObject> creaturesByRaceIdName = CreatureParametersTableService.INSTANCE.getCreaturesByRaceIdName(selectedRaceName);
-        CreaturesModelParameter parameter = new CreaturesModelParameter(creaturesByRaceIdName);
+        List<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceName(selectedRaceName);
+        CreaturesModelParameter parameter = new CreaturesModelParameter(creatureNames, null);
         return new CreaturesModel(parameter);
     }
 

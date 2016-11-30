@@ -1,4 +1,4 @@
-package sfgamedataeditor.utils;
+package sfgamedataeditor.views.utility.notification;
 
 import ch.swingfx.twinkle.NotificationBuilder;
 import ch.swingfx.twinkle.style.INotificationStyle;
@@ -9,6 +9,8 @@ import ch.swingfx.twinkle.style.overlay.BorderOverlay;
 import ch.swingfx.twinkle.style.overlay.OverlayPaintMode;
 import ch.swingfx.twinkle.style.theme.DarkDefaultNotification;
 import ch.swingfx.twinkle.window.Positions;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,19 +36,19 @@ public class Notification {
         Color messageFontColor;
         switch (type) {
             case INFO:
-                title = I18N.INSTANCE.getMessage("info");
+                title = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "info");
                 background = new ColorBackground(new Color(0, 0, 0, 255));
                 titleFontColor = new Color(255, 220, 86, 255);
                 messageFontColor = new Color(255, 255, 255, 255);
                 break;
             case WARNING:
-                title = I18N.INSTANCE.getMessage("warning");
+                title = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "warning");
                 background = new ColorBackground(new Color(255, 181, 178, 255));
                 titleFontColor = new Color(250, 130, 118, 255);
                 messageFontColor = new Color(250, 130, 118, 255);
                 break;
             case ERROR:
-                title = I18N.INSTANCE.getMessage("error");
+                title = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "error");
                 background = new ColorBackground(new Color(255, 52, 0, 252));
                 titleFontColor = new Color(255, 255, 255, 255);
                 messageFontColor = new Color(255, 255, 255, 255);

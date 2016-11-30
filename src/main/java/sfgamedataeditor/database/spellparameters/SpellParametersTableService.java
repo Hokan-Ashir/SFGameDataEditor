@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.spellschoolname.SpellSchoolNameObject;
 import sfgamedataeditor.database.spellschoolname.SpellSchoolNameTableService;
-import sfgamedataeditor.utils.Pair;
+import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
 import java.util.Collections;

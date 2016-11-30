@@ -5,7 +5,7 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
-import sfgamedataeditor.utils.Pair;
+import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
 import java.util.Collections;

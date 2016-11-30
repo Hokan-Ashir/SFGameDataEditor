@@ -4,10 +4,11 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.files.FileData;
 import sfgamedataeditor.files.FileUtils;
 import sfgamedataeditor.files.FilesContainer;
-import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.utils.Notification;
-import sfgamedataeditor.utils.NotificationType;
 import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
+import sfgamedataeditor.views.utility.notification.Notification;
+import sfgamedataeditor.views.utility.notification.NotificationType;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -34,7 +35,7 @@ public class ModificationFileSelectorListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JFileChooser chooser = new JFileChooser();
-        FileFilter fileFilter = new FileNameExtensionFilter(I18N.INSTANCE.getMessage("sfmodFilesDescription"), SFMOD_FILE_EXTENSION);
+        FileFilter fileFilter = new FileNameExtensionFilter(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "sfmodFilesDescription"), SFMOD_FILE_EXTENSION);
         chooser.setFileFilter(fileFilter);
         chooser.setAcceptAllFileFilterUsed(false);
         JPanel mainPanel = view.getMainPanel();
@@ -46,7 +47,9 @@ public class ModificationFileSelectorListener implements ActionListener {
 
         ViewTools.setComponentsEnableStatus(mainPanel, false);
         if (!FileUtils.isModificationFileBasedOnOriginalFile(selectedFile.getPath())) {
-            String errorMessage = I18N.INSTANCE.getMessage("sfmodFilePrefix") + selectedFile.getName() + I18N.INSTANCE.getMessage("basedOnAnotherCffFile");
+            String errorMessage = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "sfmodFilePrefix")
+                    + selectedFile.getName()
+                    + I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "basedOnAnotherCffFile");
             new Notification(errorMessage, NotificationType.ERROR);
             ViewTools.setComponentsEnableStatus(mainPanel, true);
             return;

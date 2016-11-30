@@ -1,6 +1,7 @@
 package sfgamedataeditor.datamapping;
 
-import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.*;
 
@@ -8,13 +9,13 @@ public enum Mappings {
     INSTANCE;
 
     public final Map<String, Integer> SKILL_SCHOOL_MAP = new HashMap<String, Integer>() {{
-        put(I18N.INSTANCE.getMessage("lightCombatArts"), 1);
-        put(I18N.INSTANCE.getMessage("heavyCombatArts"), 2);
-        put(I18N.INSTANCE.getMessage("archery"), 3);
-        put(I18N.INSTANCE.getMessage("whiteMagic"), 4);
-        put(I18N.INSTANCE.getMessage("elementalMagic"), 5);
-        put(I18N.INSTANCE.getMessage("mindMagic"), 6);
-        put(I18N.INSTANCE.getMessage("blackMagic"), 7);
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "lightCombatArts"), 1);
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "heavyCombatArts"), 2);
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "archery"), 3);
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "whiteMagic"), 4);
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "elementalMagic"), 5);
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "mindMagic"), 6);
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "blackMagic"), 7);
     }};
 
     public final Map<String, List<String>> CLASS_SUBCLASS_COMBOBOX_MAP = new LinkedHashMap<String, List<String>>() {{
@@ -23,54 +24,54 @@ public enum Mappings {
         // accidentally set (via this Editor) i.e "Iceburst" "White Magic - Nature" requirements
         // instead of "Elemental Magic - Ice"
         put("", Collections.singletonList(""));
-        put(I18N.INSTANCE.getMessage("lightCombatArts"),
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "lightCombatArts"),
                 Arrays.asList("",
-                        I18N.INSTANCE.getMessage("piercingWeapon"),
-                        I18N.INSTANCE.getMessage("lightBlades"),
-                        I18N.INSTANCE.getMessage("lightBlunts"),
-                        I18N.INSTANCE.getMessage("lightArmor")
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "piercingWeapon"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "lightBlades"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "lightBlunts"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "lightArmor")
                 )
         );
-        put(I18N.INSTANCE.getMessage("heavyCombatArts"),
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "heavyCombatArts"),
                 Arrays.asList("",
-                        I18N.INSTANCE.getMessage("heavyBlades"),
-                        I18N.INSTANCE.getMessage("heavyBlunts"),
-                        I18N.INSTANCE.getMessage("heavyArmor"),
-                        I18N.INSTANCE.getMessage("shields")
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "heavyBlades"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "heavyBlunts"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "heavyArmor"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "shields")
                 )
         );
-        put(I18N.INSTANCE.getMessage("archery"),
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "archery"),
                 Arrays.asList("",
-                        I18N.INSTANCE.getMessage("bows"),
-                        I18N.INSTANCE.getMessage("crossbows")
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "bows"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "crossbows")
                 )
         );
-        put(I18N.INSTANCE.getMessage("whiteMagic"),
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "whiteMagic"),
                 Arrays.asList("",
-                        I18N.INSTANCE.getMessage("life"),
-                        I18N.INSTANCE.getMessage("nature"),
-                        I18N.INSTANCE.getMessage("boons")
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "life"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "nature"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "boons")
                 )
         );
-        put(I18N.INSTANCE.getMessage("elementalMagic"),
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "elementalMagic"),
                 Arrays.asList("",
-                        I18N.INSTANCE.getMessage("fire"),
-                        I18N.INSTANCE.getMessage("ice"),
-                        I18N.INSTANCE.getMessage("earth")
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "fire"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "ice"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "earth")
                 )
         );
-        put(I18N.INSTANCE.getMessage("mindMagic"),
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "mindMagic"),
                 Arrays.asList("",
-                        I18N.INSTANCE.getMessage("enchantment"),
-                        I18N.INSTANCE.getMessage("offensive"),
-                        I18N.INSTANCE.getMessage("defensive")
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "enchantment"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "offensive"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "defensive")
                 )
         );
-        put(I18N.INSTANCE.getMessage("blackMagic"),
+        put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "blackMagic"),
                 Arrays.asList("",
-                        I18N.INSTANCE.getMessage("death"),
-                        I18N.INSTANCE.getMessage("necromancy"),
-                        I18N.INSTANCE.getMessage("curses")
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "death"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "necromancy"),
+                        I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "curses")
                 )
         );
     }};

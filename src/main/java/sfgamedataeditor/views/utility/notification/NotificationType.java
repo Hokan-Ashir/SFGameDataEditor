@@ -1,4 +1,4 @@
-package sfgamedataeditor.utils;
+package sfgamedataeditor.views.utility.notification;
 
 public enum NotificationType {
     INFO,

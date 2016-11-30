@@ -3,9 +3,10 @@ package sfgamedataeditor.common.widgets.textfield;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.Data;
 import sfgamedataeditor.database.common.OffsetableObject;
-import sfgamedataeditor.utils.I18N;
-import sfgamedataeditor.utils.Notification;
-import sfgamedataeditor.utils.NotificationType;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
+import sfgamedataeditor.views.utility.notification.Notification;
+import sfgamedataeditor.views.utility.notification.NotificationType;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -53,18 +54,18 @@ public class TextFieldWidgetListener extends AbstractWidgetListener<TextFieldWid
         try {
             value = Integer.parseInt(text);
             if (value < 0) {
-                new Notification(I18N.INSTANCE.getMessage("errorNumberLessThanZero"), NotificationType.ERROR);
+                new Notification(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "errorNumberLessThanZero"), NotificationType.ERROR);
                 return;
             }
 
             double maximumValue = getFieldMaximumValue();
             if (value > maximumValue) {
-                new Notification(I18N.INSTANCE.getMessage("error.exceeds.max.value") + String.valueOf(maximumValue), NotificationType.ERROR);
+                new Notification(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "error.exceeds.max.value") + String.valueOf(maximumValue), NotificationType.ERROR);
                 return;
             }
 
         } catch (NumberFormatException e) {
-            new Notification(I18N.INSTANCE.getMessage("errorNotANumber"), NotificationType.ERROR);
+            new Notification(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "errorNotANumber"), NotificationType.ERROR);
             return;
         }
 

@@ -3,9 +3,10 @@ package sfgamedataeditor.common.widgets.combobox.requirementclass;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.datamapping.Mappings;
-import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -57,7 +58,7 @@ public class RequirementClassSubClassWidgetListener extends AbstractWidgetListen
         JComboBox<String> requirementClassComboBox = getWidget().getRequirementClassComboBox();
         int requirementClassValue = 0;
         for (String key : SCHOOL_BUNDLE.keySet()) {
-            if (I18N.INSTANCE.getMessage(key).equals(requirementClassComboBox.getSelectedItem())) {
+            if (I18NService.INSTANCE.getMessage(I18NTypes.COMMON, key).equals(requirementClassComboBox.getSelectedItem())) {
                 requirementClassValue = Integer.parseInt(SCHOOL_BUNDLE.getString(key));
                 break;
             }
@@ -70,7 +71,7 @@ public class RequirementClassSubClassWidgetListener extends AbstractWidgetListen
         JComboBox<String> requirementSubClassComboBox = getWidget().getRequirementSubClassComboBox();
         int requirementSubClassValue = 0;
         for (String key : SUBSCHOOL_BUNDLE.keySet()) {
-            if (I18N.INSTANCE.getMessage(key).equals(requirementSubClassComboBox.getSelectedItem())) {
+            if (I18NService.INSTANCE.getMessage(I18NTypes.COMMON, key).equals(requirementSubClassComboBox.getSelectedItem())) {
                 requirementSubClassValue = Integer.parseInt(SUBSCHOOL_BUNDLE.getString(key));
                 requirementSubClassValue /= requirementClassValue * 10;
                 break;

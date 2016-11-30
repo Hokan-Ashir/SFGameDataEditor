@@ -2,7 +2,7 @@ package sfgamedataeditor.common.cache;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
-import sfgamedataeditor.utils.Pair;
+import sfgamedataeditor.views.utility.Pair;
 
 import java.util.ArrayList;
 import java.util.HashMap;

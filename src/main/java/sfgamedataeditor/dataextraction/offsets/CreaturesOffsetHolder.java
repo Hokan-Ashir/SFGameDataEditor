@@ -1,6 +1,6 @@
 package sfgamedataeditor.dataextraction.offsets;
 
-import sfgamedataeditor.utils.Pair;
+import sfgamedataeditor.views.utility.Pair;
 
 public class CreaturesOffsetHolder extends AbstractOffsetHolder {
     @Override

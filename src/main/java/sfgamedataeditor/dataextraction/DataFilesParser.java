@@ -1,11 +1,16 @@
 package sfgamedataeditor.dataextraction;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.database.common.DTODecorator;
 import sfgamedataeditor.database.creatures.CreatureParametersTableService;
+import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
+import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
 import sfgamedataeditor.database.skillparameters.SkillParametersTableService;
 import sfgamedataeditor.database.spellname.SpellNameTableService;
 import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
-import sfgamedataeditor.utils.Pair;
+import sfgamedataeditor.views.utility.Pair;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -20,8 +25,8 @@ public enum DataFilesParser {
     public void extractSkillsDataFromFile(RandomAccessFile file) {
         SkillParametersTableService.INSTANCE.createSkillParametersTable();
 
-        List<Pair<Integer, Integer>> skillOffsets = DataOffsetProvider.INSTANCE.getSkillOffsets();
-        int dataLength = DataOffsetProvider.INSTANCE.getSkillDataLength();
+        List<Pair<Integer, Integer>> skillOffsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.SKILL_PARAMETERS);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.SKILL_PARAMETERS);
         List<Pair<byte[], Long>> offsettedData = readData(file, skillOffsets, dataLength);
         SkillParametersTableService.INSTANCE.addRecordsToSkillParametersTable(offsettedData);
     }
@@ -30,20 +35,29 @@ public enum DataFilesParser {
         SpellNameTableService.INSTANCE.createSpellNameTable();
         SpellParametersTableService.INSTANCE.createSpellParametersTable();
 
-        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getSpellOffsets();
-        int dataLength = DataOffsetProvider.INSTANCE.getSpellDataLength();
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.SPELL_PARAMETERS);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.SPELL_PARAMETERS);
         List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
         SpellParametersTableService.INSTANCE.addRecordsToSpellParametersTable(offsettedData);
     }
 
-
     public void extractCreaturesDataFromFile(RandomAccessFile file) {
+        extractCommonCreatureParametersDataFromFile(file);
         CreatureParametersTableService.INSTANCE.createCreatureParametersTable();
 
-        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getCreaturesOffsets();
-        int dataLength = DataOffsetProvider.INSTANCE.getCreatureDataLength();
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.CREATURE_PARAMETERS);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.CREATURE_PARAMETERS);
         List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
-        CreatureParametersTableService.INSTANCE.addRecordsToSkillParametersTable(offsettedData);
+        CreatureParametersTableService.INSTANCE.addRecordsToCreatureParametersTable(offsettedData);
+    }
+
+    public void extractCommonCreatureParametersDataFromFile(RandomAccessFile file) {
+        CreatureCommonParametersTableService.INSTANCE.createCommonCreatureParametersTable();
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.CREATURE_COMMON_PARAMETERS);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.CREATURE_COMMON_PARAMETERS);
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
+        CreatureCommonParametersTableService.INSTANCE.addRecordsToCommonCreatureParametersTable(offsettedData, new CreaturesObjectDecorator());
     }
 
     private List<Pair<byte[], Long>> readData(RandomAccessFile file, List<Pair<Integer, Integer>> dataOffsets, int dataLength) {
@@ -73,7 +87,7 @@ public enum DataFilesParser {
     }
 
     private List<Pair<Long, Long>> getSpellSequencesOffsets(RandomAccessFile file) {
-        int dataLength = DataOffsetProvider.INSTANCE.getSpellDataLength();
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.SPELL_PARAMETERS);
         int postfixLength = 8;
         boolean foundSequence = false;
         byte[] buffer = new byte[postfixLength];
@@ -130,5 +144,15 @@ public enum DataFilesParser {
                 && buffer[5] == 0x0
                 && buffer[6] == 0x0
                 && buffer[7] == 0x0;
+    }
+
+    private static final class CreaturesObjectDecorator implements DTODecorator<CreaturesCommonParameterObject> {
+
+        @Override
+        public CreaturesCommonParameterObject decorateObject(CreaturesCommonParameterObject object) {
+            Integer creatureId = object.creatureId;
+            object.name = I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, String.valueOf(creatureId));
+            return object;
+        }
     }
 }

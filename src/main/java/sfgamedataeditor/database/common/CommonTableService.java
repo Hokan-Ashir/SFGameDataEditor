@@ -6,7 +6,7 @@ import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import org.apache.log4j.Logger;
-import sfgamedataeditor.utils.Pair;
+import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
 import java.util.Collections;
@@ -37,6 +37,10 @@ public enum CommonTableService {
     }
 
     public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final List<Pair<byte[], Long>> offsetedData) {
+        addRecordsToTable(ormClass, offsetedData, null);
+    }
+
+    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final List<Pair<byte[], Long>> offsetedData, final DTODecorator<T> decorator) {
         ConnectionSource connectionSource = getConnectionSource();
         final Dao<T, String> dao;
         try {
@@ -53,6 +57,9 @@ public enum CommonTableService {
                     for (Pair<byte[], Long> longPair : offsetedData) {
                         T object = createObject(ormClass, longPair.getKey());
                         object.setOffset(longPair.getValue());
+                        if (decorator != null) {
+                            object = decorator.decorateObject(object);
+                        }
                         dao.create(object);
                     }
 

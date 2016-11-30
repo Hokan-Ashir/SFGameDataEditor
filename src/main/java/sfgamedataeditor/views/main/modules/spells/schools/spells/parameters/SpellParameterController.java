@@ -11,8 +11,9 @@ import sfgamedataeditor.database.spellparameters.SpellParametersObject;
 import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
@@ -103,7 +104,7 @@ public class SpellParameterController extends AbstractController<SpellParameterM
     private void updateI18NWidgetsData(SpellParametersObject spellParametersObject) {
         Integer spellNameId = spellParametersObject.spellNameId;
         String spellName = bundle.getString(String.valueOf(spellNameId));
-        SpellNameObject spellNameObject = SpellNameTableService.INSTANCE.getSpellName(I18N.INSTANCE.getMessage(spellName + SPELL_I18N_NAME_POSTFIX));
+        SpellNameObject spellNameObject = SpellNameTableService.INSTANCE.getSpellName(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, spellName + SPELL_I18N_NAME_POSTFIX));
         for (Map.Entry<Integer, String> stringIntegerEntry : i18nDTOFieldsToGUIElementsIdsMap.entrySet()) {
             i18nStrings.get(stringIntegerEntry.getKey()).clear();
             try {

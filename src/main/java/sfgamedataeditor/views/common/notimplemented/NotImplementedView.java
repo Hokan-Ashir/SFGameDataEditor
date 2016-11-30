@@ -2,7 +2,8 @@ package sfgamedataeditor.views.common.notimplemented;
 
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
-import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
@@ -11,7 +12,7 @@ public class NotImplementedView implements ControllableView {
     private JPanel mainPanel;
 
     public NotImplementedView() {
-        notImplementedLabel.setText(I18N.INSTANCE.getMessage("notImplemented"));
+        notImplementedLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "notImplemented"));
     }
 
     /**

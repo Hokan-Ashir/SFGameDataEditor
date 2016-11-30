@@ -1,4 +1,4 @@
-package sfgamedataeditor.utils;
+package sfgamedataeditor.views.utility;
 
 /**
  * Copy-&-paste from package javafx.util;

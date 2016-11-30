@@ -1,13 +1,14 @@
 package sfgamedataeditor.views.main.modules.items.weapons;
 
 import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 public class WeaponsTypesListView extends AbstractModulesView {
 
     public WeaponsTypesListView() {
-        super(I18N.INSTANCE.getMessage("weaponTypes"));
+        super(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "weaponTypes"));
     }
 
     /**

@@ -1,41 +1,29 @@
 package sfgamedataeditor.dataextraction;
 
-import sfgamedataeditor.dataextraction.offsets.AbstractOffsetHolder;
-import sfgamedataeditor.dataextraction.offsets.CreaturesOffsetHolder;
-import sfgamedataeditor.dataextraction.offsets.SkillsOffsetHolder;
-import sfgamedataeditor.dataextraction.offsets.SpellsOffsetHolder;
-import sfgamedataeditor.utils.Pair;
+import sfgamedataeditor.dataextraction.offsets.*;
+import sfgamedataeditor.views.utility.Pair;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public enum DataOffsetProvider {
     INSTANCE;
 
-    private final AbstractOffsetHolder spellOffsets = new SpellsOffsetHolder();
-    private final AbstractOffsetHolder skillOffsets = new SkillsOffsetHolder();
-    private final AbstractOffsetHolder creaturesOffsets = new CreaturesOffsetHolder();
+    private final Map<DTOOffsetTypes, AbstractOffsetHolder> holderMap = new HashMap<>();
 
-    public List<Pair<Integer, Integer>> getSpellOffsets() {
-        return spellOffsets.getOffsets();
+    DataOffsetProvider() {
+        holderMap.put(DTOOffsetTypes.SKILL_PARAMETERS, new SkillsOffsetHolder());
+        holderMap.put(DTOOffsetTypes.SPELL_PARAMETERS, new SpellsOffsetHolder());
+        holderMap.put(DTOOffsetTypes.CREATURE_PARAMETERS, new CreaturesOffsetHolder());
+        holderMap.put(DTOOffsetTypes.CREATURE_COMMON_PARAMETERS, new CreaturesCommonsOffsetHolder());
     }
 
-    public List<Pair<Integer, Integer>> getSkillOffsets() {
-        return skillOffsets.getOffsets();
+    public List<Pair<Integer, Integer>> getOffsets(DTOOffsetTypes types) {
+        return holderMap.get(types).getOffsets();
     }
 
-    public List<Pair<Integer, Integer>> getCreaturesOffsets() {
-        return creaturesOffsets.getOffsets();
-    }
-
-    public int getSpellDataLength() {
-        return spellOffsets.getDataLength();
-    }
-
-    public int getSkillDataLength() {
-        return skillOffsets.getDataLength();
-    }
-
-    public int getCreatureDataLength() {
-        return creaturesOffsets.getDataLength();
+    public int getDataLength(DTOOffsetTypes types) {
+        return holderMap.get(types).getDataLength();
     }
 }

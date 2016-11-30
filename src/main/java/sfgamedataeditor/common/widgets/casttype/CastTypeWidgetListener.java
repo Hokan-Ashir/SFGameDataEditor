@@ -2,7 +2,7 @@ package sfgamedataeditor.common.widgets.casttype;
 
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
-import sfgamedataeditor.utils.Pair;
+import sfgamedataeditor.views.utility.Pair;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;

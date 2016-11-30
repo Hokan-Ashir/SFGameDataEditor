@@ -12,9 +12,6 @@ public class CreaturesParametersView implements ControllableView {
 
     private JPanel mainPanel;
 
-    @GUIElement(GUIElementId = GUIElements.NAME, DTOColumnNames = "name", DTOClass = CreatureParameterObject.class)
-    private JPanel name;
-
     @GUIElement(GUIElementId = GUIElements.STATS_ID, DTOColumnNames = "statsId", DTOClass = CreatureParameterObject.class)
     private JPanel statsId;
 
@@ -23,6 +20,9 @@ public class CreaturesParametersView implements ControllableView {
 
     @GUIElement(GUIElementId = GUIElements.RACE_ID, DTOColumnNames = "raceId", DTOClass = CreatureParameterObject.class)
     private JPanel raceId;
+
+    @GUIElement(GUIElementId = GUIElements.NAME, DTOColumnNames = "agility", DTOClass = CreatureParameterObject.class)
+    private JPanel agility;
 
     @Override
     public Class<? extends AbstractController> getControllerClass() {

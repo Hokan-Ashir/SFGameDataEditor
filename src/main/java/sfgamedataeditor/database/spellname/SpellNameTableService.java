@@ -5,8 +5,9 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
-import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.lang.reflect.Field;
 import java.sql.SQLException;
@@ -70,7 +71,7 @@ public enum SpellNameTableService {
     }
 
     private SpellNameObject createSpellNameObject(Integer spellType, String spellName) {
-        String name = I18N.INSTANCE.getMessage(spellName + "." + NAME_ATTRIBUTE);
+        String name = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, spellName + "." + NAME_ATTRIBUTE);
         SpellNameObject spell = new SpellNameObject(spellType, name);
         for (int i = 1; i < NUMBER_OF_PARAMETER_FIELDS + 1; i++) {
             String fieldName = FIELD_ATTRIBUTE + i;
@@ -78,7 +79,7 @@ public enum SpellNameTableService {
                 Field declaredField = spell.getClass().getDeclaredField(fieldName);
                 String parameter;
                 try {
-                    parameter = ViewTools.convertToMultiline(I18N.INSTANCE.getMessage(spellName + "." + fieldName));
+                    parameter = ViewTools.convertToMultiline(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, spellName + "." + fieldName));
                 } catch (MissingResourceException e) {
                     parameter = null;
                 }

@@ -6,7 +6,8 @@ import sfgamedataeditor.common.widgets.Disabled;
 import sfgamedataeditor.database.spellparameters.SpellParametersObject;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
-import sfgamedataeditor.utils.I18N;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
@@ -93,7 +94,7 @@ public class SpellParameterView implements ControllableView {
     private JPanel parametersPanel;
 
     public SpellParameterView() {
-        parametersLabel.setText(I18N.INSTANCE.getMessage("spellParameters"));
+        parametersLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "spellParameters"));
     }
 
     /**

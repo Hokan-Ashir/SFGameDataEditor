@@ -2,8 +2,9 @@ package sfgamedataeditor.common.viewconfigurations;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
-import sfgamedataeditor.utils.I18N;
 import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 public class ConfigurationWidgetParameter {
     private final Class<? extends AbstractWidget> widgetClass;
@@ -16,7 +17,7 @@ public class ConfigurationWidgetParameter {
 
         i18nValues = new String[i18nKeys.length];
         for (int i = 0; i < i18nKeys.length; ++i) {
-            i18nValues[i] = ViewTools.convertToMultiline(I18N.INSTANCE.getMessage(i18nKeys[i]));
+            i18nValues[i] = ViewTools.convertToMultiline(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nKeys[i]));
         }
     }
 

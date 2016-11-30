@@ -1,17 +1,21 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures;
 
-import sfgamedataeditor.database.creatures.CreatureParameterObject;
-
 import java.util.List;
 
 public class CreaturesModelParameter {
-    private final List<CreatureParameterObject> creatureParameterObjectList;
+    private final List<String> creatureNames;
+    private final String selectedCreatureName;
 
-    public CreaturesModelParameter(List<CreatureParameterObject> creatureParameterObjectList) {
-        this.creatureParameterObjectList = creatureParameterObjectList;
+    public CreaturesModelParameter(List<String> creatureNames, String selectedCreatureName) {
+        this.creatureNames = creatureNames;
+        this.selectedCreatureName = selectedCreatureName;
     }
 
-    public List<CreatureParameterObject> getCreatureParameterObjectList() {
-        return creatureParameterObjectList;
+    public List<String> getCreatureNames() {
+        return creatureNames;
+    }
+
+    public String getSelectedCreatureName() {
+        return selectedCreatureName;
     }
 }
