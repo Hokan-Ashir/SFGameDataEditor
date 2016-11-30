@@ -11,6 +11,7 @@ import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClas
 import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassSubClassWidgetListener;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 // TODO get rid of inheritance and maybe choose something like decoration
 // TODO get rid of unnecessary fields creation and storing in cache (not each spell should have 9 additional textFieldWidgets, that should be hidden)
@@ -21,17 +22,17 @@ public class DefaultSpellParameterViewConfiguration extends AbstractConfiguratio
      */
     @Override
     protected void fillConfigurationMappings() {
-        ConfigurationWidgetParameter number = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellNumber");
+        ConfigurationWidgetParameter number = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.COMMON, "spellNumber");
         addViewMapping(GUIElements.NUMBER, number);
 
-        ConfigurationWidgetParameter nameId = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellType");
+        ConfigurationWidgetParameter nameId = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.COMMON, "spellType");
         addViewMapping(GUIElements.NAME_ID, nameId);
 
-        ConfigurationWidgetParameter spellLevel = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, SpellLevelComboBoxListener.class, "levelLabel");
+        ConfigurationWidgetParameter spellLevel = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, SpellLevelComboBoxListener.class, I18NTypes.COMMON, "levelLabel");
         addViewMapping(GUIElements.SPELL_LEVEL, spellLevel);
 
-        ConfigurationWidgetParameter requirementClass = new ConfigurationWidgetParameter(RequirementClassSubClassWidget.class, RequirementClassSubClassWidgetListener.class, "spellRequirementClass", "spellRequirementSubClass");
-        ConfigurationWidgetParameter requirementLevel = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellRequirementLevel");
+        ConfigurationWidgetParameter requirementClass = new ConfigurationWidgetParameter(RequirementClassSubClassWidget.class, RequirementClassSubClassWidgetListener.class, I18NTypes.COMMON, "spellRequirementClass", "spellRequirementSubClass");
+        ConfigurationWidgetParameter requirementLevel = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.COMMON, "spellRequirementLevel");
         addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_1, requirementClass);
         addViewMapping(GUIElements.REQUIREMENT_LEVEL_1, requirementLevel);
         addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_2, requirementClass);
@@ -39,27 +40,28 @@ public class DefaultSpellParameterViewConfiguration extends AbstractConfiguratio
         addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_3, requirementClass);
         addViewMapping(GUIElements.REQUIREMENT_LEVEL_3, requirementLevel);
 
-        ConfigurationWidgetParameter manaUsage = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellManaUsage");
+        ConfigurationWidgetParameter manaUsage = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.COMMON, "spellManaUsage");
         addViewMapping(GUIElements.MANA_USAGE, manaUsage);
 
-        ConfigurationWidgetParameter spellCastTime = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellCastTime");
+        ConfigurationWidgetParameter spellCastTime = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.COMMON, "spellCastTime");
         addViewMapping(GUIElements.CAST_TIME, spellCastTime);
 
-        ConfigurationWidgetParameter cooldown = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellCooldown");
+        ConfigurationWidgetParameter cooldown = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.COMMON, "spellCooldown");
         addViewMapping(GUIElements.COOLDOWN, cooldown);
 
-        ConfigurationWidgetParameter minRange = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellMinRange");
+        ConfigurationWidgetParameter minRange = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.COMMON, "spellMinRange");
         addViewMapping(GUIElements.MIN_RANGE, minRange);
 
-        ConfigurationWidgetParameter maxRange = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, "spellMaxRange");
+        ConfigurationWidgetParameter maxRange = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.COMMON, "spellMaxRange");
         addViewMapping(GUIElements.MAX_RANGE, maxRange);
 
         ConfigurationWidgetParameter castType = new ConfigurationWidgetParameter(CastTypeWidget.class, CastTypeWidgetListener.class,
+                I18NTypes.COMMON,
                 "spellCastType", "spellCastType.projectileToEnemy","spellCastType.projectileToAllies", "spellCastType.targetArea",
                 "spellCastType.worldInstantArea", "spellCastType.instantArea", "spellCastType.worldTargetArea", "spellCastType.alliesArea");
         addViewMapping(GUIElements.CAST_TYPE, castType);
 
-        ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class);
+        ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.COMMON);
         addViewMapping(GUIElements.PARAMETER_1, parameter);
         addViewMapping(GUIElements.PARAMETER_2, parameter);
         addViewMapping(GUIElements.PARAMETER_3, parameter);

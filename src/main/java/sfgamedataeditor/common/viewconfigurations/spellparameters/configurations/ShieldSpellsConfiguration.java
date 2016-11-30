@@ -4,6 +4,7 @@ import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.viewconfigurations.spellparameters.GUIElements;
 import sfgamedataeditor.common.widgets.effectnumber.EffectNumberListener;
 import sfgamedataeditor.common.widgets.effectnumber.EffectNumberWidget;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 // TODO, note, is has the same position of EffectNumberWidget as WhiteSpellConfiguration
 public class ShieldSpellsConfiguration extends DefaultSpellParameterViewConfiguration {
@@ -12,7 +13,7 @@ public class ShieldSpellsConfiguration extends DefaultSpellParameterViewConfigur
     protected void fillConfigurationMappings() {
         super.fillConfigurationMappings();
         // TODO add i18n
-        ConfigurationWidgetParameter effectNumber = new ConfigurationWidgetParameter(EffectNumberWidget.class, EffectNumberListener.class);
+        ConfigurationWidgetParameter effectNumber = new ConfigurationWidgetParameter(EffectNumberWidget.class, EffectNumberListener.class, I18NTypes.COMMON);
         addViewMapping(GUIElements.PARAMETER_2, effectNumber);
     }
 }

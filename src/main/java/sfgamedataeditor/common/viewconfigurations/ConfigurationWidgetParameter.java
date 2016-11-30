@@ -11,13 +11,13 @@ public class ConfigurationWidgetParameter {
     private final Class<? extends AbstractWidgetListener> listenerClass;
     private final String[] i18nValues;
 
-    public ConfigurationWidgetParameter(Class<? extends AbstractWidget> widgetClass, Class<? extends AbstractWidgetListener> listenerClass, String... i18nKeys) {
+    public ConfigurationWidgetParameter(Class<? extends AbstractWidget> widgetClass, Class<? extends AbstractWidgetListener> listenerClass, I18NTypes type, String... i18nKeys) {
         this.widgetClass = widgetClass;
         this.listenerClass = listenerClass;
 
         i18nValues = new String[i18nKeys.length];
         for (int i = 0; i < i18nKeys.length; ++i) {
-            i18nValues[i] = ViewTools.convertToMultiline(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nKeys[i]));
+            i18nValues[i] = ViewTools.convertToMultiline(I18NService.INSTANCE.getMessage(type, i18nKeys[i]));
         }
     }
 

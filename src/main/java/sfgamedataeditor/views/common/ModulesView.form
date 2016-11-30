@@ -9,13 +9,13 @@
       <alignmentY value="0.0"/>
       <autoscrolls value="true"/>
       <enabled value="true"/>
-      <maximumSize width="190" height="25"/>
-      <minimumSize width="190" height="25"/>
+      <maximumSize width="215" height="25"/>
+      <minimumSize width="215" height="25"/>
       <opaque value="true"/>
-      <preferredSize width="190" height="25"/>
+      <preferredSize width="215" height="25"/>
     </properties>
     <border type="empty">
-      <size top="0" left="0" bottom="0" right="15"/>
+      <size top="0" left="25" bottom="0" right="15"/>
     </border>
     <children>
       <component id="972a1" class="javax.swing.JComboBox" binding="modulesComboBox">

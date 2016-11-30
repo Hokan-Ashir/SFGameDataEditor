@@ -2,12 +2,13 @@ package sfgamedataeditor.views.main.modules.creatures.races.creatures;
 
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 public class CreaturesView extends AbstractModulesView {
 
     public CreaturesView() {
-        // TODO set i18n value
-        super("creatures");
+        super(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "moduleName"));
     }
 
     @Override

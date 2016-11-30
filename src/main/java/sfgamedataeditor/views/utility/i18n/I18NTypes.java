@@ -5,5 +5,6 @@ public enum I18NTypes {
     SPELLS,
     SKILLS,
     CREATURES,
+    CREATURES_GUI,
     RACES
 }

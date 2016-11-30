@@ -6,6 +6,7 @@ import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxWidget;
 import sfgamedataeditor.common.widgets.combobox.level.SkillLevelComboBoxListener;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,11 +25,11 @@ public class SkillParametersViewConfiguration extends AbstractConfiguration {
         }};
 
         for (Map.Entry<Integer, String> entry : i18nMap.entrySet()) {
-            ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, entry.getValue());
+            ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.COMMON, entry.getValue());
             addViewMapping(entry.getKey(), parameter);
         }
 
-        ConfigurationWidgetParameter levelParameter = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, SkillLevelComboBoxListener.class, "levelLabel");
+        ConfigurationWidgetParameter levelParameter = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, SkillLevelComboBoxListener.class, I18NTypes.COMMON, "levelLabel");
         addViewMapping(GUIElements.SKILL_LEVEL, levelParameter);
     }
 }
