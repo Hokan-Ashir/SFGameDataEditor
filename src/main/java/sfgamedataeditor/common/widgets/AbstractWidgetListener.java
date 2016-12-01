@@ -41,15 +41,6 @@ public abstract class AbstractWidgetListener<W extends AbstractWidget, M> {
      * {@inheritDoc}
      */
     protected void setWidgetValueToDTOField() {
-        // TODO get rid of it; this is the cause when:
-        // user first time select ANY spell
-        // data loading is processing through AbstractDataFields
-        // the data have been set to any ClassRequirements comboBox
-        // the listener (RequirementClassSubClassWidgetListener) on it is launched to set subClass comboBox value
-        // BUT there is no mapped object on this subClass comboBox, so NPE appears
-        if (mappedObject == null) {
-            return;
-        }
         int values[] = getFieldValues();
         for (int i = 0; i <mappedFields.length; ++i) {
             mappedFields[i].setAccessible(true);
