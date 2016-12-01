@@ -4,6 +4,8 @@ import sfgamedataeditor.dataextraction.offsets.AbstractOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.SkillsOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.SpellsOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.creatures.*;
+import sfgamedataeditor.dataextraction.offsets.creatures.production.CreatureBuildingsOffsetHolder;
+import sfgamedataeditor.dataextraction.offsets.creatures.production.CreatureResourcesOffsetHolder;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.util.HashMap;
@@ -23,6 +25,8 @@ public enum DataOffsetProvider {
         holderMap.put(DTOOffsetTypes.CREATURE_SPELLS, new CreatureSpellsOffsetHolder());
         holderMap.put(DTOOffsetTypes.CREATURE_EQUIPMENT, new CreatureEquipmentOffsetHolder());
         holderMap.put(DTOOffsetTypes.CREATURE_CORPSE_LOOT, new CreatureCorpseLootOffsetHolder());
+        holderMap.put(DTOOffsetTypes.CREATURE_BUILDINGS, new CreatureBuildingsOffsetHolder());
+        holderMap.put(DTOOffsetTypes.CREATURE_RESOURCES, new CreatureResourcesOffsetHolder());
     }
 
     public List<Pair<Integer, Integer>> getOffsets(DTOOffsetTypes types) {
