@@ -10,6 +10,9 @@ import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentTableServi
 import sfgamedataeditor.database.creatures.production.buildings.CreatureBuildingsTableService;
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesTableService;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
+import sfgamedataeditor.database.items.effects.ItemEffectsTableService;
+import sfgamedataeditor.database.items.requirements.ItemRequirementsTableService;
+import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsTableService;
 import sfgamedataeditor.database.skillparameters.SkillParametersTableService;
 import sfgamedataeditor.database.spellname.SpellNameTableService;
 import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
@@ -53,6 +56,10 @@ public enum DataFilesParser {
         extractCreatureCorpseLootParametersDataFromFile(file);
         extractCreatureBuildingsParametersDataFromFile(file);
         extractCreatureResourcesParametersDataFromFile(file);
+        extractCreatureParametersDataFromFile(file);
+    }
+
+    private void extractCreatureParametersDataFromFile(RandomAccessFile file) {
         CreatureParametersTableService.INSTANCE.createCreatureParametersTable();
 
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.CREATURE_PARAMETERS);
@@ -61,7 +68,7 @@ public enum DataFilesParser {
         CreatureParametersTableService.INSTANCE.addRecordsToCreatureParametersTable(offsettedData);
     }
 
-    public void extractCommonCreatureParametersDataFromFile(RandomAccessFile file) {
+    private void extractCommonCreatureParametersDataFromFile(RandomAccessFile file) {
         CreatureCommonParametersTableService.INSTANCE.createCommonCreatureParametersTable();
 
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.CREATURE_COMMON_PARAMETERS);
@@ -70,7 +77,7 @@ public enum DataFilesParser {
         CreatureCommonParametersTableService.INSTANCE.addRecordsToCommonCreatureParametersTable(offsettedData, new CreaturesObjectDecorator());
     }
 
-    public void extractCreatureSpellParametersDataFromFile(RandomAccessFile file) {
+    private void extractCreatureSpellParametersDataFromFile(RandomAccessFile file) {
         CreatureSpellTableService.INSTANCE.createCreatureSpellParametersTable();
 
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.CREATURE_SPELLS);
@@ -79,7 +86,7 @@ public enum DataFilesParser {
         CreatureSpellTableService.INSTANCE.addRecordsToCreatureSpellParametersTable(offsettedData);
     }
 
-    public void extractCreatureEquipmentParametersDataFromFile(RandomAccessFile file) {
+    private void extractCreatureEquipmentParametersDataFromFile(RandomAccessFile file) {
         CreatureEquipmentTableService.INSTANCE.createCreatureEquipmentParametersTable();
 
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.CREATURE_EQUIPMENT);
@@ -88,7 +95,7 @@ public enum DataFilesParser {
         CreatureEquipmentTableService.INSTANCE.addRecordsToCreatureEquipmentParametersTable(offsettedData);
     }
 
-    public void extractCreatureCorpseLootParametersDataFromFile(RandomAccessFile file) {
+    private void extractCreatureCorpseLootParametersDataFromFile(RandomAccessFile file) {
         CreatureCorpseLootTableService.INSTANCE.createCreatureCorpseLootParametersTable();
 
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.CREATURE_CORPSE_LOOT);
@@ -97,7 +104,7 @@ public enum DataFilesParser {
         CreatureCorpseLootTableService.INSTANCE.addRecordsToCreatureCorpseLootParametersTable(offsettedData);
     }
 
-    public void extractCreatureBuildingsParametersDataFromFile(RandomAccessFile file) {
+    private void extractCreatureBuildingsParametersDataFromFile(RandomAccessFile file) {
         CreatureBuildingsTableService.INSTANCE.createCreatureBuildingsParametersTable();
 
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.CREATURE_BUILDINGS);
@@ -106,13 +113,46 @@ public enum DataFilesParser {
         CreatureBuildingsTableService.INSTANCE.addRecordsToCreatureBuildingParametersTable(offsettedData);
     }
 
-    public void extractCreatureResourcesParametersDataFromFile(RandomAccessFile file) {
+    private void extractCreatureResourcesParametersDataFromFile(RandomAccessFile file) {
         CreatureResourcesTableService.INSTANCE.createCreatureResourcesParametersTable();
 
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.CREATURE_RESOURCES);
         int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.CREATURE_RESOURCES);
         List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
         CreatureResourcesTableService.INSTANCE.addRecordsToCreatureResourcesParametersTable(offsettedData);
+    }
+
+    public void extractItemDataFromFile(RandomAccessFile file) {
+        extractItemEffectsDataFromFile(file);
+        extractItemSpellEffectsDataFromFile(file);
+        extractItemRequirementsDataFromFile(file);
+    }
+
+    private void extractItemEffectsDataFromFile(RandomAccessFile file) {
+        ItemEffectsTableService.INSTANCE.createItemEffectsTable();
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.ITEM_EFFECTS);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.ITEM_EFFECTS);
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
+        ItemEffectsTableService.INSTANCE.addRecordsToItemEffectsTable(offsettedData);
+    }
+
+    private void extractItemSpellEffectsDataFromFile(RandomAccessFile file) {
+        ItemSpellEffectsTableService.INSTANCE.createItemSpellEffectsTable();
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.ITEM_SPELL_EFFECTS);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.ITEM_SPELL_EFFECTS);
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
+        ItemSpellEffectsTableService.INSTANCE.addRecordsToItemSpellEffectsTable(offsettedData);
+    }
+
+    private void extractItemRequirementsDataFromFile(RandomAccessFile file) {
+        ItemRequirementsTableService.INSTANCE.createItemRequirementsTable();
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.ITEM_REQUIREMENTS);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.ITEM_REQUIREMENTS);
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
+        ItemRequirementsTableService.INSTANCE.addRecordsToItemRequirementsTable(offsettedData);
     }
 
     private List<Pair<byte[], Long>> readData(RandomAccessFile file, List<Pair<Integer, Integer>> dataOffsets, int dataLength) {

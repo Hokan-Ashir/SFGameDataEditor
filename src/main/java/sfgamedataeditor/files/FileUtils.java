@@ -46,13 +46,15 @@ public final class FileUtils {
     public static void uploadDataIntoDatabase() {
         FileData fileData = createTemporaryModificationFile();
         // TODO made this multithreaded, different tables, should not be harmed
-        DataFilesParser.INSTANCE.extractSkillsDataFromFile(fileData.getFile());
-        DataFilesParser.INSTANCE.extractSpellsDataFromFile(fileData.getFile());
-        DataFilesParser.INSTANCE.extractCreaturesDataFromFile(fileData.getFile());
+        RandomAccessFile file = fileData.getFile();
+        DataFilesParser.INSTANCE.extractSkillsDataFromFile(file);
+        DataFilesParser.INSTANCE.extractSpellsDataFromFile(file);
+        DataFilesParser.INSTANCE.extractCreaturesDataFromFile(file);
+        DataFilesParser.INSTANCE.extractItemDataFromFile(file);
         SpellSchoolNameTableService.INSTANCE.createSpellSchoolNameTable();
 
         try {
-            boolean isVersion11 = fileData.getFile().length() == GAME_DATA_CFF_V11_FILE_LENGTH;
+            boolean isVersion11 = file.length() == GAME_DATA_CFF_V11_FILE_LENGTH;
             FilesContainer.INSTANCE.setIsVersion11(isVersion11);
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
@@ -60,7 +62,7 @@ public final class FileUtils {
 
         String filePath = fileData.getPath() + fileData.getName();
         try {
-            fileData.getFile().close();
+            file.close();
             Files.delete(Paths.get(filePath));
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
