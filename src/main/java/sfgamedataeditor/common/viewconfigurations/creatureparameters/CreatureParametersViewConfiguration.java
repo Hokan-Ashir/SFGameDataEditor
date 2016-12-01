@@ -2,6 +2,8 @@ package sfgamedataeditor.common.viewconfigurations.creatureparameters;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
+import sfgamedataeditor.common.widgets.equipmentslot.EquipmentSlotWidget;
+import sfgamedataeditor.common.widgets.equipmentslot.EquipmentSlotWidgetListener;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidgetListener;
 import sfgamedataeditor.common.widgets.vulnerability.VulnerabilityWidget;
@@ -35,7 +37,6 @@ public class CreatureParametersViewConfiguration extends AbstractConfiguration {
             put(GUIElements.SIZE, "size");
             put(GUIElements.SPAWN_TIME, "spawnTime");
             put(GUIElements.HEAD_ID, "headId");
-            put(GUIElements.EQUIPMENT_SLOTS_ID, "equipmentSlotsId");
         }};
 
         for (Map.Entry<Integer, String> entry : i18nMap.entrySet()) {
@@ -48,5 +49,10 @@ public class CreatureParametersViewConfiguration extends AbstractConfiguration {
                 "vulnerability.male.can.be.killed", "vulnerability.female.can.be.killed",
                 "vulnerability.male.cannot.be.killed", "vulnerability.female.cannot.be.killed");
         addViewMapping(GUIElements.GENDER_AND_VULNERABILITY, vulnerability);
+
+        ConfigurationWidgetParameter equipmentSlots = new ConfigurationWidgetParameter(EquipmentSlotWidget.class, EquipmentSlotWidgetListener.class,
+                I18NTypes.CREATURES_GUI, "equipmentSlotsId", "equipmentSlotsId.all.slots.available",
+                "equipmentSlotsId.hands.and.rings.slots.available", "equipmentSlotsId.no.slots.available");
+        addViewMapping(GUIElements.EQUIPMENT_SLOTS_ID, equipmentSlots);
     }
 }
