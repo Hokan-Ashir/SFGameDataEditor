@@ -15,7 +15,7 @@ public enum I18NService {
     private static final String SKILLS_GUI_PROPERTIES_FILE_NAME = "skills_gui";
     private static final String SPELLS_GUI_PROPERTIES_FILE_NAME = "spells_gui";
 
-    private Map<I18NTypes, ResourceBundle> bundleMap = new HashMap<>();
+    private final Map<I18NTypes, ResourceBundle> bundleMap = new HashMap<>();
 
     public void loadBundleMessages(Locale locale) {
         bundleMap.put(I18NTypes.COMMON, ResourceBundle.getBundle(COMMON_PROPERTIES_FILE_NAME, locale));

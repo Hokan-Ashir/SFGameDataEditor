@@ -2,6 +2,7 @@ package sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters
 
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.creatureparameters.GUIElements;
+import sfgamedataeditor.common.widgets.Disabled;
 import sfgamedataeditor.database.creatures.CreatureParameterObject;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
@@ -14,6 +15,7 @@ public class CreaturesParametersView implements ControllableView {
 
     private JPanel mainPanel;
 
+    @Disabled
     @GUIElement(GUIElementId = GUIElements.STATS_ID, DTOColumnNames = "statsId", DTOClass = CreatureParameterObject.class)
     private JPanel statsIdPanel;
 

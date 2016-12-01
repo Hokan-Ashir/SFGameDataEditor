@@ -4,6 +4,8 @@ import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.widgets.equipmentslot.EquipmentSlotWidget;
 import sfgamedataeditor.common.widgets.equipmentslot.EquipmentSlotWidgetListener;
+import sfgamedataeditor.common.widgets.races.RacesWidget;
+import sfgamedataeditor.common.widgets.races.RacesWidgetListener;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidgetListener;
 import sfgamedataeditor.common.widgets.vulnerability.VulnerabilityWidget;
@@ -19,7 +21,6 @@ public class CreatureParametersViewConfiguration extends AbstractConfiguration {
         Map<Integer, String> i18nMap = new HashMap<Integer, String>() {{
             put(GUIElements.STATS_ID, "statsId");
             put(GUIElements.LEVEL, "level");
-            put(GUIElements.RACE_ID, "raceId");
             put(GUIElements.AGILITY, "agility");
             put(GUIElements.CHARISMA, "charisma");
             put(GUIElements.DEXTERITY, "dexterity");
@@ -43,6 +44,10 @@ public class CreatureParametersViewConfiguration extends AbstractConfiguration {
             ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.CREATURES_GUI, entry.getValue());
             addViewMapping(entry.getKey(), parameter);
         }
+
+        ConfigurationWidgetParameter raceIds = new ConfigurationWidgetParameter(RacesWidget.class, RacesWidgetListener.class, I18NTypes.CREATURES_GUI,
+                "raceId");
+        addViewMapping(GUIElements.RACE_ID, raceIds);
 
         ConfigurationWidgetParameter vulnerability = new ConfigurationWidgetParameter(VulnerabilityWidget.class, VulnerabilityWidgetListener.class,
                 I18NTypes.CREATURES_GUI, "vulnerability",

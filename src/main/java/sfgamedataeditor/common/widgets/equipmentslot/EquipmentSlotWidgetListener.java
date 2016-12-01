@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class EquipmentSlotWidgetListener extends AbstractWidgetListener<EquipmentSlotWidget, OffsetableObject> implements ItemListener {
 
-    private Map<JRadioButton, Integer> widgetButtonsMap = new HashMap<>();
+    private final Map<JRadioButton, Integer> widgetButtonsMap = new HashMap<>();
 
     public EquipmentSlotWidgetListener(EquipmentSlotWidget component, Field... mappedFields) {
         super(component, mappedFields);
