@@ -25,11 +25,11 @@ public class SkillParametersViewConfiguration extends AbstractConfiguration {
         }};
 
         for (Map.Entry<Integer, String> entry : i18nMap.entrySet()) {
-            ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.COMMON, entry.getValue());
+            ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.SKILLS_GUI, entry.getValue());
             addViewMapping(entry.getKey(), parameter);
         }
 
-        ConfigurationWidgetParameter levelParameter = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, SkillLevelComboBoxListener.class, I18NTypes.COMMON, "levelLabel");
+        ConfigurationWidgetParameter levelParameter = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, SkillLevelComboBoxListener.class, I18NTypes.SKILLS_GUI, "levelLabel");
         addViewMapping(GUIElements.SKILL_LEVEL, levelParameter);
     }
 }

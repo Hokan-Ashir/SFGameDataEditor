@@ -71,7 +71,7 @@ public enum SpellNameTableService {
     }
 
     private SpellNameObject createSpellNameObject(Integer spellType, String spellName) {
-        String name = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, spellName + "." + NAME_ATTRIBUTE);
+        String name = I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, spellName + "." + NAME_ATTRIBUTE);
         SpellNameObject spell = new SpellNameObject(spellType, name);
         for (int i = 1; i < NUMBER_OF_PARAMETER_FIELDS + 1; i++) {
             String fieldName = FIELD_ATTRIBUTE + i;
@@ -79,7 +79,7 @@ public enum SpellNameTableService {
                 Field declaredField = spell.getClass().getDeclaredField(fieldName);
                 String parameter;
                 try {
-                    parameter = ViewTools.convertToMultiline(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, spellName + "." + fieldName));
+                    parameter = ViewTools.convertToMultiline(I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, spellName + "." + fieldName));
                 } catch (MissingResourceException e) {
                     parameter = null;
                 }

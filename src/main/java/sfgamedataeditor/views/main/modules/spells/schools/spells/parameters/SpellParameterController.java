@@ -104,7 +104,7 @@ public class SpellParameterController extends AbstractController<SpellParameterM
     private void updateI18NWidgetsData(SpellParametersObject spellParametersObject) {
         Integer spellNameId = spellParametersObject.spellNameId;
         String spellName = bundle.getString(String.valueOf(spellNameId));
-        SpellNameObject spellNameObject = SpellNameTableService.INSTANCE.getSpellName(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, spellName + SPELL_I18N_NAME_POSTFIX));
+        SpellNameObject spellNameObject = SpellNameTableService.INSTANCE.getSpellName(I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, spellName + SPELL_I18N_NAME_POSTFIX));
         for (Map.Entry<Integer, String> stringIntegerEntry : i18nDTOFieldsToGUIElementsIdsMap.entrySet()) {
             i18nStrings.get(stringIntegerEntry.getKey()).clear();
             try {

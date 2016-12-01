@@ -142,14 +142,6 @@ public class EffectNumberListener extends AbstractWidgetListener<EffectNumberWid
         return spellLevel;
     }
 
-    private SpellParametersObject getSelectedSpellParameterObject() {
-        String spellName = (String) getWidget().getSpellNameComboBox().getSelectedItem();
-        SpellNameObject spellNameObject = SpellNameTableService.INSTANCE.getSpellName(spellName);
-
-        String spellLevel = (String) getWidget().getSpellLevelComboBox().getSelectedItem();
-        return SpellParametersTableService.INSTANCE.getSpellParameterBySpellIdAndLevel(spellNameObject.spellType, Integer.parseInt(spellLevel));
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         SpellParametersObject selectedSpellParameterObject = getSelectedSpellParameterObject();
@@ -159,5 +151,13 @@ public class EffectNumberListener extends AbstractWidgetListener<EffectNumberWid
         SpellParameterModel model = new SpellParameterModel(parameter);
         ShowContentViewEvent event = new ShowContentViewEvent(SpellParameterView.class, model);
         EventProcessor.INSTANCE.process(event);
+    }
+
+    private SpellParametersObject getSelectedSpellParameterObject() {
+        String spellName = (String) getWidget().getSpellNameComboBox().getSelectedItem();
+        SpellNameObject spellNameObject = SpellNameTableService.INSTANCE.getSpellName(spellName);
+
+        String spellLevel = (String) getWidget().getSpellLevelComboBox().getSelectedItem();
+        return SpellParametersTableService.INSTANCE.getSpellParameterBySpellIdAndLevel(spellNameObject.spellType, Integer.parseInt(spellLevel));
     }
 }

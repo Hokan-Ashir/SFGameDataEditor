@@ -94,7 +94,7 @@ public class SpellParameterView implements ControllableView {
     private JPanel parametersPanel;
 
     public SpellParameterView() {
-        parametersLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "spellParameters"));
+        parametersLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "spellParameters"));
     }
 
     /**

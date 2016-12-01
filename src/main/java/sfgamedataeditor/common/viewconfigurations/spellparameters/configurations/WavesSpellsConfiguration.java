@@ -13,7 +13,7 @@ public class WavesSpellsConfiguration extends DefaultSpellParameterViewConfigura
     protected void fillConfigurationMappings() {
         super.fillConfigurationMappings();
         // TODO add i18n
-        ConfigurationWidgetParameter effectNumber = new ConfigurationWidgetParameter(EffectNumberWidget.class, EffectNumberListener.class, I18NTypes.COMMON);
+        ConfigurationWidgetParameter effectNumber = new ConfigurationWidgetParameter(EffectNumberWidget.class, EffectNumberListener.class, I18NTypes.SPELLS_GUI);
         addViewMapping(GUIElements.PARAMETER_4, effectNumber);
     }
 }

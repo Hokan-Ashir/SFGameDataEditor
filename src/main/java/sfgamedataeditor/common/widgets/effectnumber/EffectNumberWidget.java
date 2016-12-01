@@ -20,8 +20,8 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
 
     public EffectNumberWidget() {
         // TODO fix later
-        spellNameLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "spellEffectNumber.spell"));
-        spellLevelLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "spellEffectNumber.level"));
+        spellNameLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "spellEffectNumber.spell"));
+        spellLevelLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "spellEffectNumber.level"));
         fillSpellNameComboBoxValues();
         add(getMainPanel());
     }
@@ -40,10 +40,6 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
 
     public JComboBox<String> getSpellLevelComboBox() {
         return spellLevelComboBox;
-    }
-
-    public JButton getGoToEffectParametersButton() {
-        return goToEffectParametersButton;
     }
 
     @Override
