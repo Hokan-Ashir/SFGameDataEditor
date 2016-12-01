@@ -8,6 +8,8 @@ import sfgamedataeditor.database.common.OffsetableObject;
 @DatabaseTable(tableName = "creature_equipment")
 public class CreatureEquipmentObject extends OffsetableObject {
 
+    // offsets taken from http://spellforcefanforum.hostoi.com/viewtopic.php?f=29&t=280&sid=c36d0fbf6779c51b97a2e021ad97cc44
+
     @DatabaseField(generatedId = true)
     private Integer id;
 

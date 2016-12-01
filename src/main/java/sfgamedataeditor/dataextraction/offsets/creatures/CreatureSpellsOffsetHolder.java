@@ -1,5 +1,6 @@
-package sfgamedataeditor.dataextraction.offsets;
+package sfgamedataeditor.dataextraction.offsets.creatures;
 
+import sfgamedataeditor.dataextraction.offsets.AbstractOffsetHolder;
 import sfgamedataeditor.views.utility.Pair;
 
 public class CreatureSpellsOffsetHolder extends AbstractOffsetHolder {

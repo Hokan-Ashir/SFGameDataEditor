@@ -5,6 +5,7 @@ import sfgamedataeditor.database.common.DTODecorator;
 import sfgamedataeditor.database.creatures.CreatureParametersTableService;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
+import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootTableService;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentTableService;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
 import sfgamedataeditor.database.skillparameters.SkillParametersTableService;
@@ -47,6 +48,7 @@ public enum DataFilesParser {
         extractCommonCreatureParametersDataFromFile(file);
         extractCreatureSpellParametersDataFromFile(file);
         extractCreatureEquipmentParametersDataFromFile(file);
+        extractCreatureCorpseLootParametersDataFromFile(file);
         CreatureParametersTableService.INSTANCE.createCreatureParametersTable();
 
         List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.CREATURE_PARAMETERS);
@@ -81,6 +83,16 @@ public enum DataFilesParser {
         List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
         CreatureEquipmentTableService.INSTANCE.addRecordsToCreatureEquipmentParametersTable(offsettedData);
     }
+
+    public void extractCreatureCorpseLootParametersDataFromFile(RandomAccessFile file) {
+        CreatureCorpseLootTableService.INSTANCE.createCreatureCorpseLootParametersTable();
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.CREATURE_CORPSE_LOOT);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.CREATURE_CORPSE_LOOT);
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
+        CreatureCorpseLootTableService.INSTANCE.addRecordsToCreatureCorpseLootParametersTable(offsettedData);
+    }
+
 
     private List<Pair<byte[], Long>> readData(RandomAccessFile file, List<Pair<Integer, Integer>> dataOffsets, int dataLength) {
         List<Pair<byte[], Long>> result = new ArrayList<>();
