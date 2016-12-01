@@ -4,6 +4,8 @@ import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.vulnerability.VulnerabilityWidget;
+import sfgamedataeditor.common.widgets.vulnerability.VulnerabilityWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;
@@ -32,7 +34,6 @@ public class CreatureParametersViewConfiguration extends AbstractConfiguration {
             put(GUIElements.CAST_SPEED, "castSpeed");
             put(GUIElements.SIZE, "size");
             put(GUIElements.SPAWN_TIME, "spawnTime");
-            put(GUIElements.GENDER_AND_VULNERABILITY, "vulnerability");
             put(GUIElements.HEAD_ID, "headId");
             put(GUIElements.EQUIPMENT_SLOTS_ID, "equipmentSlotsId");
         }};
@@ -41,5 +42,11 @@ public class CreatureParametersViewConfiguration extends AbstractConfiguration {
             ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.CREATURES_GUI, entry.getValue());
             addViewMapping(entry.getKey(), parameter);
         }
+
+        ConfigurationWidgetParameter vulnerability = new ConfigurationWidgetParameter(VulnerabilityWidget.class, VulnerabilityWidgetListener.class,
+                I18NTypes.CREATURES_GUI, "vulnerability",
+                "vulnerability.male.can.be.killed", "vulnerability.female.can.be.killed",
+                "vulnerability.male.cannot.be.killed", "vulnerability.female.cannot.be.killed");
+        addViewMapping(GUIElements.GENDER_AND_VULNERABILITY, vulnerability);
     }
 }

@@ -6,14 +6,14 @@ import sfgamedataeditor.database.common.OffsetableObject;
 
 import java.lang.reflect.Field;
 
-public abstract class AbstractWidgetListener<T extends AbstractWidget, M> {
+public abstract class AbstractWidgetListener<W extends AbstractWidget, M> {
     private static final Logger LOGGER = Logger.getLogger(AbstractWidgetListener.class);
 
     private final Field[] mappedFields;
-    private final T component;
+    private final W component;
     private M mappedObject;
 
-    protected AbstractWidgetListener(T component, Field... mappedFields) {
+    protected AbstractWidgetListener(W component, Field... mappedFields) {
         this.component = component;
         this.mappedFields = mappedFields;
     }
@@ -72,7 +72,7 @@ public abstract class AbstractWidgetListener<T extends AbstractWidget, M> {
 
     protected abstract void setFieldValues(int[] value);
 
-    protected T getWidget() {
+    protected W getWidget() {
         return component;
     }
 }

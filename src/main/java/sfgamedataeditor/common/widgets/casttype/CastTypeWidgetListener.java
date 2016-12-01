@@ -62,6 +62,7 @@ public class CastTypeWidgetListener extends AbstractWidgetListener<CastTypeWidge
         for (Map.Entry<JRadioButton, Pair<Integer, Integer>> jRadioButtonPairEntry : radioButtonMapping.entrySet()) {
             if (jRadioButtonPairEntry.getValue().equals(valuePair)) {
                 jRadioButtonPairEntry.getKey().setSelected(true);
+                break;
             }
         }
     }

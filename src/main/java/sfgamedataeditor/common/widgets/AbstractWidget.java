@@ -3,7 +3,7 @@ package sfgamedataeditor.common.widgets;
 import javax.swing.*;
 import java.util.List;
 
-public abstract class AbstractWidget<T extends AbstractWidgetListener> extends JPanel {
+public abstract class AbstractWidget<L extends AbstractWidgetListener> extends JPanel {
     private AbstractWidgetListener listener;
 
     public void setListener(AbstractWidgetListener listener) {
@@ -14,12 +14,12 @@ public abstract class AbstractWidget<T extends AbstractWidgetListener> extends J
         return listener;
     }
 
-    public void attachListener(T listener) {
+    public void attachListener(L listener) {
         insertListener(listener);
         this.listener = listener;
     }
 
-    protected abstract void insertListener(T listener);
+    protected abstract void insertListener(L listener);
     public abstract void updateI18N(List<String> i18nStrings);
     public abstract JPanel getMainPanel();
 }
