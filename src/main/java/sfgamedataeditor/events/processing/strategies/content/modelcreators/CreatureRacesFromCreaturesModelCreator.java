@@ -1,6 +1,6 @@
 package sfgamedataeditor.events.processing.strategies.content.modelcreators;
 
-import sfgamedataeditor.database.creatures.CreatureParametersTableService;
+import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
 import sfgamedataeditor.mvc.ModelCreator;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.ModulesModel;

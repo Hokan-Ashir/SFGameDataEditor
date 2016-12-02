@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters;
 
-import sfgamedataeditor.database.creatures.CreatureParameterObject;
+import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 
 public class CreaturesParametersModelParameter {
     private final CreatureParameterObject creatureParameterObject;

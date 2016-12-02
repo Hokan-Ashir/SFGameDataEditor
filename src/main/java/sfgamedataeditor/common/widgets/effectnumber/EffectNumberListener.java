@@ -2,10 +2,10 @@ package sfgamedataeditor.common.widgets.effectnumber;
 
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
-import sfgamedataeditor.database.spellname.SpellNameObject;
-import sfgamedataeditor.database.spellname.SpellNameTableService;
-import sfgamedataeditor.database.spellparameters.SpellParametersObject;
-import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
+import sfgamedataeditor.database.spells.names.SpellNameObject;
+import sfgamedataeditor.database.spells.names.SpellNameTableService;
+import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
+import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModel;

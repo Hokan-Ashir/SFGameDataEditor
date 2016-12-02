@@ -1,4 +1,4 @@
-package sfgamedataeditor.database.spellparameters;
+package sfgamedataeditor.database.spells.parameters;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -6,8 +6,8 @@ import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
-import sfgamedataeditor.database.spellschoolname.SpellSchoolNameObject;
-import sfgamedataeditor.database.spellschoolname.SpellSchoolNameTableService;
+import sfgamedataeditor.database.spells.school.names.SpellSchoolNameObject;
+import sfgamedataeditor.database.spells.school.names.SpellSchoolNameTableService;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;

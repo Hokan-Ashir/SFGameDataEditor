@@ -2,20 +2,24 @@ package sfgamedataeditor.dataextraction;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.DTODecorator;
-import sfgamedataeditor.database.creatures.CreatureParametersTableService;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
 import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootTableService;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentTableService;
+import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
 import sfgamedataeditor.database.creatures.production.buildings.CreatureBuildingsTableService;
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesTableService;
+import sfgamedataeditor.database.creatures.skills.CreatureSkillTableService;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
+import sfgamedataeditor.database.items.armor.parameters.ArmorParametersTableService;
 import sfgamedataeditor.database.items.effects.ItemEffectsTableService;
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsTableService;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsTableService;
-import sfgamedataeditor.database.skillparameters.SkillParametersTableService;
-import sfgamedataeditor.database.spellname.SpellNameTableService;
-import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
+import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableService;
+import sfgamedataeditor.database.skill.parameters.SkillParametersTableService;
+import sfgamedataeditor.database.spells.names.SpellNameTableService;
+import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -57,6 +61,7 @@ public enum DataFilesParser {
         extractCreatureBuildingsParametersDataFromFile(file);
         extractCreatureResourcesParametersDataFromFile(file);
         extractCreatureParametersDataFromFile(file);
+        extractCreatureSkillsParametersDataFromFile(file);
     }
 
     private void extractCreatureParametersDataFromFile(RandomAccessFile file) {
@@ -122,10 +127,22 @@ public enum DataFilesParser {
         CreatureResourcesTableService.INSTANCE.addRecordsToCreatureResourcesParametersTable(offsettedData);
     }
 
+    private void extractCreatureSkillsParametersDataFromFile(RandomAccessFile file) {
+        CreatureSkillTableService.INSTANCE.createCreatureSkillParametersTable();
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.CREATURE_SKILLS);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.CREATURE_RESOURCES);
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
+        CreatureSkillTableService.INSTANCE.addRecordsToCreatureSkillParametersTable(offsettedData);
+    }
+
     public void extractItemDataFromFile(RandomAccessFile file) {
         extractItemEffectsDataFromFile(file);
         extractItemSpellEffectsDataFromFile(file);
         extractItemRequirementsDataFromFile(file);
+        extractWeaponParametersDataFromFile(file);
+        extractArmorParametersDataFromFile(file);
+        extractItemPricesDataFromFile(file);
     }
 
     private void extractItemEffectsDataFromFile(RandomAccessFile file) {
@@ -153,6 +170,33 @@ public enum DataFilesParser {
         int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.ITEM_REQUIREMENTS);
         List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
         ItemRequirementsTableService.INSTANCE.addRecordsToItemRequirementsTable(offsettedData);
+    }
+
+    private void extractWeaponParametersDataFromFile(RandomAccessFile file) {
+        WeaponParametersTableService.INSTANCE.createWeaponParametersTable();
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.WEAPON_PARAMETERS);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.WEAPON_PARAMETERS);
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
+        WeaponParametersTableService.INSTANCE.addRecordsToWeaponParametersTable(offsettedData);
+    }
+
+    private void extractArmorParametersDataFromFile(RandomAccessFile file) {
+        ArmorParametersTableService.INSTANCE.createArmorParametersTable();
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.ARMOR_PARAMETERS);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.ARMOR_PARAMETERS);
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
+        ArmorParametersTableService.INSTANCE.addRecordsToArmorParametersTable(offsettedData);
+    }
+
+    private void extractItemPricesDataFromFile(RandomAccessFile file) {
+        ItemPriceParametersTableService.INSTANCE.createItemPriceParametersTable();
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.ITEM_PRICES);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.ITEM_PRICES);
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
+        ItemPriceParametersTableService.INSTANCE.addRecordsToItemPriceParametersTable(offsettedData);
     }
 
     private List<Pair<byte[], Long>> readData(RandomAccessFile file, List<Pair<Integer, Integer>> dataOffsets, int dataLength) {

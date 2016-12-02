@@ -1,4 +1,4 @@
-package sfgamedataeditor.database.spellname;
+package sfgamedataeditor.database.spells.names;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;

@@ -32,7 +32,7 @@ public class CreaturesCommonParameterObject extends OffsetableObject {
 
     // TODO maybe add
     // 00 00 - unknown (maybe MP factor)
-    // 00 00 00 00 - HP factor (all nulls: player stats offset HP factor)
+    // 00 00 00 00 - HP factor (all nulls: player parameters offset HP factor)
     // 64 00 64 32 00 - unknown (maybe some other factors)
 
     @Data(offset = 21, length = 2)

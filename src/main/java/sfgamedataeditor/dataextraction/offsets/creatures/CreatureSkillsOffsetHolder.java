@@ -3,15 +3,14 @@ package sfgamedataeditor.dataextraction.offsets.creatures;
 import sfgamedataeditor.dataextraction.offsets.AbstractOffsetHolder;
 import sfgamedataeditor.views.utility.Pair;
 
-public class CreaturesOffsetHolder extends AbstractOffsetHolder {
+public class CreatureSkillsOffsetHolder extends AbstractOffsetHolder {
     @Override
     protected void setDataLength() {
-        setDataLength(47);
+        setDataLength(5);
     }
 
     @Override
     protected void fillOffsets() {
-        // unit parameters
-        addOffsetPair(new Pair<>(0x0004421D, 0x000613B4));
+        addOffsetPair(new Pair<>(0x000613C1, 0x00062E96));
     }
 }

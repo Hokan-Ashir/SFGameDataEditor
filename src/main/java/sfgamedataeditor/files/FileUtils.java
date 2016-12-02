@@ -5,11 +5,11 @@ import de.idyl.winzipaes.AesZipFileEncrypter;
 import de.idyl.winzipaes.impl.*;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.ObjectDataMappingService;
-import sfgamedataeditor.database.skillparameters.SkillParameterObject;
-import sfgamedataeditor.database.skillparameters.SkillParametersTableService;
-import sfgamedataeditor.database.spellparameters.SpellParametersObject;
-import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
-import sfgamedataeditor.database.spellschoolname.SpellSchoolNameTableService;
+import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
+import sfgamedataeditor.database.skill.parameters.SkillParametersTableService;
+import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
+import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
+import sfgamedataeditor.database.spells.school.names.SpellSchoolNameTableService;
 import sfgamedataeditor.dataextraction.DataFilesParser;
 import xdeltaencoder.org.mantlik.xdeltaencoder.XDeltaEncoder;
 

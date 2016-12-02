@@ -1,7 +1,7 @@
 package sfgamedataeditor.common.widgets.effectnumber;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
-import sfgamedataeditor.database.spellname.SpellNameTableService;
+import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 

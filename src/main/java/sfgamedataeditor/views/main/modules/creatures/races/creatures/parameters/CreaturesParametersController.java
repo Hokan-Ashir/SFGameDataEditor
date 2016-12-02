@@ -3,7 +3,7 @@ package sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.widgets.AbstractWidget;
-import sfgamedataeditor.database.creatures.CreatureParameterObject;
+import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.views.main.MainView;

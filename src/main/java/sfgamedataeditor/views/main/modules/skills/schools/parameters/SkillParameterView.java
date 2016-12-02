@@ -2,7 +2,7 @@ package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.skillparameters.GUIElements;
-import sfgamedataeditor.database.skillparameters.SkillParameterObject;
+import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
 

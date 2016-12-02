@@ -1,12 +1,12 @@
-package sfgamedataeditor.database.spellschoolname;
+package sfgamedataeditor.database.spells.school.names;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
-import sfgamedataeditor.database.spellparameters.SpellParametersObject;
-import sfgamedataeditor.database.spellparameters.SpellParametersTableService;
+import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
+import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 

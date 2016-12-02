@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.spells.schools;
 
-import sfgamedataeditor.database.spellschoolname.SpellSchoolNameObject;
-import sfgamedataeditor.database.spellschoolname.SpellSchoolNameTableService;
+import sfgamedataeditor.database.spells.school.names.SpellSchoolNameObject;
+import sfgamedataeditor.database.spells.school.names.SpellSchoolNameTableService;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;

@@ -1,4 +1,4 @@
-package sfgamedataeditor.database.skillparameters;
+package sfgamedataeditor.database.skill.parameters;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

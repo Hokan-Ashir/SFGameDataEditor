@@ -1,4 +1,4 @@
-package sfgamedataeditor.database.spellschoolname;
+package sfgamedataeditor.database.spells.school.names;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;

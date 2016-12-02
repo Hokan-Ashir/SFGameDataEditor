@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures;
 
-import sfgamedataeditor.database.creatures.CreatureParameterObject;
-import sfgamedataeditor.database.creatures.CreatureParametersTableService;
+import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
+import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModel;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModelParameter;
