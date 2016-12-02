@@ -1,4 +1,4 @@
-package sfgamedataeditor.views.main.modules.common.modules;
+package sfgamedataeditor.views.main.modules;
 
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.common.ModuleParameter;

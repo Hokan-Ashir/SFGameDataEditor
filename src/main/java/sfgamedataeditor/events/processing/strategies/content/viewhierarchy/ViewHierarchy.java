@@ -1,15 +1,17 @@
 package sfgamedataeditor.events.processing.strategies.content.viewhierarchy;
 
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.*;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.ItemsFromArmorModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.modules.*;
 import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.views.main.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
-import sfgamedataeditor.views.main.modules.common.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.creatures.races.CreaturesRacesView;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesView;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 import sfgamedataeditor.views.main.modules.items.armor.ArmorTypeListView;
+import sfgamedataeditor.views.main.modules.items.armor.parameters.ArmorParametersView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
 import sfgamedataeditor.views.main.modules.items.runes.RuneRacesListView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.SpellScrollsListView;
@@ -44,7 +46,10 @@ public enum  ViewHierarchy {
 
     private ViewHierarchyNode createItemsNodes(ViewHierarchyNode rootNode) {
         ViewHierarchyNode itemTypes = new ViewHierarchyNode(rootNode, ItemTypesView.class, new ModulesFromItemsModelCreator());
-        ViewHierarchyNode armor = new ViewHierarchyNode(itemTypes, ArmorTypeListView.class, null);
+        ViewHierarchyNode armor = new ViewHierarchyNode(itemTypes, ArmorTypeListView.class, new ItemsFromArmorModelCreator());
+        ViewHierarchyNode armorParameters = new ViewHierarchyNode(armor, ArmorParametersView.class, null);
+        armor.addChild(armorParameters);
+
         ViewHierarchyNode buildingPlans = new ViewHierarchyNode(itemTypes, ArmorTypeListView.class, null);
         ViewHierarchyNode miscellaneous = new ViewHierarchyNode(itemTypes, MiscellaneousListView.class, null);
         ViewHierarchyNode runes = new ViewHierarchyNode(itemTypes, RuneRacesListView.class, null);

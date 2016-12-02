@@ -8,7 +8,6 @@ public class ItemTypesController extends AbstractModulesController<ModuleParamet
 
     public ItemTypesController(ItemTypesView view) {
         super(view);
-        getView().getModulesComboBox().setEnabled(false);
     }
 
     @Override
@@ -18,6 +17,16 @@ public class ItemTypesController extends AbstractModulesController<ModuleParamet
 
     @Override
     public void updateView() {
+        if (getModel() == null) {
+            setModulesComboBoxValue(null);
+            return;
+        }
 
+        String moduleName = getModel().getParameter().getModuleName();
+        if (isElementExistsInComboBox(moduleName)) {
+            setModulesComboBoxValue(moduleName);
+        } else {
+            setModulesComboBoxValue(null);
+        }
     }
 }
