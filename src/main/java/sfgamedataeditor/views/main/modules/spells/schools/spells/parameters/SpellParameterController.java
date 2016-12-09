@@ -2,7 +2,7 @@ package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
-import sfgamedataeditor.common.viewconfigurations.spellparameters.GUIElements;
+import sfgamedataeditor.common.viewconfigurations.spell.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxParameter;
 import sfgamedataeditor.database.spells.names.SpellNameObject;
@@ -22,8 +22,6 @@ import java.util.*;
 public class SpellParameterController extends AbstractController<SpellParameterModelParameter, SpellParameterView> {
 
     private static final Logger LOGGER = Logger.getLogger(SpellParameterController.class);
-    private static final String SPELL_NAME_MAPPING_FILE_NAME = "spellNameMapping";
-    private static final ResourceBundle bundle = ResourceBundle.getBundle(SPELL_NAME_MAPPING_FILE_NAME, Locale.getDefault());
     private static final String SPELL_I18N_NAME_POSTFIX = ".name";
     private final Map<Integer, List<String>> i18nStrings = new HashMap<>();
     private final Map<Integer, String> i18nDTOFieldsToGUIElementsIdsMap = new HashMap<Integer, String>() {{
@@ -103,7 +101,7 @@ public class SpellParameterController extends AbstractController<SpellParameterM
 
     private void updateI18NWidgetsData(SpellParametersObject spellParametersObject) {
         Integer spellNameId = spellParametersObject.spellNameId;
-        String spellName = bundle.getString(String.valueOf(spellNameId));
+        String spellName = I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_NAME_MAPPING, String.valueOf(spellNameId));
         SpellNameObject spellNameObject = SpellNameTableService.INSTANCE.getSpellName(I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, spellName + SPELL_I18N_NAME_POSTFIX));
         for (Map.Entry<Integer, String> stringIntegerEntry : i18nDTOFieldsToGUIElementsIdsMap.entrySet()) {
             i18nStrings.get(stringIntegerEntry.getKey()).clear();

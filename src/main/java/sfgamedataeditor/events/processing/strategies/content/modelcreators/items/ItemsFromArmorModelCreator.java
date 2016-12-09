@@ -5,6 +5,6 @@ import sfgamedataeditor.events.processing.strategies.content.modelcreators.Abstr
 public class ItemsFromArmorModelCreator extends AbstractModulesModelCreator {
     @Override
     protected String createChildModuleNon18nName() {
-        return "armorTypes";
+        return "items.armor";
     }
 }

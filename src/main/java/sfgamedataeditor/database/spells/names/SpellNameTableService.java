@@ -11,7 +11,10 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.lang.reflect.Field;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
 public enum SpellNameTableService {
@@ -22,7 +25,6 @@ public enum SpellNameTableService {
     private static final String NAME_ATTRIBUTE = "name";
 
     private static final Logger LOGGER = Logger.getLogger(SpellNameTableService.class);
-    private static final String SPELL_NAME_MAPPING_PROPERTY_FILENAME = "spellNameMapping";
 
     public void createSpellNameTable() {
         CommonTableService.INSTANCE.recreateTable(SpellNameObject.class);
@@ -41,7 +43,7 @@ public enum SpellNameTableService {
 
         final List<SpellNameObject> spellNameObjects = new ArrayList<>();
 
-        ResourceBundle bundle = ResourceBundle.getBundle(SPELL_NAME_MAPPING_PROPERTY_FILENAME, Locale.getDefault());
+        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.SPELLS_NAME_MAPPING);
         for (String key : bundle.keySet()) {
             String value = bundle.getString(key);
             SpellNameObject spellNameObject = createSpellNameObject(Integer.valueOf(key), value);

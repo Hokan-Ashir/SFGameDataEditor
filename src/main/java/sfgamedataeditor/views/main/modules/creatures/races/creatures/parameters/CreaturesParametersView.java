@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters;
 
 import sfgamedataeditor.common.GUIElement;
-import sfgamedataeditor.common.viewconfigurations.creatureparameters.GUIElements;
+import sfgamedataeditor.common.viewconfigurations.creature.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.Disabled;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.mvc.objects.AbstractController;

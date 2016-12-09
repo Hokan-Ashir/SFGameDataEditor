@@ -1,8 +1,15 @@
 package sfgamedataeditor.events.processing.strategies.content.viewhierarchy;
 
-import sfgamedataeditor.events.processing.strategies.content.modelcreators.*;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.ModulesModuleCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.creatures.CreatureRacesFromCreaturesModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.creatures.CreaturesFromCreatureParametersModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.ArmorPiecesFromArmorParametersModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.ArmorTypesFromArmorPiecesModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.ItemsFromArmorModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.modules.*;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.skills.SkillSchoolsFromSkillParameterModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.spells.SpellSchoolsFromSpellsModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.spells.SpellsFromSpellParameterModelCreator;
 import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.views.main.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
@@ -11,7 +18,9 @@ import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesVi
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 import sfgamedataeditor.views.main.modules.items.armor.ArmorTypeListView;
-import sfgamedataeditor.views.main.modules.items.armor.parameters.ArmorParametersView;
+import sfgamedataeditor.views.main.modules.items.armor.pieces.list.ArmorPiecesView;
+import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
+import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansListView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
 import sfgamedataeditor.views.main.modules.items.runes.RuneRacesListView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.SpellScrollsListView;
@@ -47,10 +56,12 @@ public enum  ViewHierarchy {
     private ViewHierarchyNode createItemsNodes(ViewHierarchyNode rootNode) {
         ViewHierarchyNode itemTypes = new ViewHierarchyNode(rootNode, ItemTypesView.class, new ModulesFromItemsModelCreator());
         ViewHierarchyNode armor = new ViewHierarchyNode(itemTypes, ArmorTypeListView.class, new ItemsFromArmorModelCreator());
-        ViewHierarchyNode armorParameters = new ViewHierarchyNode(armor, ArmorParametersView.class, null);
-        armor.addChild(armorParameters);
+        ViewHierarchyNode armorPieces = new ViewHierarchyNode(armor, ArmorPiecesView.class, new ArmorTypesFromArmorPiecesModelCreator());
+        armor.addChild(armorPieces);
+        ViewHierarchyNode armorParameters = new ViewHierarchyNode(armorPieces, ArmorParametersView.class, new ArmorPiecesFromArmorParametersModelCreator());
+        armorPieces.addChild(armorParameters);
 
-        ViewHierarchyNode buildingPlans = new ViewHierarchyNode(itemTypes, ArmorTypeListView.class, null);
+        ViewHierarchyNode buildingPlans = new ViewHierarchyNode(itemTypes, BuildingPlansListView.class, null);
         ViewHierarchyNode miscellaneous = new ViewHierarchyNode(itemTypes, MiscellaneousListView.class, null);
         ViewHierarchyNode runes = new ViewHierarchyNode(itemTypes, RuneRacesListView.class, null);
         ViewHierarchyNode spellScrolls = new ViewHierarchyNode(itemTypes, SpellScrollsListView.class, null);

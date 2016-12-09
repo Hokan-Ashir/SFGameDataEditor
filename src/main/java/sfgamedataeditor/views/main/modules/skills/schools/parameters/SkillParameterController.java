@@ -2,7 +2,7 @@ package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
-import sfgamedataeditor.common.viewconfigurations.skillparameters.GUIElements;
+import sfgamedataeditor.common.viewconfigurations.skill.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxParameter;
 import sfgamedataeditor.database.skill.parameters.SkillParameterObject;

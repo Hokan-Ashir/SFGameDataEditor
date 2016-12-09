@@ -13,15 +13,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class RequirementClassSubClassWidgetListener extends AbstractWidgetListener<RequirementClassSubClassWidget, OffsetableObject> implements ItemListener {
-
-    private static final String SKILL_SUB_SCHOOL_MAPPING_FILENAME = "skillSubSchoolMapping";
-    private static final String SKILL_SCHOOL_MAPPING_FILENAME = "skillSchoolMapping";
-    private static final ResourceBundle SUBSCHOOL_BUNDLE = ResourceBundle.getBundle(SKILL_SUB_SCHOOL_MAPPING_FILENAME, Locale.getDefault());
-    private static final ResourceBundle SCHOOL_BUNDLE = ResourceBundle.getBundle(SKILL_SCHOOL_MAPPING_FILENAME, Locale.getDefault());
 
     public RequirementClassSubClassWidgetListener(RequirementClassSubClassWidget widget, Field[] DTOField) {
         super(widget, DTOField);
@@ -57,9 +51,10 @@ public class RequirementClassSubClassWidgetListener extends AbstractWidgetListen
     protected int[] getFieldValues() {
         JComboBox<String> requirementClassComboBox = getWidget().getRequirementClassComboBox();
         int requirementClassValue = 0;
-        for (String key : SCHOOL_BUNDLE.keySet()) {
+        ResourceBundle schoolBundle = I18NService.INSTANCE.getBundle(I18NTypes.SKILL_SCHOOL_MAPPING);
+        for (String key : schoolBundle.keySet()) {
             if (I18NService.INSTANCE.getMessage(I18NTypes.COMMON, key).equals(requirementClassComboBox.getSelectedItem())) {
-                requirementClassValue = Integer.parseInt(SCHOOL_BUNDLE.getString(key));
+                requirementClassValue = Integer.parseInt(schoolBundle.getString(key));
                 break;
             }
         }
@@ -70,9 +65,10 @@ public class RequirementClassSubClassWidgetListener extends AbstractWidgetListen
 
         JComboBox<String> requirementSubClassComboBox = getWidget().getRequirementSubClassComboBox();
         int requirementSubClassValue = 0;
-        for (String key : SUBSCHOOL_BUNDLE.keySet()) {
+        ResourceBundle subSchoolBundle = I18NService.INSTANCE.getBundle(I18NTypes.SKILL_SUB_SCHOOL_MAPPING);
+        for (String key : subSchoolBundle.keySet()) {
             if (I18NService.INSTANCE.getMessage(I18NTypes.COMMON, key).equals(requirementSubClassComboBox.getSelectedItem())) {
-                requirementSubClassValue = Integer.parseInt(SUBSCHOOL_BUNDLE.getString(key));
+                requirementSubClassValue = Integer.parseInt(subSchoolBundle.getString(key));
                 requirementSubClassValue /= requirementClassValue * 10;
                 break;
             }

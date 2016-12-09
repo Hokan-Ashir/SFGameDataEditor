@@ -15,7 +15,7 @@ public class ItemPriceParametersObject extends OffsetableObject {
 
     @Data(offset = 0, length = 2)
     @DatabaseField
-    private Integer itemId;
+    public Integer itemId;
 
     //    helmet 01 01
     //    upper armor 01 02
@@ -42,7 +42,7 @@ public class ItemPriceParametersObject extends OffsetableObject {
     //    blank scrolls lvl 1-20 0B 00
     @Data(offset = 2, length = 2)
     @DatabaseField
-    private Integer typeId;
+    public Integer typeId;
 
     @Data(offset = 4, length = 2)
     @DatabaseField

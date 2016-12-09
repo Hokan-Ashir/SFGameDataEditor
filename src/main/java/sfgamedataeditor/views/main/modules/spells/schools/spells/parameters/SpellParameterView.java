@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
 import sfgamedataeditor.common.GUIElement;
-import sfgamedataeditor.common.viewconfigurations.spellparameters.GUIElements;
+import sfgamedataeditor.common.viewconfigurations.spell.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.Disabled;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
 import sfgamedataeditor.mvc.objects.AbstractController;
