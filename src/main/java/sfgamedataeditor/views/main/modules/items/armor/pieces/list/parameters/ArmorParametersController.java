@@ -54,9 +54,19 @@ public class ArmorParametersController extends AbstractController<ArmorParameter
                         widget.getListener().updateWidgetValue(itemEffectsObject);
                     }
                 } else if (dtoClass.equals(ArmorParametersObject.class)) {
-                    widget.getListener().updateWidgetValue(armorParametersObject);
+                    if (armorParametersObject == null) {
+                        panel.setVisible(false);
+                    } else {
+                        panel.setVisible(true);
+                        widget.getListener().updateWidgetValue(armorParametersObject);
+                    }
                 } else if (dtoClass.equals(ItemRequirementsObject.class)) {
-                    widget.getListener().updateWidgetValue(requirementsObject);
+                    if (requirementsObject == null) {
+                        panel.setVisible(false);
+                    } else {
+                        panel.setVisible(true);
+                        widget.getListener().updateWidgetValue(requirementsObject);
+                    }
                 } else {
 
                 }

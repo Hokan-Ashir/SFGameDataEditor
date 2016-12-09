@@ -45,6 +45,7 @@ public enum ItemPriceParametersTableService {
                 try {
                     itemNames.add(I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(object.itemId)));
                 } catch (MissingResourceException e) {
+                    System.out.println();
                     // TODO remove later, when all items from all companies have been included in i18n resource files
                     // currently it began to fail searching items with ids ~ 7000
                 }

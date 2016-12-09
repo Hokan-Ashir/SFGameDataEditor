@@ -35,7 +35,11 @@ public enum ArmorParametersTableService {
 
         try {
             List<ArmorParametersObject> objects = dao.queryBuilder().where().eq("itemId", itemId).query();
-            return objects.get(0);
+            if (objects.isEmpty()) {
+                return null;
+            } else {
+                return objects.get(0);
+            }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return null;
