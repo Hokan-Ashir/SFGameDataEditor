@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.MissingResourceException;
 
 public enum ItemPriceParametersTableService {
     INSTANCE;
@@ -42,13 +41,7 @@ public enum ItemPriceParametersTableService {
             List<ItemPriceParametersObject> objects = dao.queryBuilder().where().eq("typeId", typeId).query();
             List<String> itemNames = new ArrayList<>();
             for (ItemPriceParametersObject object : objects) {
-                try {
-                    itemNames.add(I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(object.itemId)));
-                } catch (MissingResourceException e) {
-                    System.out.println();
-                    // TODO remove later, when all items from all companies have been included in i18n resource files
-                    // currently it began to fail searching items with ids ~ 7000
-                }
+                itemNames.add(I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(object.itemId)));
             }
 
             return itemNames;

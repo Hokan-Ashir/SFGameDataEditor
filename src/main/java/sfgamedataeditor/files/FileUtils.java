@@ -4,11 +4,24 @@ import de.idyl.winzipaes.AesZipFileDecrypter;
 import de.idyl.winzipaes.AesZipFileEncrypter;
 import de.idyl.winzipaes.impl.*;
 import org.apache.log4j.Logger;
+import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.ObjectDataMappingService;
+import sfgamedataeditor.database.common.OffsetableObject;
+import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
+import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootObject;
+import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
+import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
+import sfgamedataeditor.database.creatures.production.buildings.CreatureBuildingsObject;
+import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesObject;
+import sfgamedataeditor.database.creatures.skills.CreatureSkillObject;
+import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
+import sfgamedataeditor.database.items.armor.parameters.ArmorParametersObject;
+import sfgamedataeditor.database.items.effects.ItemEffectsObject;
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
+import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
+import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
-import sfgamedataeditor.database.skill.parameters.SkillParametersTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
-import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.database.spells.school.names.SpellSchoolNameTableService;
 import sfgamedataeditor.dataextraction.DataFilesParser;
 import xdeltaencoder.org.mantlik.xdeltaencoder.XDeltaEncoder;
@@ -20,6 +33,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.DataFormatException;
 import java.util.zip.ZipException;
@@ -179,27 +193,38 @@ public final class FileUtils {
             return;
         }
 
-        List<SkillParameterObject> allSkillParameters = SkillParametersTableService.INSTANCE.getAllSkillParameters();
-        for (SkillParameterObject allSkillParameter : allSkillParameters) {
-            Long offset = allSkillParameter.getOffset();
-            try {
-                file.seek(offset);
-                byte[] bytes = ObjectDataMappingService.INSTANCE.serializeObject(allSkillParameter);
-                file.write(bytes);
-            } catch (IOException e) {
-                LOGGER.error(e.getMessage(), e);
-            }
-        }
+        List<Class<? extends OffsetableObject>> dtoClasses = new ArrayList<>();
+        dtoClasses.add(SkillParameterObject.class);
+        dtoClasses.add(SpellParametersObject.class);
 
-        List<SpellParametersObject> allSpellParameterObjects = SpellParametersTableService.INSTANCE.getAllSpellParameters();
-        for (SpellParametersObject allSpellParameter : allSpellParameterObjects) {
-            Long offset = allSpellParameter.getOffset();
-            try {
-                file.seek(offset);
-                byte[] bytes = ObjectDataMappingService.INSTANCE.serializeObject(allSpellParameter);
-                file.write(bytes);
-            } catch (IOException e) {
-                LOGGER.error(e.getMessage(), e);
+        dtoClasses.add(CreatureCorpseLootObject.class);
+        dtoClasses.add(CreaturesCommonParameterObject.class);
+        dtoClasses.add(CreatureBuildingsObject.class);
+        dtoClasses.add(CreatureResourcesObject.class);
+        dtoClasses.add(CreatureEquipmentObject.class);
+        dtoClasses.add(CreatureParameterObject.class);
+        dtoClasses.add(CreatureSkillObject.class);
+        dtoClasses.add(CreatureSpellObject.class);
+
+        dtoClasses.add(ItemEffectsObject.class);
+        dtoClasses.add(ItemRequirementsObject.class);
+        dtoClasses.add(ItemPriceParametersObject.class);
+        dtoClasses.add(ItemSpellEffectsObject.class);
+        dtoClasses.add(ArmorParametersObject.class);
+        // TODO temporary disabled
+//        dtoClasses.add(WeaponParametersObject.class);
+
+        for (Class<? extends OffsetableObject> dtoClass : dtoClasses) {
+            List<? extends OffsetableObject> allTableData = CommonTableService.INSTANCE.getAllTableData(dtoClass);
+            for (OffsetableObject offsetableObject : allTableData) {
+                Long offset = offsetableObject.getOffset();
+                try {
+                    file.seek(offset);
+                    byte[] bytes = ObjectDataMappingService.INSTANCE.serializeObject(offsetableObject);
+                    file.write(bytes);
+                } catch (IOException e) {
+                    LOGGER.error(e.getMessage(), e);
+                }
             }
         }
 

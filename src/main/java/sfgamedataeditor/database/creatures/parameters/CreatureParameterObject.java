@@ -54,6 +54,9 @@ public class CreatureParameterObject extends OffsetableObject {
     private Integer wisdom;
 
     // TODO 2 bytes are unknown
+    @Data(offset = 19, length = 2)
+    @DatabaseField
+    private Integer unknown1;
 
     @Data(offset = 21, length = 2)
     @DatabaseField
@@ -89,6 +92,9 @@ public class CreatureParameterObject extends OffsetableObject {
     private Integer size;
 
     // TODO 2 bytes are unknown
+    @Data(offset = 37, length = 2)
+    @DatabaseField
+    private Integer unknown2;
 
     // in milliseconds
     // for heroes/workers at monument; for scripted creatures (campaign spawned and spell spawned)

@@ -71,8 +71,4 @@ public enum SkillParametersTableService {
             return Collections.emptySet();
         }
     }
-
-    public List<SkillParameterObject> getAllSkillParameters() {
-        return CommonTableService.INSTANCE.getAllTableData(SkillParameterObject.class);
-    }
 }

@@ -61,6 +61,11 @@ public class ItemPriceParametersObject extends OffsetableObject {
     private Integer buildingId;
 
     // TODO one byte of unknown parameters (possible values are 0, 4, 8, 16)
+    // still have to be serialized, cause during deserialization whole object is deserialized into byte array
+    // and no bytes should be replaced by zeros
+    @Data(offset = 12, length = 1)
+    @DatabaseField
+    private Integer unknown;
 
     @Data(offset = 13, length = 4)
     @DatabaseField
