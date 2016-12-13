@@ -1,22 +1,55 @@
 package sfgamedataeditor.views.main.modules.items.weapons;
 
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.common.ModuleParameter;
-import sfgamedataeditor.views.common.ModulesModel;
+import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiecesModel;
+import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiecesModelParameter;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-public class WeaponsTypesController extends AbstractModulesController<ModuleParameter, WeaponsTypesListView, ModulesModel> {
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.Set;
+
+public class WeaponsTypesController extends AbstractModulesController<ModuleParameter, WeaponsTypesListView, WeaponPiecesModel> {
 
     public WeaponsTypesController(WeaponsTypesListView view) {
         super(view);
     }
 
     @Override
-    protected ModulesModel createModel() {
-        return null;
+    protected WeaponPiecesModel createModel() {
+        String selectedArmorPieceType = getView().getSelectedModuleValue();
+        ResourceBundle commonBundle = I18NService.INSTANCE.getBundle(I18NTypes.COMMON);
+        Set<String> keySet = commonBundle.keySet();
+        String selectedKey = null;
+        for (String key : keySet) {
+            if (commonBundle.getString(key).equals(selectedArmorPieceType)) {
+                selectedKey = key;
+                break;
+            }
+        }
+
+        ResourceBundle itemPiecesBundle = I18NService.INSTANCE.getBundle(I18NTypes.ITEM_PIECES_NAME_MAPPING);
+        String itemPieceType = itemPiecesBundle.getString(selectedKey);
+        List<String> itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));
+        WeaponPiecesModelParameter parameter = new WeaponPiecesModelParameter(itemNames, null);
+        return new WeaponPiecesModel(parameter);
     }
 
     @Override
     public void updateView() {
+        if (getModel() == null) {
+            setModulesComboBoxValue(null);
+            return;
+        }
 
+        String moduleName = getModel().getParameter().getModuleName();
+        if (isElementExistsInComboBox(moduleName)) {
+            setModulesComboBoxValue(moduleName);
+        } else {
+            setModulesComboBoxValue(null);
+        }
     }
 }

@@ -12,7 +12,10 @@ import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public enum CreatureParametersTableService {
     INSTANCE;
@@ -36,12 +39,7 @@ public enum CreatureParametersTableService {
 
             Set<String> creatureRaces = new HashSet<>();
             for (CreatureParameterObject raceId : raceIds) {
-                try {
-                    creatureRaces.add(I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId.raceId)));
-                } catch (MissingResourceException e) {
-                    // TODO temporary catch exception, till all race names won't be parsed (according to code, the game has 117 unique racesIds)
-                    LOGGER.info(e.getMessage(), e);
-                }
+                creatureRaces.add(I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId.raceId)));
             }
             return creatureRaces;
         } catch (SQLException e) {

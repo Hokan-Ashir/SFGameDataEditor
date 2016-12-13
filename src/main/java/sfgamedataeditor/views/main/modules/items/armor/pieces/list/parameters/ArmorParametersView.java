@@ -1,9 +1,8 @@
 package sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters;
 
 import sfgamedataeditor.common.GUIElement;
-import sfgamedataeditor.common.viewconfigurations.item.parameters.GUIElements;
+import sfgamedataeditor.common.viewconfigurations.item.armor.GUIElements;
 import sfgamedataeditor.database.items.armor.parameters.ArmorParametersObject;
-import sfgamedataeditor.database.items.effects.ItemEffectsObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.mvc.objects.AbstractController;
@@ -20,9 +19,6 @@ public class ArmorParametersView implements ControllableView {
 
     @GUIElement(GUIElementId = GUIElements.BUY_OUT_PRICE, DTOColumnNames = "copperBuyingPrice", DTOClass = ItemPriceParametersObject.class)
     private JPanel buyoutPricePanel;
-
-    @GUIElement(GUIElementId = GUIElements.ITEM_EFFECT, DTOColumnNames = "effectNumber", DTOClass = ItemEffectsObject.class)
-    private JPanel itemEffectPanel;
 
     @GUIElement(GUIElementId = GUIElements.STRENGTH, DTOColumnNames = "strength", DTOClass = ArmorParametersObject.class)
     private JPanel strengthPanel;

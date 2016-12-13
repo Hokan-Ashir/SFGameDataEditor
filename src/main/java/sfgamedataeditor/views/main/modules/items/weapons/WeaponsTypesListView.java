@@ -2,6 +2,7 @@ package sfgamedataeditor.views.main.modules.items.weapons;
 
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiecesView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -16,7 +17,9 @@ public class WeaponsTypesListView extends AbstractModulesView {
      */
     @Override
     protected void fillComboBoxMapping() {
-
+        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.1h.weapon"), WeaponPiecesView.class);
+        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.2h.weapon"), WeaponPiecesView.class);
+        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.bow"), WeaponPiecesView.class);
     }
 
     @Override
