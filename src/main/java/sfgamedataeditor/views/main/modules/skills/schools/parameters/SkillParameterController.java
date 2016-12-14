@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.skill.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
-import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxParameter;
+import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxParameter;
 import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
 import sfgamedataeditor.database.skill.parameters.SkillParametersTableService;
 import sfgamedataeditor.events.processing.ViewRegister;

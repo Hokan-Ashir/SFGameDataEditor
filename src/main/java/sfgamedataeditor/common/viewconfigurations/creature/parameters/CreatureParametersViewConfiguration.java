@@ -2,14 +2,14 @@ package sfgamedataeditor.common.viewconfigurations.creature.parameters;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
-import sfgamedataeditor.common.widgets.equipmentslot.EquipmentSlotWidget;
-import sfgamedataeditor.common.widgets.equipmentslot.EquipmentSlotWidgetListener;
-import sfgamedataeditor.common.widgets.races.RacesWidget;
-import sfgamedataeditor.common.widgets.races.RacesWidgetListener;
-import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
-import sfgamedataeditor.common.widgets.textfield.TextFieldWidgetListener;
-import sfgamedataeditor.common.widgets.vulnerability.VulnerabilityWidget;
-import sfgamedataeditor.common.widgets.vulnerability.VulnerabilityWidgetListener;
+import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
+import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.creatures.equipmentslot.EquipmentSlotWidget;
+import sfgamedataeditor.common.widgets.creatures.equipmentslot.EquipmentSlotWidgetListener;
+import sfgamedataeditor.common.widgets.creatures.races.RacesWidget;
+import sfgamedataeditor.common.widgets.creatures.races.RacesWidgetListener;
+import sfgamedataeditor.common.widgets.creatures.vulnerability.VulnerabilityWidget;
+import sfgamedataeditor.common.widgets.creatures.vulnerability.VulnerabilityWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;

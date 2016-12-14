@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.common.widgets.creatures.races.RacesWidget">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <maximumSize width="160" height="50"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="c7eea" class="javax.swing.JLabel" binding="titleLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="160" height="25"/>
+          <minimumSize width="160" height="25"/>
+          <preferredSize width="160" height="25"/>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="d9906" class="javax.swing.JComboBox" binding="racesComboBox">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="160" height="25"/>
+          <minimumSize width="160" height="25"/>
+          <preferredSize width="160" height="25"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

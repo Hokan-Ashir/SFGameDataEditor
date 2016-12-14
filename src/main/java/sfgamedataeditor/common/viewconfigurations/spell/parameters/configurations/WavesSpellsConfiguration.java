@@ -2,8 +2,8 @@ package sfgamedataeditor.common.viewconfigurations.spell.parameters.configuratio
 
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.GUIElements;
-import sfgamedataeditor.common.widgets.effectnumber.EffectNumberWidget;
-import sfgamedataeditor.common.widgets.effectnumber.EffectNumberWidgetListener;
+import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidget;
+import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 // TODO, note, is has the same position of EffectNumberWidget as ChainSpellsConfiguration

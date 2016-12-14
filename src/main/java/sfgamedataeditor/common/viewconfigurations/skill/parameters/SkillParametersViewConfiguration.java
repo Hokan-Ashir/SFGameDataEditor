@@ -2,10 +2,10 @@ package sfgamedataeditor.common.viewconfigurations.skill.parameters;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
-import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxWidget;
-import sfgamedataeditor.common.widgets.combobox.level.SkillLevelComboBoxListener;
-import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
-import sfgamedataeditor.common.widgets.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxWidget;
+import sfgamedataeditor.common.widgets.common.combobox.level.SkillLevelComboBoxListener;
+import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
+import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;

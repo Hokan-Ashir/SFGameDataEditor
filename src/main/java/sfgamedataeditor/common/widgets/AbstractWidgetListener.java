@@ -42,7 +42,7 @@ public abstract class AbstractWidgetListener<W extends AbstractWidget, M> {
      */
     protected void setWidgetValueToDTOField() {
         int values[] = getFieldValues();
-        for (int i = 0; i <mappedFields.length; ++i) {
+        for (int i = 0; i < mappedFields.length; ++i) {
             mappedFields[i].setAccessible(true);
             try {
                 mappedFields[i].set(mappedObject, values[i]);

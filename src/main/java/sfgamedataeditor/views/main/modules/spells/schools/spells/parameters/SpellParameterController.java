@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
-import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxParameter;
+import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxParameter;
 import sfgamedataeditor.database.spells.names.SpellNameObject;
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;

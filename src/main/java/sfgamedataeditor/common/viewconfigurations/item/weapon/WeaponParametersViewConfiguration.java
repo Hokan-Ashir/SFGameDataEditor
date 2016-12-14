@@ -2,12 +2,16 @@ package sfgamedataeditor.common.viewconfigurations.item.weapon;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
-import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassSubClassWidget;
-import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassSubClassWidgetListener;
-import sfgamedataeditor.common.widgets.effectnumber.EffectNumberWidget;
-import sfgamedataeditor.common.widgets.effectnumber.EffectNumberWidgetListener;
-import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
-import sfgamedataeditor.common.widgets.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.common.combobox.requirementclass.RequirementClassSubClassWidget;
+import sfgamedataeditor.common.widgets.common.combobox.requirementclass.RequirementClassSubClassWidgetListener;
+import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidget;
+import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidgetListener;
+import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
+import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.items.weapons.metrial.WeaponMaterialWidget;
+import sfgamedataeditor.common.widgets.items.weapons.metrial.WeaponMaterialWidgetListener;
+import sfgamedataeditor.common.widgets.items.weapons.type.WeaponTypeWidget;
+import sfgamedataeditor.common.widgets.items.weapons.type.WeaponTypeWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;
@@ -24,8 +28,6 @@ public class WeaponParametersViewConfiguration extends AbstractConfiguration {
             put(GUIElements.MIN_RANGE, "minRange");
             put(GUIElements.MAX_RANGE, "maxRange");
             put(GUIElements.SPEED, "speed");
-            put(GUIElements.TYPE, "type");
-            put(GUIElements.MATERIAL, "material");
             put(GUIElements.REQUIREMENT_LEVEL, "requirementLevel");
         }};
 
@@ -42,5 +44,13 @@ public class WeaponParametersViewConfiguration extends AbstractConfiguration {
         ConfigurationWidgetParameter itemEffect = new ConfigurationWidgetParameter(EffectNumberWidget.class, EffectNumberWidgetListener.class, I18NTypes.WEAPON_GUI,
                 "effectNumber");
         addViewMapping(GUIElements.ITEM_EFFECT, itemEffect);
+
+        ConfigurationWidgetParameter material = new ConfigurationWidgetParameter(WeaponMaterialWidget.class, WeaponMaterialWidgetListener.class, I18NTypes.WEAPON_GUI,
+                "material");
+        addViewMapping(GUIElements.MATERIAL, material);
+
+        ConfigurationWidgetParameter type = new ConfigurationWidgetParameter(WeaponTypeWidget.class, WeaponTypeWidgetListener.class, I18NTypes.WEAPON_GUI,
+                "type");
+        addViewMapping(GUIElements.TYPE, type);
     }
 }

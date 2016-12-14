@@ -3,14 +3,14 @@ package sfgamedataeditor.common.viewconfigurations.spell.parameters.configuratio
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.GUIElements;
-import sfgamedataeditor.common.widgets.casttype.CastTypeWidget;
-import sfgamedataeditor.common.widgets.casttype.CastTypeWidgetListener;
-import sfgamedataeditor.common.widgets.combobox.level.LevelComboBoxWidget;
-import sfgamedataeditor.common.widgets.combobox.level.SpellLevelComboBoxListener;
-import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassSubClassWidget;
-import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassSubClassWidgetListener;
-import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
-import sfgamedataeditor.common.widgets.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxWidget;
+import sfgamedataeditor.common.widgets.common.combobox.level.SpellLevelComboBoxListener;
+import sfgamedataeditor.common.widgets.common.combobox.requirementclass.RequirementClassSubClassWidget;
+import sfgamedataeditor.common.widgets.common.combobox.requirementclass.RequirementClassSubClassWidgetListener;
+import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
+import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.spells.casttype.CastTypeWidget;
+import sfgamedataeditor.common.widgets.spells.casttype.CastTypeWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 // TODO get rid of inheritance and maybe choose something like decoration

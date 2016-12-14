@@ -2,10 +2,10 @@ package sfgamedataeditor.common.viewconfigurations.item.armor;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
-import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassSubClassWidget;
-import sfgamedataeditor.common.widgets.combobox.requirementclass.RequirementClassSubClassWidgetListener;
-import sfgamedataeditor.common.widgets.textfield.TextFieldWidget;
-import sfgamedataeditor.common.widgets.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.common.combobox.requirementclass.RequirementClassSubClassWidget;
+import sfgamedataeditor.common.widgets.common.combobox.requirementclass.RequirementClassSubClassWidgetListener;
+import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
+import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;
