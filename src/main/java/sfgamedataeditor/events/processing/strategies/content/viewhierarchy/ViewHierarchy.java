@@ -6,6 +6,8 @@ import sfgamedataeditor.events.processing.strategies.content.modelcreators.creat
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.armor.ArmorPiecesFromArmorParametersModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.armor.ArmorTypesFromArmorPiecesModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.armor.ItemsFromArmorModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.miscellaneous.ItemsFromMiscellaneousModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.miscellaneous.MiscellaneousFromMiscellaneousParametersModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.weapons.ItemsFromWeaponModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.weapons.WeaponPiecesFromWeaponParametersModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.weapons.WeaponTypesFromWeaponPiecesModelCreator;
@@ -25,6 +27,7 @@ import sfgamedataeditor.views.main.modules.items.armor.pieces.list.ArmorPiecesVi
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
 import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansListView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
+import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersView;
 import sfgamedataeditor.views.main.modules.items.runes.RuneRacesListView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.SpellScrollsListView;
 import sfgamedataeditor.views.main.modules.items.weapons.WeaponsTypesListView;
@@ -67,7 +70,10 @@ public enum  ViewHierarchy {
         armorPieces.addChild(armorParameters);
 
         ViewHierarchyNode buildingPlans = new ViewHierarchyNode(itemTypes, BuildingPlansListView.class, null);
-        ViewHierarchyNode miscellaneous = new ViewHierarchyNode(itemTypes, MiscellaneousListView.class, null);
+        ViewHierarchyNode miscellaneous = new ViewHierarchyNode(itemTypes, MiscellaneousListView.class, new ItemsFromMiscellaneousModelCreator());
+        ViewHierarchyNode miscellaneousParameters = new ViewHierarchyNode(miscellaneous, MiscellaneousParametersView.class, new MiscellaneousFromMiscellaneousParametersModelCreator());
+        miscellaneous.addChild(miscellaneousParameters);
+
         ViewHierarchyNode runes = new ViewHierarchyNode(itemTypes, RuneRacesListView.class, null);
         ViewHierarchyNode spellScrolls = new ViewHierarchyNode(itemTypes, SpellScrollsListView.class, null);
 
