@@ -8,6 +8,8 @@ import sfgamedataeditor.events.processing.strategies.content.modelcreators.items
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.armor.ItemsFromArmorModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.miscellaneous.ItemsFromMiscellaneousModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.miscellaneous.MiscellaneousFromMiscellaneousParametersModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.scrolls.ItemsFromScrollsModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.scrolls.ScrollsFromScrollsParametersModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.weapons.ItemsFromWeaponModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.weapons.WeaponPiecesFromWeaponParametersModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.weapons.WeaponTypesFromWeaponPiecesModelCreator;
@@ -29,7 +31,8 @@ import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansList
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersView;
 import sfgamedataeditor.views.main.modules.items.runes.RuneRacesListView;
-import sfgamedataeditor.views.main.modules.items.spellscrolls.SpellScrollsListView;
+import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.SpellScrollsListView;
+import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersView;
 import sfgamedataeditor.views.main.modules.items.weapons.WeaponsTypesListView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiecesView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
@@ -63,28 +66,50 @@ public enum  ViewHierarchy {
 
     private ViewHierarchyNode createItemsNodes(ViewHierarchyNode rootNode) {
         ViewHierarchyNode itemTypes = new ViewHierarchyNode(rootNode, ItemTypesView.class, new ModulesFromItemsModelCreator());
-        ViewHierarchyNode armor = new ViewHierarchyNode(itemTypes, ArmorTypeListView.class, new ItemsFromArmorModelCreator());
-        ViewHierarchyNode armorPieces = new ViewHierarchyNode(armor, ArmorPiecesView.class, new ArmorTypesFromArmorPiecesModelCreator());
-        armor.addChild(armorPieces);
-        ViewHierarchyNode armorParameters = new ViewHierarchyNode(armorPieces, ArmorParametersView.class, new ArmorPiecesFromArmorParametersModelCreator());
-        armorPieces.addChild(armorParameters);
+        ViewHierarchyNode armor = createArmorNodes(itemTypes);
 
         ViewHierarchyNode buildingPlans = new ViewHierarchyNode(itemTypes, BuildingPlansListView.class, null);
+        ViewHierarchyNode miscellaneous = createMiscellaneousNodes(itemTypes);
+
+        ViewHierarchyNode runes = new ViewHierarchyNode(itemTypes, RuneRacesListView.class, null);
+        ViewHierarchyNode spellScrolls = createSpellScrollsNodes(itemTypes);
+
+        ViewHierarchyNode weapons = createWeaponsNodes(itemTypes);
+
+        itemTypes.addChildren(armor, buildingPlans, miscellaneous, runes, spellScrolls, weapons);
+        return itemTypes;
+    }
+
+    private ViewHierarchyNode createSpellScrollsNodes(ViewHierarchyNode itemTypes) {
+        ViewHierarchyNode spellScrolls = new ViewHierarchyNode(itemTypes, SpellScrollsListView.class, new ItemsFromScrollsModelCreator());
+        ViewHierarchyNode spellScrollsParameters = new ViewHierarchyNode(spellScrolls, SpellScrollsParametersView.class, new ScrollsFromScrollsParametersModelCreator());
+        spellScrolls.addChild(spellScrollsParameters);
+        return spellScrolls;
+    }
+
+    private ViewHierarchyNode createMiscellaneousNodes(ViewHierarchyNode itemTypes) {
         ViewHierarchyNode miscellaneous = new ViewHierarchyNode(itemTypes, MiscellaneousListView.class, new ItemsFromMiscellaneousModelCreator());
         ViewHierarchyNode miscellaneousParameters = new ViewHierarchyNode(miscellaneous, MiscellaneousParametersView.class, new MiscellaneousFromMiscellaneousParametersModelCreator());
         miscellaneous.addChild(miscellaneousParameters);
+        return miscellaneous;
+    }
 
-        ViewHierarchyNode runes = new ViewHierarchyNode(itemTypes, RuneRacesListView.class, null);
-        ViewHierarchyNode spellScrolls = new ViewHierarchyNode(itemTypes, SpellScrollsListView.class, null);
-
+    private ViewHierarchyNode createWeaponsNodes(ViewHierarchyNode itemTypes) {
         ViewHierarchyNode weapons = new ViewHierarchyNode(itemTypes, WeaponsTypesListView.class, new ItemsFromWeaponModelCreator());
         ViewHierarchyNode weaponPieces = new ViewHierarchyNode(weapons, WeaponPiecesView.class, new WeaponTypesFromWeaponPiecesModelCreator());
         weapons.addChild(weaponPieces);
         ViewHierarchyNode weaponParameters = new ViewHierarchyNode(weaponPieces, WeaponParametersView.class, new WeaponPiecesFromWeaponParametersModelCreator());
         weaponPieces.addChild(weaponParameters);
+        return weapons;
+    }
 
-        itemTypes.addChildren(armor, buildingPlans, miscellaneous, runes, spellScrolls, weapons);
-        return itemTypes;
+    private ViewHierarchyNode createArmorNodes(ViewHierarchyNode itemTypes) {
+        ViewHierarchyNode armor = new ViewHierarchyNode(itemTypes, ArmorTypeListView.class, new ItemsFromArmorModelCreator());
+        ViewHierarchyNode armorPieces = new ViewHierarchyNode(armor, ArmorPiecesView.class, new ArmorTypesFromArmorPiecesModelCreator());
+        armor.addChild(armorPieces);
+        ViewHierarchyNode armorParameters = new ViewHierarchyNode(armorPieces, ArmorParametersView.class, new ArmorPiecesFromArmorParametersModelCreator());
+        armorPieces.addChild(armorParameters);
+        return armor;
     }
 
     private ViewHierarchyNode createBuildingsNodes(ViewHierarchyNode rootNode) {

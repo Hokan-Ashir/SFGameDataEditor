@@ -1,14 +1,15 @@
-package sfgamedataeditor.views.main.modules.items.miscellaneous.parameters;
+package sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters;
 
 import sfgamedataeditor.common.GUIElement;
-import sfgamedataeditor.common.viewconfigurations.item.miscellaneous.GUIElements;
+import sfgamedataeditor.common.viewconfigurations.item.scrolls.GUIElements;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
+import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
 
 import javax.swing.*;
 
-public class MiscellaneousParametersView implements ControllableView {
+public class SpellScrollsParametersView implements ControllableView {
 
     private JPanel mainPanel;
 
@@ -17,11 +18,13 @@ public class MiscellaneousParametersView implements ControllableView {
 
     @GUIElement(GUIElementId = GUIElements.BUY_OUT_PRICE, DTOColumnNames = "copperBuyingPrice", DTOClass = ItemPriceParametersObject.class)
     private JPanel buyoutPricePanel;
+
+    @GUIElement(GUIElementId = GUIElements.ITEM_EFFECT, DTOColumnNames = "effectNumber", DTOClass = ItemSpellEffectsObject.class)
     private JPanel itemEffectPanel;
 
     @Override
     public Class<? extends AbstractController> getControllerClass() {
-        return MiscellaneousParametersController.class;
+        return SpellScrollsParametersController.class;
     }
 
     @Override

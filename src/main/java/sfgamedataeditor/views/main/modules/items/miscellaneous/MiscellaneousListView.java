@@ -20,10 +20,10 @@ public class MiscellaneousListView extends AbstractModulesView {
      */
     @Override
     protected void fillComboBoxMapping() {
-        int miscellaneousType = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_PIECES_NAME_MAPPING, "items.miscelaneous"));
-        List<String> miscellaneousTypes = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(miscellaneousType);
-        for (String type : miscellaneousTypes) {
-            addMapping(type, MiscellaneousParametersView.class);
+        int miscellaneousType = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_PIECES_NAME_MAPPING, "items.miscellaneous"));
+        List<String> miscellaneousNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(miscellaneousType);
+        for (String name : miscellaneousNames) {
+            addMapping(name, MiscellaneousParametersView.class);
         }
     }
 
