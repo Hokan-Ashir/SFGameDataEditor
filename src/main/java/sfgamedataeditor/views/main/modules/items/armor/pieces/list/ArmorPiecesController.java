@@ -2,8 +2,6 @@ package sfgamedataeditor.views.main.modules.items.armor.pieces.list;
 
 import sfgamedataeditor.database.items.armor.parameters.ArmorParametersObject;
 import sfgamedataeditor.database.items.armor.parameters.ArmorParametersTableService;
-import sfgamedataeditor.database.items.effects.ItemEffectsObject;
-import sfgamedataeditor.database.items.effects.ItemEffectsTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
@@ -30,10 +28,9 @@ public class ArmorPiecesController extends AbstractModulesController<ArmorPieces
         int itemId = getItemId();
 
         ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        ItemEffectsObject itemEffectsObject = ItemEffectsTableService.INSTANCE.getObjectByItemId(itemId);
         ArmorParametersObject armorParametersObject = ArmorParametersTableService.INSTANCE.getObjectByItemId(itemId);
         ItemRequirementsObject requirementsObject = ItemRequirementsTableService.INSTANCE.getObjectByItemId(itemId);
-        ArmorParametersModelParameter parameter = new ArmorParametersModelParameter(itemPriceObject, itemEffectsObject, armorParametersObject, requirementsObject);
+        ArmorParametersModelParameter parameter = new ArmorParametersModelParameter(itemPriceObject, armorParametersObject, requirementsObject);
         return new ArmorParametersModel(parameter);
     }
 

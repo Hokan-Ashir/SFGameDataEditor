@@ -8,7 +8,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 import javax.swing.*;
 import java.util.List;
 
-public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
+public class EffectNumberWidget extends AbstractWidget<EffectNumberWidgetListener> {
 
     private JPanel mainPanel;
     private JComboBox<String> spellNameComboBox;
@@ -43,7 +43,7 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberListener> {
     }
 
     @Override
-    protected void insertListener(EffectNumberListener listener) {
+    protected void insertListener(EffectNumberWidgetListener listener) {
         spellNameComboBox.addItemListener(listener);
         spellLevelComboBox.addItemListener(listener);
         goToEffectParametersButton.addActionListener(listener);

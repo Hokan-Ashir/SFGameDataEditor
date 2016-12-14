@@ -23,9 +23,9 @@ import java.lang.reflect.Field;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class EffectNumberListener extends AbstractWidgetListener<EffectNumberWidget, OffsetableObject> implements ItemListener, ActionListener {
+public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNumberWidget, OffsetableObject> implements ItemListener, ActionListener {
 
-    public EffectNumberListener(EffectNumberWidget component, Field... mappedFields) {
+    public EffectNumberWidgetListener(EffectNumberWidget component, Field... mappedFields) {
         super(component, mappedFields);
     }
 

@@ -1,11 +1,11 @@
 package sfgamedataeditor.views.main.modules.items.weapons.pieces.list;
 
-import sfgamedataeditor.database.items.effects.ItemEffectsObject;
-import sfgamedataeditor.database.items.effects.ItemEffectsTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsTableService;
+import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
+import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsTableService;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
@@ -30,7 +30,7 @@ public class WeaponPiecesController extends AbstractModulesController<WeaponPiec
         int itemId = getItemId();
 
         ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        ItemEffectsObject itemEffectsObject = ItemEffectsTableService.INSTANCE.getObjectByItemId(itemId);
+        ItemSpellEffectsObject itemEffectsObject = ItemSpellEffectsTableService.INSTANCE.getObjectByItemId(itemId);
         WeaponParametersObject weaponParametersObject = WeaponParametersTableService.INSTANCE.getObjectByItemId(itemId);
         ItemRequirementsObject requirementsObject = ItemRequirementsTableService.INSTANCE.getObjectByItemId(itemId);
         WeaponParametersModelParameter parameter = new WeaponParametersModelParameter(itemPriceObject, itemEffectsObject, weaponParametersObject, requirementsObject);

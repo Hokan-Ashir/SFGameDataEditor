@@ -2,9 +2,9 @@ package sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters
 
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.item.weapon.GUIElements;
-import sfgamedataeditor.database.items.effects.ItemEffectsObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
+import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
@@ -21,7 +21,8 @@ public class WeaponParametersView implements ControllableView {
     @GUIElement(GUIElementId = GUIElements.BUY_OUT_PRICE, DTOColumnNames = "copperBuyingPrice", DTOClass = ItemPriceParametersObject.class)
     private JPanel buyoutPricePanel;
 
-    @GUIElement(GUIElementId = GUIElements.ITEM_EFFECT, DTOColumnNames = "effectNumber", DTOClass = ItemEffectsObject.class)
+    // TODO item may have multiple effects with help of "itemEffectNumber"
+    @GUIElement(GUIElementId = GUIElements.ITEM_EFFECT, DTOColumnNames = "effectNumber", DTOClass = ItemSpellEffectsObject.class)
     private JPanel itemEffectPanel;
 
     @GUIElement(GUIElementId = GUIElements.MIN_DAMAGE, DTOColumnNames = "minDamage", DTOClass = WeaponParametersObject.class)

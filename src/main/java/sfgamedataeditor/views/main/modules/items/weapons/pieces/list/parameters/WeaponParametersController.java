@@ -3,9 +3,9 @@ package sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.widgets.AbstractWidget;
-import sfgamedataeditor.database.items.effects.ItemEffectsObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
+import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractController;
@@ -26,7 +26,7 @@ public class WeaponParametersController extends AbstractController<WeaponParamet
     public void updateView() {
         WeaponParametersModelParameter parameter = getModel().getParameter();
         ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
-        ItemEffectsObject itemEffectsObject = parameter.getItemEffectsObject();
+        ItemSpellEffectsObject itemSpellEffectsObject = parameter.getItemSpellEffectsObject();
         WeaponParametersObject weaponParametersObject = parameter.getWeaponParametersObject();
         ItemRequirementsObject requirementsObject = parameter.getRequirementsObject();
 
@@ -46,12 +46,12 @@ public class WeaponParametersController extends AbstractController<WeaponParamet
                 Class<?> dtoClass = annotation.DTOClass();
                 if (dtoClass.equals(ItemPriceParametersObject.class)) {
                     widget.getListener().updateWidgetValue(priceParametersObject);
-                } else if (dtoClass.equals(ItemEffectsObject.class)) {
-                    if (itemEffectsObject == null) {
+                } else if (dtoClass.equals(ItemSpellEffectsObject.class)) {
+                    if (itemSpellEffectsObject == null) {
                         panel.setVisible(false);
                     } else {
                         panel.setVisible(true);
-                        widget.getListener().updateWidgetValue(itemEffectsObject);
+                        widget.getListener().updateWidgetValue(itemSpellEffectsObject);
                     }
                 } else if (dtoClass.equals(WeaponParametersObject.class)) {
                     if (weaponParametersObject == null) {
