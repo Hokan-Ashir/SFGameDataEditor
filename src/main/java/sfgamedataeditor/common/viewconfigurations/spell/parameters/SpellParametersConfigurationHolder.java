@@ -8,9 +8,7 @@ import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.Spel
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SpellParametersConfigurationHolder extends AbstractConfigurationHolder {
 
@@ -82,51 +80,38 @@ public class SpellParametersConfigurationHolder extends AbstractConfigurationHol
         add("ChainManatap");
     }};
 
+    private static final List<String> summoningSpellsNames = new ArrayList<String>() {{
+        add("SummonGoblin");
+        add("SummonSkeleton");
+        add("SummonDemon");
+        add("SummonChanneler");
+        add("SummonSpectre");
+        add("SummonWolf");
+        add("SummonBear");
+        add("SummonTreeWraith");
+        add("SummonBlade");
+        add("SummonFireGolem");
+        add("SummonIceGolem");
+        add("SummonEarthGolem");
+    }};
+
     @Override
     protected void fillConfigurationMapping() {
         addConfiguration(null, new DefaultSpellParameterViewConfiguration());
-        addShieldSpellsConfigurations();
-        addRainSpellsConfigurations();
-        addAurasSpellsConfigurations();
-        addWavesSpellsConfigurations();
-        addWhiteSpellConfigurations();
-        addElementalSpellConfigurations();
-        addChainSpellsConfigurations();
-    }
 
-    private void addChainSpellsConfigurations() {
-        ChainSpellsConfiguration configuration = new ChainSpellsConfiguration();
-        addCustomSpellsConfigurations(configuration, chainSpellsNames);
-    }
+        Map<DefaultSpellParameterViewConfiguration, List<String>> configurations = new HashMap<>();
+        configurations.put(new SummoningSpellsConfiguration(), summoningSpellsNames);
+        configurations.put(new ChainSpellsConfiguration(), chainSpellsNames);
+        configurations.put(new ElementalSpellConfiguration(), elementalSpellsNames);
+        configurations.put(new WhiteSpellConfiguration(), whiteSpellsNames);
+        configurations.put(new WavesSpellsConfiguration(), wavesSpellsNames);
+        configurations.put(new AurasSpellsConfiguration(), aurasSpellsNames);
+        configurations.put(new RainsSpellsConfiguration(), rainsSpellsNames);
+        configurations.put(new ShieldSpellsConfiguration(), shieldSpellsNames);
 
-    private void addElementalSpellConfigurations() {
-        ElementalSpellConfiguration configuration = new ElementalSpellConfiguration();
-        addCustomSpellsConfigurations(configuration, elementalSpellsNames);
-    }
-
-    private void addWhiteSpellConfigurations() {
-        WhiteSpellConfiguration configuration = new WhiteSpellConfiguration();
-        addCustomSpellsConfigurations(configuration, whiteSpellsNames);
-    }
-
-    private void addWavesSpellsConfigurations() {
-        WavesSpellsConfiguration configuration = new WavesSpellsConfiguration();
-        addCustomSpellsConfigurations(configuration, wavesSpellsNames);
-    }
-
-    private void addAurasSpellsConfigurations() {
-        AurasSpellsConfiguration configuration = new AurasSpellsConfiguration();
-        addCustomSpellsConfigurations(configuration, aurasSpellsNames);
-    }
-
-    private void addRainSpellsConfigurations() {
-        RainsSpellsConfiguration configuration = new RainsSpellsConfiguration();
-        addCustomSpellsConfigurations(configuration, rainsSpellsNames);
-    }
-
-    private void addShieldSpellsConfigurations() {
-        ShieldSpellsConfiguration configuration = new ShieldSpellsConfiguration();
-        addCustomSpellsConfigurations(configuration, shieldSpellsNames);
+        for (Map.Entry<DefaultSpellParameterViewConfiguration, List<String>> entry : configurations.entrySet()) {
+            addCustomSpellsConfigurations(entry.getKey(), entry.getValue());
+        }
     }
 
     private void addCustomSpellsConfigurations(AbstractConfiguration configuration, List<String> customSpellNames) {

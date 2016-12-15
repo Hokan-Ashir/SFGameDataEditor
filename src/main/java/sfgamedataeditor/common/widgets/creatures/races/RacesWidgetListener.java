@@ -2,7 +2,6 @@ package sfgamedataeditor.common.widgets.creatures.races;
 
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
-import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -16,14 +15,6 @@ public class RacesWidgetListener extends AbstractWidgetListener<RacesWidget, Off
 
     public RacesWidgetListener(RacesWidget component, Field... mappedFields) {
         super(component, mappedFields);
-        fillWithPredefinedRaces();
-    }
-
-    private void fillWithPredefinedRaces() {
-        Set<String> creatureRaces = CreatureParametersTableService.INSTANCE.getListOfCreatureRaces();
-        for (String creatureRace : creatureRaces) {
-            getWidget().getRacesComboBox().addItem(creatureRace);
-        }
     }
 
     @Override
