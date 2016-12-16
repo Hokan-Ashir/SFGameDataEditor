@@ -7,6 +7,8 @@ import com.j256.ormlite.dao.RawRowMapper;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -17,18 +19,25 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public enum CreatureParametersTableService {
-    INSTANCE;
+public enum CreatureParametersTableService implements TableCreationService {
+    INSTANCE {
+        @Override
+        public void createTable() {
+            CommonTableService.INSTANCE.recreateTable(CreatureParameterObject.class);
+        }
+
+        @Override
+        public void addRecordsToTable(List<Pair<byte[], Long>> offsettedData) {
+            CommonTableService.INSTANCE.addRecordsToTable(CreatureParameterObject.class, offsettedData);
+        }
+
+        @Override
+        public DTOOffsetTypes getDTOOffsetType() {
+            return DTOOffsetTypes.CREATURE_PARAMETERS;
+        }
+    };
 
     private static final Logger LOGGER = Logger.getLogger(CreatureParametersTableService.class);
-
-    public void createCreatureParametersTable() {
-        CommonTableService.INSTANCE.recreateTable(CreatureParameterObject.class);
-    }
-
-    public void addRecordsToCreatureParametersTable(List<Pair<byte[], Long>> offsettedData) {
-        CommonTableService.INSTANCE.addRecordsToTable(CreatureParameterObject.class, offsettedData);
-    }
 
     public Set<String> getListOfCreatureRaces() {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();

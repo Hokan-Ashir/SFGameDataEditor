@@ -5,23 +5,32 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public enum WeaponParametersTableService {
-    INSTANCE;
+public enum WeaponParametersTableService implements TableCreationService {
+    INSTANCE {
+        @Override
+        public void createTable() {
+            CommonTableService.INSTANCE.recreateTable(WeaponParametersObject.class);
+        }
+
+        @Override
+        public void addRecordsToTable(List<Pair<byte[], Long>> offsettedData) {
+            CommonTableService.INSTANCE.addRecordsToTable(WeaponParametersObject.class, offsettedData);
+        }
+
+        @Override
+        public DTOOffsetTypes getDTOOffsetType() {
+            return DTOOffsetTypes.WEAPON_PARAMETERS;
+        }
+    };
 
     private static final Logger LOGGER = Logger.getLogger(WeaponParametersTableService.class);
-
-    public void createWeaponParametersTable() {
-        CommonTableService.INSTANCE.recreateTable(WeaponParametersObject.class);
-    }
-
-    public void addRecordsToWeaponParametersTable(List<Pair<byte[], Long>> offsettedData) {
-        CommonTableService.INSTANCE.addRecordsToTable(WeaponParametersObject.class, offsettedData);
-    }
 
     public WeaponParametersObject getObjectByItemId(int itemId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();

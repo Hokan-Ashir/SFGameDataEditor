@@ -22,7 +22,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class SummonedCreatureWidgetListener extends AbstractWidgetListener<SummonedCreatureWidget, OffsetableObject> implements ItemListener, ActionListener {
 
@@ -66,16 +65,7 @@ public class SummonedCreatureWidgetListener extends AbstractWidgetListener<Summo
     @Override
     protected int[] getFieldValues() {
         String selectedCreatureName = (String) getWidget().getCreatureNameComboBox().getSelectedItem();
-
-        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.CREATURES);
-        Integer creatureId = 0;
-        for (String key : bundle.keySet()) {
-            if (bundle.getString(key).equals(selectedCreatureName)) {
-                creatureId = Integer.valueOf(key);
-                break;
-            }
-        }
-
+        int creatureId = ViewTools.getKeyByPropertyValue(selectedCreatureName, I18NTypes.CREATURES);
         return new int[]{creatureId};
     }
 

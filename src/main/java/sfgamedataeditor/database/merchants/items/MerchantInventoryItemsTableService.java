@@ -7,30 +7,38 @@ import com.j256.ormlite.dao.RawRowMapper;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
-import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
-import java.util.ResourceBundle;
 
-public enum MerchantInventoryItemsTableService {
-    INSTANCE;
+public enum MerchantInventoryItemsTableService implements TableCreationService {
+    INSTANCE {
+        @Override
+        public void createTable() {
+            CommonTableService.INSTANCE.recreateTable(MerchantInventoryItemsObject.class);
+        }
+
+        @Override
+        public void addRecordsToTable(List<Pair<byte[], Long>> offsettedData) {
+            CommonTableService.INSTANCE.addRecordsToTable(MerchantInventoryItemsObject.class, offsettedData);
+        }
+
+        @Override
+        public DTOOffsetTypes getDTOOffsetType() {
+            return DTOOffsetTypes.MERCHANT_INVENTORY_ITEMS;
+        }
+    };
 
     private static final Logger LOGGER = Logger.getLogger(MerchantInventoryItemsTableService.class);
 
-    public void createMerchantInventoryItemsTable() {
-        CommonTableService.INSTANCE.recreateTable(MerchantInventoryItemsObject.class);
-    }
-
-    public void addRecordsToMerchantInventoryItemsTable(List<Pair<byte[], Long>> offsettedData) {
-        CommonTableService.INSTANCE.addRecordsToTable(MerchantInventoryItemsObject.class, offsettedData);
-    }
-
     public List<Integer> getInventoryItemIdsByMerchantName(String merchantName) {
-        int merchantId = getMerchantId(merchantName);
+        int merchantId = ViewTools.getKeyByPropertyValue(merchantName, I18NTypes.CREATURES);
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         Dao<MerchantInventoryItemsObject, ?> dao;
         try {
@@ -51,18 +59,5 @@ public enum MerchantInventoryItemsTableService {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
         }
-    }
-
-    private int getMerchantId(String merchantName) {
-        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.CREATURES);
-        int merchantId = 0;
-        for (String key : bundle.keySet()) {
-            if (bundle.getString(key).equals(merchantName)) {
-                merchantId = Integer.parseInt(key);
-                break;
-            }
-        }
-
-        return merchantId;
     }
 }

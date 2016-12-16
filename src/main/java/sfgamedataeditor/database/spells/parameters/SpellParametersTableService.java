@@ -6,8 +6,10 @@ import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.spells.school.names.SpellSchoolNameObject;
 import sfgamedataeditor.database.spells.school.names.SpellSchoolNameTableService;
+import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
@@ -16,18 +18,25 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public enum SpellParametersTableService {
-    INSTANCE;
+public enum SpellParametersTableService implements TableCreationService {
+    INSTANCE {
+        @Override
+        public void createTable() {
+            CommonTableService.INSTANCE.recreateTable(SpellParametersObject.class);
+        }
+
+        @Override
+        public void addRecordsToTable(List<Pair<byte[], Long>> offsettedData) {
+            CommonTableService.INSTANCE.addRecordsToTable(SpellParametersObject.class, offsettedData);
+        }
+
+        @Override
+        public DTOOffsetTypes getDTOOffsetType() {
+            return DTOOffsetTypes.SPELL_PARAMETERS;
+        }
+    };
 
     private static final Logger LOGGER = Logger.getLogger(SpellParametersTableService.class);
-
-    public void createSpellParametersTable() {
-        CommonTableService.INSTANCE.recreateTable(SpellParametersObject.class);
-    }
-
-    public void addRecordsToSpellParametersTable(List<Pair<byte[], Long>> offsettedData) {
-        CommonTableService.INSTANCE.addRecordsToTable(SpellParametersObject.class, offsettedData);
-    }
 
     public Set<Integer> getSpellLevels(int spellId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();

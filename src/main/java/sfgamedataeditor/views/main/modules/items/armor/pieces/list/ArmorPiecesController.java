@@ -4,12 +4,10 @@ import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersModel;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
 import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.ArmorModelCreator;
-import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Set;
 
 public class ArmorPiecesController extends AbstractModulesController<ArmorPiecesModelParameter, ArmorPiecesView, ArmorParametersModel> {
 
@@ -21,22 +19,9 @@ public class ArmorPiecesController extends AbstractModulesController<ArmorPieces
 
     @Override
     protected ArmorParametersModel createModel() {
-        int itemId = getItemId();
-        return modelCreator.createModel(itemId);
-    }
-
-    private int getItemId() {
         String selectedArmorPiece = getView().getSelectedModuleValue();
-        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.ITEMS);
-        int itemId = 0;
-        Set<String> keySet = bundle.keySet();
-        for (String key : keySet) {
-            if (bundle.getString(key).equals(selectedArmorPiece)) {
-                itemId = Integer.parseInt(key);
-                break;
-            }
-        }
-        return itemId;
+        int itemId = ViewTools.getKeyByPropertyValue(selectedArmorPiece, I18NTypes.ITEMS);
+        return modelCreator.createModel(itemId);
     }
 
     @Override

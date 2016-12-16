@@ -4,11 +4,8 @@ import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersModel;
 import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.SpellScrollsModelCreator;
-import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
-
-import java.util.ResourceBundle;
-import java.util.Set;
 
 public class SpellScrollsController extends AbstractModulesController<ModuleParameter, SpellScrollsListView, SpellScrollsParametersModel> {
 
@@ -20,22 +17,9 @@ public class SpellScrollsController extends AbstractModulesController<ModulePara
 
     @Override
     protected SpellScrollsParametersModel createModel() {
-        int itemId = getItemId();
+        String selectedSpellScroll = getView().getSelectedModuleValue();
+        int itemId = ViewTools.getKeyByPropertyValue(selectedSpellScroll, I18NTypes.ITEMS);
         return modelCreator.createModel(itemId);
-    }
-
-    private int getItemId() {
-        String selectedWeaponPiece = getView().getSelectedModuleValue();
-        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.ITEMS);
-        int itemId = 0;
-        Set<String> keySet = bundle.keySet();
-        for (String key : keySet) {
-            if (bundle.getString(key).equals(selectedWeaponPiece)) {
-                itemId = Integer.parseInt(key);
-                break;
-            }
-        }
-        return itemId;
     }
 
     @Override

@@ -25,7 +25,6 @@ import sfgamedataeditor.database.merchants.inventory.MerchantInventoryObject;
 import sfgamedataeditor.database.merchants.items.MerchantInventoryItemsObject;
 import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
-import sfgamedataeditor.database.spells.school.names.SpellSchoolNameTableService;
 import sfgamedataeditor.dataextraction.DataFilesParser;
 import xdeltaencoder.org.mantlik.xdeltaencoder.XDeltaEncoder;
 
@@ -64,12 +63,7 @@ public final class FileUtils {
         FileData fileData = createTemporaryModificationFile();
         // TODO made this multithreaded, different tables, should not be harmed
         RandomAccessFile file = fileData.getFile();
-        DataFilesParser.INSTANCE.extractSkillsDataFromFile(file);
-        DataFilesParser.INSTANCE.extractSpellsDataFromFile(file);
-        DataFilesParser.INSTANCE.extractCreaturesDataFromFile(file);
-        DataFilesParser.INSTANCE.extractItemDataFromFile(file);
-        DataFilesParser.INSTANCE.extractMerchantsDataFromFile(file);
-        SpellSchoolNameTableService.INSTANCE.createSpellSchoolNameTable();
+        DataFilesParser.INSTANCE.extractAllDataFromFile(file);
 
         try {
             boolean isVersion11 = file.length() == GAME_DATA_CFF_V11_FILE_LENGTH;

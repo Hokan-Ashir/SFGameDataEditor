@@ -4,12 +4,10 @@ import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersModel;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
 import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.WeaponModelCreator;
-import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Set;
 
 public class WeaponPiecesController extends AbstractModulesController<WeaponPiecesModelParameter, WeaponPiecesView, WeaponParametersModel> {
 
@@ -21,22 +19,9 @@ public class WeaponPiecesController extends AbstractModulesController<WeaponPiec
 
     @Override
     protected WeaponParametersModel createModel() {
-        int itemId = getItemId();
-        return modelCreator.createModel(itemId);
-    }
-
-    private int getItemId() {
         String selectedWeaponPiece = getView().getSelectedModuleValue();
-        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.ITEMS);
-        int itemId = 0;
-        Set<String> keySet = bundle.keySet();
-        for (String key : keySet) {
-            if (bundle.getString(key).equals(selectedWeaponPiece)) {
-                itemId = Integer.parseInt(key);
-                break;
-            }
-        }
-        return itemId;
+        int itemId = ViewTools.getKeyByPropertyValue(selectedWeaponPiece, I18NTypes.ITEMS);
+        return modelCreator.createModel(itemId);
     }
 
     @Override

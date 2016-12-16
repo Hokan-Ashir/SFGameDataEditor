@@ -5,6 +5,8 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
@@ -13,18 +15,25 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public enum SkillParametersTableService {
-    INSTANCE;
+public enum SkillParametersTableService implements TableCreationService {
+    INSTANCE {
+        @Override
+        public void createTable() {
+            CommonTableService.INSTANCE.recreateTable(SkillParameterObject.class);
+        }
+
+        @Override
+        public void addRecordsToTable(List<Pair<byte[], Long>> offsettedData) {
+            CommonTableService.INSTANCE.addRecordsToTable(SkillParameterObject.class, offsettedData);
+        }
+
+        @Override
+        public DTOOffsetTypes getDTOOffsetType() {
+            return DTOOffsetTypes.SKILL_PARAMETERS;
+        }
+    };
 
     private static final Logger LOGGER = Logger.getLogger(SkillParametersTableService.class);
-
-    public void createSkillParametersTable() {
-        CommonTableService.INSTANCE.recreateTable(SkillParameterObject.class);
-    }
-
-    public void addRecordsToSkillParametersTable(List<Pair<byte[], Long>> offsettedData) {
-        CommonTableService.INSTANCE.addRecordsToTable(SkillParameterObject.class, offsettedData);
-    }
 
     public SkillParameterObject getSkillParameter(int skillSchoolId, int skillLevel) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();

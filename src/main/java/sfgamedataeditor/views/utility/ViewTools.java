@@ -1,7 +1,11 @@
 package sfgamedataeditor.views.utility;
 
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ResourceBundle;
 
 public class ViewTools {
 
@@ -65,5 +69,18 @@ public class ViewTools {
 
     public static void setComboBoxValuesSilently(SilentComboBoxValuesSetter setter) {
         setter.setValuesSilently();
+    }
+
+    public static Integer getKeyByPropertyValue(String value, I18NTypes type) {
+        int result = 0;
+        ResourceBundle bundle = I18NService.INSTANCE.getBundle(type);
+        for (String key : bundle.keySet()) {
+            if (bundle.getString(key).equals(value)) {
+                result = Integer.parseInt(key);
+                break;
+            }
+        }
+
+        return result;
     }
 }

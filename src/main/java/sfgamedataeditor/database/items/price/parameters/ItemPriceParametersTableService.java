@@ -5,6 +5,8 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -14,18 +16,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public enum ItemPriceParametersTableService {
-    INSTANCE;
+public enum ItemPriceParametersTableService implements TableCreationService {
+    INSTANCE {
+        @Override
+        public void createTable() {
+            CommonTableService.INSTANCE.recreateTable(ItemPriceParametersObject.class);
+        }
+
+        @Override
+        public void addRecordsToTable(List<Pair<byte[], Long>> offsettedData) {
+            CommonTableService.INSTANCE.addRecordsToTable(ItemPriceParametersObject.class, offsettedData);
+        }
+
+        @Override
+        public DTOOffsetTypes getDTOOffsetType() {
+            return DTOOffsetTypes.ITEM_PRICES;
+        }
+    };
 
     private static final Logger LOGGER = Logger.getLogger(ItemPriceParametersTableService.class);
-
-    public void createItemPriceParametersTable() {
-        CommonTableService.INSTANCE.recreateTable(ItemPriceParametersObject.class);
-    }
-
-    public void addRecordsToItemPriceParametersTable(List<Pair<byte[], Long>> offsettedData) {
-        CommonTableService.INSTANCE.addRecordsToTable(ItemPriceParametersObject.class, offsettedData);
-    }
 
     public List<String> getItemsByItemType(int typeId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();

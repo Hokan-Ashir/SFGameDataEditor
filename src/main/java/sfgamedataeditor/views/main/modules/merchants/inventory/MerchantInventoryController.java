@@ -11,10 +11,13 @@ import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
 import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.*;
 import sfgamedataeditor.views.utility.Pair;
+import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MerchantInventoryController extends AbstractModulesController<MerchantInventoryModelParameter, MerchantInventoryView, Model> {
 
@@ -87,7 +90,8 @@ public class MerchantInventoryController extends AbstractModulesController<Merch
 
     @Override
     protected Model createModel() {
-        int itemId = getItemId();
+        String selectedArmorPiece = getView().getSelectedModuleValue();
+        int itemId = ViewTools.getKeyByPropertyValue(selectedArmorPiece, I18NTypes.ITEMS);
         int itemTypeId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
         Pair<Class<? extends ControllableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
         // TODO remove in future, stub for not implemented items sold by merchants
@@ -96,20 +100,6 @@ public class MerchantInventoryController extends AbstractModulesController<Merch
         } else {
             return pair.getValue().createModel(itemId);
         }
-    }
-
-    private int getItemId() {
-        String selectedArmorPiece = getView().getSelectedModuleValue();
-        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.ITEMS);
-        int itemId = 0;
-        Set<String> keySet = bundle.keySet();
-        for (String key : keySet) {
-            if (bundle.getString(key).equals(selectedArmorPiece)) {
-                itemId = Integer.parseInt(key);
-                break;
-            }
-        }
-        return itemId;
     }
 
     @Override
