@@ -17,6 +17,8 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTable
 import sfgamedataeditor.database.items.requirements.ItemRequirementsTableService;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsTableService;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableService;
+import sfgamedataeditor.database.merchants.inventory.MerchantInventoryTableService;
+import sfgamedataeditor.database.merchants.items.MerchantInventoryItemsTableService;
 import sfgamedataeditor.database.skill.parameters.SkillParametersTableService;
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
@@ -197,6 +199,29 @@ public enum DataFilesParser {
         int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.ITEM_PRICES);
         List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
         ItemPriceParametersTableService.INSTANCE.addRecordsToItemPriceParametersTable(offsettedData);
+    }
+
+    public void extractMerchantsDataFromFile(RandomAccessFile file) {
+        extractMerchantInventoryDataFromFile(file);
+        extractMerchantInventoryItemsDataFromFile(file);
+    }
+
+    private void extractMerchantInventoryDataFromFile(RandomAccessFile file) {
+        MerchantInventoryTableService.INSTANCE.createMerchantInventoryTable();
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.MERCHANT_INVENTORY);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.MERCHANT_INVENTORY);
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
+        MerchantInventoryTableService.INSTANCE.addRecordsToMerchantInventoryTable(offsettedData);
+    }
+
+    private void extractMerchantInventoryItemsDataFromFile(RandomAccessFile file) {
+        MerchantInventoryItemsTableService.INSTANCE.createMerchantInventoryItemsTable();
+
+        List<Pair<Integer, Integer>> offsets = DataOffsetProvider.INSTANCE.getOffsets(DTOOffsetTypes.MERCHANT_INVENTORY_ITEMS);
+        int dataLength = DataOffsetProvider.INSTANCE.getDataLength(DTOOffsetTypes.MERCHANT_INVENTORY_ITEMS);
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsets, dataLength);
+        MerchantInventoryItemsTableService.INSTANCE.addRecordsToMerchantInventoryItemsTable(offsettedData);
     }
 
     private List<Pair<byte[], Long>> readData(RandomAccessFile file, List<Pair<Integer, Integer>> dataOffsets, int dataLength) {

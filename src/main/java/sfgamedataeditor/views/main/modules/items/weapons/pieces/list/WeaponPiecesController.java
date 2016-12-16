@@ -1,17 +1,9 @@
 package sfgamedataeditor.views.main.modules.items.weapons.pieces.list;
 
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
-import sfgamedataeditor.database.items.requirements.ItemRequirementsTableService;
-import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
-import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsTableService;
-import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
-import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersModel;
-import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersModelParameter;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
+import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.WeaponModelCreator;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -21,6 +13,8 @@ import java.util.Set;
 
 public class WeaponPiecesController extends AbstractModulesController<WeaponPiecesModelParameter, WeaponPiecesView, WeaponParametersModel> {
 
+    private WeaponModelCreator modelCreator = new WeaponModelCreator();
+
     public WeaponPiecesController(WeaponPiecesView view) {
         super(view);
     }
@@ -28,13 +22,7 @@ public class WeaponPiecesController extends AbstractModulesController<WeaponPiec
     @Override
     protected WeaponParametersModel createModel() {
         int itemId = getItemId();
-
-        ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        ItemSpellEffectsObject itemEffectsObject = ItemSpellEffectsTableService.INSTANCE.getObjectByItemId(itemId);
-        WeaponParametersObject weaponParametersObject = WeaponParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        ItemRequirementsObject requirementsObject = ItemRequirementsTableService.INSTANCE.getObjectByItemId(itemId);
-        WeaponParametersModelParameter parameter = new WeaponParametersModelParameter(itemPriceObject, itemEffectsObject, weaponParametersObject, requirementsObject);
-        return new WeaponParametersModel(parameter);
+        return modelCreator.createModel(itemId);
     }
 
     private int getItemId() {

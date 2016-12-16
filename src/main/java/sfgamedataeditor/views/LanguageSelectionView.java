@@ -7,9 +7,12 @@ import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
+import javax.swing.plaf.FontUIResource;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.List;
 
 public class LanguageSelectionView {
 
@@ -28,6 +31,7 @@ public class LanguageSelectionView {
     private JPanel mainPanel;
 
     private LanguageSelectionView() {
+        setUIFont(new FontUIResource("Arial", Font.PLAIN, 12));
         for (String s : LANGUAGE_FILE_MAP.values()) {
             languageSelectionComboBox.addItem(s);
         }
@@ -114,6 +118,17 @@ public class LanguageSelectionView {
 
         for (String s : componentPropertyList) {
             UIManager.put(s, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, s));
+        }
+    }
+
+    private void setUIFont(FontUIResource f) {
+        Enumeration<Object> keys = UIManager.getDefaults().keys();
+        while (keys.hasMoreElements()) {
+            Object key = keys.nextElement();
+            Object value = UIManager.get(key);
+            if (value instanceof FontUIResource) {
+                UIManager.put(key, f);
+            }
         }
     }
 

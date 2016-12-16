@@ -1,11 +1,9 @@
 package sfgamedataeditor.views.main.modules.items.miscellaneous;
 
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersModel;
-import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersModelParameter;
+import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.MiscellaneousModelCreator;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -14,6 +12,8 @@ import java.util.Set;
 
 public class MiscellaneousController extends AbstractModulesController<ModuleParameter, MiscellaneousListView, MiscellaneousParametersModel> {
 
+    private MiscellaneousModelCreator modelCreator = new MiscellaneousModelCreator();
+
     public MiscellaneousController(MiscellaneousListView view) {
         super(view);
     }
@@ -21,10 +21,7 @@ public class MiscellaneousController extends AbstractModulesController<ModulePar
     @Override
     protected MiscellaneousParametersModel createModel() {
         int itemId = getItemId();
-
-        ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        MiscellaneousParametersModelParameter parameter = new MiscellaneousParametersModelParameter(itemPriceObject);
-        return new MiscellaneousParametersModel(parameter);
+        return modelCreator.createModel(itemId);
     }
 
     private int getItemId() {

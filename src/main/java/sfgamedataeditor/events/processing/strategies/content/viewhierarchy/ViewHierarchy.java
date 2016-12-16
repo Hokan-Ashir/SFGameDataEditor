@@ -13,6 +13,7 @@ import sfgamedataeditor.events.processing.strategies.content.modelcreators.items
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.weapons.ItemsFromWeaponModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.weapons.WeaponPiecesFromWeaponParametersModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.weapons.WeaponTypesFromWeaponPiecesModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.merchants.MerchantsFromMerchantItemsModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.modules.*;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.skills.SkillSchoolsFromSkillParameterModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.spells.SpellSchoolsFromSpellsModelCreator;
@@ -36,7 +37,8 @@ import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters
 import sfgamedataeditor.views.main.modules.items.weapons.WeaponsTypesListView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiecesView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
-import sfgamedataeditor.views.main.modules.merchants.MerchantLocationsView;
+import sfgamedataeditor.views.main.modules.merchants.MerchantsView;
+import sfgamedataeditor.views.main.modules.merchants.inventory.MerchantInventoryView;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;
@@ -61,7 +63,11 @@ public enum  ViewHierarchy {
     }
 
     private ViewHierarchyNode createMerchantsNodes(ViewHierarchyNode rootNode) {
-        return new ViewHierarchyNode(rootNode, MerchantLocationsView.class, new ModulesFromMerchantsModelCreator());
+        ViewHierarchyNode merchants = new ViewHierarchyNode(rootNode, MerchantsView.class, new ModulesFromMerchantsModelCreator());
+        ViewHierarchyNode merchantItems = new ViewHierarchyNode(merchants, MerchantInventoryView.class, new MerchantsFromMerchantItemsModelCreator());
+        merchants.addChild(merchantItems);
+
+        return merchants;
     }
 
     private ViewHierarchyNode createItemsNodes(ViewHierarchyNode rootNode) {

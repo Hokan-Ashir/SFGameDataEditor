@@ -21,6 +21,8 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObjec
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
+import sfgamedataeditor.database.merchants.inventory.MerchantInventoryObject;
+import sfgamedataeditor.database.merchants.items.MerchantInventoryItemsObject;
 import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
 import sfgamedataeditor.database.spells.school.names.SpellSchoolNameTableService;
@@ -66,6 +68,7 @@ public final class FileUtils {
         DataFilesParser.INSTANCE.extractSpellsDataFromFile(file);
         DataFilesParser.INSTANCE.extractCreaturesDataFromFile(file);
         DataFilesParser.INSTANCE.extractItemDataFromFile(file);
+        DataFilesParser.INSTANCE.extractMerchantsDataFromFile(file);
         SpellSchoolNameTableService.INSTANCE.createSpellSchoolNameTable();
 
         try {
@@ -213,6 +216,9 @@ public final class FileUtils {
         dtoClasses.add(ItemSpellEffectsObject.class);
         dtoClasses.add(ArmorParametersObject.class);
         dtoClasses.add(WeaponParametersObject.class);
+
+        dtoClasses.add(MerchantInventoryObject.class);
+        dtoClasses.add(MerchantInventoryItemsObject.class);
 
         for (Class<? extends OffsetableObject> dtoClass : dtoClasses) {
             List<? extends OffsetableObject> allTableData = CommonTableService.INSTANCE.getAllTableData(dtoClass);

@@ -1,13 +1,9 @@
 package sfgamedataeditor.views.main.modules.items.spellscrolls.schools;
 
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
-import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersModel;
-import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersModelParameter;
+import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.SpellScrollsModelCreator;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -16,6 +12,8 @@ import java.util.Set;
 
 public class SpellScrollsController extends AbstractModulesController<ModuleParameter, SpellScrollsListView, SpellScrollsParametersModel> {
 
+    private SpellScrollsModelCreator modelCreator = new SpellScrollsModelCreator();
+
     public SpellScrollsController(SpellScrollsListView view) {
         super(view);
     }
@@ -23,11 +21,7 @@ public class SpellScrollsController extends AbstractModulesController<ModulePara
     @Override
     protected SpellScrollsParametersModel createModel() {
         int itemId = getItemId();
-
-        ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        ItemSpellEffectsObject itemSpellEffectsObject = ItemSpellEffectsTableService.INSTANCE.getObjectByItemId(itemId);
-        SpellScrollsParametersModelParameter parameter = new SpellScrollsParametersModelParameter(itemPriceObject, itemSpellEffectsObject);
-        return new SpellScrollsParametersModel(parameter);
+        return modelCreator.createModel(itemId);
     }
 
     private int getItemId() {

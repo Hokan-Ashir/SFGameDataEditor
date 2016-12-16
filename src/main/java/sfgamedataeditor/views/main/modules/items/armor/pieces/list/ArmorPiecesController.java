@@ -1,15 +1,9 @@
 package sfgamedataeditor.views.main.modules.items.armor.pieces.list;
 
-import sfgamedataeditor.database.items.armor.parameters.ArmorParametersObject;
-import sfgamedataeditor.database.items.armor.parameters.ArmorParametersTableService;
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
-import sfgamedataeditor.database.items.requirements.ItemRequirementsTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersModel;
-import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersModelParameter;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
+import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.ArmorModelCreator;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -19,6 +13,8 @@ import java.util.Set;
 
 public class ArmorPiecesController extends AbstractModulesController<ArmorPiecesModelParameter, ArmorPiecesView, ArmorParametersModel> {
 
+    private ArmorModelCreator modelCreator = new ArmorModelCreator();
+
     public ArmorPiecesController(ArmorPiecesView view) {
         super(view);
     }
@@ -26,12 +22,7 @@ public class ArmorPiecesController extends AbstractModulesController<ArmorPieces
     @Override
     protected ArmorParametersModel createModel() {
         int itemId = getItemId();
-
-        ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        ArmorParametersObject armorParametersObject = ArmorParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        ItemRequirementsObject requirementsObject = ItemRequirementsTableService.INSTANCE.getObjectByItemId(itemId);
-        ArmorParametersModelParameter parameter = new ArmorParametersModelParameter(itemPriceObject, armorParametersObject, requirementsObject);
-        return new ArmorParametersModel(parameter);
+        return modelCreator.createModel(itemId);
     }
 
     private int getItemId() {
