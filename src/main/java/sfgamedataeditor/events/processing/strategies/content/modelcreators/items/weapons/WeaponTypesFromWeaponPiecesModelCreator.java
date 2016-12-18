@@ -19,7 +19,7 @@ public class WeaponTypesFromWeaponPiecesModelCreator implements ModelCreator<Mod
         int itemId = ViewTools.getKeyByPropertyValue(selectedWeaponPieceName, I18NTypes.ITEMS);
 
         String typeId = String.valueOf(ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId));
-        String itemPieceNameKey = String.valueOf(ViewTools.getKeyByPropertyValue(typeId, I18NTypes.ITEM_PIECES_NAME_MAPPING));
+        String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(typeId, I18NTypes.ITEM_PIECES_NAME_MAPPING);
         String armorPieceTypeName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, itemPieceNameKey);
         ModuleParameter parameter = new ModuleParameter(armorPieceTypeName);
         return new ModulesModel(parameter);

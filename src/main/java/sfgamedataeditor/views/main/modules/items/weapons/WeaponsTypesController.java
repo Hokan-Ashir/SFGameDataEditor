@@ -21,7 +21,7 @@ public class WeaponsTypesController extends AbstractModulesController<ModulePara
     @Override
     protected WeaponPiecesModel createModel() {
         String selectedArmorPieceType = getView().getSelectedModuleValue();
-        String itemPieceId = String.valueOf(ViewTools.getKeyByPropertyValue(selectedArmorPieceType, I18NTypes.COMMON));
+        String itemPieceId = ViewTools.getKeyStringByPropertyValue(selectedArmorPieceType, I18NTypes.COMMON);
         ResourceBundle itemPiecesBundle = I18NService.INSTANCE.getBundle(I18NTypes.ITEM_PIECES_NAME_MAPPING);
         String itemPieceType = itemPiecesBundle.getString(itemPieceId);
         List<String> itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));

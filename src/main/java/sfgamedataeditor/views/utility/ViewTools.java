@@ -72,11 +72,15 @@ public class ViewTools {
     }
 
     public static Integer getKeyByPropertyValue(String value, I18NTypes type) {
-        int result = 0;
+        return Integer.parseInt(getKeyStringByPropertyValue(value, type));
+    }
+
+    public static String getKeyStringByPropertyValue(String value, I18NTypes type) {
+        String result = null;
         ResourceBundle bundle = I18NService.INSTANCE.getBundle(type);
         for (String key : bundle.keySet()) {
             if (bundle.getString(key).equals(value)) {
-                result = Integer.parseInt(key);
+                result = key;
                 break;
             }
         }
