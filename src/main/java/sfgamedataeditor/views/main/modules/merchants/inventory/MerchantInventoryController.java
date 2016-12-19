@@ -1,10 +1,14 @@
 package sfgamedataeditor.views.main.modules.merchants.inventory;
 
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
+import sfgamedataeditor.events.processing.EventProcessor;
+import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.events.types.ShowContentViewEvent;
+import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.mvc.objects.Model;
-import sfgamedataeditor.views.common.AbstractModulesController;
 import sfgamedataeditor.views.common.notimplemented.NotImplementedView;
+import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersView;
@@ -15,16 +19,23 @@ import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MerchantInventoryController extends AbstractModulesController<MerchantInventoryModelParameter, MerchantInventoryView, Model> {
+public class MerchantInventoryController extends AbstractController<MerchantInventoryModelParameter, MerchantInventoryView> implements ListSelectionListener, ActionListener {
 
     private Map<Integer, Pair<Class<? extends ControllableView>, ModelCreator>> itemTypesClassViews = new HashMap<>();
 
     public MerchantInventoryController(MerchantInventoryView view) {
         super(view);
+        getView().getMerchantInventoryItemList().addListSelectionListener(this);
+        getView().getGoToObjectButton().addActionListener(this);
         initializeItemTypesClassViewMap();
     }
 
@@ -89,32 +100,29 @@ public class MerchantInventoryController extends AbstractModulesController<Merch
     }
 
     @Override
-    protected Model createModel() {
-        String selectedArmorPiece = getView().getSelectedModuleValue();
-        int itemId = ViewTools.getKeyByPropertyValue(selectedArmorPiece, I18NTypes.ITEMS);
-        int itemTypeId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
-        Pair<Class<? extends ControllableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
-        // TODO remove in future, stub for not implemented items sold by merchants
-        if (pair == null) {
-            return null;
-        } else {
-            return pair.getValue().createModel(itemId);
-        }
-    }
-
-    @Override
     public void updateView() {
         List<Integer> itemIds = getModel().getParameter().getItemIds();
-        getView().clearComboBoxAndMapping();
+        DefaultListModel model = (DefaultListModel) getView().getMerchantInventoryItemList().getModel();
+        model.removeAllElements();
 
         for (Integer itemId : itemIds) {
             String itemName = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
-            Class<? extends ControllableView> itemParametersViewClass = getItemParametersViewClassByItemId(itemId);
-            getView().addMapping(itemName, itemParametersViewClass);
+            model.addElement(itemName);
         }
 
-        getView().reinitializeComboBox();
-        setModulesComboBoxValue(getModel().getParameter().getSelectedItem());
+        getView().getMerchantInventoryItemList().setSelectedValue(getModel().getParameter().getSelectedItem(), true);
+    }
+
+    @Override
+    public void renderView() {
+        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+        mainView.renderViewInsideContentPanel(getView());
+    }
+
+    @Override
+    public void unRenderView() {
+        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
+        mainView.unRenderViewInsideContentPanel(getView());
     }
 
     private Class<? extends ControllableView> getItemParametersViewClassByItemId(int itemId) {
@@ -125,6 +133,39 @@ public class MerchantInventoryController extends AbstractModulesController<Merch
             return NotImplementedView.class;
         } else {
             return pair.getKey();
+        }
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        // because list permit only to select one item at a time, it's not important which (first or last) selected
+        // index get from click event
+        // TODO temporary; remove later
+//        int firstIndex = e.getFirstIndex();
+//        ListModel<String> model = getView().getMerchantInventoryItemList().getModel();
+//        String selectedItemName = model.getElementAt(firstIndex);
+//        Integer itemId = getModel().getParameter().getItemIds().get(firstIndex);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int selectedItemIndex = getView().getMerchantInventoryItemList().getSelectedIndex();
+        Integer itemId = getModel().getParameter().getItemIds().get(selectedItemIndex);
+        Class<? extends ControllableView> classViewToShow = getItemParametersViewClassByItemId(itemId);
+        Model model = createModel();
+        EventProcessor.INSTANCE.process(new ShowContentViewEvent(classViewToShow, model));
+    }
+
+    private Model createModel() {
+        String selectedArmorPiece = getView().getMerchantInventoryItemList().getSelectedValue();
+        int itemId = ViewTools.getKeyByPropertyValue(selectedArmorPiece, I18NTypes.ITEMS);
+        int itemTypeId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
+        Pair<Class<? extends ControllableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
+        // TODO remove in future, stub for not implemented items sold by merchants
+        if (pair == null) {
+            return null;
+        } else {
+            return pair.getValue().createModel(itemId);
         }
     }
 }
