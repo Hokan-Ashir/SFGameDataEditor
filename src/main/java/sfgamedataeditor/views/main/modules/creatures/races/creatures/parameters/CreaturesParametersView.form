@@ -2,367 +2,596 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="216" y="30" width="800" height="560"/>
+      <xy x="216" y="30" width="1290" height="872"/>
     </constraints>
     <properties>
-      <maximumSize width="800" height="560"/>
-      <minimumSize width="800" height="560"/>
-      <preferredSize width="800" height="560"/>
+      <maximumSize width="900" height="600"/>
+      <minimumSize width="900" height="600"/>
+      <preferredSize width="900" height="600"/>
     </properties>
     <border type="none"/>
     <children>
-      <grid id="ac45f" binding="levelPanel" layout-manager="GridBagLayout">
+      <tabbedpane id="3fa7c" binding="tabPane">
         <constraints>
-          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
-      <grid id="29f81" binding="statsIdPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
-      <grid id="5e129" binding="sizePanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
-      <grid id="e6889" binding="headIdPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
-      <grid id="ddcf" binding="equipmentSlotsIdPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="150" height="140"/>
-          <minimumSize width="150" height="140"/>
-          <preferredSize width="150" height="140"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
-      <grid id="6b46a" binding="characteristicsPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="6" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="15" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties/>
-        <border type="etched"/>
-        <children>
-          <grid id="c7371" binding="strengthPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
-            </properties>
-            <border type="etched"/>
-            <children/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
           </grid>
-          <grid id="f004f" binding="staminaPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
-            </properties>
-            <border type="etched"/>
-            <children/>
-          </grid>
-          <grid id="d6e2" binding="agilityPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
-            </properties>
-            <border type="etched"/>
-            <children/>
-          </grid>
-          <grid id="c492c" binding="dexterityPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
-            </properties>
-            <border type="etched"/>
-            <children/>
-          </grid>
-          <grid id="dbf90" binding="wisdomPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
-            </properties>
-            <border type="etched"/>
-            <children/>
-          </grid>
-          <grid id="bf061" binding="intelligencePanel" layout-manager="GridBagLayout">
-            <constraints>
-              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
-            </properties>
-            <border type="etched"/>
-            <children/>
-          </grid>
-          <grid id="b0618" binding="charismaPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
-            </properties>
-            <border type="etched"/>
-            <children/>
-          </grid>
-        </children>
-      </grid>
-      <component id="4bfb5" class="javax.swing.JLabel" binding="characteristicsLabel">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="200" height="25"/>
-          <minimumSize width="200" height="25"/>
-          <preferredSize width="200" height="25"/>
-          <text value="Label"/>
+          <maximumSize width="900" height="600"/>
+          <minimumSize width="900" height="600"/>
+          <preferredSize width="900" height="600"/>
         </properties>
-      </component>
-      <grid id="744ce" binding="resistancesPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="4" column="0" row-span="1" col-span="6" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="15" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties/>
-        <border type="etched"/>
+        <border type="none"/>
         <children>
-          <grid id="9989d" binding="fireResistancePanel" layout-manager="GridBagLayout">
+          <grid id="23868" binding="commonParametersPanel" layout-manager="GridBagLayout">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+              <tabbedpane title="Untitled"/>
             </constraints>
             <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
+              <maximumSize width="850" height="560"/>
+              <minimumSize width="850" height="560"/>
+              <preferredSize width="850" height="560"/>
             </properties>
-            <border type="etched"/>
-            <children/>
+            <border type="none"/>
+            <children>
+              <component id="4bfb5" class="javax.swing.JLabel" binding="characteristicsLabel">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="200" height="25"/>
+                  <minimumSize width="200" height="25"/>
+                  <preferredSize width="200" height="25"/>
+                  <text value="Label"/>
+                </properties>
+              </component>
+              <grid id="6b46a" binding="characteristicsPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="0" bottom="15" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="705" height="75"/>
+                  <minimumSize width="705" height="75"/>
+                  <preferredSize width="705" height="75"/>
+                </properties>
+                <border type="etched"/>
+                <children>
+                  <grid id="c7371" binding="strengthPanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                  <grid id="f004f" binding="staminaPanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                  <grid id="d6e2" binding="agilityPanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                  <grid id="c492c" binding="dexterityPanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                  <grid id="dbf90" binding="wisdomPanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                  <grid id="bf061" binding="intelligencePanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                  <grid id="b0618" binding="charismaPanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                </children>
+              </grid>
+              <component id="b8679" class="javax.swing.JLabel" binding="resistancesLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="200" height="25"/>
+                  <minimumSize width="200" height="25"/>
+                  <preferredSize width="200" height="25"/>
+                  <text value="Label"/>
+                </properties>
+              </component>
+              <grid id="744ce" binding="resistancesPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="0" bottom="15" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="405" height="75"/>
+                  <minimumSize width="405" height="75"/>
+                  <preferredSize width="405" height="75"/>
+                </properties>
+                <border type="etched"/>
+                <children>
+                  <grid id="9989d" binding="fireResistancePanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                  <grid id="8c13a" binding="iceResistancePanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                  <grid id="c09be" binding="mindResistancePanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                  <grid id="f2db2" binding="blackResistancePanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                </children>
+              </grid>
+              <component id="3ae19" class="javax.swing.JLabel" binding="speedsLabel">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="200" height="25"/>
+                  <minimumSize width="200" height="25"/>
+                  <preferredSize width="200" height="25"/>
+                  <text value="Label"/>
+                </properties>
+              </component>
+              <grid id="e7df5" binding="speedsPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="6" column="0" row-span="1" col-span="5" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="0" bottom="15" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="305" height="75"/>
+                  <minimumSize width="305" height="75"/>
+                  <preferredSize width="305" height="75"/>
+                </properties>
+                <border type="etched"/>
+                <children>
+                  <grid id="6038" binding="walkSpeedPanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                  <grid id="fb03e" binding="fightSpeedPanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                  <grid id="4e60d" binding="castSpeedPanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <maximumSize width="90" height="60"/>
+                      <minimumSize width="90" height="60"/>
+                      <preferredSize width="90" height="60"/>
+                    </properties>
+                    <border type="etched"/>
+                    <children/>
+                  </grid>
+                </children>
+              </grid>
+              <grid id="5e129" binding="sizePanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="90" height="60"/>
+                  <minimumSize width="90" height="60"/>
+                  <preferredSize width="90" height="60"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="231a0" binding="spawnTimePanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="90" height="60"/>
+                  <minimumSize width="90" height="60"/>
+                  <preferredSize width="90" height="60"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="e6889" binding="headIdPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="90" height="60"/>
+                  <minimumSize width="90" height="60"/>
+                  <preferredSize width="90" height="60"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="ddcf" binding="equipmentSlotsIdPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="150" height="140"/>
+                  <minimumSize width="150" height="140"/>
+                  <preferredSize width="150" height="140"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="fefe7" binding="genderAndVulnerabilityPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="7" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="300" height="140"/>
+                  <minimumSize width="300" height="140"/>
+                  <preferredSize width="300" height="140"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="29f81" binding="statsIdPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="90" height="60"/>
+                  <minimumSize width="90" height="60"/>
+                  <preferredSize width="90" height="60"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="ac45f" binding="levelPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="90" height="60"/>
+                  <minimumSize width="90" height="60"/>
+                  <preferredSize width="90" height="60"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="8005d" binding="raceIdPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="160" height="60"/>
+                  <minimumSize width="160" height="60"/>
+                  <preferredSize width="160" height="60"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+            </children>
           </grid>
-          <grid id="8c13a" binding="iceResistancePanel" layout-manager="GridBagLayout">
+          <grid id="debdd" binding="equipmentPanel" layout-manager="GridBagLayout">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+              <tabbedpane title="Untitled"/>
             </constraints>
             <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
+              <maximumSize width="850" height="560"/>
+              <minimumSize width="850" height="560"/>
+              <preferredSize width="850" height="560"/>
             </properties>
-            <border type="etched"/>
-            <children/>
-          </grid>
-          <grid id="c09be" binding="mindResistancePanel" layout-manager="GridBagLayout">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
-            </properties>
-            <border type="etched"/>
-            <children/>
-          </grid>
-          <grid id="f2db2" binding="blackResistancePanel" layout-manager="GridBagLayout">
-            <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
-            </properties>
-            <border type="etched"/>
-            <children/>
+            <border type="none"/>
+            <children>
+              <grid id="8134e" binding="headSlotPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="215" height="110"/>
+                  <minimumSize width="215" height="110"/>
+                  <preferredSize width="215" height="110"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="69533" binding="leftHandSlotPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="215" height="110"/>
+                  <minimumSize width="215" height="110"/>
+                  <preferredSize width="215" height="110"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="5a3b9" binding="rightHandSlotPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="215" height="110"/>
+                  <minimumSize width="215" height="110"/>
+                  <preferredSize width="215" height="110"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="f8d2" binding="chestSlotPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="215" height="110"/>
+                  <minimumSize width="215" height="110"/>
+                  <preferredSize width="215" height="110"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="8b473" binding="legsSlotPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="215" height="110"/>
+                  <minimumSize width="215" height="110"/>
+                  <preferredSize width="215" height="110"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="3061c" binding="leftRingSlotPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="215" height="110"/>
+                  <minimumSize width="215" height="110"/>
+                  <preferredSize width="215" height="110"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="7bf47" binding="rightRingSlotPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="215" height="110"/>
+                  <minimumSize width="215" height="110"/>
+                  <preferredSize width="215" height="110"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <component id="2dc80" class="javax.swing.JLabel" binding="headSlotLabel">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="160" height="25"/>
+                  <minimumSize width="160" height="25"/>
+                  <preferredSize width="160" height="25"/>
+                  <text value="Label"/>
+                </properties>
+              </component>
+              <component id="e4ee4" class="javax.swing.JLabel" binding="leftHandWeaponSlotLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="160" height="25"/>
+                  <minimumSize width="160" height="25"/>
+                  <preferredSize width="160" height="25"/>
+                  <text value="Label"/>
+                </properties>
+              </component>
+              <component id="1478f" class="javax.swing.JLabel" binding="chestSlotLabel">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="160" height="25"/>
+                  <minimumSize width="160" height="25"/>
+                  <preferredSize width="160" height="25"/>
+                  <text value="Label"/>
+                </properties>
+              </component>
+              <component id="84797" class="javax.swing.JLabel" binding="rightHandWeaponSlotLabel">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="160" height="25"/>
+                  <minimumSize width="160" height="25"/>
+                  <preferredSize width="160" height="25"/>
+                  <text value="Label"/>
+                </properties>
+              </component>
+              <component id="8fff8" class="javax.swing.JLabel" binding="leftRingSlotLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="160" height="25"/>
+                  <minimumSize width="160" height="25"/>
+                  <preferredSize width="160" height="25"/>
+                  <text value="Label"/>
+                </properties>
+              </component>
+              <component id="f12b" class="javax.swing.JLabel" binding="legsSlotLabel">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="160" height="25"/>
+                  <minimumSize width="160" height="25"/>
+                  <preferredSize width="160" height="25"/>
+                  <text value="Label"/>
+                </properties>
+              </component>
+              <component id="67c39" class="javax.swing.JLabel" binding="rightRingSlotLabel">
+                <constraints>
+                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="160" height="25"/>
+                  <minimumSize width="160" height="25"/>
+                  <preferredSize width="160" height="25"/>
+                  <text value="Label"/>
+                </properties>
+              </component>
+            </children>
           </grid>
         </children>
-      </grid>
-      <component id="b8679" class="javax.swing.JLabel" binding="resistancesLabel">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="200" height="25"/>
-          <minimumSize width="200" height="25"/>
-          <preferredSize width="200" height="25"/>
-          <text value="Label"/>
-        </properties>
-      </component>
-      <grid id="e7df5" binding="speedsPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="6" column="0" row-span="1" col-span="6" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="0" bottom="15" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties/>
-        <border type="etched"/>
-        <children>
-          <grid id="6038" binding="walkSpeedPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
-            </properties>
-            <border type="etched"/>
-            <children/>
-          </grid>
-          <grid id="fb03e" binding="fightSpeedPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
-            </properties>
-            <border type="etched"/>
-            <children/>
-          </grid>
-          <grid id="4e60d" binding="castSpeedPanel" layout-manager="GridBagLayout">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-            </constraints>
-            <properties>
-              <maximumSize width="90" height="60"/>
-              <minimumSize width="90" height="60"/>
-              <preferredSize width="90" height="60"/>
-            </properties>
-            <border type="etched"/>
-            <children/>
-          </grid>
-        </children>
-      </grid>
-      <component id="3ae19" class="javax.swing.JLabel" binding="speedsLabel">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="200" height="25"/>
-          <minimumSize width="200" height="25"/>
-          <preferredSize width="200" height="25"/>
-          <text value="Label"/>
-        </properties>
-      </component>
-      <grid id="231a0" binding="spawnTimePanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
-      <grid id="fefe7" binding="genderAndVulnerabilityPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="7" column="4" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="300" height="140"/>
-          <minimumSize width="300" height="140"/>
-          <preferredSize width="300" height="140"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
-      <grid id="8005d" binding="raceIdPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="160" height="60"/>
-          <minimumSize width="160" height="60"/>
-          <preferredSize width="160" height="60"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
+      </tabbedpane>
     </children>
   </grid>
 </form>

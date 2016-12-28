@@ -3,6 +3,8 @@ package sfgamedataeditor.common.widgets.spells.summonedcreature;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
+import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
+import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentTableService;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
@@ -84,15 +86,13 @@ public class SummonedCreatureWidgetListener extends AbstractWidgetListener<Summo
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        CreatureParameterObject creatureParameterObject = getSelectedCreatureParameterObject();
-        CreaturesParametersModelParameter parameter = new CreaturesParametersModelParameter(creatureParameterObject);
+        String selectedCreatureName = (String) getWidget().getCreatureNameComboBox().getSelectedItem();
+        CreatureParameterObject creatureParameterObject = CreatureParametersTableService.INSTANCE.getCreatureParameterObjectByCreatureName(selectedCreatureName);
+        Integer creatureId = ViewTools.getKeyByPropertyValue(selectedCreatureName, I18NTypes.CREATURES);
+        List<CreatureEquipmentObject> creatureEquipment = CreatureEquipmentTableService.INSTANCE.getCreatureEquipmentByCreatureId(creatureId);
+        CreaturesParametersModelParameter parameter = new CreaturesParametersModelParameter(creatureParameterObject, creatureEquipment);
         CreaturesParametersModel model = new CreaturesParametersModel(parameter);
         ShowContentViewEvent event = new ShowContentViewEvent(CreaturesParametersView.class, model);
         EventProcessor.INSTANCE.process(event);
-    }
-
-    private CreatureParameterObject getSelectedCreatureParameterObject() {
-        String selectedCreatureName = (String) getWidget().getCreatureNameComboBox().getSelectedItem();
-        return CreatureParametersTableService.INSTANCE.getCreatureParameterObjectByCreatureName(selectedCreatureName);
     }
 }

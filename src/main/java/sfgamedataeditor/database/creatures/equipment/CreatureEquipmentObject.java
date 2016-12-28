@@ -26,7 +26,7 @@ public class CreatureEquipmentObject extends OffsetableObject {
     //    06 - left ring
     @Data(offset = 2, length = 1)
     @DatabaseField
-    private Integer equipmentSlot;
+    public Integer equipmentSlot;
 
     @Data(offset = 3, length = 2)
     @DatabaseField

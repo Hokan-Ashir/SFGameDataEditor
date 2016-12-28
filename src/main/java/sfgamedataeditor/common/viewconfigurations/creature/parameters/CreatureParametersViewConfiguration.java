@@ -4,6 +4,8 @@ import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidget;
+import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidgetListener;
 import sfgamedataeditor.common.widgets.creatures.equipmentslot.EquipmentSlotWidget;
 import sfgamedataeditor.common.widgets.creatures.equipmentslot.EquipmentSlotWidgetListener;
 import sfgamedataeditor.common.widgets.creatures.races.RacesWidget;
@@ -59,5 +61,15 @@ public class CreatureParametersViewConfiguration extends AbstractConfiguration {
                 I18NTypes.CREATURES_GUI, "equipmentSlotsId", "equipmentSlotsId.all.slots.available",
                 "equipmentSlotsId.hands.and.rings.slots.available", "equipmentSlotsId.no.slots.available");
         addViewMapping(GUIElements.EQUIPMENT_SLOTS_ID, equipmentSlots);
+
+        ConfigurationWidgetParameter equipment = new ConfigurationWidgetParameter(EquipmentWidget.class, EquipmentWidgetListener.class,
+                I18NTypes.CREATURES_GUI, "spawnTime", "spawnTime");
+        addViewMapping(GUIElements.HEAD_SLOT, equipment);
+        addViewMapping(GUIElements.CHEST_SLOT, equipment);
+        addViewMapping(GUIElements.RIGHT_HAND_SLOT, equipment);
+        addViewMapping(GUIElements.LEFT_HAND_SLOT, equipment);
+        addViewMapping(GUIElements.RIGHT_RING_SLOT, equipment);
+        addViewMapping(GUIElements.LEFT_RING_SLOT, equipment);
+        addViewMapping(GUIElements.LEGS_SLOT, equipment);
     }
 }

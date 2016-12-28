@@ -3,6 +3,7 @@ package sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.creature.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.Disabled;
+import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
@@ -88,10 +89,53 @@ public class CreaturesParametersView implements ControllableView {
     private JPanel speedsPanel;
     private JLabel speedsLabel;
 
+    private JTabbedPane tabPane;
+    private JPanel commonParametersPanel;
+    private JPanel equipmentPanel;
+
+    @GUIElement(GUIElementId = GUIElements.HEAD_SLOT, DTOColumnNames = "itemId", DTOClass = CreatureEquipmentObject.class)
+    private JPanel headSlotPanel;
+
+    @GUIElement(GUIElementId = GUIElements.LEFT_HAND_SLOT, DTOColumnNames = "itemId", DTOClass = CreatureEquipmentObject.class)
+    private JPanel leftHandSlotPanel;
+
+    @GUIElement(GUIElementId = GUIElements.RIGHT_HAND_SLOT, DTOColumnNames = "itemId", DTOClass = CreatureEquipmentObject.class)
+    private JPanel rightHandSlotPanel;
+
+    @GUIElement(GUIElementId = GUIElements.CHEST_SLOT, DTOColumnNames = "itemId", DTOClass = CreatureEquipmentObject.class)
+    private JPanel chestSlotPanel;
+
+    @GUIElement(GUIElementId = GUIElements.LEGS_SLOT, DTOColumnNames = "itemId", DTOClass = CreatureEquipmentObject.class)
+    private JPanel legsSlotPanel;
+
+    @GUIElement(GUIElementId = GUIElements.LEFT_RING_SLOT, DTOColumnNames = "itemId", DTOClass = CreatureEquipmentObject.class)
+    private JPanel leftRingSlotPanel;
+
+    @GUIElement(GUIElementId = GUIElements.RIGHT_RING_SLOT, DTOColumnNames = "itemId", DTOClass = CreatureEquipmentObject.class)
+    private JPanel rightRingSlotPanel;
+    private JLabel headSlotLabel;
+    private JLabel leftHandWeaponSlotLabel;
+    private JLabel chestSlotLabel;
+    private JLabel rightHandWeaponSlotLabel;
+    private JLabel leftRingSlotLabel;
+    private JLabel rightRingSlotLabel;
+    private JLabel legsSlotLabel;
+
     public CreaturesParametersView() {
         characteristicsLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "characteristicsLabel"));
         resistancesLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "resistancesLabel"));
         speedsLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "speedsLabel"));
+
+        headSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.head.slot.label"));
+        leftHandWeaponSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.left.hand.slot.label"));
+        rightHandWeaponSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.right.hand.slot.label"));
+        chestSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.chest.slot.label"));
+        leftRingSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.left.ring.slot.label"));
+        rightRingSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.right.ring.slot.label"));
+        legsSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.legs.slot.label"));
+
+        tabPane.setTitleAt(0, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.parameters"));
+        tabPane.setTitleAt(1, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.equipment"));
     }
 
     @Override

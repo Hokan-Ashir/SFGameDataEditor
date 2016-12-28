@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidget">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties>
+      <maximumSize width="215" height="100"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="f6f9a" class="javax.swing.JLabel" binding="itemTypeLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="160" height="25"/>
+          <minimumSize width="160" height="25"/>
+          <preferredSize width="160" height="25"/>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="889f1" class="javax.swing.JComboBox" binding="itemTypeComboBox">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="160" height="25"/>
+          <minimumSize width="160" height="25"/>
+          <preferredSize width="160" height="25"/>
+        </properties>
+      </component>
+      <component id="90eb6" class="javax.swing.JLabel" binding="itemPieceLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="160" height="25"/>
+          <minimumSize width="160" height="25"/>
+          <preferredSize width="160" height="25"/>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="f6c3e" class="javax.swing.JComboBox" binding="itemPieceComboBox">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="160" height="25"/>
+          <minimumSize width="160" height="25"/>
+          <preferredSize width="160" height="25"/>
+        </properties>
+      </component>
+      <component id="99843" class="javax.swing.JButton" binding="goToItemButton">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="50" height="25"/>
+          <minimumSize width="50" height="25"/>
+          <preferredSize width="50" height="25"/>
+          <text value="&gt;&gt;"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

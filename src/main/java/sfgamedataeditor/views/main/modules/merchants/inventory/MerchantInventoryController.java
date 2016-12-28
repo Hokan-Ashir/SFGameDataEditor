@@ -125,17 +125,6 @@ public class MerchantInventoryController extends AbstractController<MerchantInve
         mainView.unRenderViewInsideContentPanel(getView());
     }
 
-    private Class<? extends ControllableView> getItemParametersViewClassByItemId(int itemId) {
-        int itemTypeId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
-        Pair<Class<? extends ControllableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
-        // TODO remove in future, stub for not implemented items sold by merchants
-        if (pair == null) {
-            return NotImplementedView.class;
-        } else {
-            return pair.getKey();
-        }
-    }
-
     @Override
     public void valueChanged(ListSelectionEvent e) {
         // because list permit only to select one item at a time, it's not important which (first or last) selected
@@ -156,9 +145,20 @@ public class MerchantInventoryController extends AbstractController<MerchantInve
         EventProcessor.INSTANCE.process(new ShowContentViewEvent(classViewToShow, model));
     }
 
+    private Class<? extends ControllableView> getItemParametersViewClassByItemId(int itemId) {
+        int itemTypeId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
+        Pair<Class<? extends ControllableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
+        // TODO remove in future, stub for not implemented items sold by merchants
+        if (pair == null) {
+            return NotImplementedView.class;
+        } else {
+            return pair.getKey();
+        }
+    }
+
     private Model createModel() {
-        String selectedArmorPiece = getView().getMerchantInventoryItemList().getSelectedValue();
-        int itemId = ViewTools.getKeyByPropertyValue(selectedArmorPiece, I18NTypes.ITEMS);
+        String selectedItem = getView().getMerchantInventoryItemList().getSelectedValue();
+        int itemId = ViewTools.getKeyByPropertyValue(selectedItem, I18NTypes.ITEMS);
         int itemTypeId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
         Pair<Class<? extends ControllableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
         // TODO remove in future, stub for not implemented items sold by merchants

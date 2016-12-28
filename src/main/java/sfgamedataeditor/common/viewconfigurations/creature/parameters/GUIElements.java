@@ -24,7 +24,14 @@ public final class GUIElements {
     public static final int GENDER_AND_VULNERABILITY = 20;
     public static final int HEAD_ID = 21;
     public static final int EQUIPMENT_SLOTS_ID = 22;
-    
+    public static final int HEAD_SLOT = 23;
+    public static final int LEFT_HAND_SLOT = 24;
+    public static final int RIGHT_HAND_SLOT = 25;
+    public static final int CHEST_SLOT = 26;
+    public static final int LEGS_SLOT = 27;
+    public static final int LEFT_RING_SLOT = 28;
+    public static final int RIGHT_RING_SLOT = 29;
+
     private GUIElements() {
         
     }
