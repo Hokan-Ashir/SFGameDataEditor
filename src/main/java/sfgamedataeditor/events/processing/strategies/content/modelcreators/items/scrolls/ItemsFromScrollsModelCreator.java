@@ -5,6 +5,6 @@ import sfgamedataeditor.events.processing.strategies.content.modelcreators.Abstr
 public class ItemsFromScrollsModelCreator extends AbstractModulesModelCreator {
     @Override
     protected String createChildModuleNon18nName() {
-        return "items.spellScrolls";
+        return "items.scrolls";
     }
 }

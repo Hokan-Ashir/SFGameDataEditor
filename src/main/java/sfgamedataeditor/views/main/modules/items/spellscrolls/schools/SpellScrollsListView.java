@@ -12,7 +12,7 @@ import java.util.List;
 public class SpellScrollsListView extends AbstractModulesView {
 
     public SpellScrollsListView() {
-        super(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.spellScrolls"));
+        super(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.scrolls"));
     }
 
     /**

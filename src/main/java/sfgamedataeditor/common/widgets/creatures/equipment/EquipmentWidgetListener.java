@@ -9,10 +9,10 @@ import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.views.common.notimplemented.NotImplementedView;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
+import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersView;
+import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
-import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.ArmorModelCreator;
-import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.ModelCreator;
-import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.WeaponModelCreator;
+import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.*;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -42,6 +42,22 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     private void initializeItemTypesClassViewMap() {
         addArmorViewsMapping();
         addWeaponsViewsMapping();
+        addSpellScrollsViewsMapping();
+        addMiscellaneousViewsMapping();
+    }
+
+    private void addSpellScrollsViewsMapping() {
+        SpellScrollsModelCreator creator = new SpellScrollsModelCreator();
+        Pair<Class<? extends ControllableView>, ModelCreator> pair = new Pair<Class<? extends ControllableView>, ModelCreator>(SpellScrollsParametersView.class, creator);
+        int scrollsTypeId = getItemTypeByNameMapping("items.scrolls");
+        itemTypesClassViews.put(scrollsTypeId, pair);
+    }
+
+    private void addMiscellaneousViewsMapping() {
+        MiscellaneousModelCreator creator = new MiscellaneousModelCreator();
+        Pair<Class<? extends ControllableView>, ModelCreator> pair = new Pair<Class<? extends ControllableView>, ModelCreator>(MiscellaneousParametersView.class, creator);
+        int miscellaneousTypeId = getItemTypeByNameMapping("items.miscellaneous");
+        itemTypesClassViews.put(miscellaneousTypeId, pair);
     }
 
     private void addWeaponsViewsMapping() {

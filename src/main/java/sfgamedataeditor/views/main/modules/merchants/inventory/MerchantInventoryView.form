@@ -2,24 +2,11 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.main.modules.merchants.inventory.MerchantInventoryView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="600" height="1076"/>
+      <xy x="20" y="20" width="500" height="1076"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <component id="dfec7" class="javax.swing.JLabel" binding="itemTypeLabel">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <labelFor value="c08d3"/>
-          <maximumSize width="160" height="25"/>
-          <minimumSize width="160" height="25"/>
-          <preferredSize width="160" height="25"/>
-          <text value="Label"/>
-        </properties>
-      </component>
       <component id="82563" class="javax.swing.JLabel" binding="inventoryLabel">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -27,19 +14,6 @@
         </constraints>
         <properties>
           <labelFor value="593f5"/>
-          <maximumSize width="160" height="25"/>
-          <minimumSize width="160" height="25"/>
-          <preferredSize width="160" height="25"/>
-          <text value="Label"/>
-        </properties>
-      </component>
-      <component id="8d0d8" class="javax.swing.JLabel" binding="itemNameLabel">
-        <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <labelFor value="2c62"/>
           <maximumSize width="160" height="25"/>
           <minimumSize width="160" height="25"/>
           <preferredSize width="160" height="25"/>
@@ -104,40 +78,19 @@
           </scrollpane>
         </children>
       </grid>
-      <component id="c08d3" class="javax.swing.JComboBox" binding="itemTypeComboBox">
+      <grid id="71c66" binding="selectedItemPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="160" height="25"/>
-          <minimumSize width="160" height="25"/>
-          <preferredSize width="160" height="25"/>
+          <maximumSize width="225" height="110"/>
+          <minimumSize width="225" height="110"/>
+          <preferredSize width="225" height="110"/>
         </properties>
-      </component>
-      <component id="2c62" class="javax.swing.JComboBox" binding="itemNameComboBox">
-        <constraints>
-          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="160" height="25"/>
-          <minimumSize width="160" height="25"/>
-          <preferredSize width="160" height="25"/>
-        </properties>
-      </component>
-      <component id="82d91" class="javax.swing.JButton" binding="goToObjectButton">
-        <constraints>
-          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="50" height="25"/>
-          <minimumSize width="50" height="25"/>
-          <preferredSize width="50" height="25"/>
-          <text value="&gt;&gt;"/>
-        </properties>
-      </component>
+        <border type="etched"/>
+        <children/>
+      </grid>
     </children>
   </grid>
 </form>

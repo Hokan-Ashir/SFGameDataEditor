@@ -37,7 +37,7 @@ public enum DataFilesParser {
     public void extractAllDataFromFile(RandomAccessFile file) {
         SpellNameTableService.INSTANCE.createSpellNameTable();
 
-
+        // not multithreaded, cause will be slower with additional threads - database is bottleneck
         List<TableCreationService> services = new ArrayList<TableCreationService>() {{
             add(SkillParametersTableService.INSTANCE);
             add(SpellParametersTableService.INSTANCE);

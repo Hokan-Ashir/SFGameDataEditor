@@ -61,7 +61,6 @@ public final class FileUtils {
 
     public static void uploadDataIntoDatabase() {
         FileData fileData = createTemporaryModificationFile();
-        // TODO made this multithreaded, different tables, should not be harmed
         RandomAccessFile file = fileData.getFile();
         DataFilesParser.INSTANCE.extractAllDataFromFile(file);
 

@@ -13,10 +13,11 @@ import javax.swing.*;
 
 public class SpellParameterView implements ControllableView {
 
+    private static final int SPELL_COMMON_PARAMETERS_TAB_INDEX = 0;
+    private static final int SPELL_PARAMETERS_TAB_INDEX = 1;
+
     // inside spell offsets are taken from http://spellforcefanforum.hostoi.com/viewtopic.php?f=14&t=242
     private JPanel mainPanel;
-
-    private JLabel parametersLabel;
 
     @Disabled
     @GUIElement(GUIElementId = GUIElements.NUMBER, DTOColumnNames = "spellNumber", DTOClass = SpellParametersObject.class)
@@ -92,9 +93,12 @@ public class SpellParameterView implements ControllableView {
     @GUIElement(GUIElementId = GUIElements.PARAMETER_9, DTOColumnNames = "parameter9", DTOClass = SpellParametersObject.class)
     private JPanel parameter9Panel;
     private JPanel parametersPanel;
+    private JTabbedPane tabPane;
+    private JPanel commonParameters;
 
     public SpellParameterView() {
-        parametersLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "spellParameters"));
+        tabPane.setTitleAt(SPELL_COMMON_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "tab.spell.common.parameters"));
+        tabPane.setTitleAt(SPELL_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "tab.spell.parameters"));
     }
 
     /**

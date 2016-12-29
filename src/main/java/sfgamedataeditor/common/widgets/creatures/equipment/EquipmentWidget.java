@@ -38,6 +38,8 @@ public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
             add("items.armor.rings");
             add("items.figureNPC");
             add("items.hero.army.units");
+            add("items.scrolls");
+            add("items.miscellaneous");
         }};
 
         for (String i18nItemTypeKey : i18nItemTypeKeys) {

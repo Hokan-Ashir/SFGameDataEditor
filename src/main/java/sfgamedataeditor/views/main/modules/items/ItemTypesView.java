@@ -22,7 +22,7 @@ public class ItemTypesView extends AbstractModulesView {
     protected void fillComboBoxMapping() {
         addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.weapons"), WeaponsTypesListView.class);
         addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor"), ArmorTypeListView.class);
-        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.spellScrolls"), SpellScrollsListView.class);
+        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.scrolls"), SpellScrollsListView.class);
 //        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.runes"), RuneRacesListView.class);
 //        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.buildingPlans"), BuildingPlansListView.class);
         addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.miscellaneous"), MiscellaneousListView.class);
