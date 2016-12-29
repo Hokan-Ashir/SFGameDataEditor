@@ -31,6 +31,11 @@ public final class GUIElements {
     public static final int LEGS_SLOT = 27;
     public static final int LEFT_RING_SLOT = 28;
     public static final int RIGHT_RING_SLOT = 29;
+    public static final int EXPERIENCE = 30;
+    public static final int ARMOR = 31;
+    public static final int SPELL1 = 32;
+    public static final int SPELL2 = 33;
+    public static final int SPELL3 = 34;
 
     private GUIElements() {
         

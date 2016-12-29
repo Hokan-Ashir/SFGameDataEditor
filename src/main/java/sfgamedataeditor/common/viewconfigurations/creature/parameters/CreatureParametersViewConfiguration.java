@@ -2,6 +2,8 @@ package sfgamedataeditor.common.viewconfigurations.creature.parameters;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
+import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidget;
+import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidgetListener;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
 import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidget;
@@ -40,6 +42,8 @@ public class CreatureParametersViewConfiguration extends AbstractConfiguration {
             put(GUIElements.SIZE, "size");
             put(GUIElements.SPAWN_TIME, "spawnTime");
             put(GUIElements.HEAD_ID, "headId");
+            put(GUIElements.EXPERIENCE, "experience");
+            put(GUIElements.ARMOR, "armor");
         }};
 
         for (Map.Entry<Integer, String> entry : i18nMap.entrySet()) {
@@ -71,5 +75,11 @@ public class CreatureParametersViewConfiguration extends AbstractConfiguration {
         addViewMapping(GUIElements.RIGHT_RING_SLOT, equipment);
         addViewMapping(GUIElements.LEFT_RING_SLOT, equipment);
         addViewMapping(GUIElements.LEGS_SLOT, equipment);
+
+        ConfigurationWidgetParameter spells = new ConfigurationWidgetParameter(EffectNumberWidget.class, EffectNumberWidgetListener.class,
+                I18NTypes.CREATURES_GUI, "spells.spell.name");
+        addViewMapping(GUIElements.SPELL1, spells);
+        addViewMapping(GUIElements.SPELL2, spells);
+        addViewMapping(GUIElements.SPELL3, spells);
     }
 }

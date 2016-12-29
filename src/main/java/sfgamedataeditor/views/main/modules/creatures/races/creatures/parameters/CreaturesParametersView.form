@@ -27,7 +27,7 @@
         <children>
           <grid id="23868" binding="commonParametersPanel" layout-manager="GridBagLayout">
             <constraints>
-              <tabbedpane title="Untitled"/>
+              <tabbedpane title="CommonParameters"/>
             </constraints>
             <properties>
               <maximumSize width="850" height="560"/>
@@ -400,11 +400,37 @@
                 <border type="etched"/>
                 <children/>
               </grid>
+              <grid id="766dd" binding="armorPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="90" height="60"/>
+                  <minimumSize width="90" height="60"/>
+                  <preferredSize width="90" height="60"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="63175" binding="experiencePanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="90" height="60"/>
+                  <minimumSize width="90" height="60"/>
+                  <preferredSize width="90" height="60"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
             </children>
           </grid>
           <grid id="debdd" binding="equipmentPanel" layout-manager="GridBagLayout">
             <constraints>
-              <tabbedpane title="Untitled"/>
+              <tabbedpane title="Equipment"/>
             </constraints>
             <properties>
               <maximumSize width="850" height="560"/>
@@ -588,6 +614,57 @@
                   <text value="Label"/>
                 </properties>
               </component>
+            </children>
+          </grid>
+          <grid id="70c0c" binding="spellsPanel" layout-manager="GridBagLayout">
+            <constraints>
+              <tabbedpane title="Spells"/>
+            </constraints>
+            <properties>
+              <alignmentX value="0.0"/>
+              <alignmentY value="1.0"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="13e17" binding="spell1Panel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="300" height="90"/>
+                  <minimumSize width="300" height="90"/>
+                  <preferredSize width="300" height="90"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="54ef1" binding="spell2Panel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="300" height="90"/>
+                  <minimumSize width="300" height="90"/>
+                  <preferredSize width="300" height="90"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="324d3" binding="spell3Panel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="300" height="90"/>
+                  <minimumSize width="300" height="90"/>
+                  <preferredSize width="300" height="90"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
             </children>
           </grid>
         </children>

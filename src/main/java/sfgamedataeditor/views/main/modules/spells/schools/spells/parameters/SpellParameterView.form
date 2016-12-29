@@ -133,9 +133,9 @@
               <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <maximumSize width="300" height="80"/>
-              <minimumSize width="300" height="80"/>
-              <preferredSize width="300" height="80"/>
+              <maximumSize width="300" height="90"/>
+              <minimumSize width="300" height="90"/>
+              <preferredSize width="300" height="90"/>
             </properties>
             <border type="none"/>
             <children/>
@@ -146,9 +146,9 @@
               <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <maximumSize width="300" height="80"/>
-              <minimumSize width="300" height="80"/>
-              <preferredSize width="300" height="80"/>
+              <maximumSize width="300" height="90"/>
+              <minimumSize width="300" height="90"/>
+              <preferredSize width="300" height="90"/>
             </properties>
             <border type="none"/>
             <children/>
@@ -159,9 +159,9 @@
               <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <maximumSize width="300" height="80"/>
-              <minimumSize width="300" height="80"/>
-              <preferredSize width="300" height="80"/>
+              <maximumSize width="300" height="90"/>
+              <minimumSize width="300" height="90"/>
+              <preferredSize width="300" height="90"/>
             </properties>
             <border type="none"/>
             <children/>
@@ -172,9 +172,9 @@
               <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <maximumSize width="300" height="80"/>
-              <minimumSize width="300" height="80"/>
-              <preferredSize width="300" height="80"/>
+              <maximumSize width="300" height="90"/>
+              <minimumSize width="300" height="90"/>
+              <preferredSize width="300" height="90"/>
             </properties>
             <border type="none"/>
             <children/>
@@ -185,9 +185,9 @@
               <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <maximumSize width="300" height="80"/>
-              <minimumSize width="300" height="80"/>
-              <preferredSize width="300" height="80"/>
+              <maximumSize width="300" height="90"/>
+              <minimumSize width="300" height="90"/>
+              <preferredSize width="300" height="90"/>
             </properties>
             <border type="none"/>
             <children/>
@@ -198,9 +198,9 @@
               <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <maximumSize width="300" height="80"/>
-              <minimumSize width="300" height="80"/>
-              <preferredSize width="300" height="80"/>
+              <maximumSize width="300" height="90"/>
+              <minimumSize width="300" height="90"/>
+              <preferredSize width="300" height="90"/>
             </properties>
             <border type="none"/>
             <children/>
@@ -211,9 +211,9 @@
               <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <maximumSize width="300" height="80"/>
-              <minimumSize width="300" height="80"/>
-              <preferredSize width="300" height="80"/>
+              <maximumSize width="300" height="90"/>
+              <minimumSize width="300" height="90"/>
+              <preferredSize width="300" height="90"/>
             </properties>
             <border type="none"/>
             <children/>
@@ -224,9 +224,9 @@
               <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <maximumSize width="300" height="80"/>
-              <minimumSize width="300" height="80"/>
-              <preferredSize width="300" height="80"/>
+              <maximumSize width="300" height="90"/>
+              <minimumSize width="300" height="90"/>
+              <preferredSize width="300" height="90"/>
             </properties>
             <border type="none"/>
             <children/>
@@ -237,9 +237,9 @@
               <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <maximumSize width="300" height="80"/>
-              <minimumSize width="300" height="80"/>
-              <preferredSize width="300" height="80"/>
+              <maximumSize width="300" height="90"/>
+              <minimumSize width="300" height="90"/>
+              <preferredSize width="300" height="90"/>
             </properties>
             <border type="none"/>
             <children/>

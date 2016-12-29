@@ -14,14 +14,15 @@ See "What it can't do" section below to be aware of restrictions.
 # What it can do
  - Editing skill requirements, i.e how many strength you need to level-up your Heavy Combat Art skill to level 7
  - Editing spell parameters, i.e. how far you can cast your "Fireball" or how many hops can make "Chain Pain"
- - Editing creature common parameters and equipment, i.e. how many strength has "Blade Nightmare", how to make Lena/Urias mortal, how to make Eloni Watcher bite you with poisonous claw
+ - Editing creature common parameters, spells and equipment, i.e. how many strength has "Blade Nightmare", how to make Lena/Urias mortal, how to make Eloni Watcher bite you with poisonous claw
  - Editing ARMOR, WEAPONS and MISCELLANEOUS common parameters, i.e. how many strength "Amra's armor" gives you and for how much you can sell/buyout it or how far "Heartseeker" can shoot
  - Creating compact sf-mod files, which stores your modifications
  - Loading sf-mod files created by other users
  - Merging sf-mod files with your GameData.cff files to get modificated data, which you can test in game
 
 # What it can't do
- - Currently only support for changing skill-to-characteristics requirements, spells parameters, creatures common parameters and equipment, armor, weapons and miscellaneous items common parameters
+ - Add new elements. It's tricky to explain easy, but game will crush if we will add anything into Gamedata.cff file
+ - Currently only support for changing skill-to-characteristics requirements, spells parameters, creatures common parameters, spells and equipment, armor, weapons and miscellaneous items common parameters
  - Currently NO localization for creature names, creature races and items cause they are too many (in progress) 
  - No other languages except English, Russian, German and French
 

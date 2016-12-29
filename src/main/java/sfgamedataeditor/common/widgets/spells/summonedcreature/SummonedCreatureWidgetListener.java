@@ -3,10 +3,13 @@ package sfgamedataeditor.common.widgets.spells.summonedcreature;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
+import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentTableService;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
+import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
+import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModel;
@@ -89,8 +92,11 @@ public class SummonedCreatureWidgetListener extends AbstractWidgetListener<Summo
         String selectedCreatureName = (String) getWidget().getCreatureNameComboBox().getSelectedItem();
         CreatureParameterObject creatureParameterObject = CreatureParametersTableService.INSTANCE.getCreatureParameterObjectByCreatureName(selectedCreatureName);
         Integer creatureId = ViewTools.getKeyByPropertyValue(selectedCreatureName, I18NTypes.CREATURES);
+        CreaturesCommonParameterObject commonParameterObject = CreatureCommonParametersTableService.INSTANCE.getCreatureParametersByCreatureId(creatureId);
         List<CreatureEquipmentObject> creatureEquipment = CreatureEquipmentTableService.INSTANCE.getCreatureEquipmentByCreatureId(creatureId);
-        CreaturesParametersModelParameter parameter = new CreaturesParametersModelParameter(creatureParameterObject, creatureEquipment);
+        List<CreatureSpellObject> creatureSpells = CreatureSpellTableService.INSTANCE.getCreatureSpellsByCreatureId(creatureId);
+        CreaturesParametersModelParameter parameter = new CreaturesParametersModelParameter(creatureParameterObject, commonParameterObject,
+                creatureEquipment, creatureSpells);
         CreaturesParametersModel model = new CreaturesParametersModel(parameter);
         ShowContentViewEvent event = new ShowContentViewEvent(CreaturesParametersView.class, model);
         EventProcessor.INSTANCE.process(event);

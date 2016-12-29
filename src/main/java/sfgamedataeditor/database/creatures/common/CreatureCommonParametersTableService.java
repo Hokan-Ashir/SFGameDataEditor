@@ -91,6 +91,29 @@ public enum CreatureCommonParametersTableService implements TableCreationService
         }
     }
 
+    public CreaturesCommonParameterObject getCreatureParametersByCreatureId(int creatureId) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        final Dao<CreaturesCommonParameterObject, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, CreaturesCommonParameterObject.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+
+        try {
+            List<CreaturesCommonParameterObject> objects = dao.queryBuilder().where().eq("creatureId", creatureId).query();
+            if (objects.isEmpty()) {
+                return null;
+            } else {
+                return objects.get(0);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
     private static final class CreaturesObjectDecorator implements DTODecorator<CreaturesCommonParameterObject> {
 
         @Override

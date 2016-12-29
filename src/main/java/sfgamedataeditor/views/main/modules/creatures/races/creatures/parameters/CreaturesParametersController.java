@@ -4,8 +4,10 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.creature.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
+import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
+import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.views.main.MainView;
@@ -20,10 +22,18 @@ public class CreaturesParametersController extends AbstractController<CreaturesP
 
     private static final Logger LOGGER = Logger.getLogger(CreaturesParametersController.class);
     private static final Map<Integer, Integer> SLOT_NUMBER_MAPPING = new HashMap<>();
+    private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
 
     public CreaturesParametersController(CreaturesParametersView view) {
         super(view);
         initializeSlotNumberMapping();
+        initializeSpellNumberMapping();
+    }
+
+    private void initializeSpellNumberMapping() {
+        SPELL_NUMBER_MAPPING.put(GUIElements.SPELL1, 0);
+        SPELL_NUMBER_MAPPING.put(GUIElements.SPELL2, 1);
+        SPELL_NUMBER_MAPPING.put(GUIElements.SPELL3, 2);
     }
 
     private void initializeSlotNumberMapping() {
@@ -46,8 +56,11 @@ public class CreaturesParametersController extends AbstractController<CreaturesP
 
     @Override
     public void updateView() {
-        CreatureParameterObject creatureParameterObject = getModel().getParameter().getCreatureParameterObject();
-        List<CreatureEquipmentObject> creatureEquipment = getModel().getParameter().getCreatureEquipment();
+        CreaturesParametersModelParameter parameter = getModel().getParameter();
+        CreatureParameterObject creatureParameterObject = parameter.getCreatureParameterObject();
+        CreaturesCommonParameterObject commonParameterObject = parameter.getCreatureCommonParameterObject();
+        List<CreatureEquipmentObject> creatureEquipment = parameter.getCreatureEquipment();
+        List<CreatureSpellObject> creatureSpells = parameter.getCreatureSpells();
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
@@ -61,9 +74,12 @@ public class CreaturesParametersController extends AbstractController<CreaturesP
                 JPanel panel = (JPanel) declaredField.get(getView());
                 AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
 
-                if (annotation.DTOClass().equals(CreatureParameterObject.class)) {
+                Class<?> dtoClass = annotation.DTOClass();
+                if (dtoClass.equals(CreatureParameterObject.class)) {
                     widget.getListener().updateWidgetValue(creatureParameterObject);
-                } else if (annotation.DTOClass().equals(CreatureEquipmentObject.class)) {
+                } else if (dtoClass.equals(CreaturesCommonParameterObject.class)) {
+                    widget.getListener().updateWidgetValue(commonParameterObject);
+                } else if (dtoClass.equals(CreatureEquipmentObject.class)) {
                     int elementId = annotation.GUIElementId();
                     Integer slotNumber = SLOT_NUMBER_MAPPING.get(elementId);
                     widget.setVisible(false);
@@ -72,6 +88,19 @@ public class CreaturesParametersController extends AbstractController<CreaturesP
                             widget.setVisible(true);
                             widget.getListener().updateWidgetValue(creatureEquipmentObject);
                             break;
+                        }
+                    }
+                } else if (dtoClass.equals(CreatureSpellObject.class)) {
+                    if (creatureSpells == null || creatureSpells.isEmpty()) {
+                        getView().getTabPane().setEnabledAt(CreaturesParametersView.CREATURE_SPELLS_TAB_INDEX, false);
+                    } else {
+                        getView().getTabPane().setEnabledAt(CreaturesParametersView.CREATURE_SPELLS_TAB_INDEX, true);
+                        Integer spellIndex = SPELL_NUMBER_MAPPING.get(annotation.GUIElementId());
+                        if (spellIndex >= creatureSpells.size()) {
+                            widget.setVisible(false);
+                        } else {
+                            widget.setVisible(true);
+                            widget.getListener().updateWidgetValue(creatureSpells.get(spellIndex));
                         }
                     }
                 }

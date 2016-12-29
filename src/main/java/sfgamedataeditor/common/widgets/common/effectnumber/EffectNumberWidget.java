@@ -43,6 +43,17 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberWidgetListene
     }
 
     @Override
+    public void setVisible(boolean isVisible) {
+        super.setVisible(isVisible);
+        spellNameComboBox.setVisible(isVisible);
+        spellLevelComboBox.setVisible(isVisible);
+        spellNameLabel.setVisible(isVisible);
+        spellLevelLabel.setVisible(isVisible);
+        goToEffectParametersButton.setVisible(isVisible);
+        titleLabel.setVisible(isVisible);
+    }
+
+    @Override
     protected void insertListener(EffectNumberWidgetListener listener) {
         spellNameComboBox.addItemListener(listener);
         spellLevelComboBox.addItemListener(listener);
