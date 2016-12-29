@@ -18,6 +18,8 @@ import sfgamedataeditor.events.processing.strategies.content.modelcreators.modul
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.skills.SkillSchoolsFromSkillParameterModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.spells.SpellSchoolsFromSpellsModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.spells.SpellsFromSpellParameterModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.units.UnitRacesFromUnitsModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.units.UnitsFromUnitParametersModelCreator;
 import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.views.main.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
@@ -44,6 +46,9 @@ import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParame
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
+import sfgamedataeditor.views.main.modules.units.races.UnitRacesView;
+import sfgamedataeditor.views.main.modules.units.races.units.UnitListView;
+import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +64,19 @@ public enum  ViewHierarchy {
                 createMerchantsNodes(rootNode),
                 createSkillNodes(rootNode),
                 createSpellNodes(rootNode),
-                createCreaturesNodes(rootNode));
+                createCreaturesNodes(rootNode),
+                createUnitsNodes(rootNode));
+    }
+
+    private ViewHierarchyNode createUnitsNodes(ViewHierarchyNode rootNode) {
+        ViewHierarchyNode units = new ViewHierarchyNode(rootNode, UnitRacesView.class, new ModulesFromUnitsModelCreator());
+        ViewHierarchyNode unitList = new ViewHierarchyNode(units, UnitListView.class, new UnitRacesFromUnitsModelCreator());
+        units.addChild(unitList);
+
+        ViewHierarchyNode unitParameters = new ViewHierarchyNode(unitList, UnitsParametersView.class, new UnitsFromUnitParametersModelCreator());
+        unitList.addChild(unitParameters);
+
+        return units;
     }
 
     private ViewHierarchyNode createMerchantsNodes(ViewHierarchyNode rootNode) {

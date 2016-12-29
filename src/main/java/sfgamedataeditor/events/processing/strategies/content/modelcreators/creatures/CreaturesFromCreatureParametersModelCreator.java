@@ -15,8 +15,7 @@ public class CreaturesFromCreatureParametersModelCreator implements ModelCreator
         Integer raceId = childModel.getParameter().getCreatureParameterObject().raceId;
         List<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceId(raceId);
 
-        Integer statsId = childModel.getParameter().getCreatureParameterObject().statsId;
-        String selectedCreatureName = CreatureCommonParametersTableService.INSTANCE.getCreatureNameById(statsId);
+        String selectedCreatureName = childModel.getParameter().getCreatureCommonParameterObject().name;
         CreaturesModelParameter parameter = new CreaturesModelParameter(creatureNames, selectedCreatureName);
         return new CreaturesModel(parameter);
     }

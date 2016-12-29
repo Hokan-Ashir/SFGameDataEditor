@@ -15,6 +15,7 @@ import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
+import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,6 +33,8 @@ public enum  ConfigurationsHolder {
         configurationHolderMap.put(WeaponParametersView.class, new WeaponParametersConfigurationHolder());
         configurationHolderMap.put(MiscellaneousParametersView.class, new MiscellaneousParametersConfigurationHolder());
         configurationHolderMap.put(SpellScrollsParametersView.class, new ScrollsParametersConfigurationHolder());
+        // TODO maybe create duplication, and it should be because of additional resources/building requirements for units
+        configurationHolderMap.put(UnitsParametersView.class, new CreatureParametersConfigurationHolder());
     }
 
     public AbstractConfigurationHolder getConfigurationHolder(Class<? extends View> viewClass) {
