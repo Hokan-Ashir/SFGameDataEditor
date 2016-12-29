@@ -21,6 +21,7 @@ public enum I18NService {
     private static final String SKILL_SCHOOL_MAPPING_FILE_NAME = "skillSchoolMapping";
     private static final String ARMOR_GUI_PROPERTIES_FILE_NAME = "armor_gui";
     private static final String WEAPON_GUI_PROPERTIES_FILE_NAME = "weapon_gui";
+    private static final String UNITS_GUI_PROPERTIES_FILE_NAME = "units_gui";
 
     private final Map<I18NTypes, ResourceBundle> bundleMap = new HashMap<>();
 
@@ -38,6 +39,7 @@ public enum I18NService {
         bundleMap.put(I18NTypes.SKILL_SCHOOL_MAPPING, ResourceBundle.getBundle(SKILL_SCHOOL_MAPPING_FILE_NAME, locale));
         bundleMap.put(I18NTypes.ARMOR_GUI, ResourceBundle.getBundle(ARMOR_GUI_PROPERTIES_FILE_NAME, locale));
         bundleMap.put(I18NTypes.WEAPON_GUI, ResourceBundle.getBundle(WEAPON_GUI_PROPERTIES_FILE_NAME, locale));
+        bundleMap.put(I18NTypes.UNITS_GUI, ResourceBundle.getBundle(UNITS_GUI_PROPERTIES_FILE_NAME, locale));
     }
 
     public String getMessage(I18NTypes type, String key) {

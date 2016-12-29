@@ -7,6 +7,7 @@ import sfgamedataeditor.common.viewconfigurations.item.scrolls.ScrollsParameters
 import sfgamedataeditor.common.viewconfigurations.item.weapon.WeaponParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.skill.parameters.SkillParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.SpellParametersConfigurationHolder;
+import sfgamedataeditor.common.viewconfigurations.unit.parameters.UnitParametersConfigurationHolder;
 import sfgamedataeditor.mvc.objects.View;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
@@ -33,8 +34,7 @@ public enum  ConfigurationsHolder {
         configurationHolderMap.put(WeaponParametersView.class, new WeaponParametersConfigurationHolder());
         configurationHolderMap.put(MiscellaneousParametersView.class, new MiscellaneousParametersConfigurationHolder());
         configurationHolderMap.put(SpellScrollsParametersView.class, new ScrollsParametersConfigurationHolder());
-        // TODO maybe create duplication, and it should be because of additional resources/building requirements for units
-        configurationHolderMap.put(UnitsParametersView.class, new CreatureParametersConfigurationHolder());
+        configurationHolderMap.put(UnitsParametersView.class, new UnitParametersConfigurationHolder());
     }
 
     public AbstractConfigurationHolder getConfigurationHolder(Class<? extends View> viewClass) {

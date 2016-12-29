@@ -1,9 +1,10 @@
 package sfgamedataeditor.views.main.modules.units.races.units.parameters;
 
 import sfgamedataeditor.common.GUIElement;
-import sfgamedataeditor.common.viewconfigurations.creature.parameters.GUIElements;
+import sfgamedataeditor.common.viewconfigurations.unit.parameters.GUIElements;
 import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
+import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.mvc.objects.ControllableView;
@@ -17,6 +18,8 @@ public class UnitsParametersView implements ControllableView {
     private static final int CREATURE_PARAMETERS_TAB_INDEX = 0;
     private static final int CREATURE_EQUIPMENT_TAB_INDEX = 1;
     public static final int CREATURE_SPELLS_TAB_INDEX = 2;
+    public static final int CREATURE_RESOURCES_TAB_INDEX = 3;
+    public static final int CREATURE_BUILDINGS_TAB_INDEX = 4;
 
     private JPanel mainPanel;
 
@@ -68,6 +71,17 @@ public class UnitsParametersView implements ControllableView {
 
     @GUIElement(GUIElementId = GUIElements.SPELL3, DTOColumnNames = "spellNumber", DTOClass = CreatureSpellObject.class)
     private JPanel spell3Panel;
+    private JPanel requirementsPanel;
+    private JPanel buildingsPanel;
+
+    @GUIElement(GUIElementId = GUIElements.RESOURCE1, DTOColumnNames = "resourceAmount", DTOClass = CreatureResourcesObject.class)
+    private JPanel resource1Panel;
+
+    @GUIElement(GUIElementId = GUIElements.RESOURCE2, DTOColumnNames = "resourceAmount", DTOClass = CreatureResourcesObject.class)
+    private JPanel resource2Panel;
+
+    @GUIElement(GUIElementId = GUIElements.RESOURCE3, DTOColumnNames = "resourceAmount", DTOClass = CreatureResourcesObject.class)
+    private JPanel resource3Panel;
 
     public UnitsParametersView() {
         internationalizeEquipmentLabels();
@@ -75,19 +89,21 @@ public class UnitsParametersView implements ControllableView {
     }
 
     private void internationalizeTabs() {
-        tabPane.setTitleAt(CREATURE_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.parameters"));
-        tabPane.setTitleAt(CREATURE_EQUIPMENT_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.equipment"));
-        tabPane.setTitleAt(CREATURE_SPELLS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.spells"));
+        tabPane.setTitleAt(CREATURE_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "tab.creature.parameters"));
+        tabPane.setTitleAt(CREATURE_EQUIPMENT_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "tab.creature.equipment"));
+        tabPane.setTitleAt(CREATURE_SPELLS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "tab.creature.spells"));
+        tabPane.setTitleAt(CREATURE_RESOURCES_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "tab.creature.resources"));
+        tabPane.setTitleAt(CREATURE_BUILDINGS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "tab.creature.buildings"));
     }
 
     private void internationalizeEquipmentLabels() {
-        headSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.head.slot.label"));
-        leftHandWeaponSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.left.hand.slot.label"));
-        rightHandWeaponSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.right.hand.slot.label"));
-        chestSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.chest.slot.label"));
-        leftRingSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.left.ring.slot.label"));
-        rightRingSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.right.ring.slot.label"));
-        legsSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.legs.slot.label"));
+        headSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "equipment.head.slot.label"));
+        leftHandWeaponSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "equipment.left.hand.slot.label"));
+        rightHandWeaponSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "equipment.right.hand.slot.label"));
+        chestSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "equipment.chest.slot.label"));
+        leftRingSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "equipment.left.ring.slot.label"));
+        rightRingSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "equipment.right.ring.slot.label"));
+        legsSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "equipment.legs.slot.label"));
     }
 
     public JTabbedPane getTabPane() {

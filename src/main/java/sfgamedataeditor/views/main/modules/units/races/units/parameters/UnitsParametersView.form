@@ -259,6 +259,9 @@
             <properties>
               <alignmentX value="0.0"/>
               <alignmentY value="1.0"/>
+              <maximumSize width="850" height="560"/>
+              <minimumSize width="850" height="560"/>
+              <preferredSize width="850" height="560"/>
             </properties>
             <border type="none"/>
             <children>
@@ -302,6 +305,78 @@
                 <children/>
               </grid>
             </children>
+          </grid>
+          <grid id="e2389" binding="requirementsPanel" layout-manager="GridBagLayout">
+            <constraints>
+              <tabbedpane title="Requirements"/>
+            </constraints>
+            <properties>
+              <maximumSize width="850" height="560"/>
+              <minimumSize width="850" height="560"/>
+              <preferredSize width="850" height="560"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="32ee9" binding="resource1Panel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="90" height="60"/>
+                    <preferred-size width="90" height="60"/>
+                    <maximum-size width="90" height="60"/>
+                  </grid>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="90" height="60"/>
+                  <minimumSize width="90" height="60"/>
+                  <preferredSize width="90" height="60"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="a2394" binding="resource2Panel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <minimum-size width="90" height="60"/>
+                    <preferred-size width="90" height="60"/>
+                    <maximum-size width="90" height="60"/>
+                  </grid>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="90" height="60"/>
+                  <minimumSize width="90" height="60"/>
+                  <preferredSize width="90" height="60"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+              <grid id="6861d" binding="resource3Panel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="90" height="60"/>
+                    <preferred-size width="90" height="60"/>
+                    <maximum-size width="90" height="60"/>
+                  </grid>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="90" height="60"/>
+                  <minimumSize width="90" height="60"/>
+                  <preferredSize width="90" height="60"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+            </children>
+          </grid>
+          <grid id="6b80" binding="buildingsPanel" layout-manager="GridBagLayout">
+            <constraints>
+              <tabbedpane title="Buildings"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
           </grid>
         </children>
       </tabbedpane>

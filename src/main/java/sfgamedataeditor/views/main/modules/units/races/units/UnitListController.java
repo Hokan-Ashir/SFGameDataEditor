@@ -4,6 +4,10 @@ import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableS
 import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentTableService;
+import sfgamedataeditor.database.creatures.production.buildings.CreatureBuildingsObject;
+import sfgamedataeditor.database.creatures.production.buildings.CreatureBuildingsTableService;
+import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesObject;
+import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesTableService;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
 import sfgamedataeditor.views.common.AbstractModulesController;
@@ -28,8 +32,10 @@ public class UnitListController extends AbstractModulesController<UnitListModelP
         CreaturesCommonParameterObject commonParameterObject = CreatureCommonParametersTableService.INSTANCE.getCreatureParametersByCreatureId(creatureId);
         List<CreatureEquipmentObject> creatureEquipment = CreatureEquipmentTableService.INSTANCE.getCreatureEquipmentByCreatureId(creatureId);
         List<CreatureSpellObject> creatureSpells = CreatureSpellTableService.INSTANCE.getCreatureSpellsByCreatureId(creatureId);
+        List<CreatureResourcesObject> creatureResources = CreatureResourcesTableService.INSTANCE.getCreatureResourcesByCreatureId(creatureId);
+        List<CreatureBuildingsObject> creatureBuildings = CreatureBuildingsTableService.INSTANCE.getCreatureBuildingsByCreatureId(creatureId);
         UnitsParametersModelParameter parameter = new UnitsParametersModelParameter(commonParameterObject,
-                creatureEquipment, creatureSpells);
+                creatureEquipment, creatureSpells, creatureResources, creatureBuildings);
         return new UnitsParametersModel(parameter);
     }
 

@@ -33,7 +33,7 @@ public class CreatureResourcesObject extends OffsetableObject {
     //    13 - lenya
     @Data(offset = 2, length = 1)
     @DatabaseField
-    private Integer resourceId;
+    public Integer resourceId;
 
     @Data(offset = 3, length = 1)
     @DatabaseField
