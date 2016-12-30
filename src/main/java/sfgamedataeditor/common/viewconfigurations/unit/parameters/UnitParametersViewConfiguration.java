@@ -8,6 +8,8 @@ import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
 import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidget;
 import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidgetListener;
+import sfgamedataeditor.common.widgets.units.ResourceWidget;
+import sfgamedataeditor.common.widgets.units.ResourceWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;
@@ -19,6 +21,15 @@ public class UnitParametersViewConfiguration extends AbstractConfiguration {
         addTextFieldWidgets();
         addEquipmentWidgets();
         addSpellEffectNumberWidgets();
+        addResourceWidgets();
+    }
+
+    private void addResourceWidgets() {
+        ConfigurationWidgetParameter resource = new ConfigurationWidgetParameter(ResourceWidget.class, ResourceWidgetListener.class,
+                I18NTypes.UNITS_GUI, "resource");
+        addViewMapping(GUIElements.RESOURCE1, resource);
+        addViewMapping(GUIElements.RESOURCE2, resource);
+        addViewMapping(GUIElements.RESOURCE3, resource);
     }
 
     private void addSpellEffectNumberWidgets() {
@@ -45,9 +56,9 @@ public class UnitParametersViewConfiguration extends AbstractConfiguration {
         Map<Integer, String> i18nMap = new HashMap<Integer, String>() {{
             put(GUIElements.EXPERIENCE, "experience");
             put(GUIElements.ARMOR, "armor");
-            put(GUIElements.RESOURCE1, "resource");
-            put(GUIElements.RESOURCE2, "resource");
-            put(GUIElements.RESOURCE3, "resource");
+            put(GUIElements.BUILDING1, "building");
+            put(GUIElements.BUILDING2, "building");
+            put(GUIElements.BUILDING3, "building");
         }};
 
         for (Map.Entry<Integer, String> entry : i18nMap.entrySet()) {

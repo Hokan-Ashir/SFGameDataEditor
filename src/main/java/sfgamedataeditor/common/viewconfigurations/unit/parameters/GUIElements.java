@@ -17,6 +17,9 @@ public final class GUIElements {
     public static final int RESOURCE1 = 12;
     public static final int RESOURCE2 = 13;
     public static final int RESOURCE3 = 14;
+    public static final int BUILDING1 = 15;
+    public static final int BUILDING2 = 16;
+    public static final int BUILDING3 = 17;
 
     private GUIElements() {
         
