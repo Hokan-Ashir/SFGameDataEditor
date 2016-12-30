@@ -69,7 +69,7 @@ public class RequirementClassSubClassWidgetListener extends AbstractWidgetListen
         for (String key : subSchoolBundle.keySet()) {
             if (I18NService.INSTANCE.getMessage(I18NTypes.COMMON, key).equals(requirementSubClassComboBox.getSelectedItem())) {
                 requirementSubClassValue = Integer.parseInt(subSchoolBundle.getString(key));
-                requirementSubClassValue /= requirementClassValue * 10;
+                requirementSubClassValue %= requirementClassValue * 10;
                 break;
             }
         }
