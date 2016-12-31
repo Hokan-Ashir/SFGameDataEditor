@@ -109,9 +109,13 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     @Override
     protected void setFieldValues(int[] value) {
         int itemId = value[0];
+        if (itemId == 0) {
+            return;
+        }
+
         String itemName = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
-        String typeId = String.valueOf(ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId));
-        String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(typeId, I18NTypes.ITEM_PIECES_NAME_MAPPING);
+        int itemPieceId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
+        String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(itemPieceId), I18NTypes.ITEM_PIECES_NAME_MAPPING);
         String itemTypeName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, itemPieceNameKey);
         getWidget().getItemTypeComboBox().setSelectedItem(itemTypeName);
         updateItemNames();

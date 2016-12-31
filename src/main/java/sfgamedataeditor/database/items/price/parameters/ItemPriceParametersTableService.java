@@ -81,6 +81,11 @@ public enum ItemPriceParametersTableService implements TableCreationService {
 
         try {
             List<ItemPriceParametersObject> objects = dao.queryBuilder().where().eq("itemId", itemId).query();
+            // one of possible cases - corpse loot object trying to get so called "Epmty" slot - item with "itemId = 0"
+            if (objects.isEmpty()) {
+                return null;
+            }
+
             return objects.get(0);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

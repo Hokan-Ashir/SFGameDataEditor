@@ -4,6 +4,7 @@ import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.creature.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.Disabled;
 import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
+import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
@@ -16,9 +17,10 @@ import javax.swing.*;
 
 public class CreaturesParametersView implements ControllableView {
 
-    private static final int CREATURE_PARAMETERS_TAB_INDEX = 0;
-    private static final int CREATURE_EQUIPMENT_TAB_INDEX = 1;
-    public static final int CREATURE_SPELLS_TAB_INDEX = 2;
+    private static final int PARAMETERS_TAB_INDEX = 0;
+    private static final int EQUIPMENT_TAB_INDEX = 1;
+    public static final int SPELLS_TAB_INDEX = 2;
+    public static final int CORPSE_LOOT_TAB_INDEX = 3;
 
     private JPanel mainPanel;
 
@@ -143,6 +145,52 @@ public class CreaturesParametersView implements ControllableView {
 
     @GUIElement(GUIElementId = GUIElements.SPELL3, DTOColumnNames = "spellNumber", DTOClass = CreatureSpellObject.class)
     private JPanel spell3Panel;
+    private JPanel corpseLootPanel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_1_1, DTOColumnNames = "chanceToGetItem1", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropPossibilityItemBlock1Item1Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_1_2, DTOColumnNames = "chanceToGetItem2", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropPossibilityItemBlock1Item2Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_1_1, DTOColumnNames = "itemId1", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropItemItemBlock1Item1Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_1_2, DTOColumnNames = "itemId2", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropItemItemBlock1Item2Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_1_3, DTOColumnNames = "itemId3", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropItemItemBlock1Item3Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_2_1, DTOColumnNames = "chanceToGetItem1", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropPossibilityItemBlock2Item1Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_2_1, DTOColumnNames = "itemId1", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropItemItemBlock2Item1Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_2_2, DTOColumnNames = "chanceToGetItem2", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropPossibilityItemBlock2Item2Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_2_2, DTOColumnNames = "itemId2", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropItemItemBlock2Item2Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_2_3, DTOColumnNames = "itemId3", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropItemItemBlock2Item3Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_3_3, DTOColumnNames = "itemId3", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropItemItemBlock3Item3Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_3_2, DTOColumnNames = "itemId2", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropItemItemBlock3Item2Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_3_1, DTOColumnNames = "itemId1", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropItemItemBlock3Item1Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_3_1, DTOColumnNames = "chanceToGetItem1", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropPossibilityItemBlock3Item1Panel;
+
+    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_3_2, DTOColumnNames = "chanceToGetItem2", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropPossibilityItemBlock3Item2Panel;
 
     public CreaturesParametersView() {
         internationalizeCommonLabels();
@@ -151,9 +199,10 @@ public class CreaturesParametersView implements ControllableView {
     }
 
     private void internationalizeTabs() {
-        tabPane.setTitleAt(CREATURE_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.parameters"));
-        tabPane.setTitleAt(CREATURE_EQUIPMENT_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.equipment"));
-        tabPane.setTitleAt(CREATURE_SPELLS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.spells"));
+        tabPane.setTitleAt(PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.parameters"));
+        tabPane.setTitleAt(EQUIPMENT_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.equipment"));
+        tabPane.setTitleAt(SPELLS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.spells"));
+        tabPane.setTitleAt(CORPSE_LOOT_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.corpse.loot"));
     }
 
     private void internationalizeCommonLabels() {

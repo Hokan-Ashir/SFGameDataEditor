@@ -48,6 +48,16 @@ public class CreatureParametersViewConfiguration extends AbstractConfiguration {
         addViewMapping(GUIElements.RIGHT_RING_SLOT, equipment);
         addViewMapping(GUIElements.LEFT_RING_SLOT, equipment);
         addViewMapping(GUIElements.LEGS_SLOT, equipment);
+
+        addViewMapping(GUIElements.DROP_ITEM_1_1, equipment);
+        addViewMapping(GUIElements.DROP_ITEM_1_2, equipment);
+        addViewMapping(GUIElements.DROP_ITEM_1_3, equipment);
+        addViewMapping(GUIElements.DROP_ITEM_2_1, equipment);
+        addViewMapping(GUIElements.DROP_ITEM_2_2, equipment);
+        addViewMapping(GUIElements.DROP_ITEM_2_3, equipment);
+        addViewMapping(GUIElements.DROP_ITEM_3_1, equipment);
+        addViewMapping(GUIElements.DROP_ITEM_3_2, equipment);
+        addViewMapping(GUIElements.DROP_ITEM_3_3, equipment);
     }
 
     private void addEquipmentSlotsWidgets() {
@@ -94,6 +104,13 @@ public class CreatureParametersViewConfiguration extends AbstractConfiguration {
             put(GUIElements.HEAD_ID, "headId");
             put(GUIElements.EXPERIENCE, "experience");
             put(GUIElements.ARMOR, "armor");
+
+            put(GUIElements.DROP_POSSIBILITY_1_1, "loot.drop.possibility");
+            put(GUIElements.DROP_POSSIBILITY_1_2, "loot.drop.possibility");
+            put(GUIElements.DROP_POSSIBILITY_2_1, "loot.drop.possibility");
+            put(GUIElements.DROP_POSSIBILITY_2_2, "loot.drop.possibility");
+            put(GUIElements.DROP_POSSIBILITY_3_1, "loot.drop.possibility");
+            put(GUIElements.DROP_POSSIBILITY_3_2, "loot.drop.possibility");
         }};
 
         for (Map.Entry<Integer, String> entry : i18nMap.entrySet()) {
