@@ -12,8 +12,14 @@ import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractController;
 import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
+import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
@@ -24,33 +30,13 @@ public class CreaturesParametersController extends AbstractController<CreaturesP
     private static final Logger LOGGER = Logger.getLogger(CreaturesParametersController.class);
     private static final Map<Integer, Integer> SLOT_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
-    private static final Map<Integer, Integer> CORPSE_LOOT_NUMBER_MAPPING = new HashMap<>();
+    private DropItemsComboBoxListener dropItemsListener = new DropItemsComboBoxListener();
 
     public CreaturesParametersController(CreaturesParametersView view) {
         super(view);
         initializeSlotNumberMapping();
         initializeSpellNumberMapping();
-        initializeCorpseLootNumberMapping();
-    }
-
-    private void initializeCorpseLootNumberMapping() {
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_POSSIBILITY_1_1, 0);
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_ITEM_1_1, 0);
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_POSSIBILITY_1_2, 0);
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_ITEM_1_2, 0);
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_ITEM_1_3, 0);
-
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_POSSIBILITY_2_1, 1);
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_ITEM_2_1, 1);
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_POSSIBILITY_2_2, 1);
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_ITEM_2_2, 1);
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_ITEM_2_3, 1);
-
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_POSSIBILITY_3_1, 2);
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_ITEM_3_1, 2);
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_POSSIBILITY_3_2, 2);
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_ITEM_3_2, 2);
-        CORPSE_LOOT_NUMBER_MAPPING.put(GUIElements.DROP_ITEM_3_3, 2);
+        getView().getDropItemsComboBox().addItemListener(dropItemsListener);
     }
 
     private void initializeSpellNumberMapping() {
@@ -84,7 +70,28 @@ public class CreaturesParametersController extends AbstractController<CreaturesP
         CreaturesCommonParameterObject commonParameterObject = parameter.getCreatureCommonParameterObject();
         List<CreatureEquipmentObject> creatureEquipment = parameter.getCreatureEquipment();
         List<CreatureSpellObject> creatureSpells = parameter.getCreatureSpells();
-        List<CreatureCorpseLootObject> corpseLootObjects = parameter.getCorpseLootObjects();
+        final List<CreatureCorpseLootObject> corpseLootObjects = parameter.getCorpseLootObjects();
+
+        if (corpseLootObjects != null && !corpseLootObjects.isEmpty()) {
+            getView().getTabPane().setEnabledAt(CreaturesParametersView.CORPSE_LOOT_TAB_INDEX, true);
+            final JComboBox<String> dropItemsComboBox = getView().getDropItemsComboBox();
+            ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(dropItemsComboBox) {
+                @Override
+                protected void setValues() {
+                    dropItemsComboBox.removeAllItems();
+                    String dropItem = I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "drop.item");
+                    for (int i = 0; i < corpseLootObjects.size(); i++) {
+                        dropItemsComboBox.addItem(dropItem + " - " + (i + 1));
+                    }
+                    dropItemsComboBox.setSelectedItem(null);
+                }
+            });
+
+            dropItemsListener.setCorpseLootObjects(corpseLootObjects);
+            dropItemsComboBox.setSelectedItem(dropItemsComboBox.getItemAt(0));
+        } else {
+            getView().getTabPane().setEnabledAt(CreaturesParametersView.CORPSE_LOOT_TAB_INDEX, false);
+        }
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
@@ -127,19 +134,6 @@ public class CreaturesParametersController extends AbstractController<CreaturesP
                             widget.getListener().updateWidgetValue(creatureSpells.get(spellIndex));
                         }
                     }
-                } else if (dtoClass.equals(CreatureCorpseLootObject.class)) {
-                    if (corpseLootObjects == null || corpseLootObjects.isEmpty()) {
-                        getView().getTabPane().setEnabledAt(CreaturesParametersView.CORPSE_LOOT_TAB_INDEX, false);
-                    } else {
-                        getView().getTabPane().setEnabledAt(CreaturesParametersView.CORPSE_LOOT_TAB_INDEX, true);
-                        Integer corpseItemIndex = CORPSE_LOOT_NUMBER_MAPPING.get(annotation.GUIElementId());
-                        if (corpseItemIndex >= corpseLootObjects.size()) {
-                            widget.setVisible(false);
-                        } else {
-                            widget.setVisible(true);
-                            widget.getListener().updateWidgetValue(corpseLootObjects.get(corpseItemIndex));
-                        }
-                    }
                 }
 
             } catch (IllegalAccessException e) {
@@ -158,5 +152,44 @@ public class CreaturesParametersController extends AbstractController<CreaturesP
     public void unRenderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
         mainView.unRenderViewInsideContentPanel(getView());
+    }
+
+    private final class DropItemsComboBoxListener implements ItemListener {
+
+        private List<CreatureCorpseLootObject> corpseLootObjects;
+
+        public void setCorpseLootObjects(List<CreatureCorpseLootObject> corpseLootObjects) {
+            this.corpseLootObjects = corpseLootObjects;
+        }
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() != ItemEvent.SELECTED) {
+                return;
+            }
+
+            Field[] declaredFields = getView().getClass().getDeclaredFields();
+            for (Field declaredField : declaredFields) {
+                GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
+                if (annotation == null) {
+                    continue;
+                }
+
+                try {
+                    declaredField.setAccessible(true);
+                    JPanel panel = (JPanel) declaredField.get(getView());
+                    AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
+
+                    Class<?> dtoClass = annotation.DTOClass();
+                    if (dtoClass.equals(CreatureCorpseLootObject.class)) {
+                        int selectedIndex = getView().getDropItemsComboBox().getSelectedIndex();
+                        widget.getListener().updateWidgetValue(corpseLootObjects.get(selectedIndex));
+                    }
+
+                } catch (IllegalAccessException ex) {
+                    LOGGER.error(ex.getMessage(), ex);
+                }
+            }
+        }
     }
 }

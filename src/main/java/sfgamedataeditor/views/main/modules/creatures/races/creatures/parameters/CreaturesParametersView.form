@@ -681,9 +681,9 @@
             </properties>
             <border type="none"/>
             <children>
-              <grid id="4be58" binding="dropPossibilityItemBlock1Item1Panel" layout-manager="GridBagLayout">
+              <grid id="4be58" binding="dropPossibilityItem1Panel" layout-manager="GridBagLayout">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -694,9 +694,9 @@
                 <border type="etched"/>
                 <children/>
               </grid>
-              <grid id="3ea3a" binding="dropItemItemBlock1Item1Panel" layout-manager="GridBagLayout">
+              <grid id="3ea3a" binding="dropItem1Panel" layout-manager="GridBagLayout">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -707,9 +707,20 @@
                 <border type="etched"/>
                 <children/>
               </grid>
-              <grid id="46315" binding="dropPossibilityItemBlock1Item2Panel" layout-manager="GridBagLayout">
+              <component id="13ccd" class="javax.swing.JComboBox" binding="dropItemsComboBox">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="160" height="25"/>
+                  <minimumSize width="160" height="25"/>
+                  <preferredSize width="160" height="25"/>
+                </properties>
+              </component>
+              <grid id="46315" binding="dropPossibilityIItem2Panel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -720,9 +731,9 @@
                 <border type="etched"/>
                 <children/>
               </grid>
-              <grid id="e3f23" binding="dropItemItemBlock1Item2Panel" layout-manager="GridBagLayout">
+              <grid id="e3f23" binding="dropItem2Panel" layout-manager="GridBagLayout">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
@@ -734,139 +745,9 @@
                 <border type="etched"/>
                 <children/>
               </grid>
-              <grid id="7e167" binding="dropItemItemBlock1Item3Panel" layout-manager="GridBagLayout">
-                <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <maximumSize width="215" height="110"/>
-                  <minimumSize width="215" height="110"/>
-                  <preferredSize width="215" height="110"/>
-                </properties>
-                <border type="etched"/>
-                <children/>
-              </grid>
-              <grid id="649e7" binding="dropPossibilityItemBlock2Item1Panel" layout-manager="GridBagLayout">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <maximumSize width="90" height="60"/>
-                  <minimumSize width="90" height="60"/>
-                  <preferredSize width="90" height="60"/>
-                </properties>
-                <border type="etched"/>
-                <children/>
-              </grid>
-              <grid id="271ee" binding="dropItemItemBlock2Item1Panel" layout-manager="GridBagLayout">
-                <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <maximumSize width="215" height="110"/>
-                  <minimumSize width="215" height="110"/>
-                  <preferredSize width="215" height="110"/>
-                </properties>
-                <border type="etched"/>
-                <children/>
-              </grid>
-              <grid id="ad795" binding="dropPossibilityItemBlock2Item2Panel" layout-manager="GridBagLayout">
-                <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <maximumSize width="90" height="60"/>
-                  <minimumSize width="90" height="60"/>
-                  <preferredSize width="90" height="60"/>
-                </properties>
-                <border type="etched"/>
-                <children/>
-              </grid>
-              <grid id="b39fc" binding="dropItemItemBlock2Item2Panel" layout-manager="GridBagLayout">
-                <constraints>
-                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <maximumSize width="215" height="110"/>
-                  <minimumSize width="215" height="110"/>
-                  <preferredSize width="215" height="110"/>
-                </properties>
-                <border type="etched"/>
-                <children/>
-              </grid>
-              <grid id="369be" binding="dropItemItemBlock2Item3Panel" layout-manager="GridBagLayout">
-                <constraints>
-                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <maximumSize width="215" height="110"/>
-                  <minimumSize width="215" height="110"/>
-                  <preferredSize width="215" height="110"/>
-                </properties>
-                <border type="etched"/>
-                <children/>
-              </grid>
-              <grid id="8e4fc" binding="dropPossibilityItemBlock3Item1Panel" layout-manager="GridBagLayout">
-                <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <maximumSize width="90" height="60"/>
-                  <minimumSize width="90" height="60"/>
-                  <preferredSize width="90" height="60"/>
-                </properties>
-                <border type="etched"/>
-                <children/>
-              </grid>
-              <grid id="3d05c" binding="dropItemItemBlock3Item1Panel" layout-manager="GridBagLayout">
-                <constraints>
-                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <maximumSize width="215" height="110"/>
-                  <minimumSize width="215" height="110"/>
-                  <preferredSize width="215" height="110"/>
-                </properties>
-                <border type="etched"/>
-                <children/>
-              </grid>
-              <grid id="fa6c5" binding="dropPossibilityItemBlock3Item2Panel" layout-manager="GridBagLayout">
+              <grid id="7e167" binding="dropItem3Panel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <maximumSize width="90" height="60"/>
-                  <minimumSize width="90" height="60"/>
-                  <preferredSize width="90" height="60"/>
-                </properties>
-                <border type="etched"/>
-                <children/>
-              </grid>
-              <grid id="42b4d" binding="dropItemItemBlock3Item2Panel" layout-manager="GridBagLayout">
-                <constraints>
-                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <maximumSize width="215" height="110"/>
-                  <minimumSize width="215" height="110"/>
-                  <preferredSize width="215" height="110"/>
-                </properties>
-                <border type="etched"/>
-                <children/>
-              </grid>
-              <grid id="5440" binding="dropItemItemBlock3Item3Panel" layout-manager="GridBagLayout">
-                <constraints>
-                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>

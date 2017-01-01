@@ -36,21 +36,11 @@ public final class GUIElements {
     public static final int SPELL1 = 32;
     public static final int SPELL2 = 33;
     public static final int SPELL3 = 34;
-    public static final int DROP_POSSIBILITY_1_1 = 35;
-    public static final int DROP_POSSIBILITY_1_2 = 36;
-    public static final int DROP_ITEM_1_1 = 37;
-    public static final int DROP_ITEM_1_2 = 38;
-    public static final int DROP_ITEM_1_3 = 39;
-    public static final int DROP_POSSIBILITY_2_1 = 40;
-    public static final int DROP_ITEM_2_1 = 41;
-    public static final int DROP_POSSIBILITY_2_2 = 42;
-    public static final int DROP_ITEM_2_2 = 43;
-    public static final int DROP_ITEM_2_3 = 44;
-    public static final int DROP_ITEM_3_3 = 45;
-    public static final int DROP_ITEM_3_2 = 46;
-    public static final int DROP_ITEM_3_1 = 47;
-    public static final int DROP_POSSIBILITY_3_1 = 48;
-    public static final int DROP_POSSIBILITY_3_2 = 49;
+    public static final int DROP_POSSIBILITY_ITEM_1 = 35;
+    public static final int DROP_POSSIBILITY_ITEM_2 = 36;
+    public static final int DROP_ITEM_1 = 37;
+    public static final int DROP_ITEM_2 = 38;
+    public static final int DROP_ITEM_3 = 39;
 
     private GUIElements() {
         

@@ -147,50 +147,22 @@ public class CreaturesParametersView implements ControllableView {
     private JPanel spell3Panel;
     private JPanel corpseLootPanel;
 
-    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_1_1, DTOColumnNames = "chanceToGetItem1", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropPossibilityItemBlock1Item1Panel;
+    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_ITEM_1, DTOColumnNames = "chanceToGetItem1", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropPossibilityItem1Panel;
 
-    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_1_2, DTOColumnNames = "chanceToGetItem2", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropPossibilityItemBlock1Item2Panel;
+    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_ITEM_2, DTOColumnNames = "chanceToGetItem2", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropPossibilityIItem2Panel;
 
-    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_1_1, DTOColumnNames = "itemId1", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropItemItemBlock1Item1Panel;
+    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_1, DTOColumnNames = "itemId1", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropItem1Panel;
 
-    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_1_2, DTOColumnNames = "itemId2", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropItemItemBlock1Item2Panel;
+    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_2, DTOColumnNames = "itemId2", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropItem2Panel;
 
-    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_1_3, DTOColumnNames = "itemId3", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropItemItemBlock1Item3Panel;
+    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_3, DTOColumnNames = "itemId3", DTOClass = CreatureCorpseLootObject.class)
+    private JPanel dropItem3Panel;
 
-    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_2_1, DTOColumnNames = "chanceToGetItem1", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropPossibilityItemBlock2Item1Panel;
-
-    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_2_1, DTOColumnNames = "itemId1", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropItemItemBlock2Item1Panel;
-
-    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_2_2, DTOColumnNames = "chanceToGetItem2", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropPossibilityItemBlock2Item2Panel;
-
-    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_2_2, DTOColumnNames = "itemId2", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropItemItemBlock2Item2Panel;
-
-    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_2_3, DTOColumnNames = "itemId3", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropItemItemBlock2Item3Panel;
-
-    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_3_3, DTOColumnNames = "itemId3", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropItemItemBlock3Item3Panel;
-
-    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_3_2, DTOColumnNames = "itemId2", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropItemItemBlock3Item2Panel;
-
-    @GUIElement(GUIElementId = GUIElements.DROP_ITEM_3_1, DTOColumnNames = "itemId1", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropItemItemBlock3Item1Panel;
-
-    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_3_1, DTOColumnNames = "chanceToGetItem1", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropPossibilityItemBlock3Item1Panel;
-
-    @GUIElement(GUIElementId = GUIElements.DROP_POSSIBILITY_3_2, DTOColumnNames = "chanceToGetItem2", DTOClass = CreatureCorpseLootObject.class)
-    private JPanel dropPossibilityItemBlock3Item2Panel;
+    private JComboBox<String> dropItemsComboBox;
 
     public CreaturesParametersView() {
         internationalizeCommonLabels();
@@ -219,6 +191,10 @@ public class CreaturesParametersView implements ControllableView {
         leftRingSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.left.ring.slot.label"));
         rightRingSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.right.ring.slot.label"));
         legsSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.legs.slot.label"));
+    }
+
+    public JComboBox<String> getDropItemsComboBox() {
+        return dropItemsComboBox;
     }
 
     public JTabbedPane getTabPane() {

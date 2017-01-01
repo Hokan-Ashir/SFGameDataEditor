@@ -1,5 +1,5 @@
 alpha-2 (coming):
- - Editing creatures loot drop (only first 3 items)
+ - Editing creatures loot drop
 
 alpha-1 (30.12.2016)
  - Editing skill requirements, i.e how many strength you need to level-up your Heavy Combat Art skill to level 7
