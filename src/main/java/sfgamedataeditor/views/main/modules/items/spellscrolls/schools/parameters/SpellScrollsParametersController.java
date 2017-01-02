@@ -11,6 +11,7 @@ import sfgamedataeditor.views.main.MainView;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
+import java.util.List;
 
 public class SpellScrollsParametersController extends AbstractController<SpellScrollsParametersModelParameter, SpellScrollsParametersView> {
 
@@ -24,7 +25,7 @@ public class SpellScrollsParametersController extends AbstractController<SpellSc
     public void updateView() {
         SpellScrollsParametersModelParameter parameter = getModel().getParameter();
         ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
-        ItemSpellEffectsObject itemSpellEffectsObject = parameter.getItemSpellEffectsObject();
+        List<ItemSpellEffectsObject> itemSpellEffectsObjects = parameter.getItemSpellEffectsObjects();
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
@@ -38,16 +39,16 @@ public class SpellScrollsParametersController extends AbstractController<SpellSc
                 JPanel panel = (JPanel) declaredField.get(getView());
                 AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
 
-                // TODO get rid of this equals-switch & generalize same solutions
                 Class<?> dtoClass = annotation.DTOClass();
                 if (dtoClass.equals(ItemPriceParametersObject.class)) {
                     widget.getListener().updateWidgetValue(priceParametersObject);
                 } else if (dtoClass.equals(ItemSpellEffectsObject.class)) {
-                    if (itemSpellEffectsObject == null) {
+                    if (itemSpellEffectsObjects == null || itemSpellEffectsObjects.isEmpty()) {
                         panel.setVisible(false);
                     } else {
                         panel.setVisible(true);
-                        widget.getListener().updateWidgetValue(itemSpellEffectsObject);
+                        // it's guaranteed that scroll has only one spell effect on it
+                        widget.getListener().updateWidgetValue(itemSpellEffectsObjects.get(0));
                     }
                 } else {
 

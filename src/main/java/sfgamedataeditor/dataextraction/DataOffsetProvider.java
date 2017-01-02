@@ -1,14 +1,15 @@
 package sfgamedataeditor.dataextraction;
 
 import sfgamedataeditor.dataextraction.offsets.AbstractOffsetHolder;
-import sfgamedataeditor.dataextraction.offsets.SkillsOffsetHolder;
-import sfgamedataeditor.dataextraction.offsets.SpellsOffsetHolder;
+import sfgamedataeditor.dataextraction.offsets.buildings.BuildingsOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.creatures.*;
 import sfgamedataeditor.dataextraction.offsets.creatures.production.CreatureBuildingsOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.creatures.production.CreatureResourcesOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.items.*;
 import sfgamedataeditor.dataextraction.offsets.merchants.MerchantInventoryItemsOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.merchants.MerchantInventoryOffsetHolder;
+import sfgamedataeditor.dataextraction.offsets.skills.SkillsOffsetHolder;
+import sfgamedataeditor.dataextraction.offsets.spells.SpellsOffsetHolder;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.util.HashMap;
@@ -39,6 +40,7 @@ public enum DataOffsetProvider {
         holderMap.put(DTOOffsetTypes.ITEM_PRICES, new ItemPriceParametersOffsetHolder());
         holderMap.put(DTOOffsetTypes.MERCHANT_INVENTORY, new MerchantInventoryOffsetHolder());
         holderMap.put(DTOOffsetTypes.MERCHANT_INVENTORY_ITEMS, new MerchantInventoryItemsOffsetHolder());
+        holderMap.put(DTOOffsetTypes.BUILDINGS, new BuildingsOffsetHolder());
     }
 
     public List<Pair<Integer, Integer>> getOffsets(DTOOffsetTypes types) {

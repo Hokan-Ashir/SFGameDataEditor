@@ -5,35 +5,37 @@ import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
 
+import java.util.List;
+
 public class WeaponParametersModelParameter {
     private final ItemPriceParametersObject priceParametersObject;
-    private final ItemSpellEffectsObject itemSpellEffectsObject;
+    private final List<ItemSpellEffectsObject> itemSpellEffectsObjects;
     private final WeaponParametersObject weaponParametersObject;
-    private final ItemRequirementsObject requirementsObject;
+    private final List<ItemRequirementsObject> requirementsObjects;
 
     public WeaponParametersModelParameter(ItemPriceParametersObject priceParametersObject,
-                                          ItemSpellEffectsObject itemSpellEffectsObject,
+                                          List<ItemSpellEffectsObject> itemSpellEffectsObjects,
                                           WeaponParametersObject weaponParametersObject,
-                                          ItemRequirementsObject requirementsObject) {
+                                          List<ItemRequirementsObject> requirementsObjects) {
         this.priceParametersObject = priceParametersObject;
-        this.itemSpellEffectsObject = itemSpellEffectsObject;
+        this.itemSpellEffectsObjects = itemSpellEffectsObjects;
         this.weaponParametersObject = weaponParametersObject;
-        this.requirementsObject = requirementsObject;
+        this.requirementsObjects = requirementsObjects;
     }
 
     public ItemPriceParametersObject getPriceParametersObject() {
         return priceParametersObject;
     }
 
-    public ItemSpellEffectsObject getItemSpellEffectsObject() {
-        return itemSpellEffectsObject;
+    public List<ItemSpellEffectsObject> getItemSpellEffectsObjects() {
+        return itemSpellEffectsObjects;
     }
 
     public WeaponParametersObject getWeaponParametersObject() {
         return weaponParametersObject;
     }
 
-    public ItemRequirementsObject getRequirementsObject() {
-        return requirementsObject;
+    public List<ItemRequirementsObject> getRequirementsObjects() {
+        return requirementsObjects;
     }
 }

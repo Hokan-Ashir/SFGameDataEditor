@@ -10,6 +10,7 @@ import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 public enum ItemRequirementsTableService implements TableCreationService {
@@ -32,7 +33,7 @@ public enum ItemRequirementsTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(ItemRequirementsTableService.class);
 
-    public ItemRequirementsObject getObjectByItemId(int itemId) {
+    public List<ItemRequirementsObject> getObjectsByItemId(int itemId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<ItemRequirementsObject, String> dao;
         try {
@@ -43,15 +44,10 @@ public enum ItemRequirementsTableService implements TableCreationService {
         }
 
         try {
-            List<ItemRequirementsObject> objects = dao.queryBuilder().where().eq("itemId", itemId).query();
-            if (objects.isEmpty()) {
-                return null;
-            } else {
-                return objects.get(0);
-            }
+            return dao.queryBuilder().where().eq("itemId", itemId).query();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return null;
+            return Collections.emptyList();
         }
     }
 }

@@ -37,19 +37,6 @@
         <border type="etched"/>
         <children/>
       </grid>
-      <grid id="8e3bc" binding="itemEffectPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="300" height="80"/>
-          <minimumSize width="300" height="80"/>
-          <preferredSize width="300" height="80"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
       <grid id="7d01d" binding="minDamagePanel" layout-manager="GridBagLayout">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
@@ -78,7 +65,7 @@
       </grid>
       <grid id="9ad59" binding="requirementClassSubClassPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -130,7 +117,7 @@
       </grid>
       <grid id="c9f7b" binding="requirementLevelPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -147,9 +134,9 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
+          <maximumSize width="60" height="60"/>
+          <minimumSize width="60" height="60"/>
+          <preferredSize width="60" height="60"/>
         </properties>
         <border type="etched"/>
         <children/>
@@ -160,13 +147,48 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="120" height="60"/>
-          <minimumSize width="120" height="60"/>
-          <preferredSize width="120" height="60"/>
+          <maximumSize width="110" height="60"/>
+          <minimumSize width="110" height="60"/>
+          <preferredSize width="110" height="60"/>
         </properties>
         <border type="etched"/>
         <children/>
       </grid>
+      <component id="6fe20" class="javax.swing.JComboBox" binding="itemRequirementsComboBox">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <gridbag top="15" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="160" height="25"/>
+          <minimumSize width="160" height="25"/>
+          <preferredSize width="160" height="25"/>
+        </properties>
+      </component>
+      <grid id="8e3bc" binding="itemEffectPanel" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="300" height="90"/>
+          <minimumSize width="300" height="90"/>
+          <preferredSize width="300" height="90"/>
+        </properties>
+        <border type="etched"/>
+        <children/>
+      </grid>
+      <component id="184ce" class="javax.swing.JComboBox" binding="effectsComboBox">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="160" height="25"/>
+          <minimumSize width="160" height="25"/>
+          <preferredSize width="160" height="25"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

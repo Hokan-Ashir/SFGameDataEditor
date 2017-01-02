@@ -46,12 +46,25 @@ public class WeaponParametersView implements ControllableView {
     @GUIElement(GUIElementId = GUIElements.MATERIAL, DTOColumnNames = "material", DTOClass = WeaponParametersObject.class)
     private JPanel materialPanel;
 
-    // TODO currently only one requirement per item, even if it has more than one
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_SUBCLASS, DTOColumnNames = {"schoolRequirementClass", "subSchoolRequirementClass"}, DTOClass = ItemRequirementsObject.class)
     private JPanel requirementClassSubClassPanel;
 
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_LEVEL, DTOColumnNames = "level", DTOClass = ItemRequirementsObject.class)
     private JPanel requirementLevelPanel;
+    private JComboBox<String> itemRequirementsComboBox;
+    private JComboBox<String> effectsComboBox;
+
+    public JPanel getItemEffectPanel() {
+        return itemEffectPanel;
+    }
+
+    public JComboBox<String> getEffectsComboBox() {
+        return effectsComboBox;
+    }
+
+    public JComboBox<String> getItemRequirementsComboBox() {
+        return itemRequirementsComboBox;
+    }
 
     @Override
     public Class<? extends AbstractController> getControllerClass() {

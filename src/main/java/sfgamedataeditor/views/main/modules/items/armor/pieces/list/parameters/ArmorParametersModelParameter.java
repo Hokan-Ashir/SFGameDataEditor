@@ -4,17 +4,19 @@ import sfgamedataeditor.database.items.armor.parameters.ArmorParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 
+import java.util.List;
+
 public class ArmorParametersModelParameter {
     private final ItemPriceParametersObject priceParametersObject;
     private final ArmorParametersObject armorParametersObject;
-    private final ItemRequirementsObject requirementsObject;
+    private final List<ItemRequirementsObject> requirementsObjects;
 
     public ArmorParametersModelParameter(ItemPriceParametersObject priceParametersObject,
                                          ArmorParametersObject armorParametersObject,
-                                         ItemRequirementsObject requirementsObject) {
+                                         List<ItemRequirementsObject> requirementsObjects) {
         this.priceParametersObject = priceParametersObject;
         this.armorParametersObject = armorParametersObject;
-        this.requirementsObject = requirementsObject;
+        this.requirementsObjects = requirementsObjects;
     }
 
     public ItemPriceParametersObject getPriceParametersObject() {
@@ -25,7 +27,7 @@ public class ArmorParametersModelParameter {
         return armorParametersObject;
     }
 
-    public ItemRequirementsObject getRequirementsObject() {
-        return requirementsObject;
+    public List<ItemRequirementsObject> getRequirementsObjects() {
+        return requirementsObjects;
     }
 }

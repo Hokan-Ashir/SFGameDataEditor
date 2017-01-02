@@ -11,6 +11,7 @@ import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 public enum CreatureBuildingsTableService implements TableCreationService {
@@ -40,19 +41,19 @@ public enum CreatureBuildingsTableService implements TableCreationService {
             dao = DaoManager.createDao(connectionSource, CreatureBuildingsObject.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return null;
+            return Collections.emptyList();
         }
 
         try {
             List<CreatureBuildingsObject> objects = dao.queryBuilder().where().eq("creatureId", creatureId).query();
             if (objects.isEmpty()) {
-                return null;
+                return Collections.emptyList();
             } else {
                 return objects;
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return null;
+            return Collections.emptyList();
         }
     }
 }

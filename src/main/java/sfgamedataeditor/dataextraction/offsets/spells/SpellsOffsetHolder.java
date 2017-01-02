@@ -1,5 +1,6 @@
-package sfgamedataeditor.dataextraction.offsets;
+package sfgamedataeditor.dataextraction.offsets.spells;
 
+import sfgamedataeditor.dataextraction.offsets.AbstractOffsetHolder;
 import sfgamedataeditor.files.FilesContainer;
 import sfgamedataeditor.views.utility.Pair;
 

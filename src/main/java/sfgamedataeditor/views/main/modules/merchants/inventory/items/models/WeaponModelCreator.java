@@ -11,15 +11,17 @@ import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableSe
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersModel;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersModelParameter;
 
+import java.util.List;
+
 public class WeaponModelCreator implements ModelCreator<WeaponParametersModel> {
 
     @Override
     public WeaponParametersModel createModel(int itemId) {
         ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        ItemSpellEffectsObject itemEffectsObject = ItemSpellEffectsTableService.INSTANCE.getObjectByItemId(itemId);
+        List<ItemSpellEffectsObject> itemEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(itemId);
         WeaponParametersObject weaponParametersObject = WeaponParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        ItemRequirementsObject requirementsObject = ItemRequirementsTableService.INSTANCE.getObjectByItemId(itemId);
-        WeaponParametersModelParameter parameter = new WeaponParametersModelParameter(itemPriceObject, itemEffectsObject, weaponParametersObject, requirementsObject);
+        List<ItemRequirementsObject> requirementsObjects = ItemRequirementsTableService.INSTANCE.getObjectsByItemId(itemId);
+        WeaponParametersModelParameter parameter = new WeaponParametersModelParameter(itemPriceObject, itemEffectsObjects, weaponParametersObject, requirementsObjects);
         return new WeaponParametersModel(parameter);
     }
 }

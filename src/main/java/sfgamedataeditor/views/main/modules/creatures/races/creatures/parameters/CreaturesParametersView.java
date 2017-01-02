@@ -136,7 +136,6 @@ public class CreaturesParametersView implements ControllableView {
     @GUIElement(GUIElementId = GUIElements.ARMOR, DTOColumnNames = "armor", DTOClass = CreaturesCommonParameterObject.class)
     private JPanel armorPanel;
 
-    // TODO assuming creature have 3 spells at most, though ordinary it has 2 top
     @GUIElement(GUIElementId = GUIElements.SPELL1, DTOColumnNames = "spellNumber", DTOClass = CreatureSpellObject.class)
     private JPanel spell1Panel;
 

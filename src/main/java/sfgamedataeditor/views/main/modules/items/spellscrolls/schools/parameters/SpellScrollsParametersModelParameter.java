@@ -3,20 +3,22 @@ package sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameter
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 
+import java.util.List;
+
 public class SpellScrollsParametersModelParameter {
     private final ItemPriceParametersObject priceParametersObject;
-    private final ItemSpellEffectsObject itemSpellEffectsObject;
+    private final List<ItemSpellEffectsObject> itemSpellEffectsObjects;
 
-    public SpellScrollsParametersModelParameter(ItemPriceParametersObject priceParametersObject, ItemSpellEffectsObject itemSpellEffectsObject) {
+    public SpellScrollsParametersModelParameter(ItemPriceParametersObject priceParametersObject, List<ItemSpellEffectsObject> itemSpellEffectsObjects) {
         this.priceParametersObject = priceParametersObject;
-        this.itemSpellEffectsObject = itemSpellEffectsObject;
+        this.itemSpellEffectsObjects = itemSpellEffectsObjects;
     }
 
     public ItemPriceParametersObject getPriceParametersObject() {
         return priceParametersObject;
     }
 
-    public ItemSpellEffectsObject getItemSpellEffectsObject() {
-        return itemSpellEffectsObject;
+    public List<ItemSpellEffectsObject> getItemSpellEffectsObjects() {
+        return itemSpellEffectsObjects;
     }
 }

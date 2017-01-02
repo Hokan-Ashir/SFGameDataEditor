@@ -10,6 +10,7 @@ import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 public enum ItemSpellEffectsTableService implements TableCreationService {
@@ -32,27 +33,21 @@ public enum ItemSpellEffectsTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(ItemSpellEffectsTableService.class);
 
-    public ItemSpellEffectsObject getObjectByItemId(int itemId) {
+    public List<ItemSpellEffectsObject> getObjectsByItemId(int itemId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<ItemSpellEffectsObject, String> dao;
         try {
             dao = DaoManager.createDao(connectionSource, ItemSpellEffectsObject.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return null;
+            return Collections.emptyList();
         }
 
         try {
-            List<ItemSpellEffectsObject> objects = dao.queryBuilder().where().eq("itemId", itemId).query();
-            // item has NO effects, i.e. most of items except weapons
-            if (objects.isEmpty()) {
-                return null;
-            } else {
-                return objects.get(0);
-            }
+            return dao.queryBuilder().where().eq("itemId", itemId).query();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return null;
+            return Collections.emptyList();
         }
     }
 }

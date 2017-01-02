@@ -7,12 +7,14 @@ import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsTableService;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersModel;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersModelParameter;
 
+import java.util.List;
+
 public class SpellScrollsModelCreator implements ModelCreator<SpellScrollsParametersModel> {
     @Override
     public SpellScrollsParametersModel createModel(int itemId) {
         ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        ItemSpellEffectsObject itemSpellEffectsObject = ItemSpellEffectsTableService.INSTANCE.getObjectByItemId(itemId);
-        SpellScrollsParametersModelParameter parameter = new SpellScrollsParametersModelParameter(itemPriceObject, itemSpellEffectsObject);
+        List<ItemSpellEffectsObject> itemSpellEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(itemId);
+        SpellScrollsParametersModelParameter parameter = new SpellScrollsParametersModelParameter(itemPriceObject, itemSpellEffectsObjects);
         return new SpellScrollsParametersModel(parameter);
     }
 }
