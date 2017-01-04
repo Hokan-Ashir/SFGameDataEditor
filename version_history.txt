@@ -1,6 +1,9 @@
 alpha-2 (coming):
  - Editing creatures loot drop
  - Extended ability to change ALL weapon and armor requirements and effects
+ - Added all in-game spells, including all auras from level 1 to 12, like LifeTap aura;
+    as side effect - correct behaviour of Units/Dark elves/Deathknight and Units/Dark elves/Deathknight (Upgrade) views
+    and any other low-level scrolls views
 
 alpha-1 (30.12.2016)
  - Editing skill requirements, i.e how many strength you need to level-up your Heavy Combat Art skill to level 7

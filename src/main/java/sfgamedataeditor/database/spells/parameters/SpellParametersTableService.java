@@ -172,7 +172,6 @@ public enum SpellParametersTableService implements TableCreationService {
         try {
             Where<SpellParametersObject, Integer> where = dao.queryBuilder().where();
             where = decorator.decorateWhere(where);
-            // TODO check out why some items/creatures has spells that are not parsed and not present in database
             return where.query().get(0);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
