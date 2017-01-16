@@ -7,6 +7,8 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObjec
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
@@ -74,6 +76,28 @@ public class ArmorParametersView implements PresentableView {
 
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_LEVEL, DTOColumnNames = "level", DTOClass = ItemRequirementsObject.class)
     private JPanel requirementLevelPanel;
+
+    private JComboBox<String> requirementsComboBox;
+    private JPanel characteristicsPanel;
+    private JLabel characteristicsLabel;
+    private JPanel resistancesPanel;
+    private JLabel resistancesLabel;
+    private JPanel speedsPanel;
+    private JLabel speedsLabel;
+
+    public ArmorParametersView() {
+        internationalizeCommonLabels();
+    }
+
+    private void internationalizeCommonLabels() {
+        characteristicsLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.ARMOR_GUI, "characteristicsLabel"));
+        resistancesLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.ARMOR_GUI, "resistancesLabel"));
+        speedsLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.ARMOR_GUI, "speedsLabel"));
+    }
+
+    public JComboBox<String> getRequirementsComboBox() {
+        return requirementsComboBox;
+    }
 
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {

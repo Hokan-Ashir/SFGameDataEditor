@@ -114,7 +114,7 @@ public enum UnitMapping {
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "1285")); // "Thrower (Upgrade)"
     }};
 
-    private Map<String, List<String>> unitRacesToUnitNamesMap = new HashMap<String, List<String>>() {{
+    private final Map<String, List<String>> unitRacesToUnitNamesMap = new HashMap<String, List<String>>() {{
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.humans"), humanUnitsNames);
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.elves"), elvesUnitsNames);
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dwarves"), dwarvesUnitsNames);

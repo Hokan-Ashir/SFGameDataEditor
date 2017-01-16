@@ -9,7 +9,7 @@ public abstract class AbstractOffsetHolder {
     private final List<Pair<Integer, Integer>> offsets = new ArrayList<>();
     private int dataLength;
 
-    public AbstractOffsetHolder() {
+    protected AbstractOffsetHolder() {
         setDataLength();
         fillOffsets();
     }

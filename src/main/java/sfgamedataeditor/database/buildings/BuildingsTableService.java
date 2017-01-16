@@ -23,5 +23,5 @@ public enum BuildingsTableService implements TableCreationService {
         public DTOOffsetTypes getDTOOffsetType() {
             return DTOOffsetTypes.BUILDINGS;
         }
-    };
+    }
 }

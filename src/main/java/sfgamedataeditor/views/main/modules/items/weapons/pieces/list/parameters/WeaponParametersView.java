@@ -53,6 +53,21 @@ public class WeaponParametersView implements PresentableView {
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_LEVEL, DTOColumnNames = "level", DTOClass = ItemRequirementsObject.class)
     private JPanel requirementLevelPanel;
 
+    private JComboBox<String> itemRequirementsComboBox;
+    private JComboBox<String> effectsComboBox;
+
+    public JPanel getItemEffectPanel() {
+        return itemEffectPanel;
+    }
+
+    public JComboBox<String> getEffectsComboBox() {
+        return effectsComboBox;
+    }
+
+    public JComboBox<String> getItemRequirementsComboBox() {
+        return itemRequirementsComboBox;
+    }
+
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return WeaponParametersPresenter.class;

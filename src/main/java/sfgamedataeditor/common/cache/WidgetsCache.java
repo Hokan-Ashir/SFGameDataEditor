@@ -33,7 +33,7 @@ public class WidgetsCache {
             }
 
             for (Pair<AbstractWidget, AbstractWidgetListener> pair : pairs) {
-                if (widgetClass.getClass().equals(pair.getKey().getClass())) {
+                if (widgetClass.equals(pair.getKey().getClass())) {
                     return true;
                 }
             }

@@ -9,7 +9,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParameter, SpellScrollsListView, SpellScrollsParametersModel> {
 
-    private SpellScrollsModelCreator modelCreator = new SpellScrollsModelCreator();
+    private final SpellScrollsModelCreator modelCreator = new SpellScrollsModelCreator();
 
     public SpellScrollsPresenter(SpellScrollsListView view) {
         super(view);

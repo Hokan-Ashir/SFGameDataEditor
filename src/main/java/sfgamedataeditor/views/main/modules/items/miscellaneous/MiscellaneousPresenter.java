@@ -9,7 +9,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 public class MiscellaneousPresenter extends AbstractModulesPresenter<ModuleParameter, MiscellaneousListView, MiscellaneousParametersModel> {
 
-    private MiscellaneousModelCreator modelCreator = new MiscellaneousModelCreator();
+    private final MiscellaneousModelCreator modelCreator = new MiscellaneousModelCreator();
 
     public MiscellaneousPresenter(MiscellaneousListView view) {
         super(view);

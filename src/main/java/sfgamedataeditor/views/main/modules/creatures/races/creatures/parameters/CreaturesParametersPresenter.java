@@ -30,7 +30,7 @@ public class CreaturesParametersPresenter extends AbstractPresenter<CreaturesPar
     private static final Logger LOGGER = Logger.getLogger(CreaturesParametersPresenter.class);
     private static final Map<Integer, Integer> SLOT_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
-    private DropItemsComboBoxListener dropItemsListener = new DropItemsComboBoxListener();
+    private final DropItemsComboBoxListener dropItemsListener = new DropItemsComboBoxListener();
 
     public CreaturesParametersPresenter(CreaturesParametersView view) {
         super(view);

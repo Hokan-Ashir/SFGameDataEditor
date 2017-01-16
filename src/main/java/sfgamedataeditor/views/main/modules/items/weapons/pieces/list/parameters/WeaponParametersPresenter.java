@@ -24,8 +24,8 @@ import java.util.List;
 public class WeaponParametersPresenter extends AbstractPresenter<WeaponParametersModelParameter, WeaponParametersView> {
 
     private static final Logger LOGGER = Logger.getLogger(WeaponParametersPresenter.class);
-    private ItemRequirementsComboBoxListener itemRequirementsListener = new ItemRequirementsComboBoxListener();
-    private ItemEffectsComboBoxListener itemEffectsListener = new ItemEffectsComboBoxListener();
+    private final ItemRequirementsComboBoxListener itemRequirementsListener = new ItemRequirementsComboBoxListener();
+    private final ItemEffectsComboBoxListener itemEffectsListener = new ItemEffectsComboBoxListener();
 
     public WeaponParametersPresenter(WeaponParametersView view) {
         super(view);

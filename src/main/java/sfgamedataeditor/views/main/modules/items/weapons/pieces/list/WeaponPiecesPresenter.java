@@ -11,7 +11,7 @@ import java.util.List;
 
 public class WeaponPiecesPresenter extends AbstractModulesPresenter<WeaponPiecesModelParameter, WeaponPiecesView, WeaponParametersModel> {
 
-    private WeaponModelCreator modelCreator = new WeaponModelCreator();
+    private final WeaponModelCreator modelCreator = new WeaponModelCreator();
 
     public WeaponPiecesPresenter(WeaponPiecesView view) {
         super(view);

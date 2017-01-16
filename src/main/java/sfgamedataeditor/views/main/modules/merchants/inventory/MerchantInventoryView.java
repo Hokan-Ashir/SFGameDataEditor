@@ -19,7 +19,7 @@ public class MerchantInventoryView implements PresentableView {
     private JScrollPane scrollPane;
     private JPanel listPanel;
     private JPanel selectedItemPanel;
-    private EquipmentWidget equipmentWidget;
+    private final EquipmentWidget equipmentWidget;
 
     public MerchantInventoryView() {
         merchantInventoryItemList.setModel(new DefaultListModel<String>());

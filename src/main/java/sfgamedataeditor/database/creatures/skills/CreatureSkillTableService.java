@@ -23,5 +23,5 @@ public enum CreatureSkillTableService implements TableCreationService {
         public DTOOffsetTypes getDTOOffsetType() {
             return DTOOffsetTypes.CREATURE_SKILLS;
         }
-    };
+    }
 }

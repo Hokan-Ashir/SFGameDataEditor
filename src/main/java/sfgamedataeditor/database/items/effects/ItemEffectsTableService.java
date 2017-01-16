@@ -23,5 +23,5 @@ public enum ItemEffectsTableService implements TableCreationService {
         public DTOOffsetTypes getDTOOffsetType() {
             return DTOOffsetTypes.ITEM_EFFECTS;
         }
-    };
+    }
 }

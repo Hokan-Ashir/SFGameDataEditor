@@ -26,7 +26,7 @@ public abstract class AbstractModulesView implements PresentableView {
         return comboBoxMapping;
     }
 
-    public JComboBox<String> getModulesComboBox() {
+    protected JComboBox<String> getModulesComboBox() {
         return modulesComboBox;
     }
 

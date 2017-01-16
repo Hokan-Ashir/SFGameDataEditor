@@ -31,8 +31,7 @@ import java.util.ResourceBundle;
 
 public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWidget, OffsetableObject> implements ItemListener, ActionListener {
 
-    // TODO almost full copy-&-paste from MerchantInventoryPresenter
-    private Map<Integer, Pair<Class<? extends PresentableView>, ModelCreator>> itemTypesClassViews = new HashMap<>();
+    private final Map<Integer, Pair<Class<? extends PresentableView>, ModelCreator>> itemTypesClassViews = new HashMap<>();
 
     public EquipmentWidgetListener(EquipmentWidget component, Field... mappedFields) {
         super(component, mappedFields);

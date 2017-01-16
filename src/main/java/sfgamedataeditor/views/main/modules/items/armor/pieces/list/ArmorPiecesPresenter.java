@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ArmorPiecesPresenter extends AbstractModulesPresenter<ArmorPiecesModelParameter, ArmorPiecesView, ArmorParametersModel> {
 
-    private ArmorModelCreator modelCreator = new ArmorModelCreator();
+    private final ArmorModelCreator modelCreator = new ArmorModelCreator();
 
     public ArmorPiecesPresenter(ArmorPiecesView view) {
         super(view);
