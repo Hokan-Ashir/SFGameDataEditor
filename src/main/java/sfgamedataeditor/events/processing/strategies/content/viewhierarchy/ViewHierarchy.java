@@ -20,7 +20,7 @@ import sfgamedataeditor.events.processing.strategies.content.modelcreators.spell
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.spells.SpellsFromSpellParameterModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.units.UnitRacesFromUnitsModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.units.UnitsFromUnitParametersModelCreator;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.main.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
 import sfgamedataeditor.views.main.modules.creatures.races.CreaturesRacesView;
@@ -166,7 +166,7 @@ public enum  ViewHierarchy {
         return creatureRaces;
     }
 
-    public List<ViewHierarchyNode> getNodesToShow(Class<? extends ControllableView> leafViewClass) {
+    public List<ViewHierarchyNode> getNodesToShow(Class<? extends PresentableView> leafViewClass) {
         List<ViewHierarchyNode> result = new ArrayList<>();
         ViewHierarchyNode node = findLeafNode(leafViewClass);
         while (node != null) {
@@ -177,11 +177,11 @@ public enum  ViewHierarchy {
         return result;
     }
 
-    private ViewHierarchyNode findLeafNode(Class<? extends ControllableView> leafViewClass) {
+    private ViewHierarchyNode findLeafNode(Class<? extends PresentableView> leafViewClass) {
         return findNode(rootNode, leafViewClass);
     }
 
-    private ViewHierarchyNode findNode(ViewHierarchyNode node, Class<? extends ControllableView> leafViewClass) {
+    private ViewHierarchyNode findNode(ViewHierarchyNode node, Class<? extends PresentableView> leafViewClass) {
         if (node.getViewClass().equals(leafViewClass)) {
             return node;
         }

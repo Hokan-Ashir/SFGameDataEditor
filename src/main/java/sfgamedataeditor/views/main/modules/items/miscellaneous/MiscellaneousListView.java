@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.miscellaneous;
 
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -28,7 +28,7 @@ public class MiscellaneousListView extends AbstractModulesView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return MiscellaneousController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return MiscellaneousPresenter.class;
     }
 }

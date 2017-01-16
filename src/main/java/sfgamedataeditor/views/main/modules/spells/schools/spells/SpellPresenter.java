@@ -2,7 +2,7 @@ package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
-import sfgamedataeditor.views.common.AbstractModulesController;
+import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModelParameter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class SpellController extends AbstractModulesController<SpellModelParameter, SpellsView, SpellParameterModel> {
-    public SpellController(SpellsView view) {
+public class SpellPresenter extends AbstractModulesPresenter<SpellModelParameter, SpellsView, SpellParameterModel> {
+    public SpellPresenter(SpellsView view) {
         super(view);
     }
 

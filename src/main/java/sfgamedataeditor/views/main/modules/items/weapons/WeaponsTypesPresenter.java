@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.weapons;
 
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.views.common.AbstractModulesController;
+import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiecesModel;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiecesModelParameter;
@@ -12,9 +12,9 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class WeaponsTypesController extends AbstractModulesController<ModuleParameter, WeaponsTypesListView, WeaponPiecesModel> {
+public class WeaponsTypesPresenter extends AbstractModulesPresenter<ModuleParameter, WeaponsTypesListView, WeaponPiecesModel> {
 
-    public WeaponsTypesController(WeaponsTypesListView view) {
+    public WeaponsTypesPresenter(WeaponsTypesListView view) {
         super(view);
     }
 

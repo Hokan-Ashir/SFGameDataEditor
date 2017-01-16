@@ -3,9 +3,9 @@ package sfgamedataeditor.views.common;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.Model;
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -14,8 +14,8 @@ import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public abstract class AbstractModulesController<M, V extends AbstractModulesView, C extends Model> extends AbstractController<M, V> {
-    protected AbstractModulesController(V view) {
+public abstract class AbstractModulesPresenter<M, V extends AbstractModulesView, C extends Model> extends AbstractPresenter<M, V> {
+    protected AbstractModulesPresenter(V view) {
         super(view);
         final JComboBox<String> modulesComboBox = getView().getModulesComboBox();
         modulesComboBox.addItemListener(new DefaultComboBoxListener());
@@ -57,7 +57,7 @@ public abstract class AbstractModulesController<M, V extends AbstractModulesView
                 return;
             }
 
-            Class<? extends ControllableView> classViewToShow = getView().getComboBoxMapping().get(selectedItem);
+            Class<? extends PresentableView> classViewToShow = getView().getComboBoxMapping().get(selectedItem);
             Model model = createModel();
             EventProcessor.INSTANCE.process(new ShowContentViewEvent(classViewToShow, model));
         }

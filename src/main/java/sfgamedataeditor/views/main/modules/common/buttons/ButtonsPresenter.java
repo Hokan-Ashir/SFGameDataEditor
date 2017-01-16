@@ -1,11 +1,11 @@
 package sfgamedataeditor.views.main.modules.common.buttons;
 
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.main.MainView;
 
-public class ButtonsController extends AbstractController<Object, ButtonsView> {
-    public ButtonsController(ButtonsView view) {
+public class ButtonsPresenter extends AbstractPresenter<Object, ButtonsView> {
+    public ButtonsPresenter(ButtonsView view) {
         super(view);
     }
 

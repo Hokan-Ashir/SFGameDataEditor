@@ -1,11 +1,11 @@
 package sfgamedataeditor.views.main.modules.common.eventhistory;
 
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
-public class EventHistoryView implements ControllableView {
+public class EventHistoryView implements PresentableView {
     private JPanel mainPanel;
     private JButton undoButton;
     private JButton redoButton;
@@ -27,7 +27,7 @@ public class EventHistoryView implements ControllableView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return EventHistoryController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return EventHistoryPresenter.class;
     }
 }

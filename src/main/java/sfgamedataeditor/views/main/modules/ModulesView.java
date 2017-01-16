@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules;
 
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
 import sfgamedataeditor.views.main.modules.creatures.races.CreaturesRacesView;
@@ -33,7 +33,7 @@ public class ModulesView extends AbstractModulesView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return ModulesController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return ModulesPresenter.class;
     }
 }

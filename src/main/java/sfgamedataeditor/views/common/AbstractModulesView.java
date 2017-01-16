@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.common;
 
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.PromptTextComboBoxRenderer;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -9,9 +9,9 @@ import javax.swing.*;
 import java.util.Map;
 import java.util.TreeMap;
 
-public abstract class AbstractModulesView implements ControllableView {
+public abstract class AbstractModulesView implements PresentableView {
 
-    private final Map<String, Class<? extends ControllableView>> comboBoxMapping = new TreeMap<>();
+    private final Map<String, Class<? extends PresentableView>> comboBoxMapping = new TreeMap<>();
     private JComboBox<String> modulesComboBox;
     private JPanel mainPanel;
 
@@ -22,7 +22,7 @@ public abstract class AbstractModulesView implements ControllableView {
         initializeComboBox();
     }
 
-    protected Map<String, Class<? extends ControllableView>> getComboBoxMapping() {
+    protected Map<String, Class<? extends PresentableView>> getComboBoxMapping() {
         return comboBoxMapping;
     }
 
@@ -49,7 +49,7 @@ public abstract class AbstractModulesView implements ControllableView {
         });
     }
 
-    public void addMapping(String name, Class<? extends ControllableView> classViewToShow) {
+    public void addMapping(String name, Class<? extends PresentableView> classViewToShow) {
         comboBoxMapping.put(name, classViewToShow);
     }
 

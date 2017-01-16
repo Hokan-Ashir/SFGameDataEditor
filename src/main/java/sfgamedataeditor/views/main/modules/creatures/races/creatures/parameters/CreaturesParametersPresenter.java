@@ -10,7 +10,7 @@ import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -25,14 +25,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreaturesParametersController extends AbstractController<CreaturesParametersModelParameter, CreaturesParametersView> {
+public class CreaturesParametersPresenter extends AbstractPresenter<CreaturesParametersModelParameter, CreaturesParametersView> {
 
-    private static final Logger LOGGER = Logger.getLogger(CreaturesParametersController.class);
+    private static final Logger LOGGER = Logger.getLogger(CreaturesParametersPresenter.class);
     private static final Map<Integer, Integer> SLOT_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
     private DropItemsComboBoxListener dropItemsListener = new DropItemsComboBoxListener();
 
-    public CreaturesParametersController(CreaturesParametersView view) {
+    public CreaturesParametersPresenter(CreaturesParametersView view) {
         super(view);
         initializeSlotNumberMapping();
         initializeSpellNumberMapping();

@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.creatures.races;
 
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
-import sfgamedataeditor.views.common.AbstractModulesController;
+import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.races.AbstractRacesView;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesModel;
@@ -9,9 +9,9 @@ import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesMo
 
 import java.util.List;
 
-public class CreaturesRacesController extends AbstractModulesController<ModuleParameter, AbstractRacesView, CreaturesModel> {
+public class CreaturesRacesPresenter extends AbstractModulesPresenter<ModuleParameter, AbstractRacesView, CreaturesModel> {
 
-    public CreaturesRacesController(AbstractRacesView view) {
+    public CreaturesRacesPresenter(AbstractRacesView view) {
         super(view);
     }
 

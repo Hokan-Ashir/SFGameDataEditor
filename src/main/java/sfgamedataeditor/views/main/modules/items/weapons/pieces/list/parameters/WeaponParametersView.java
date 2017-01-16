@@ -6,12 +6,12 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObjec
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
-public class WeaponParametersView implements ControllableView {
+public class WeaponParametersView implements PresentableView {
 
     private JPanel mainPanel;
 
@@ -46,29 +46,16 @@ public class WeaponParametersView implements ControllableView {
     @GUIElement(GUIElementId = GUIElements.MATERIAL, DTOColumnNames = "material", DTOClass = WeaponParametersObject.class)
     private JPanel materialPanel;
 
+    // TODO currently only one requirement per item, even if it has more than one
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_SUBCLASS, DTOColumnNames = {"schoolRequirementClass", "subSchoolRequirementClass"}, DTOClass = ItemRequirementsObject.class)
     private JPanel requirementClassSubClassPanel;
 
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_LEVEL, DTOColumnNames = "level", DTOClass = ItemRequirementsObject.class)
     private JPanel requirementLevelPanel;
-    private JComboBox<String> itemRequirementsComboBox;
-    private JComboBox<String> effectsComboBox;
-
-    public JPanel getItemEffectPanel() {
-        return itemEffectPanel;
-    }
-
-    public JComboBox<String> getEffectsComboBox() {
-        return effectsComboBox;
-    }
-
-    public JComboBox<String> getItemRequirementsComboBox() {
-        return itemRequirementsComboBox;
-    }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return WeaponParametersController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return WeaponParametersPresenter.class;
     }
 
     @Override

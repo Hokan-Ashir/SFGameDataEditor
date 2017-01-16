@@ -3,15 +3,15 @@ package sfgamedataeditor.views.main.modules.merchants.inventory;
 import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidget;
 import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidgetListener;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
 
-public class MerchantInventoryView implements ControllableView {
+public class MerchantInventoryView implements PresentableView {
 
     private JPanel mainPanel;
     private JList<String> merchantInventoryItemList;
@@ -48,8 +48,8 @@ public class MerchantInventoryView implements ControllableView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return MerchantInventoryController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return MerchantInventoryPresenter.class;
     }
 
     @Override

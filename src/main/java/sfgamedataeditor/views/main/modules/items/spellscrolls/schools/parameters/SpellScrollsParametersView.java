@@ -4,12 +4,12 @@ import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.item.scrolls.GUIElements;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
-public class SpellScrollsParametersView implements ControllableView {
+public class SpellScrollsParametersView implements PresentableView {
 
     private JPanel mainPanel;
 
@@ -23,8 +23,8 @@ public class SpellScrollsParametersView implements ControllableView {
     private JPanel itemEffectPanel;
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return SpellScrollsParametersController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return SpellScrollsParametersPresenter.class;
     }
 
     @Override

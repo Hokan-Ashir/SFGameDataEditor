@@ -5,17 +5,17 @@ import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.main.MainView;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
 
-public class MiscellaneousParametersController extends AbstractController<MiscellaneousParametersModelParameter, MiscellaneousParametersView> {
+public class MiscellaneousParametersPresenter extends AbstractPresenter<MiscellaneousParametersModelParameter, MiscellaneousParametersView> {
 
-    private static final Logger LOGGER = Logger.getLogger(MiscellaneousParametersController.class);
+    private static final Logger LOGGER = Logger.getLogger(MiscellaneousParametersPresenter.class);
 
-    public MiscellaneousParametersController(MiscellaneousParametersView view) {
+    public MiscellaneousParametersPresenter(MiscellaneousParametersView view) {
         super(view);
     }
 

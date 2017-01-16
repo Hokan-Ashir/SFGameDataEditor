@@ -8,18 +8,18 @@ import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxParame
 import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
 import sfgamedataeditor.database.skill.parameters.SkillParametersTableService;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.main.MainView;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
 import java.util.Set;
 
-public class SkillParameterController extends AbstractController<SkillParameterModelParameter, SkillParameterView> {
+public class SkillParameterPresenter extends AbstractPresenter<SkillParameterModelParameter, SkillParameterView> {
 
-    private static final Logger LOGGER = Logger.getLogger(SkillParameterController.class);
+    private static final Logger LOGGER = Logger.getLogger(SkillParameterPresenter.class);
 
-    public SkillParameterController(SkillParameterView view) {
+    public SkillParameterPresenter(SkillParameterView view) {
         super(view);
     }
 

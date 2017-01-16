@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.weapons.pieces.list;
 
-import sfgamedataeditor.views.common.AbstractModulesController;
+import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersModel;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
 import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.WeaponModelCreator;
@@ -9,11 +9,11 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.List;
 
-public class WeaponPiecesController extends AbstractModulesController<WeaponPiecesModelParameter, WeaponPiecesView, WeaponParametersModel> {
+public class WeaponPiecesPresenter extends AbstractModulesPresenter<WeaponPiecesModelParameter, WeaponPiecesView, WeaponParametersModel> {
 
     private WeaponModelCreator modelCreator = new WeaponModelCreator();
 
-    public WeaponPiecesController(WeaponPiecesView view) {
+    public WeaponPiecesPresenter(WeaponPiecesView view) {
         super(view);
     }
 

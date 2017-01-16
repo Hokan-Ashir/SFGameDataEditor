@@ -11,7 +11,7 @@ import sfgamedataeditor.database.creatures.production.buildings.CreatureBuilding
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.main.MainView;
 
 import javax.swing.*;
@@ -20,15 +20,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UnitsParametersController extends AbstractController<UnitsParametersModelParameter, UnitsParametersView> {
+public class UnitsParametersPresenter extends AbstractPresenter<UnitsParametersModelParameter, UnitsParametersView> {
 
-    private static final Logger LOGGER = Logger.getLogger(UnitsParametersController.class);
+    private static final Logger LOGGER = Logger.getLogger(UnitsParametersPresenter.class);
     private static final Map<Integer, Integer> SLOT_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> BUILDINGS_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> RESOURCES_NUMBER_MAPPING = new HashMap<>();
 
-    public UnitsParametersController(UnitsParametersView view) {
+    public UnitsParametersPresenter(UnitsParametersView view) {
         super(view);
         initializeSlotNumberMapping();
         initializeSpellNumberMapping();

@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.armor.pieces.list;
 
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -24,7 +24,7 @@ public class ArmorPiecesView extends AbstractModulesView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return ArmorPiecesController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return ArmorPiecesPresenter.class;
     }
 }

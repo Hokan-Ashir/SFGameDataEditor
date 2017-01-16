@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.skills.schools;
 
 import sfgamedataeditor.datamapping.Mappings;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -24,7 +24,7 @@ public class SkillSchoolsView extends AbstractModulesView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return SkillSchoolsController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return SkillSchoolsPresenter.class;
     }
 }

@@ -8,14 +8,14 @@ import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
-public class CreaturesParametersView implements ControllableView {
+public class CreaturesParametersView implements PresentableView {
 
     private static final int PARAMETERS_TAB_INDEX = 0;
     private static final int EQUIPMENT_TAB_INDEX = 1;
@@ -201,8 +201,8 @@ public class CreaturesParametersView implements ControllableView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return CreaturesParametersController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return CreaturesParametersPresenter.class;
     }
 
     @Override

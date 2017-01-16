@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.units.races.units;
 
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -22,7 +22,7 @@ public class UnitListView extends AbstractModulesView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return UnitListController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return UnitListPresenter.class;
     }
 }

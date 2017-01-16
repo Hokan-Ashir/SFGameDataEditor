@@ -8,7 +8,7 @@ import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -21,13 +21,13 @@ import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.List;
 
-public class WeaponParametersController extends AbstractController<WeaponParametersModelParameter, WeaponParametersView> {
+public class WeaponParametersPresenter extends AbstractPresenter<WeaponParametersModelParameter, WeaponParametersView> {
 
-    private static final Logger LOGGER = Logger.getLogger(WeaponParametersController.class);
+    private static final Logger LOGGER = Logger.getLogger(WeaponParametersPresenter.class);
     private ItemRequirementsComboBoxListener itemRequirementsListener = new ItemRequirementsComboBoxListener();
     private ItemEffectsComboBoxListener itemEffectsListener = new ItemEffectsComboBoxListener();
 
-    public WeaponParametersController(WeaponParametersView view) {
+    public WeaponParametersPresenter(WeaponParametersView view) {
         super(view);
         getView().getItemRequirementsComboBox().addItemListener(itemRequirementsListener);
         getView().getEffectsComboBox().addItemListener(itemEffectsListener);
@@ -129,7 +129,7 @@ public class WeaponParametersController extends AbstractController<WeaponParamet
         mainView.unRenderViewInsideContentPanel(getView());
     }
 
-    // TODO get rid of duplications (copy-&-paste from ArmorParametersController)
+    // TODO get rid of duplications (copy-&-paste from ArmorParametersPresenter)
     private final class ItemRequirementsComboBoxListener implements ItemListener {
 
         private List<ItemRequirementsObject> itemRequirementsObjects;

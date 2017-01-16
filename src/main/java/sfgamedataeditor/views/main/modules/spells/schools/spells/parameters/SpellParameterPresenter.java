@@ -10,7 +10,7 @@ import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -19,9 +19,9 @@ import javax.swing.*;
 import java.lang.reflect.Field;
 import java.util.*;
 
-public class SpellParameterController extends AbstractController<SpellParameterModelParameter, SpellParameterView> {
+public class SpellParameterPresenter extends AbstractPresenter<SpellParameterModelParameter, SpellParameterView> {
 
-    private static final Logger LOGGER = Logger.getLogger(SpellParameterController.class);
+    private static final Logger LOGGER = Logger.getLogger(SpellParameterPresenter.class);
     private static final String SPELL_I18N_NAME_POSTFIX = ".name";
     private final Map<Integer, List<String>> i18nStrings = new HashMap<>();
     private final Map<Integer, String> i18nDTOFieldsToGUIElementsIdsMap = new HashMap<Integer, String>() {{
@@ -36,7 +36,7 @@ public class SpellParameterController extends AbstractController<SpellParameterM
         put(GUIElements.PARAMETER_9, "field9");
     }};
 
-    public SpellParameterController(SpellParameterView view) {
+    public SpellParameterPresenter(SpellParameterView view) {
         super(view);
         createI18NMap();
     }

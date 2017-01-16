@@ -10,7 +10,7 @@ import sfgamedataeditor.database.creatures.production.resources.CreatureResource
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesTableService;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
-import sfgamedataeditor.views.common.AbstractModulesController;
+import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersModel;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersModelParameter;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersView;
@@ -19,9 +19,9 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.List;
 
-public class UnitListController extends AbstractModulesController<UnitListModelParameter, UnitListView, UnitsParametersModel> {
+public class UnitListPresenter extends AbstractModulesPresenter<UnitListModelParameter, UnitListView, UnitsParametersModel> {
 
-    public UnitListController(UnitListView view) {
+    public UnitListPresenter(UnitListView view) {
         super(view);
     }
 

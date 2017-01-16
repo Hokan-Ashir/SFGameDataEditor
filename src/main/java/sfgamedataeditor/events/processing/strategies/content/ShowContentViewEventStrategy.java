@@ -8,11 +8,11 @@ import sfgamedataeditor.events.processing.strategies.content.viewhierarchy.ViewH
 import sfgamedataeditor.events.processing.strategies.content.viewhierarchy.ViewHierarchyNode;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.events.types.ShowViewEvent;
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.Model;
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistory;
-import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryController;
+import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryPresenter;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryView;
 
 import java.util.ArrayList;
@@ -47,19 +47,19 @@ public class ShowContentViewEventStrategy implements EventProcessingStrategy<Sho
 
     private void updateEventHistory(ShowContentViewEvent event) {
         EventHistory.INSTANCE.addEventToHistory(event);
-        EventHistoryController controller = (EventHistoryController) ViewRegister.INSTANCE.getViews().get(EventHistoryView.class).getController();
+        EventHistoryPresenter controller = (EventHistoryPresenter) ViewRegister.INSTANCE.getViews().get(EventHistoryView.class).getController();
         controller.setRedoButtonStatus(EventHistory.INSTANCE.isRedoPossible());
         controller.setUndoButtonStatus(EventHistory.INSTANCE.isUndoPossible());
     }
 
     private void unRenderNode(ViewHierarchyNode renderedNode) {
-        Class<? extends ControllableView> classViewToUnShow = renderedNode.getViewClass();
+        Class<? extends PresentableView> classViewToUnShow = renderedNode.getViewClass();
         ViewControllerPair viewControllerPair = ViewRegister.INSTANCE.getViews().get(classViewToUnShow);
         if (viewControllerPair == null) {
             return;
         }
 
-        AbstractController controller = viewControllerPair.getController();
+        AbstractPresenter controller = viewControllerPair.getController();
         if (controller == null) {
             return;
         }

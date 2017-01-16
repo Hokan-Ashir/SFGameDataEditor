@@ -1,12 +1,12 @@
 package sfgamedataeditor.views.main.modules.items;
 
-import sfgamedataeditor.views.common.AbstractModulesController;
+import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.ModulesModel;
 
-public class ItemTypesController extends AbstractModulesController<ModuleParameter, ItemTypesView, ModulesModel> {
+public class ItemTypesPresenter extends AbstractModulesPresenter<ModuleParameter, ItemTypesView, ModulesModel> {
 
-    public ItemTypesController(ItemTypesView view) {
+    public ItemTypesPresenter(ItemTypesView view) {
         super(view);
     }
 

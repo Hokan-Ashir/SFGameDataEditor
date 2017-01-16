@@ -3,7 +3,7 @@ package sfgamedataeditor.views.main.modules.merchants.inventory;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -13,9 +13,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.util.List;
 
-public class MerchantInventoryController extends AbstractController<MerchantInventoryModelParameter, MerchantInventoryView> implements ListSelectionListener {
+public class MerchantInventoryPresenter extends AbstractPresenter<MerchantInventoryModelParameter, MerchantInventoryView> implements ListSelectionListener {
 
-    public MerchantInventoryController(MerchantInventoryView view) {
+    public MerchantInventoryPresenter(MerchantInventoryView view) {
         super(view);
         getView().getMerchantInventoryItemList().addListSelectionListener(this);
     }

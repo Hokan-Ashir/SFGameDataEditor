@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.spellscrolls.schools;
 
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -28,7 +28,7 @@ public class SpellScrollsListView extends AbstractModulesView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return SpellScrollsController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return SpellScrollsPresenter.class;
     }
 }

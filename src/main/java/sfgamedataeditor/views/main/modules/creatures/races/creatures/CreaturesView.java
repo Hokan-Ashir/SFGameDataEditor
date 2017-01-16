@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures;
 
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -22,7 +22,7 @@ public class CreaturesView extends AbstractModulesView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return CreaturesController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return CreaturesPresenter.class;
     }
 }

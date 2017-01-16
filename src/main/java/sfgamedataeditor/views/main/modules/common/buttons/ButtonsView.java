@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.common.buttons;
 
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.main.modules.common.buttons.listeners.CreateModificatedFileButtonListener;
 import sfgamedataeditor.views.main.modules.common.buttons.listeners.CreateSfModFileButtonListener;
 import sfgamedataeditor.views.main.modules.common.buttons.listeners.LoadSfModFileButtonListener;
@@ -10,7 +10,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
-public class ButtonsView implements ControllableView {
+public class ButtonsView implements PresentableView {
     private JButton loadSfmodFileButton;
     private JButton createSfmodFileButton;
     private JPanel mainPanel;
@@ -35,7 +35,7 @@ public class ButtonsView implements ControllableView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return ButtonsController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return ButtonsPresenter.class;
     }
 }

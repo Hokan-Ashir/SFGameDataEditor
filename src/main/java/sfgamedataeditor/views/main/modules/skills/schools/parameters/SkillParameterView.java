@@ -3,12 +3,12 @@ package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.skill.parameters.GUIElements;
 import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
-public class SkillParameterView implements ControllableView {
+public class SkillParameterView implements PresentableView {
 
     // format - SCHOOL LEVEL STR STA AGI DEX CHA INT WIS, each 1 byte length
     private JPanel mainPanel;
@@ -46,7 +46,7 @@ public class SkillParameterView implements ControllableView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return SkillParameterController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return SkillParameterPresenter.class;
     }
 }

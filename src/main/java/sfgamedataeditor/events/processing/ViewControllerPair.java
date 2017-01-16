@@ -1,9 +1,9 @@
 package sfgamedataeditor.events.processing;
 
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.PresentableView;
 
-public class ViewControllerPair<V extends ControllableView, C extends AbstractController> {
+public class ViewControllerPair<V extends PresentableView, C extends AbstractPresenter> {
     private final V view;
     private final C controller;
 

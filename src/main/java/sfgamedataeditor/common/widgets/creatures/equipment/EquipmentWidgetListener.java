@@ -5,8 +5,8 @@ import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
-import sfgamedataeditor.mvc.objects.ControllableView;
 import sfgamedataeditor.mvc.objects.Model;
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.notimplemented.NotImplementedView;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersView;
@@ -31,8 +31,8 @@ import java.util.ResourceBundle;
 
 public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWidget, OffsetableObject> implements ItemListener, ActionListener {
 
-    // TODO almost full copy-&-paste from MerchantInventoryController
-    private Map<Integer, Pair<Class<? extends ControllableView>, ModelCreator>> itemTypesClassViews = new HashMap<>();
+    // TODO almost full copy-&-paste from MerchantInventoryPresenter
+    private Map<Integer, Pair<Class<? extends PresentableView>, ModelCreator>> itemTypesClassViews = new HashMap<>();
 
     public EquipmentWidgetListener(EquipmentWidget component, Field... mappedFields) {
         super(component, mappedFields);
@@ -48,21 +48,21 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
 
     private void addSpellScrollsViewsMapping() {
         SpellScrollsModelCreator creator = new SpellScrollsModelCreator();
-        Pair<Class<? extends ControllableView>, ModelCreator> pair = new Pair<Class<? extends ControllableView>, ModelCreator>(SpellScrollsParametersView.class, creator);
+        Pair<Class<? extends PresentableView>, ModelCreator> pair = new Pair<Class<? extends PresentableView>, ModelCreator>(SpellScrollsParametersView.class, creator);
         int scrollsTypeId = getItemTypeByNameMapping("items.scrolls");
         itemTypesClassViews.put(scrollsTypeId, pair);
     }
 
     private void addMiscellaneousViewsMapping() {
         MiscellaneousModelCreator creator = new MiscellaneousModelCreator();
-        Pair<Class<? extends ControllableView>, ModelCreator> pair = new Pair<Class<? extends ControllableView>, ModelCreator>(MiscellaneousParametersView.class, creator);
+        Pair<Class<? extends PresentableView>, ModelCreator> pair = new Pair<Class<? extends PresentableView>, ModelCreator>(MiscellaneousParametersView.class, creator);
         int miscellaneousTypeId = getItemTypeByNameMapping("items.miscellaneous");
         itemTypesClassViews.put(miscellaneousTypeId, pair);
     }
 
     private void addWeaponsViewsMapping() {
         WeaponModelCreator creator = new WeaponModelCreator();
-        Pair<Class<? extends ControllableView>, ModelCreator> pair = new Pair<Class<? extends ControllableView>, ModelCreator>(WeaponParametersView.class, creator);
+        Pair<Class<? extends PresentableView>, ModelCreator> pair = new Pair<Class<? extends PresentableView>, ModelCreator>(WeaponParametersView.class, creator);
         int oneHandWeaponTypeId = getItemTypeByNameMapping("items.1h.weapon");
         itemTypesClassViews.put(oneHandWeaponTypeId, pair);
 
@@ -75,7 +75,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
 
     private void addArmorViewsMapping() {
         ArmorModelCreator creator = new ArmorModelCreator();
-        Pair<Class<? extends ControllableView>, ModelCreator> pair = new Pair<Class<? extends ControllableView>, ModelCreator>(ArmorParametersView.class, creator);
+        Pair<Class<? extends PresentableView>, ModelCreator> pair = new Pair<Class<? extends PresentableView>, ModelCreator>(ArmorParametersView.class, creator);
         int helmetsId = getItemTypeByNameMapping("items.armor.helmets");
         itemTypesClassViews.put(helmetsId, pair);
 
@@ -130,14 +130,14 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
 
         String selectedItemName = (String) getWidget().getItemPieceComboBox().getSelectedItem();
         Integer itemId = ViewTools.getKeyByPropertyValue(selectedItemName, I18NTypes.ITEMS);
-        Class<? extends ControllableView> classViewToShow = getItemParametersViewClassByItemId(itemId);
+        Class<? extends PresentableView> classViewToShow = getItemParametersViewClassByItemId(itemId);
         Model model = createModel(itemId);
         EventProcessor.INSTANCE.process(new ShowContentViewEvent(classViewToShow, model));
     }
 
-    private Class<? extends ControllableView> getItemParametersViewClassByItemId(int itemId) {
+    private Class<? extends PresentableView> getItemParametersViewClassByItemId(int itemId) {
         int itemTypeId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
-        Pair<Class<? extends ControllableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
+        Pair<Class<? extends PresentableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
         // TODO remove in future, stub for not implemented items sold by merchants
         if (pair == null) {
             return NotImplementedView.class;
@@ -148,7 +148,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
 
     private Model createModel(Integer itemId) {
         int itemTypeId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
-        Pair<Class<? extends ControllableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
+        Pair<Class<? extends PresentableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
         // TODO remove in future, stub for not implemented items sold by merchants
         if (pair == null) {
             return null;

@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.merchants;
 
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.merchants.inventory.MerchantInventoryView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -29,7 +29,7 @@ public class MerchantsView extends AbstractModulesView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return MerchantsController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return MerchantsPresenter.class;
     }
 }

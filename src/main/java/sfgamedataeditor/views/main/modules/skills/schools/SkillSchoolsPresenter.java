@@ -1,13 +1,13 @@
 package sfgamedataeditor.views.main.modules.skills.schools;
 
 import sfgamedataeditor.datamapping.Mappings;
-import sfgamedataeditor.views.common.AbstractModulesController;
+import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterModel;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterModelParameter;
 
-public class SkillSchoolsController extends AbstractModulesController<ModuleParameter, SkillSchoolsView, SkillParameterModel> {
-    public SkillSchoolsController(SkillSchoolsView view) {
+public class SkillSchoolsPresenter extends AbstractModulesPresenter<ModuleParameter, SkillSchoolsView, SkillParameterModel> {
+    public SkillSchoolsPresenter(SkillSchoolsView view) {
         super(view);
     }
 

@@ -7,14 +7,14 @@ import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.production.buildings.CreatureBuildingsObject;
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
-public class UnitsParametersView implements ControllableView {
+public class UnitsParametersView implements PresentableView {
 
     private static final int CREATURE_PARAMETERS_TAB_INDEX = 0;
     private static final int CREATURE_EQUIPMENT_TAB_INDEX = 1;
@@ -128,8 +128,8 @@ public class UnitsParametersView implements ControllableView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return UnitsParametersController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return UnitsParametersPresenter.class;
     }
 
     @Override

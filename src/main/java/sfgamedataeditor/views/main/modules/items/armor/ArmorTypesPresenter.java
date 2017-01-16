@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.armor;
 
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.views.common.AbstractModulesController;
+import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.ArmorPiecesModel;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.ArmorPiecesModelParameter;
@@ -12,9 +12,9 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ArmorTypesController extends AbstractModulesController<ModuleParameter, ArmorTypeListView, ArmorPiecesModel> {
+public class ArmorTypesPresenter extends AbstractModulesPresenter<ModuleParameter, ArmorTypeListView, ArmorPiecesModel> {
 
-    public ArmorTypesController(ArmorTypeListView view) {
+    public ArmorTypesPresenter(ArmorTypeListView view) {
         super(view);
     }
 

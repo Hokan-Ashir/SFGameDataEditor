@@ -4,14 +4,14 @@ import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.Disabled;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
-public class SpellParameterView implements ControllableView {
+public class SpellParameterView implements PresentableView {
 
     private static final int SPELL_COMMON_PARAMETERS_TAB_INDEX = 0;
     private static final int SPELL_PARAMETERS_TAB_INDEX = 1;
@@ -110,7 +110,7 @@ public class SpellParameterView implements ControllableView {
     }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return SpellParameterController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return SpellParameterPresenter.class;
     }
 }

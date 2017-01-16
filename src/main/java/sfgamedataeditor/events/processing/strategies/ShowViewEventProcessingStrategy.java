@@ -5,9 +5,9 @@ import sfgamedataeditor.common.ViewConfigurator;
 import sfgamedataeditor.events.processing.ViewControllerPair;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.events.types.ShowViewEvent;
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.Model;
+import sfgamedataeditor.mvc.objects.PresentableView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -21,8 +21,8 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
      */
     @Override
     public void process(ShowViewEvent event) {
-        Class<? extends ControllableView> classViewToShow = event.getViewClass();
-        Map<Class<? extends ControllableView>, ViewControllerPair> views = ViewRegister.INSTANCE.getViews();
+        Class<? extends PresentableView> classViewToShow = event.getViewClass();
+        Map<Class<? extends PresentableView>, ViewControllerPair> views = ViewRegister.INSTANCE.getViews();
         if (!views.containsKey(classViewToShow)) {
             if (!createViewAndController(classViewToShow, views)) {
                 return;
@@ -32,13 +32,13 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
         updateViewModelAndConfiguration(event, classViewToShow, views);
     }
 
-    private void updateViewModelAndConfiguration(ShowViewEvent event, Class<? extends ControllableView> classViewToShow,
-                                                 Map<Class<? extends ControllableView>, ViewControllerPair> views) {
+    private void updateViewModelAndConfiguration(ShowViewEvent event, Class<? extends PresentableView> classViewToShow,
+                                                 Map<Class<? extends PresentableView>, ViewControllerPair> views) {
         Model model = event.getModel();
         ViewControllerPair viewControllerPair = views.get(classViewToShow);
         ViewConfigurator.INSTANCE.updateViewConfiguration(viewControllerPair.getView(), model);
 
-        AbstractController controller = viewControllerPair.getController();
+        AbstractPresenter controller = viewControllerPair.getController();
         if (controller != null) {
             controller.setModel(model);
             controller.updateView();
@@ -46,9 +46,9 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
         }
     }
 
-    private boolean createViewAndController(Class<? extends ControllableView> classViewToShow,
-                                            Map<Class<? extends ControllableView>, ViewControllerPair> views) {
-        ControllableView view;
+    private boolean createViewAndController(Class<? extends PresentableView> classViewToShow,
+                                            Map<Class<? extends PresentableView>, ViewControllerPair> views) {
+        PresentableView view;
         try {
             view = classViewToShow.getConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
@@ -56,11 +56,11 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
             return false;
         }
 
-        AbstractController controller = null;
-        Class<? extends AbstractController> controllerClass = view.getControllerClass();
+        AbstractPresenter controller = null;
+        Class<? extends AbstractPresenter> controllerClass = view.getPresenterClass();
         if (controllerClass != null) {
             try {
-                controller = (AbstractController) controllerClass.getDeclaredConstructors()[0].newInstance(view);
+                controller = (AbstractPresenter) controllerClass.getDeclaredConstructors()[0].newInstance(view);
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
                 LOGGER.error(e.getMessage(), e);
                 return false;

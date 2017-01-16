@@ -1,31 +1,32 @@
-package sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters;
+package sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.widgets.AbstractWidget;
+import sfgamedataeditor.database.items.armor.parameters.ArmorParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
-import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
+import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractController;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.main.MainView;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
-import java.util.List;
 
-public class SpellScrollsParametersController extends AbstractController<SpellScrollsParametersModelParameter, SpellScrollsParametersView> {
+public class ArmorParametersPresenter extends AbstractPresenter<ArmorParametersModelParameter, ArmorParametersView> {
 
-    private static final Logger LOGGER = Logger.getLogger(SpellScrollsParametersController.class);
+    private static final Logger LOGGER = Logger.getLogger(ArmorParametersPresenter.class);
 
-    public SpellScrollsParametersController(SpellScrollsParametersView view) {
+    public ArmorParametersPresenter(ArmorParametersView view) {
         super(view);
     }
 
     @Override
     public void updateView() {
-        SpellScrollsParametersModelParameter parameter = getModel().getParameter();
+        ArmorParametersModelParameter parameter = getModel().getParameter();
         ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
-        List<ItemSpellEffectsObject> itemSpellEffectsObjects = parameter.getItemSpellEffectsObjects();
+        ArmorParametersObject armorParametersObject = parameter.getArmorParametersObject();
+        ItemRequirementsObject requirementsObject = parameter.getRequirementsObject();
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
@@ -39,20 +40,29 @@ public class SpellScrollsParametersController extends AbstractController<SpellSc
                 JPanel panel = (JPanel) declaredField.get(getView());
                 AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
 
+                // TODO get rid of this equals-switch & generalize same solutions
                 Class<?> dtoClass = annotation.DTOClass();
                 if (dtoClass.equals(ItemPriceParametersObject.class)) {
                     widget.getListener().updateWidgetValue(priceParametersObject);
-                } else if (dtoClass.equals(ItemSpellEffectsObject.class)) {
-                    if (itemSpellEffectsObjects == null || itemSpellEffectsObjects.isEmpty()) {
+                } else if (dtoClass.equals(ArmorParametersObject.class)) {
+                    if (armorParametersObject == null) {
                         panel.setVisible(false);
                     } else {
                         panel.setVisible(true);
-                        // it's guaranteed that scroll has only one spell effect on it
-                        widget.getListener().updateWidgetValue(itemSpellEffectsObjects.get(0));
+                        widget.getListener().updateWidgetValue(armorParametersObject);
+                    }
+                } else if (dtoClass.equals(ItemRequirementsObject.class)) {
+                    if (requirementsObject == null) {
+                        panel.setVisible(false);
+                    } else {
+                        panel.setVisible(true);
+                        widget.getListener().updateWidgetValue(requirementsObject);
                     }
                 } else {
 
                 }
+
+//                widget.updateI18N(strings);
             } catch (IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);
             }

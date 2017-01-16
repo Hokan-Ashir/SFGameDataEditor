@@ -1,15 +1,15 @@
 package sfgamedataeditor.views.main.modules.units.races;
 
-import sfgamedataeditor.views.common.AbstractModulesController;
+import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitListModel;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitListModelParameter;
 
 import java.util.List;
 
-public class UnitRacesController extends AbstractModulesController<ModuleParameter, UnitRacesView, UnitListModel> {
+public class UnitRacesPresenter extends AbstractModulesPresenter<ModuleParameter, UnitRacesView, UnitListModel> {
 
-    public UnitRacesController(UnitRacesView view) {
+    public UnitRacesPresenter(UnitRacesView view) {
         super(view);
     }
 

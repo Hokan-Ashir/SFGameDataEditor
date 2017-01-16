@@ -1,7 +1,7 @@
 package sfgamedataeditor.events.processing.strategies.content.viewhierarchy;
 
 import sfgamedataeditor.mvc.ModelCreator;
-import sfgamedataeditor.mvc.objects.ControllableView;
+import sfgamedataeditor.mvc.objects.PresentableView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,12 +9,12 @@ import java.util.List;
 
 public class ViewHierarchyNode {
     private final List<ViewHierarchyNode> children = new ArrayList<>();
-    private final Class<? extends ControllableView> viewClass;
+    private final Class<? extends PresentableView> viewClass;
     private final ViewHierarchyNode parentNode;
     private boolean renderedOnScreen;
     private final ModelCreator modelCreator;
 
-    public ViewHierarchyNode(ViewHierarchyNode parentNode, Class<? extends ControllableView> viewClass, ModelCreator modelCreator) {
+    public ViewHierarchyNode(ViewHierarchyNode parentNode, Class<? extends PresentableView> viewClass, ModelCreator modelCreator) {
         this.viewClass = viewClass;
         this.parentNode = parentNode;
         renderedOnScreen = false;
@@ -37,7 +37,7 @@ public class ViewHierarchyNode {
         return parentNode;
     }
 
-    public Class<? extends ControllableView> getViewClass() {
+    public Class<? extends PresentableView> getViewClass() {
         return viewClass;
     }
 

@@ -5,14 +5,12 @@ import sfgamedataeditor.common.viewconfigurations.item.armor.GUIElements;
 import sfgamedataeditor.database.items.armor.parameters.ArmorParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
-import sfgamedataeditor.mvc.objects.AbstractController;
-import sfgamedataeditor.mvc.objects.ControllableView;
-import sfgamedataeditor.views.utility.i18n.I18NService;
-import sfgamedataeditor.views.utility.i18n.I18NTypes;
+import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
-public class ArmorParametersView implements ControllableView {
+public class ArmorParametersView implements PresentableView {
 
     private JPanel mainPanel;
 
@@ -70,36 +68,16 @@ public class ArmorParametersView implements ControllableView {
     @GUIElement(GUIElementId = GUIElements.CAST_SPEED, DTOColumnNames = "castSpeed", DTOClass = ArmorParametersObject.class)
     private JPanel castSpeedPanel;
 
+    // TODO currently only one requirement per item, even if it has more than one
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_SUBCLASS, DTOColumnNames = {"schoolRequirementClass", "subSchoolRequirementClass"}, DTOClass = ItemRequirementsObject.class)
     private JPanel requirementClassSubClassPanel;
 
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_LEVEL, DTOColumnNames = "level", DTOClass = ItemRequirementsObject.class)
     private JPanel requirementLevelPanel;
-    private JComboBox<String> requirementsComboBox;
-    private JPanel characteristicsPanel;
-    private JLabel characteristicsLabel;
-    private JPanel resistancesPanel;
-    private JLabel resistancesLabel;
-    private JPanel speedsPanel;
-    private JLabel speedsLabel;
-
-    public ArmorParametersView() {
-        internationalizeCommonLabels();
-    }
-
-    private void internationalizeCommonLabels() {
-        characteristicsLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.ARMOR_GUI, "characteristicsLabel"));
-        resistancesLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.ARMOR_GUI, "resistancesLabel"));
-        speedsLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.ARMOR_GUI, "speedsLabel"));
-    }
-
-    public JComboBox<String> getRequirementsComboBox() {
-        return requirementsComboBox;
-    }
 
     @Override
-    public Class<? extends AbstractController> getControllerClass() {
-        return ArmorParametersController.class;
+    public Class<? extends AbstractPresenter> getPresenterClass() {
+        return ArmorParametersPresenter.class;
     }
 
     @Override
