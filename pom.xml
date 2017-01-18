@@ -6,7 +6,7 @@
 
     <groupId>ru.hokan</groupId>
     <artifactId>SFGameDataEditor</artifactId>
-    <version>alpha-1</version>
+    <version>alpha-2</version>
 
     <repositories>
         <repository>

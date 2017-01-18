@@ -1,4 +1,4 @@
-alpha-2 (coming):
+alpha-2 (19.01.2017):
  - Editing creatures loot drop
  - Extended ability to change ALL weapon and armor requirements and effects
  - Added all in-game spells, including all auras from level 1 to 12, like LifeTap aura;
