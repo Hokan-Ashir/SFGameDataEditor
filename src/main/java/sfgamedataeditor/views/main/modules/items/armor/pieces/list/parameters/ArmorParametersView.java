@@ -70,7 +70,6 @@ public class ArmorParametersView implements PresentableView {
     @GUIElement(GUIElementId = GUIElements.CAST_SPEED, DTOColumnNames = "castSpeed", DTOClass = ArmorParametersObject.class)
     private JPanel castSpeedPanel;
 
-    // TODO currently only one requirement per item, even if it has more than one
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_SUBCLASS, DTOColumnNames = {"schoolRequirementClass", "subSchoolRequirementClass"}, DTOClass = ItemRequirementsObject.class)
     private JPanel requirementClassSubClassPanel;
 

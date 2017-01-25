@@ -21,7 +21,6 @@ public class WeaponParametersView implements PresentableView {
     @GUIElement(GUIElementId = GUIElements.BUY_OUT_PRICE, DTOColumnNames = "copperBuyingPrice", DTOClass = ItemPriceParametersObject.class)
     private JPanel buyoutPricePanel;
 
-    // TODO item may have multiple effects with help of "itemEffectNumber"
     @GUIElement(GUIElementId = GUIElements.ITEM_EFFECT, DTOColumnNames = "effectNumber", DTOClass = ItemSpellEffectsObject.class)
     private JPanel itemEffectPanel;
 
@@ -46,7 +45,6 @@ public class WeaponParametersView implements PresentableView {
     @GUIElement(GUIElementId = GUIElements.MATERIAL, DTOColumnNames = "material", DTOClass = WeaponParametersObject.class)
     private JPanel materialPanel;
 
-    // TODO currently only one requirement per item, even if it has more than one
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_SUBCLASS, DTOColumnNames = {"schoolRequirementClass", "subSchoolRequirementClass"}, DTOClass = ItemRequirementsObject.class)
     private JPanel requirementClassSubClassPanel;
 
