@@ -4,6 +4,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.GenericRawResults;
 import com.j256.ormlite.dao.RawRowMapper;
+import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
@@ -58,6 +59,38 @@ public enum MerchantInventoryItemsTableService implements TableCreationService {
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
+        }
+    }
+
+    public Integer getMerchantInventoryIdByInventoryItemIds(List<Integer> itemIds) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        Dao<MerchantInventoryItemsObject, Integer> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, MerchantInventoryItemsObject.class);
+            Where<MerchantInventoryItemsObject, Integer> where = dao.queryBuilder().where().in("itemId", itemIds);
+            String query = where.getStatement();
+            query = "select distinct inventoryId from merchant_inventory_items where " + query + " group by inventoryId having count(inventoryId) = ?";
+            GenericRawResults<Integer> rawResults =
+                    dao.queryRaw(
+                            query,
+                            new RawRowMapper<Integer>() {
+                                public Integer mapRow(String[] columnNames,
+                                                      String[] resultColumns) {
+                                    return Integer.valueOf(resultColumns[0]);
+                                }
+                            }, String.valueOf(itemIds.size()));
+
+            for (Integer inventoryId : rawResults) {
+                long numberOfSellingItems = dao.queryBuilder().where().eq("inventoryId", inventoryId).countOf();
+                if (numberOfSellingItems == itemIds.size()) {
+                    return inventoryId;
+                }
+            }
+
+            return null;
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
         }
     }
 }

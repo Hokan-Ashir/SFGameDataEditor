@@ -2,12 +2,11 @@ package sfgamedataeditor.database.merchants.inventory;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
-import com.j256.ormlite.dao.GenericRawResults;
-import com.j256.ormlite.dao.RawRowMapper;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.database.merchants.items.MerchantInventoryItemsTableService;
 import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -36,23 +35,15 @@ public enum MerchantInventoryTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(MerchantInventoryTableService.class);
 
-    public String getMerchantNameByItemId(Integer itemId) {
+    public String getMerchantNameByItemId(List<Integer> itemIds) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         Dao<MerchantInventoryObject, ?> dao;
         try {
             dao = DaoManager.createDao(connectionSource, MerchantInventoryObject.class);
-            GenericRawResults<String> rawResults =
-                    dao.queryRaw(
-                            "select merchantId from merchant_inventory inner join merchant_inventory_items on merchant_inventory.inventoryId = merchant_inventory_items.inventoryId where merchant_inventory_items.itemId = ?",
-                            new RawRowMapper<String>() {
-                                public String mapRow(String[] columnNames,
-                                                     String[] resultColumns) {
-                                    return resultColumns[0];
-                                }
-                            },
-                            String.valueOf(itemId));
+            Integer inventoryId = MerchantInventoryItemsTableService.INSTANCE.getMerchantInventoryIdByInventoryItemIds(itemIds);
+            List<MerchantInventoryObject> merchants = dao.queryBuilder().where().eq("inventoryId", inventoryId).query();
 
-            String merchantId = rawResults.getResults().get(0);
+            String merchantId = String.valueOf(merchants.get(0).merchantId);
             return I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, merchantId);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
