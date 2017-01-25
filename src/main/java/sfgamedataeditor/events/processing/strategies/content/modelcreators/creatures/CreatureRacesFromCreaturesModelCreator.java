@@ -12,7 +12,6 @@ public class CreatureRacesFromCreaturesModelCreator implements ModelCreator<Modu
 
     @Override
     public ModulesModel createModel(CreaturesModel childModel) {
-        // TODO maybe it's important which object to take
         String creatureName = childModel.getParameter().getCreatureNames().get(0);
         int raceId = CreatureParametersTableService.INSTANCE.getRaceIdByCreatureName(creatureName);
         String raceName = I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId));
