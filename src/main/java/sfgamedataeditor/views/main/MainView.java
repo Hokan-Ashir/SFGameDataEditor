@@ -2,7 +2,6 @@ package sfgamedataeditor.views.main;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.mvc.objects.View;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -34,38 +33,38 @@ public class MainView implements PresentableView {
         ViewTools.centerFrame(frame);
     }
 
-    public void renderViewInsideContentPanel(View view) {
-        renderViewInsidePanel(view, contentPanel);
+    public void renderViewInsideContentPanel(JComponent viewComponent) {
+        renderViewInsidePanel(viewComponent, contentPanel);
     }
 
-    public void renderViewInsideNavigationPanel(View view) {
-        renderViewInsidePanel(view, navigationPanel);
+    public void renderViewInsideNavigationPanel(JComponent viewComponent) {
+        renderViewInsidePanel(viewComponent, navigationPanel);
     }
 
-    public void renderViewInsideEventHistoryPanel(View view) {
-        renderViewInsidePanel(view, eventHistoryPanel);
+    public void renderViewInsideEventHistoryPanel(JComponent viewComponent) {
+        renderViewInsidePanel(viewComponent, eventHistoryPanel);
     }
 
-    public void renderViewInsideButtonPanel(View view) {
-        renderViewInsidePanel(view, buttonsPanel);
+    public void renderViewInsideButtonPanel(JComponent viewComponent) {
+        renderViewInsidePanel(viewComponent, buttonsPanel);
     }
 
-    private void renderViewInsidePanel(View view, JPanel panel) {
-        panel.add(view.getMainPanel());
+    private void renderViewInsidePanel(JComponent viewComponent, JPanel panel) {
+        panel.add(viewComponent);
         panel.revalidate();
         panel.repaint();
     }
 
-    public void unRenderViewInsideContentPanel(View view) {
-        unRenderViewInsidePanel(view, contentPanel);
+    public void unRenderViewInsideContentPanel(JComponent viewComponent) {
+        unRenderViewInsidePanel(viewComponent, contentPanel);
     }
 
-    public void unRenderViewInsideNavigationPanel(View view) {
-        unRenderViewInsidePanel(view, navigationPanel);
+    public void unRenderViewInsideNavigationPanel(JComponent viewComponent) {
+        unRenderViewInsidePanel(viewComponent, navigationPanel);
     }
 
-    private void unRenderViewInsidePanel(View view, JPanel panel) {
-        panel.remove(view.getMainPanel());
+    private void unRenderViewInsidePanel(JComponent viewComponent, JPanel panel) {
+        panel.remove(viewComponent);
         panel.revalidate();
         panel.repaint();
     }

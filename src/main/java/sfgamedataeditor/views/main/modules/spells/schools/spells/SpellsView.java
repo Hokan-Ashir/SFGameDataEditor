@@ -18,11 +18,6 @@ public class SpellsView extends AbstractModulesView {
     protected void fillComboBoxMapping() {
     }
 
-    public void clearComboBoxAndMapping() {
-        getModulesComboBox().removeAllItems();
-        getComboBoxMapping().clear();
-    }
-
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return SpellPresenter.class;

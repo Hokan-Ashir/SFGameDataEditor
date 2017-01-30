@@ -17,7 +17,7 @@ public class ButtonsPresenter extends AbstractPresenter<Object, ButtonsView> {
     @Override
     public void renderView() {
         MainView view = ViewRegister.INSTANCE.getView(MainView.class);
-        view.renderViewInsideButtonPanel(getView());
+        view.renderViewInsideButtonPanel(getView().getMainPanel());
     }
 
     @Override

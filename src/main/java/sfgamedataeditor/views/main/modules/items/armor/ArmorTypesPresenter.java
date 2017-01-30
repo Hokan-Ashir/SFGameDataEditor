@@ -30,17 +30,6 @@ public class ArmorTypesPresenter extends AbstractModulesPresenter<ModuleParamete
     }
 
     @Override
-    public void updateView() {
-        if (getModel() == null) {
-            setModulesComboBoxValue(null);
-            return;
-        }
-
-        String moduleName = getModel().getParameter().getModuleName();
-        if (isElementExistsInComboBox(moduleName)) {
-            setModulesComboBoxValue(moduleName);
-        } else {
-            setModulesComboBoxValue(null);
-        }
+    protected void updateSubViewsContent() {
     }
 }

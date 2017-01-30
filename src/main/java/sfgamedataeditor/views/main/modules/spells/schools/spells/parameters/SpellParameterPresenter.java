@@ -125,13 +125,13 @@ public class SpellParameterPresenter extends AbstractPresenter<SpellParameterMod
     @Override
     public void renderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideContentPanel(getView());
+        mainView.renderViewInsideContentPanel(getView().getMainPanel());
     }
 
     @Override
     public void unRenderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unRenderViewInsideContentPanel(getView());
+        mainView.unRenderViewInsideContentPanel(getView().getMainPanel());
     }
 
     // in case user selected spell with level-range [1; 12] with level 5

@@ -1,8 +1,10 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
+import sfgamedataeditor.mvc.objects.SubModuleParameter;
+
 import java.util.List;
 
-public class SpellModelParameter {
+public class SpellModelParameter implements SubModuleParameter {
     private final List<String> listOfSpells;
     private final String selectedSpell;
 
@@ -15,7 +17,8 @@ public class SpellModelParameter {
         return listOfSpells;
     }
 
-    public String getSelectedSpell() {
+    @Override
+    public String getSelectedModuleName() {
         return selectedSpell;
     }
 }

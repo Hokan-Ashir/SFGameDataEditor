@@ -1,8 +1,10 @@
 package sfgamedataeditor.views.main.modules.items.weapons.pieces.list;
 
+import sfgamedataeditor.mvc.objects.SubModuleParameter;
+
 import java.util.List;
 
-public class WeaponPiecesModelParameter {
+public class WeaponPiecesModelParameter implements SubModuleParameter {
     private final List<String> weaponPiecesNames;
     private final String selectedWeaponPieceName;
 
@@ -15,7 +17,8 @@ public class WeaponPiecesModelParameter {
         return weaponPiecesNames;
     }
 
-    public String getSelectedWeaponPieceName() {
+    @Override
+    public String getSelectedModuleName() {
         return selectedWeaponPieceName;
     }
 }

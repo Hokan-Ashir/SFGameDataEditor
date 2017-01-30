@@ -6,72 +6,74 @@ import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.PresentableView;
+import sfgamedataeditor.mvc.objects.SubModuleParameter;
 import sfgamedataeditor.views.main.MainView;
-import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
-import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
-public abstract class AbstractModulesPresenter<M, V extends AbstractModulesView, C extends Model> extends AbstractPresenter<M, V> {
+public abstract class AbstractModulesPresenter<M extends SubModuleParameter, V extends AbstractModulesView, C extends Model> extends AbstractPresenter<M, V> {
+
+    private ActionListener subPanelsListener = new PanelsListener();
+
     protected AbstractModulesPresenter(V view) {
         super(view);
-        final JComboBox<String> modulesComboBox = getView().getModulesComboBox();
-        modulesComboBox.addItemListener(new DefaultComboBoxListener());
     }
 
     protected abstract C createModel();
 
-    protected boolean isElementExistsInComboBox(String value) {
-        JComboBox<String> modulesComboBox = getView().getModulesComboBox();
-        int itemCount = modulesComboBox.getItemCount();
-        for (int i = 0; i < itemCount; i++) {
-            if (modulesComboBox.getItemAt(i).equals(value)) {
-                return true;
-            }
+    @Override
+    public void updateView() {
+        updateSubViewsContent();
+        getView().updateSubViewsLayout();
+        List<SubViewPanel> subViewsPanels = getView().getSubViewsPanels();
+        for (SubViewPanel subViewsPanel : subViewsPanels) {
+            subViewsPanel.getButton().addActionListener(subPanelsListener);
         }
 
-        return false;
-    }
-
-    protected void setModulesComboBoxValue(final Object value) {
-        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(getView().getModulesComboBox()) {
-            @Override
-            protected void setValues() {
-                getView().getModulesComboBox().setSelectedItem(value);
-            }
-        });
-    }
-
-    private final class DefaultComboBoxListener implements ItemListener {
-
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            if (e.getStateChange() != ItemEvent.SELECTED) {
-                return;
-            }
-
-            String selectedItem = (String) getView().getModulesComboBox().getSelectedItem();
-            if (selectedItem == null) {
-                return;
-            }
-
-            Class<? extends PresentableView> classViewToShow = getView().getComboBoxMapping().get(selectedItem);
-            Model model = createModel();
-            EventProcessor.INSTANCE.process(new ShowContentViewEvent(classViewToShow, model));
+        Model<M> model = getModel();
+        if (model == null) {
+            getView().setSelectedModuleValue(null);
+        } else {
+            String selectedModuleName = model.getParameter().getSelectedModuleName();
+            getView().setSelectedModuleValue(selectedModuleName);
         }
     }
+
+    protected abstract void updateSubViewsContent();
 
     @Override
     public void renderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideNavigationPanel(getView());
+
+        JPanel managerPanel = getView().getPanelManager().getMainPanel();
+        mainView.renderViewInsideContentPanel(managerPanel);
+
+        JButton selectedPanel = getView().getSelectedPanel();
+        mainView.renderViewInsideNavigationPanel(selectedPanel);
     }
 
     @Override
     public void unRenderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unRenderViewInsideNavigationPanel(getView());
+
+        JPanel managerPanel = getView().getPanelManager().getMainPanel();
+        mainView.unRenderViewInsideContentPanel(managerPanel);
+
+        JButton selectedPanel = getView().getSelectedPanel();
+        mainView.unRenderViewInsideNavigationPanel(selectedPanel);
+    }
+
+    private final class PanelsListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Object source = e.getSource();
+            Class<? extends PresentableView> classViewToShow = getView().getSubPanelViewClass((JButton) source);
+            Model model = createModel();
+            EventProcessor.INSTANCE.process(new ShowContentViewEvent(classViewToShow, model));
+        }
     }
 }

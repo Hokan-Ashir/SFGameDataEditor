@@ -1,60 +1,83 @@
 package sfgamedataeditor.views.common;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.views.PromptTextComboBoxRenderer;
-import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
-import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.common.managers.DefaultModulesPanelManager;
 
 import javax.swing.*;
-import java.util.Map;
-import java.util.TreeMap;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractModulesView implements PresentableView {
 
-    private final Map<String, Class<? extends PresentableView>> comboBoxMapping = new TreeMap<>();
-    private JComboBox<String> modulesComboBox;
-    private JPanel mainPanel;
+    private static final Logger LOGGER = Logger.getLogger(AbstractModulesView.class);
+    private JButton selectedPanel = new JButton();
+    private List<SubViewPanel> subViewsPanels = new ArrayList<>();
+    private DefaultModulesPanelManager panelManager;
 
     protected AbstractModulesView(String viewName) {
-        modulesComboBox.setRenderer(new PromptTextComboBoxRenderer<>(viewName));
-        modulesComboBox.setSelectedIndex(-1);
-        modulesComboBox.setToolTipText(viewName);
-        initializeComboBox();
-    }
+        Class<? extends DefaultModulesPanelManager> managerClass = getModulesPanelManagerClass();
+        try {
+            panelManager = managerClass.getConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            LOGGER.error(e.getMessage(), e);
+            return;
+        }
 
-    protected Map<String, Class<? extends PresentableView>> getComboBoxMapping() {
-        return comboBoxMapping;
-    }
-
-    protected JComboBox<String> getModulesComboBox() {
-        return modulesComboBox;
+        initializeSubViewsMapping();
     }
 
     protected abstract void fillComboBoxMapping();
 
-    private void initializeComboBox() {
+    private void initializeSubViewsMapping() {
+        // TODO optimize adding objects to list without clearing it
+        subViewsPanels.clear();
         fillComboBoxMapping();
-        reinitializeComboBox();
     }
 
-    public void reinitializeComboBox() {
-        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(modulesComboBox) {
-            @Override
-            protected void setValues() {
-                modulesComboBox.removeAllItems();
-                for (String s : comboBoxMapping.keySet()) {
-                    modulesComboBox.addItem(s);
-                }
-            }
-        });
+    public void updateSubViewsLayout() {
+        panelManager.updatePanelsLayout(subViewsPanels);
     }
 
-    public void addMapping(String name, Class<? extends PresentableView> classViewToShow) {
-        comboBoxMapping.put(name, classViewToShow);
+    // TODO add Image mapping to button
+    public void addMapping(String name, Class<? extends PresentableView> subViewClass) {
+        subViewsPanels.add(new SubViewPanel(new JButton(name), subViewClass));
+    }
+
+    public void setSelectedModuleValue(String selectedModuleValue) {
+        selectedPanel.setText(selectedModuleValue);
     }
 
     public String getSelectedModuleValue() {
-        return (String) modulesComboBox.getSelectedItem();
+        return selectedPanel.getText();
+    }
+
+    // TODO replace respectively in specific views and cases
+    private Class<? extends DefaultModulesPanelManager> getModulesPanelManagerClass() {
+        return DefaultModulesPanelManager.class;
+    }
+
+    public JButton getSelectedPanel() {
+        return selectedPanel;
+    }
+
+    public DefaultModulesPanelManager getPanelManager() {
+        return panelManager;
+    }
+
+    public List<SubViewPanel> getSubViewsPanels() {
+        return subViewsPanels;
+    }
+
+    public Class<? extends PresentableView> getSubPanelViewClass(JButton clickedButton) {
+        for (SubViewPanel subViewsPanel : subViewsPanels) {
+            if (subViewsPanel.getButton().equals(clickedButton)) {
+                return subViewsPanel.getSubViewClass();
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -62,6 +85,6 @@ public abstract class AbstractModulesView implements PresentableView {
      */
     @Override
     public JPanel getMainPanel() {
-        return mainPanel;
+        return null;
     }
 }

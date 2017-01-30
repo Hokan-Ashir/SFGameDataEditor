@@ -16,11 +16,6 @@ public class UnitListView extends AbstractModulesView {
 
     }
 
-    public void clearComboBoxAndMapping() {
-        getModulesComboBox().removeAllItems();
-        getComboBoxMapping().clear();
-    }
-
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return UnitListPresenter.class;

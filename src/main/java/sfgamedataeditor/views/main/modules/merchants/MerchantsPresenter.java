@@ -23,17 +23,6 @@ public class MerchantsPresenter extends AbstractModulesPresenter<ModuleParameter
     }
 
     @Override
-    public void updateView() {
-        if (getModel() == null) {
-            setModulesComboBoxValue(null);
-            return;
-        }
-
-        String moduleName = getModel().getParameter().getModuleName();
-        if (isElementExistsInComboBox(moduleName)) {
-            setModulesComboBoxValue(moduleName);
-        } else {
-            setModulesComboBoxValue(null);
-        }
+    protected void updateSubViewsContent() {
     }
 }

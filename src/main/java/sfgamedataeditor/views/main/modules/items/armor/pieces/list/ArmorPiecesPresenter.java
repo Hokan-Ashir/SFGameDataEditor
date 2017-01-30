@@ -25,15 +25,11 @@ public class ArmorPiecesPresenter extends AbstractModulesPresenter<ArmorPiecesMo
     }
 
     @Override
-    public void updateView() {
+    protected void updateSubViewsContent() {
         List<String> armorPiecesNames = getModel().getParameter().getArmorPiecesNames();
-        getView().clearComboBoxAndMapping();
 
         for (String armorPiece : armorPiecesNames) {
             getView().addMapping(armorPiece, ArmorParametersView.class);
         }
-
-        getView().reinitializeComboBox();
-        setModulesComboBoxValue(getModel().getParameter().getSelectedArmorPieceName());
     }
 }

@@ -45,12 +45,12 @@ public class MiscellaneousParametersPresenter extends AbstractPresenter<Miscella
     @Override
     public void renderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideContentPanel(getView());
+        mainView.renderViewInsideContentPanel(getView().getMainPanel());
     }
 
     @Override
     public void unRenderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unRenderViewInsideContentPanel(getView());
+        mainView.unRenderViewInsideContentPanel(getView().getMainPanel());
     }
 }

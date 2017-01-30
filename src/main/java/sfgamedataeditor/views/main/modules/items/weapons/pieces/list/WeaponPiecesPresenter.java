@@ -25,15 +25,11 @@ public class WeaponPiecesPresenter extends AbstractModulesPresenter<WeaponPieces
     }
 
     @Override
-    public void updateView() {
+    protected void updateSubViewsContent() {
         List<String> weaponPiecesNames = getModel().getParameter().getWeaponPiecesNames();
-        getView().clearComboBoxAndMapping();
 
         for (String weaponPiece : weaponPiecesNames) {
             getView().addMapping(weaponPiece, WeaponParametersView.class);
         }
-
-        getView().reinitializeComboBox();
-        setModulesComboBoxValue(getModel().getParameter().getSelectedWeaponPieceName());
     }
 }

@@ -1,8 +1,10 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures;
 
+import sfgamedataeditor.mvc.objects.SubModuleParameter;
+
 import java.util.List;
 
-public class CreaturesModelParameter {
+public class CreaturesModelParameter implements SubModuleParameter {
     private final List<String> creatureNames;
     private final String selectedCreatureName;
 
@@ -15,7 +17,8 @@ public class CreaturesModelParameter {
         return creatureNames;
     }
 
-    public String getSelectedCreatureName() {
+    @Override
+    public String getSelectedModuleName() {
         return selectedCreatureName;
     }
 }

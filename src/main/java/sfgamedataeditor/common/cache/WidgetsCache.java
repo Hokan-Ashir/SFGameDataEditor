@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 public class WidgetsCache {
+    // TODO turn per-GUI Element widget cache to ultimate widget cache, which stores only that widgets, that are currently
+    // rendering (on rendering views)
     private final Map<Integer, List<Pair<AbstractWidget, AbstractWidgetListener>>> widgetMap = new HashMap<>();
 
     public boolean addWidgetListenerPair(Integer GUIComponentId, AbstractWidget widget, AbstractWidgetListener listener) {

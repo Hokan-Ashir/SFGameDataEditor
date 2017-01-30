@@ -40,15 +40,10 @@ public class CreaturesPresenter extends AbstractModulesPresenter<CreaturesModelP
     }
 
     @Override
-    public void updateView() {
+    protected void updateSubViewsContent() {
         List<String> creatureParameterObjectList = getModel().getParameter().getCreatureNames();
-        getView().clearComboBoxAndMapping();
-
         for (String creatureName : creatureParameterObjectList) {
             getView().addMapping(creatureName, CreaturesParametersView.class);
         }
-
-        getView().reinitializeComboBox();
-        setModulesComboBoxValue(getModel().getParameter().getSelectedCreatureName());
     }
 }

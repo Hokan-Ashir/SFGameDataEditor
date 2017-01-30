@@ -40,16 +40,12 @@ public class UnitListPresenter extends AbstractModulesPresenter<UnitListModelPar
     }
 
     @Override
-    public void updateView() {
+    protected void updateSubViewsContent() {
         UnitListModelParameter parameter = getModel().getParameter();
         List<String> unitNames = parameter.getUnitNames();
 
-        getView().clearComboBoxAndMapping();
         for (String unitName : unitNames) {
             getView().addMapping(unitName, UnitsParametersView.class);
         }
-
-        getView().reinitializeComboBox();
-        setModulesComboBoxValue(parameter.getSelectedUnitName());
     }
 }

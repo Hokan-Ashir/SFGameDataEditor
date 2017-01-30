@@ -42,11 +42,8 @@ public class SpellPresenter extends AbstractModulesPresenter<SpellModelParameter
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void updateView() {
+    protected void updateSubViewsContent() {
         List<String> listOfSpells = getModel().getParameter().getListOfSpells();
         // TODO make this use-case work:
         // user selected Fire/Fireball-1, changed mana usage from 30 to 34
@@ -54,13 +51,8 @@ public class SpellPresenter extends AbstractModulesPresenter<SpellModelParameter
         // list of spells according to spellRequirement
         // all is fine, but instead of "Fireball" selected spell
         // it is first one ("Acid cloud" by default) in spell comboBox
-        getView().clearComboBoxAndMapping();
-
         for (String spell : listOfSpells) {
             getView().addMapping(spell, SpellParameterView.class);
         }
-
-        getView().reinitializeComboBox();
-        setModulesComboBoxValue(getModel().getParameter().getSelectedSpell());
     }
 }

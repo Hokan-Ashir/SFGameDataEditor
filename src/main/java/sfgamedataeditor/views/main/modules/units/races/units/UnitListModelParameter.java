@@ -1,8 +1,10 @@
 package sfgamedataeditor.views.main.modules.units.races.units;
 
+import sfgamedataeditor.mvc.objects.SubModuleParameter;
+
 import java.util.List;
 
-public class UnitListModelParameter {
+public class UnitListModelParameter implements SubModuleParameter {
     private final List<String> unitNames;
     private final String selectedUnitName;
 
@@ -15,7 +17,8 @@ public class UnitListModelParameter {
         return unitNames;
     }
 
-    public String getSelectedUnitName() {
+    @Override
+    public String getSelectedModuleName() {
         return selectedUnitName;
     }
 }

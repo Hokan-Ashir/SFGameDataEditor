@@ -24,17 +24,7 @@ public class CreaturesRacesPresenter extends AbstractModulesPresenter<ModulePara
     }
 
     @Override
-    public void updateView() {
-        if (getModel() == null) {
-            setModulesComboBoxValue(null);
-            return;
-        }
+    protected void updateSubViewsContent() {
 
-        String moduleName = getModel().getParameter().getModuleName();
-        if (isElementExistsInComboBox(moduleName)) {
-            setModulesComboBoxValue(moduleName);
-        } else {
-            setModulesComboBoxValue(null);
-        }
     }
 }
