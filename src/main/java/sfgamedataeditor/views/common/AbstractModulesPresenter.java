@@ -13,6 +13,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Set;
 
 public abstract class AbstractModulesPresenter<M extends SubModuleParameter, V extends AbstractModulesView, C extends Model> extends AbstractPresenter<M, V> {
 
@@ -20,29 +21,38 @@ public abstract class AbstractModulesPresenter<M extends SubModuleParameter, V e
 
     protected AbstractModulesPresenter(V view) {
         super(view);
+        getView().getSelectedPanel().addActionListener(subPanelsListener);
     }
 
     protected abstract C createModel();
 
     @Override
     public void updateView() {
-        updateSubViewsContent();
+        Model<M> model = getModel();
+        if (model != null) {
+            Set<String> subPanelsNames = model.getParameter().getSubPanelsNames();
+            if (subPanelsNames != null) {
+                getView().addMappings(subPanelsNames, model.getParameter().getSubPanelsViewClass());
+            }
+        }
+
         getView().updateSubViewsLayout();
         List<SubViewPanel> subViewsPanels = getView().getSubViewsPanels();
         for (SubViewPanel subViewsPanel : subViewsPanels) {
             subViewsPanel.getButton().addActionListener(subPanelsListener);
         }
 
-        Model<M> model = getModel();
-        if (model == null) {
-            getView().setSelectedModuleValue(null);
-        } else {
+        if (model != null) {
             String selectedModuleName = model.getParameter().getSelectedModuleName();
-            getView().setSelectedModuleValue(selectedModuleName);
+            if (selectedModuleName != null) {
+                getView().setSelectedModuleValue(selectedModuleName);
+            } else {
+                getView().setSelectedModuleValue(getView().getModuleName());
+            }
+        } else {
+            getView().setSelectedModuleValue(getView().getModuleName());
         }
     }
-
-    protected abstract void updateSubViewsContent();
 
     @Override
     public void renderView() {
@@ -70,8 +80,16 @@ public abstract class AbstractModulesPresenter<M extends SubModuleParameter, V e
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Object source = e.getSource();
-            Class<? extends PresentableView> classViewToShow = getView().getSubPanelViewClass((JButton) source);
+            JButton source = (JButton) e.getSource();
+
+            if (source.getText().equals(getView().getModuleName())) {
+                return;
+            }
+
+            getView().setSelectedModuleValue(source.getText());
+            Class<? extends PresentableView> classViewToShow = getView().getSubPanelViewClass(source);
+            getView().setSelectedPanelClass(classViewToShow);
+
             Model model = createModel();
             EventProcessor.INSTANCE.process(new ShowContentViewEvent(classViewToShow, model));
         }

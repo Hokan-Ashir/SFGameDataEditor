@@ -17,7 +17,9 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public enum CreatureCommonParametersTableService implements TableCreationService {
     INSTANCE {
@@ -39,12 +41,12 @@ public enum CreatureCommonParametersTableService implements TableCreationService
 
     private static final Logger LOGGER = Logger.getLogger(CreatureCommonParametersTableService.class);
 
-    public List<String> getCreatureNamesByRaceName(String i18nRaceName) {
+    public Set<String> getCreatureNamesByRaceName(String i18nRaceName) {
         int raceId = ViewTools.getKeyByPropertyValue(i18nRaceName, I18NTypes.RACES);
         return getCreatureNamesByRaceId(raceId);
     }
 
-    public List<String> getCreatureNamesByRaceId(int raceId) {
+    public Set<String> getCreatureNamesByRaceId(int raceId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<CreaturesCommonParameterObject, Integer> commonParametersDAO;
         try {
@@ -61,33 +63,10 @@ public enum CreatureCommonParametersTableService implements TableCreationService
                             },
                             String.valueOf(raceId));
 
-            return rawResults.getResults();
+            return new HashSet<>(rawResults.getResults());
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptyList();
-        }
-    }
-
-    public String getCreatureNameById(int statsId) {
-        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
-        Dao<CreaturesCommonParameterObject, ?> dao;
-        try {
-            dao = DaoManager.createDao(connectionSource, CreaturesCommonParameterObject.class);
-            GenericRawResults<String> rawResults =
-                    dao.queryRaw(
-                            "select name from creature_common_parameters inner join creature_parameters on creature_common_parameters.statsId = creature_parameters.statsId where creature_common_parameters.statsId = ?",
-                            new RawRowMapper<String>() {
-                                @Override
-                                public String mapRow(String[] columnsNames, String[] resultValues) throws SQLException {
-                                    return resultValues[0];
-                                }
-                            },
-                            String.valueOf(statsId));
-
-            return rawResults.getResults().get(0);
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
-            return null;
+            return Collections.emptySet();
         }
     }
 

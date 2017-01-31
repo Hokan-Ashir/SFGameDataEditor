@@ -15,7 +15,7 @@ public class SpellSchoolsFromSpellsModelCreator implements ModelCreator<ModulesM
     @Override
     public ModulesModel createModel(SpellModel childModel) {
         // no difference which exactly spell we take, cause we WILL select first suitable spell school
-        String spellName = childModel.getParameter().getListOfSpells().get(0);
+        String spellName = childModel.getParameter().getSubPanelsNames().iterator().next();
         // TODO maybe store whole SpellParameter inside SpellPresenter, to limit DB queries
         SpellNameObject spellNameDAO = SpellNameTableService.INSTANCE.getSpellName(spellName);
         Integer spellType = spellNameDAO.spellType;

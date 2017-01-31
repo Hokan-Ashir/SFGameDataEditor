@@ -21,8 +21,4 @@ public class MiscellaneousPresenter extends AbstractModulesPresenter<ModuleParam
         int itemId = ViewTools.getKeyByPropertyValue(selectedMiscellaneous, I18NTypes.ITEMS);
         return modelCreator.createModel(itemId);
     }
-
-    @Override
-    protected void updateSubViewsContent() {
-    }
 }

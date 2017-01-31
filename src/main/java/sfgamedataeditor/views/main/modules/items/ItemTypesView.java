@@ -1,13 +1,18 @@
 package sfgamedataeditor.views.main.modules.items;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.items.armor.ArmorTypeListView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.SpellScrollsListView;
 import sfgamedataeditor.views.main.modules.items.weapons.WeaponsTypesListView;
+import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemTypesView extends AbstractModulesView {
 
@@ -19,13 +24,16 @@ public class ItemTypesView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillComboBoxMapping() {
-        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.weapons"), WeaponsTypesListView.class);
-        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor"), ArmorTypeListView.class);
-        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.scrolls"), SpellScrollsListView.class);
-//        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.runes"), RuneRacesListView.class);
-//        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.buildingPlans"), BuildingPlansListView.class);
-        addMapping(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.miscellaneous"), MiscellaneousListView.class);
+    protected void fillSubViewsMappings() {
+        List<Pair<String, Class<? extends PresentableView>>> mappings = new ArrayList<>();
+        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.weapons"), WeaponsTypesListView.class));
+        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor"), ArmorTypeListView.class));
+        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.scrolls"), SpellScrollsListView.class));
+//        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.runes"), RuneRacesListView.class);
+//        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.buildingPlans"), BuildingPlansListView.class));
+        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.miscellaneous"), MiscellaneousListView.class));
+
+        addMappings(mappings);
     }
 
     @Override

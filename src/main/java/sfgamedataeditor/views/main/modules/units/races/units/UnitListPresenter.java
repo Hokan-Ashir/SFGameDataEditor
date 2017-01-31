@@ -13,7 +13,6 @@ import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
 import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersModel;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersModelParameter;
-import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersView;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -37,15 +36,5 @@ public class UnitListPresenter extends AbstractModulesPresenter<UnitListModelPar
         UnitsParametersModelParameter parameter = new UnitsParametersModelParameter(commonParameterObject,
                 creatureEquipment, creatureSpells, creatureResources, creatureBuildings);
         return new UnitsParametersModel(parameter);
-    }
-
-    @Override
-    protected void updateSubViewsContent() {
-        UnitListModelParameter parameter = getModel().getParameter();
-        List<String> unitNames = parameter.getUnitNames();
-
-        for (String unitName : unitNames) {
-            getView().addMapping(unitName, UnitsParametersView.class);
-        }
     }
 }

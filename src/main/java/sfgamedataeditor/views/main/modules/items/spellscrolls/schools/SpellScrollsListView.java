@@ -7,7 +7,7 @@ import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.List;
+import java.util.Set;
 
 public class SpellScrollsListView extends AbstractModulesView {
 
@@ -19,12 +19,10 @@ public class SpellScrollsListView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillComboBoxMapping() {
+    protected void fillSubViewsMappings() {
         int scrollsType = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_PIECES_NAME_MAPPING, "items.scrolls"));
-        List<String> scrollsNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(scrollsType);
-        for (String name : scrollsNames) {
-            addMapping(name, SpellScrollsParametersView.class);
-        }
+        Set<String> scrollsNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(scrollsType);
+        addMappings(scrollsNames, SpellScrollsParametersView.class);
     }
 
     @Override

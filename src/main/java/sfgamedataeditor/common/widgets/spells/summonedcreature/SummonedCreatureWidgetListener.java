@@ -29,6 +29,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Set;
 
 public class SummonedCreatureWidgetListener extends AbstractWidgetListener<SummonedCreatureWidget, OffsetableObject> implements ItemListener, ActionListener {
 
@@ -54,7 +55,7 @@ public class SummonedCreatureWidgetListener extends AbstractWidgetListener<Summo
 
     private void updateCreatureNamesComboBox() {
         String selectedRaceName = (String) getWidget().getRacesComboBox().getSelectedItem();
-        final List<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceName(selectedRaceName);
+        final Set<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceName(selectedRaceName);
         final JComboBox<String> comboBox = getWidget().getCreatureNameComboBox();
         ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
             @Override

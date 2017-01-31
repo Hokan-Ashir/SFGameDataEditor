@@ -15,7 +15,7 @@ public class ArmorPiecesView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillComboBoxMapping() {
+    protected void fillSubViewsMappings() {
     }
 
     @Override

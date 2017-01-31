@@ -8,8 +8,9 @@ import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModelParameter;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SpellSchoolsPresenter extends AbstractModulesPresenter<ModuleParameter, SpellSchoolsView, SpellModel> {
     public SpellSchoolsPresenter(SpellSchoolsView view) {
@@ -18,7 +19,7 @@ public class SpellSchoolsPresenter extends AbstractModulesPresenter<ModuleParame
 
     @Override
     protected SpellModel createModel() {
-        List<String> listOfSpells = new ArrayList<>();
+        Set<String> listOfSpells = new HashSet<>();
         List<SpellParametersObject> spellParameterObjects = SpellParametersTableService.INSTANCE.getSpells(getView().getSelectedModuleValue());
         for (SpellParametersObject spellParametersObject : spellParameterObjects) {
             String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParametersObject.spellNameId);
@@ -31,9 +32,5 @@ public class SpellSchoolsPresenter extends AbstractModulesPresenter<ModuleParame
 
         SpellModelParameter spellModelParameter = new SpellModelParameter(listOfSpells, null);
         return new SpellModel(spellModelParameter);
-    }
-
-    @Override
-    protected void updateSubViewsContent() {
     }
 }

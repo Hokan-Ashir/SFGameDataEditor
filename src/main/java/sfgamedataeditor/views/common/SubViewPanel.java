@@ -6,10 +6,13 @@ import javax.swing.*;
 
 public class SubViewPanel {
     private final JButton button;
-    private final Class<? extends PresentableView> subViewClass;
+    private Class<? extends PresentableView> subViewClass;
 
-    public SubViewPanel(JButton button, Class<? extends PresentableView> subViewClass) {
-        this.button = button;
+    public SubViewPanel() {
+        button = new JButton();
+    }
+
+    public void setSubViewClass(Class<? extends PresentableView> subViewClass) {
         this.subViewClass = subViewClass;
     }
 

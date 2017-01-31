@@ -8,14 +8,14 @@ import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.Ar
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.List;
+import java.util.Set;
 
 public class ArmorPiecesFromArmorParametersModelCreator implements ModelCreator<ArmorPiecesModel, ArmorParametersModel> {
     @Override
     public ArmorPiecesModel createModel(ArmorParametersModel childModel) {
         Integer itemId = childModel.getParameter().getPriceParametersObject().itemId;
         Integer typeId = childModel.getParameter().getPriceParametersObject().typeId;
-        List<String> itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(typeId);
+        Set<String> itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(typeId);
         String selectedItem = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
         ArmorPiecesModelParameter parameter = new ArmorPiecesModelParameter(itemNames, selectedItem);
         return new ArmorPiecesModel(parameter);

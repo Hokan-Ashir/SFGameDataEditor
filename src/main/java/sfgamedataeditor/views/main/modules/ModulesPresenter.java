@@ -13,9 +13,4 @@ public class ModulesPresenter extends AbstractModulesPresenter<ModuleParameter, 
     protected ModulesModel createModel() {
         return null;
     }
-
-    @Override
-    protected void updateSubViewsContent() {
-
-    }
 }

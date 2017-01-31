@@ -7,7 +7,7 @@ import sfgamedataeditor.views.main.modules.merchants.inventory.MerchantInventory
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.List;
+import java.util.Set;
 
 public class MerchantsView extends AbstractModulesView {
 
@@ -21,11 +21,9 @@ public class MerchantsView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillComboBoxMapping() {
-        List<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceId(MERCHANTS_RACE_ID);
-        for (String creatureName : creatureNames) {
-            addMapping(creatureName, MerchantInventoryView.class);
-        }
+    protected void fillSubViewsMappings() {
+        Set<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceId(MERCHANTS_RACE_ID);
+        addMappings(creatureNames, MerchantInventoryView.class);
     }
 
     @Override

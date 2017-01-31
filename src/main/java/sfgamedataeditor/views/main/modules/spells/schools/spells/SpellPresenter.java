@@ -5,9 +5,7 @@ import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModelParameter;
-import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
 
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -39,20 +37,6 @@ public class SpellPresenter extends AbstractModulesPresenter<SpellModelParameter
             return selectedLevel;
         } else {
             return spellMinLevel;
-        }
-    }
-
-    @Override
-    protected void updateSubViewsContent() {
-        List<String> listOfSpells = getModel().getParameter().getListOfSpells();
-        // TODO make this use-case work:
-        // user selected Fire/Fireball-1, changed mana usage from 30 to 34
-        // made sf-mod file and load it; cause of reloading
-        // list of spells according to spellRequirement
-        // all is fine, but instead of "Fireball" selected spell
-        // it is first one ("Acid cloud" by default) in spell comboBox
-        for (String spell : listOfSpells) {
-            getView().addMapping(spell, SpellParameterView.class);
         }
     }
 }

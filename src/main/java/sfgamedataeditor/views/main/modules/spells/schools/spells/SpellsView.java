@@ -15,7 +15,7 @@ public class SpellsView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillComboBoxMapping() {
+    protected void fillSubViewsMappings() {
     }
 
     @Override

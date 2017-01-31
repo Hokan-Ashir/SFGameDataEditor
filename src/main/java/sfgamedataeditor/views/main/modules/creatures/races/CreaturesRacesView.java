@@ -10,11 +10,9 @@ import java.util.Set;
 public class CreaturesRacesView extends AbstractRacesView {
 
     @Override
-    protected void fillComboBoxMapping() {
+    protected void fillSubViewsMappings() {
         Set<String> listOfCreatureRaces = CreatureParametersTableService.INSTANCE.getListOfCreatureRaces();
-        for (String creatureRace : listOfCreatureRaces) {
-            addMapping(creatureRace, CreaturesView.class);
-        }
+        addMappings(listOfCreatureRaces, CreaturesView.class);
     }
 
     @Override

@@ -7,7 +7,7 @@ import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.Miscel
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.List;
+import java.util.Set;
 
 public class MiscellaneousListView extends AbstractModulesView {
 
@@ -19,12 +19,10 @@ public class MiscellaneousListView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillComboBoxMapping() {
+    protected void fillSubViewsMappings() {
         int miscellaneousType = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_PIECES_NAME_MAPPING, "items.miscellaneous"));
-        List<String> miscellaneousNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(miscellaneousType);
-        for (String name : miscellaneousNames) {
-            addMapping(name, MiscellaneousParametersView.class);
-        }
+        Set<String> miscellaneousNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(miscellaneousType);
+        addMappings(miscellaneousNames, MiscellaneousParametersView.class);
     }
 
     @Override

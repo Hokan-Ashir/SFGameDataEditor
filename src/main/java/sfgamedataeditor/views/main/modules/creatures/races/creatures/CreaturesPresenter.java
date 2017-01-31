@@ -13,7 +13,6 @@ import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
 import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModel;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModelParameter;
-import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -37,13 +36,5 @@ public class CreaturesPresenter extends AbstractModulesPresenter<CreaturesModelP
         CreaturesParametersModelParameter parameter = new CreaturesParametersModelParameter(creatureParameterObject, commonParameterObject,
                 creatureEquipment, creatureSpells, corpseLootObjects);
         return new CreaturesParametersModel(parameter);
-    }
-
-    @Override
-    protected void updateSubViewsContent() {
-        List<String> creatureParameterObjectList = getModel().getParameter().getCreatureNames();
-        for (String creatureName : creatureParameterObjectList) {
-            getView().addMapping(creatureName, CreaturesParametersView.class);
-        }
     }
 }

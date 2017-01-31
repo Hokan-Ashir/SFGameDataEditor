@@ -18,9 +18,4 @@ public class AbstractRacesPresenter extends AbstractModulesPresenter<ModuleParam
         LOGGER.info("Not implemented");
         return null;
     }
-
-    @Override
-    protected void updateSubViewsContent() {
-        LOGGER.info("Not implemented");
-    }
 }

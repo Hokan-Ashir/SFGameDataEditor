@@ -7,7 +7,7 @@ import sfgamedataeditor.views.common.races.AbstractRacesView;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesModel;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesModelParameter;
 
-import java.util.List;
+import java.util.Set;
 
 public class CreaturesRacesPresenter extends AbstractModulesPresenter<ModuleParameter, AbstractRacesView, CreaturesModel> {
 
@@ -18,13 +18,8 @@ public class CreaturesRacesPresenter extends AbstractModulesPresenter<ModulePara
     @Override
     protected CreaturesModel createModel() {
         String selectedRaceName = getView().getSelectedModuleValue();
-        List<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceName(selectedRaceName);
+        Set<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceName(selectedRaceName);
         CreaturesModelParameter parameter = new CreaturesModelParameter(creatureNames, null);
         return new CreaturesModel(parameter);
-    }
-
-    @Override
-    protected void updateSubViewsContent() {
-
     }
 }

@@ -1,24 +1,32 @@
 package sfgamedataeditor.views.main.modules.items.weapons.pieces.list;
 
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.mvc.objects.SubModuleParameter;
+import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
 
-import java.util.List;
+import java.util.Set;
 
 public class WeaponPiecesModelParameter implements SubModuleParameter {
-    private final List<String> weaponPiecesNames;
+    private final Set<String> weaponPiecesNames;
     private final String selectedWeaponPieceName;
 
-    public WeaponPiecesModelParameter(List<String> weaponPiecesNames, String selectedWeaponPieceName) {
+    public WeaponPiecesModelParameter(Set<String> weaponPiecesNames, String selectedWeaponPieceName) {
         this.weaponPiecesNames = weaponPiecesNames;
         this.selectedWeaponPieceName = selectedWeaponPieceName;
-    }
-
-    public List<String> getWeaponPiecesNames() {
-        return weaponPiecesNames;
     }
 
     @Override
     public String getSelectedModuleName() {
         return selectedWeaponPieceName;
+    }
+
+    @Override
+    public Set<String> getSubPanelsNames() {
+        return weaponPiecesNames;
+    }
+
+    @Override
+    public Class<? extends PresentableView> getSubPanelsViewClass() {
+        return WeaponParametersView.class;
     }
 }

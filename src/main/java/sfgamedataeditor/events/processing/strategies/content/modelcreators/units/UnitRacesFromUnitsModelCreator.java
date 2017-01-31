@@ -10,7 +10,8 @@ public class UnitRacesFromUnitsModelCreator implements ModelCreator<ModulesModel
 
     @Override
     public ModulesModel createModel(UnitListModel childModel) {
-        String unitName = childModel.getParameter().getUnitNames().get(0);
+        // no matter which unit we select, cause changing unit's race is impossible (as I know)
+        String unitName = childModel.getParameter().getSubPanelsNames().iterator().next();
         String raceName  = UnitMapping.INSTANCE.getRaceName(unitName);
         ModuleParameter parameter = new ModuleParameter(raceName);
         return new ModulesModel(parameter);

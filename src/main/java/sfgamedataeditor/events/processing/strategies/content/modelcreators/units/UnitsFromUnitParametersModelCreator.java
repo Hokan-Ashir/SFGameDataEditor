@@ -6,7 +6,7 @@ import sfgamedataeditor.views.main.modules.units.races.units.UnitListModel;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitListModelParameter;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersModel;
 
-import java.util.List;
+import java.util.Set;
 
 public class UnitsFromUnitParametersModelCreator implements ModelCreator<UnitListModel, UnitsParametersModel> {
 
@@ -14,7 +14,7 @@ public class UnitsFromUnitParametersModelCreator implements ModelCreator<UnitLis
     public UnitListModel createModel(UnitsParametersModel childModel) {
         String selectedUnitName = childModel.getParameter().getCreatureCommonParameterObject().name;
         String raceName = UnitMapping.INSTANCE.getRaceName(selectedUnitName);
-        List<String> unitNames = UnitMapping.INSTANCE.getUnitNames(raceName);
+        Set<String> unitNames = UnitMapping.INSTANCE.getUnitNames(raceName);
         UnitListModelParameter parameter = new UnitListModelParameter(unitNames, selectedUnitName);
         return new UnitListModel(parameter);
     }

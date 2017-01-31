@@ -3,20 +3,25 @@ package sfgamedataeditor.views.common;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.managers.DefaultModulesPanelManager;
+import sfgamedataeditor.views.utility.Pair;
 
 import javax.swing.*;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public abstract class AbstractModulesView implements PresentableView {
 
     private static final Logger LOGGER = Logger.getLogger(AbstractModulesView.class);
     private JButton selectedPanel = new JButton();
+    private Class<? extends PresentableView> selectedPanelClass;
     private List<SubViewPanel> subViewsPanels = new ArrayList<>();
+    private Comparator<SubViewPanel> subViewPanelComparator = new SubViewsPanelComparator();
     private DefaultModulesPanelManager panelManager;
+    private final String moduleName;
 
     protected AbstractModulesView(String viewName) {
+        this.moduleName = viewName;
+
         Class<? extends DefaultModulesPanelManager> managerClass = getModulesPanelManagerClass();
         try {
             panelManager = managerClass.getConstructor().newInstance();
@@ -28,24 +33,62 @@ public abstract class AbstractModulesView implements PresentableView {
         initializeSubViewsMapping();
     }
 
-    protected abstract void fillComboBoxMapping();
+    protected abstract void fillSubViewsMappings();
 
     private void initializeSubViewsMapping() {
         // TODO optimize adding objects to list without clearing it
-        subViewsPanels.clear();
-        fillComboBoxMapping();
+        fillSubViewsMappings();
     }
 
     public void updateSubViewsLayout() {
         panelManager.updatePanelsLayout(subViewsPanels);
     }
 
+    public void addMappings(Set<String> subViewNames, Class<? extends PresentableView> viewClass) {
+        int size = subViewNames.size();
+        int subViewsSize = subViewsPanels.size();
+        if (subViewsSize < size) {
+            for (int i = 0; i < size - subViewsSize; i++) {
+                subViewsPanels.add(new SubViewPanel());
+            }
+        }
+
+        Iterator<SubViewPanel> iterator = subViewsPanels.iterator();
+        Iterator<String> stringIterator = subViewNames.iterator();
+        while (iterator.hasNext()) {
+            SubViewPanel subViewPanel = iterator.next();
+            String name = stringIterator.next();
+            subViewPanel.getButton().setText(name);
+            subViewPanel.setSubViewClass(viewClass);
+        }
+
+        Collections.sort(subViewsPanels, subViewPanelComparator);
+    }
+
     // TODO add Image mapping to button
-    public void addMapping(String name, Class<? extends PresentableView> subViewClass) {
-        subViewsPanels.add(new SubViewPanel(new JButton(name), subViewClass));
+    public void addMappings(List<Pair<String, Class<? extends PresentableView>>> mappings) {
+        int size = mappings.size();
+        int subViewsSize = subViewsPanels.size();
+        if (subViewsSize < size) {
+            for (int i = 0; i < size - subViewsSize; i++) {
+                subViewsPanels.add(new SubViewPanel());
+            }
+        }
+
+        Iterator<SubViewPanel> iterator = subViewsPanels.iterator();
+        Iterator<Pair<String, Class<? extends PresentableView>>> pairIterator = mappings.iterator();
+        while (iterator.hasNext()) {
+            SubViewPanel subViewPanel = iterator.next();
+            Pair<String, Class<? extends PresentableView>> pair = pairIterator.next();
+            subViewPanel.getButton().setText(pair.getKey());
+            subViewPanel.setSubViewClass(pair.getValue());
+        }
+
+        Collections.sort(subViewsPanels, subViewPanelComparator);
     }
 
     public void setSelectedModuleValue(String selectedModuleValue) {
+        selectedPanel.setSize(selectedModuleValue.length() * 2, 25);
         selectedPanel.setText(selectedModuleValue);
     }
 
@@ -77,7 +120,19 @@ public abstract class AbstractModulesView implements PresentableView {
             }
         }
 
+        if (clickedButton.equals(selectedPanel)) {
+            return selectedPanelClass;
+        }
+
         return null;
+    }
+
+    public void setSelectedPanelClass(Class<? extends PresentableView> selectedPanelClass) {
+        this.selectedPanelClass = selectedPanelClass;
+    }
+
+    public String getModuleName() {
+        return moduleName;
     }
 
     /**
@@ -86,5 +141,13 @@ public abstract class AbstractModulesView implements PresentableView {
     @Override
     public JPanel getMainPanel() {
         return null;
+    }
+
+    private static final class SubViewsPanelComparator implements Comparator<SubViewPanel> {
+
+        @Override
+        public int compare(SubViewPanel o1, SubViewPanel o2) {
+            return o1.getButton().getText().compareTo(o2.getButton().getText());
+        }
     }
 }

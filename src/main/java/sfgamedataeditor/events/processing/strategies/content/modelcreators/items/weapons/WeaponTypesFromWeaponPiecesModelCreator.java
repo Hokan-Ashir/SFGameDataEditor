@@ -15,7 +15,7 @@ public class WeaponTypesFromWeaponPiecesModelCreator implements ModelCreator<Mod
     public ModulesModel createModel(WeaponPiecesModel childModel) {
         // TODO maybe it is important to get not first one object
         // TODO remove duplication and generalize item types views
-        String selectedWeaponPieceName = childModel.getParameter().getWeaponPiecesNames().get(0);
+        String selectedWeaponPieceName = childModel.getParameter().getSubPanelsNames().iterator().next();
         int itemId = ViewTools.getKeyByPropertyValue(selectedWeaponPieceName, I18NTypes.ITEMS);
 
         String typeId = String.valueOf(ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId));

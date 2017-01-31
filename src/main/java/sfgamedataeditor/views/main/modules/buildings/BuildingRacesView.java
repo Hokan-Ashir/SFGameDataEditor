@@ -4,7 +4,7 @@ import sfgamedataeditor.views.common.races.AbstractRacesView;
 
 public class BuildingRacesView extends AbstractRacesView {
     @Override
-    protected void fillComboBoxMapping() {
+    protected void fillSubViewsMappings() {
         //        addMapping(I18NService.INSTANCE.getMessage("race.humans"), NotImplementedView.class);
 //        addMapping(I18NService.INSTANCE.getMessage("race.elves"), NotImplementedView.class);
 //        addMapping(I18NService.INSTANCE.getMessage("race.dwarves"), NotImplementedView.class);

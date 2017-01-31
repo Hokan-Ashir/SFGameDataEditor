@@ -9,8 +9,8 @@ import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class WeaponsTypesPresenter extends AbstractModulesPresenter<ModuleParameter, WeaponsTypesListView, WeaponPiecesModel> {
 
@@ -24,12 +24,8 @@ public class WeaponsTypesPresenter extends AbstractModulesPresenter<ModuleParame
         String itemPieceId = ViewTools.getKeyStringByPropertyValue(selectedArmorPieceType, I18NTypes.COMMON);
         ResourceBundle itemPiecesBundle = I18NService.INSTANCE.getBundle(I18NTypes.ITEM_PIECES_NAME_MAPPING);
         String itemPieceType = itemPiecesBundle.getString(itemPieceId);
-        List<String> itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));
+        Set<String> itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));
         WeaponPiecesModelParameter parameter = new WeaponPiecesModelParameter(itemNames, null);
         return new WeaponPiecesModel(parameter);
-    }
-
-    @Override
-    protected void updateSubViewsContent() {
     }
 }

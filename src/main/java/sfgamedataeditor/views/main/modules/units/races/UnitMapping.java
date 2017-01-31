@@ -3,16 +3,16 @@ package sfgamedataeditor.views.main.modules.units.races;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 // TODO unfortunately there is NO database object-related how to figure what race belong non-statable, which do not have statId, creatures (units)
 public enum UnitMapping {
     INSTANCE;
 
-    private final List<String> humanUnitsNames = new ArrayList<String>() {{
+    private final Set<String> humanUnitsNames = new HashSet<String>() {{
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "537")); // "Armsman"
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "538")); // "Cleric"
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "1227")); // "Cleric (Upgrade)"
@@ -28,7 +28,7 @@ public enum UnitMapping {
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "544")); // "Scout"
     }};
 
-    private final List<String> elvesUnitsNames = new ArrayList<String>() {{
+    private final Set<String> elvesUnitsNames = new HashSet<String>() {{
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "545")); // "Windarcher"
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "1229")); // "Windarcher (Upgrade)"
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "546")); // "Druid"
@@ -46,7 +46,7 @@ public enum UnitMapping {
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "1232")); // "Warder (Upgrade)"
     }};
 
-    private final List<String> orcsUnitsNames = new ArrayList<String>() {{
+    private final Set<String> orcsUnitsNames = new HashSet<String>() {{
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "553")); // "Drummer"
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "1249")); // "Drummer (Upgrade)"
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "554")); // "Fighter"
@@ -63,7 +63,7 @@ public enum UnitMapping {
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "1250")); // "Hornblower (Upgrade)"
     }};
 
-    private final List<String> darkElvesUnitsNames = new ArrayList<String>() {{
+    private final Set<String> darkElvesUnitsNames = new HashSet<String>() {{
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "561")); // "Assassin"
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "1294")); // "Assassin (Upgrade)"
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "562")); // "Battlemaster"
@@ -80,7 +80,7 @@ public enum UnitMapping {
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "1298")); // "Warlock (Upgrade)"
     }};
 
-    private final List<String> dwarvesUnitsNames = new ArrayList<String>() {{
+    private final Set<String> dwarvesUnitsNames = new HashSet<String>() {{
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "569")); // "Battlepriest"
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "1234")); // "Battlepriest (Upgrade)"
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "570")); // "Defender"
@@ -96,7 +96,7 @@ public enum UnitMapping {
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "576")); // "Watchman"
     }};
 
-    private final List<String> trollsUnitsNames = new ArrayList<String>() {{
+    private final Set<String> trollsUnitsNames = new HashSet<String>() {{
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "577")); // "Bouncer"
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "1287")); // "Bouncer (Upgrade)"
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "578")); // "Champion"
@@ -114,7 +114,7 @@ public enum UnitMapping {
         add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, "1285")); // "Thrower (Upgrade)"
     }};
 
-    private final Map<String, List<String>> unitRacesToUnitNamesMap = new HashMap<String, List<String>>() {{
+    private final Map<String, Set<String>> unitRacesToUnitNamesMap = new HashMap<String, Set<String>>() {{
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.humans"), humanUnitsNames);
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.elves"), elvesUnitsNames);
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dwarves"), dwarvesUnitsNames);
@@ -123,13 +123,13 @@ public enum UnitMapping {
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dark.elves"), darkElvesUnitsNames);
     }};
 
-    public List<String> getUnitNames(String raceName) {
+    public Set<String> getUnitNames(String raceName) {
         return unitRacesToUnitNamesMap.get(raceName);
     }
 
     public String getRaceName(String unitName) {
-        for (Map.Entry<String, List<String>> entry : unitRacesToUnitNamesMap.entrySet()) {
-            List<String> unitNames = entry.getValue();
+        for (Map.Entry<String, Set<String>> entry : unitRacesToUnitNamesMap.entrySet()) {
+            Set<String> unitNames = entry.getValue();
             for (String name : unitNames) {
                 if (name.equals(unitName)) {
                     return entry.getKey();

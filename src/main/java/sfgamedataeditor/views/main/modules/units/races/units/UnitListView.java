@@ -12,7 +12,7 @@ public class UnitListView extends AbstractModulesView {
     }
 
     @Override
-    protected void fillComboBoxMapping() {
+    protected void fillSubViewsMappings() {
 
     }
 

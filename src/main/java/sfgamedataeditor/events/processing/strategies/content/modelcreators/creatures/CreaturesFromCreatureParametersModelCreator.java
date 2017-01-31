@@ -6,14 +6,14 @@ import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesMo
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesModelParameter;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModel;
 
-import java.util.List;
+import java.util.Set;
 
 public class CreaturesFromCreatureParametersModelCreator implements ModelCreator<CreaturesModel, CreaturesParametersModel> {
 
     @Override
     public CreaturesModel createModel(CreaturesParametersModel childModel) {
         Integer raceId = childModel.getParameter().getCreatureParameterObject().raceId;
-        List<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceId(raceId);
+        Set<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceId(raceId);
 
         String selectedCreatureName = childModel.getParameter().getCreatureCommonParameterObject().name;
         CreaturesModelParameter parameter = new CreaturesModelParameter(creatureNames, selectedCreatureName);

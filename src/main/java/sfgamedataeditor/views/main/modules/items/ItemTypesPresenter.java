@@ -14,8 +14,4 @@ public class ItemTypesPresenter extends AbstractModulesPresenter<ModuleParameter
     protected ModulesModel createModel() {
         return null;
     }
-
-    @Override
-    protected void updateSubViewsContent() {
-    }
 }

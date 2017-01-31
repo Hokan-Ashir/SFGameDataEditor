@@ -156,8 +156,14 @@ public enum  SpellSchoolNameTableService {
         return builder.toString();
     }
 
-    public List<SpellSchoolNameObject> getAllSpellSchoolNames() {
-        return CommonTableService.INSTANCE.getAllTableData(SpellSchoolNameObject.class);
+    public Set<String> getAllSpellSchoolNames() {
+        List<SpellSchoolNameObject> allTableData = CommonTableService.INSTANCE.getAllTableData(SpellSchoolNameObject.class);
+        Set<String> names = new HashSet<>();
+        for (SpellSchoolNameObject spellSchoolNameObject : allTableData) {
+            names.add(spellSchoolNameObject.name);
+        }
+
+        return names;
     }
 
     public SpellSchoolNameObject getSpellSchoolId(String spellSchoolName) {

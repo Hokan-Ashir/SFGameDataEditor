@@ -34,6 +34,7 @@ public class MainView implements PresentableView {
     }
 
     public void renderViewInsideContentPanel(JComponent viewComponent) {
+        contentPanel.removeAll();
         renderViewInsidePanel(viewComponent, contentPanel);
     }
 

@@ -17,10 +17,8 @@ public class SkillSchoolsView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillComboBoxMapping() {
-        for (String s : Mappings.INSTANCE.SKILL_SCHOOL_MAP.keySet()) {
-            addMapping(s, SkillParameterView.class);
-        }
+    protected void fillSubViewsMappings() {
+        addMappings(Mappings.INSTANCE.SKILL_SCHOOL_MAP.keySet(), SkillParameterView.class);
     }
 
     @Override

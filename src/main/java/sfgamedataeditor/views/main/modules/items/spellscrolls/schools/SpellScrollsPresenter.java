@@ -21,8 +21,4 @@ public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParame
         int itemId = ViewTools.getKeyByPropertyValue(selectedSpellScroll, I18NTypes.ITEMS);
         return modelCreator.createModel(itemId);
     }
-
-    @Override
-    protected void updateSubViewsContent() {
-    }
 }

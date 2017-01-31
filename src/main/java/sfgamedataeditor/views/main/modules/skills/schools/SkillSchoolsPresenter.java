@@ -18,8 +18,4 @@ public class SkillSchoolsPresenter extends AbstractModulesPresenter<ModuleParame
         SkillParameterModelParameter parameter = new SkillParameterModelParameter(skillSchoolId, 1);
         return new SkillParameterModel(parameter);
     }
-
-    @Override
-    protected void updateSubViewsContent() {
-    }
 }

@@ -21,8 +21,4 @@ public class MerchantsPresenter extends AbstractModulesPresenter<ModuleParameter
         MerchantInventoryModelParameter parameter = new MerchantInventoryModelParameter(itemIds, null);
         return new MerchantInventoryModel(parameter);
     }
-
-    @Override
-    protected void updateSubViewsContent() {
-    }
 }
