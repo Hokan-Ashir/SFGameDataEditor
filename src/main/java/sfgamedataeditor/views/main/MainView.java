@@ -9,6 +9,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 import javax.swing.*;
 
 public class MainView implements PresentableView {
+    private static final int VERTICAL_SCROLL_UNIT_INCREMENT = 16;
     private JPanel mainPanel;
     private JPanel navigationPanel;
     private JPanel contentPanel;
@@ -18,6 +19,7 @@ public class MainView implements PresentableView {
     private JPanel componentsPanel;
 
     public MainView() {
+        scrollPane.getVerticalScrollBar().setUnitIncrement(VERTICAL_SCROLL_UNIT_INCREMENT);
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         navigationPanel.setLayout(new BoxLayout(navigationPanel, BoxLayout.X_AXIS));
         createAndShowMainFrame();
