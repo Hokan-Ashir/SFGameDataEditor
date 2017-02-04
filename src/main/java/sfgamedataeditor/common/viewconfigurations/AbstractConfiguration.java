@@ -1,5 +1,6 @@
 package sfgamedataeditor.common.viewconfigurations;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 
@@ -9,6 +10,7 @@ import java.util.Map;
 public abstract class AbstractConfiguration {
 
     private final Map<Integer, ConfigurationWidgetParameter> widgetMap = new HashMap<>();
+    private static final Logger LOGGER = Logger.getLogger(AbstractConfiguration.class);
 
     protected AbstractConfiguration() {
         fillConfigurationMappings();
@@ -26,7 +28,8 @@ public abstract class AbstractConfiguration {
             return parameter.getWidgetClass();
         }
 
-        throw new RuntimeException("No widget class found for GUIComponentId [" + GUIComponentId + "]");
+        LOGGER.info("No widget class found for GUIComponentId [" + GUIComponentId + "]");
+        return null;
     }
 
     public Class<? extends AbstractWidgetListener> getListenerClass(Integer GUIComponentId) {
@@ -35,7 +38,8 @@ public abstract class AbstractConfiguration {
             return parameter.getListenerClass();
         }
 
-        throw new RuntimeException("No listener class found for GUIComponentId [" + GUIComponentId + "]");
+        LOGGER.info("No listener class found for GUIComponentId [" + GUIComponentId + "]");
+        return null;
     }
 
     public String[] getI18NParameters(Integer GUIComponentId) {
@@ -44,6 +48,7 @@ public abstract class AbstractConfiguration {
             return parameter.getI18nValues();
         }
 
-        throw new RuntimeException("No i18n parameters found for GUIComponentId [" + GUIComponentId + "]");
+        LOGGER.info("No i18n parameters found for GUIComponentId [" + GUIComponentId + "]");
+        return new String[]{};
     }
 }

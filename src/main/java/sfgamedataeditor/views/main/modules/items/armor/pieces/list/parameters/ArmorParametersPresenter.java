@@ -49,14 +49,29 @@ public class ArmorParametersPresenter extends AbstractPresenter<ArmorParametersM
 
             try {
                 declaredField.setAccessible(true);
-                JPanel panel = (JPanel) declaredField.get(getView());
-                AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
 
                 Class<?> dtoClass = annotation.DTOClass();
                 if (dtoClass.equals(ItemPriceParametersObject.class)) {
+                    JPanel panel = (JPanel) declaredField.get(getView());
+                    AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
                     widget.getListener().updateWidgetValue(priceParametersObject);
                 } else if (dtoClass.equals(ArmorParametersObject.class)) {
-                    widget.getListener().updateWidgetValue(armorParametersObject);
+                    JComponent object = (JComponent) declaredField.get(getView());
+
+                    if (armorParametersObject == null) {
+                        object.setVisible(false);
+                    } else {
+                        object.setVisible(true);
+                        try {
+                            // TODO get rid of exception catching (in case of JLabels marked as GUIComponents or
+                            // JPanels that contains many many other JPanels and do not contains widgets)
+                            JPanel panel = (JPanel) object;
+                            AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
+                            widget.getListener().updateWidgetValue(armorParametersObject);
+                        } catch (ClassCastException e) {
+                            LOGGER.info(e.getMessage(), e);
+                        }
+                    }
                 }
             } catch (IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);
@@ -116,12 +131,11 @@ public class ArmorParametersPresenter extends AbstractPresenter<ArmorParametersM
                 }
 
                 try {
-                    declaredField.setAccessible(true);
-                    JPanel panel = (JPanel) declaredField.get(getView());
-                    AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
-
                     Class<?> dtoClass = annotation.DTOClass();
                     if (dtoClass.equals(ItemRequirementsObject.class)) {
+                        declaredField.setAccessible(true);
+                        JPanel panel = (JPanel) declaredField.get(getView());
+                        AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
                         int selectedIndex = getView().getRequirementsComboBox().getSelectedIndex();
                         widget.getListener().updateWidgetValue(itemRequirementsObjects.get(selectedIndex));
                     }

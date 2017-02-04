@@ -13,7 +13,6 @@ public abstract class AbstractModulesView implements PresentableView {
 
     private static final Logger LOGGER = Logger.getLogger(AbstractModulesView.class);
     private JButton selectedPanel = new JButton();
-    private Class<? extends PresentableView> selectedPanelClass;
     private List<SubViewPanel> subViewsPanels = new ArrayList<>();
     private Comparator<SubViewPanel> subViewPanelComparator = new SubViewsPanelComparator();
     private DefaultModulesPanelManager panelManager;
@@ -57,9 +56,14 @@ public abstract class AbstractModulesView implements PresentableView {
         Iterator<String> stringIterator = subViewNames.iterator();
         while (iterator.hasNext()) {
             SubViewPanel subViewPanel = iterator.next();
-            String name = stringIterator.next();
-            subViewPanel.getButton().setText(name);
-            subViewPanel.setSubViewClass(viewClass);
+            if (stringIterator.hasNext()) {
+                String name = stringIterator.next();
+                subViewPanel.getButton().setText(name);
+                subViewPanel.getButton().setVisible(true);
+                subViewPanel.setSubViewClass(viewClass);
+            } else {
+                subViewPanel.getButton().setVisible(false);
+            }
         }
 
         Collections.sort(subViewsPanels, subViewPanelComparator);
@@ -114,21 +118,17 @@ public abstract class AbstractModulesView implements PresentableView {
     }
 
     public Class<? extends PresentableView> getSubPanelViewClass(JButton clickedButton) {
+        if (clickedButton.equals(selectedPanel)) {
+            return this.getClass();
+        }
+
         for (SubViewPanel subViewsPanel : subViewsPanels) {
             if (subViewsPanel.getButton().equals(clickedButton)) {
                 return subViewsPanel.getSubViewClass();
             }
         }
 
-        if (clickedButton.equals(selectedPanel)) {
-            return selectedPanelClass;
-        }
-
         return null;
-    }
-
-    public void setSelectedPanelClass(Class<? extends PresentableView> selectedPanelClass) {
-        this.selectedPanelClass = selectedPanelClass;
     }
 
     public String getModuleName() {

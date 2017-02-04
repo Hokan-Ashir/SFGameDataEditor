@@ -39,7 +39,9 @@ public abstract class AbstractModulesPresenter<M extends SubModuleParameter, V e
         getView().updateSubViewsLayout();
         List<SubViewPanel> subViewsPanels = getView().getSubViewsPanels();
         for (SubViewPanel subViewsPanel : subViewsPanels) {
-            subViewsPanel.getButton().addActionListener(subPanelsListener);
+            if (subViewsPanel.getButton().getActionListeners().length == 0) {
+                subViewsPanel.getButton().addActionListener(subPanelsListener);
+            }
         }
 
         if (model != null) {
@@ -88,9 +90,13 @@ public abstract class AbstractModulesPresenter<M extends SubModuleParameter, V e
 
             getView().setSelectedModuleValue(source.getText());
             Class<? extends PresentableView> classViewToShow = getView().getSubPanelViewClass(source);
-            getView().setSelectedPanelClass(classViewToShow);
+            Model model;
+            if (source.equals(getView().getSelectedPanel())) {
+                model = getModel();
+            } else {
+                model = createModel();
+            }
 
-            Model model = createModel();
             EventProcessor.INSTANCE.process(new ShowContentViewEvent(classViewToShow, model));
         }
     }

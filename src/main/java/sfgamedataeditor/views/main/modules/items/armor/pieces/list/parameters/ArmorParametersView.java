@@ -77,11 +77,23 @@ public class ArmorParametersView implements PresentableView {
     private JPanel requirementLevelPanel;
 
     private JComboBox<String> requirementsComboBox;
+
+    @GUIElement(GUIElementId = GUIElements.CHARACTERISTICS_PANEL, DTOClass = ArmorParametersObject.class)
     private JPanel characteristicsPanel;
+
+    @GUIElement(GUIElementId = GUIElements.CHARACTERISTICS_LABEL, DTOClass = ArmorParametersObject.class)
     private JLabel characteristicsLabel;
+
+    @GUIElement(GUIElementId = GUIElements.RESISTANCES_PANEL, DTOClass = ArmorParametersObject.class)
     private JPanel resistancesPanel;
+
+    @GUIElement(GUIElementId = GUIElements.RESISTANCES_LABEL, DTOClass = ArmorParametersObject.class)
     private JLabel resistancesLabel;
+
+    @GUIElement(GUIElementId = GUIElements.SPEEDS_PANEL, DTOClass = ArmorParametersObject.class)
     private JPanel speedsPanel;
+
+    @GUIElement(GUIElementId = GUIElements.SPEEDS_LABEL, DTOClass = ArmorParametersObject.class)
     private JLabel speedsLabel;
 
     public ArmorParametersView() {

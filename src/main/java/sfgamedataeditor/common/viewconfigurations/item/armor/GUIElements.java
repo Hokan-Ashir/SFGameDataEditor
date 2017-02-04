@@ -22,6 +22,12 @@ public final class GUIElements {
     public static final int CAST_SPEED = 18;
     public static final int REQUIREMENT_CLASS_SUBCLASS = 19;
     public static final int REQUIREMENT_LEVEL = 20;
+    public static final int CHARACTERISTICS_PANEL = 21;
+    public static final int CHARACTERISTICS_LABEL = 22;
+    public static final int RESISTANCES_PANEL = 23;
+    public static final int RESISTANCES_LABEL = 24;
+    public static final int SPEEDS_PANEL = 25;
+    public static final int SPEEDS_LABEL = 26;
 
     private GUIElements() {
 

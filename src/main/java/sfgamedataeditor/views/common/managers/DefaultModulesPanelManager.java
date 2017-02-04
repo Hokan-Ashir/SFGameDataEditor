@@ -29,11 +29,16 @@ public class DefaultModulesPanelManager implements View {
     public void updatePanelsLayout(List<SubViewPanel> subViewsPanels) {
         panel.removeAll();
 
-        layout.setColumns(DEFAULT_NUMBER_OF_COLUMNS);
-        layout.setRows(subViewsPanels.size() / layout.getColumns());
+        int numberOfVisiblePanels = 0;
         for (SubViewPanel subViewsPanel : subViewsPanels) {
-            panel.add(subViewsPanel.getButton());
+            if (subViewsPanel.getButton().isVisible()) {
+                panel.add(subViewsPanel.getButton());
+                numberOfVisiblePanels++;
+            }
         }
+
+        layout.setColumns(DEFAULT_NUMBER_OF_COLUMNS);
+        layout.setRows(numberOfVisiblePanels / layout.getColumns());
     }
 
     @Override

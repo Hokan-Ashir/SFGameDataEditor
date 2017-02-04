@@ -40,20 +40,33 @@ public enum ViewConfigurator {
         WidgetsCache widgetsCache = WidgetsCachesHolder.INSTANCE.getWidgetsCache(view.getClass());
 
         Field[] declaredFields = view.getClass().getDeclaredFields();
+
         for (Field field : declaredFields) {
             GUIElement annotation = field.getAnnotation(GUIElement.class);
             if (annotation == null) {
                 continue;
             }
 
+            field.setAccessible(true);
+            Object panel = null;
+            try {
+                panel = field.get(view);
+            } catch (IllegalAccessException e) {
+                LOGGER.error(e.getMessage(), e);
+                continue;
+            }
+
             int guiElementId = annotation.GUIElementId();
             Class<? extends AbstractWidget> widgetClass = configuration.getWidgetClass(guiElementId);
+            if (widgetClass == null) {
+                continue;
+            }
+
             Class<? extends AbstractWidgetListener> listenerClass = configuration.getListenerClass(guiElementId);
             String[] i18NParameters = configuration.getI18NParameters(guiElementId);
             boolean inCache = widgetsCache.isWidgetExistsInCache(guiElementId, widgetClass);
             try {
-                field.setAccessible(true);
-                JPanel layoutPanel = (JPanel) field.get(view);
+                JPanel layoutPanel = (JPanel) panel;
                 layoutPanel.removeAll();
                 AbstractWidget widget;
                 AbstractWidgetListener listener;
