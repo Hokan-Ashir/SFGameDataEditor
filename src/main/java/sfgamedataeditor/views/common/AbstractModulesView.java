@@ -6,8 +6,10 @@ import sfgamedataeditor.views.common.managers.DefaultModulesPanelManager;
 import sfgamedataeditor.views.utility.Pair;
 
 import javax.swing.*;
+import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.List;
 
 public abstract class AbstractModulesView implements PresentableView {
 
@@ -57,6 +59,13 @@ public abstract class AbstractModulesView implements PresentableView {
             SubViewPanel subViewPanel = iterator.next();
             if (stringIterator.hasNext()) {
                 String name = stringIterator.next();
+                Image image = getPanelImageByPanelName(name);
+                if (image != null) {
+                    subViewPanel.getButton().setIcon(new ImageIcon(image));
+                } else {
+                    subViewPanel.getButton().setIcon(null);
+                }
+
                 subViewPanel.getButton().setText(name);
                 subViewPanel.getButton().setVisible(true);
                 subViewPanel.setSubViewClass(viewClass);
@@ -66,6 +75,10 @@ public abstract class AbstractModulesView implements PresentableView {
         }
 
         Collections.sort(subViewsPanels, subViewPanelComparator);
+    }
+
+    protected Image getPanelImageByPanelName(String panelName) {
+        return null;
     }
 
     // TODO add Image mapping to button
