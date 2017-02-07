@@ -35,7 +35,6 @@ public abstract class AbstractModulesView implements PresentableView {
     protected abstract void fillSubViewsMappings();
 
     private void initializeSubViewsMapping() {
-        // TODO optimize adding objects to list without clearing it
         fillSubViewsMappings();
     }
 
