@@ -57,20 +57,16 @@ public abstract class AbstractModulesView implements PresentableView {
         Iterator<String> stringIterator = subViewNames.iterator();
         while (iterator.hasNext()) {
             SubViewPanel subViewPanel = iterator.next();
+            JButton button = subViewPanel.getButton();
             if (stringIterator.hasNext()) {
                 String name = stringIterator.next();
-                Image image = getPanelImageByPanelName(name);
-                if (image != null) {
-                    subViewPanel.getButton().setIcon(new ImageIcon(image));
-                } else {
-                    subViewPanel.getButton().setIcon(null);
-                }
+                setPanelImageAndSize(button, name);
 
-                subViewPanel.getButton().setText(name);
-                subViewPanel.getButton().setVisible(true);
+                button.setText(name);
+                button.setVisible(true);
                 subViewPanel.setSubViewClass(viewClass);
             } else {
-                subViewPanel.getButton().setVisible(false);
+                button.setVisible(false);
             }
         }
 
@@ -81,7 +77,6 @@ public abstract class AbstractModulesView implements PresentableView {
         return null;
     }
 
-    // TODO add Image mapping to button
     public void addMappings(List<Pair<String, Class<? extends PresentableView>>> mappings) {
         int size = mappings.size();
         int subViewsSize = subViewsPanels.size();
@@ -96,15 +91,32 @@ public abstract class AbstractModulesView implements PresentableView {
         while (iterator.hasNext()) {
             SubViewPanel subViewPanel = iterator.next();
             Pair<String, Class<? extends PresentableView>> pair = pairIterator.next();
-            subViewPanel.getButton().setText(pair.getKey());
+            String name = pair.getKey();
+            JButton button = subViewPanel.getButton();
+            button.setText(name);
+            setPanelImageAndSize(button, name);
             subViewPanel.setSubViewClass(pair.getValue());
         }
 
         Collections.sort(subViewsPanels, subViewPanelComparator);
     }
 
+    private void setPanelImageAndSize(JButton button, String name) {
+        Image image = getPanelImageByPanelName(name);
+        ImageIcon icon;
+        if (image != null) {
+            icon = new ImageIcon(image);
+        } else {
+            icon = null;
+        }
+
+        button.setIcon(icon);
+        button.setVerticalTextPosition(SwingConstants.BOTTOM);
+        button.setHorizontalTextPosition(SwingConstants.CENTER);
+    }
+
     public void setSelectedModuleValue(String selectedModuleValue) {
-        selectedPanel.setSize(selectedModuleValue.length() * 2, 25);
+        selectedPanel.setSize(selectedModuleValue.length() * 2, selectedPanel.getHeight());
         selectedPanel.setText(selectedModuleValue);
     }
 

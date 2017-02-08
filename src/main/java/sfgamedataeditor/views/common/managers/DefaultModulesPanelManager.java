@@ -12,15 +12,13 @@ public class DefaultModulesPanelManager implements View {
     private static final int DEFAULT_NUMBER_OF_COLUMNS = 3;
     private final JPanel mainPanel;
     private final JPanel panel;
-    private final GridLayout layout;
 
     public DefaultModulesPanelManager() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(0, 1));
-        layout = new GridLayout();
+        GridBagLayout layout = new GridBagLayout();
         panel = new JPanel();
         panel.setLayout(layout);
-        panel.setPreferredSize(null);
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.getVerticalScrollBar().setUnitIncrement(VERTICAL_SCROLL_UNIT_INCREMENT);
         mainPanel.add(scrollPane);
@@ -29,16 +27,30 @@ public class DefaultModulesPanelManager implements View {
     public void updatePanelsLayout(List<SubViewPanel> subViewsPanels) {
         panel.removeAll();
 
-        int numberOfVisiblePanels = 0;
+        int numberOfColumns = DEFAULT_NUMBER_OF_COLUMNS;
+        GridBagConstraints constraints = new GridBagConstraints();
+        int gridX = 0;
+        int gridY = 0;
         for (SubViewPanel subViewsPanel : subViewsPanels) {
-            if (subViewsPanel.getButton().isVisible()) {
-                panel.add(subViewsPanel.getButton());
-                numberOfVisiblePanels++;
+            JButton button = subViewsPanel.getButton();
+            if (!button.isVisible()) {
+                continue;
+            }
+
+            constraints.gridx = gridX;
+            constraints.gridy = gridY;
+            constraints.gridheight = 1;
+            constraints.gridwidth = 1;
+            constraints.weightx = 1.0 / numberOfColumns;
+            constraints.weighty = 1;
+            constraints.fill = GridBagConstraints.BOTH;
+            panel.add(button, constraints);
+            gridX++;
+            if (gridX > numberOfColumns) {
+                gridX = 0;
+                gridY++;
             }
         }
-
-        layout.setColumns(DEFAULT_NUMBER_OF_COLUMNS);
-        layout.setRows(numberOfVisiblePanels / layout.getColumns());
     }
 
     @Override
