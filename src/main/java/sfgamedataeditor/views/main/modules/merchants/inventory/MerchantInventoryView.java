@@ -19,6 +19,7 @@ public class MerchantInventoryView implements PresentableView {
     private JScrollPane scrollPane;
     private JPanel listPanel;
     private JPanel selectedItemPanel;
+    private JLabel iconLabel;
     private final EquipmentWidget equipmentWidget;
 
     public MerchantInventoryView() {
@@ -37,6 +38,10 @@ public class MerchantInventoryView implements PresentableView {
         EquipmentWidgetListener listener = new EquipmentWidgetListener(equipmentWidget, itemId);
         equipmentWidget.attachListener(listener);
         selectedItemPanel.add(equipmentWidget);
+    }
+
+    public JLabel getIconLabel() {
+        return iconLabel;
     }
 
     public JList<String> getMerchantInventoryItemList() {

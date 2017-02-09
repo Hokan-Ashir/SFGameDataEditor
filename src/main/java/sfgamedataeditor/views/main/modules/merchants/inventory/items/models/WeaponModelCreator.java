@@ -11,12 +11,13 @@ import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableSe
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersModel;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersModelParameter;
 
+import javax.swing.*;
 import java.util.List;
 
 public class WeaponModelCreator implements ModelCreator<WeaponParametersModel> {
 
     @Override
-    public WeaponParametersModel createModel(int itemId) {
+    public WeaponParametersModel createModel(int itemId, Icon icon) {
         ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
         List<ItemSpellEffectsObject> itemEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(itemId);
         WeaponParametersObject weaponParametersObject = WeaponParametersTableService.INSTANCE.getObjectByItemId(itemId);

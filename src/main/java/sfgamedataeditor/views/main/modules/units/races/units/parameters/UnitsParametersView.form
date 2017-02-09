@@ -209,6 +209,18 @@
                   <text value="Label"/>
                 </properties>
               </component>
+              <component id="90d39" class="javax.swing.JLabel" binding="iconLabel">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="66" height="66"/>
+                  <minimumSize width="66" height="66"/>
+                  <preferredSize width="66" height="66"/>
+                  <text value=""/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="debdd" binding="equipmentPanel" layout-manager="GridBagLayout">

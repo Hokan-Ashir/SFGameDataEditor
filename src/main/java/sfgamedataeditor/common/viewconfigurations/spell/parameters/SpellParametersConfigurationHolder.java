@@ -119,7 +119,7 @@ public class SpellParametersConfigurationHolder extends AbstractConfigurationHol
         for (String key : bundle.keySet()) {
             String value = bundle.getString(key);
             if (customSpellNames.contains(value)) {
-                addConfiguration(new SpellParameterModel(new SpellParameterModelParameter(Integer.valueOf(key), 0)), configuration);
+                addConfiguration(new SpellParameterModel(new SpellParameterModelParameter(Integer.valueOf(key), 0, null)), configuration);
             }
         }
     }

@@ -2,6 +2,7 @@ package sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameter
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
+import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
@@ -26,15 +27,25 @@ public class SpellScrollsParametersPresenter extends AbstractPresenter<SpellScro
         SpellScrollsParametersModelParameter parameter = getModel().getParameter();
         ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
         List<ItemSpellEffectsObject> itemSpellEffectsObjects = parameter.getItemSpellEffectsObjects();
+        Icon icon = parameter.getIcon();
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
-            GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-            if (annotation == null) {
-                continue;
-            }
-
             try {
+                IconElement iconElement = declaredField.getAnnotation(IconElement.class);
+                if (iconElement != null) {
+                    declaredField.setAccessible(true);
+                    JLabel panel = (JLabel) declaredField.get(getView());
+                    panel.setIcon(icon);
+                    continue;
+                }
+
+                GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
+                if (annotation == null) {
+                    continue;
+                }
+
+
                 declaredField.setAccessible(true);
                 JPanel panel = (JPanel) declaredField.get(getView());
                 AbstractWidget widget = (AbstractWidget) panel.getComponent(0);

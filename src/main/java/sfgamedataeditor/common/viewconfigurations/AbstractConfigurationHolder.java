@@ -65,7 +65,7 @@ public abstract class AbstractConfigurationHolder {
 
                 Object configurationModelValue = declaredField.get(configurationModelParameter);
                 Object incomingModelValue = declaredField.get(incomingModelParameter);
-                if (configurationModelValue.equals(incomingModelValue)) {
+                if (configurationModelValue != null && configurationModelValue.equals(incomingModelValue)) {
                     return true;
                 }
 

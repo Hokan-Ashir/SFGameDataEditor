@@ -1,21 +1,21 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
+import javax.swing.*;
+
 public class SpellParameterModelParameter {
 
-    private int spellId;
+    private final int spellId;
     private int spellLevel;
+    private final Icon icon;
 
-    public SpellParameterModelParameter(int spellId, int spellLevel) {
+    public SpellParameterModelParameter(int spellId, int spellLevel, Icon icon) {
         this.spellId = spellId;
         this.spellLevel = spellLevel;
+        this.icon = icon;
     }
 
     public int getSpellId() {
         return spellId;
-    }
-
-    public void setSpellId(int spellId) {
-        this.spellId = spellId;
     }
 
     public int getSpellLevel() {
@@ -24,5 +24,9 @@ public class SpellParameterModelParameter {
 
     public void setSpellLevel(int spellLevel) {
         this.spellLevel = spellLevel;
+    }
+
+    public Icon getIcon() {
+        return icon;
     }
 }

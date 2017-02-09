@@ -6,6 +6,8 @@ import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.Weap
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
+import javax.swing.*;
+
 public class WeaponPiecesPresenter extends AbstractModulesPresenter<WeaponPiecesModelParameter, WeaponPiecesView, WeaponParametersModel> {
 
     private final WeaponModelCreator modelCreator = new WeaponModelCreator();
@@ -18,6 +20,7 @@ public class WeaponPiecesPresenter extends AbstractModulesPresenter<WeaponPieces
     protected WeaponParametersModel createModel() {
         String selectedWeaponPiece = getView().getSelectedModuleValue();
         int itemId = ViewTools.getKeyByPropertyValue(selectedWeaponPiece, I18NTypes.ITEMS);
-        return modelCreator.createModel(itemId);
+        Icon icon = getView().getSelectedModuleIcon();
+        return modelCreator.createModel(itemId, icon);
     }
 }

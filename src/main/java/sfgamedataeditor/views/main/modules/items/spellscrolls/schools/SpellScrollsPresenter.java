@@ -7,6 +7,8 @@ import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.Spel
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
+import javax.swing.*;
+
 public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParameter, SpellScrollsListView, SpellScrollsParametersModel> {
 
     private final SpellScrollsModelCreator modelCreator = new SpellScrollsModelCreator();
@@ -19,6 +21,7 @@ public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParame
     protected SpellScrollsParametersModel createModel() {
         String selectedSpellScroll = getView().getSelectedModuleValue();
         int itemId = ViewTools.getKeyByPropertyValue(selectedSpellScroll, I18NTypes.ITEMS);
-        return modelCreator.createModel(itemId);
+        Icon icon = getView().getSelectedModuleIcon();
+        return modelCreator.createModel(itemId, icon);
     }
 }

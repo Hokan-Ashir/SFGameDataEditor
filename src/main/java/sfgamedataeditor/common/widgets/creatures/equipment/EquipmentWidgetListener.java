@@ -152,7 +152,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
         if (pair == null) {
             return null;
         } else {
-            return pair.getValue().createModel(itemId);
+            return pair.getValue().createModel(itemId, null);
         }
     }
 

@@ -16,6 +16,7 @@ import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsPar
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
+import javax.swing.*;
 import java.util.List;
 
 public class UnitListPresenter extends AbstractModulesPresenter<UnitListModelParameter, UnitListView, UnitsParametersModel> {
@@ -33,8 +34,9 @@ public class UnitListPresenter extends AbstractModulesPresenter<UnitListModelPar
         List<CreatureSpellObject> creatureSpells = CreatureSpellTableService.INSTANCE.getCreatureSpellsByCreatureId(creatureId);
         List<CreatureResourcesObject> creatureResources = CreatureResourcesTableService.INSTANCE.getCreatureResourcesByCreatureId(creatureId);
         List<CreatureBuildingsObject> creatureBuildings = CreatureBuildingsTableService.INSTANCE.getCreatureBuildingsByCreatureId(creatureId);
+        Icon icon = getView().getSelectedModuleIcon();
         UnitsParametersModelParameter parameter = new UnitsParametersModelParameter(commonParameterObject,
-                creatureEquipment, creatureSpells, creatureResources, creatureBuildings);
+                creatureEquipment, creatureSpells, creatureResources, creatureBuildings, icon);
         return new UnitsParametersModel(parameter);
     }
 }

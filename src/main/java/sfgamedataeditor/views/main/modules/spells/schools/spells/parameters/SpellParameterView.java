@@ -1,6 +1,7 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
 import sfgamedataeditor.common.GUIElement;
+import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.Disabled;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
@@ -95,6 +96,9 @@ public class SpellParameterView implements PresentableView {
     private JPanel parametersPanel;
     private JTabbedPane tabPane;
     private JPanel commonParameters;
+
+    @IconElement
+    private JLabel iconLabel;
 
     public SpellParameterView() {
         tabPane.setTitleAt(SPELL_COMMON_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "tab.spell.common.parameters"));

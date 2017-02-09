@@ -1,5 +1,6 @@
 package sfgamedataeditor.common.widgets.common.effectnumber;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.spells.names.SpellNameObject;
@@ -13,17 +14,23 @@ import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.Spel
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNumberWidget, OffsetableObject> implements ItemListener, ActionListener {
+
+    private static final Logger LOGGER = Logger.getLogger(EffectNumberWidgetListener.class);
 
     public EffectNumberWidgetListener(EffectNumberWidget component, Field... mappedFields) {
         super(component, mappedFields);
@@ -147,10 +154,34 @@ public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNum
         SpellParametersObject selectedSpellParameterObject = getSelectedSpellParameterObject();
         Integer selectedSpellLevel = getSelectedSpellLevel(selectedSpellParameterObject);
         Integer selectedSpellNameId = selectedSpellParameterObject.spellNameId;
-        SpellParameterModelParameter parameter = new SpellParameterModelParameter(selectedSpellNameId, selectedSpellLevel);
+
+        String selectedSpellName = (String) getWidget().getSpellNameComboBox().getSelectedItem();
+        Icon icon = getSpellIcon(selectedSpellName);
+        SpellParameterModelParameter parameter = new SpellParameterModelParameter(selectedSpellNameId, selectedSpellLevel, icon);
         SpellParameterModel model = new SpellParameterModel(parameter);
         ShowContentViewEvent event = new ShowContentViewEvent(SpellParameterView.class, model);
         EventProcessor.INSTANCE.process(event);
+    }
+
+    private Icon getSpellIcon(String selectedSpellName) {
+        String spellNameKey = ViewTools.getKeyStringByPropertyValue(selectedSpellName, I18NTypes.SPELLS_GUI);
+        if (spellNameKey == null) {
+            return null;
+        }
+
+        spellNameKey = spellNameKey.replaceAll("(.*)\\.name", "$1");
+
+        try {
+            URL resource = getClass().getResource("/images/spells_and_scrolls/" + spellNameKey + ".png");
+            if (resource == null) {
+                return null;
+            }
+
+            return new ImageIcon(ImageIO.read(resource));
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
     }
 
     private SpellParametersObject getSelectedSpellParameterObject() {

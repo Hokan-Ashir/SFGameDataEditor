@@ -9,12 +9,13 @@ import sfgamedataeditor.database.items.requirements.ItemRequirementsTableService
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersModel;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersModelParameter;
 
+import javax.swing.*;
 import java.util.List;
 
 public class ArmorModelCreator implements ModelCreator<ArmorParametersModel> {
 
     @Override
-    public ArmorParametersModel createModel(int itemId) {
+    public ArmorParametersModel createModel(int itemId, Icon icon) {
         ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
         ArmorParametersObject armorParametersObject = ArmorParametersTableService.INSTANCE.getObjectByItemId(itemId);
         List<ItemRequirementsObject> requirementsObjects = ItemRequirementsTableService.INSTANCE.getObjectsByItemId(itemId);

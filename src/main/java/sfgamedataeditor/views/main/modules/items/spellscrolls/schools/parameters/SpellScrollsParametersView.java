@@ -1,6 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters;
 
 import sfgamedataeditor.common.GUIElement;
+import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.item.scrolls.GUIElements;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
@@ -21,6 +22,9 @@ public class SpellScrollsParametersView implements PresentableView {
 
     @GUIElement(GUIElementId = GUIElements.ITEM_EFFECT, DTOColumnNames = "effectNumber", DTOClass = ItemSpellEffectsObject.class)
     private JPanel itemEffectPanel;
+
+    @IconElement
+    private JLabel iconLabel;
 
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {

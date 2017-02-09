@@ -89,6 +89,7 @@ public abstract class AbstractModulesPresenter<M extends SubModuleParameter, V e
             }
 
             getView().setSelectedModuleValue(source.getText());
+            getView().setSelectedModuleIcon(source.getIcon());
             Class<? extends PresentableView> classViewToShow = getView().getSubPanelViewClass(source);
             Model model;
             if (source.equals(getView().getSelectedPanel())) {

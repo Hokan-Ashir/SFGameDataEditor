@@ -16,6 +16,7 @@ public abstract class AbstractModulesView implements PresentableView {
 
     private static final Logger LOGGER = Logger.getLogger(AbstractModulesView.class);
     private JButton selectedPanel = new JButton();
+    private Icon selectedIcon;
     private List<SubViewPanel> subViewsPanels = new ArrayList<>();
     private Comparator<SubViewPanel> subViewPanelComparator = new SubViewsPanelComparator();
     private ModulePanelManager panelManager;
@@ -123,6 +124,14 @@ public abstract class AbstractModulesView implements PresentableView {
 
     public String getSelectedModuleValue() {
         return selectedPanel.getText();
+    }
+
+    public void setSelectedModuleIcon(Icon icon) {
+        selectedIcon = icon;
+    }
+
+    public Icon getSelectedModuleIcon() {
+        return selectedIcon;
     }
 
     // TODO replace respectively in specific views and cases

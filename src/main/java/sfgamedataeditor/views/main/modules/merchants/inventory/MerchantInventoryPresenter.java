@@ -23,18 +23,27 @@ public class MerchantInventoryPresenter extends AbstractPresenter<MerchantInvent
     @Override
     public void updateView() {
         getView().getEquipmentWidget().setVisible(false);
-        List<Integer> itemIds = getModel().getParameter().getItemIds();
-        DefaultListModel model = (DefaultListModel) getView().getMerchantInventoryItemList().getModel();
+        MerchantInventoryModelParameter parameter = getModel().getParameter();
+        List<Integer> itemIds = parameter.getItemIds();
+        String selectedItem = parameter.getSelectedItem();
+        updateMerchantInventoryList(itemIds, selectedItem);
+
+        Icon icon = parameter.getIcon();
+        getView().getIconLabel().setIcon(icon);
+    }
+
+    private void updateMerchantInventoryList(List<Integer> itemIds, String selectedItem) {
+        JList<String> inventoryItemList = getView().getMerchantInventoryItemList();
+        DefaultListModel model = (DefaultListModel) inventoryItemList.getModel();
         model.removeAllElements();
 
-        getView().getMerchantInventoryItemList().removeListSelectionListener(this);
+        inventoryItemList.removeListSelectionListener(this);
         for (Integer itemId : itemIds) {
             String itemName = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
             model.addElement(itemName);
         }
-        getView().getMerchantInventoryItemList().addListSelectionListener(this);
-
-        getView().getMerchantInventoryItemList().setSelectedValue(getModel().getParameter().getSelectedItem(), true);
+        inventoryItemList.addListSelectionListener(this);
+        inventoryItemList.setSelectedValue(selectedItem, true);
     }
 
     @Override

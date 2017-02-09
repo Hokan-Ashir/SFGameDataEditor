@@ -2,6 +2,7 @@ package sfgamedataeditor.views.main.modules.units.races.units.parameters;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
+import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.unit.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.common.OffsetableObject;
@@ -80,24 +81,34 @@ public class UnitsParametersPresenter extends AbstractPresenter<UnitsParametersM
         List<CreatureSpellObject> creatureSpells = parameter.getCreatureSpells();
         List<CreatureResourcesObject> creatureResources = parameter.getCreatureResources();
         List<CreatureBuildingsObject> creatureBuildings = parameter.getCreatureBuildings();
+        Icon icon = parameter.getIcon();
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
-            GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-            if (annotation == null) {
-                continue;
-            }
-
             try {
+                IconElement iconElement = declaredField.getAnnotation(IconElement.class);
+                if (iconElement != null) {
+                    declaredField.setAccessible(true);
+                    JLabel panel = (JLabel) declaredField.get(getView());
+                    panel.setIcon(icon);
+                    continue;
+                }
+
+                GUIElement guiElement = declaredField.getAnnotation(GUIElement.class);
+                if (guiElement == null) {
+                    continue;
+                }
+
+
                 declaredField.setAccessible(true);
                 JPanel panel = (JPanel) declaredField.get(getView());
                 AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
 
-                Class<?> dtoClass = annotation.DTOClass();
+                Class<?> dtoClass = guiElement.DTOClass();
                 if (dtoClass.equals(CreaturesCommonParameterObject.class)) {
                     widget.getListener().updateWidgetValue(commonParameterObject);
                 } else if (dtoClass.equals(CreatureEquipmentObject.class)) {
-                    int elementId = annotation.GUIElementId();
+                    int elementId = guiElement.GUIElementId();
                     Integer slotNumber = SLOT_NUMBER_MAPPING.get(elementId);
                     widget.setVisible(false);
                     for (CreatureEquipmentObject creatureEquipmentObject : creatureEquipment) {
@@ -115,19 +126,19 @@ public class UnitsParametersPresenter extends AbstractPresenter<UnitsParametersM
                             tabPane.setEnabledAt(UnitsParametersView.CREATURE_SPELLS_TAB_INDEX, false);
                         } else {
                             tabPane.setEnabledAt(UnitsParametersView.CREATURE_SPELLS_TAB_INDEX, true);
-                            updateWidgetWithParametersList(annotation.GUIElementId(), widget, creatureSpells, SPELL_NUMBER_MAPPING);
+                            updateWidgetWithParametersList(guiElement.GUIElementId(), widget, creatureSpells, SPELL_NUMBER_MAPPING);
                         }
                     } else if (dtoClass.equals(CreatureBuildingsObject.class)) {
                         if (creatureBuildings == null || creatureBuildings.isEmpty()) {
                             widget.setVisible(false);
                         } else {
-                            updateWidgetWithParametersList(annotation.GUIElementId(), widget, creatureBuildings, BUILDINGS_NUMBER_MAPPING);
+                            updateWidgetWithParametersList(guiElement.GUIElementId(), widget, creatureBuildings, BUILDINGS_NUMBER_MAPPING);
                         }
                     } else if (dtoClass.equals(CreatureResourcesObject.class)) {
                         if (creatureResources == null || creatureResources.isEmpty()) {
                             widget.setVisible(false);
                         } else {
-                            updateWidgetWithParametersList(annotation.GUIElementId(), widget, creatureResources, RESOURCES_NUMBER_MAPPING);
+                            updateWidgetWithParametersList(guiElement.GUIElementId(), widget, creatureResources, RESOURCES_NUMBER_MAPPING);
                         }
                     }
                 }

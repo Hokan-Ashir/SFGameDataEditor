@@ -6,6 +6,7 @@ import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.merchants.inventory.MerchantInventoryModel;
 import sfgamedataeditor.views.main.modules.merchants.inventory.MerchantInventoryModelParameter;
 
+import javax.swing.*;
 import java.util.List;
 
 public class MerchantsPresenter extends AbstractModulesPresenter<ModuleParameter, MerchantsView, MerchantInventoryModel> {
@@ -18,7 +19,8 @@ public class MerchantsPresenter extends AbstractModulesPresenter<ModuleParameter
     protected MerchantInventoryModel createModel() {
         String selectedMerchantName = getView().getSelectedModuleValue();
         List<Integer> itemIds = MerchantInventoryItemsTableService.INSTANCE.getInventoryItemIdsByMerchantName(selectedMerchantName);
-        MerchantInventoryModelParameter parameter = new MerchantInventoryModelParameter(itemIds, null);
+        Icon icon = getView().getSelectedModuleIcon();
+        MerchantInventoryModelParameter parameter = new MerchantInventoryModelParameter(itemIds, null, icon);
         return new MerchantInventoryModel(parameter);
     }
 }

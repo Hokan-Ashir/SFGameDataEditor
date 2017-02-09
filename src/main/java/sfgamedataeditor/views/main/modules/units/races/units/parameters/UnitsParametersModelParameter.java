@@ -6,6 +6,7 @@ import sfgamedataeditor.database.creatures.production.buildings.CreatureBuilding
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 
+import javax.swing.*;
 import java.util.List;
 
 public class UnitsParametersModelParameter {
@@ -14,17 +15,20 @@ public class UnitsParametersModelParameter {
     private final List<CreatureSpellObject> creatureSpells;
     private final List<CreatureResourcesObject> creatureResources;
     private final List<CreatureBuildingsObject> creatureBuildings;
+    private final Icon icon;
 
     public UnitsParametersModelParameter(CreaturesCommonParameterObject creatureCommonParameterObject,
                                          List<CreatureEquipmentObject> creatureEquipment,
                                          List<CreatureSpellObject> creatureSpells,
                                          List<CreatureResourcesObject> creatureResources,
-                                         List<CreatureBuildingsObject> creatureBuildings) {
+                                         List<CreatureBuildingsObject> creatureBuildings,
+                                         Icon icon) {
         this.creatureCommonParameterObject = creatureCommonParameterObject;
         this.creatureEquipment = creatureEquipment;
         this.creatureSpells = creatureSpells;
         this.creatureResources = creatureResources;
         this.creatureBuildings = creatureBuildings;
+        this.icon = icon;
     }
 
     public CreaturesCommonParameterObject getCreatureCommonParameterObject() {
@@ -45,5 +49,9 @@ public class UnitsParametersModelParameter {
 
     public List<CreatureBuildingsObject> getCreatureBuildings() {
         return creatureBuildings;
+    }
+
+    public Icon getIcon() {
+        return icon;
     }
 }

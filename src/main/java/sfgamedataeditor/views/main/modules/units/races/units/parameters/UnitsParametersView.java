@@ -1,6 +1,7 @@
 package sfgamedataeditor.views.main.modules.units.races.units.parameters;
 
 import sfgamedataeditor.common.GUIElement;
+import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.unit.parameters.GUIElements;
 import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
@@ -94,6 +95,9 @@ public class UnitsParametersView implements PresentableView {
 
     @GUIElement(GUIElementId = GUIElements.BUILDING3, DTOColumnNames = "buildingId", DTOClass = CreatureBuildingsObject.class)
     private JPanel requiredBuilding3Panel;
+
+    @IconElement
+    private JLabel iconLabel;
 
     public UnitsParametersView() {
         internationalizeCommonLabels();

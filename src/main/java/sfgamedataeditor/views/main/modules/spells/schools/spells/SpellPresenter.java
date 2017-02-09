@@ -6,10 +6,12 @@ import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModelParameter;
 
+import javax.swing.*;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class SpellPresenter extends AbstractModulesPresenter<SpellModelParameter, SpellsView, SpellParameterModel> {
+
     public SpellPresenter(SpellsView view) {
         super(view);
     }
@@ -23,7 +25,8 @@ public class SpellPresenter extends AbstractModulesPresenter<SpellModelParameter
         int spellMinLevel = (int) ((TreeSet) spellLevels).first();
         int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
         int selectedLevel = adjustSelectedLevel(1, spellMinLevel, spellMaxLevel);
-        SpellParameterModelParameter parameter = new SpellParameterModelParameter(spellId, selectedLevel);
+        Icon icon = getView().getSelectedModuleIcon();
+        SpellParameterModelParameter parameter = new SpellParameterModelParameter(spellId, selectedLevel, icon);
         return new SpellParameterModel(parameter);
     }
 

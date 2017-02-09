@@ -2,6 +2,7 @@ package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
+import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxParameter;
@@ -40,7 +41,7 @@ public class SpellParameterPresenter extends AbstractPresenter<SpellParameterMod
         super(view);
         createI18NMap();
     }
-    
+
     private void createI18NMap() {
         i18nStrings.put(GUIElements.PARAMETER_1, new ArrayList<String>());
         i18nStrings.put(GUIElements.PARAMETER_2, new ArrayList<String>());
@@ -51,7 +52,7 @@ public class SpellParameterPresenter extends AbstractPresenter<SpellParameterMod
         i18nStrings.put(GUIElements.PARAMETER_7, new ArrayList<String>());
         i18nStrings.put(GUIElements.PARAMETER_8, new ArrayList<String>());
         i18nStrings.put(GUIElements.PARAMETER_9, new ArrayList<String>());
-    } 
+    }
 
     /**
      * {@inheritDoc}
@@ -61,6 +62,7 @@ public class SpellParameterPresenter extends AbstractPresenter<SpellParameterMod
         SpellParameterModelParameter parameter = getModel().getParameter();
         int selectedSpellId = parameter.getSpellId();
         int selectedLevel = parameter.getSpellLevel();
+        Icon icon = parameter.getIcon();
         Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
 
         int spellMinLevel = (int) ((TreeSet) spellLevels).first();
@@ -71,12 +73,20 @@ public class SpellParameterPresenter extends AbstractPresenter<SpellParameterMod
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
-            GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-            if (annotation == null) {
-                continue;
-            }
-
             try {
+                IconElement iconElement = declaredField.getAnnotation(IconElement.class);
+                if (iconElement != null) {
+                    declaredField.setAccessible(true);
+                    JLabel panel = (JLabel) declaredField.get(getView());
+                    panel.setIcon(icon);
+                    continue;
+                }
+
+                GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
+                if (annotation == null) {
+                    continue;
+                }
+
                 declaredField.setAccessible(true);
                 JPanel panel = (JPanel) declaredField.get(getView());
                 AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
