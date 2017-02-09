@@ -28,6 +28,7 @@ public final class GUIElements {
     public static final int RESISTANCES_LABEL = 24;
     public static final int SPEEDS_PANEL = 25;
     public static final int SPEEDS_LABEL = 26;
+    public static final int ITEM_SET_PANEL = 27;
 
     private GUIElements() {
 

@@ -15,10 +15,10 @@ import java.util.List;
 public abstract class AbstractModulesView implements PresentableView {
 
     private static final Logger LOGGER = Logger.getLogger(AbstractModulesView.class);
-    private JButton selectedPanel = new JButton();
+    private final JButton selectedPanel = new JButton();
     private Icon selectedIcon;
-    private List<SubViewPanel> subViewsPanels = new ArrayList<>();
-    private Comparator<SubViewPanel> subViewPanelComparator = new SubViewsPanelComparator();
+    private final List<SubViewPanel> subViewsPanels = new ArrayList<>();
+    private final Comparator<SubViewPanel> subViewPanelComparator = new SubViewsPanelComparator();
     private ModulePanelManager panelManager;
     private final String moduleName;
 
@@ -79,7 +79,7 @@ public abstract class AbstractModulesView implements PresentableView {
         return null;
     }
 
-    public void addMappings(List<Pair<String, Class<? extends PresentableView>>> mappings) {
+    protected void addMappings(List<Pair<String, Class<? extends PresentableView>>> mappings) {
         int size = mappings.size();
         int subViewsSize = subViewsPanels.size();
         if (subViewsSize < size) {

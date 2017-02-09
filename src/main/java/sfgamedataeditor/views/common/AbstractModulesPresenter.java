@@ -17,7 +17,7 @@ import java.util.Set;
 
 public abstract class AbstractModulesPresenter<M extends SubModuleParameter, V extends AbstractModulesView, C extends Model> extends AbstractPresenter<M, V> {
 
-    private ActionListener subPanelsListener = new PanelsListener();
+    private final ActionListener subPanelsListener = new PanelsListener();
 
     protected AbstractModulesPresenter(V view) {
         super(view);

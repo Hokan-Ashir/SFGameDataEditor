@@ -120,7 +120,4 @@ public class CreatureParameterObject extends OffsetableObject {
     @Data(offset = 46, length = 1)
     @DatabaseField
     private Integer equipmentSlotsId;
-
-    public CreatureParameterObject() {
-    }
 }

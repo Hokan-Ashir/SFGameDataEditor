@@ -96,6 +96,9 @@ public class ArmorParametersView implements PresentableView {
     @GUIElement(GUIElementId = GUIElements.SPEEDS_LABEL, DTOClass = ArmorParametersObject.class)
     private JLabel speedsLabel;
 
+    @GUIElement(GUIElementId = GUIElements.ITEM_SET_PANEL, DTOColumnNames = "itemSetId", DTOClass = ItemPriceParametersObject.class)
+    private JPanel itemSetPanel;
+
     public ArmorParametersView() {
         internationalizeCommonLabels();
     }

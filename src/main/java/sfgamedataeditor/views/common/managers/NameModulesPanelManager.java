@@ -9,7 +9,7 @@ import java.util.List;
 public class NameModulesPanelManager implements ModulePanelManager {
     private static final int VERTICAL_SCROLL_UNIT_INCREMENT = 16;
     private static final int DEFAULT_NUMBER_OF_COLUMNS = 3;
-    public static final char SPECIAL_CHARACTER = '!';
+    private static final char SPECIAL_CHARACTER = '!';
     private final JPanel mainPanel;
     private final JPanel panel;
 

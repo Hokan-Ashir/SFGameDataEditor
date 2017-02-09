@@ -34,6 +34,7 @@ public class ArmorParametersViewConfiguration extends AbstractConfiguration {
             put(GUIElements.FIGHT_SPEED, "fightSpeed");
             put(GUIElements.CAST_SPEED, "castSpeed");
             put(GUIElements.REQUIREMENT_LEVEL, "requirementLevel");
+            put(GUIElements.ITEM_SET_PANEL, "itemSet");
         }};
 
         for (Map.Entry<Integer, String> entry : i18nMap.entrySet()) {
