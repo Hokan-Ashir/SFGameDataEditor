@@ -3,6 +3,7 @@ package sfgamedataeditor.views.common;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.managers.DefaultModulesPanelManager;
+import sfgamedataeditor.views.common.managers.ModulePanelManager;
 import sfgamedataeditor.views.utility.Pair;
 
 import javax.swing.*;
@@ -17,13 +18,13 @@ public abstract class AbstractModulesView implements PresentableView {
     private JButton selectedPanel = new JButton();
     private List<SubViewPanel> subViewsPanels = new ArrayList<>();
     private Comparator<SubViewPanel> subViewPanelComparator = new SubViewsPanelComparator();
-    private DefaultModulesPanelManager panelManager;
+    private ModulePanelManager panelManager;
     private final String moduleName;
 
     protected AbstractModulesView(String viewName) {
         this.moduleName = viewName;
 
-        Class<? extends DefaultModulesPanelManager> managerClass = getModulesPanelManagerClass();
+        Class<? extends ModulePanelManager> managerClass = getModulesPanelManagerClass();
         try {
             panelManager = managerClass.getConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
@@ -125,7 +126,7 @@ public abstract class AbstractModulesView implements PresentableView {
     }
 
     // TODO replace respectively in specific views and cases
-    private Class<? extends DefaultModulesPanelManager> getModulesPanelManagerClass() {
+    protected Class<? extends ModulePanelManager> getModulesPanelManagerClass() {
         return DefaultModulesPanelManager.class;
     }
 
@@ -133,7 +134,7 @@ public abstract class AbstractModulesView implements PresentableView {
         return selectedPanel;
     }
 
-    public DefaultModulesPanelManager getPanelManager() {
+    public ModulePanelManager getPanelManager() {
         return panelManager;
     }
 

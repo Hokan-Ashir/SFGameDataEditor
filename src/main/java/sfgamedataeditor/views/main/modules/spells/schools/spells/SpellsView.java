@@ -30,7 +30,7 @@ public class SpellsView extends AbstractModulesView {
         spellNameKey = spellNameKey.replaceAll("(.*)\\.name", "$1");
 
         try {
-            URL resource = getClass().getResource("/images/spells/" + spellNameKey + ".png");
+            URL resource = getClass().getResource("/images/spells_and_scrolls/" + spellNameKey + ".png");
             if (resource == null) {
                 return null;
             }

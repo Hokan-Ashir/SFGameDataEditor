@@ -4,6 +4,8 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.common.managers.ModulePanelManager;
+import sfgamedataeditor.views.common.managers.NameModulesPanelManager;
 import sfgamedataeditor.views.main.modules.merchants.inventory.MerchantInventoryView;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -56,5 +58,10 @@ public class MerchantsView extends AbstractModulesView {
             LOGGER.error(e.getMessage(), e);
             return null;
         }
+    }
+
+    @Override
+    protected Class<? extends ModulePanelManager> getModulesPanelManagerClass() {
+        return NameModulesPanelManager.class;
     }
 }
