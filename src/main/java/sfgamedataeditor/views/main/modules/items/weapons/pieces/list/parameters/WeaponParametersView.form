@@ -11,32 +11,6 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="d9a71" binding="sellPricePanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
-      <grid id="d1409" binding="buyoutPricePanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
       <grid id="7d01d" binding="minDamagePanel" layout-manager="GridBagLayout">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
@@ -198,6 +172,32 @@
           <maximumSize width="160" height="110"/>
           <minimumSize width="160" height="110"/>
           <preferredSize width="160" height="110"/>
+        </properties>
+        <border type="etched"/>
+        <children/>
+      </grid>
+      <grid id="d1409" binding="buyoutPricePanel" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="190" height="90"/>
+          <minimumSize width="190" height="90"/>
+          <preferredSize width="190" height="90"/>
+        </properties>
+        <border type="etched"/>
+        <children/>
+      </grid>
+      <grid id="d9a71" binding="sellPricePanel" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="190" height="90"/>
+          <minimumSize width="190" height="90"/>
+          <preferredSize width="190" height="90"/>
         </properties>
         <border type="etched"/>
         <children/>

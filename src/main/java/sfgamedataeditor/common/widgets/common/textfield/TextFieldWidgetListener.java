@@ -60,7 +60,8 @@ public class TextFieldWidgetListener extends AbstractWidgetListener<TextFieldWid
 
             double maximumValue = getFieldMaximumValue();
             if (value > maximumValue) {
-                new Notification(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "error.exceeds.max.value") + String.valueOf(maximumValue), NotificationType.ERROR);
+                new Notification(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "error.exceeds.max.value")
+                        + ": [" + String.valueOf(maximumValue) + "]", NotificationType.ERROR);
                 return;
             }
 

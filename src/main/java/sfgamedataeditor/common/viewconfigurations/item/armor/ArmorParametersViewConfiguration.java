@@ -6,6 +6,8 @@ import sfgamedataeditor.common.widgets.common.combobox.requirementclass.Requirem
 import sfgamedataeditor.common.widgets.common.combobox.requirementclass.RequirementClassSubClassWidgetListener;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.items.itemprice.ItemPriceWidget;
+import sfgamedataeditor.common.widgets.items.itemprice.ItemPriceWidgetListener;
 import sfgamedataeditor.common.widgets.items.itemset.ItemSetWidget;
 import sfgamedataeditor.common.widgets.items.itemset.ItemSetWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -17,8 +19,6 @@ public class ArmorParametersViewConfiguration extends AbstractConfiguration {
     @Override
     protected void fillConfigurationMappings() {
         Map<Integer, String> i18nMap = new HashMap<Integer, String>() {{
-            put(GUIElements.BUY_OUT_PRICE, "buyoutPrice");
-            put(GUIElements.SELL_PRICE, "selloutPrice");
             put(GUIElements.STRENGTH, "strength");
             put(GUIElements.STAMINA, "stamina");
             put(GUIElements.AGILITY, "agility");
@@ -52,5 +52,13 @@ public class ArmorParametersViewConfiguration extends AbstractConfiguration {
                 ItemSetWidgetListener.class, I18NTypes.ARMOR_GUI,
                 "itemSet");
         addViewMapping(GUIElements.ITEM_SET_PANEL, itemSet);
+
+        ConfigurationWidgetParameter buyoutPrice = new ConfigurationWidgetParameter(ItemPriceWidget.class, ItemPriceWidgetListener.class,
+                I18NTypes.ARMOR_GUI, "buyoutPrice", "goldAmount", "silverAmount", "copperAmount");
+        addViewMapping(GUIElements.BUY_OUT_PRICE, buyoutPrice);
+
+        ConfigurationWidgetParameter selloutPrice = new ConfigurationWidgetParameter(ItemPriceWidget.class, ItemPriceWidgetListener.class,
+                I18NTypes.ARMOR_GUI, "selloutPrice", "goldAmount", "silverAmount", "copperAmount");
+        addViewMapping(GUIElements.SELL_PRICE, selloutPrice);
     }
 }

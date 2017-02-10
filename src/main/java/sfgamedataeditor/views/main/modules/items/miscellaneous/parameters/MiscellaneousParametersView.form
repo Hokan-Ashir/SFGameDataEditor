@@ -17,9 +17,9 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
+          <maximumSize width="190" height="90"/>
+          <minimumSize width="190" height="90"/>
+          <preferredSize width="190" height="90"/>
         </properties>
         <border type="etched"/>
         <children/>
@@ -30,9 +30,9 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
+          <maximumSize width="190" height="90"/>
+          <minimumSize width="190" height="90"/>
+          <preferredSize width="190" height="90"/>
         </properties>
         <border type="etched"/>
         <children/>

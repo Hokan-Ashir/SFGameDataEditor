@@ -17,9 +17,9 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
+          <maximumSize width="190" height="90"/>
+          <minimumSize width="190" height="90"/>
+          <preferredSize width="190" height="90"/>
         </properties>
         <border type="etched"/>
         <children/>
@@ -30,22 +30,9 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
-      <grid id="78df2" binding="itemEffectPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="300" height="80"/>
-          <minimumSize width="300" height="80"/>
-          <preferredSize width="300" height="80"/>
+          <maximumSize width="190" height="90"/>
+          <minimumSize width="190" height="90"/>
+          <preferredSize width="190" height="90"/>
         </properties>
         <border type="etched"/>
         <children/>
@@ -64,13 +51,26 @@
       </component>
       <grid id="12f1b" binding="itemSetPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
           <maximumSize width="160" height="110"/>
           <minimumSize width="160" height="110"/>
           <preferredSize width="160" height="110"/>
+        </properties>
+        <border type="etched"/>
+        <children/>
+      </grid>
+      <grid id="78df2" binding="itemEffectPanel" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="300" height="80"/>
+          <minimumSize width="300" height="80"/>
+          <preferredSize width="300" height="80"/>
         </properties>
         <border type="etched"/>
         <children/>
