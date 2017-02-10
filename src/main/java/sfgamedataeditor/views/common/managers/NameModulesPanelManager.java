@@ -20,6 +20,7 @@ public class NameModulesPanelManager implements ModulePanelManager {
         panel = new JPanel();
         panel.setLayout(layout);
         JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.getViewport().setScrollMode(JViewport.SIMPLE_SCROLL_MODE);
         scrollPane.getVerticalScrollBar().setUnitIncrement(VERTICAL_SCROLL_UNIT_INCREMENT);
         mainPanel.add(scrollPane);
     }

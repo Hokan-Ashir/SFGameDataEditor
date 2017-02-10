@@ -24,14 +24,14 @@ See "What it can't do" section below to be aware of restrictions.
 # What it can't do
  - Add new elements. It's tricky to explain easy, but game will crush if we will add anything into Gamedata.cff file
  - Currently only support for changing skill-to-characteristics requirements, spells parameters, creatures parameters, unit common parameters 
-    spells, equipment, loot drop, armor, weapons and miscellaneous items common parameters
+    spells, equipment, loot drop, armor (armor sets), weapons and miscellaneous items common parameters
  - Currently NO localization for creature names, creature races and items cause they are too many (in progress) 
  - No other languages except English, Russian, German and French
 
 # How to launch it
  - Install, at least, Java 7 from Oracle site (see https://www.java.com/download/)
- - Download SFGameDataEditor-1.0-SNAPSHOT.jar from (https://github.com/Hokan-Ashir/SFGameDataEditor/tree/master/bin)
- - Double-click on SFGameDataEditor-1.0-SNAPSHOT.jar OR run with "java -jar SFGameDataEditor-1.0-SNAPSHOT.jar" command in console
+ - Download SFGameDataEditor-alpha-3.jar from (https://github.com/Hokan-Ashir/SFGameDataEditor/tree/master/bin)
+ - Double-click on SFGameDataEditor-alpha-3.jar OR run with "java -jar SFGameDataEditor-alpha-3.jar" command in console
  
 # How to use it
  - After launch you can select editor's language
@@ -93,7 +93,7 @@ See "What it can't do" section below to be aware of restrictions.
  - Add more flexible ability to merge multiple sf-mod files
  - Extend sf-mod-files format to include description
  - Extend item, unit parameters, merchants views, add buildings, runes, plans views
- - Add support for any language i18n possible 
+ - Add support for any language i18n possible
 
 # Special thanks
  - This application won't be possible without information grabbed from this forum - http://spellforcefanforum.hostoi.com/index.php

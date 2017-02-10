@@ -1,3 +1,11 @@
+alpha-3 (10.02.2017):
+ - Changed editing buyout/sell price of all items from "copper amount" to "gold/silver/copper amount"
+ - Added ability to change item's belongings to item sets
+ - Fixed merchant reselection (based on selected vending items)
+ - Fixed races reselected (based on selected creature)
+ - Fixed armor parameters view crush, if item has no armor parameters (also no respective widgets and panels will be drawn)
+ - Complete redesign of UI from comboBox-like to panel-like-style
+
 alpha-2 (19.01.2017):
  - Editing creatures loot drop
  - Extended ability to change ALL weapon and armor requirements and effects
