@@ -6,6 +6,8 @@ import sfgamedataeditor.common.widgets.common.combobox.requirementclass.Requirem
 import sfgamedataeditor.common.widgets.common.combobox.requirementclass.RequirementClassSubClassWidgetListener;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.items.itemset.ItemSetWidget;
+import sfgamedataeditor.common.widgets.items.itemset.ItemSetWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;
@@ -34,7 +36,6 @@ public class ArmorParametersViewConfiguration extends AbstractConfiguration {
             put(GUIElements.FIGHT_SPEED, "fightSpeed");
             put(GUIElements.CAST_SPEED, "castSpeed");
             put(GUIElements.REQUIREMENT_LEVEL, "requirementLevel");
-            put(GUIElements.ITEM_SET_PANEL, "itemSet");
         }};
 
         for (Map.Entry<Integer, String> entry : i18nMap.entrySet()) {
@@ -46,5 +47,10 @@ public class ArmorParametersViewConfiguration extends AbstractConfiguration {
                 RequirementClassSubClassWidgetListener.class, I18NTypes.ARMOR_GUI,
                 "requirementClass", "requirementSubClass");
         addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS, requirementClassSubClass);
+
+        ConfigurationWidgetParameter itemSet = new ConfigurationWidgetParameter(ItemSetWidget.class,
+                ItemSetWidgetListener.class, I18NTypes.ARMOR_GUI,
+                "itemSet");
+        addViewMapping(GUIElements.ITEM_SET_PANEL, itemSet);
     }
 }

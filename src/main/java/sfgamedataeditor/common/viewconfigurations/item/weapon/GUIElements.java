@@ -14,6 +14,7 @@ public final class GUIElements {
     public static final int MATERIAL = 9;
     public static final int REQUIREMENT_CLASS_SUBCLASS = 10;
     public static final int REQUIREMENT_LEVEL = 11;
+    public static final int ITEM_SET = 12;
 
     private GUIElements() {
 

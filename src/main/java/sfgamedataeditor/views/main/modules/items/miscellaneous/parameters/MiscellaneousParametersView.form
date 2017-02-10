@@ -37,6 +37,19 @@
         <border type="etched"/>
         <children/>
       </grid>
+      <grid id="89a11" binding="itemSetPanel" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="160" height="110"/>
+          <minimumSize width="160" height="110"/>
+          <preferredSize width="160" height="110"/>
+        </properties>
+        <border type="etched"/>
+        <children/>
+      </grid>
     </children>
   </grid>
 </form>

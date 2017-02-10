@@ -26,6 +26,9 @@ public class SpellScrollsParametersView implements PresentableView {
     @IconElement
     private JLabel iconLabel;
 
+    @GUIElement(GUIElementId = GUIElements.ITEM_SET, DTOColumnNames = "itemSetId", DTOClass = ItemPriceParametersObject.class)
+    private JPanel itemSetPanel;
+
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return SpellScrollsParametersPresenter.class;

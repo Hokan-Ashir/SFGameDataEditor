@@ -341,13 +341,13 @@
       </component>
       <grid id="51aaa" binding="itemSetPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="4" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="90" height="60"/>
-          <minimumSize width="90" height="60"/>
-          <preferredSize width="90" height="60"/>
+          <maximumSize width="160" height="110"/>
+          <minimumSize width="160" height="110"/>
+          <preferredSize width="160" height="110"/>
         </properties>
         <border type="etched"/>
         <children/>

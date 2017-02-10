@@ -17,6 +17,9 @@ public class MiscellaneousParametersView implements PresentableView {
 
     @GUIElement(GUIElementId = GUIElements.BUY_OUT_PRICE, DTOColumnNames = "copperBuyingPrice", DTOClass = ItemPriceParametersObject.class)
     private JPanel buyoutPricePanel;
+
+    @GUIElement(GUIElementId = GUIElements.ITEM_SET, DTOColumnNames = "itemSetId", DTOClass = ItemPriceParametersObject.class)
+    private JPanel itemSetPanel;
     private JPanel itemEffectPanel;
 
     @Override

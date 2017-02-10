@@ -54,6 +54,9 @@ public class WeaponParametersView implements PresentableView {
     private JComboBox<String> itemRequirementsComboBox;
     private JComboBox<String> effectsComboBox;
 
+    @GUIElement(GUIElementId = GUIElements.ITEM_SET, DTOColumnNames = "itemSetId", DTOClass = ItemPriceParametersObject.class)
+    private JPanel itemSetPanel;
+
     public JPanel getItemEffectPanel() {
         return itemEffectPanel;
     }

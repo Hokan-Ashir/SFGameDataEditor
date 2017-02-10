@@ -8,6 +8,8 @@ import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidget;
 import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidgetListener;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.items.itemset.ItemSetWidget;
+import sfgamedataeditor.common.widgets.items.itemset.ItemSetWidgetListener;
 import sfgamedataeditor.common.widgets.items.weapons.metrial.WeaponMaterialWidget;
 import sfgamedataeditor.common.widgets.items.weapons.metrial.WeaponMaterialWidgetListener;
 import sfgamedataeditor.common.widgets.items.weapons.type.WeaponTypeWidget;
@@ -52,5 +54,9 @@ public class WeaponParametersViewConfiguration extends AbstractConfiguration {
         ConfigurationWidgetParameter type = new ConfigurationWidgetParameter(WeaponTypeWidget.class, WeaponTypeWidgetListener.class, I18NTypes.WEAPON_GUI,
                 "type");
         addViewMapping(GUIElements.TYPE, type);
+
+        ConfigurationWidgetParameter itemSet = new ConfigurationWidgetParameter(ItemSetWidget.class, ItemSetWidgetListener.class, I18NTypes.WEAPON_GUI,
+                "itemSet");
+        addViewMapping(GUIElements.ITEM_SET, itemSet);
     }
 }

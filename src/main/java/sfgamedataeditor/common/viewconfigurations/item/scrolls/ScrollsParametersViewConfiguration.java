@@ -6,6 +6,8 @@ import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidget;
 import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidgetListener;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
+import sfgamedataeditor.common.widgets.items.itemset.ItemSetWidget;
+import sfgamedataeditor.common.widgets.items.itemset.ItemSetWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;
@@ -27,5 +29,9 @@ public class ScrollsParametersViewConfiguration extends AbstractConfiguration {
         ConfigurationWidgetParameter itemEffect = new ConfigurationWidgetParameter(EffectNumberWidget.class, EffectNumberWidgetListener.class, I18NTypes.WEAPON_GUI,
                 "effectNumber");
         addViewMapping(GUIElements.ITEM_EFFECT, itemEffect);
+
+        ConfigurationWidgetParameter itemSet = new ConfigurationWidgetParameter(ItemSetWidget.class, ItemSetWidgetListener.class, I18NTypes.WEAPON_GUI,
+                "itemSet");
+        addViewMapping(GUIElements.ITEM_SET, itemSet);
     }
 }
