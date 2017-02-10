@@ -67,7 +67,12 @@ public class MainView implements PresentableView {
     }
 
     private void unRenderViewInsidePanel(JComponent viewComponent, JPanel panel) {
+        // because Swing with get TreeLock and send numerous amount of notifications to its
+        // render engine, before removal we can make component invisible, remove components
+        // and make it visible again
+        panel.setVisible(false);
         panel.remove(viewComponent);
+        panel.setVisible(true);
         panel.revalidate();
         panel.repaint();
     }
