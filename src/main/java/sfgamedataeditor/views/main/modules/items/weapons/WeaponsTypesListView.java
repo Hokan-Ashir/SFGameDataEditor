@@ -23,11 +23,33 @@ public class WeaponsTypesListView extends AbstractModulesView {
     @Override
     protected void fillSubViewsMappings() {
         List<Pair<String, Class<? extends PresentableView>>> mappings = new ArrayList<>();
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.1h.weapon"), WeaponPiecesView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.2h.weapon"), WeaponPiecesView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.bow"), WeaponPiecesView.class));
+        mappings.add(createMappingPair("type.default"));
+        mappings.add(createMappingPair("type.hand"));
+        mappings.add(createMappingPair("type.1h.dagger"));
+        mappings.add(createMappingPair("type.1h.sword"));
+        mappings.add(createMappingPair("type.1h.axe"));
+        mappings.add(createMappingPair("type.1h.mace.spiky"));
+        mappings.add(createMappingPair("type.1h.hammer"));
+        mappings.add(createMappingPair("type.1h.staff"));
+        mappings.add(createMappingPair("type.2h.sword"));
+        mappings.add(createMappingPair("type.2h.axe"));
+        mappings.add(createMappingPair("type.2h.mace"));
+        mappings.add(createMappingPair("type.2h.hammer"));
+        mappings.add(createMappingPair("type.2h.staff"));
+        mappings.add(createMappingPair("type.2h.spear"));
+        mappings.add(createMappingPair("type.2h.halberd"));
+        mappings.add(createMappingPair("type.2h.bow"));
+        mappings.add(createMappingPair("type.2h.crossbow"));
+        mappings.add(createMappingPair("type.1h.mace.blunt"));
+        mappings.add(createMappingPair("type.claw"));
+        mappings.add(createMappingPair("type.mouth"));
+        mappings.add(createMappingPair("type.stone.thrower"));
 
         addMappings(mappings);
+    }
+    
+    private Pair<String, Class<? extends PresentableView>> createMappingPair(String weaponTypeKey) {
+        return new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, weaponTypeKey), WeaponPiecesView.class);
     }
 
     @Override

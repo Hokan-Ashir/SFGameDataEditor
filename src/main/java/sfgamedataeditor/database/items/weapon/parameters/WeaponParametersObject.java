@@ -15,7 +15,7 @@ public class WeaponParametersObject extends OffsetableObject {
 
     @Data(offset = 0, length = 2)
     @DatabaseField
-    private Integer itemId;
+    public Integer itemId;
 
     @Data(offset = 2, length = 2)
     @DatabaseField
@@ -60,7 +60,7 @@ public class WeaponParametersObject extends OffsetableObject {
     //    15 00 - Weapon Type Stone Thrower
     @Data(offset = 12, length = 2)
     @DatabaseField
-    private Integer type;
+    public Integer type;
 
     //    01 00 - default weapon material
     //    02 00 - Weapon Material Fist

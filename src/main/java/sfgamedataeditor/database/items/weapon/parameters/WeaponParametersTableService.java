@@ -8,9 +8,14 @@ import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public enum WeaponParametersTableService implements TableCreationService {
     INSTANCE {
@@ -52,6 +57,30 @@ public enum WeaponParametersTableService implements TableCreationService {
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return null;
+        }
+    }
+
+    public Set<String> getItemsByItemType(int typeId) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        final Dao<WeaponParametersObject, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, WeaponParametersObject.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptySet();
+        }
+
+        try {
+            List<WeaponParametersObject> objects = dao.queryBuilder().where().eq("type", typeId).query();
+            Set<String> itemNames = new HashSet<>();
+            for (WeaponParametersObject object : objects) {
+                itemNames.add(I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(object.itemId)));
+            }
+
+            return itemNames;
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptySet();
         }
     }
 }
