@@ -1,5 +1,6 @@
 package sfgamedataeditor.views.main.modules.merchants.inventory;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidget;
 import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidgetListener;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
@@ -12,6 +13,9 @@ import javax.swing.*;
 import java.lang.reflect.Field;
 
 public class MerchantInventoryView implements PresentableView {
+
+    private static final Logger LOGGER = Logger.getLogger(MerchantInventoryView.class);
+    private static final String ITEM_ID_FIELD_NAME = "itemId";
 
     private JPanel mainPanel;
     private JList<String> merchantInventoryItemList;
@@ -29,12 +33,14 @@ public class MerchantInventoryView implements PresentableView {
         inventoryLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items"));
 
         equipmentWidget = new EquipmentWidget();
-        Field itemId = null;
+        Field itemId;
         try {
-             itemId = ItemPriceParametersObject.class.getField("itemId");
+             itemId = ItemPriceParametersObject.class.getField(ITEM_ID_FIELD_NAME);
         } catch (NoSuchFieldException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage(), e);
+            return;
         }
+
         EquipmentWidgetListener listener = new EquipmentWidgetListener(equipmentWidget, itemId);
         equipmentWidget.attachListener(listener);
         selectedItemPanel.add(equipmentWidget);
