@@ -41,8 +41,8 @@ public abstract class AbstractLevelComboBoxListener extends AbstractWidgetListen
             @Override
             protected void setValues() {
                 comboBox.removeAllItems();
-                for (Integer spellLevel : mappedObject.getSpellLevels()) {
-                    comboBox.addItem(String.valueOf(spellLevel));
+                for (Integer level : mappedObject.getLevels()) {
+                    comboBox.addItem(String.valueOf(level));
                 }
 
                 comboBox.setSelectedItem(String.valueOf(mappedObject.getSelectedLevel()));
@@ -52,7 +52,7 @@ public abstract class AbstractLevelComboBoxListener extends AbstractWidgetListen
 
     @Override
     protected int[] getFieldValues() {
-        // TODO awkward, should be changed
+        // stub, cause no data should be extracted from widget's data
         return null;
     }
 

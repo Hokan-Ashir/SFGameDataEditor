@@ -107,7 +107,7 @@ public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNum
     }
 
     private void setPossibleSpellLevels(final Set<Integer> spellLevels, final JComboBox<String> spellLevelComboBox) {
-        spellLevelComboBox.removeAll();
+        spellLevelComboBox.removeAllItems();
         ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(spellLevelComboBox) {
             @Override
             protected void setValues() {

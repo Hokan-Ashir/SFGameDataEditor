@@ -2,6 +2,8 @@ package sfgamedataeditor.common.viewconfigurations.item.scrolls;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
+import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxWidget;
+import sfgamedataeditor.common.widgets.common.combobox.level.ScrollLevelComboBoxListener;
 import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidget;
 import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidgetListener;
 import sfgamedataeditor.common.widgets.items.itemprice.ItemPriceWidget;
@@ -28,5 +30,9 @@ public class ScrollsParametersViewConfiguration extends AbstractConfiguration {
         ConfigurationWidgetParameter itemSet = new ConfigurationWidgetParameter(ItemSetWidget.class, ItemSetWidgetListener.class, I18NTypes.WEAPON_GUI,
                 "itemSet");
         addViewMapping(GUIElements.ITEM_SET, itemSet);
+
+        ConfigurationWidgetParameter level = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, ScrollLevelComboBoxListener.class, I18NTypes.WEAPON_GUI,
+                "level");
+        addViewMapping(GUIElements.LEVEL, level);
     }
 }

@@ -4,18 +4,18 @@ import java.util.Set;
 
 public class LevelComboBoxParameter {
     private final int selectedLevel;
-    private final Set<Integer> spellLevels;
+    private final Set<Integer> levels;
 
-    public LevelComboBoxParameter(int selectedLevel, Set<Integer> spellLevels) {
+    public LevelComboBoxParameter(int selectedLevel, Set<Integer> levels) {
         this.selectedLevel = selectedLevel;
-        this.spellLevels = spellLevels;
+        this.levels = levels;
     }
 
     public int getSelectedLevel() {
         return selectedLevel;
     }
 
-    public Set<Integer> getSpellLevels() {
-        return spellLevels;
+    public Set<Integer> getLevels() {
+        return levels;
     }
 }

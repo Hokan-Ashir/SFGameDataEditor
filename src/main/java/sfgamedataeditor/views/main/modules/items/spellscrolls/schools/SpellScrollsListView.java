@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.Set;
 
 public class SpellScrollsListView extends AbstractModulesView {
@@ -32,7 +33,20 @@ public class SpellScrollsListView extends AbstractModulesView {
     protected void fillSubViewsMappings() {
         int scrollsType = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_PIECES_NAME_MAPPING, "items.scrolls"));
         Set<String> scrollsNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(scrollsType);
+        scrollsNames = getFilteredScrollNames(scrollsNames);
         addMappings(scrollsNames, SpellScrollsParametersView.class);
+    }
+
+    private Set<String> getFilteredScrollNames(Set<String> scrollNames) {
+        Set<String> result = new HashSet<>();
+        for (String scrollName : scrollNames) {
+            String originalScrollName = scrollName.split(" -")[0];
+            if (!result.contains(originalScrollName)) {
+                result.add(originalScrollName);
+            }
+        }
+
+        return result;
     }
 
     @Override
@@ -42,7 +56,6 @@ public class SpellScrollsListView extends AbstractModulesView {
 
     @Override
     protected Image getPanelImageByPanelName(String panelName) {
-        panelName = panelName.split(" -")[0];
         String spellNameKey = ViewTools.getKeyStringByPropertyValue(panelName, I18NTypes.SPELLS_GUI);
         if (spellNameKey == null) {
             return null;
