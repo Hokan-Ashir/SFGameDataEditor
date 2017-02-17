@@ -46,6 +46,19 @@
         <border type="etched"/>
         <children/>
       </grid>
+      <grid id="e578" binding="racePanel" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="160" height="60"/>
+          <minimumSize width="160" height="60"/>
+          <preferredSize width="160" height="60"/>
+        </properties>
+        <border type="etched"/>
+        <children/>
+      </grid>
       <grid id="fd56a" binding="resource3Panel" layout-manager="GridBagLayout">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
@@ -59,19 +72,18 @@
         <border type="etched"/>
         <children/>
       </grid>
-      <grid id="e578" binding="racePanel" layout-manager="GridBagLayout">
+      <component id="68756" class="javax.swing.JLabel" binding="iconLabel">
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="160" height="60"/>
-          <minimumSize width="160" height="60"/>
-          <preferredSize width="160" height="60"/>
+          <maximumSize width="66" height="66"/>
+          <minimumSize width="66" height="66"/>
+          <preferredSize width="66" height="66"/>
+          <text value=""/>
         </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
+      </component>
     </children>
   </grid>
 </form>

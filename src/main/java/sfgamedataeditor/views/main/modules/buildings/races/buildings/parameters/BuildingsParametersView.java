@@ -1,6 +1,7 @@
 package sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters;
 
 import sfgamedataeditor.common.GUIElement;
+import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.buildings.parameters.GUIElements;
 import sfgamedataeditor.database.buildings.common.BuildingsObject;
 import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsObject;
@@ -26,6 +27,9 @@ public class BuildingsParametersView implements PresentableView {
 
     @GUIElement(GUIElementId = GUIElements.RACE, DTOColumnNames = "raceId", DTOClass = BuildingsObject.class)
     private JPanel racePanel;
+
+    @IconElement
+    private JLabel iconLabel;
 
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {
