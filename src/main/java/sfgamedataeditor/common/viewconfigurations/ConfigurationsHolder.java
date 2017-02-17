@@ -1,5 +1,6 @@
 package sfgamedataeditor.common.viewconfigurations;
 
+import sfgamedataeditor.common.viewconfigurations.buildings.parameters.BuildingsParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.creature.parameters.CreatureParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.armor.ArmorParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.miscellaneous.MiscellaneousParametersConfigurationHolder;
@@ -9,6 +10,7 @@ import sfgamedataeditor.common.viewconfigurations.skill.parameters.SkillParamete
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.SpellParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.unit.parameters.UnitParametersConfigurationHolder;
 import sfgamedataeditor.mvc.objects.View;
+import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersView;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersView;
@@ -35,6 +37,7 @@ public enum  ConfigurationsHolder {
         configurationHolderMap.put(MiscellaneousParametersView.class, new MiscellaneousParametersConfigurationHolder());
         configurationHolderMap.put(SpellScrollsParametersView.class, new ScrollsParametersConfigurationHolder());
         configurationHolderMap.put(UnitsParametersView.class, new UnitParametersConfigurationHolder());
+        configurationHolderMap.put(BuildingsParametersView.class, new BuildingsParametersConfigurationHolder());
     }
 
     public AbstractConfigurationHolder getConfigurationHolder(Class<? extends View> viewClass) {

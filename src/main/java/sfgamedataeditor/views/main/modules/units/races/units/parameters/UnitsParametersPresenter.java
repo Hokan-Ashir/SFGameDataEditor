@@ -149,6 +149,7 @@ public class UnitsParametersPresenter extends AbstractPresenter<UnitsParametersM
         }
     }
 
+    // TODO duplication with BuildingsParametersPresenter
     private void updateWidgetWithParametersList(int guiElementId, AbstractWidget widget,
                                                 List<? extends OffsetableObject> objects,
                                                 Map<Integer, Integer> guiElementsMapping) {

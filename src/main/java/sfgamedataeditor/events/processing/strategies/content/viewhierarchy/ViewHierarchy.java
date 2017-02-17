@@ -1,6 +1,8 @@
 package sfgamedataeditor.events.processing.strategies.content.viewhierarchy;
 
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.ModulesModuleCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.buildings.BuildingRacesFromBuildingsModelCreator;
+import sfgamedataeditor.events.processing.strategies.content.modelcreators.buildings.BuildingsFromBuildingsParametersModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.creatures.CreatureRacesFromCreaturesModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.creatures.CreaturesFromCreatureParametersModelCreator;
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.items.armor.ArmorPiecesFromArmorParametersModelCreator;
@@ -22,7 +24,9 @@ import sfgamedataeditor.events.processing.strategies.content.modelcreators.units
 import sfgamedataeditor.events.processing.strategies.content.modelcreators.units.UnitsFromUnitParametersModelCreator;
 import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.main.modules.ModulesView;
-import sfgamedataeditor.views.main.modules.buildings.BuildingRacesView;
+import sfgamedataeditor.views.main.modules.buildings.races.BuildingRacesView;
+import sfgamedataeditor.views.main.modules.buildings.races.buildings.BuildingsView;
+import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersView;
 import sfgamedataeditor.views.main.modules.creatures.races.CreaturesRacesView;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesView;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
@@ -136,7 +140,13 @@ public enum  ViewHierarchy {
     }
 
     private ViewHierarchyNode createBuildingsNodes(ViewHierarchyNode rootNode) {
-        return new ViewHierarchyNode(rootNode, BuildingRacesView.class, new ModulesFromBuildingsModelCreator());
+        ViewHierarchyNode buildingRaces = new ViewHierarchyNode(rootNode, BuildingRacesView.class, new ModulesFromBuildingsModelCreator());
+        ViewHierarchyNode buildings = new ViewHierarchyNode(buildingRaces, BuildingsView.class, new BuildingRacesFromBuildingsModelCreator());
+        buildingRaces.addChild(buildings);
+        ViewHierarchyNode buildingParameters = new ViewHierarchyNode(buildings, BuildingsParametersView.class, new BuildingsFromBuildingsParametersModelCreator());
+        buildings.addChild(buildingParameters);
+
+        return buildingRaces;
     }
 
     private ViewHierarchyNode createSkillNodes(ViewHierarchyNode rootNode) {

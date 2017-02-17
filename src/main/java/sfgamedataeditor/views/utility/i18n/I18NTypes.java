@@ -15,5 +15,7 @@ public enum I18NTypes {
     WEAPON_GUI,
     ITEMS,
     ITEM_SETS,
+    BUILDING_NAMES_MAPPING,
+    BUILDING_GUI,
     UNITS_GUI
 }
