@@ -7,10 +7,8 @@ import sfgamedataeditor.views.common.managers.ModulePanelManager;
 import sfgamedataeditor.views.utility.Pair;
 
 import javax.swing.*;
-import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-import java.util.List;
 
 public abstract class AbstractModulesView implements PresentableView {
 
@@ -75,7 +73,7 @@ public abstract class AbstractModulesView implements PresentableView {
         Collections.sort(subViewsPanels, subViewPanelComparator);
     }
 
-    protected Image getPanelImageByPanelName(String panelName) {
+    protected ImageIcon getPanelImageByPanelName(String panelName) {
         return null;
     }
 
@@ -104,14 +102,7 @@ public abstract class AbstractModulesView implements PresentableView {
     }
 
     private void setPanelImageAndSize(JButton button, String name) {
-        Image image = getPanelImageByPanelName(name);
-        ImageIcon icon;
-        if (image != null) {
-            icon = new ImageIcon(image);
-        } else {
-            icon = null;
-        }
-
+        ImageIcon icon = getPanelImageByPanelName(name);
         button.setIcon(icon);
         button.setVerticalTextPosition(SwingConstants.BOTTOM);
         button.setHorizontalTextPosition(SwingConstants.CENTER);

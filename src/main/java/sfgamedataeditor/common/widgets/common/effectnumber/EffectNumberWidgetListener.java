@@ -1,6 +1,7 @@
 package sfgamedataeditor.common.widgets.common.effectnumber;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.common.cache.ImageIconsCache;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.spells.names.SpellNameObject;
@@ -16,15 +17,12 @@ import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.IOException;
 import java.lang.reflect.Field;
-import java.net.URL;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -171,17 +169,8 @@ public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNum
 
         spellNameKey = spellNameKey.replaceAll("(.*)\\.name", "$1");
 
-        try {
-            URL resource = getClass().getResource("/images/spells_and_scrolls/" + spellNameKey + ".png");
-            if (resource == null) {
-                return null;
-            }
-
-            return new ImageIcon(ImageIO.read(resource));
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-            return null;
-        }
+        String iconPath = "/images/spells_and_scrolls/" + spellNameKey + ".png";
+        return ImageIconsCache.INSTANCE.getImageIcon(iconPath);
     }
 
     private SpellParametersObject getSelectedSpellParameterObject() {

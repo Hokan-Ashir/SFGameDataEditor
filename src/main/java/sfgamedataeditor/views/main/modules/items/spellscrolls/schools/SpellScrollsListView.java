@@ -1,6 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.spellscrolls.schools;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.common.cache.ImageIconsCache;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
@@ -11,10 +12,7 @@ import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.io.IOException;
-import java.net.URL;
+import javax.swing.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -55,7 +53,7 @@ public class SpellScrollsListView extends AbstractModulesView {
     }
 
     @Override
-    protected Image getPanelImageByPanelName(String panelName) {
+    protected ImageIcon getPanelImageByPanelName(String panelName) {
         String spellNameKey = ViewTools.getKeyStringByPropertyValue(panelName, I18NTypes.SPELLS_GUI);
         if (spellNameKey == null) {
             return null;
@@ -63,17 +61,8 @@ public class SpellScrollsListView extends AbstractModulesView {
 
         spellNameKey = spellNameKey.replaceAll("(.*)\\.name", "$1");
 
-        try {
-            URL resource = getClass().getResource("/images/spells_and_scrolls/" + spellNameKey + ".png");
-            if (resource == null) {
-                return null;
-            }
-
-            return ImageIO.read(resource);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-            return null;
-        }
+        String iconPath = "/images/spells_and_scrolls/" + spellNameKey + ".png";
+        return ImageIconsCache.INSTANCE.getImageIcon(iconPath);
     }
 
     @Override
