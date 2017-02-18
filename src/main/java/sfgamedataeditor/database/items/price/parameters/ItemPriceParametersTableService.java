@@ -13,9 +13,9 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public enum ItemPriceParametersTableService implements TableCreationService {
     INSTANCE {
@@ -49,7 +49,7 @@ public enum ItemPriceParametersTableService implements TableCreationService {
 
         try {
             List<ItemPriceParametersObject> objects = dao.queryBuilder().where().eq("typeId", typeId).query();
-            Set<String> itemNames = new HashSet<>();
+            Set<String> itemNames = new TreeSet<>();
             for (ItemPriceParametersObject object : objects) {
                 itemNames.add(I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(object.itemId)));
             }
