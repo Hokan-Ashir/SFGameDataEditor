@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreatureParametersViewConfiguration extends AbstractConfiguration {
+public class BuildingsParametersViewConfiguration extends AbstractConfiguration {
     @Override
     protected void fillConfigurationMappings() {
         addTextFieldWidgets();

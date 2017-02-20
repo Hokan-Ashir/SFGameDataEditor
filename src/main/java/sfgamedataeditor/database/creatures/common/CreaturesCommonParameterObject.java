@@ -46,9 +46,13 @@ public class CreaturesCommonParameterObject extends OffsetableObject {
     private Integer hpFactor;
 
     // 64 00 64 32 00 - unknown (maybe some other factors)
-    @Data(offset = 16, length = 5)
+    @Data(offset = 16, length = 4)
     @DatabaseField
     private Integer unknown2;
+
+    @Data(offset = 20, length = 1)
+    @DatabaseField
+    private Integer unknown3;
 
     @Data(offset = 21, length = 2)
     @DatabaseField
@@ -99,5 +103,5 @@ public class CreaturesCommonParameterObject extends OffsetableObject {
     // 00 - unknown (only 00 and 01 values)
     @Data(offset = 63, length = 1)
     @DatabaseField
-    private Integer unknown3;
+    private Integer unknown4;
 }
