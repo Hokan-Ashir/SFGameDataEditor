@@ -4,6 +4,7 @@ import de.idyl.winzipaes.AesZipFileDecrypter;
 import de.idyl.winzipaes.AesZipFileEncrypter;
 import de.idyl.winzipaes.impl.*;
 import org.apache.log4j.Logger;
+import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsObject;
 import sfgamedataeditor.database.buildings.common.BuildingsObject;
 import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsObject;
 import sfgamedataeditor.database.common.CommonTableService;
@@ -217,6 +218,7 @@ public final class FileUtils {
 
         dtoClasses.add(BuildingsObject.class);
         dtoClasses.add(BuildingsRequirementsObject.class);
+        dtoClasses.add(BuildingsArmyRequirementsObject.class);
 
         for (Class<? extends OffsetableObject> dtoClass : dtoClasses) {
             List<? extends OffsetableObject> allTableData = CommonTableService.INSTANCE.getAllTableData(dtoClass);

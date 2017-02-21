@@ -31,9 +31,9 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Set;
 
-public class SummonedCreatureWidgetListener extends AbstractWidgetListener<SummonedCreatureWidget, OffsetableObject> implements ItemListener, ActionListener {
+public class CreatureWidgetListener extends AbstractWidgetListener<CreatureWidget, OffsetableObject> implements ItemListener, ActionListener {
 
-    public SummonedCreatureWidgetListener(SummonedCreatureWidget component, Field... mappedFields) {
+    public CreatureWidgetListener(CreatureWidget component, Field... mappedFields) {
         super(component, mappedFields);
     }
 

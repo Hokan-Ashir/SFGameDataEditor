@@ -6,6 +6,8 @@ import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
 import sfgamedataeditor.common.widgets.creatures.races.RacesWidget;
 import sfgamedataeditor.common.widgets.creatures.races.RacesWidgetListener;
+import sfgamedataeditor.common.widgets.spells.summonedcreature.CreatureWidget;
+import sfgamedataeditor.common.widgets.spells.summonedcreature.CreatureWidgetListener;
 import sfgamedataeditor.common.widgets.units.ResourceWidget;
 import sfgamedataeditor.common.widgets.units.ResourceWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -21,6 +23,21 @@ public class BuildingsParametersViewConfiguration extends AbstractConfiguration 
         addTextFieldWidgets();
         addRaceWidgets();
         addResourceTypeWidgets();
+        addArmyUnitsWidgets();
+    }
+
+    private void addArmyUnitsWidgets() {
+        List<Integer> armyUnitIds = new ArrayList<Integer>() {{
+            add(GUIElements.ARMY_UNIT_1);
+            add(GUIElements.ARMY_UNIT_2);
+            add(GUIElements.ARMY_UNIT_3);
+            add(GUIElements.ARMY_UNIT_4);
+        }};
+
+        for (Integer armyUnitId : armyUnitIds) {
+            ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(CreatureWidget.class, CreatureWidgetListener.class, I18NTypes.BUILDING_GUI);
+            addViewMapping(armyUnitId, parameter);
+        }
     }
 
     private void addResourceTypeWidgets() {

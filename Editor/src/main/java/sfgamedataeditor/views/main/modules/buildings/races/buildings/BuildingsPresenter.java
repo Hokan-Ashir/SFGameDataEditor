@@ -1,5 +1,7 @@
 package sfgamedataeditor.views.main.modules.buildings.races.buildings;
 
+import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsObject;
+import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsTableService;
 import sfgamedataeditor.database.buildings.common.BuildingsObject;
 import sfgamedataeditor.database.buildings.common.BuildingsTableService;
 import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsObject;
@@ -22,8 +24,9 @@ public class BuildingsPresenter extends AbstractModulesPresenter<BuildingsModelP
         String selectedBuildingName = getView().getSelectedModuleValue();
         BuildingsObject buildingsObject = BuildingsTableService.INSTANCE.getBuildingObjectByBuildingName(selectedBuildingName);
         List<BuildingsRequirementsObject> requirementsObjects = BuildingsRequirementsTableService.INSTANCE.getBuildingRequirementsObjectsByBuildingName(selectedBuildingName);
+        List<BuildingsArmyRequirementsObject> buildingArmyObjects = BuildingsArmyRequirementsTableService.INSTANCE.getBuildingArmyObjectByBuildingName(selectedBuildingName);
         Icon icon = getView().getSelectedModuleIcon();
-        BuildingsParametersModelParameter parameter = new BuildingsParametersModelParameter(buildingsObject, requirementsObjects, icon);
+        BuildingsParametersModelParameter parameter = new BuildingsParametersModelParameter(buildingsObject, requirementsObjects, buildingArmyObjects, icon);
         return new BuildingsParametersModel(parameter);
     }
 }

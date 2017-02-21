@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.util.List;
 import java.util.Set;
 
-public class SummonedCreatureWidget extends AbstractWidget<SummonedCreatureWidgetListener> {
+public class CreatureWidget extends AbstractWidget<CreatureWidgetListener> {
     private JPanel mainPanel;
     private JLabel titleLabel;
     private JComboBox<String> racesComboBox;
@@ -18,7 +18,7 @@ public class SummonedCreatureWidget extends AbstractWidget<SummonedCreatureWidge
     private JLabel creatureNameLabel;
     private JButton goToCreatureParametersButton;
 
-    public SummonedCreatureWidget() {
+    public CreatureWidget() {
         // TODO fix later
         racesLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "summoned.creature.race"));
         creatureNameLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "summoned.creature.name"));
@@ -42,7 +42,7 @@ public class SummonedCreatureWidget extends AbstractWidget<SummonedCreatureWidge
     }
 
     @Override
-    protected void insertListener(SummonedCreatureWidgetListener listener) {
+    protected void insertListener(CreatureWidgetListener listener) {
         racesComboBox.addItemListener(listener);
         creatureNameComboBox.addItemListener(listener);
         goToCreatureParametersButton.addActionListener(listener);

@@ -5,6 +5,7 @@ import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.buildings.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
+import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsObject;
 import sfgamedataeditor.database.buildings.common.BuildingsObject;
 import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsObject;
 import sfgamedataeditor.database.common.OffsetableObject;
@@ -22,10 +23,12 @@ public class BuildingsParametersPresenter extends AbstractPresenter<BuildingsPar
 
     private static final Logger LOGGER = Logger.getLogger(BuildingsParametersPresenter.class);
     private static final Map<Integer, Integer> RESOURCES_NUMBER_MAPPING = new HashMap<>();
+    private static final Map<Integer, Integer> ARMY_REQUIREMENTS_NUMBER_MAPPING = new HashMap<>();
 
     public BuildingsParametersPresenter(BuildingsParametersView view) {
         super(view);
         initializeResourcesNumberMapping();
+        initializeArmyRequirementsNumberMapping();
     }
 
     private void initializeResourcesNumberMapping() {
@@ -34,11 +37,19 @@ public class BuildingsParametersPresenter extends AbstractPresenter<BuildingsPar
         RESOURCES_NUMBER_MAPPING.put(GUIElements.RESOURCE_3, 2);
     }
 
+    private void initializeArmyRequirementsNumberMapping() {
+        ARMY_REQUIREMENTS_NUMBER_MAPPING.put(GUIElements.ARMY_UNIT_1, 0);
+        ARMY_REQUIREMENTS_NUMBER_MAPPING.put(GUIElements.ARMY_UNIT_2, 1);
+        ARMY_REQUIREMENTS_NUMBER_MAPPING.put(GUIElements.ARMY_UNIT_3, 2);
+        ARMY_REQUIREMENTS_NUMBER_MAPPING.put(GUIElements.ARMY_UNIT_4, 3);
+    }
+
     @Override
     public void updateView() {
         BuildingsParametersModelParameter parameter = getModel().getParameter();
         BuildingsObject buildingsObject = parameter.getBuildingsObject();
         List<BuildingsRequirementsObject> requirementsObjects = parameter.getRequirementsObjects();
+        List<BuildingsArmyRequirementsObject> buildingsArmyRequirementsObjects = parameter.getBuildingsArmyRequirementsObjects();
         Icon icon = parameter.getIcon();
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
@@ -70,6 +81,12 @@ public class BuildingsParametersPresenter extends AbstractPresenter<BuildingsPar
                         widget.setVisible(false);
                     } else {
                         updateWidgetWithParametersList(annotation.GUIElementId(), widget, requirementsObjects, RESOURCES_NUMBER_MAPPING);
+                    }
+                } else if (dtoClass.equals(BuildingsArmyRequirementsObject.class)) {
+                    if (buildingsArmyRequirementsObjects == null || buildingsArmyRequirementsObjects.isEmpty()) {
+                        widget.setVisible(false);
+                    } else {
+                        updateWidgetWithParametersList(annotation.GUIElementId(), widget, buildingsArmyRequirementsObjects, ARMY_REQUIREMENTS_NUMBER_MAPPING);
                     }
                 }
             } catch (IllegalAccessException e) {

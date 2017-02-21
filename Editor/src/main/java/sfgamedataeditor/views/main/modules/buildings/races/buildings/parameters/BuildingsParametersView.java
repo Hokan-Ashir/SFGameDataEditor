@@ -3,6 +3,7 @@ package sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.buildings.parameters.GUIElements;
+import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsObject;
 import sfgamedataeditor.database.buildings.common.BuildingsObject;
 import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsObject;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
@@ -30,6 +31,18 @@ public class BuildingsParametersView implements PresentableView {
 
     @IconElement
     private JLabel iconLabel;
+
+    @GUIElement(GUIElementId = GUIElements.ARMY_UNIT_1, DTOColumnNames = "unitId", DTOClass = BuildingsArmyRequirementsObject.class)
+    private JPanel producingUnit1Panel;
+
+    @GUIElement(GUIElementId = GUIElements.ARMY_UNIT_2, DTOColumnNames = "unitId", DTOClass = BuildingsArmyRequirementsObject.class)
+    private JPanel producingUnit2Panel;
+
+    @GUIElement(GUIElementId = GUIElements.ARMY_UNIT_3, DTOColumnNames = "unitId", DTOClass = BuildingsArmyRequirementsObject.class)
+    private JPanel producingUnit3Panel;
+
+    @GUIElement(GUIElementId = GUIElements.ARMY_UNIT_4, DTOColumnNames = "unitId", DTOClass = BuildingsArmyRequirementsObject.class)
+    private JPanel producingUnit4Panel;
 
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {

@@ -1,6 +1,7 @@
 package sfgamedataeditor.dataextraction;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsTableService;
 import sfgamedataeditor.database.buildings.common.BuildingsTableService;
 import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsTableService;
 import sfgamedataeditor.database.common.TableCreationService;
@@ -61,6 +62,7 @@ public enum DataFilesParser {
             add(MerchantInventoryItemsTableService.INSTANCE);
             add(BuildingsTableService.INSTANCE);
             add(BuildingsRequirementsTableService.INSTANCE);
+            add(BuildingsArmyRequirementsTableService.INSTANCE);
         }};
 
         for (TableCreationService service : services) {

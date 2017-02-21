@@ -1,6 +1,7 @@
 package sfgamedataeditor.dataextraction;
 
 import sfgamedataeditor.dataextraction.offsets.AbstractOffsetHolder;
+import sfgamedataeditor.dataextraction.offsets.buildings.BuildingsArmyRequirementsOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.buildings.BuildingsOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.buildings.BuildingsRequirementsOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.creatures.*;
@@ -43,6 +44,7 @@ public enum DataOffsetProvider {
         holderMap.put(DTOOffsetTypes.MERCHANT_INVENTORY_ITEMS, new MerchantInventoryItemsOffsetHolder());
         holderMap.put(DTOOffsetTypes.BUILDINGS, new BuildingsOffsetHolder());
         holderMap.put(DTOOffsetTypes.BUILDINGS_REQUIREMENTS, new BuildingsRequirementsOffsetHolder());
+        holderMap.put(DTOOffsetTypes.BUILDINGS_ARMY_REQUIREMENTS, new BuildingsArmyRequirementsOffsetHolder());
     }
 
     public List<Pair<Integer, Integer>> getOffsets(DTOOffsetTypes types) {
