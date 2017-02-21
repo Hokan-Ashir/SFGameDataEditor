@@ -30,7 +30,7 @@
         </constraints>
         <properties>
           <labelFor value="9b592"/>
-          <text resource-bundle="messages" key="fileSelectionWindowOriginalFileTextFieldCaption"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="f758c" class="javax.swing.JButton" binding="originalFileSelectorButton">
@@ -52,7 +52,7 @@
         </constraints>
         <properties>
           <labelFor value="cacad"/>
-          <text resource-bundle="messages" key="fileSelectionWindowModificationFileTextFieldCaption"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="cacad" class="javax.swing.JTextField" binding="modificationFileField">
@@ -90,7 +90,7 @@
           <minimumSize width="60" height="25"/>
           <preferredSize width="60" height="25"/>
           <rolloverEnabled value="true"/>
-          <text resource-bundle="messages" key="ok"/>
+          <text value=""/>
         </properties>
       </component>
     </children>

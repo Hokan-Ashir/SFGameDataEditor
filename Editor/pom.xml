@@ -5,7 +5,7 @@
     <parent>
         <artifactId>SFGameDataEditor</artifactId>
         <groupId>ru.hokan</groupId>
-        <version>alpha-3</version>
+        <version>alpha-4-snapshot</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -90,11 +90,26 @@
             </plugin>
 
             <plugin>
+                <groupId>ru.hokan</groupId>
+                <artifactId>I18N-base-maven-plugin</artifactId>
+                <version>${project.version}</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>createDB</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.8</version>
                 <executions>
                     <execution>
+                        <id>copy-compiled-jar</id>
                         <phase>install</phase>
                         <goals>
                             <goal>run</goal>
@@ -106,8 +121,23 @@
                             </target>
                         </configuration>
                     </execution>
+
+                    <execution>
+                        <id>copy-compiled-database</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <copy file="${project.basedir}/../I18N-base-maven-plugin/target/I18N-base.mv.db"
+                                      tofile="${project.basedir}/src/main/resources/I18N-base.mv.db"/>
+                            </target>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 
@@ -133,7 +163,7 @@
         <dependency>
             <groupId>ru.hokan</groupId>
             <artifactId>I18N-base</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

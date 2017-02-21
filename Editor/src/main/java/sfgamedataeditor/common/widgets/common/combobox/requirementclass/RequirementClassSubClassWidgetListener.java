@@ -1,5 +1,6 @@
 package sfgamedataeditor.common.widgets.common.combobox.requirementclass;
 
+import i18nbase.objects.I18NObject;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.datamapping.Mappings;
@@ -13,7 +14,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class RequirementClassSubClassWidgetListener extends AbstractWidgetListener<RequirementClassSubClassWidget, OffsetableObject> implements ItemListener {
 
@@ -51,10 +51,10 @@ public class RequirementClassSubClassWidgetListener extends AbstractWidgetListen
     protected int[] getFieldValues() {
         JComboBox<String> requirementClassComboBox = getWidget().getRequirementClassComboBox();
         int requirementClassValue = 0;
-        ResourceBundle schoolBundle = I18NService.INSTANCE.getBundle(I18NTypes.SKILL_SCHOOL_MAPPING);
-        for (String key : schoolBundle.keySet()) {
-            if (I18NService.INSTANCE.getMessage(I18NTypes.COMMON, key).equals(requirementClassComboBox.getSelectedItem())) {
-                requirementClassValue = Integer.parseInt(schoolBundle.getString(key));
+        List<? extends I18NObject> skillSchoolObjects = I18NService.INSTANCE.getI18NObjects(I18NTypes.SKILL_SCHOOL_MAPPING);
+        for (I18NObject skillSchoolObject : skillSchoolObjects) {
+            if (I18NService.INSTANCE.getMessage(I18NTypes.COMMON, skillSchoolObject.key).equals(requirementClassComboBox.getSelectedItem())) {
+                requirementClassValue = Integer.parseInt(skillSchoolObject.value);
                 break;
             }
         }
@@ -65,10 +65,10 @@ public class RequirementClassSubClassWidgetListener extends AbstractWidgetListen
 
         JComboBox<String> requirementSubClassComboBox = getWidget().getRequirementSubClassComboBox();
         int requirementSubClassValue = 0;
-        ResourceBundle subSchoolBundle = I18NService.INSTANCE.getBundle(I18NTypes.SKILL_SUB_SCHOOL_MAPPING);
-        for (String key : subSchoolBundle.keySet()) {
-            if (I18NService.INSTANCE.getMessage(I18NTypes.COMMON, key).equals(requirementSubClassComboBox.getSelectedItem())) {
-                requirementSubClassValue = Integer.parseInt(subSchoolBundle.getString(key));
+        List<? extends I18NObject> skillSubSchoolObjects = I18NService.INSTANCE.getI18NObjects(I18NTypes.SKILL_SUB_SCHOOL_MAPPING);
+        for (I18NObject skillSubSchoolObject : skillSubSchoolObjects) {
+            if (I18NService.INSTANCE.getMessage(I18NTypes.COMMON, skillSubSchoolObject.key).equals(requirementSubClassComboBox.getSelectedItem())) {
+                requirementSubClassValue = Integer.parseInt(skillSubSchoolObject.value);
                 requirementSubClassValue %= requirementClassValue * 10;
                 break;
             }

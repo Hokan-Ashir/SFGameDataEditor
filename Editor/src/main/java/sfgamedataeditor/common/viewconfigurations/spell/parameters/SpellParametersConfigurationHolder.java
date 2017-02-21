@@ -1,5 +1,6 @@
 package sfgamedataeditor.common.viewconfigurations.spell.parameters;
 
+import i18nbase.objects.I18NObject;
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.AbstractConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.configurations.*;
@@ -8,7 +9,10 @@ import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.Spel
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SpellParametersConfigurationHolder extends AbstractConfigurationHolder {
 
@@ -127,11 +131,10 @@ public class SpellParametersConfigurationHolder extends AbstractConfigurationHol
     }
 
     private void addCustomSpellsConfigurations(AbstractConfiguration configuration, List<String> customSpellNames) {
-        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.SPELLS_NAME_MAPPING);
-        for (String key : bundle.keySet()) {
-            String value = bundle.getString(key);
-            if (customSpellNames.contains(value)) {
-                addConfiguration(new SpellParameterModel(new SpellParameterModelParameter(Integer.valueOf(key), 0, null)), configuration);
+        List<? extends I18NObject> i18NObjects = I18NService.INSTANCE.getI18NObjects(I18NTypes.SPELLS_NAME_MAPPING);
+        for (I18NObject i18NObject : i18NObjects) {
+            if (customSpellNames.contains(i18NObject.value)) {
+                addConfiguration(new SpellParameterModel(new SpellParameterModelParameter(Integer.valueOf(i18NObject.key), 0, null)), configuration);
             }
         }
     }

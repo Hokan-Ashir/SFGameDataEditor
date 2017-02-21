@@ -3,23 +3,33 @@ package i18nbase.objects;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import org.apache.log4j.Logger;
 
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.Callable;
 
 public enum Service {
     INSTANCE;
 
     private static final Logger LOGGER = Logger.getLogger(Service.class);
+
+    private String databasePath;
+    private ConnectionSource connectionSourceFromModule;
+    private ConnectionSource connectionSourceFromResource;
+
+    public void setDatabasePath(String databasePath) {
+        this.databasePath = databasePath;
+    }
 
     public <T extends I18NObject> void createTableFromResourceFile(String fileName, Class<T> objectClass) {
         recreateTable(objectClass);
@@ -28,13 +38,21 @@ public enum Service {
     }
 
     private <T extends I18NObject> List<T> getObjectsFromFile(String fileName, Class<T> objectClass) {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource(fileName).getFile());
+        InputStream inputStream = getClass().getResourceAsStream("/" + fileName);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
         List<T> i18nObjects = new ArrayList<>();
-        try (Scanner scanner = new Scanner(file)) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
+        try {
+            while (true) {
+                String line = reader.readLine();
+                if (line == null) {
+                    break;
+                }
+
+                if (line.startsWith("#") || line.isEmpty()) {
+                    continue;
+                }
+
                 String[] strings = line.split("\\s=\\s");
                 if (strings[0].isEmpty()) {
                     continue;
@@ -43,10 +61,10 @@ public enum Service {
                 T object = createObject(objectClass, strings[0], strings[1]);
                 i18nObjects.add(object);
             }
-            scanner.close();
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
+
         return i18nObjects;
     }
 
@@ -73,12 +91,6 @@ public enum Service {
             });
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
-        } finally {
-            try {
-                connectionSource.close();
-            } catch (SQLException e) {
-                LOGGER.error(e.getMessage(), e);
-            }
         }
     }
 
@@ -119,7 +131,8 @@ public enum Service {
         Dao<T, String> dao = getDao(daoClass);
 
         try {
-            T object = dao.queryBuilder().where().eq("key", key).query().get(0);
+            SelectArg selectArg = new SelectArg(key);
+            T object = dao.queryBuilder().where().like("key", selectArg).query().get(0);
             return object.value;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
@@ -131,11 +144,23 @@ public enum Service {
         Dao<T, String> dao = getDao(daoClass);
 
         try {
-            T object = dao.queryBuilder().where().eq("value", value).query().get(0);
+            SelectArg selectArg = new SelectArg(value);
+            T object = dao.queryBuilder().where().like("value", selectArg).query().get(0);
             return object.key;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
             return null;
+        }
+    }
+
+    public <T extends I18NObject> List<T> getAllObjects(Class<T> daoClass) {
+        Dao<T, String> dao = getDao(daoClass);
+
+        try {
+            return dao.queryForAll();
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+            return Collections.emptyList();
         }
     }
 
@@ -153,14 +178,21 @@ public enum Service {
     }
 
     private ConnectionSource getConnectionSourceFromResources() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        URL resource = classLoader.getResource("I18N-base.mv.db");
-        LOGGER.error(resource);
-        return getConnectionSource("jdbc:h2:file:" + resource + ";DB_CLOSE_ON_EXIT=FALSE");
+        if (connectionSourceFromResource == null) {
+            String dbUrl = "jdbc:h2:"
+                    + getClass().getResource("/I18N-base.mv.db").getPath().replaceAll(".mv.db", "").replaceAll("%20", " ").replaceAll("file:", "zip:");
+            connectionSourceFromResource = getConnectionSource(dbUrl + ";DB_CLOSE_ON_EXIT=FALSE");
+        }
+
+        return connectionSourceFromResource;
     }
 
     private ConnectionSource getConnectionSourceFromModule() {
-        return getConnectionSource("jdbc:h2:file:../i18n-base;DB_CLOSE_ON_EXIT=FALSE");
+        if (connectionSourceFromModule == null) {
+            connectionSourceFromModule = getConnectionSource("jdbc:h2:file:" + databasePath + "/I18N-base;DB_CLOSE_ON_EXIT=FALSE");
+        }
+
+        return connectionSourceFromModule;
     }
 
     private ConnectionSource getConnectionSource(String databaseURL) {

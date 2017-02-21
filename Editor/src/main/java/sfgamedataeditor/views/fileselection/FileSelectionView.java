@@ -20,7 +20,7 @@ public class FileSelectionView {
     public FileSelectionView() {
         originalFileLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "fileSelectionWindowOriginalFileTextFieldCaption"));
         modificationFileLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "fileSelectionWindowModificationFileTextFieldCaption"));
-        okButton.setText(I18NService.INSTANCE.getMessage2(I18NTypes.COMMON, "ok"));
+        okButton.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "ok"));
     }
 
     public static void showFileSelectionView() {

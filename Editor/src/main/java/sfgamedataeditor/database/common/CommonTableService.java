@@ -17,6 +17,7 @@ public enum CommonTableService {
     INSTANCE;
 
     private static final Logger LOGGER = Logger.getLogger(CommonTableService.class);
+    private ConnectionSource connectionSource;
 
     public void recreateTable(Class<?> ormObjectClass) {
         ConnectionSource connectionSource = getConnectionSource();
@@ -27,12 +28,6 @@ public enum CommonTableService {
             TableUtils.createTableIfNotExists(connectionSource, ormObjectClass);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-        } finally {
-            try {
-                connectionSource.close();
-            } catch (SQLException e) {
-                LOGGER.error(e.getMessage(), e);
-            }
         }
     }
 
@@ -68,12 +63,6 @@ public enum CommonTableService {
             });
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
-        } finally {
-            try {
-                connectionSource.close();
-            } catch (SQLException e) {
-                LOGGER.error(e.getMessage(), e);
-            }
         }
     }
 
@@ -103,15 +92,17 @@ public enum CommonTableService {
     }
 
     public ConnectionSource getConnectionSource() {
-        ConnectionSource connectionSource;
-        try {
-            String databaseUrl = "jdbc:h2:file:./sfeditorDatabase;DB_CLOSE_ON_EXIT=FALSE";
-            connectionSource =
-                    new JdbcConnectionSource(databaseUrl);
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-            return null;
+        if (connectionSource == null) {
+            try {
+                String databaseUrl = "jdbc:h2:file:./sfeditorDatabase;DB_CLOSE_ON_EXIT=FALSE";
+                connectionSource =
+                        new JdbcConnectionSource(databaseUrl);
+            } catch (Exception e) {
+                LOGGER.error(e.getMessage(), e);
+                return null;
+            }
         }
+
         return connectionSource;
     }
 

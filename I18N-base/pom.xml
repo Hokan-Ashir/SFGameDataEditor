@@ -5,7 +5,7 @@
     <parent>
         <artifactId>SFGameDataEditor</artifactId>
         <groupId>ru.hokan</groupId>
-        <version>alpha-3</version>
+        <version>alpha-4-snapshot</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -21,28 +21,18 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
-                <executions>
-                    <execution>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <copy file="${project.basedir}/../I18N-base.mv.db"
-                                      tofile="${project.basedir}/../Editor/src/main/resources/I18N-base.mv.db"/>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
-
-
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+    </dependencies>
 </project>

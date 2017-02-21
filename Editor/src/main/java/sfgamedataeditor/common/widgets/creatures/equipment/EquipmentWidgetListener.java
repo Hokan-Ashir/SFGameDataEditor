@@ -26,7 +26,6 @@ import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.Set;
 
 public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWidget, OffsetableObject> implements ItemListener, ActionListener {
@@ -175,8 +174,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     private void updateItemNames() {
         String itemTypeName = (String) getWidget().getItemTypeComboBox().getSelectedItem();
         String itemTypeI18NKey = ViewTools.getKeyStringByPropertyValue(itemTypeName, I18NTypes.COMMON);
-        ResourceBundle itemPiecesBundle = I18NService.INSTANCE.getBundle(I18NTypes.ITEM_PIECES_NAME_MAPPING);
-        String itemPieceType = itemPiecesBundle.getString(itemTypeI18NKey);
+        String itemPieceType = I18NService.INSTANCE.getMessage(I18NTypes.ITEM_PIECES_NAME_MAPPING, itemTypeI18NKey);
         final Set<String> itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));
 
         final JComboBox<String> itemPieceComboBox = getWidget().getItemPieceComboBox();

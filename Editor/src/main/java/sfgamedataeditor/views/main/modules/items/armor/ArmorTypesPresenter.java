@@ -9,7 +9,6 @@ import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.ResourceBundle;
 import java.util.Set;
 
 public class ArmorTypesPresenter extends AbstractModulesPresenter<ModuleParameter, ArmorTypeListView, ArmorPiecesModel> {
@@ -22,8 +21,7 @@ public class ArmorTypesPresenter extends AbstractModulesPresenter<ModuleParamete
     protected ArmorPiecesModel createModel() {
         String selectedArmorPieceType = getView().getSelectedModuleValue();
         String itemPieceId = ViewTools.getKeyStringByPropertyValue(selectedArmorPieceType, I18NTypes.COMMON);
-        ResourceBundle itemPiecesBundle = I18NService.INSTANCE.getBundle(I18NTypes.ITEM_PIECES_NAME_MAPPING);
-        String itemPieceType = itemPiecesBundle.getString(itemPieceId);
+        String itemPieceType = I18NService.INSTANCE.getMessage(I18NTypes.ITEM_PIECES_NAME_MAPPING, itemPieceId);
         Set<String> itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));
         ArmorPiecesModelParameter parameter = new ArmorPiecesModelParameter(itemNames, null);
         return new ArmorPiecesModel(parameter);

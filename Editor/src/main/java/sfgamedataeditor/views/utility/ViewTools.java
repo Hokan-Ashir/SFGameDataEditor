@@ -5,7 +5,6 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ResourceBundle;
 
 public class ViewTools {
 
@@ -76,15 +75,6 @@ public class ViewTools {
     }
 
     public static String getKeyStringByPropertyValue(String value, I18NTypes type) {
-        String result = null;
-        ResourceBundle bundle = I18NService.INSTANCE.getBundle(type);
-        for (String key : bundle.keySet()) {
-            if (bundle.getString(key).equals(value)) {
-                result = key;
-                break;
-            }
-        }
-
-        return result;
+        return I18NService.INSTANCE.getMessageByValue(type, value);
     }
 }

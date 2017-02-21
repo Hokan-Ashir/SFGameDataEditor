@@ -10,6 +10,6 @@ public class I18NObject {
     @DatabaseField
     public String key;
 
-    @DatabaseField
+    @DatabaseField(width = 350)
     public String value;
 }
