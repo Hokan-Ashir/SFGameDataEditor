@@ -1,4 +1,4 @@
-package sfgamedataeditor.common.widgets.spells.summonedcreature;
+package sfgamedataeditor.common.widgets.spells.creature;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;

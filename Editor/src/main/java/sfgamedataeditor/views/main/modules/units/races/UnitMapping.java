@@ -3,10 +3,7 @@ package sfgamedataeditor.views.main.modules.units.races;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 // TODO unfortunately there is NO database object-related how to figure what race belong non-statable, which do not have statId, creatures (units)
 public enum UnitMapping {
@@ -126,6 +123,15 @@ public enum UnitMapping {
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.trolls"), trollsUnitsNames);
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dark.elves"), darkElvesUnitsNames);
     }};
+
+    public List<String> getUnitRacesList() {
+        List<String> result = new ArrayList<>();
+        for (Map.Entry<String, Set<String>> entry : unitRacesToUnitNamesMap.entrySet()) {
+            result.add(entry.getKey());
+        }
+
+        return result;
+    }
 
     public Set<String> getUnitNames(String raceName) {
         return unitRacesToUnitNamesMap.get(raceName);

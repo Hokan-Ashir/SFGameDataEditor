@@ -8,8 +8,10 @@ import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
 import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidget;
 import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidgetListener;
-import sfgamedataeditor.common.widgets.units.ResourceWidget;
-import sfgamedataeditor.common.widgets.units.ResourceWidgetListener;
+import sfgamedataeditor.common.widgets.units.buildings.BuildingsWidget;
+import sfgamedataeditor.common.widgets.units.buildings.BuildingsWidgetListener;
+import sfgamedataeditor.common.widgets.units.resource.ResourceWidget;
+import sfgamedataeditor.common.widgets.units.resource.ResourceWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;
@@ -22,6 +24,7 @@ public class UnitParametersViewConfiguration extends AbstractConfiguration {
         addEquipmentWidgets();
         addSpellEffectNumberWidgets();
         addResourceWidgets();
+        addBuildingsWidgets();
     }
 
     private void addResourceWidgets() {
@@ -56,13 +59,23 @@ public class UnitParametersViewConfiguration extends AbstractConfiguration {
         Map<Integer, String> i18nMap = new HashMap<Integer, String>() {{
             put(GUIElements.EXPERIENCE, "experience");
             put(GUIElements.ARMOR, "armor");
+        }};
+
+        for (Map.Entry<Integer, String> entry : i18nMap.entrySet()) {
+            ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.UNITS_GUI, entry.getValue());
+            addViewMapping(entry.getKey(), parameter);
+        }
+    }
+
+    private void addBuildingsWidgets() {
+        Map<Integer, String> i18nMap = new HashMap<Integer, String>() {{
             put(GUIElements.BUILDING1, "building");
             put(GUIElements.BUILDING2, "building");
             put(GUIElements.BUILDING3, "building");
         }};
 
         for (Map.Entry<Integer, String> entry : i18nMap.entrySet()) {
-            ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.UNITS_GUI, entry.getValue());
+            ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(BuildingsWidget.class, BuildingsWidgetListener.class, I18NTypes.UNITS_GUI, entry.getValue());
             addViewMapping(entry.getKey(), parameter);
         }
     }

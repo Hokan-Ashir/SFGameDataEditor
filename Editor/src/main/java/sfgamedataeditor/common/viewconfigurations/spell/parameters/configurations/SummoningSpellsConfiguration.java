@@ -2,8 +2,8 @@ package sfgamedataeditor.common.viewconfigurations.spell.parameters.configuratio
 
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.GUIElements;
-import sfgamedataeditor.common.widgets.spells.summonedcreature.CreatureWidget;
-import sfgamedataeditor.common.widgets.spells.summonedcreature.CreatureWidgetListener;
+import sfgamedataeditor.common.widgets.spells.creature.CreatureWidget;
+import sfgamedataeditor.common.widgets.spells.creature.CreatureWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 public class SummoningSpellsConfiguration extends DefaultSpellParameterViewConfiguration {

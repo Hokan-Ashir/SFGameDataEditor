@@ -1,4 +1,4 @@
-package sfgamedataeditor.common.widgets.units;
+package sfgamedataeditor.common.widgets.units.resource;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.views.utility.i18n.I18NService;

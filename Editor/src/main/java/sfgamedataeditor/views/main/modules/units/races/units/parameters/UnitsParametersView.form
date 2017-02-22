@@ -5,9 +5,9 @@
       <xy x="216" y="30" width="1290" height="872"/>
     </constraints>
     <properties>
-      <maximumSize width="900" height="600"/>
-      <minimumSize width="900" height="600"/>
-      <preferredSize width="900" height="600"/>
+      <maximumSize width="900" height="700"/>
+      <minimumSize width="900" height="700"/>
+      <preferredSize width="900" height="700"/>
     </properties>
     <border type="none"/>
     <children>
@@ -19,9 +19,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="900" height="600"/>
-          <minimumSize width="900" height="600"/>
-          <preferredSize width="900" height="600"/>
+          <maximumSize width="900" height="700"/>
+          <minimumSize width="900" height="700"/>
+          <preferredSize width="900" height="700"/>
         </properties>
         <border type="none"/>
         <children>
@@ -30,9 +30,9 @@
               <tabbedpane title="CommonParameters"/>
             </constraints>
             <properties>
-              <maximumSize width="850" height="560"/>
-              <minimumSize width="850" height="560"/>
-              <preferredSize width="850" height="560"/>
+              <maximumSize width="850" height="660"/>
+              <minimumSize width="850" height="660"/>
+              <preferredSize width="850" height="660"/>
             </properties>
             <border type="none"/>
             <children>
@@ -165,35 +165,35 @@
                       <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties>
-                      <maximumSize width="90" height="60"/>
-                      <minimumSize width="90" height="60"/>
-                      <preferredSize width="90" height="60"/>
+                      <maximumSize width="280" height="90"/>
+                      <minimumSize width="280" height="90"/>
+                      <preferredSize width="280" height="90"/>
                     </properties>
                     <border type="etched"/>
                     <children/>
                   </grid>
                   <grid id="515" binding="requiredBuilding2Panel" layout-manager="GridBagLayout">
                     <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
                       <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties>
-                      <maximumSize width="90" height="60"/>
-                      <minimumSize width="90" height="60"/>
-                      <preferredSize width="90" height="60"/>
+                      <maximumSize width="280" height="90"/>
+                      <minimumSize width="280" height="90"/>
+                      <preferredSize width="280" height="90"/>
                     </properties>
                     <border type="etched"/>
                     <children/>
                   </grid>
                   <grid id="e3eae" binding="requiredBuilding3Panel" layout-manager="GridBagLayout">
                     <constraints>
-                      <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
                       <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties>
-                      <maximumSize width="90" height="60"/>
-                      <minimumSize width="90" height="60"/>
-                      <preferredSize width="90" height="60"/>
+                      <maximumSize width="280" height="90"/>
+                      <minimumSize width="280" height="90"/>
+                      <preferredSize width="280" height="90"/>
                     </properties>
                     <border type="etched"/>
                     <children/>
@@ -228,9 +228,9 @@
               <tabbedpane title="Equipment"/>
             </constraints>
             <properties>
-              <maximumSize width="850" height="560"/>
-              <minimumSize width="850" height="560"/>
-              <preferredSize width="850" height="560"/>
+              <maximumSize width="850" height="660"/>
+              <minimumSize width="850" height="660"/>
+              <preferredSize width="850" height="660"/>
             </properties>
             <border type="none"/>
             <children>
@@ -418,9 +418,9 @@
             <properties>
               <alignmentX value="0.0"/>
               <alignmentY value="1.0"/>
-              <maximumSize width="850" height="560"/>
-              <minimumSize width="850" height="560"/>
-              <preferredSize width="850" height="560"/>
+              <maximumSize width="850" height="660"/>
+              <minimumSize width="850" height="660"/>
+              <preferredSize width="850" height="660"/>
             </properties>
             <border type="none"/>
             <children>

@@ -2,14 +2,14 @@ package sfgamedataeditor.common.viewconfigurations.buildings.parameters;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
+import sfgamedataeditor.common.widgets.buildings.UnitWidget;
+import sfgamedataeditor.common.widgets.buildings.UnitWidgetListener;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
 import sfgamedataeditor.common.widgets.creatures.races.RacesWidget;
 import sfgamedataeditor.common.widgets.creatures.races.RacesWidgetListener;
-import sfgamedataeditor.common.widgets.spells.summonedcreature.CreatureWidget;
-import sfgamedataeditor.common.widgets.spells.summonedcreature.CreatureWidgetListener;
-import sfgamedataeditor.common.widgets.units.ResourceWidget;
-import sfgamedataeditor.common.widgets.units.ResourceWidgetListener;
+import sfgamedataeditor.common.widgets.units.resource.ResourceWidget;
+import sfgamedataeditor.common.widgets.units.resource.ResourceWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class BuildingsParametersViewConfiguration extends AbstractConfiguration 
         }};
 
         for (Integer armyUnitId : armyUnitIds) {
-            ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(CreatureWidget.class, CreatureWidgetListener.class, I18NTypes.BUILDING_GUI);
+            ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(UnitWidget.class, UnitWidgetListener.class, I18NTypes.BUILDING_GUI);
             addViewMapping(armyUnitId, parameter);
         }
     }
