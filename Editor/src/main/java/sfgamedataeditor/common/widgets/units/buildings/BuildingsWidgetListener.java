@@ -1,6 +1,6 @@
 package sfgamedataeditor.common.widgets.units.buildings;
 
-import sfgamedataeditor.common.cache.ImageIconsCache;
+import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsObject;
 import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsTableService;

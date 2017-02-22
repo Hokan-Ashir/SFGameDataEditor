@@ -1,28 +1,15 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
+import sfgamedataeditor.mvc.objects.AbstractSubModuleParameter;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.mvc.objects.SubModuleParameter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
 
 import java.util.Set;
 
-public class SpellModelParameter implements SubModuleParameter {
-    private final Set<String> listOfSpells;
-    private final String selectedSpell;
+public class SpellModelParameter extends AbstractSubModuleParameter {
 
-    public SpellModelParameter(Set<String> listOfSpells, String selectedSpell) {
-        this.listOfSpells = listOfSpells;
-        this.selectedSpell = selectedSpell;
-    }
-
-    @Override
-    public String getSelectedModuleName() {
-        return selectedSpell;
-    }
-
-    @Override
-    public Set<String> getSubPanelsNames() {
-        return listOfSpells;
+    public SpellModelParameter(Set<String> objectNames, String selectedObjectName) {
+        super(objectNames, selectedObjectName);
     }
 
     @Override

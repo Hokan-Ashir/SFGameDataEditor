@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.merchants;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.common.cache.ImageIconsCache;
+import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;

@@ -1,6 +1,6 @@
 package sfgamedataeditor.common.widgets.buildings;
 
-import sfgamedataeditor.common.cache.ImageIconsCache;
+import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;

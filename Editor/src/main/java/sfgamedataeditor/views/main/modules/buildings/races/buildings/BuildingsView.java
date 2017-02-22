@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.buildings.races.buildings;
 
-import sfgamedataeditor.common.cache.ImageIconsCache;
+import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.utility.ViewTools;

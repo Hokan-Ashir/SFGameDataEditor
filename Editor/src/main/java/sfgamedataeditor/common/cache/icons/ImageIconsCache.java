@@ -1,13 +1,18 @@
-package sfgamedataeditor.common.cache;
+package sfgamedataeditor.common.cache.icons;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.common.cache.icons.aliases.AbstractIconPathAlias;
+import sfgamedataeditor.common.cache.icons.aliases.SpellAliases;
+import sfgamedataeditor.common.cache.icons.aliases.UnitAliases;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public enum ImageIconsCache {
@@ -15,6 +20,12 @@ public enum ImageIconsCache {
 
     private static final Logger LOGGER = Logger.getLogger(ImageIconsCache.class);
     private Map<String, ImageIcon> iconsMap = new HashMap<>();
+    private List<AbstractIconPathAlias> aliasList = new ArrayList<>();
+
+    ImageIconsCache() {
+        aliasList.add(new SpellAliases());
+        aliasList.add(new UnitAliases());
+    }
 
     public ImageIcon getImageIcon(String iconPath) {
         ImageIcon imageIcon = iconsMap.get(iconPath);
@@ -23,7 +34,12 @@ public enum ImageIconsCache {
         } else {
             URL resource = getClass().getResource(iconPath);
             if (resource == null) {
-                return null;
+                String aliasPath = getAliasIconPath(iconPath);
+                if (aliasPath == null) {
+                    return null;
+                }
+
+                resource = getClass().getResource(aliasPath);
             }
 
             try {
@@ -36,5 +52,16 @@ public enum ImageIconsCache {
                 return null;
             }
         }
+    }
+
+    private String getAliasIconPath(String iconPath) {
+        for (AbstractIconPathAlias pathAlias : aliasList) {
+            String alias = pathAlias.getAlias(iconPath);
+            if (alias != null) {
+                return alias;
+            }
+        }
+
+        return null;
     }
 }

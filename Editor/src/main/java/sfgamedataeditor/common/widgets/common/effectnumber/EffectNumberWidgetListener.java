@@ -1,7 +1,7 @@
 package sfgamedataeditor.common.widgets.common.effectnumber;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.common.cache.ImageIconsCache;
+import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.spells.names.SpellNameObject;

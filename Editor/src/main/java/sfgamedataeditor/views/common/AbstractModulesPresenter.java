@@ -4,9 +4,9 @@ import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.mvc.objects.AbstractSubModuleParameter;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.mvc.objects.SubModuleParameter;
 import sfgamedataeditor.views.main.MainView;
 
 import javax.swing.*;
@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Set;
 
-public abstract class AbstractModulesPresenter<M extends SubModuleParameter, V extends AbstractModulesView, C extends Model> extends AbstractPresenter<M, V> {
+public abstract class AbstractModulesPresenter<M extends AbstractSubModuleParameter, V extends AbstractModulesView, C extends Model> extends AbstractPresenter<M, V> {
 
     private final ActionListener subPanelsListener = new PanelsListener();
 
