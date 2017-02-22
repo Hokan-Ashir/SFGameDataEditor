@@ -33,6 +33,8 @@ public abstract class AbstractModulesPresenter<M extends AbstractSubModuleParame
             Set<String> subPanelsNames = model.getParameter().getSubPanelsNames();
             if (subPanelsNames != null) {
                 getView().addMappings(subPanelsNames, model.getParameter().getSubPanelsViewClass());
+            } else {
+                getView().fillSubViewsMappings();
             }
         }
 

@@ -9,7 +9,7 @@ import java.util.*;
 public enum UnitMapping {
     INSTANCE;
 
-    private final Set<String> humanUnitsNames = new HashSet<String>() {{
+    private final Set<String> humanUnitsNames = new TreeSet<String>() {{
         add(getI18NUnitName("537")); // "Armsman"
         add(getI18NUnitName("538")); // "Cleric"
         add(getI18NUnitName("1227")); // "Cleric (Upgrade)"
@@ -25,7 +25,7 @@ public enum UnitMapping {
         add(getI18NUnitName("544")); // "Scout"
     }};
 
-    private final Set<String> elvesUnitsNames = new HashSet<String>() {{
+    private final Set<String> elvesUnitsNames = new TreeSet<String>() {{
         add(getI18NUnitName("545")); // "Windarcher"
         add(getI18NUnitName("1229")); // "Windarcher (Upgrade)"
         add(getI18NUnitName("546")); // "Druid"
@@ -43,7 +43,7 @@ public enum UnitMapping {
         add(getI18NUnitName("1232")); // "Warder (Upgrade)"
     }};
 
-    private final Set<String> orcsUnitsNames = new HashSet<String>() {{
+    private final Set<String> orcsUnitsNames = new TreeSet<String>() {{
         add(getI18NUnitName("553")); // "Drummer"
         add(getI18NUnitName("1249")); // "Drummer (Upgrade)"
         add(getI18NUnitName("554")); // "Fighter"
@@ -60,7 +60,7 @@ public enum UnitMapping {
         add(getI18NUnitName("1250")); // "Hornblower (Upgrade)"
     }};
 
-    private final Set<String> darkElvesUnitsNames = new HashSet<String>() {{
+    private final Set<String> darkElvesUnitsNames = new TreeSet<String>() {{
         add(getI18NUnitName("561")); // "Assassin"
         add(getI18NUnitName("1294")); // "Assassin (Upgrade)"
         add(getI18NUnitName("562")); // "Battlemaster"
@@ -77,7 +77,7 @@ public enum UnitMapping {
         add(getI18NUnitName("1298")); // "Warlock (Upgrade)"
     }};
 
-    private final Set<String> dwarvesUnitsNames = new HashSet<String>() {{
+    private final Set<String> dwarvesUnitsNames = new TreeSet<String>() {{
         add(getI18NUnitName("569")); // "Battlepriest"
         add(getI18NUnitName("1234")); // "Battlepriest (Upgrade)"
         add(getI18NUnitName("570")); // "Defender"
@@ -93,7 +93,7 @@ public enum UnitMapping {
         add(getI18NUnitName("576")); // "Watchman"
     }};
 
-    private final Set<String> trollsUnitsNames = new HashSet<String>() {{
+    private final Set<String> trollsUnitsNames = new TreeSet<String>() {{
         add(getI18NUnitName("577")); // "Bouncer"
         add(getI18NUnitName("1287")); // "Bouncer (Upgrade)"
         add(getI18NUnitName("578")); // "Champion"
@@ -115,7 +115,7 @@ public enum UnitMapping {
         return I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, unitId);
     }
 
-    private final Map<String, Set<String>> unitRacesToUnitNamesMap = new HashMap<String, Set<String>>() {{
+    private final Map<String, Set<String>> unitRacesToUnitNamesMap = new TreeMap<String, Set<String>>() {{
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.humans"), humanUnitsNames);
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.elves"), elvesUnitsNames);
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dwarves"), dwarvesUnitsNames);

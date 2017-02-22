@@ -15,9 +15,9 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public enum CreatureParametersTableService implements TableCreationService {
     INSTANCE {
@@ -46,7 +46,7 @@ public enum CreatureParametersTableService implements TableCreationService {
             dao = DaoManager.createDao(connectionSource, CreatureParameterObject.class);
             List<CreatureParameterObject> raceIds = dao.queryBuilder().selectColumns("raceId").query();
 
-            Set<String> creatureRaces = new HashSet<>();
+            Set<String> creatureRaces = new TreeSet<>();
             for (CreatureParameterObject raceId : raceIds) {
                 creatureRaces.add(I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId.raceId)));
             }

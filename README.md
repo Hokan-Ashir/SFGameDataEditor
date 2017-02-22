@@ -5,7 +5,7 @@ SpellForce game GameData.cff file editor, for modification and fixes creation
 Java GUI editor of original SpellForce game (see http://spellforce.com/) Gamedata.cff files. 
 
 Allowing you to change almost any existing in-game ability parameter like mana usage, range, skill requirement,
-ability effect, creature and unit parameters, some items parameters.
+ability effect, creature and unit parameters, some items parameters, buildings parameters.
 
 IMPORTANT: 
 
@@ -16,15 +16,14 @@ See "What it can't do" section below to be aware of restrictions.
  - Editing spell parameters, i.e. how far you can cast your "Fireball" or how many hops can make "Chain Pain"
  - Editing creature common parameters, spells, equipment, loot drop, i.e. how many strength has "Blade Nightmare", how to make Lena/Urias mortal, how to make Eloni Watcher bite you with poisonous claw
  - Editing unit common parameters, i.e. how change what blades hold dark elves assassin and how to make orc drummers mass heal instead of war crying  
- - Editing ARMOR, WEAPONS and MISCELLANEOUS common parameters, i.e. how many strength "Amra's armor" gives you and for how much you can sell/buyout it or how far "Heartseeker" can shoot
+ - Editing ARMOR, WEAPONS and MISCELLANEOUS parameters, i.e. how many strength "Amra's armor" gives you and for how much you can sell/buyout it or how far "Heartseeker" can shoot
+ - Editing buildings parameters, i.e. how many resources need to build human's Quarry or what buildings are needed to produce dwarves' Defender
  - Creating compact sf-mod files, which stores your modifications
  - Loading sf-mod files created by other users
  - Merging sf-mod files with your GameData.cff files to get modificated data, which you can test in game
 
 # What it can't do
  - Add new elements. It's tricky to explain easy, but game will crush if we will add anything into Gamedata.cff file
- - Currently only support for changing skill-to-characteristics requirements, spells parameters, creatures parameters, unit common parameters 
-    spells, equipment, loot drop, armor (armor sets), weapons and miscellaneous items common parameters
  - Currently NO localization for creature names, creature races and items cause they are too many (in progress) 
  - No other languages except English, Russian, German and French
 
@@ -46,26 +45,26 @@ See "What it can't do" section below to be aware of restrictions.
  This is made to exclude file format errors. 
  So if you will try to load sf-mod file, which was created not based on original file, you selected, you will have corresponding message.
  
- # What YOU can do
+# What YOU can do
   - Create modified GameData.cff files for your own need, or distribute them with people, who can't access editor for some reasons
   - Create sf-mod-files in terms of "mods" to original game, which people can use with ease, cause sf-mod-files have much lesser size
   - Create collections of sf-mod-files with this action chain: 
-   - Load original file, i.e. GameData.cff
-   - Load sf-mod-file_1 - on this stage you will have GameData.cff.mod with sf-mod-file_1 applied to it
-   - Exit
-   - Rename GameData.cff.mod to GameData.cff.mod1 i.e., for exclude name clashing
-   - Load GameData.cff.mod1
-   - Load sf-mod-file_2 - on this stage you will have GameData.cff.mod with sf-mod-file_1 AND sf-mod-file_2 applied to it
-   - ...
+    - Load original file, i.e. GameData.cff
+    - Load sf-mod-file_1 - on this stage you will have GameData.cff.mod with sf-mod-file_1 applied to it
+    - Exit
+    - Rename GameData.cff.mod to GameData.cff.mod1 i.e., for exclude name clashing
+    - Load GameData.cff.mod1
+    - Load sf-mod-file_2 - on this stage you will have GameData.cff.mod with sf-mod-file_1 AND sf-mod-file_2 applied to it
+    - ...
  
- # How YOU can help
+# How YOU can help
   - Report new issues about bugs, typos, code advises etc. via https://github.com/Hokan-Ashir/SFGameDataEditor/issues/new
   - Report of spell parameters which you aware of, those which marked as "???"
   - Correct i18n files
   - Download source code, change, refactor it, write me to commit changes
   - Fork this hub and make own version of editor
  
- # What inside
+# What inside
   - Java 7 - for diamonds and multiple catch exceptions (Java 8 is not supported by IDEA GUI Designer)
   - Maven - as build tool
   - Swing - for GUI, obviously
@@ -80,14 +79,14 @@ See "What it can't do" section below to be aware of restrictions.
   OriginalFile = file, you've chosen as original in file selection dialogue
   
   ModificationFile = file which storing all your current changes
- - SfMod-file creation procedure
-  - TmpFile = XDeltaEncoder(OriginalFile, ModificationFile, DIFF)
-  - HASH = SHA-512(OriginalFile)
-  - SfMod-file = winzipaes(TmpFile, HASH)
- - SfMod-file loading procedure
-  - HASH = SHA-512(OriginalFile)
-  - TmpFile = winzipaes(SfMod-file, HASH)
-  - ModificationFile = XDeltaEncoder(OriginalFile, TmpFile, MERGE)
+  - SfMod-file creation procedure
+    - TmpFile = XDeltaEncoder(OriginalFile, ModificationFile, DIFF)
+    - HASH = SHA-512(OriginalFile)
+    - SfMod-file = winzipaes(TmpFile, HASH)
+  - SfMod-file loading procedure
+    - HASH = SHA-512(OriginalFile)
+    - TmpFile = winzipaes(SfMod-file, HASH)
+    - ModificationFile = XDeltaEncoder(OriginalFile, TmpFile, MERGE)
 
 # TODO
  - Add more flexible ability to merge multiple sf-mod files
@@ -98,7 +97,7 @@ See "What it can't do" section below to be aware of restrictions.
 # Special thanks
  - This application won't be possible without information grabbed from this forum - http://spellforcefanforum.hostoi.com/index.php
  - Thanks to rupuzioks and VolterPL for parsing GameData.cff format and gathering info from official english and german sites
- - You can also support VolterPL with his own .NET editor, which you can grab here http://spellforcefanforum.hostoi.com/viewtopic.php?f=14&t=242&sid=13dc65505d9b57498789cd9574831658, hope author won't be against
+ - You can also support VolterPL with his own .NET editor, which you can grab here - http://spellforcefanforum.hostoi.com/viewtopic.php?f=14&t=242&sid=13dc65505d9b57498789cd9574831658, hope author won't be against
 
 # Contacts
  - Report new issue here via https://github.com/Hokan-Ashir/SFGameDataEditor/issues/new

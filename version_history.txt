@@ -1,3 +1,15 @@
+alpha-4 (22.02.2017):
+ - Separated weapons by item types (1H weapon > 1H mace, 1H dagger, 1H sword etc.)
+ - Extended merchant, spells, buildings images
+ - Updated spell parameters for Eternity, AbilitySalvo, DominateUndead, all Aura-like spells, FireburstTower, HealingTower, HypnotizeTower (thanks "leszekd25" for this data)
+ - Added auras target, requirement building widgets
+ - Completely rewritten spell scroll view to look more like spell parameters view; also fixed it - only "spell scroll" objects are now displayed, not confuse with "spell"-objects
+ - Added buildings parameters (HP, race, resources requirements, producing units)
+ - Added icons cache and icon aliases - as result reduced memory consumption
+ - Separated language information (localization) in separate code module and database, more CPU consumption, but _possibly_ lesser memory consumption and smoother rendering
+ - Added alphabetical sorting in races, unit races, creature names, unit names widgets
+ - Fixed incorrect subviews rendering when subview has no more children views, i.e. all Treewraith's buildings races changed to Trolls
+
 alpha-3 (10.02.2017):
  - Changed editing buyout/sell price of all items from "copper amount" to "gold/silver/copper amount"
  - Added ability to change item's belongings to item sets
