@@ -121,20 +121,6 @@
                             </target>
                         </configuration>
                     </execution>
-
-                    <execution>
-                        <id>copy-compiled-database</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <copy file="${project.basedir}/../I18N-base-maven-plugin/target/I18N-base.mv.db"
-                                      tofile="${project.basedir}/src/main/resources/I18N-base.mv.db"/>
-                            </target>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
 
@@ -158,12 +144,6 @@
             <groupId>net.sf.trove4j</groupId>
             <artifactId>trove4j</artifactId>
             <version>2.0.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>ru.hokan</groupId>
-            <artifactId>I18N-base</artifactId>
-            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

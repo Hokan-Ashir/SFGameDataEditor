@@ -8,6 +8,7 @@ import sfgamedataeditor.common.viewconfigurations.item.scrolls.ScrollsParameters
 import sfgamedataeditor.common.viewconfigurations.item.weapon.WeaponParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.skill.parameters.SkillParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.SpellParametersConfigurationHolder;
+import sfgamedataeditor.common.viewconfigurations.spellbook.SpellBookParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.unit.parameters.UnitParametersConfigurationHolder;
 import sfgamedataeditor.mvc.objects.View;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersView;
@@ -17,6 +18,7 @@ import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.Miscel
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
+import sfgamedataeditor.views.main.modules.spellbook.parameters.SpellBookParametersView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersView;
 
@@ -38,6 +40,7 @@ public enum  ConfigurationsHolder {
         configurationHolderMap.put(SpellScrollsParametersView.class, new ScrollsParametersConfigurationHolder());
         configurationHolderMap.put(UnitsParametersView.class, new UnitParametersConfigurationHolder());
         configurationHolderMap.put(BuildingsParametersView.class, new BuildingsParametersConfigurationHolder());
+        configurationHolderMap.put(SpellBookParametersView.class, new SpellBookParametersConfigurationHolder());
     }
 
     public AbstractConfigurationHolder getConfigurationHolder(Class<? extends View> viewClass) {
