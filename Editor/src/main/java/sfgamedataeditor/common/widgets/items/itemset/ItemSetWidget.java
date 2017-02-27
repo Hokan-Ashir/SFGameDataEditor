@@ -1,6 +1,5 @@
 package sfgamedataeditor.common.widgets.items.itemset;
 
-import i18nbase.objects.I18NObject;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -8,6 +7,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class ItemSetWidget extends AbstractWidget<ItemSetWidgetListener> {
 
@@ -19,10 +19,10 @@ public class ItemSetWidget extends AbstractWidget<ItemSetWidgetListener> {
     private JTextArea itemSetDescriptionArea;
 
     public ItemSetWidget() {
-        List<? extends I18NObject> i18NObjects = I18NService.INSTANCE.getI18NObjects(I18NTypes.ITEM_SETS);
-        for (I18NObject i18NObject : i18NObjects) {
-            if (!i18NObject.key.contains(DESCRIPTION_POSTFIX)) {
-                itemSetNameComboBox.addItem(i18NObject.value);
+        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.ITEM_SETS);
+        for (String key : bundle.keySet()) {
+            if (!key.contains(DESCRIPTION_POSTFIX)) {
+                itemSetNameComboBox.addItem(bundle.getString(key));
             }
         }
 

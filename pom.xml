@@ -8,9 +8,6 @@
     <artifactId>SFGameDataEditor</artifactId>
     <version>alpha-4</version>
     <modules>
-        <!--order of modules is important, cause before Editor will be build, fist, i18n-database should be build-->
-        <module>I18N-base</module>
-        <module>I18N-base-maven-plugin</module>
         <module>Editor</module>
     </modules>
     <packaging>pom</packaging>

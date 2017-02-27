@@ -3,7 +3,6 @@ package sfgamedataeditor.database.spells.names;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
-import i18nbase.objects.I18NObject;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -14,6 +13,8 @@ import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
 public enum SpellNameTableService {
@@ -42,9 +43,10 @@ public enum SpellNameTableService {
 
         final List<SpellNameObject> spellNameObjects = new ArrayList<>();
 
-        List<? extends I18NObject> i18NObjects = I18NService.INSTANCE.getI18NObjects(I18NTypes.SPELLS_NAME_MAPPING);
-        for (I18NObject i18NObject : i18NObjects) {
-            SpellNameObject spellNameObject = createSpellNameObject(Integer.valueOf(i18NObject.key), i18NObject.value);
+        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.SPELLS_NAME_MAPPING);
+        for (String key : bundle.keySet()) {
+            String value = bundle.getString(key);
+            SpellNameObject spellNameObject = createSpellNameObject(Integer.valueOf(key), value);
             spellNameObjects.add(spellNameObject);
         }
 
@@ -77,9 +79,11 @@ public enum SpellNameTableService {
             String fieldName = FIELD_ATTRIBUTE + i;
             try {
                 Field declaredField = spell.getClass().getDeclaredField(fieldName);
-                String parameter = I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, spellName + "." + fieldName);
-                if (parameter != null) {
-                    parameter = ViewTools.convertToMultiline(parameter);
+                String parameter;
+                try {
+                    parameter = ViewTools.convertToMultiline(I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, spellName + "." + fieldName));
+                } catch (MissingResourceException e) {
+                    parameter = null;
                 }
                 declaredField.setAccessible(true);
                 declaredField.set(spell, parameter);

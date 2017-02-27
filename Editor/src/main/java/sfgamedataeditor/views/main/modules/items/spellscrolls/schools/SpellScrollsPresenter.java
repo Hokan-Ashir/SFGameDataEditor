@@ -1,6 +1,5 @@
 package sfgamedataeditor.views.main.modules.items.spellscrolls.schools;
 
-import i18nbase.objects.I18NObject;
 import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersModel;
@@ -10,7 +9,7 @@ import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
-import java.util.List;
+import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -38,11 +37,12 @@ public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParame
 
     private Integer getLowestScrollLevel(String scrollBaseName) {
         Set<Integer> scrollLevels = new TreeSet<>();
-        List<? extends I18NObject> i18NObjects = I18NService.INSTANCE.getI18NObjects(I18NTypes.ITEMS);
+        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.ITEMS);
         String prefix = scrollBaseName + " - ";
-        for (I18NObject i18NObject : i18NObjects) {
-            if (i18NObject.value.startsWith(prefix)) {
-                scrollLevels.add(Integer.valueOf(i18NObject.value.split("\\s")[3]));
+        for (String key : bundle.keySet()) {
+            String value = bundle.getString(key);
+            if (value.startsWith(prefix)) {
+                scrollLevels.add(Integer.valueOf(value.split("\\s")[3]));
             }
         }
 
