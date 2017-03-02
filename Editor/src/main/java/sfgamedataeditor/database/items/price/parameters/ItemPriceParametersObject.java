@@ -17,6 +17,9 @@ public class ItemPriceParametersObject extends OffsetableObject {
     @DatabaseField
     public Integer itemId;
 
+    @DatabaseField
+    public String name;
+
     //    helmet 01 01
     //    upper armor 01 02
     //    lower armor 01 03

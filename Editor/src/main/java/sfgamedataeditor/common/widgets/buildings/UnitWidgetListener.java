@@ -42,7 +42,7 @@ public class UnitWidgetListener extends AbstractWidgetListener<UnitWidget, Offse
     @Override
     protected int[] getFieldValues() {
         String selectedCreatureName = (String) getWidget().getUnitComboBox().getSelectedItem();
-        int creatureId = ViewTools.getKeyByPropertyValue(selectedCreatureName, I18NTypes.CREATURES);
+        Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(selectedCreatureName);
         return new int[]{creatureId};
     }
 
@@ -61,7 +61,7 @@ public class UnitWidgetListener extends AbstractWidgetListener<UnitWidget, Offse
     @Override
     public void actionPerformed(ActionEvent e) {
         String selectedCreatureName = (String) getWidget().getUnitComboBox().getSelectedItem();
-        Integer creatureId = ViewTools.getKeyByPropertyValue(selectedCreatureName, I18NTypes.CREATURES);
+        Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(selectedCreatureName);
         CreaturesCommonParameterObject commonParameterObject = CreatureCommonParametersTableService.INSTANCE.getCreatureParametersByCreatureId(creatureId);
         List<CreatureEquipmentObject> creatureEquipment = CreatureEquipmentTableService.INSTANCE.getCreatureEquipmentByCreatureId(creatureId);
         List<CreatureSpellObject> creatureSpells = CreatureSpellTableService.INSTANCE.getCreatureSpellsByCreatureId(creatureId);

@@ -29,7 +29,7 @@ public class SpellScrollsListView extends AbstractModulesView {
      */
     @Override
     protected void fillSubViewsMappings() {
-        int scrollsType = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_PIECES_NAME_MAPPING, "items.scrolls"));
+        int scrollsType = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.scrolls"));
         Set<String> scrollsNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(scrollsType);
         scrollsNames = getFilteredScrollNames(scrollsNames);
         addMappings(scrollsNames, SpellScrollsParametersView.class);

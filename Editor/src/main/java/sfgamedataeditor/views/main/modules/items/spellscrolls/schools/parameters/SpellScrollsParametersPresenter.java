@@ -13,7 +13,6 @@ import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsTableService;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.main.MainView;
-import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -26,6 +25,7 @@ import java.util.TreeSet;
 
 public class SpellScrollsParametersPresenter extends AbstractPresenter<SpellScrollsParametersModelParameter, SpellScrollsParametersView> {
 
+    private static final Integer SCROLL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.scrolls"));
     private static final Logger LOGGER = Logger.getLogger(SpellScrollsParametersPresenter.class);
 
     public SpellScrollsParametersPresenter(SpellScrollsParametersView view) {
@@ -40,7 +40,7 @@ public class SpellScrollsParametersPresenter extends AbstractPresenter<SpellScro
         String scrollBaseName = parameter.getScrollBaseName();
         Set<Integer> scrollLevels = getScrollLevels(scrollBaseName);
         String scrollName = scrollBaseName + " - " + I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "level") + " " + selectedLevel;
-        Integer itemId = ViewTools.getKeyByPropertyValue(scrollName, I18NTypes.ITEMS);
+        int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(scrollName, SCROLL_TYPE_ID);
         ItemPriceParametersObject priceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
         List<ItemSpellEffectsObject> itemSpellEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(itemId);
         Icon icon = parameter.getIcon();

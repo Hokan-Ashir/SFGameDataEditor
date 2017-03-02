@@ -4,6 +4,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.GenericRawResults;
 import com.j256.ormlite.dao.RawRowMapper;
+import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
@@ -86,6 +87,30 @@ public enum CreatureCommonParametersTableService implements TableCreationService
                 return null;
             } else {
                 return objects.get(0);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
+    public Integer getCreatureIdByName(String name) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        final Dao<CreaturesCommonParameterObject, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, CreaturesCommonParameterObject.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+
+        try {
+            SelectArg selectArg = new SelectArg(name);
+            List<CreaturesCommonParameterObject> objects = dao.queryBuilder().where().like("name", selectArg).query();
+            if (objects.isEmpty()) {
+                return null;
+            } else {
+                return objects.get(0).creatureId;
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

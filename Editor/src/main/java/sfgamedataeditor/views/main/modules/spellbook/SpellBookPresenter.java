@@ -1,10 +1,10 @@
 package sfgamedataeditor.views.main.modules.spellbook;
 
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.SpellBookModelCreator;
 import sfgamedataeditor.views.main.modules.spellbook.parameters.SpellBookParametersModel;
-import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -14,6 +14,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class SpellBookPresenter extends AbstractModulesPresenter<ModuleParameter, SpellBookListView, SpellBookParametersModel> {
+
+    private static final Integer SPELL_OBJECT_TYPE = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
 
     private final SpellBookModelCreator modelCreator = new SpellBookModelCreator();
 
@@ -30,7 +32,7 @@ public class SpellBookPresenter extends AbstractModulesPresenter<ModuleParameter
                 + I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "level")
                 + " "
                 + lowestScrollLevel;
-        itemId = ViewTools.getKeyByPropertyValue(selectedSpellScroll, I18NTypes.ITEMS);
+        itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedSpellScroll, SPELL_OBJECT_TYPE);
         Icon icon = getView().getSelectedModuleIcon();
         return modelCreator.createModel(itemId, icon);
     }

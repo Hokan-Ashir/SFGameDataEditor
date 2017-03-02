@@ -11,14 +11,23 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 public class ArmorTypesFromArmorPiecesModelCreator implements ModelCreator<ModulesModel, ArmorPiecesModel> {
 
+    private static final Integer[] ARMOR_TYPES_IDS = new Integer[] {
+            Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.armor.helmets")),
+            Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.armor.chest.armor")),
+            Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.armor.robes")),
+            Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.armor.legs.armor")),
+            Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.armor.shield")),
+            Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.armor.rings"))
+    };
+
     @Override
     public ModulesModel createModel(ArmorPiecesModel childModel) {
         // TODO maybe it is important to get not first one object
         String selectedArmorPieceName = childModel.getParameter().getSubPanelsNames().iterator().next();
-        int itemId = ViewTools.getKeyByPropertyValue(selectedArmorPieceName, I18NTypes.ITEMS);
+        int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedArmorPieceName, ARMOR_TYPES_IDS);
 
         String typeId = String.valueOf(ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId));
-        String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(typeId, I18NTypes.ITEM_PIECES_NAME_MAPPING);
+        String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(typeId, I18NTypes.ITEM_TYPES_NAME_MAPPING);
         String armorPieceTypeName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, itemPieceNameKey);
         ModuleParameter parameter = new ModuleParameter(armorPieceTypeName);
         return new ModulesModel(parameter);

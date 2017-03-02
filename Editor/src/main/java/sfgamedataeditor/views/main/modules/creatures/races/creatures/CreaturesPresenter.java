@@ -13,8 +13,6 @@ import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
 import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModel;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModelParameter;
-import sfgamedataeditor.views.utility.ViewTools;
-import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class CreaturesPresenter extends AbstractModulesPresenter<CreaturesModelP
     protected CreaturesParametersModel createModel() {
         String selectedCreatureName = getView().getSelectedModuleValue();
         CreatureParameterObject creatureParameterObject = CreatureParametersTableService.INSTANCE.getCreatureParameterObjectByCreatureName(selectedCreatureName);
-        Integer creatureId = ViewTools.getKeyByPropertyValue(selectedCreatureName, I18NTypes.CREATURES);
+        Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(selectedCreatureName);
         CreaturesCommonParameterObject commonParameterObject = CreatureCommonParametersTableService.INSTANCE.getCreatureParametersByCreatureId(creatureId);
         List<CreatureEquipmentObject> creatureEquipment = CreatureEquipmentTableService.INSTANCE.getCreatureEquipmentByCreatureId(creatureId);
         List<CreatureSpellObject> creatureSpells = CreatureSpellTableService.INSTANCE.getCreatureSpellsByCreatureId(creatureId);

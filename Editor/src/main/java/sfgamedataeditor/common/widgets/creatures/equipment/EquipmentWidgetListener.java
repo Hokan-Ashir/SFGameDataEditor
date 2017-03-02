@@ -94,13 +94,13 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     }
 
     private Integer getItemTypeByNameMapping(String nameMapping) {
-        return Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_PIECES_NAME_MAPPING, nameMapping));
+        return Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, nameMapping));
     }
 
     @Override
     protected int[] getFieldValues() {
         String selectedItemName = (String) getWidget().getItemPieceComboBox().getSelectedItem();
-        Integer selectedItemId = ViewTools.getKeyByPropertyValue(selectedItemName, I18NTypes.ITEMS);
+        Integer selectedItemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemName(selectedItemName);
         return new int[]{selectedItemId};
     }
 
@@ -113,7 +113,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
 
         String itemName = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
         int itemPieceId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
-        String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(itemPieceId), I18NTypes.ITEM_PIECES_NAME_MAPPING);
+        String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(itemPieceId), I18NTypes.ITEM_TYPES_NAME_MAPPING);
         String itemTypeName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, itemPieceNameKey);
         getWidget().getItemTypeComboBox().setSelectedItem(itemTypeName);
         updateItemNames();
@@ -126,8 +126,10 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
             return;
         }
 
+        String itemTypeName = (String) getWidget().getItemTypeComboBox().getSelectedItem();
+        int itemTypeId = getItemTypeByNameMapping(itemTypeName);
         String selectedItemName = (String) getWidget().getItemPieceComboBox().getSelectedItem();
-        Integer itemId = ViewTools.getKeyByPropertyValue(selectedItemName, I18NTypes.ITEMS);
+        Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedItemName, itemTypeId);
         Class<? extends PresentableView> classViewToShow = getItemParametersViewClassByItemId(itemId);
         Model model = createModel(itemId);
         EventProcessor.INSTANCE.process(new ShowContentViewEvent(classViewToShow, model));
@@ -174,7 +176,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     private void updateItemNames() {
         String itemTypeName = (String) getWidget().getItemTypeComboBox().getSelectedItem();
         String itemTypeI18NKey = ViewTools.getKeyStringByPropertyValue(itemTypeName, I18NTypes.COMMON);
-        String itemPieceType = I18NService.INSTANCE.getMessage(I18NTypes.ITEM_PIECES_NAME_MAPPING, itemTypeI18NKey);
+        String itemPieceType = I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemTypeI18NKey);
         final Set<String> itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));
 
         final JComboBox<String> itemPieceComboBox = getWidget().getItemPieceComboBox();

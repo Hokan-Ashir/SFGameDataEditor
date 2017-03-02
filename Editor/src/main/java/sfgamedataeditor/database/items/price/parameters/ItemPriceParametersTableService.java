@@ -2,9 +2,11 @@ package sfgamedataeditor.database.items.price.parameters;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.DTODecorator;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
@@ -26,7 +28,7 @@ public enum ItemPriceParametersTableService implements TableCreationService {
 
         @Override
         public void addRecordsToTable(List<Pair<byte[], Long>> offsettedData) {
-            CommonTableService.INSTANCE.addRecordsToTable(ItemPriceParametersObject.class, offsettedData);
+            CommonTableService.INSTANCE.addRecordsToTable(ItemPriceParametersObject.class, offsettedData, new ItemsObjectDecorator());
         }
 
         @Override
@@ -91,6 +93,56 @@ public enum ItemPriceParametersTableService implements TableCreationService {
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return null;
+        }
+    }
+
+    public Integer getItemIdByItemName(String name) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        final Dao<ItemPriceParametersObject, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, ItemPriceParametersObject.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+
+        try {
+            SelectArg selectArg = new SelectArg(name);
+            List<ItemPriceParametersObject> objects = dao.queryBuilder().where().like("name", selectArg).query();
+            return objects.get(0).itemId;
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
+    public Integer getItemIdByItemNameAndType(String name, Integer... typeId) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        final Dao<ItemPriceParametersObject, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, ItemPriceParametersObject.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+
+        try {
+            SelectArg selectArg = new SelectArg(name);
+            List<ItemPriceParametersObject> objects = dao.queryBuilder().where().like("name", selectArg).and().in("typeId", typeId).query();
+            return objects.get(0).itemId;
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
+    private static final class ItemsObjectDecorator implements DTODecorator<ItemPriceParametersObject> {
+
+        @Override
+        public ItemPriceParametersObject decorateObject(ItemPriceParametersObject object) {
+            Integer itemId = object.itemId;
+            object.name = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
+            return object;
         }
     }
 }

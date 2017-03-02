@@ -37,7 +37,7 @@ public enum I18NService {
         bundleMap.put(I18NTypes.SKILLS_GUI, ResourceBundle.getBundle(SKILLS_GUI_PROPERTIES_FILE_NAME, locale));
         bundleMap.put(I18NTypes.ITEMS, ResourceBundle.getBundle(ITEMS_PROPERTIES_FILE_NAME, locale));
         bundleMap.put(I18NTypes.SPELLS_NAME_MAPPING, ResourceBundle.getBundle(SPELL_NAME_MAPPING_FILE_NAME, locale));
-        bundleMap.put(I18NTypes.ITEM_PIECES_NAME_MAPPING, ResourceBundle.getBundle(ITEM_PIECES_MAPPING_FILE_NAME, locale));
+        bundleMap.put(I18NTypes.ITEM_TYPES_NAME_MAPPING, ResourceBundle.getBundle(ITEM_PIECES_MAPPING_FILE_NAME, locale));
         bundleMap.put(I18NTypes.SKILL_SUB_SCHOOL_MAPPING, ResourceBundle.getBundle(SKILL_SUB_SCHOOL_MAPPING_FILE_NAME, locale));
         bundleMap.put(I18NTypes.SKILL_SCHOOL_MAPPING, ResourceBundle.getBundle(SKILL_SCHOOL_MAPPING_FILE_NAME, locale));
         bundleMap.put(I18NTypes.ARMOR_GUI, ResourceBundle.getBundle(ARMOR_GUI_PROPERTIES_FILE_NAME, locale));
