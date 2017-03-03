@@ -11,8 +11,8 @@ import javax.swing.*;
 public class MiscellaneousModelCreator implements ModelCreator<MiscellaneousParametersModel> {
 
     @Override
-    public MiscellaneousParametersModel createModel(int itemId, Icon icon) {
-        ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
+    public MiscellaneousParametersModel createModel(int objectId, Icon icon) {
+        ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(objectId);
         MiscellaneousParametersModelParameter parameter = new MiscellaneousParametersModelParameter(itemPriceObject);
         return new MiscellaneousParametersModel(parameter);
     }

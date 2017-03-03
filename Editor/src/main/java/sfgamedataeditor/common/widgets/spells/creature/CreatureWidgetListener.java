@@ -3,19 +3,11 @@ package sfgamedataeditor.common.widgets.spells.creature;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
-import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
-import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootObject;
-import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootTableService;
-import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
-import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentTableService;
-import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
-import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
-import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
+import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesModelCreator;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModel;
-import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModelParameter;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -28,10 +20,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.Set;
 
 public class CreatureWidgetListener extends AbstractWidgetListener<CreatureWidget, OffsetableObject> implements ItemListener, ActionListener {
+
+    private CreaturesModelCreator modelCreator = new CreaturesModelCreator();
 
     public CreatureWidgetListener(CreatureWidget component, Field... mappedFields) {
         super(component, mappedFields);
@@ -93,15 +86,8 @@ public class CreatureWidgetListener extends AbstractWidgetListener<CreatureWidge
     @Override
     public void actionPerformed(ActionEvent e) {
         String selectedCreatureName = (String) getWidget().getCreatureNameComboBox().getSelectedItem();
-        CreatureParameterObject creatureParameterObject = CreatureParametersTableService.INSTANCE.getCreatureParameterObjectByCreatureName(selectedCreatureName);
         Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(selectedCreatureName);
-        CreaturesCommonParameterObject commonParameterObject = CreatureCommonParametersTableService.INSTANCE.getCreatureParametersByCreatureId(creatureId);
-        List<CreatureEquipmentObject> creatureEquipment = CreatureEquipmentTableService.INSTANCE.getCreatureEquipmentByCreatureId(creatureId);
-        List<CreatureSpellObject> creatureSpells = CreatureSpellTableService.INSTANCE.getCreatureSpellsByCreatureId(creatureId);
-        List<CreatureCorpseLootObject> corpseLootObjects = CreatureCorpseLootTableService.INSTANCE.getCreatureCorpseLootByCreatureId(creatureId);
-        CreaturesParametersModelParameter parameter = new CreaturesParametersModelParameter(creatureParameterObject, commonParameterObject,
-                creatureEquipment, creatureSpells, corpseLootObjects);
-        CreaturesParametersModel model = new CreaturesParametersModel(parameter);
+        CreaturesParametersModel model = modelCreator.createModel(creatureId, null);
         ShowContentViewEvent event = new ShowContentViewEvent(CreaturesParametersView.class, model);
         EventProcessor.INSTANCE.process(event);
     }

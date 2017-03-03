@@ -16,10 +16,10 @@ import java.util.List;
 public class ArmorModelCreator implements ModelCreator<ArmorParametersModel> {
 
     @Override
-    public ArmorParametersModel createModel(int itemId, Icon icon) {
-        ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        ArmorParametersObject armorParametersObject = ArmorParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        List<ItemRequirementsObject> requirementsObjects = ItemRequirementsTableService.INSTANCE.getObjectsByItemId(itemId);
+    public ArmorParametersModel createModel(int objectId, Icon icon) {
+        ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(objectId);
+        ArmorParametersObject armorParametersObject = ArmorParametersTableService.INSTANCE.getObjectByItemId(objectId);
+        List<ItemRequirementsObject> requirementsObjects = ItemRequirementsTableService.INSTANCE.getObjectsByItemId(objectId);
         ArmorParametersModelParameter parameter = new ArmorParametersModelParameter(itemPriceObject, armorParametersObject, requirementsObjects);
         return new ArmorParametersModel(parameter);
     }

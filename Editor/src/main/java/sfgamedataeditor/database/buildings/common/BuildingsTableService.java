@@ -100,11 +100,6 @@ public enum BuildingsTableService implements TableCreationService {
     }
 
     public Integer getRaceIdByBuildingName(String buildingName) {
-        BuildingsObject object = getBuildingObjectByBuildingName(buildingName);
-        return object.raceId;
-    }
-
-    public BuildingsObject getBuildingObjectByBuildingName(String buildingName) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<BuildingsObject, Integer> dao;
         try {
@@ -116,6 +111,24 @@ public enum BuildingsTableService implements TableCreationService {
 
         try {
             int buildingId = ViewTools.getKeyByPropertyValue(buildingName, I18NTypes.BUILDING_NAMES_MAPPING);
+            return dao.queryBuilder().where().eq("buildingId", buildingId).query().get(0).raceId;
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
+    public BuildingsObject getBuildingObjectByBuildingId(Integer buildingId) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        final Dao<BuildingsObject, Integer> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, BuildingsObject.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+
+        try {
             return dao.queryBuilder().where().eq("buildingId", buildingId).query().get(0);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

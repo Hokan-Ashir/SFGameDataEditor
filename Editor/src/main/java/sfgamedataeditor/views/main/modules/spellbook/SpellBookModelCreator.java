@@ -10,8 +10,8 @@ import javax.swing.*;
 
 public class SpellBookModelCreator implements ModelCreator<SpellBookParametersModel> {
     @Override
-    public SpellBookParametersModel createModel(int itemId, Icon icon) {
-        String fullScrollName = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
+    public SpellBookParametersModel createModel(int objectId, Icon icon) {
+        String fullScrollName = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(objectId));
         String baseScrollName = fullScrollName.split("\\s")[0];
         Integer scrollLevel = Integer.valueOf(fullScrollName.split("\\s")[3]);
         SpellBookParametersModelParameter parameter = new SpellBookParametersModelParameter(baseScrollName, scrollLevel, icon);

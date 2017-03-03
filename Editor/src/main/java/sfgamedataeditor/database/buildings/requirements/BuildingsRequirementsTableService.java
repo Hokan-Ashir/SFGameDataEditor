@@ -8,8 +8,6 @@ import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
-import sfgamedataeditor.views.utility.ViewTools;
-import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
 import java.util.Collections;
@@ -35,7 +33,7 @@ public enum BuildingsRequirementsTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(BuildingsRequirementsTableService.class);
 
-    public List<BuildingsRequirementsObject> getBuildingRequirementsObjectsByBuildingName(String buildingName) {
+    public List<BuildingsRequirementsObject> getBuildingRequirementsObjectsByBuildingId(Integer buildingId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<BuildingsRequirementsObject, Integer> dao;
         try {
@@ -46,7 +44,6 @@ public enum BuildingsRequirementsTableService implements TableCreationService {
         }
 
         try {
-            int buildingId = ViewTools.getKeyByPropertyValue(buildingName, I18NTypes.BUILDING_NAMES_MAPPING);
             List<BuildingsRequirementsObject> objectList = dao.queryBuilder().where().eq("buildingId", buildingId).query();
             if (objectList.isEmpty()) {
                 return Collections.emptyList();

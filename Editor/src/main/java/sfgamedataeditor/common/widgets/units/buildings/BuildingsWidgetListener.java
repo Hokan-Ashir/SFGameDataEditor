@@ -2,17 +2,12 @@ package sfgamedataeditor.common.widgets.units.buildings;
 
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
-import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsObject;
-import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsTableService;
-import sfgamedataeditor.database.buildings.common.BuildingsObject;
 import sfgamedataeditor.database.buildings.common.BuildingsTableService;
-import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsObject;
-import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
+import sfgamedataeditor.views.main.modules.buildings.races.buildings.BuildingModelCreator;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersModel;
-import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersModelParameter;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -25,10 +20,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.Set;
 
 public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWidget, OffsetableObject> implements ItemListener, ActionListener {
+
+    private BuildingModelCreator modelCreator = new BuildingModelCreator();
 
     public BuildingsWidgetListener(BuildingsWidget component, Field... mappedFields) {
         super(component, mappedFields);
@@ -57,12 +53,9 @@ public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWid
     @Override
     public void actionPerformed(ActionEvent e) {
         String selectedBuildingName = (String) getWidget().getBuildingComboBox().getSelectedItem();
-        BuildingsObject buildingsObject = BuildingsTableService.INSTANCE.getBuildingObjectByBuildingName(selectedBuildingName);
-        List<BuildingsRequirementsObject> requirementsObjects = BuildingsRequirementsTableService.INSTANCE.getBuildingRequirementsObjectsByBuildingName(selectedBuildingName);
-        List<BuildingsArmyRequirementsObject> buildingArmyObjects = BuildingsArmyRequirementsTableService.INSTANCE.getBuildingArmyObjectByBuildingName(selectedBuildingName);
+        int buildingId = ViewTools.getKeyByPropertyValue(selectedBuildingName, I18NTypes.BUILDING_NAMES_MAPPING);
         Icon icon = getBuildingIcon(selectedBuildingName);
-        BuildingsParametersModelParameter parameter = new BuildingsParametersModelParameter(buildingsObject, requirementsObjects, buildingArmyObjects, icon);
-        BuildingsParametersModel model = new BuildingsParametersModel(parameter);
+        BuildingsParametersModel model = modelCreator.createModel(buildingId, icon);
         ShowContentViewEvent event = new ShowContentViewEvent(BuildingsParametersView.class, model);
         EventProcessor.INSTANCE.process(event);
     }
