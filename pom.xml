@@ -8,6 +8,7 @@
     <artifactId>SFGameDataEditor</artifactId>
     <version>alpha-5-snapshot</version>
     <modules>
+        <module>XDeltaEncoder</module>
         <module>Editor</module>
     </modules>
     <packaging>pom</packaging>
