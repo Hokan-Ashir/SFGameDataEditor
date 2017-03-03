@@ -3,6 +3,7 @@ package sfgamedataeditor.common.viewconfigurations;
 import sfgamedataeditor.common.viewconfigurations.buildings.parameters.BuildingsParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.creature.parameters.CreatureParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.armor.ArmorParametersConfigurationHolder;
+import sfgamedataeditor.common.viewconfigurations.item.buildingplans.BuildingPlansParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.miscellaneous.MiscellaneousParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.scrolls.ScrollsParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.weapon.WeaponParametersConfigurationHolder;
@@ -14,6 +15,7 @@ import sfgamedataeditor.mvc.objects.View;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersView;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
+import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.parameters.BuildingsPlansParametersView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
@@ -41,6 +43,7 @@ public enum  ConfigurationsHolder {
         configurationHolderMap.put(UnitsParametersView.class, new UnitParametersConfigurationHolder());
         configurationHolderMap.put(BuildingsParametersView.class, new BuildingsParametersConfigurationHolder());
         configurationHolderMap.put(SpellBookParametersView.class, new SpellBookParametersConfigurationHolder());
+        configurationHolderMap.put(BuildingsPlansParametersView.class, new BuildingPlansParametersConfigurationHolder());
     }
 
     public AbstractConfigurationHolder getConfigurationHolder(Class<? extends View> viewClass) {

@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Set;
 
-public abstract class AbstractModulesPresenter<M extends AbstractSubModuleParameter, V extends AbstractModulesView, C extends Model> extends AbstractPresenter<M, V> {
+public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParameter, V extends AbstractModulesView, C extends Model> extends AbstractPresenter<P, V> {
 
     private final ActionListener subPanelsListener = new PanelsListener();
 
@@ -28,7 +28,7 @@ public abstract class AbstractModulesPresenter<M extends AbstractSubModuleParame
 
     @Override
     public void updateView() {
-        Model<M> model = getModel();
+        Model<P> model = getModel();
         if (model != null) {
             Set<String> subPanelsNames = model.getParameter().getSubPanelsNames();
             if (subPanelsNames != null) {

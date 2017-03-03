@@ -3,7 +3,6 @@ package sfgamedataeditor.views.main.modules.spellbook;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
-import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.SpellBookModelCreator;
 import sfgamedataeditor.views.main.modules.spellbook.parameters.SpellBookParametersModel;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -26,8 +25,8 @@ public class SpellBookPresenter extends AbstractModulesPresenter<ModuleParameter
     @Override
     protected SpellBookParametersModel createModel() {
         int itemId;
-        Integer lowestScrollLevel = getLowestScrollLevel(getView().getSelectedModuleValue());
-        String selectedSpellScroll = getView().getSelectedModuleValue()
+        Integer lowestScrollLevel = getLowestScrollLevel(getView().getSelectedModuleName());
+        String selectedSpellScroll = getView().getSelectedModuleName()
                 + " - "
                 + I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "level")
                 + " "

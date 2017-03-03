@@ -13,7 +13,7 @@ public class SkillSchoolsPresenter extends AbstractModulesPresenter<ModuleParame
 
     @Override
     protected SkillParameterModel createModel() {
-        String selectedSkillSchool = getView().getSelectedModuleValue();
+        String selectedSkillSchool = getView().getSelectedModuleName();
         int skillSchoolId = Mappings.INSTANCE.SKILL_SCHOOL_MAP.get(selectedSkillSchool);
         SkillParameterModelParameter parameter = new SkillParameterModelParameter(skillSchoolId, 1);
         return new SkillParameterModel(parameter);

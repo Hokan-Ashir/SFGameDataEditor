@@ -17,7 +17,7 @@ public class WeaponsTypesPresenter extends AbstractModulesPresenter<ModuleParame
 
     @Override
     protected WeaponPiecesModel createModel() {
-        String selectedWeaponPieceType = getView().getSelectedModuleValue();
+        String selectedWeaponPieceType = getView().getSelectedModuleName();
         Integer weaponTypeId = WeaponTypesMap.INSTANCE.getWeaponTypeByName(selectedWeaponPieceType);
         Set<String> itemNames = WeaponParametersTableService.INSTANCE.getItemsByItemType(weaponTypeId);
         WeaponPiecesModelParameter parameter = new WeaponPiecesModelParameter(itemNames, null);

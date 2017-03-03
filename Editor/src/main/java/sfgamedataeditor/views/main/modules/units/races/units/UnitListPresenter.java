@@ -25,7 +25,7 @@ public class UnitListPresenter extends AbstractModulesPresenter<UnitListModelPar
 
     @Override
     protected UnitsParametersModel createModel() {
-        String selectedCreatureName = getView().getSelectedModuleValue();
+        String selectedCreatureName = getView().getSelectedModuleName();
         Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(selectedCreatureName);
         CreaturesCommonParameterObject commonParameterObject = CreatureCommonParametersTableService.INSTANCE.getCreatureParametersByCreatureId(creatureId);
         List<CreatureEquipmentObject> creatureEquipment = CreatureEquipmentTableService.INSTANCE.getCreatureEquipmentByCreatureId(creatureId);

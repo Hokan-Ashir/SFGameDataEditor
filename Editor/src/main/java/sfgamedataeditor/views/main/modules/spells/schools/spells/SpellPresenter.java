@@ -18,7 +18,7 @@ public class SpellPresenter extends AbstractModulesPresenter<SpellModelParameter
 
     @Override
     protected SpellParameterModel createModel() {
-        String selectedSpellName = getView().getSelectedModuleValue();
+        String selectedSpellName = getView().getSelectedModuleName();
         Integer spellId = SpellNameTableService.INSTANCE.getSpellId(selectedSpellName);
         Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(spellId);
 

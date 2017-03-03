@@ -20,7 +20,7 @@ public class SpellSchoolsPresenter extends AbstractModulesPresenter<ModuleParame
     @Override
     protected SpellModel createModel() {
         Set<String> listOfSpells = new HashSet<>();
-        List<SpellParametersObject> spellParameterObjects = SpellParametersTableService.INSTANCE.getSpells(getView().getSelectedModuleValue());
+        List<SpellParametersObject> spellParameterObjects = SpellParametersTableService.INSTANCE.getSpells(getView().getSelectedModuleName());
         for (SpellParametersObject spellParametersObject : spellParameterObjects) {
             String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParametersObject.spellNameId);
             if (spellName == null) {

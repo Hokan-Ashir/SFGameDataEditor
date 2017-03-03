@@ -17,7 +17,7 @@ public class MerchantsPresenter extends AbstractModulesPresenter<ModuleParameter
 
     @Override
     protected MerchantInventoryModel createModel() {
-        String selectedMerchantName = getView().getSelectedModuleValue();
+        String selectedMerchantName = getView().getSelectedModuleName();
         List<Integer> itemIds = MerchantInventoryItemsTableService.INSTANCE.getInventoryItemIdsByMerchantName(selectedMerchantName);
         Icon icon = getView().getSelectedModuleIcon();
         MerchantInventoryModelParameter parameter = new MerchantInventoryModelParameter(itemIds, null, icon);

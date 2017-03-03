@@ -3,7 +3,6 @@ package sfgamedataeditor.views.main.modules.items.weapons.pieces.list;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersModel;
-import sfgamedataeditor.views.main.modules.merchants.inventory.items.models.WeaponModelCreator;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -25,7 +24,7 @@ public class WeaponPiecesPresenter extends AbstractModulesPresenter<WeaponPieces
 
     @Override
     protected WeaponParametersModel createModel() {
-        String selectedWeaponPiece = getView().getSelectedModuleValue();
+        String selectedWeaponPiece = getView().getSelectedModuleName();
         int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedWeaponPiece, WEAPON_TYPE_IDS);
         Icon icon = getView().getSelectedModuleIcon();
         return modelCreator.createModel(itemId, icon);

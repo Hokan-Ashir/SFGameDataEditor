@@ -16,7 +16,7 @@ public class BuildingRacesPresenter extends AbstractModulesPresenter<ModuleParam
 
     @Override
     protected BuildingsModel createModel() {
-        String selectedRace = getView().getSelectedModuleValue();
+        String selectedRace = getView().getSelectedModuleName();
         Set<String> buildingNames = BuildingsTableService.INSTANCE.getBuildingsNamesByRaceName(selectedRace);
         BuildingsModelParameter parameter = new BuildingsModelParameter(buildingNames, null);
         return new BuildingsModel(parameter);

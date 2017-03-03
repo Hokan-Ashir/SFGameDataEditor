@@ -113,7 +113,7 @@ public abstract class AbstractModulesView implements PresentableView {
         selectedPanel.setText(selectedModuleValue);
     }
 
-    public String getSelectedModuleValue() {
+    public String getSelectedModuleName() {
         return selectedPanel.getText();
     }
 
@@ -125,7 +125,6 @@ public abstract class AbstractModulesView implements PresentableView {
         return selectedIcon;
     }
 
-    // TODO replace respectively in specific views and cases
     protected Class<? extends ModulePanelManager> getModulesPanelManagerClass() {
         return DefaultModulesPanelManager.class;
     }

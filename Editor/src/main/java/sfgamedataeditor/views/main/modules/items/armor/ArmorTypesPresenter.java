@@ -19,7 +19,7 @@ public class ArmorTypesPresenter extends AbstractModulesPresenter<ModuleParamete
 
     @Override
     protected ArmorPiecesModel createModel() {
-        String selectedArmorPieceType = getView().getSelectedModuleValue();
+        String selectedArmorPieceType = getView().getSelectedModuleName();
         String itemPieceId = ViewTools.getKeyStringByPropertyValue(selectedArmorPieceType, I18NTypes.COMMON);
         String itemPieceType = I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemPieceId);
         Set<String> itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));

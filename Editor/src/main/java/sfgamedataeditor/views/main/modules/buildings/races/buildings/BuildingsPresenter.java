@@ -21,7 +21,7 @@ public class BuildingsPresenter extends AbstractModulesPresenter<BuildingsModelP
 
     @Override
     protected BuildingsParametersModel createModel() {
-        String selectedBuildingName = getView().getSelectedModuleValue();
+        String selectedBuildingName = getView().getSelectedModuleName();
         BuildingsObject buildingsObject = BuildingsTableService.INSTANCE.getBuildingObjectByBuildingName(selectedBuildingName);
         List<BuildingsRequirementsObject> requirementsObjects = BuildingsRequirementsTableService.INSTANCE.getBuildingRequirementsObjectsByBuildingName(selectedBuildingName);
         List<BuildingsArmyRequirementsObject> buildingArmyObjects = BuildingsArmyRequirementsTableService.INSTANCE.getBuildingArmyObjectByBuildingName(selectedBuildingName);

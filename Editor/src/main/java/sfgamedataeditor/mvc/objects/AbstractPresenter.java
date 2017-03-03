@@ -1,18 +1,18 @@
 package sfgamedataeditor.mvc.objects;
 
-public abstract class AbstractPresenter<M, V extends PresentableView> {
-    private Model<M> model;
+public abstract class AbstractPresenter<P, V extends PresentableView> {
+    private Model<P> model;
     private final V view;
 
     protected AbstractPresenter(V view) {
         this.view = view;
     }
 
-    public void setModel(Model<M> model) {
+    public void setModel(Model<P> model) {
         this.model = model;
     }
 
-    public Model<M> getModel() {
+    public Model<P> getModel() {
         return model;
     }
 

@@ -20,7 +20,6 @@ public class MiscellaneousParametersView implements PresentableView {
 
     @GUIElement(GUIElementId = GUIElements.ITEM_SET, DTOColumnNames = "itemSetId", DTOClass = ItemPriceParametersObject.class)
     private JPanel itemSetPanel;
-    private JPanel itemEffectPanel;
 
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {

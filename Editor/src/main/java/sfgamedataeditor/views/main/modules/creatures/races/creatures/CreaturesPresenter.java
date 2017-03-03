@@ -24,7 +24,7 @@ public class CreaturesPresenter extends AbstractModulesPresenter<CreaturesModelP
 
     @Override
     protected CreaturesParametersModel createModel() {
-        String selectedCreatureName = getView().getSelectedModuleValue();
+        String selectedCreatureName = getView().getSelectedModuleName();
         CreatureParameterObject creatureParameterObject = CreatureParametersTableService.INSTANCE.getCreatureParameterObjectByCreatureName(selectedCreatureName);
         Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(selectedCreatureName);
         CreaturesCommonParameterObject commonParameterObject = CreatureCommonParametersTableService.INSTANCE.getCreatureParametersByCreatureId(creatureId);
