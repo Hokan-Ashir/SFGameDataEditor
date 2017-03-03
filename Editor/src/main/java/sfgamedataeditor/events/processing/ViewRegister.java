@@ -23,7 +23,7 @@ public enum ViewRegister {
         return null;
     }
 
-    public <T extends AbstractPresenter, V extends PresentableView> T getPresenter(Class<V> viewClass, Class<T> presenterClass) {
+    public <T extends AbstractPresenter, V extends PresentableView> T getPresenter(Class<V> viewClass) {
         if (views.containsKey(viewClass)) {
             return (T) views.get(viewClass).getPresenter();
         }

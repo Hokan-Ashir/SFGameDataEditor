@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class UnitListPresenter extends AbstractModulesPresenter<UnitListModelParameter, UnitListView, UnitsParametersModel> {
 
-    private UnitModelCreator modelCreator = new UnitModelCreator();
+    private final UnitModelCreator modelCreator = new UnitModelCreator();
 
     public UnitListPresenter(UnitListView view) {
         super(view);

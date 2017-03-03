@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class BuildingPlansFromBuildingPlansListModelCreator implements ModelCreator<ModulesModel, BuildingsPlanListModel> {
 
-    private Map<String, String> buildingRaceTypeToNameMapping = new HashMap<>();
+    private final Map<String, String> buildingRaceTypeToNameMapping = new HashMap<>();
 
     public BuildingPlansFromBuildingPlansListModelCreator() {
         addMapping(buildingRaceTypeToNameMapping, "races.humans", "items.building.plan.in.inventory.humans");

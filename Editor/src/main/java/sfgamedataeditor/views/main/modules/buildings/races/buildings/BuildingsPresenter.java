@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class BuildingsPresenter extends AbstractModulesPresenter<BuildingsModelParameter, BuildingsView, BuildingsParametersModel> {
 
-    private BuildingModelCreator modelCreator = new BuildingModelCreator();
+    private final BuildingModelCreator modelCreator = new BuildingModelCreator();
 
     public BuildingsPresenter(BuildingsView view) {
         super(view);

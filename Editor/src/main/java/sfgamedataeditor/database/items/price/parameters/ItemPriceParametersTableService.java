@@ -128,7 +128,7 @@ public enum ItemPriceParametersTableService implements TableCreationService {
 
         try {
             SelectArg selectArg = new SelectArg(name);
-            List<ItemPriceParametersObject> objects = dao.queryBuilder().where().like("name", selectArg).and().in("typeId", typeId).query();
+            List<ItemPriceParametersObject> objects = dao.queryBuilder().where().like("name", selectArg).and().in("typeId", (Object[]) typeId).query();
             return objects.get(0).itemId;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

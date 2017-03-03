@@ -24,7 +24,7 @@ import java.util.Set;
 
 public class CreatureWidgetListener extends AbstractWidgetListener<CreatureWidget, OffsetableObject> implements ItemListener, ActionListener {
 
-    private CreaturesModelCreator modelCreator = new CreaturesModelCreator();
+    private final CreaturesModelCreator modelCreator = new CreaturesModelCreator();
 
     public CreatureWidgetListener(CreatureWidget component, Field... mappedFields) {
         super(component, mappedFields);

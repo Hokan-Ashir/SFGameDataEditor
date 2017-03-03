@@ -12,6 +12,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class SpellParameterView implements PresentableView {
 
     private static final int SPELL_COMMON_PARAMETERS_TAB_INDEX = 0;

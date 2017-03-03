@@ -25,7 +25,7 @@ import java.util.Set;
 
 public class UnitWidgetListener extends AbstractWidgetListener<UnitWidget, OffsetableObject> implements ItemListener, ActionListener {
 
-    private UnitModelCreator modelCreator = new UnitModelCreator();
+    private final UnitModelCreator modelCreator = new UnitModelCreator();
 
     public UnitWidgetListener(UnitWidget component, Field... mappedFields) {
         super(component, mappedFields);

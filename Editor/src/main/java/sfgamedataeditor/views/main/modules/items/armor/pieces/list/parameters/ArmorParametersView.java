@@ -12,6 +12,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class ArmorParametersView implements PresentableView {
 
     private JPanel mainPanel;

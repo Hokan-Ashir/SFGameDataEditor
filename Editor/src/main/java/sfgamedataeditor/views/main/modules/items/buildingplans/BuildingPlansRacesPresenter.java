@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class BuildingPlansRacesPresenter extends AbstractModulesPresenter<ModuleParameter, BuildingPlansRacesView, BuildingsPlanListModel> {
 
-    private Map<String, String> buildingRaceTypeToNameMapping = new HashMap<>();
+    private final Map<String, String> buildingRaceTypeToNameMapping = new HashMap<>();
 
     public BuildingPlansRacesPresenter(BuildingPlansRacesView view) {
         super(view);

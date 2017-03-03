@@ -30,7 +30,7 @@ public enum WeaponTypesMap {
     //    13 00 - Weapon Type Claw
     //    14 00 - Weapon Type Mouth
     //    15 00 - Weapon Type Stone Thrower
-    private Map<Integer, String> typesMap = new HashMap<Integer, String>() {{
+    private final Map<Integer, String> typesMap = new HashMap<Integer, String>() {{
         put(1, I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "type.default"));
         put(2, I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "type.hand"));
         put(3, I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "type.1h.dagger"));

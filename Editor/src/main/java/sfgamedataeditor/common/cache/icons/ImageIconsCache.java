@@ -19,8 +19,8 @@ public enum ImageIconsCache {
     INSTANCE;
 
     private static final Logger LOGGER = Logger.getLogger(ImageIconsCache.class);
-    private Map<String, ImageIcon> iconsMap = new HashMap<>();
-    private List<AbstractIconPathAlias> aliasList = new ArrayList<>();
+    private final Map<String, ImageIcon> iconsMap = new HashMap<>();
+    private final List<AbstractIconPathAlias> aliasList = new ArrayList<>();
 
     ImageIconsCache() {
         aliasList.add(new SpellAliases());

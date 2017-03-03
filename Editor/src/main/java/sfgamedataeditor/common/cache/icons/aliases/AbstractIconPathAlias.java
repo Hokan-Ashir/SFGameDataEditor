@@ -5,7 +5,7 @@ import java.util.Map;
 
 public abstract class AbstractIconPathAlias {
 
-    private Map<String, String> aliasMap = new HashMap<>();
+    private final Map<String, String> aliasMap = new HashMap<>();
 
     public AbstractIconPathAlias() {
         fillAliasMap();

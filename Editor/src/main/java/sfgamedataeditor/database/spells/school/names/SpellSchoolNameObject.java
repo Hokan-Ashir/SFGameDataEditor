@@ -5,6 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+@SuppressWarnings("unused")
 @DatabaseTable(tableName = "spell_school_name")
 public class SpellSchoolNameObject {
 

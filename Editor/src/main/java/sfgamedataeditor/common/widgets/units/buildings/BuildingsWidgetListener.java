@@ -24,7 +24,7 @@ import java.util.Set;
 
 public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWidget, OffsetableObject> implements ItemListener, ActionListener {
 
-    private BuildingModelCreator modelCreator = new BuildingModelCreator();
+    private final BuildingModelCreator modelCreator = new BuildingModelCreator();
 
     public BuildingsWidgetListener(BuildingsWidget component, Field... mappedFields) {
         super(component, mappedFields);

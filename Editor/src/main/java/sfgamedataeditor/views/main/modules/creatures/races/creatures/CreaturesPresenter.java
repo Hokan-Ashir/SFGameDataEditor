@@ -8,7 +8,7 @@ import javax.swing.*;
 
 public class CreaturesPresenter extends AbstractModulesPresenter<CreaturesModelParameter, CreaturesView, CreaturesParametersModel> {
 
-    private CreaturesModelCreator modelCreator = new CreaturesModelCreator();
+    private final CreaturesModelCreator modelCreator = new CreaturesModelCreator();
 
     public CreaturesPresenter(CreaturesView view) {
         super(view);

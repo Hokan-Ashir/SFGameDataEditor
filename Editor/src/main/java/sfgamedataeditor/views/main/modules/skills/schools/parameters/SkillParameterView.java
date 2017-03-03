@@ -8,6 +8,7 @@ import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class SkillParameterView implements PresentableView {
 
     // format - SCHOOL LEVEL STR STA AGI DEX CHA INT WIS, each 1 byte length

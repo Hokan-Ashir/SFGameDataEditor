@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class BuildingsPlanListView extends AbstractModulesView {
 
-    private Map<String, String> buildingRaceTypeToNameMapping = new HashMap<>();
+    private final Map<String, String> buildingRaceTypeToNameMapping = new HashMap<>();
 
     public BuildingsPlanListView() {
         super(I18NService.INSTANCE.getMessage(I18NTypes.BUILDING_GUI, "moduleName"));
@@ -46,7 +46,7 @@ public class BuildingsPlanListView extends AbstractModulesView {
 
     @Override
     protected ImageIcon getPanelImageByPanelName(String panelName) {
-        BuildingsPlanListPresenter presenter = (BuildingsPlanListPresenter) ViewRegister.INSTANCE.getPresenter(getClass(), getPresenterClass());
+        BuildingsPlanListPresenter presenter = ViewRegister.INSTANCE.getPresenter(getClass());
         Integer buildingsRaceType = presenter.getModel().getParameter().getBuildingsRaceType();
         String raceName = buildingRaceTypeToNameMapping.get(String.valueOf(buildingsRaceType));
         Integer buildingId;

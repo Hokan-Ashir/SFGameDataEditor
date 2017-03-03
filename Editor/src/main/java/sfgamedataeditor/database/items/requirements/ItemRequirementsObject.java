@@ -5,6 +5,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import sfgamedataeditor.database.common.Data;
 import sfgamedataeditor.database.common.OffsetableObject;
 
+@SuppressWarnings("unused")
 @DatabaseTable(tableName = "item_requirements")
 public class ItemRequirementsObject extends OffsetableObject {
 

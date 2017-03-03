@@ -11,6 +11,7 @@ import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class BuildingsParametersView implements PresentableView {
     private JPanel mainPanel;
 

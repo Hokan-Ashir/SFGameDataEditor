@@ -11,6 +11,7 @@ import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class WeaponParametersView implements PresentableView {
 
     private JPanel mainPanel;

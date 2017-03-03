@@ -10,6 +10,7 @@ import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class SpellScrollsParametersView implements PresentableView {
 
     private JPanel mainPanel;

@@ -8,6 +8,7 @@ import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class MiscellaneousParametersView implements PresentableView {
 
     private JPanel mainPanel;

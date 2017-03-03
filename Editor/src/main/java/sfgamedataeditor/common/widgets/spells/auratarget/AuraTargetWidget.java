@@ -14,7 +14,7 @@ public class AuraTargetWidget extends AbstractWidget<AuraTargetWidgetListener> {
     private JComboBox<String> auraTargetComboBox;
     private JLabel titleLabel;
 
-    private List<Pair<Integer, String>> auraTargetMapping = new ArrayList<Pair<Integer, String>>() {{
+    private final List<Pair<Integer, String>> auraTargetMapping = new ArrayList<Pair<Integer, String>>() {{
         add(new Pair<>(1, I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "aura.target.allies")));
         add(new Pair<>(2, I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "aura.target.enemies")));
     }};

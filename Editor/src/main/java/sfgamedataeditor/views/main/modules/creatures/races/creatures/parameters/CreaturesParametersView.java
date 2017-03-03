@@ -15,6 +15,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class CreaturesParametersView implements PresentableView {
 
     private static final int PARAMETERS_TAB_INDEX = 0;
