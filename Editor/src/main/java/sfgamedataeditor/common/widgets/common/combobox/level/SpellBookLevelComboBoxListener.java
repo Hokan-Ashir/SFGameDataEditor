@@ -17,7 +17,7 @@ public class SpellBookLevelComboBoxListener extends AbstractLevelComboBoxListene
 
     @Override
     protected void processSelectedItemEvent(String selectedItem) {
-        Model oldModel = ViewRegister.INSTANCE.getViews().get(SpellBookParametersView.class).getController().getModel();
+        Model oldModel = ViewRegister.INSTANCE.getViews().get(SpellBookParametersView.class).getPresenter().getModel();
         ((SpellBookParametersModel) oldModel).getParameter().setScrollLevel(Integer.valueOf(selectedItem));
         ShowContentViewEvent event = new ShowContentViewEvent(SpellBookParametersView.class, oldModel);
         EventProcessor.INSTANCE.process(event);

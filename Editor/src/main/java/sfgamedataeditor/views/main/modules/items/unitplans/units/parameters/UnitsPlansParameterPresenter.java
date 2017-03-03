@@ -1,4 +1,4 @@
-package sfgamedataeditor.views.main.modules.items.buildingplans.buildings.parameters;
+package sfgamedataeditor.views.main.modules.items.unitplans.units.parameters;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
@@ -12,17 +12,17 @@ import sfgamedataeditor.views.main.MainView;
 import javax.swing.*;
 import java.lang.reflect.Field;
 
-public class BuildingsPlansParameterPresenter extends AbstractPresenter<BuildingsPlansParametersModelParameter, BuildingsPlansParametersView> {
+public class UnitsPlansParameterPresenter extends AbstractPresenter<UnitsPlansParametersModelParameter, UnitsPlansParametersView> {
 
-    private static final Logger LOGGER = Logger.getLogger(BuildingsPlansParameterPresenter.class);
+    private static final Logger LOGGER = Logger.getLogger(UnitsPlansParameterPresenter.class);
 
-    public BuildingsPlansParameterPresenter(BuildingsPlansParametersView view) {
+    public UnitsPlansParameterPresenter(UnitsPlansParametersView view) {
         super(view);
     }
 
     @Override
     public void updateView() {
-        BuildingsPlansParametersModelParameter parameter = getModel().getParameter();
+        UnitsPlansParametersModelParameter parameter = getModel().getParameter();
         ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
         Icon icon = parameter.getIcon();
 

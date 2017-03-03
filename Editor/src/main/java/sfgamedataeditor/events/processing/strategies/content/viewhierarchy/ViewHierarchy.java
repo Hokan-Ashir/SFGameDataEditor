@@ -38,6 +38,12 @@ import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.ItemsFromS
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.SpellScrollsListView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.ScrollsFromScrollsParametersModelCreator;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersView;
+import sfgamedataeditor.views.main.modules.items.unitplans.ItemsFromUnitPlansModelCreator;
+import sfgamedataeditor.views.main.modules.items.unitplans.UnitPlansRacesView;
+import sfgamedataeditor.views.main.modules.items.unitplans.units.UnitsPlanListView;
+import sfgamedataeditor.views.main.modules.items.unitplans.units.UnitsPlansFromUnitsPlansListModelCreator;
+import sfgamedataeditor.views.main.modules.items.unitplans.units.parameters.UnitsPlansFromUnitsPlansParameterModelCreator;
+import sfgamedataeditor.views.main.modules.items.unitplans.units.parameters.UnitsPlansParametersView;
 import sfgamedataeditor.views.main.modules.items.weapons.ItemsFromWeaponModelCreator;
 import sfgamedataeditor.views.main.modules.items.weapons.WeaponsTypesListView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiecesView;
@@ -127,9 +133,21 @@ public enum  ViewHierarchy {
         ViewHierarchyNode weapons = createWeaponsNodes(itemTypes);
 
         ViewHierarchyNode buildingPlans = createBuildingPlansNodes(itemTypes);
+        ViewHierarchyNode unitPlans = createUnitPlansNodes(itemTypes);
 
-        itemTypes.addChildren(armor, buildingPlans, miscellaneous, runes, spellScrolls, weapons);
+        itemTypes.addChildren(armor, unitPlans, buildingPlans, miscellaneous, runes, spellScrolls, weapons);
         return itemTypes;
+    }
+
+    private ViewHierarchyNode createUnitPlansNodes(ViewHierarchyNode itemTypes) {
+        ViewHierarchyNode races = new ViewHierarchyNode(itemTypes, UnitPlansRacesView.class, new ItemsFromUnitPlansModelCreator());
+        ViewHierarchyNode units = new ViewHierarchyNode(races, UnitsPlanListView.class, new UnitsPlansFromUnitsPlansListModelCreator());
+        races.addChild(units);
+
+        ViewHierarchyNode parameters = new ViewHierarchyNode(units, UnitsPlansParametersView.class, new UnitsPlansFromUnitsPlansParameterModelCreator());
+        units.addChild(parameters);
+
+        return races;
     }
 
     private ViewHierarchyNode createBuildingPlansNodes(ViewHierarchyNode itemTypes) {

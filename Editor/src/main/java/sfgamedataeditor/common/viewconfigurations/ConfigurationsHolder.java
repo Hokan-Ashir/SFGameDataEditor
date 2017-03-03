@@ -6,6 +6,7 @@ import sfgamedataeditor.common.viewconfigurations.item.armor.ArmorParametersConf
 import sfgamedataeditor.common.viewconfigurations.item.buildingplans.BuildingPlansParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.miscellaneous.MiscellaneousParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.scrolls.ScrollsParametersConfigurationHolder;
+import sfgamedataeditor.common.viewconfigurations.item.unitplans.UnitPlansParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.weapon.WeaponParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.skill.parameters.SkillParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.SpellParametersConfigurationHolder;
@@ -18,6 +19,7 @@ import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.Ar
 import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.parameters.BuildingsPlansParametersView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersView;
+import sfgamedataeditor.views.main.modules.items.unitplans.units.parameters.UnitsPlansParametersView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
 import sfgamedataeditor.views.main.modules.spellbook.parameters.SpellBookParametersView;
@@ -44,6 +46,7 @@ public enum  ConfigurationsHolder {
         configurationHolderMap.put(BuildingsParametersView.class, new BuildingsParametersConfigurationHolder());
         configurationHolderMap.put(SpellBookParametersView.class, new SpellBookParametersConfigurationHolder());
         configurationHolderMap.put(BuildingsPlansParametersView.class, new BuildingPlansParametersConfigurationHolder());
+        configurationHolderMap.put(UnitsPlansParametersView.class, new UnitPlansParametersConfigurationHolder());
     }
 
     public AbstractConfigurationHolder getConfigurationHolder(Class<? extends View> viewClass) {

@@ -1,7 +1,7 @@
 package sfgamedataeditor.events.processing.strategies.content;
 
 import sfgamedataeditor.events.processing.EventProcessor;
-import sfgamedataeditor.events.processing.ViewControllerPair;
+import sfgamedataeditor.events.processing.ViewPresenterPair;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.events.processing.strategies.EventProcessingStrategy;
 import sfgamedataeditor.events.processing.strategies.content.viewhierarchy.ViewHierarchy;
@@ -47,19 +47,19 @@ public class ShowContentViewEventStrategy implements EventProcessingStrategy<Sho
 
     private void updateEventHistory(ShowContentViewEvent event) {
         EventHistory.INSTANCE.addEventToHistory(event);
-        EventHistoryPresenter controller = (EventHistoryPresenter) ViewRegister.INSTANCE.getViews().get(EventHistoryView.class).getController();
+        EventHistoryPresenter controller = (EventHistoryPresenter) ViewRegister.INSTANCE.getViews().get(EventHistoryView.class).getPresenter();
         controller.setRedoButtonStatus(EventHistory.INSTANCE.isRedoPossible());
         controller.setUndoButtonStatus(EventHistory.INSTANCE.isUndoPossible());
     }
 
     private void unRenderNode(ViewHierarchyNode renderedNode) {
         Class<? extends PresentableView> classViewToUnShow = renderedNode.getViewClass();
-        ViewControllerPair viewControllerPair = ViewRegister.INSTANCE.getViews().get(classViewToUnShow);
-        if (viewControllerPair == null) {
+        ViewPresenterPair viewPresenterPair = ViewRegister.INSTANCE.getViews().get(classViewToUnShow);
+        if (viewPresenterPair == null) {
             return;
         }
 
-        AbstractPresenter controller = viewControllerPair.getController();
+        AbstractPresenter controller = viewPresenterPair.getPresenter();
         if (controller == null) {
             return;
         }

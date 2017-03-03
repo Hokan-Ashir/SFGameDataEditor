@@ -3,20 +3,20 @@ package sfgamedataeditor.events.processing;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
 
-public class ViewControllerPair<V extends PresentableView, C extends AbstractPresenter> {
+public class ViewPresenterPair<V extends PresentableView, P extends AbstractPresenter> {
     private final V view;
-    private final C controller;
+    private final P presenter;
 
-    public ViewControllerPair(V view, C controller) {
+    public ViewPresenterPair(V view, P presenter) {
         this.view = view;
-        this.controller = controller;
+        this.presenter = presenter;
     }
 
     public V getView() {
         return view;
     }
 
-    public C getController() {
-        return controller;
+    public P getPresenter() {
+        return presenter;
     }
 }

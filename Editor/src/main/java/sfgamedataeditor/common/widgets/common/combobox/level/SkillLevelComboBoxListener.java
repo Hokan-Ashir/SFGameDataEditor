@@ -17,7 +17,7 @@ public class SkillLevelComboBoxListener extends AbstractLevelComboBoxListener {
 
     @Override
     protected void processSelectedItemEvent(String selectedItem) {
-        Model oldModel = ViewRegister.INSTANCE.getViews().get(SkillParameterView.class).getController().getModel();
+        Model oldModel = ViewRegister.INSTANCE.getViews().get(SkillParameterView.class).getPresenter().getModel();
         ((SkillParameterModel) oldModel).getParameter().setSkillLevel(Integer.valueOf(selectedItem));
         ShowContentViewEvent event = new ShowContentViewEvent(SkillParameterView.class, oldModel);
         EventProcessor.INSTANCE.process(event);

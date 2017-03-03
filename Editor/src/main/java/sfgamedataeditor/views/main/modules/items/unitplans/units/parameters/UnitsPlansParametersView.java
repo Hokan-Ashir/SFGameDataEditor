@@ -1,4 +1,4 @@
-package sfgamedataeditor.views.main.modules.items.buildingplans.buildings.parameters;
+package sfgamedataeditor.views.main.modules.items.unitplans.units.parameters;
 
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.IconElement;
@@ -9,7 +9,7 @@ import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
-public class BuildingsPlansParametersView implements PresentableView {
+public class UnitsPlansParametersView implements PresentableView {
     private JPanel mainPanel;
 
     @GUIElement(GUIElementId = GUIElements.SELL_PRICE, DTOColumnNames = "copperSellingPrice", DTOClass = ItemPriceParametersObject.class)
@@ -21,15 +21,15 @@ public class BuildingsPlansParametersView implements PresentableView {
     @GUIElement(GUIElementId = GUIElements.ITEM_SET, DTOColumnNames = "itemSetId", DTOClass = ItemPriceParametersObject.class)
     private JPanel itemSetPanel;
 
-    @GUIElement(GUIElementId = GUIElements.BUILDING, DTOColumnNames = "buildingId", DTOClass = ItemPriceParametersObject.class)
-    private JPanel buildingPanel;
+    @GUIElement(GUIElementId = GUIElements.BUILDING, DTOColumnNames = "armyStatsId", DTOClass = ItemPriceParametersObject.class)
+    private JPanel unitPanel;
 
     @IconElement
     private JLabel iconLabel;
 
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {
-        return BuildingsPlansParameterPresenter.class;
+        return UnitsPlansParameterPresenter.class;
     }
 
     @Override

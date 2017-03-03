@@ -17,7 +17,7 @@ public class ScrollLevelComboBoxListener extends AbstractLevelComboBoxListener {
 
     @Override
     protected void processSelectedItemEvent(String selectedItem) {
-        Model oldModel = ViewRegister.INSTANCE.getViews().get(SpellScrollsParametersView.class).getController().getModel();
+        Model oldModel = ViewRegister.INSTANCE.getViews().get(SpellScrollsParametersView.class).getPresenter().getModel();
         ((SpellScrollsParametersModel) oldModel).getParameter().setScrollLevel(Integer.valueOf(selectedItem));
         ShowContentViewEvent event = new ShowContentViewEvent(SpellScrollsParametersView.class, oldModel);
         EventProcessor.INSTANCE.process(event);
