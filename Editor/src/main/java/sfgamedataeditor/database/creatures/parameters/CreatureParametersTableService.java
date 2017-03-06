@@ -98,4 +98,17 @@ public enum CreatureParametersTableService implements TableCreationService {
             return 0;
         }
     }
+
+    public CreatureParameterObject getCreatureObjectByStatsId(int statsId) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        Dao<CreatureParameterObject, ?> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, CreatureParameterObject.class);
+            List<CreatureParameterObject> creatureParameterObjects = dao.queryBuilder().where().eq("statsId", statsId).query();
+            return creatureParameterObjects.get(0);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+    }
 }

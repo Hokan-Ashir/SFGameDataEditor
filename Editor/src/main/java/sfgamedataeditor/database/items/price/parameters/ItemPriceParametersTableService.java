@@ -3,6 +3,7 @@ package sfgamedataeditor.database.items.price.parameters;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.stmt.SelectArg;
+import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
@@ -128,7 +129,11 @@ public enum ItemPriceParametersTableService implements TableCreationService {
 
         try {
             SelectArg selectArg = new SelectArg(name);
-            List<ItemPriceParametersObject> objects = dao.queryBuilder().where().like("name", selectArg).and().in("typeId", (Object[]) typeId).query();
+            Where<ItemPriceParametersObject, String> where = dao.queryBuilder().where().like("name", selectArg);
+            if (typeId != null && typeId.length != 0) {
+                where = where.and().in("typeId", (Object[]) typeId);
+            }
+            List<ItemPriceParametersObject> objects = where.query();
             return objects.get(0).itemId;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

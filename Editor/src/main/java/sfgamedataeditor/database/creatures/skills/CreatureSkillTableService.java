@@ -1,10 +1,16 @@
 package sfgamedataeditor.database.creatures.skills;
 
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.support.ConnectionSource;
+import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 
+import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 public enum CreatureSkillTableService implements TableCreationService {
@@ -22,6 +28,20 @@ public enum CreatureSkillTableService implements TableCreationService {
         @Override
         public DTOOffsetTypes getDTOOffsetType() {
             return DTOOffsetTypes.CREATURE_SKILLS;
+        }
+    };
+
+    private static final Logger LOGGER = Logger.getLogger(CreatureSkillTableService.class);
+
+    public List<CreatureSkillObject> getCreatureSkillsByStatsId(int creatureStatsId) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        Dao<CreatureSkillObject, ?> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, CreatureSkillObject.class);
+            return dao.queryBuilder().where().eq("creatureStatsId", creatureStatsId).query();
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
         }
     }
 }

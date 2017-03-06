@@ -9,6 +9,7 @@ import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousList
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.SpellScrollsListView;
 import sfgamedataeditor.views.main.modules.items.unitplans.UnitPlansRacesView;
 import sfgamedataeditor.views.main.modules.items.weapons.WeaponsTypesListView;
+import sfgamedataeditor.views.main.modules.items.workersrunes.WorkersRuneRacesView;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -31,7 +32,8 @@ public class ItemTypesView extends AbstractModulesView {
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.weapons"), WeaponsTypesListView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor"), ArmorTypeListView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.scrolls.and.spells"), SpellScrollsListView.class));
-//        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.runes"), RuneRacesListView.class);
+        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.workers.runes"), WorkersRuneRacesView.class));
+//        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.heroes.runes"), HeroesRuneRacesListView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.buildingPlans"), BuildingPlansRacesView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.unitPlans"), UnitPlansRacesView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.miscellaneous"), MiscellaneousListView.class));

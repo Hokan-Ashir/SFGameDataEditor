@@ -16,7 +16,7 @@ public class CreatureSkillObject extends OffsetableObject {
 
     @Data(offset = 0, length = 2)
     @DatabaseField
-    public Integer creatureStatsId  ;
+    public Integer creatureStatsId;
 
     //    01 - light combat arts
     //    00 - no sub school
@@ -83,7 +83,7 @@ public class CreatureSkillObject extends OffsetableObject {
     @DatabaseField
     public Integer skillSchoolSubClass;
 
-    @Data(offset = 3, length = 1)
+    @Data(offset = 4, length = 1)
     @DatabaseField
     public Integer skillLevel;
 }

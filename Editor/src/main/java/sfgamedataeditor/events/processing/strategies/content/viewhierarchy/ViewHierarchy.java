@@ -33,7 +33,6 @@ import sfgamedataeditor.views.main.modules.items.miscellaneous.ItemsFromMiscella
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousFromMiscellaneousParametersModelCreator;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersView;
-import sfgamedataeditor.views.main.modules.items.runes.RuneRacesListView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.ItemsFromScrollsModelCreator;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.SpellScrollsListView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.ScrollsFromScrollsParametersModelCreator;
@@ -50,6 +49,10 @@ import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiece
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponTypesFromWeaponPiecesModelCreator;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponPiecesFromWeaponParametersModelCreator;
+import sfgamedataeditor.views.main.modules.items.workersrunes.ItemsFromWorkersRunesRacesModelCreator;
+import sfgamedataeditor.views.main.modules.items.workersrunes.WorkersRuneRacesView;
+import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesFromWorkersRunesParameterModelCreator;
+import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesParametersView;
 import sfgamedataeditor.views.main.modules.merchants.MerchantsView;
 import sfgamedataeditor.views.main.modules.merchants.ModulesFromMerchantsModelCreator;
 import sfgamedataeditor.views.main.modules.merchants.inventory.MerchantInventoryView;
@@ -114,7 +117,6 @@ public enum  ViewHierarchy {
 
         ViewHierarchyNode miscellaneous = createMiscellaneousNodes(itemTypes);
 
-        ViewHierarchyNode runes = new ViewHierarchyNode(itemTypes, RuneRacesListView.class, null);
         ViewHierarchyNode spellScrolls = createSpellScrollsNodes(itemTypes);
 
         ViewHierarchyNode weapons = createWeaponsNodes(itemTypes);
@@ -122,8 +124,18 @@ public enum  ViewHierarchy {
         ViewHierarchyNode buildingPlans = createBuildingPlansNodes(itemTypes);
         ViewHierarchyNode unitPlans = createUnitPlansNodes(itemTypes);
 
-        itemTypes.addChildren(armor, unitPlans, buildingPlans, miscellaneous, runes, spellScrolls, weapons);
+        ViewHierarchyNode workersRunes = createWorkersRunesNodes(itemTypes);
+
+        itemTypes.addChildren(armor, unitPlans, buildingPlans, miscellaneous, spellScrolls, weapons, workersRunes);
         return itemTypes;
+    }
+
+    private ViewHierarchyNode createWorkersRunesNodes(ViewHierarchyNode itemTypes) {
+        ViewHierarchyNode races = new ViewHierarchyNode(itemTypes, WorkersRuneRacesView.class, new ItemsFromWorkersRunesRacesModelCreator());
+        ViewHierarchyNode parameters = new ViewHierarchyNode(races, WorkersRunesParametersView.class, new WorkersRunesFromWorkersRunesParameterModelCreator());
+        races.addChild(parameters);
+
+        return races;
     }
 
     private ViewHierarchyNode createUnitPlansNodes(ViewHierarchyNode itemTypes) {

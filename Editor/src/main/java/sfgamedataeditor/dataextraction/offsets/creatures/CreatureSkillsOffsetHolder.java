@@ -6,7 +6,7 @@ import sfgamedataeditor.views.utility.Pair;
 public class CreatureSkillsOffsetHolder extends AbstractOffsetHolder {
     @Override
     protected void setDataLength() {
-        setDataLength(5);
+        setDataLength(0x5);
     }
 
     @Override

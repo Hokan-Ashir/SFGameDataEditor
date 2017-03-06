@@ -1,17 +1,17 @@
-package sfgamedataeditor.views.main.modules.items.runes;
+package sfgamedataeditor.views.main.modules.items.workersrunes;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.common.notimplemented.NotImplementedView;
+import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesParametersView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.Set;
 import java.util.TreeSet;
 
-public class RuneRacesListView extends AbstractModulesView {
+public class WorkersRuneRacesView extends AbstractModulesView {
 
-    public RuneRacesListView() {
+    public WorkersRuneRacesView() {
         super(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races"));
     }
 
@@ -26,11 +26,11 @@ public class RuneRacesListView extends AbstractModulesView {
             add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dark.elves"));
         }};
 
-        addMappings(mappings, NotImplementedView.class);
+        addMappings(mappings, WorkersRunesParametersView.class);
     }
 
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {
-        return null;
+        return WorkersRuneRacesPresenter.class;
     }
 }
