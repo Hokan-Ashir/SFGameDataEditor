@@ -38,7 +38,7 @@ public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
             add("items.armor.rings");
             add("items.figureNPC");
             add("items.hero.army.units");
-            add("items.scrolls");
+            add("items.scrolls.and.spells");
             add("items.miscellaneous");
         }};
 

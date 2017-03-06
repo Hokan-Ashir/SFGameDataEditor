@@ -8,7 +8,6 @@ import sfgamedataeditor.views.main.modules.creatures.races.CreaturesRacesView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 import sfgamedataeditor.views.main.modules.merchants.MerchantsView;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
-import sfgamedataeditor.views.main.modules.spellbook.SpellBookListView;
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;
 import sfgamedataeditor.views.main.modules.units.races.UnitRacesView;
 import sfgamedataeditor.views.utility.Pair;
@@ -32,7 +31,6 @@ public class ModulesView extends AbstractModulesView {
         List<Pair<String, Class<? extends PresentableView>>> mappings = new ArrayList<>();
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "skills"), SkillSchoolsView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "spells"), SpellSchoolsView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "spell.book"), SpellBookListView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "merchants"), MerchantsView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "buildings"), BuildingRacesView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "creatures"), CreaturesRacesView.class));

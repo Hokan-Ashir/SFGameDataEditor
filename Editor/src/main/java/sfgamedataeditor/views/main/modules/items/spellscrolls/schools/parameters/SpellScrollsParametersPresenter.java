@@ -18,18 +18,35 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class SpellScrollsParametersPresenter extends AbstractPresenter<SpellScrollsParametersModelParameter, SpellScrollsParametersView> {
 
     private static final Integer SCROLL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.scrolls"));
+    private static final Integer SPELL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
     private static final Logger LOGGER = Logger.getLogger(SpellScrollsParametersPresenter.class);
+
+    private List<Integer> scrollGUIIds = new ArrayList<>();
+    private List<Integer> spellGUIIds = new ArrayList<>();
 
     public SpellScrollsParametersPresenter(SpellScrollsParametersView view) {
         super(view);
+        initializeScrollGUIIdList();
+        initializeSpellGUIIdList();
+    }
+
+    private void initializeSpellGUIIdList() {
+        spellGUIIds.add(GUIElements.SPELL_BUY_OUT_PRICE);
+        spellGUIIds.add(GUIElements.SPELL_SELL_PRICE);
+        spellGUIIds.add(GUIElements.SPELL_ITEM_EFFECT);
+        spellGUIIds.add(GUIElements.SPELL_ITEM_SET);
+    }
+
+    private void initializeScrollGUIIdList() {
+        scrollGUIIds.add(GUIElements.SCROLL_BUY_OUT_PRICE);
+        scrollGUIIds.add(GUIElements.SCROLL_SELL_PRICE);
+        scrollGUIIds.add(GUIElements.SCROLL_ITEM_EFFECT);
+        scrollGUIIds.add(GUIElements.SCROLL_ITEM_SET);
     }
 
     @Override
@@ -40,9 +57,14 @@ public class SpellScrollsParametersPresenter extends AbstractPresenter<SpellScro
         String scrollBaseName = parameter.getScrollBaseName();
         Set<Integer> scrollLevels = getScrollLevels(scrollBaseName);
         String scrollName = scrollBaseName + " - " + I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "level") + " " + selectedLevel;
-        int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(scrollName, SCROLL_TYPE_ID);
-        ItemPriceParametersObject priceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        List<ItemSpellEffectsObject> itemSpellEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(itemId);
+
+        int scrollId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(scrollName, SCROLL_TYPE_ID);
+        ItemPriceParametersObject scrollPriceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(scrollId);
+        List<ItemSpellEffectsObject> scrollItemSpellEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(scrollId);
+
+        int spellId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(scrollName, SPELL_TYPE_ID);
+        ItemPriceParametersObject spellPriceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(spellId);
+        List<ItemSpellEffectsObject> spellItemSpellEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(spellId);
         Icon icon = parameter.getIcon();
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
@@ -61,7 +83,6 @@ public class SpellScrollsParametersPresenter extends AbstractPresenter<SpellScro
                     continue;
                 }
 
-
                 declaredField.setAccessible(true);
                 JPanel panel = (JPanel) declaredField.get(getView());
                 AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
@@ -73,14 +94,28 @@ public class SpellScrollsParametersPresenter extends AbstractPresenter<SpellScro
                 } else {
                     Class<?> dtoClass = annotation.DTOClass();
                     if (dtoClass.equals(ItemPriceParametersObject.class)) {
-                        widget.getListener().updateWidgetValue(priceParametersObject);
+                        if (scrollGUIIds.contains(guiElementId)) {
+                            widget.getListener().updateWidgetValue(scrollPriceParametersObject);
+                        } else if (spellGUIIds.contains(guiElementId)) {
+                            widget.getListener().updateWidgetValue(spellPriceParametersObject);
+                        }
                     } else if (dtoClass.equals(ItemSpellEffectsObject.class)) {
-                        if (itemSpellEffectsObjects == null || itemSpellEffectsObjects.isEmpty()) {
-                            panel.setVisible(false);
-                        } else {
-                            panel.setVisible(true);
-                            // it's guaranteed that scroll has only one spell effect on it
-                            widget.getListener().updateWidgetValue(itemSpellEffectsObjects.get(0));
+                        if (scrollGUIIds.contains(guiElementId)) {
+                            if (scrollItemSpellEffectsObjects == null || scrollItemSpellEffectsObjects.isEmpty()) {
+                                panel.setVisible(false);
+                            } else {
+                                panel.setVisible(true);
+                                // it's guaranteed that scroll has only one spell effect on it
+                                widget.getListener().updateWidgetValue(scrollItemSpellEffectsObjects.get(0));
+                            }
+                        } else if (spellGUIIds.contains(guiElementId)) {
+                            if (spellItemSpellEffectsObjects == null || spellItemSpellEffectsObjects.isEmpty()) {
+                                panel.setVisible(false);
+                            } else {
+                                panel.setVisible(true);
+                                // it's guaranteed that spell has only one spell effect on it
+                                widget.getListener().updateWidgetValue(spellItemSpellEffectsObjects.get(0));
+                            }
                         }
                     }
                 }

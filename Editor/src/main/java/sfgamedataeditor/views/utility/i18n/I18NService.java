@@ -25,6 +25,7 @@ public enum I18NService {
     private static final String ITEM_SETS_MAPPING_FILE_NAME = "itemSetsMapping";
     private static final String BUILDING_NAMES_MAPPING_FILE_NAME = "buildings";
     private static final String BUILDINGS_GUI_PROPERTIES_FILE_NAME = "buildings_gui";
+    private static final String SCROLLS_AND_SPELLS_GUI_PROPERTIES_FILE_NAME = "scrolls_and_spells_gui";
 
     private final Map<I18NTypes, ResourceBundle> bundleMap = new HashMap<>();
 
@@ -46,6 +47,7 @@ public enum I18NService {
         bundleMap.put(I18NTypes.ITEM_SETS, ResourceBundle.getBundle(ITEM_SETS_MAPPING_FILE_NAME, locale));
         bundleMap.put(I18NTypes.BUILDING_NAMES_MAPPING, ResourceBundle.getBundle(BUILDING_NAMES_MAPPING_FILE_NAME, locale));
         bundleMap.put(I18NTypes.BUILDING_GUI, ResourceBundle.getBundle(BUILDINGS_GUI_PROPERTIES_FILE_NAME, locale));
+        bundleMap.put(I18NTypes.SCROLLS_AND_SPELLS_GUI, ResourceBundle.getBundle(SCROLLS_AND_SPELLS_GUI_PROPERTIES_FILE_NAME, locale));
     }
 
     public String getMessage(I18NTypes type, String key) {

@@ -51,7 +51,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     private void addSpellScrollsViewsMapping() {
         SpellScrollsModelCreator creator = new SpellScrollsModelCreator();
         Pair<Class<? extends PresentableView>, ModelCreator> pair = new Pair<Class<? extends PresentableView>, ModelCreator>(SpellScrollsParametersView.class, creator);
-        int scrollsTypeId = getItemTypeByNameMapping("items.scrolls");
+        int scrollsTypeId = getItemTypeByNameMapping("items.scrolls.and.spells");
         itemTypesClassViews.put(scrollsTypeId, pair);
     }
 

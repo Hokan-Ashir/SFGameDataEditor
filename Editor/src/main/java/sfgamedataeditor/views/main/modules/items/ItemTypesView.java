@@ -30,7 +30,7 @@ public class ItemTypesView extends AbstractModulesView {
         List<Pair<String, Class<? extends PresentableView>>> mappings = new ArrayList<>();
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.weapons"), WeaponsTypesListView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor"), ArmorTypeListView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.scrolls"), SpellScrollsListView.class));
+        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.scrolls.and.spells"), SpellScrollsListView.class));
 //        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.runes"), RuneRacesListView.class);
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.buildingPlans"), BuildingPlansRacesView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.unitPlans"), UnitPlansRacesView.class));

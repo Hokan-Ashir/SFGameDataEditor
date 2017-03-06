@@ -11,73 +11,152 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="d9a71" binding="sellPricePanel" layout-manager="GridBagLayout">
+      <grid id="7b83c" binding="scrollObjectPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties>
-          <maximumSize width="190" height="90"/>
-          <minimumSize width="190" height="90"/>
-          <preferredSize width="190" height="90"/>
-        </properties>
+        <properties/>
         <border type="etched"/>
-        <children/>
+        <children>
+          <grid id="d9a71" binding="sellPriceScrollPanel" layout-manager="GridBagLayout">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="190" height="90"/>
+              <minimumSize width="190" height="90"/>
+              <preferredSize width="190" height="90"/>
+            </properties>
+            <border type="etched"/>
+            <children/>
+          </grid>
+          <grid id="d1409" binding="buyoutPriceScrollPanel" layout-manager="GridBagLayout">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="190" height="90"/>
+              <minimumSize width="190" height="90"/>
+              <preferredSize width="190" height="90"/>
+            </properties>
+            <border type="etched"/>
+            <children/>
+          </grid>
+          <grid id="78df2" binding="itemEffectScrollPanel" layout-manager="GridBagLayout">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="300" height="80"/>
+              <minimumSize width="300" height="80"/>
+              <preferredSize width="300" height="80"/>
+            </properties>
+            <border type="etched"/>
+            <children/>
+          </grid>
+          <grid id="12f1b" binding="itemSetScrollPanel" layout-manager="GridBagLayout">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="160" height="110"/>
+              <minimumSize width="160" height="110"/>
+              <preferredSize width="160" height="110"/>
+            </properties>
+            <border type="etched"/>
+            <children/>
+          </grid>
+          <component id="c8ff8" class="javax.swing.JLabel" binding="scrollParametersLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
       </grid>
-      <grid id="d1409" binding="buyoutPricePanel" layout-manager="GridBagLayout">
+      <grid id="5406a" binding="spellObjectPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
-        <properties>
-          <maximumSize width="190" height="90"/>
-          <minimumSize width="190" height="90"/>
-          <preferredSize width="190" height="90"/>
-        </properties>
+        <properties/>
         <border type="etched"/>
-        <children/>
-      </grid>
-      <component id="4a4f2" class="javax.swing.JLabel" binding="iconLabel">
-        <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="66" height="66"/>
-          <minimumSize width="66" height="66"/>
-          <preferredSize width="66" height="66"/>
-          <text value=""/>
-        </properties>
-      </component>
-      <grid id="12f1b" binding="itemSetPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="160" height="110"/>
-          <minimumSize width="160" height="110"/>
-          <preferredSize width="160" height="110"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
-      </grid>
-      <grid id="78df2" binding="itemEffectPanel" layout-manager="GridBagLayout">
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-          <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <maximumSize width="300" height="80"/>
-          <minimumSize width="300" height="80"/>
-          <preferredSize width="300" height="80"/>
-        </properties>
-        <border type="etched"/>
-        <children/>
+        <children>
+          <grid id="e3b10" binding="sellPriceSpellPanel" layout-manager="GridBagLayout">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="190" height="90"/>
+              <minimumSize width="190" height="90"/>
+              <preferredSize width="190" height="90"/>
+              <requestFocusEnabled value="true"/>
+            </properties>
+            <border type="etched"/>
+            <children/>
+          </grid>
+          <grid id="a9439" binding="buyoutPriceSpellPanel" layout-manager="GridBagLayout">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="190" height="90"/>
+              <minimumSize width="190" height="90"/>
+              <preferredSize width="190" height="90"/>
+            </properties>
+            <border type="etched"/>
+            <children/>
+          </grid>
+          <grid id="5ab42" binding="itemSetSpellPanel" layout-manager="GridBagLayout">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="160" height="110"/>
+              <minimumSize width="160" height="110"/>
+              <preferredSize width="160" height="110"/>
+            </properties>
+            <border type="etched"/>
+            <children/>
+          </grid>
+          <grid id="6993e" binding="itemEffectSpellPanel" layout-manager="GridBagLayout">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="300" height="80"/>
+              <minimumSize width="300" height="80"/>
+              <preferredSize width="300" height="80"/>
+            </properties>
+            <border type="etched"/>
+            <children/>
+          </grid>
+          <component id="6a887" class="javax.swing.JLabel" binding="spellParametersLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
       </grid>
       <grid id="dcb36" binding="levelPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -88,6 +167,18 @@
         <border type="etched"/>
         <children/>
       </grid>
+      <component id="4a4f2" class="javax.swing.JLabel" binding="iconLabel">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <maximumSize width="66" height="66"/>
+          <minimumSize width="66" height="66"/>
+          <preferredSize width="66" height="66"/>
+          <text value=""/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

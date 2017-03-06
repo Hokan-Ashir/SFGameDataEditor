@@ -1,6 +1,5 @@
 package sfgamedataeditor.views.main.modules.items.spellscrolls.schools;
 
-import org.apache.log4j.Logger;
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
@@ -18,10 +17,8 @@ import java.util.Set;
 
 public class SpellScrollsListView extends AbstractModulesView {
 
-    private static final Logger LOGGER = Logger.getLogger(SpellScrollsListView.class);
-
     public SpellScrollsListView() {
-        super(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.scrolls"));
+        super(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.scrolls.and.spells"));
     }
 
     /**

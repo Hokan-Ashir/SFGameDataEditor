@@ -58,10 +58,6 @@ import sfgamedataeditor.views.main.modules.skills.schools.ModulesFromSkillSchool
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillSchoolsFromSkillParameterModelCreator;
-import sfgamedataeditor.views.main.modules.spellbook.ModulesFromSpellBookModelCreator;
-import sfgamedataeditor.views.main.modules.spellbook.SpellBookListView;
-import sfgamedataeditor.views.main.modules.spellbook.parameters.SpellBookFromSpellBookParametersModelCreator;
-import sfgamedataeditor.views.main.modules.spellbook.parameters.SpellBookParametersView;
 import sfgamedataeditor.views.main.modules.spells.schools.ModulesFromSpellSchoolsModelCreator;
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellSchoolsFromSpellsModelCreator;
@@ -89,17 +85,8 @@ public enum  ViewHierarchy {
                 createMerchantsNodes(rootNode),
                 createSkillNodes(rootNode),
                 createSpellNodes(rootNode),
-                createSpellBookNodes(rootNode),
                 createCreaturesNodes(rootNode),
                 createUnitsNodes(rootNode));
-    }
-
-    private ViewHierarchyNode createSpellBookNodes(ViewHierarchyNode rootNode) {
-        ViewHierarchyNode spells = new ViewHierarchyNode(rootNode, SpellBookListView.class, new ModulesFromSpellBookModelCreator());
-        ViewHierarchyNode parameters = new ViewHierarchyNode(spells, SpellBookParametersView.class, new SpellBookFromSpellBookParametersModelCreator());
-        spells.addChild(parameters);
-
-        return spells;
     }
 
     private ViewHierarchyNode createUnitsNodes(ViewHierarchyNode rootNode) {
