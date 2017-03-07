@@ -14,6 +14,8 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public enum MerchantInventoryTableService implements TableCreationService {
     INSTANCE {
@@ -49,5 +51,15 @@ public enum MerchantInventoryTableService implements TableCreationService {
             LOGGER.error(e.getMessage(), e);
             return null;
         }
+    }
+
+    public Set<String> getAllMerchantNames() {
+        List<MerchantInventoryObject> allTableData = CommonTableService.INSTANCE.getAllTableData(MerchantInventoryObject.class);
+        Set<String> names = new TreeSet<>();
+        for (MerchantInventoryObject merchantInventoryObject : allTableData) {
+            names.add(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, String.valueOf(merchantInventoryObject.merchantId)));
+        }
+
+        return names;
     }
 }

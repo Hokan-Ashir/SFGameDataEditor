@@ -1,8 +1,7 @@
 package sfgamedataeditor.views.main.modules.merchants;
 
-import org.apache.log4j.Logger;
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
-import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
+import sfgamedataeditor.database.merchants.inventory.MerchantInventoryTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.managers.ModulePanelManager;
@@ -17,9 +16,6 @@ import java.util.Set;
 
 public class MerchantsView extends AbstractModulesView {
 
-    private static final Integer MERCHANTS_RACE_ID = 168;
-    private static final Logger LOGGER = Logger.getLogger(MerchantsView.class);
-
     public MerchantsView() {
         super(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "merchantLocations"));
     }
@@ -29,7 +25,7 @@ public class MerchantsView extends AbstractModulesView {
      */
     @Override
     protected void fillSubViewsMappings() {
-        Set<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceId(MERCHANTS_RACE_ID);
+        Set<String> creatureNames = MerchantInventoryTableService.INSTANCE.getAllMerchantNames();
         addMappings(creatureNames, MerchantInventoryView.class);
     }
 
