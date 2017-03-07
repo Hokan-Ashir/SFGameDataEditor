@@ -5,6 +5,6 @@ import sfgamedataeditor.views.main.modules.AbstractModulesModelCreator;
 public class ItemsFromScrollsModelCreator extends AbstractModulesModelCreator {
     @Override
     protected String createChildModuleNon18nName() {
-        return "items.scrolls.and.spells";
+        return "items.scrolls";
     }
 }

@@ -1,8 +1,11 @@
 package sfgamedataeditor.common.widgets.creatures.equipment;
 
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
+import sfgamedataeditor.common.widgets.items.weapons.type.WeaponTypesMap;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
+import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
+import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.mvc.objects.Model;
@@ -30,6 +33,7 @@ import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.MissingResourceException;
 import java.util.Set;
 
 public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWidget, OffsetableObject> implements ItemListener, ActionListener {
@@ -51,7 +55,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     private void addSpellScrollsViewsMapping() {
         SpellScrollsModelCreator creator = new SpellScrollsModelCreator();
         Pair<Class<? extends PresentableView>, ModelCreator> pair = new Pair<Class<? extends PresentableView>, ModelCreator>(SpellScrollsParametersView.class, creator);
-        int scrollsTypeId = getItemTypeByNameMapping("items.scrolls.and.spells");
+        int scrollsTypeId = getItemTypeByNameMapping("items.scrolls");
         itemTypesClassViews.put(scrollsTypeId, pair);
     }
 
@@ -98,7 +102,12 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     }
 
     private Integer getItemTypeByNameMapping(String nameMapping) {
-        return Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, nameMapping));
+        try {
+            return Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, nameMapping));
+        } catch (MissingResourceException e) {
+            // TODO fix later (works only for Spells and Scrolls)
+            return Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.scrolls"));
+        }
     }
 
     @Override
@@ -116,9 +125,16 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
         }
 
         String itemName = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
-        int itemPieceId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
-        String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(itemPieceId), I18NTypes.ITEM_TYPES_NAME_MAPPING);
-        String itemTypeName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, itemPieceNameKey);
+        String itemTypeName;
+        WeaponParametersObject weaponParametersObject = WeaponParametersTableService.INSTANCE.getObjectByItemId(itemId);
+        if (weaponParametersObject != null) {
+            itemTypeName = WeaponTypesMap.INSTANCE.getWeaponTypeNameById(weaponParametersObject.type);
+        } else {
+            int itemPieceId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
+            String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(itemPieceId), I18NTypes.ITEM_TYPES_NAME_MAPPING);
+            itemTypeName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, itemPieceNameKey);
+
+        }
         getWidget().getItemTypeComboBox().setSelectedItem(itemTypeName);
         updateItemNames();
         getWidget().getItemPieceComboBox().setSelectedItem(itemName);
@@ -157,6 +173,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
         if (pair == null) {
             return null;
         } else {
+            // TODO add Icon creation
             return pair.getValue().createModel(itemId, null);
         }
     }
@@ -180,8 +197,14 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     private void updateItemNames() {
         String itemTypeName = (String) getWidget().getItemTypeComboBox().getSelectedItem();
         String itemTypeI18NKey = ViewTools.getKeyStringByPropertyValue(itemTypeName, I18NTypes.COMMON);
-        String itemPieceType = I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemTypeI18NKey);
-        final Set<String> itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));
+        Set<String> itemNames;
+        if (itemTypeI18NKey == null) {
+            Integer weaponType = WeaponTypesMap.INSTANCE.getWeaponTypeByName(itemTypeName);
+            itemNames = WeaponParametersTableService.INSTANCE.getItemsByItemType(weaponType);
+        } else {
+            String itemPieceType = I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemTypeI18NKey);
+            itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));
+        }
 
         final JComboBox<String> itemPieceComboBox = getWidget().getItemPieceComboBox();
         itemPieceComboBox.removeAllItems();

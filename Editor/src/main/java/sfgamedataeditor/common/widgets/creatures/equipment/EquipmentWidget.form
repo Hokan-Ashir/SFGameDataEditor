@@ -5,7 +5,7 @@
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
     <properties>
-      <maximumSize width="215" height="100"/>
+      <maximumSize width="255" height="100"/>
     </properties>
     <border type="none"/>
     <children>
@@ -15,9 +15,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="160" height="25"/>
-          <minimumSize width="160" height="25"/>
-          <preferredSize width="160" height="25"/>
+          <maximumSize width="200" height="25"/>
+          <minimumSize width="200" height="25"/>
+          <preferredSize width="200" height="25"/>
           <text value="Label"/>
         </properties>
       </component>
@@ -27,9 +27,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="160" height="25"/>
-          <minimumSize width="160" height="25"/>
-          <preferredSize width="160" height="25"/>
+          <maximumSize width="200" height="25"/>
+          <minimumSize width="200" height="25"/>
+          <preferredSize width="200" height="25"/>
         </properties>
       </component>
       <component id="90eb6" class="javax.swing.JLabel" binding="itemPieceLabel">
@@ -38,9 +38,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="160" height="25"/>
-          <minimumSize width="160" height="25"/>
-          <preferredSize width="160" height="25"/>
+          <maximumSize width="200" height="25"/>
+          <minimumSize width="200" height="25"/>
+          <preferredSize width="200" height="25"/>
           <text value="Label"/>
         </properties>
       </component>
@@ -50,9 +50,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="160" height="25"/>
-          <minimumSize width="160" height="25"/>
-          <preferredSize width="160" height="25"/>
+          <maximumSize width="200" height="25"/>
+          <minimumSize width="200" height="25"/>
+          <preferredSize width="200" height="25"/>
         </properties>
       </component>
       <component id="99843" class="javax.swing.JButton" binding="goToItemButton">
