@@ -13,6 +13,7 @@ import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
 import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
+import sfgamedataeditor.database.creatures.herospells.HeroSpellObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.production.buildings.CreatureBuildingsObject;
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesObject;
@@ -205,6 +206,7 @@ public final class FileUtils {
         dtoClasses.add(CreatureParameterObject.class);
         dtoClasses.add(CreatureSkillObject.class);
         dtoClasses.add(CreatureSpellObject.class);
+        dtoClasses.add(HeroSpellObject.class);
 
         dtoClasses.add(ItemEffectsObject.class);
         dtoClasses.add(ItemRequirementsObject.class);

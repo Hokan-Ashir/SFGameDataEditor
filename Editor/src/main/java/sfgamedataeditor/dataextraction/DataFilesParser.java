@@ -8,6 +8,7 @@ import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootTableService;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentTableService;
+import sfgamedataeditor.database.creatures.herospells.HeroSpellTableService;
 import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
 import sfgamedataeditor.database.creatures.production.buildings.CreatureBuildingsTableService;
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesTableService;
@@ -24,7 +25,6 @@ import sfgamedataeditor.database.merchants.items.MerchantInventoryItemsTableServ
 import sfgamedataeditor.database.skill.parameters.SkillParametersTableService;
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
-import sfgamedataeditor.database.spells.school.names.SpellSchoolNameTableService;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.io.IOException;
@@ -52,6 +52,7 @@ public enum DataFilesParser {
             add(CreatureBuildingsTableService.INSTANCE);
             add(CreatureResourcesTableService.INSTANCE);
             add(CreatureSkillTableService.INSTANCE);
+            add(HeroSpellTableService.INSTANCE);
             add(ItemEffectsTableService.INSTANCE);
             add(ItemSpellEffectsTableService.INSTANCE);
             add(ItemRequirementsTableService.INSTANCE);
@@ -74,8 +75,6 @@ public enum DataFilesParser {
             List<Pair<byte[], Long>> offsettedData = readData(file, skillOffsets, dataLength);
             service.addRecordsToTable(offsettedData);
         }
-
-        SpellSchoolNameTableService.INSTANCE.createSpellSchoolNameTable();
     }
 
     private List<Pair<byte[], Long>> readData(RandomAccessFile file, List<Pair<Integer, Integer>> dataOffsets, int dataLength) {

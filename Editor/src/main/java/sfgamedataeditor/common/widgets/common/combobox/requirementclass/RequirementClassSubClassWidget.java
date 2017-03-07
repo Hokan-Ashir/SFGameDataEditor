@@ -1,13 +1,11 @@
 package sfgamedataeditor.common.widgets.common.combobox.requirementclass;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
-import sfgamedataeditor.datamapping.Mappings;
 
 import javax.swing.*;
 import java.util.List;
-import java.util.Map;
 
-public class RequirementClassSubClassWidget extends AbstractWidget<RequirementClassSubClassWidgetListener> {
+public class RequirementClassSubClassWidget extends AbstractWidget<AbstractRequirementClassSubClassWidgetListener> {
     private JPanel mainPanel;
     private JLabel requirementClassLabel;
     private JLabel requirementSubClassLabel;
@@ -15,11 +13,6 @@ public class RequirementClassSubClassWidget extends AbstractWidget<RequirementCl
     private JComboBox<String> requirementSubClassComboBox;
 
     public RequirementClassSubClassWidget() {
-        Map<String, List<String>> map = Mappings.INSTANCE.CLASS_SUBCLASS_COMBOBOX_MAP;
-        for (String s : map.keySet()) {
-            requirementClassComboBox.addItem(s);
-        }
-
         add(getMainPanel());
     }
 
@@ -32,7 +25,7 @@ public class RequirementClassSubClassWidget extends AbstractWidget<RequirementCl
     }
 
     @Override
-    protected void insertListener(RequirementClassSubClassWidgetListener listener) {
+    protected void insertListener(AbstractRequirementClassSubClassWidgetListener listener) {
         requirementClassComboBox.addItemListener(listener);
         requirementSubClassComboBox.addItemListener(listener);
     }

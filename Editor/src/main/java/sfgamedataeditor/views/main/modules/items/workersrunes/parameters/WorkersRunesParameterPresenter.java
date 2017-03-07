@@ -20,17 +20,27 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
-import java.util.List;
-import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class WorkersRunesParameterPresenter extends AbstractPresenter<WorkersRunesParametersModelParameter, WorkersRunesParametersView> {
 
     private static final Logger LOGGER = Logger.getLogger(WorkersRunesParameterPresenter.class);
+    private static final Map<Integer, Integer> SKILL_NUMBER_MAPPING = new HashMap<>();
 
     public WorkersRunesParameterPresenter(WorkersRunesParametersView view) {
         super(view);
+        initializeSkillNumberMapping();
+    }
+
+    private void initializeSkillNumberMapping() {
+        SKILL_NUMBER_MAPPING.put(GUIElements.REQUIREMENT_CLASS_SUBCLASS_1, 0);
+        SKILL_NUMBER_MAPPING.put(GUIElements.REQUIREMENT_CLASS_SUBCLASS_2, 1);
+        SKILL_NUMBER_MAPPING.put(GUIElements.REQUIREMENT_CLASS_SUBCLASS_3, 2);
+        SKILL_NUMBER_MAPPING.put(GUIElements.REQUIREMENT_CLASS_SUBCLASS_4, 3);
+        SKILL_NUMBER_MAPPING.put(GUIElements.SKILL_LEVEL_1, 0);
+        SKILL_NUMBER_MAPPING.put(GUIElements.SKILL_LEVEL_2, 1);
+        SKILL_NUMBER_MAPPING.put(GUIElements.SKILL_LEVEL_3, 2);
+        SKILL_NUMBER_MAPPING.put(GUIElements.SKILL_LEVEL_4, 3);
     }
 
     @Override
@@ -76,8 +86,20 @@ public class WorkersRunesParameterPresenter extends AbstractPresenter<WorkersRun
                         widget.getListener().updateWidgetValue(priceParametersObject);
                     } else if (dtoClass.equals(CreatureParameterObject.class)) {
                         widget.getListener().updateWidgetValue(creatureParameterObject);
+                    } else if (dtoClass.equals(CreatureSkillObject.class)) {
+                        if (creatureSkills == null || creatureSkills.isEmpty()) {
+                            getView().getTabPane().setEnabledAt(WorkersRunesParametersView.SKILL_PARAMETERS_TAB_INDEX, false);
+                        } else {
+                            getView().getTabPane().setEnabledAt(WorkersRunesParametersView.SKILL_PARAMETERS_TAB_INDEX, true);
+                            Integer skillIndex = SKILL_NUMBER_MAPPING.get(annotation.GUIElementId());
+                            if (skillIndex >= creatureSkills.size()) {
+                                widget.setVisible(false);
+                            } else {
+                                widget.setVisible(true);
+                                widget.getListener().updateWidgetValue(creatureSkills.get(skillIndex));
+                            }
+                        }
                     }
-                    // TODO add skills
                 }
             } catch (IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);

@@ -5,6 +5,7 @@ import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.items.armor.ArmorTypeListView;
 import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansRacesView;
+import sfgamedataeditor.views.main.modules.items.herorunes.HeroesRunesListView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.SpellScrollsListView;
 import sfgamedataeditor.views.main.modules.items.unitplans.UnitPlansRacesView;
@@ -33,7 +34,7 @@ public class ItemTypesView extends AbstractModulesView {
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor"), ArmorTypeListView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.scrolls.and.spells"), SpellScrollsListView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.workers.runes"), WorkersRuneRacesView.class));
-//        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.heroes.runes"), HeroesRuneRacesListView.class));
+        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.heroes.runes"), HeroesRunesListView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.buildingPlans"), BuildingPlansRacesView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.unitPlans"), UnitPlansRacesView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.miscellaneous"), MiscellaneousListView.class));

@@ -29,6 +29,10 @@ import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.Buildin
 import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.BuildingsPlanListView;
 import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.parameters.BuildingPlansFromBuildingPlansParameterModelCreator;
 import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.parameters.BuildingsPlansParametersView;
+import sfgamedataeditor.views.main.modules.items.herorunes.HeroesRunesListView;
+import sfgamedataeditor.views.main.modules.items.herorunes.ItemsFromHeroesRunesListModelCreator;
+import sfgamedataeditor.views.main.modules.items.herorunes.parameters.HeroesRunesListFromHeroesRunesParametersModelCreator;
+import sfgamedataeditor.views.main.modules.items.herorunes.parameters.HeroesRunesParametersView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.ItemsFromMiscellaneousModelCreator;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousFromMiscellaneousParametersModelCreator;
@@ -125,9 +129,18 @@ public enum  ViewHierarchy {
         ViewHierarchyNode unitPlans = createUnitPlansNodes(itemTypes);
 
         ViewHierarchyNode workersRunes = createWorkersRunesNodes(itemTypes);
+        ViewHierarchyNode heroesRunes = createHeroesRunesNodes(itemTypes);
 
-        itemTypes.addChildren(armor, unitPlans, buildingPlans, miscellaneous, spellScrolls, weapons, workersRunes);
+        itemTypes.addChildren(armor, unitPlans, buildingPlans, miscellaneous, spellScrolls, weapons, workersRunes, heroesRunes);
         return itemTypes;
+    }
+
+    private ViewHierarchyNode createHeroesRunesNodes(ViewHierarchyNode itemTypes) {
+        ViewHierarchyNode runesList = new ViewHierarchyNode(itemTypes, HeroesRunesListView.class, new ItemsFromHeroesRunesListModelCreator());
+        ViewHierarchyNode parameters = new ViewHierarchyNode(runesList, HeroesRunesParametersView.class, new HeroesRunesListFromHeroesRunesParametersModelCreator());
+        runesList.addChild(parameters);
+
+        return runesList;
     }
 
     private ViewHierarchyNode createWorkersRunesNodes(ViewHierarchyNode itemTypes) {

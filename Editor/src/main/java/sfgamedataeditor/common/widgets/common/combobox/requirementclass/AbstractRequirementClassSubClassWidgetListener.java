@@ -2,7 +2,6 @@ package sfgamedataeditor.common.widgets.common.combobox.requirementclass;
 
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
-import sfgamedataeditor.datamapping.Mappings;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -12,14 +11,16 @@ import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class RequirementClassSubClassWidgetListener extends AbstractWidgetListener<RequirementClassSubClassWidget, OffsetableObject> implements ItemListener {
+public abstract class AbstractRequirementClassSubClassWidgetListener extends AbstractWidgetListener<RequirementClassSubClassWidget, OffsetableObject> implements ItemListener {
 
-    public RequirementClassSubClassWidgetListener(RequirementClassSubClassWidget widget, Field[] DTOField) {
+    public AbstractRequirementClassSubClassWidgetListener(RequirementClassSubClassWidget widget, Field[] DTOField) {
         super(widget, DTOField);
+        fillWidgetClassComboBox();
     }
+
+    protected abstract void fillWidgetClassComboBox();
 
     /**
      * {@inheritDoc}
@@ -32,20 +33,19 @@ public class RequirementClassSubClassWidgetListener extends AbstractWidgetListen
 
         if (e.getSource().equals(getWidget().getRequirementClassComboBox())) {
             Object selectedSkillClass = e.getItem();
-            updateSubClassComboBoxContent(selectedSkillClass);
+            updateSubClassComboBoxContent((String) selectedSkillClass);
         }
 
         setWidgetValueToDTOField();
     }
 
-    private void updateSubClassComboBoxContent(Object selectedSkillClass) {
-        List<String> subClasses = Mappings.INSTANCE.CLASS_SUBCLASS_COMBOBOX_MAP.get(selectedSkillClass);
+    private void updateSubClassComboBoxContent(String selectedSkillClass) {
         JComboBox<String> comboBox = getWidget().getRequirementSubClassComboBox();
         comboBox.removeAllItems();
-        for (String subClass : subClasses) {
-            comboBox.addItem(subClass);
-        }
+        fillSubClassComboBox(selectedSkillClass);
     }
+
+    protected abstract void fillSubClassComboBox(String selectedSkillClass);
 
     @Override
     protected int[] getFieldValues() {
@@ -69,7 +69,6 @@ public class RequirementClassSubClassWidgetListener extends AbstractWidgetListen
         for (String key : subSchoolBundle.keySet()) {
             if (I18NService.INSTANCE.getMessage(I18NTypes.COMMON, key).equals(requirementSubClassComboBox.getSelectedItem())) {
                 requirementSubClassValue = Integer.parseInt(subSchoolBundle.getString(key));
-                requirementSubClassValue %= requirementClassValue * 10;
                 break;
             }
         }
@@ -81,15 +80,30 @@ public class RequirementClassSubClassWidgetListener extends AbstractWidgetListen
     protected void setFieldValues(final int[] value) {
         final JComboBox<String> requirementClassComboBox = getWidget().getRequirementClassComboBox();
         final JComboBox<String> requirementSubClassComboBox = getWidget().getRequirementSubClassComboBox();
+        String skillSchoolKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(value[0]), I18NTypes.SKILL_SCHOOL_MAPPING);
+        final String skillSchoolName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, skillSchoolKey);
+        String skillSubSchoolName = null;
+        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.SKILL_SUB_SCHOOL_MAPPING);
+        for (String key : bundle.keySet()) {
+            if (key.startsWith(skillSchoolKey)) {
+                String string = bundle.getString(key);
+                if (string.equals(String.valueOf(value[1]))) {
+                    skillSubSchoolName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, key);
+                    break;
+                }
+            }
+        }
+
+        final String finalSkillSubSchoolName = skillSubSchoolName;
         ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(requirementClassComboBox) {
             @Override
             protected void setValues() {
-                requirementClassComboBox.setSelectedItem(requirementClassComboBox.getItemAt(value[0]));
+                requirementClassComboBox.setSelectedItem(skillSchoolName);
                 ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(requirementSubClassComboBox) {
                     @Override
                     protected void setValues() {
-                        updateSubClassComboBoxContent(requirementClassComboBox.getSelectedItem());
-                        requirementSubClassComboBox.setSelectedItem(requirementSubClassComboBox.getItemAt(value[1]));
+                        updateSubClassComboBoxContent((String) requirementClassComboBox.getSelectedItem());
+                        requirementSubClassComboBox.setSelectedItem(finalSkillSubSchoolName);
                     }
                 });
             }

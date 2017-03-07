@@ -1,11 +1,11 @@
-package sfgamedataeditor.common.viewconfigurations.item.workerrunes;
+package sfgamedataeditor.common.viewconfigurations.item.heroesrunes;
 
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
-import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxWidget;
-import sfgamedataeditor.common.widgets.common.combobox.level.WorkerRunesLevelComboBoxListener;
 import sfgamedataeditor.common.widgets.common.combobox.requirementclass.RequirementClassSubClassWidget;
-import sfgamedataeditor.common.widgets.common.combobox.requirementclass.RunesRequirementClassSubClassWidgetListener;
+import sfgamedataeditor.common.widgets.common.combobox.requirementclass.SpellRequirementClassSubClassWidgetListener;
+import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidget;
+import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidgetListener;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
 import sfgamedataeditor.common.widgets.creatures.equipmentslot.EquipmentSlotWidget;
@@ -21,16 +21,24 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WorkersRunesParametersViewConfiguration extends AbstractConfiguration {
+public class HeroesRunesParametersViewConfiguration extends AbstractConfiguration {
     @Override
     protected void fillConfigurationMappings() {
         addTextFieldWidgets();
-        addRaceWidgets();
         addVulnerabilityWidgets();
         addSkillsWidgets();
-        addLevelWidget();
         addItemsWidgets();
         addEquipmentSlotsWidgets();
+        addSpellsWidgets();
+    }
+
+    private void addSpellsWidgets() {
+        ConfigurationWidgetParameter spells = new ConfigurationWidgetParameter(EffectNumberWidget.class, EffectNumberWidgetListener.class,
+                I18NTypes.WORKERS_RUNES_GUI, "spell");
+        addViewMapping(GUIElements.SPELL_PANEL_1, spells);
+        addViewMapping(GUIElements.SPELL_PANEL_2, spells);
+        addViewMapping(GUIElements.SPELL_PANEL_3, spells);
+        addViewMapping(GUIElements.SPELL_PANEL_4, spells);
     }
 
     private void addItemsWidgets() {
@@ -55,12 +63,6 @@ public class WorkersRunesParametersViewConfiguration extends AbstractConfigurati
         addViewMapping(GUIElements.GENDER_AND_VULNERABILITY, vulnerability);
     }
 
-    private void addRaceWidgets() {
-//        ConfigurationWidgetParameter raceIds = new ConfigurationWidgetParameter(RacesWidget.class, RacesWidgetListener.class, I18NTypes.CREATURES_GUI,
-//                "raceId");
-//        addViewMapping(GUIElements.RACE_ID, raceIds);
-    }
-
     private void addEquipmentSlotsWidgets() {
         ConfigurationWidgetParameter equipmentSlots = new ConfigurationWidgetParameter(EquipmentSlotWidget.class, EquipmentSlotWidgetListener.class,
                 I18NTypes.WORKERS_RUNES_GUI, "equipmentSlotsId", "equipmentSlotsId.all.slots.available",
@@ -70,12 +72,15 @@ public class WorkersRunesParametersViewConfiguration extends AbstractConfigurati
 
     private void addSkillsWidgets() {
         ConfigurationWidgetParameter requirementClassSubClass = new ConfigurationWidgetParameter(RequirementClassSubClassWidget.class,
-                RunesRequirementClassSubClassWidgetListener.class, I18NTypes.WORKERS_RUNES_GUI,
+                SpellRequirementClassSubClassWidgetListener.class, I18NTypes.WORKERS_RUNES_GUI,
                 "skill.class", "skill.subclass");
         addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_1, requirementClassSubClass);
         addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_2, requirementClassSubClass);
         addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_3, requirementClassSubClass);
         addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_4, requirementClassSubClass);
+        addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_5, requirementClassSubClass);
+        addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_6, requirementClassSubClass);
+        addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS_7, requirementClassSubClass);
     }
 
     private void addTextFieldWidgets() {
@@ -105,17 +110,14 @@ public class WorkersRunesParametersViewConfiguration extends AbstractConfigurati
             put(GUIElements.SKILL_LEVEL_2, "level");
             put(GUIElements.SKILL_LEVEL_3, "level");
             put(GUIElements.SKILL_LEVEL_4, "level");
+            put(GUIElements.SKILL_LEVEL_5, "level");
+            put(GUIElements.SKILL_LEVEL_6, "level");
+            put(GUIElements.SKILL_LEVEL_7, "level");
         }};
 
         for (Map.Entry<Integer, String> entry : i18nMap.entrySet()) {
             ConfigurationWidgetParameter parameter = new ConfigurationWidgetParameter(TextFieldWidget.class, TextFieldWidgetListener.class, I18NTypes.WORKERS_RUNES_GUI, entry.getValue());
             addViewMapping(entry.getKey(), parameter);
         }
-    }
-
-    private void addLevelWidget() {
-        ConfigurationWidgetParameter level = new ConfigurationWidgetParameter(LevelComboBoxWidget.class, WorkerRunesLevelComboBoxListener.class, I18NTypes.WORKERS_RUNES_GUI,
-                "level");
-        addViewMapping(GUIElements.LEVEL, level);
     }
 }

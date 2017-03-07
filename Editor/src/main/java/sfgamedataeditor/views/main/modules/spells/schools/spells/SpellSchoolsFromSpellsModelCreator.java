@@ -4,7 +4,6 @@ import sfgamedataeditor.database.spells.names.SpellNameObject;
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
-import sfgamedataeditor.database.spells.school.names.SpellSchoolNameTableService;
 import sfgamedataeditor.mvc.ModelCreator;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.ModulesModel;
@@ -19,7 +18,7 @@ public class SpellSchoolsFromSpellsModelCreator implements ModelCreator<ModulesM
         SpellNameObject spellNameDAO = SpellNameTableService.INSTANCE.getSpellName(spellName);
         Integer spellType = spellNameDAO.spellType;
         SpellParametersObject spellParameter = SpellParametersTableService.INSTANCE.getSpellParametersBySpellType(spellType);
-        String spellSchoolName = SpellSchoolNameTableService.INSTANCE.getSpellSchoolName(spellParameter);
+        String spellSchoolName = SpellParametersTableService.INSTANCE.getSpellSchoolName(spellParameter);
         ModuleParameter parameter = new ModuleParameter(spellSchoolName);
         return new ModulesModel(parameter);
     }

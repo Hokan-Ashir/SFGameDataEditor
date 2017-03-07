@@ -4,6 +4,7 @@ import sfgamedataeditor.common.viewconfigurations.buildings.parameters.Buildings
 import sfgamedataeditor.common.viewconfigurations.creature.parameters.CreatureParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.armor.ArmorParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.buildingplans.BuildingPlansParametersConfigurationHolder;
+import sfgamedataeditor.common.viewconfigurations.item.heroesrunes.HeroesRunesParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.miscellaneous.MiscellaneousParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.scrolls.ScrollsParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.unitplans.UnitPlansParametersConfigurationHolder;
@@ -17,6 +18,7 @@ import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
 import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.parameters.BuildingsPlansParametersView;
+import sfgamedataeditor.views.main.modules.items.herorunes.parameters.HeroesRunesParametersView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersView;
 import sfgamedataeditor.views.main.modules.items.unitplans.units.parameters.UnitsPlansParametersView;
@@ -47,6 +49,7 @@ public enum  ConfigurationsHolder {
         configurationHolderMap.put(BuildingsPlansParametersView.class, new BuildingPlansParametersConfigurationHolder());
         configurationHolderMap.put(UnitsPlansParametersView.class, new UnitPlansParametersConfigurationHolder());
         configurationHolderMap.put(WorkersRunesParametersView.class, new WorkersRunesParametersConfigurationHolder());
+        configurationHolderMap.put(HeroesRunesParametersView.class, new HeroesRunesParametersConfigurationHolder());
     }
 
     public AbstractConfigurationHolder getConfigurationHolder(Class<? extends View> viewClass) {

@@ -26,10 +26,17 @@ public final class GUIElements {
     public static final int SPAWN_TIME = 21;
     public static final int GENDER_AND_VULNERABILITY = 22;
     public static final int HEAD_ID = 23;
-    public static final int REQUIREMENT_CLASS_SUBCLASS = 24;
-    public static final int SKILL_LEVEL = 25;
-    public static final int EQUIPMENT_SLOTS_ID = 26;
-    public static final int UNIT_LEVEL = 27;
+    public static final int EQUIPMENT_SLOTS_ID = 24;
+    public static final int UNIT_LEVEL = 25;
+
+    public static final int REQUIREMENT_CLASS_SUBCLASS_1 = 26;
+    public static final int SKILL_LEVEL_1 = 27;
+    public static final int REQUIREMENT_CLASS_SUBCLASS_2 = 28;
+    public static final int SKILL_LEVEL_2 = 29;
+    public static final int REQUIREMENT_CLASS_SUBCLASS_3 = 30;
+    public static final int SKILL_LEVEL_3 = 31;
+    public static final int REQUIREMENT_CLASS_SUBCLASS_4 = 32;
+    public static final int SKILL_LEVEL_4 = 33;
 
     private GUIElements() {
 

@@ -1,24 +1,18 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
-import sfgamedataeditor.datamapping.Mappings;
 import sfgamedataeditor.mvc.ModelCreator;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.ModulesModel;
-
-import java.util.Map;
+import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 public class SkillSchoolsFromSkillParameterModelCreator implements ModelCreator<ModulesModel, SkillParameterModel> {
     @Override
     public ModulesModel createModel(SkillParameterModel childModel) {
         int skillSchoolId = childModel.getParameter().getSkillSchoolId();
-        String skillSchoolName = null;
-        for (Map.Entry<String, Integer> skillSchoolObject : Mappings.INSTANCE.SKILL_SCHOOL_MAP.entrySet()) {
-            if (skillSchoolObject.getValue().equals(skillSchoolId)) {
-                skillSchoolName = skillSchoolObject.getKey();
-                break;
-            }
-        }
-
+        String skillSchoolKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(skillSchoolId), I18NTypes.SKILL_SCHOOL_MAPPING);
+        String skillSchoolName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, skillSchoolKey);
         ModuleParameter parameter = new ModuleParameter(skillSchoolName);
         return new ModulesModel(parameter);
     }

@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.spells.schools;
 
-import sfgamedataeditor.database.spells.school.names.SpellSchoolNameTableService;
+import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
@@ -20,7 +20,7 @@ public class SpellSchoolsView extends AbstractModulesView {
      */
     @Override
     protected void fillSubViewsMappings() {
-        Set<String> allSpellSchoolNameObjects = SpellSchoolNameTableService.INSTANCE.getAllSpellSchoolNames();
+        Set<String> allSpellSchoolNameObjects = SpellParametersTableService.INSTANCE.getAllSpellSchoolNames();
         addMappings(allSpellSchoolNameObjects, SpellsView.class);
     }
 

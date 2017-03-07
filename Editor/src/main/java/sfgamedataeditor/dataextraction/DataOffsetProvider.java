@@ -45,6 +45,7 @@ public enum DataOffsetProvider {
         holderMap.put(DTOOffsetTypes.BUILDINGS, new BuildingsOffsetHolder());
         holderMap.put(DTOOffsetTypes.BUILDINGS_REQUIREMENTS, new BuildingsRequirementsOffsetHolder());
         holderMap.put(DTOOffsetTypes.BUILDINGS_ARMY_REQUIREMENTS, new BuildingsArmyRequirementsOffsetHolder());
+        holderMap.put(DTOOffsetTypes.HERO_SPELLS, new HeroSpellsOffsetHolder());
     }
 
     public List<Pair<Integer, Integer>> getOffsets(DTOOffsetTypes types) {

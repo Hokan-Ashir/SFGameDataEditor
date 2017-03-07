@@ -1,9 +1,10 @@
-package sfgamedataeditor.views.main.modules.items.workersrunes.parameters;
+package sfgamedataeditor.views.main.modules.items.herorunes.parameters;
 
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.IconElement;
-import sfgamedataeditor.common.viewconfigurations.item.workerrunes.GUIElements;
+import sfgamedataeditor.common.viewconfigurations.item.heroesrunes.GUIElements;
 import sfgamedataeditor.common.widgets.Disabled;
+import sfgamedataeditor.database.creatures.herospells.HeroSpellObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.skills.CreatureSkillObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
@@ -15,10 +16,11 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 import javax.swing.*;
 
 @SuppressWarnings("unused")
-public class WorkersRunesParametersView implements PresentableView {
+public class HeroesRunesParametersView implements PresentableView {
     private static final int ITEM_PARAMETERS_TAB_INDEX = 0;
     private static final int UNIT_PARAMETERS_TAB_INDEX = 1;
     public static final int SKILL_PARAMETERS_TAB_INDEX = 2;
+    public static final int SPELL_PARAMETERS_TAB_INDEX = 3;
 
     private JPanel mainPanel;
 
@@ -33,9 +35,6 @@ public class WorkersRunesParametersView implements PresentableView {
 
     @IconElement
     private JLabel iconLabel;
-
-    @GUIElement(GUIElementId = GUIElements.LEVEL)
-    private JPanel runeLevelPanel;
 
     @Disabled
     @GUIElement(GUIElementId = GUIElements.STATS_ID, DTOColumnNames = "statsId", DTOClass = CreatureParameterObject.class)
@@ -113,7 +112,8 @@ public class WorkersRunesParametersView implements PresentableView {
     private JTabbedPane tabPane;
     private JPanel itemParametersPanel;
     private JPanel unitParametersPanel;
-    private JPanel skillsPanel;
+    private JPanel skillsParametersPanel;
+    private JPanel spellsParametersPanel;
 
     @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_SUBCLASS_1, DTOColumnNames = {"skillSchoolClass", "skillSchoolSubClass"}, DTOClass = CreatureSkillObject.class)
     private JPanel skill1Panel;
@@ -139,7 +139,23 @@ public class WorkersRunesParametersView implements PresentableView {
     @GUIElement(GUIElementId = GUIElements.SKILL_LEVEL_4, DTOColumnNames = "skillLevel", DTOClass = CreatureSkillObject.class)
     private JPanel skill4LevelPanel;
 
-    public WorkersRunesParametersView() {
+    @GUIElement(GUIElementId = GUIElements.SPELL_PANEL_1, DTOColumnNames = "spellNumber", DTOClass = HeroSpellObject.class)
+    private JPanel spell1Panel;
+
+    @GUIElement(GUIElementId = GUIElements.SPELL_PANEL_2, DTOColumnNames = "spellNumber", DTOClass = HeroSpellObject.class)
+    private JPanel spell2Panel;
+
+    @GUIElement(GUIElementId = GUIElements.SPELL_PANEL_3, DTOColumnNames = "spellNumber", DTOClass = HeroSpellObject.class)
+    private JPanel spell3Panel;
+    private JPanel spell4Panel;
+    private JPanel skill5Panel;
+    private JPanel skill6Panel;
+    private JPanel skill7Panel;
+    private JPanel skill5LevelPanel;
+    private JPanel skill6LevelPanel;
+    private JPanel skill7LevelPanel;
+
+    public HeroesRunesParametersView() {
         internationalizeCommonLabels();
         internationalizeTabs();
     }
@@ -154,6 +170,7 @@ public class WorkersRunesParametersView implements PresentableView {
         tabPane.setTitleAt(ITEM_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.WORKERS_RUNES_GUI, "tab.item.parameters"));
         tabPane.setTitleAt(UNIT_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.WORKERS_RUNES_GUI, "tab.unit.parameters"));
         tabPane.setTitleAt(SKILL_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.WORKERS_RUNES_GUI, "tab.skill.parameters"));
+        tabPane.setTitleAt(SPELL_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.WORKERS_RUNES_GUI, "tab.spell.parameters"));
     }
 
     public JTabbedPane getTabPane() {
@@ -162,7 +179,7 @@ public class WorkersRunesParametersView implements PresentableView {
 
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {
-        return WorkersRunesParameterPresenter.class;
+        return HeroesRunesParameterPresenter.class;
     }
 
     @Override

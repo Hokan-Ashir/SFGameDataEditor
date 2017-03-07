@@ -3,7 +3,7 @@ package sfgamedataeditor.common.viewconfigurations.item.armor;
 import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.widgets.common.combobox.requirementclass.RequirementClassSubClassWidget;
-import sfgamedataeditor.common.widgets.common.combobox.requirementclass.RequirementClassSubClassWidgetListener;
+import sfgamedataeditor.common.widgets.common.combobox.requirementclass.SpellRequirementClassSubClassWidgetListener;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
 import sfgamedataeditor.common.widgets.items.itemprice.ItemPriceWidget;
@@ -44,7 +44,7 @@ public class ArmorParametersViewConfiguration extends AbstractConfiguration {
         }
 
         ConfigurationWidgetParameter requirementClassSubClass = new ConfigurationWidgetParameter(RequirementClassSubClassWidget.class,
-                RequirementClassSubClassWidgetListener.class, I18NTypes.ARMOR_GUI,
+                SpellRequirementClassSubClassWidgetListener.class, I18NTypes.ARMOR_GUI,
                 "requirementClass", "requirementSubClass");
         addViewMapping(GUIElements.REQUIREMENT_CLASS_SUBCLASS, requirementClassSubClass);
 
