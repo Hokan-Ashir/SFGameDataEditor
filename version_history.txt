@@ -1,3 +1,15 @@
+alpha-5 (07.03.2017):
+ - Added ability to change unit and building plans parameters
+ - Added ability to change workers and heroes runes as well as their characteristics, skills and spells
+ - Added ability to change actual spell-objects, that appear in user's spellbook
+ - Separated weapons by item types (1H weapon > 1H mace, 1H dagger, 1H sword etc.) in equipment widget; \
+    also added alphabetical sorting in item types and weapon types
+ - Reverted separation of language information from alpha-4, as result - faster start up
+ - Separated xdeltaencoder and editor in different maven modules, removed some unused images, as result - lesser size of result jar-file
+ - Fixed merchant names selection - now all in-game merchants are available
+ - Fixed weapons types, item, creature selection
+ - Rewritten spells view, as result - possible to track all spell requirements
+
 alpha-4 (22.02.2017):
  - Separated weapons by item types (1H weapon > 1H mace, 1H dagger, 1H sword etc.)
  - Extended merchant, spells, buildings images

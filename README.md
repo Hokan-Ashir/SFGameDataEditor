@@ -18,6 +18,9 @@ See "What it can't do" section below to be aware of restrictions.
  - Editing unit common parameters, i.e. how change what blades hold dark elves assassin and how to make orc drummers mass heal instead of war crying  
  - Editing ARMOR, WEAPONS and MISCELLANEOUS parameters, i.e. how many strength "Amra's armor" gives you and for how much you can sell/buyout it or how far "Heartseeker" can shoot
  - Editing buildings parameters, i.e. how many resources need to build human's Quarry or what buildings are needed to produce dwarves' Defender
+ - Editing spell scrolls and spells, i.e. how to make Pain level 1 scroll teach you Torture level 14
+ - Editing workers and heroes runes parameters i.e. how make Dwarves be revived at night like Dark Elves or how to add Warrior Kord more strength and fight speed
+ - Editing units and buildings plans, i.e. how to give elves ability to build Fishman's Hat or let Orcs summon Clerics
  - Creating compact sf-mod files, which stores your modifications
  - Loading sf-mod files created by other users
  - Merging sf-mod files with your GameData.cff files to get modificated data, which you can test in game
