@@ -38,6 +38,28 @@ public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
             add("items.hero.army.units");
             add("items.scrolls");
             add("items.miscellaneous");
+            add("items.rune.workers.in.inventory.humans");
+            add("items.rune.workers.in.inventory.elves");
+            add("items.rune.workers.in.inventory.dwarves");
+            add("items.rune.workers.in.inventory.orcs");
+            add("items.rune.workers.in.inventory.trolls");
+            add("items.rune.workers.in.inventory.dark.elves");
+
+            add("items.rune.hero.in.inventory");
+
+            add("items.unit.plan.in.inventory.humans");
+            add("items.unit.plan.in.inventory.elves");
+            add("items.unit.plan.in.inventory.dwarves");
+            add("items.unit.plan.in.inventory.orcs");
+            add("items.unit.plan.in.inventory.trolls");
+            add("items.unit.plan.in.inventory.dark.elves");
+
+            add("items.building.plan.in.inventory.humans");
+            add("items.building.plan.in.inventory.elves");
+            add("items.building.plan.in.inventory.dwarves");
+            add("items.building.plan.in.inventory.orcs");
+            add("items.building.plan.in.inventory.trolls");
+            add("items.building.plan.in.inventory.dark.elves");
         }};
 
         List<String> itemNames = new ArrayList<>();

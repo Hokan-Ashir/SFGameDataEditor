@@ -12,6 +12,7 @@ import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public enum HeroSpellTableService implements TableCreationService {
@@ -49,6 +50,16 @@ public enum HeroSpellTableService implements TableCreationService {
             if (objects.isEmpty()) {
                 return Collections.emptyList();
             } else {
+                // TODO double check this out; Warror Ishtar and Warrior Thiderik have spells with spellNumber = 0
+                // which is impossible, cause such spell doesn't exists in game files
+                // so this code is for eliminating this spells from result list
+                Iterator<HeroSpellObject> iterator = objects.iterator();
+                while (iterator.hasNext()) {
+                    HeroSpellObject next = iterator.next();
+                    if (next.spellNumber == 0) {
+                        iterator.remove();
+                    }
+                }
                 return objects;
             }
         } catch (SQLException e) {
