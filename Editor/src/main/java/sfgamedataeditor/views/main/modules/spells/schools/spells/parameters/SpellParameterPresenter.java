@@ -61,7 +61,7 @@ public class SpellParameterPresenter extends AbstractPresenter<SpellParameterMod
     public void updateView() {
         SpellParameterModelParameter parameter = getModel().getParameter();
         int selectedSpellId = parameter.getSpellId();
-        int selectedLevel = parameter.getSpellLevel();
+        int selectedLevel = parameter.getLevel();
         Icon icon = parameter.getIcon();
         Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
 

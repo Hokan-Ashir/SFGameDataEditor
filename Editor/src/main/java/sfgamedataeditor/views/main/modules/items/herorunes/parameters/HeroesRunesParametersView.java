@@ -40,7 +40,6 @@ public class HeroesRunesParametersView implements PresentableView {
     @GUIElement(GUIElementId = GUIElements.STATS_ID, DTOColumnNames = "statsId", DTOClass = CreatureParameterObject.class)
     private JPanel statsIdPanel;
 
-    @Disabled
     @GUIElement(GUIElementId = GUIElements.RACE_ID, DTOColumnNames = "raceId", DTOClass = CreatureParameterObject.class)
     private JPanel raceIdPanel;
 

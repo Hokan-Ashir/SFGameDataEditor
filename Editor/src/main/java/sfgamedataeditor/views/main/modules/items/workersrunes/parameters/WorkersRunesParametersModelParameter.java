@@ -1,26 +1,19 @@
 package sfgamedataeditor.views.main.modules.items.workersrunes.parameters;
 
+import sfgamedataeditor.mvc.objects.LevelableParameter;
+
 import javax.swing.*;
 
-public class WorkersRunesParametersModelParameter {
+public class WorkersRunesParametersModelParameter extends LevelableParameter {
     private final String runeName;
-    private Integer runeLevel;
     private final Icon icon;
 
     public WorkersRunesParametersModelParameter(String runeName,
                                                 Integer runeLevel,
                                                 Icon icon) {
+        super(runeLevel);
         this.runeName = runeName;
-        this.runeLevel = runeLevel;
         this.icon = icon;
-    }
-
-    public Integer getRuneLevel() {
-        return runeLevel;
-    }
-
-    public void setRuneLevel(Integer runeLevel) {
-        this.runeLevel = runeLevel;
     }
 
     public Icon getIcon() {

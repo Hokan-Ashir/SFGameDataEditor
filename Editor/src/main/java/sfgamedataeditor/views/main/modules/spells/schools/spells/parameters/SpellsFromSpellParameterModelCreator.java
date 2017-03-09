@@ -15,7 +15,7 @@ public class SpellsFromSpellParameterModelCreator implements ModelCreator<SpellM
     @Override
     public SpellModel createModel(SpellParameterModel childModel) {
         int spellId = childModel.getParameter().getSpellId();
-        int spellLevel = childModel.getParameter().getSpellLevel();
+        int spellLevel = childModel.getParameter().getLevel();
         List<SpellParametersObject> spellParametersBySpellSchoolObject = SpellParametersTableService.INSTANCE.getSpellParametersBySpellSchool(spellId, spellLevel);
         Set<String> listOfSpells = new TreeSet<>();
         for (SpellParametersObject spellParametersObject : spellParametersBySpellSchoolObject) {

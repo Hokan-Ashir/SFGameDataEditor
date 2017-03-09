@@ -48,7 +48,7 @@ public enum ViewConfigurator {
             }
 
             field.setAccessible(true);
-            Object panel = null;
+            Object panel;
             try {
                 panel = field.get(view);
             } catch (IllegalAccessException e) {

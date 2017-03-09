@@ -16,6 +16,8 @@ import sfgamedataeditor.common.widgets.items.itemprice.ItemPriceWidget;
 import sfgamedataeditor.common.widgets.items.itemprice.ItemPriceWidgetListener;
 import sfgamedataeditor.common.widgets.items.itemset.ItemSetWidget;
 import sfgamedataeditor.common.widgets.items.itemset.ItemSetWidgetListener;
+import sfgamedataeditor.common.widgets.items.runerace.RuneRaceWidget;
+import sfgamedataeditor.common.widgets.items.runerace.RuneRaceWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;
@@ -56,9 +58,9 @@ public class WorkersRunesParametersViewConfiguration extends AbstractConfigurati
     }
 
     private void addRaceWidgets() {
-//        ConfigurationWidgetParameter raceIds = new ConfigurationWidgetParameter(RacesWidget.class, RacesWidgetListener.class, I18NTypes.CREATURES_GUI,
-//                "raceId");
-//        addViewMapping(GUIElements.RACE_ID, raceIds);
+        ConfigurationWidgetParameter raceIds = new ConfigurationWidgetParameter(RuneRaceWidget.class, RuneRaceWidgetListener.class, I18NTypes.CREATURES_GUI,
+                "raceId");
+        addViewMapping(GUIElements.RACE_ID, raceIds);
     }
 
     private void addEquipmentSlotsWidgets() {

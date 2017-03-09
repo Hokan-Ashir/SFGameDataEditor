@@ -53,7 +53,7 @@ public class SpellScrollsParametersPresenter extends AbstractPresenter<SpellScro
     public void updateView() {
         SpellScrollsParametersModelParameter parameter = getModel().getParameter();
 
-        int selectedLevel = parameter.getScrollLevel();
+        int selectedLevel = parameter.getLevel();
         String scrollBaseName = parameter.getScrollBaseName();
         Set<Integer> scrollLevels = getScrollLevels(scrollBaseName);
         String scrollName = scrollBaseName + " - " + I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "level") + " " + selectedLevel;

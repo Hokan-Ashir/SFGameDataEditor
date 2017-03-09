@@ -47,7 +47,7 @@ public class WorkersRunesParameterPresenter extends AbstractPresenter<WorkersRun
     public void updateView() {
         WorkersRunesParametersModelParameter parameter = getModel().getParameter();
         String runeName = parameter.getRuneName();
-        Integer runeLevel = parameter.getRuneLevel();
+        Integer runeLevel = parameter.getLevel();
         String fullRuneName = runeName + " - level " + String.valueOf(runeLevel);
         Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(fullRuneName);
         ItemPriceParametersObject priceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);

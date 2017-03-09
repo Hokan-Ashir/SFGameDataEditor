@@ -1,6 +1,12 @@
 package sfgamedataeditor.common.widgets.common.combobox.level;
 
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
+import sfgamedataeditor.events.processing.EventProcessor;
+import sfgamedataeditor.events.processing.ViewRegister;
+import sfgamedataeditor.events.types.ShowContentViewEvent;
+import sfgamedataeditor.mvc.objects.LevelableParameter;
+import sfgamedataeditor.mvc.objects.Model;
+import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 
@@ -33,7 +39,14 @@ public abstract class AbstractLevelComboBoxListener extends AbstractWidgetListen
         processSelectedItemEvent(selectedItem);
     }
 
-    protected abstract void processSelectedItemEvent(String selectedItem);
+    private void processSelectedItemEvent(String selectedItem) {
+        Model oldModel = ViewRegister.INSTANCE.getViews().get(getViewClass()).getPresenter().getModel();
+        ((LevelableParameter) oldModel.getParameter()).setLevel(Integer.valueOf(selectedItem));
+        ShowContentViewEvent event = new ShowContentViewEvent(getViewClass(), oldModel);
+        EventProcessor.INSTANCE.process(event);
+    }
+
+    protected abstract Class<? extends PresentableView> getViewClass();
 
     @Override
     public void updateWidgetValue(final LevelComboBoxParameter mappedObject) {

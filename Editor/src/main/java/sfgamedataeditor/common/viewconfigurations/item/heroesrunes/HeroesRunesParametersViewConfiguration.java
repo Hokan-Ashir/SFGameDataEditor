@@ -16,6 +16,8 @@ import sfgamedataeditor.common.widgets.items.itemprice.ItemPriceWidget;
 import sfgamedataeditor.common.widgets.items.itemprice.ItemPriceWidgetListener;
 import sfgamedataeditor.common.widgets.items.itemset.ItemSetWidget;
 import sfgamedataeditor.common.widgets.items.itemset.ItemSetWidgetListener;
+import sfgamedataeditor.common.widgets.items.runerace.RuneRaceWidget;
+import sfgamedataeditor.common.widgets.items.runerace.RuneRaceWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;
@@ -30,6 +32,7 @@ public class HeroesRunesParametersViewConfiguration extends AbstractConfiguratio
         addItemsWidgets();
         addEquipmentSlotsWidgets();
         addSpellsWidgets();
+        addRaceWidgets();
     }
 
     private void addSpellsWidgets() {
@@ -53,6 +56,12 @@ public class HeroesRunesParametersViewConfiguration extends AbstractConfiguratio
         ConfigurationWidgetParameter itemSet = new ConfigurationWidgetParameter(ItemSetWidget.class, ItemSetWidgetListener.class, I18NTypes.WORKERS_RUNES_GUI,
                 "itemSet");
         addViewMapping(GUIElements.ITEM_SET, itemSet);
+    }
+
+    private void addRaceWidgets() {
+        ConfigurationWidgetParameter raceIds = new ConfigurationWidgetParameter(RuneRaceWidget.class, RuneRaceWidgetListener.class, I18NTypes.CREATURES_GUI,
+                "raceId");
+        addViewMapping(GUIElements.RACE_ID, raceIds);
     }
 
     private void addVulnerabilityWidgets() {

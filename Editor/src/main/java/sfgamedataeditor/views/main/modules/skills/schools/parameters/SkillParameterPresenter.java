@@ -26,7 +26,7 @@ public class SkillParameterPresenter extends AbstractPresenter<SkillParameterMod
     @Override
     public void updateView() {
         SkillParameterModelParameter parameter = getModel().getParameter();
-        int selectedLevel = parameter.getSkillLevel();
+        int selectedLevel = parameter.getLevel();
         Set<Integer> getSkillPossibleLevels = SkillParametersTableService.INSTANCE.getSkillPossibleLevels(parameter.getSkillSchoolId());
         SkillParameterObject skillParameter = SkillParametersTableService.INSTANCE.getSkillParameter(parameter.getSkillSchoolId(), selectedLevel);
 
