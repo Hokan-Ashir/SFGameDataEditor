@@ -92,16 +92,20 @@ public class SpellParameterPresenter extends AbstractPresenter<SpellParameterMod
                 AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
 
                 int guiElementId = annotation.GUIElementId();
-                if (guiElementId != GUIElements.SPELL_LEVEL) {
-                    widget.getListener().updateWidgetValue(spellParameter);
-                } else {
+                if (guiElementId == GUIElements.SPELL_LEVEL) {
                     LevelComboBoxParameter levelComboBoxParameter = new LevelComboBoxParameter(selectedLevel, spellLevels);
                     widget.getListener().updateWidgetValue(levelComboBoxParameter);
-                }
-
-                if (i18nDTOFieldsToGUIElementsIdsMap.containsKey(guiElementId)) {
-                    List<String> strings = i18nStrings.get(guiElementId);
-                    widget.updateI18N(strings);
+                } else {
+                    if (i18nDTOFieldsToGUIElementsIdsMap.containsKey(guiElementId)) {
+                        List<String> strings = i18nStrings.get(guiElementId);
+                        if (!strings.isEmpty()) {
+                            widget.setVisible(true);
+                            widget.updateI18N(strings);
+                            widget.getListener().updateWidgetValue(spellParameter);
+                        } else {
+                            widget.setVisible(false);
+                        }
+                    }
                 }
             } catch (IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);

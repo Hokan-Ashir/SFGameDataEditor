@@ -25,15 +25,13 @@ public class TextFieldWidget extends AbstractWidget<TextFieldWidgetListener> {
         field.getDocument().addDocumentListener(listener);
     }
 
-    // TODO get rid of this bullshit
     @Override
     public void updateI18N(List<String> i18nStrings) {
         if (i18nStrings.isEmpty()) {
-            setVisible(false);
-        } else {
-            setVisible(true);
-            label.setText(i18nStrings.get(0));
+            return;
         }
+
+        label.setText(i18nStrings.get(0));
     }
 
     @Override

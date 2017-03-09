@@ -19,7 +19,6 @@ public class UnitWidget extends AbstractWidget<UnitWidgetListener> {
     private JButton goToUnitParametersButton;
 
     public UnitWidget() {
-        // TODO fix later
         racesLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.BUILDING_GUI, "producing.unit.race"));
         unitLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.BUILDING_GUI, "producing.unit.name"));
         fillWithPredefinedRaces();

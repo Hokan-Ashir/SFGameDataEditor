@@ -1,21 +1,19 @@
 package sfgamedataeditor.views.main.modules.items.workersrunes;
 
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesParametersModel;
-import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesParametersModelParameter;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class WorkersRuneRacesPresenter extends AbstractModulesPresenter<ModuleParameter, WorkersRuneRacesView, WorkersRunesParametersModel> {
 
     private final Map<String, String> runeWorkersRaceTypeToNameMapping = new HashMap<>();
+    private final WorkerRunesModelCreator modelCreator = new WorkerRunesModelCreator();
 
     public WorkersRuneRacesPresenter(WorkersRuneRacesView view) {
         super(view);
@@ -39,11 +37,8 @@ public class WorkersRuneRacesPresenter extends AbstractModulesPresenter<ModulePa
     protected WorkersRunesParametersModel createModel() {
         String selectedModuleName = getView().getSelectedModuleName();
         Integer itemType = Integer.valueOf(runeWorkersRaceTypeToNameMapping.get(selectedModuleName));
-        Set<String> runesNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(itemType);
-        String runeName = runesNames.iterator().next().split(" - ")[0];
         Icon icon = getView().getSelectedModuleIcon();
-        WorkersRunesParametersModelParameter parameter = new WorkersRunesParametersModelParameter(runeName, 1, icon);
-        return new WorkersRunesParametersModel(parameter);
+        return modelCreator.createModel(itemType, icon);
     }
 
 

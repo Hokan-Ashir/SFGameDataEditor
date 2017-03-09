@@ -6,6 +6,7 @@ import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
+import java.util.Collections;
 import java.util.List;
 
 public class EffectNumberWidget extends AbstractWidget<EffectNumberWidgetListener> {
@@ -19,7 +20,6 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberWidgetListene
     private JLabel titleLabel;
 
     public EffectNumberWidget() {
-        // TODO fix later
         spellNameLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "spellEffectNumber.spell"));
         spellLevelLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "spellEffectNumber.level"));
         fillSpellNameComboBoxValues();
@@ -27,8 +27,9 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberWidgetListene
     }
 
     private void fillSpellNameComboBoxValues() {
-        // TODO add search inside comboBox and sorting in alphabetical order
+        // TODO add search inside comboBox
         List<String> allSpellNames = SpellNameTableService.INSTANCE.getAllSpellNames();
+        Collections.sort(allSpellNames);
         for (String allSpellName : allSpellNames) {
             spellNameComboBox.addItem(allSpellName);
         }

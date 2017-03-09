@@ -21,7 +21,6 @@ public enum ObjectDataMappingService {
             int offset = dataPairFieldEntry.getKey().getOffset();
             int length = dataPairFieldEntry.getKey().getLength();
 
-//            TODO check field object type, currently supports only integers
             int temp = getValue(buffer, offset, length);
             try {
                 Field field = dataPairFieldEntry.getValue();

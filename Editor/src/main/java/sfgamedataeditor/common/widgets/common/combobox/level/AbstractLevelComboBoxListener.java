@@ -15,7 +15,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 
-// TODO generify all children
 public abstract class AbstractLevelComboBoxListener extends AbstractWidgetListener<LevelComboBoxWidget, LevelComboBoxParameter> implements ItemListener {
 
     public AbstractLevelComboBoxListener(LevelComboBoxWidget widget, Field[] mappedField) {

@@ -20,7 +20,6 @@ public class BuildingsWidget extends AbstractWidget<BuildingsWidgetListener> {
     private JButton goToBuildingParametersButton;
 
     public BuildingsWidget() {
-        // TODO fix later
         raceLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "required.building.race"));
         buildingLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "required.building.name"));
         fillWithPredefinedRaces();

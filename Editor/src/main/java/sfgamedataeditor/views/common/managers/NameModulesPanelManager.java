@@ -32,9 +32,7 @@ public class NameModulesPanelManager implements ModulePanelManager {
         int numberOfColumns = DEFAULT_NUMBER_OF_COLUMNS;
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.gridheight = 1;
-        constraints.gridwidth = 1;
         constraints.weighty = 1;
-        constraints.fill = GridBagConstraints.BOTH;
 
         int gridX = 0;
         int gridY = 0;
@@ -50,15 +48,18 @@ public class NameModulesPanelManager implements ModulePanelManager {
                 gridY++;
                 constraints.gridx = 0;
                 constraints.gridy = gridY;
-                constraints.weightx = 1;
+                constraints.gridwidth = GridBagConstraints.REMAINDER;
                 constraints.insets = new Insets(5, 5, 0, 0);
-                Label letterLabel = new Label(String.valueOf(letter));
+                constraints.fill = GridBagConstraints.CENTER;
+                Label letterLabel = new Label("- - - - - " + String.valueOf(letter) + " - - - - -");
                 panel.add(letterLabel, constraints);
                 firstLetter = letter;
                 gridY++;
                 gridX = 0;
             }
 
+            constraints.gridwidth = 1;
+            constraints.fill = GridBagConstraints.BOTH;
             constraints.gridx = gridX;
             constraints.gridy = gridY;
             constraints.weightx = 1.0 / numberOfColumns;
