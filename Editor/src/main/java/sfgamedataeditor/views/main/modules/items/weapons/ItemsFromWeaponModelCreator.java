@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.weapons;
 
-import sfgamedataeditor.views.main.modules.AbstractModulesModelCreator;
+import sfgamedataeditor.views.common.AbstractModulesModelCreator;
 
 public class ItemsFromWeaponModelCreator extends AbstractModulesModelCreator {
     @Override

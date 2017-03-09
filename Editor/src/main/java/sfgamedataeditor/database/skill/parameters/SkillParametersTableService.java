@@ -11,9 +11,9 @@ import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public enum SkillParametersTableService implements TableCreationService {
     INSTANCE {
@@ -69,7 +69,7 @@ public enum SkillParametersTableService implements TableCreationService {
 
         try {
             List<SkillParameterObject> skillParameterses = dao.queryBuilder().selectColumns("level").where().eq("skillTypeId", skillSchoolId).query();
-            Set<Integer> skillLevels = new HashSet<>();
+            Set<Integer> skillLevels = new TreeSet<>();
             for (SkillParameterObject skillParameterse : skillParameterses) {
                 skillLevels.add(skillParameterse.level);
             }

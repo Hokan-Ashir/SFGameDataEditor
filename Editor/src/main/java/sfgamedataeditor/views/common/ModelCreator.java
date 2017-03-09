@@ -1,4 +1,4 @@
-package sfgamedataeditor.views.main.modules;
+package sfgamedataeditor.views.common;
 
 import sfgamedataeditor.mvc.objects.Model;
 

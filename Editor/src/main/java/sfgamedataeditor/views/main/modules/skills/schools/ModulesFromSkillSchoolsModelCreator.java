@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.skills.schools;
 
-import sfgamedataeditor.views.main.modules.AbstractModulesModelCreator;
+import sfgamedataeditor.views.common.AbstractModulesModelCreator;
 
 public class ModulesFromSkillSchoolsModelCreator extends AbstractModulesModelCreator {
     @Override

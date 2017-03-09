@@ -6,7 +6,7 @@ import sfgamedataeditor.database.buildings.common.BuildingsObject;
 import sfgamedataeditor.database.buildings.common.BuildingsTableService;
 import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsObject;
 import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsTableService;
-import sfgamedataeditor.views.main.modules.ModelCreator;
+import sfgamedataeditor.views.common.ModelCreator;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersModel;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersModelParameter;
 

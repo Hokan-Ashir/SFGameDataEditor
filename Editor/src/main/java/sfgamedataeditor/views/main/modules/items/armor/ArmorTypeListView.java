@@ -1,15 +1,13 @@
 package sfgamedataeditor.views.main.modules.items.armor;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.ArmorPiecesView;
-import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class ArmorTypeListView extends AbstractModulesView {
 
@@ -22,15 +20,15 @@ public class ArmorTypeListView extends AbstractModulesView {
      */
     @Override
     protected void fillSubViewsMappings() {
-        List<Pair<String, Class<? extends PresentableView>>> mappings = new ArrayList<>();
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.helmets"), ArmorPiecesView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.chest.armor"), ArmorPiecesView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.robes"), ArmorPiecesView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.legs.armor"), ArmorPiecesView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.shield"), ArmorPiecesView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.rings"), ArmorPiecesView.class));
+        Set<String> names = new TreeSet<>();
+        names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.helmets"));
+        names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.chest.armor"));
+        names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.robes"));
+        names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.legs.armor"));
+        names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.shield"));
+        names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.rings"));
 
-        addMappings(mappings);
+        addMappings(names, ArmorPiecesView.class);
     }
 
     @Override

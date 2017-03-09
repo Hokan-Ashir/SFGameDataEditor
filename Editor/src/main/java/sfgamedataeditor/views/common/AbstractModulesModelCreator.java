@@ -1,8 +1,6 @@
-package sfgamedataeditor.views.main.modules;
+package sfgamedataeditor.views.common;
 
 import sfgamedataeditor.mvc.ModelCreator;
-import sfgamedataeditor.views.common.ModuleParameter;
-import sfgamedataeditor.views.common.ModulesModel;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 

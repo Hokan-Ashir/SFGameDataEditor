@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.workersrunes;
 
-import sfgamedataeditor.views.main.modules.AbstractModulesModelCreator;
+import sfgamedataeditor.views.common.AbstractModulesModelCreator;
 
 public class ItemsFromWorkersRunesRacesModelCreator extends AbstractModulesModelCreator {
     @Override

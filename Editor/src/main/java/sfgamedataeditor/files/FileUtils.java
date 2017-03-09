@@ -27,6 +27,7 @@ import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
 import sfgamedataeditor.database.merchants.inventory.MerchantInventoryObject;
 import sfgamedataeditor.database.merchants.items.MerchantInventoryItemsObject;
+import sfgamedataeditor.database.objects.chests.ChestCorpseLootObject;
 import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
 import sfgamedataeditor.dataextraction.DataFilesParser;
@@ -221,6 +222,8 @@ public final class FileUtils {
         dtoClasses.add(BuildingsObject.class);
         dtoClasses.add(BuildingsRequirementsObject.class);
         dtoClasses.add(BuildingsArmyRequirementsObject.class);
+
+        dtoClasses.add(ChestCorpseLootObject.class);
 
         for (Class<? extends OffsetableObject> dtoClass : dtoClasses) {
             List<? extends OffsetableObject> allTableData = CommonTableService.INSTANCE.getAllTableData(dtoClass);

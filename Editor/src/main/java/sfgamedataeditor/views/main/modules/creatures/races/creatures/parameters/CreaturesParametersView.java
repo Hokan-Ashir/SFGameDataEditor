@@ -11,13 +11,14 @@ import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
+import sfgamedataeditor.views.common.dropitems.DropItemsListenerableView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
 @SuppressWarnings("unused")
-public class CreaturesParametersView implements PresentableView {
+public class CreaturesParametersView implements PresentableView, DropItemsListenerableView {
 
     private static final int PARAMETERS_TAB_INDEX = 0;
     private static final int EQUIPMENT_TAB_INDEX = 1;
@@ -197,6 +198,7 @@ public class CreaturesParametersView implements PresentableView {
         legsSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.legs.slot.label"));
     }
 
+    @Override
     public JComboBox<String> getDropItemsComboBox() {
         return dropItemsComboBox;
     }

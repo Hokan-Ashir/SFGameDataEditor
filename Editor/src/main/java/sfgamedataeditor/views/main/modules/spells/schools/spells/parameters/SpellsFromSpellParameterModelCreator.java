@@ -7,9 +7,9 @@ import sfgamedataeditor.mvc.ModelCreator;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModelParameter;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class SpellsFromSpellParameterModelCreator implements ModelCreator<SpellModel, SpellParameterModel> {
     @Override
@@ -17,7 +17,7 @@ public class SpellsFromSpellParameterModelCreator implements ModelCreator<SpellM
         int spellId = childModel.getParameter().getSpellId();
         int spellLevel = childModel.getParameter().getSpellLevel();
         List<SpellParametersObject> spellParametersBySpellSchoolObject = SpellParametersTableService.INSTANCE.getSpellParametersBySpellSchool(spellId, spellLevel);
-        Set<String> listOfSpells = new HashSet<>();
+        Set<String> listOfSpells = new TreeSet<>();
         for (SpellParametersObject spellParametersObject : spellParametersBySpellSchoolObject) {
             String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParametersObject.spellNameId);
             if (spellName == null) {

@@ -12,8 +12,8 @@ import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class SpellScrollsListView extends AbstractModulesView {
 
@@ -33,7 +33,7 @@ public class SpellScrollsListView extends AbstractModulesView {
     }
 
     private Set<String> getFilteredScrollNames(Set<String> scrollNames) {
-        Set<String> result = new HashSet<>();
+        Set<String> result = new TreeSet<>();
         for (String scrollName : scrollNames) {
             String originalScrollName = scrollName.split(" -")[0];
             if (!result.contains(originalScrollName)) {

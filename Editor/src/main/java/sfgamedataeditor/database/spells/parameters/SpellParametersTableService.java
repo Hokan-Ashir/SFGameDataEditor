@@ -214,7 +214,7 @@ public enum SpellParametersTableService implements TableCreationService {
 
     public Set<String> getAllSpellSchoolNames() {
         List<SpellParametersObject> allTableData = CommonTableService.INSTANCE.getAllTableData(SpellParametersObject.class);
-        Set<String> names = new HashSet<>();
+        Set<String> names = new TreeSet<>();
         for (SpellParametersObject parametersObject : allTableData) {
             String wholeName = getSpellSchoolName(parametersObject);
             names.add(wholeName);
@@ -224,7 +224,7 @@ public enum SpellParametersTableService implements TableCreationService {
     }
 
     public String getSpellSchoolName(SpellParametersObject parametersObject) {
-        Set<String> innerNames = new HashSet<>();
+        Set<String> innerNames = new TreeSet<>();
         Integer requirementClass1 = parametersObject.requirementClass1;
         Integer requirementSubClass1 = parametersObject.requirementSubClass1;
         String requirementSchoolName1 = getSchoolName(requirementClass1, requirementSubClass1);

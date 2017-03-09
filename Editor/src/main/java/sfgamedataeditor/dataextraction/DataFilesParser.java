@@ -22,6 +22,7 @@ import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsTableService;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableService;
 import sfgamedataeditor.database.merchants.inventory.MerchantInventoryTableService;
 import sfgamedataeditor.database.merchants.items.MerchantInventoryItemsTableService;
+import sfgamedataeditor.database.objects.chests.ChestCorpseLootTableService;
 import sfgamedataeditor.database.skill.parameters.SkillParametersTableService;
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
@@ -64,6 +65,7 @@ public enum DataFilesParser {
             add(BuildingsTableService.INSTANCE);
             add(BuildingsRequirementsTableService.INSTANCE);
             add(BuildingsArmyRequirementsTableService.INSTANCE);
+            add(ChestCorpseLootTableService.INSTANCE);
         }};
 
         for (TableCreationService service : services) {

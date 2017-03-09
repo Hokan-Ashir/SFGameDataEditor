@@ -60,6 +60,8 @@ public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
             add("items.building.plan.in.inventory.orcs");
             add("items.building.plan.in.inventory.trolls");
             add("items.building.plan.in.inventory.dark.elves");
+
+            add("items.blank.scrolls");
         }};
 
         List<String> itemNames = new ArrayList<>();

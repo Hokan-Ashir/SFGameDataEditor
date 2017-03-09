@@ -2,7 +2,7 @@ package sfgamedataeditor.views.main.modules.items.miscellaneous;
 
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.views.main.modules.ModelCreator;
+import sfgamedataeditor.views.common.ModelCreator;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersModel;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersModelParameter;
 

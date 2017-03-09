@@ -61,6 +61,10 @@ import sfgamedataeditor.views.main.modules.merchants.MerchantsView;
 import sfgamedataeditor.views.main.modules.merchants.ModulesFromMerchantsModelCreator;
 import sfgamedataeditor.views.main.modules.merchants.inventory.MerchantInventoryView;
 import sfgamedataeditor.views.main.modules.merchants.inventory.MerchantsFromMerchantItemsModelCreator;
+import sfgamedataeditor.views.main.modules.objects.chests.ChestsListView;
+import sfgamedataeditor.views.main.modules.objects.chests.ModulesFromChestsListModelCreator;
+import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersView;
+import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestsListFromChestsParametersModelCreator;
 import sfgamedataeditor.views.main.modules.skills.schools.ModulesFromSkillSchoolsModelCreator;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
@@ -93,7 +97,16 @@ public enum  ViewHierarchy {
                 createSkillNodes(rootNode),
                 createSpellNodes(rootNode),
                 createCreaturesNodes(rootNode),
-                createUnitsNodes(rootNode));
+                createUnitsNodes(rootNode),
+                createChestNodes(rootNode));
+    }
+
+    private ViewHierarchyNode createChestNodes(ViewHierarchyNode rootNode) {
+        ViewHierarchyNode chestsList = new ViewHierarchyNode(rootNode, ChestsListView.class, new ModulesFromChestsListModelCreator());
+        ViewHierarchyNode parameters = new ViewHierarchyNode(chestsList, ChestParametersView.class, new ChestsListFromChestsParametersModelCreator());
+        chestsList.addChild(parameters);
+
+        return chestsList;
     }
 
     private ViewHierarchyNode createUnitsNodes(ViewHierarchyNode rootNode) {

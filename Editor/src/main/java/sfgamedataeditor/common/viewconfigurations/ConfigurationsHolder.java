@@ -10,6 +10,7 @@ import sfgamedataeditor.common.viewconfigurations.item.scrolls.ScrollsParameters
 import sfgamedataeditor.common.viewconfigurations.item.unitplans.UnitPlansParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.weapon.WeaponParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.workerrunes.WorkersRunesParametersConfigurationHolder;
+import sfgamedataeditor.common.viewconfigurations.objects.chests.ChestLootParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.skill.parameters.SkillParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.SpellParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.unit.parameters.UnitParametersConfigurationHolder;
@@ -24,6 +25,7 @@ import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters
 import sfgamedataeditor.views.main.modules.items.unitplans.units.parameters.UnitsPlansParametersView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
 import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesParametersView;
+import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersView;
@@ -50,6 +52,7 @@ public enum  ConfigurationsHolder {
         configurationHolderMap.put(UnitsPlansParametersView.class, new UnitPlansParametersConfigurationHolder());
         configurationHolderMap.put(WorkersRunesParametersView.class, new WorkersRunesParametersConfigurationHolder());
         configurationHolderMap.put(HeroesRunesParametersView.class, new HeroesRunesParametersConfigurationHolder());
+        configurationHolderMap.put(ChestParametersView.class, new ChestLootParametersConfigurationHolder());
     }
 
     public AbstractConfigurationHolder getConfigurationHolder(Class<? extends View> viewClass) {

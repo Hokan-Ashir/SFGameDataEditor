@@ -12,6 +12,8 @@ import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.views.common.dropitems.BaseDropItemsComboBoxListener;
+import sfgamedataeditor.views.common.dropitems.CreaturesDropItemsComboBoxListener;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -19,8 +21,6 @@ import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
@@ -31,12 +31,13 @@ public class CreaturesParametersPresenter extends AbstractPresenter<CreaturesPar
     private static final Logger LOGGER = Logger.getLogger(CreaturesParametersPresenter.class);
     private static final Map<Integer, Integer> SLOT_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
-    private final DropItemsComboBoxListener dropItemsListener = new DropItemsComboBoxListener();
+    private final BaseDropItemsComboBoxListener dropItemsListener;
 
     public CreaturesParametersPresenter(CreaturesParametersView view) {
         super(view);
         initializeSlotNumberMapping();
         initializeSpellNumberMapping();
+        dropItemsListener = new CreaturesDropItemsComboBoxListener(getView(), CreatureCorpseLootObject.class);
         getView().getDropItemsComboBox().addItemListener(dropItemsListener);
     }
 
@@ -89,7 +90,7 @@ public class CreaturesParametersPresenter extends AbstractPresenter<CreaturesPar
                 }
             });
 
-            dropItemsListener.setCorpseLootObjects(corpseLootObjects);
+            dropItemsListener.setDroppingObjects(corpseLootObjects);
             dropItemsComboBox.setSelectedItem(dropItemsComboBox.getItemAt(0));
         } else {
             getView().getTabPane().setEnabledAt(CreaturesParametersView.CORPSE_LOOT_TAB_INDEX, false);
@@ -163,44 +164,5 @@ public class CreaturesParametersPresenter extends AbstractPresenter<CreaturesPar
     public void unRenderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
         mainView.unRenderViewInsideContentPanel(getView().getMainPanel());
-    }
-
-    private final class DropItemsComboBoxListener implements ItemListener {
-
-        private List<CreatureCorpseLootObject> corpseLootObjects;
-
-        public void setCorpseLootObjects(List<CreatureCorpseLootObject> corpseLootObjects) {
-            this.corpseLootObjects = corpseLootObjects;
-        }
-
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            if (e.getStateChange() != ItemEvent.SELECTED) {
-                return;
-            }
-
-            Field[] declaredFields = getView().getClass().getDeclaredFields();
-            for (Field declaredField : declaredFields) {
-                GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-                if (annotation == null) {
-                    continue;
-                }
-
-                try {
-                    declaredField.setAccessible(true);
-                    JPanel panel = (JPanel) declaredField.get(getView());
-                    AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
-
-                    Class<?> dtoClass = annotation.DTOClass();
-                    if (dtoClass.equals(CreatureCorpseLootObject.class)) {
-                        int selectedIndex = getView().getDropItemsComboBox().getSelectedIndex();
-                        widget.getListener().updateWidgetValue(corpseLootObjects.get(selectedIndex));
-                    }
-
-                } catch (IllegalAccessException ex) {
-                    LOGGER.error(ex.getMessage(), ex);
-                }
-            }
-        }
     }
 }

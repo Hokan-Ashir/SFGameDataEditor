@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.units.races;
 
-import sfgamedataeditor.views.main.modules.AbstractModulesModelCreator;
+import sfgamedataeditor.views.common.AbstractModulesModelCreator;
 
 public class ModulesFromUnitsModelCreator extends AbstractModulesModelCreator {
     @Override

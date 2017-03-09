@@ -6,7 +6,7 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObjec
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsTableService;
-import sfgamedataeditor.views.main.modules.ModelCreator;
+import sfgamedataeditor.views.common.ModelCreator;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersModel;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersModelParameter;
 

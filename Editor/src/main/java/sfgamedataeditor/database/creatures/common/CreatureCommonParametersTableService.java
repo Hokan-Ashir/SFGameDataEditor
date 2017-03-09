@@ -18,9 +18,9 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 public enum CreatureCommonParametersTableService implements TableCreationService {
     INSTANCE {
@@ -64,7 +64,7 @@ public enum CreatureCommonParametersTableService implements TableCreationService
                             },
                             String.valueOf(raceId));
 
-            return new HashSet<>(rawResults.getResults());
+            return new TreeSet<>(rawResults.getResults());
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptySet();
