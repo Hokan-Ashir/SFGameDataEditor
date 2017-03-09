@@ -1,6 +1,7 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters;
 
 import sfgamedataeditor.common.GUIElement;
+import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.creature.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.Disabled;
 import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
@@ -163,6 +164,9 @@ public class CreaturesParametersView implements PresentableView {
     private JPanel dropItem3Panel;
 
     private JComboBox<String> dropItemsComboBox;
+
+    @IconElement
+    private JLabel iconLabel;
 
     public CreaturesParametersView() {
         internationalizeCommonLabels();

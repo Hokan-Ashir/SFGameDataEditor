@@ -12,9 +12,10 @@ public abstract class AbstractIconPathAlias {
     }
 
     protected abstract void fillAliasMap();
+    protected abstract String getImagePathPrefix();
 
     protected void addAlias(String alias, String original) {
-        aliasMap.put(alias, original);
+        aliasMap.put(getImagePathPrefix() + alias, getImagePathPrefix() + original);
     }
 
     public String getAlias(String iconPath) {

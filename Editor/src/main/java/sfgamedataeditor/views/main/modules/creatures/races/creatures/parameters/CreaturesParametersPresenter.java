@@ -2,6 +2,7 @@ package sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
+import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.creature.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
@@ -71,6 +72,7 @@ public class CreaturesParametersPresenter extends AbstractPresenter<CreaturesPar
         List<CreatureEquipmentObject> creatureEquipment = parameter.getCreatureEquipment();
         List<CreatureSpellObject> creatureSpells = parameter.getCreatureSpells();
         final List<CreatureCorpseLootObject> corpseLootObjects = parameter.getCorpseLootObjects();
+        Icon icon = parameter.getIcon();
 
         if (corpseLootObjects != null && !corpseLootObjects.isEmpty()) {
             getView().getTabPane().setEnabledAt(CreaturesParametersView.CORPSE_LOOT_TAB_INDEX, true);
@@ -95,12 +97,21 @@ public class CreaturesParametersPresenter extends AbstractPresenter<CreaturesPar
 
         Field[] declaredFields = getView().getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
-            GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-            if (annotation == null) {
-                continue;
-            }
-
             try {
+                IconElement iconElement = declaredField.getAnnotation(IconElement.class);
+                if (iconElement != null) {
+                    declaredField.setAccessible(true);
+                    JLabel panel = (JLabel) declaredField.get(getView());
+                    panel.setIcon(icon);
+                    continue;
+                }
+
+                GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
+                if (annotation == null) {
+                    continue;
+                }
+
+
                 declaredField.setAccessible(true);
                 JPanel panel = (JPanel) declaredField.get(getView());
                 AbstractWidget widget = (AbstractWidget) panel.getComponent(0);

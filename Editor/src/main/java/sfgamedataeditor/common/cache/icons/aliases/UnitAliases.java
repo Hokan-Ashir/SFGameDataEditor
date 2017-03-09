@@ -4,12 +4,28 @@ public class UnitAliases extends AbstractIconPathAlias {
 
     @Override
     protected void fillAliasMap() {
-        addAlias("/images/units/1236.png", "/images/units/1235.png");
-        addAlias("/images/units/1240.png", "/images/units/1239.png");
-        addAlias("/images/units/1435.png", "/images/units/1239.png");
-        addAlias("/images/units/1250.png", "/images/units/1249.png");
-        addAlias("/images/units/1288.png", "/images/units/1284.png");
-        addAlias("/images/units/1290.png", "/images/units/1289.png");
-        addAlias("/images/units/1299.png", "/images/units/1296.png");
+        // dwarven elite/elder update
+        addAlias("1236.png", "1235.png");
+
+        // elven priest/wintermage/druid update
+        addAlias("1240.png", "1239.png");
+        addAlias("1435.png", "1239.png");
+
+        // orc drummer/hornblower upgrade
+        addAlias("1250.png", "1249.png");
+
+        // troll hurler/smasher upgrade
+        addAlias("1288.png", "1284.png");
+
+        // troll champion/destroyer upgrade
+        addAlias("1290.png", "1289.png");
+
+        // darkelven deathknight/havoc upgrade
+        addAlias("1299.png", "1296.png");
+    }
+
+    @Override
+    protected String getImagePathPrefix() {
+        return "/images/units/";
     }
 }
