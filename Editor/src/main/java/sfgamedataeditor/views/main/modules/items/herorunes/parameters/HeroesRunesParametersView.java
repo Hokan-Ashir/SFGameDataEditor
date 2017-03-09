@@ -147,12 +147,26 @@ public class HeroesRunesParametersView implements PresentableView {
 
     @GUIElement(GUIElementId = GUIElements.SPELL_PANEL_3, DTOColumnNames = "spellNumber", DTOClass = HeroSpellObject.class)
     private JPanel spell3Panel;
+
+    @GUIElement(GUIElementId = GUIElements.SPELL_PANEL_4, DTOColumnNames = "spellNumber", DTOClass = HeroSpellObject.class)
     private JPanel spell4Panel;
+
+    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_SUBCLASS_5, DTOColumnNames = {"skillSchoolClass", "skillSchoolSubClass"}, DTOClass = CreatureSkillObject.class)
     private JPanel skill5Panel;
+
+    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_SUBCLASS_6, DTOColumnNames = {"skillSchoolClass", "skillSchoolSubClass"}, DTOClass = CreatureSkillObject.class)
     private JPanel skill6Panel;
+
+    @GUIElement(GUIElementId = GUIElements.REQUIREMENT_CLASS_SUBCLASS_7, DTOColumnNames = {"skillSchoolClass", "skillSchoolSubClass"}, DTOClass = CreatureSkillObject.class)
     private JPanel skill7Panel;
+
+    @GUIElement(GUIElementId = GUIElements.SKILL_LEVEL_5, DTOColumnNames = "skillLevel", DTOClass = CreatureSkillObject.class)
     private JPanel skill5LevelPanel;
+
+    @GUIElement(GUIElementId = GUIElements.SKILL_LEVEL_6, DTOColumnNames = "skillLevel", DTOClass = CreatureSkillObject.class)
     private JPanel skill6LevelPanel;
+
+    @GUIElement(GUIElementId = GUIElements.SKILL_LEVEL_7, DTOColumnNames = "skillLevel", DTOClass = CreatureSkillObject.class)
     private JPanel skill7LevelPanel;
 
     public HeroesRunesParametersView() {
