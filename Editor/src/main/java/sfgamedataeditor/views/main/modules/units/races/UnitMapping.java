@@ -23,6 +23,7 @@ public enum UnitMapping {
         add(getI18NUnitName("1226")); // "Paladin (Upgrade)"
         add(getI18NUnitName("543")); // "Recruit"
         add(getI18NUnitName("544")); // "Scout"
+        add(getI18NUnitName("2236")); // "Star mage"
     }};
 
     private final Set<String> elvesUnitsNames = new TreeSet<String>() {{
@@ -41,6 +42,8 @@ public enum UnitMapping {
         add(getI18NUnitName("1230")); // "Wanderer (Upgrade)"
         add(getI18NUnitName("552")); // "Warder"
         add(getI18NUnitName("1232")); // "Warder (Upgrade)"
+        add(getI18NUnitName("2238")); // "Stormbringer"
+        add(getI18NUnitName("2222")); // "Pixie"
     }};
 
     private final Set<String> orcsUnitsNames = new TreeSet<String>() {{
@@ -58,6 +61,8 @@ public enum UnitMapping {
         add(getI18NUnitName("1248")); // "Veteran (Upgrade)"
         add(getI18NUnitName("560")); // "Hornblower"
         add(getI18NUnitName("1250")); // "Hornblower (Upgrade)"
+        add(getI18NUnitName("2244")); // "Inferno"
+        add(getI18NUnitName("2224")); // "War boar horde"
     }};
 
     private final Set<String> darkElvesUnitsNames = new TreeSet<String>() {{
@@ -75,6 +80,7 @@ public enum UnitMapping {
         add(getI18NUnitName("567")); // "Sorcerer"
         add(getI18NUnitName("568")); // "Warlock"
         add(getI18NUnitName("1298")); // "Warlock (Upgrade)"
+        add(getI18NUnitName("2249")); // "Harbinger of chaos"
     }};
 
     private final Set<String> dwarvesUnitsNames = new TreeSet<String>() {{
@@ -91,6 +97,7 @@ public enum UnitMapping {
         add(getI18NUnitName("575")); // "Warrior"
         add(getI18NUnitName("1237")); // "Warrior (Upgrade)"
         add(getI18NUnitName("576")); // "Watchman"
+        add(getI18NUnitName("2221")); // "Stone rams"
     }};
 
     private final Set<String> trollsUnitsNames = new TreeSet<String>() {{
@@ -109,6 +116,7 @@ public enum UnitMapping {
         add(getI18NUnitName("1284")); // "Smasher (Upgrade)"
         add(getI18NUnitName("584")); // "Thrower"
         add(getI18NUnitName("1285")); // "Thrower (Upgrade)"
+        add(getI18NUnitName("2245")); // "Walking fortress"
     }};
 
     private String getI18NUnitName(String unitId) {

@@ -41,8 +41,16 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2316.png", "2307.png");
         addAlias("2317.png", "2307.png");
 
-        // Wrath of stone/Stonefist
+        // Wrath of stone/Stonefist/Stone golem - 1/Stone golem - 2/Stone golem - 3/Stone golem - 4/Stone golem - 5/Stone golem - 6/Stone golem - 7/Stone golem - 8
         addAlias("2076.png", "125.png");
+        addAlias("123.png", "125.png");
+        addAlias("1403.png", "125.png");
+        addAlias("2258.png", "125.png");
+        addAlias("2259.png", "125.png");
+        addAlias("2260.png", "125.png");
+        addAlias("2261.png", "125.png");
+        addAlias("2269.png", "125.png");
+        addAlias("2270.png", "125.png");
 
         // Mighty elf titan/Dark treant/Elf titan - 1/Elf titan - 2
         addAlias("2283.png", "2010.png");
@@ -75,6 +83,30 @@ public class CreaturesAliases extends AbstractIconPathAlias {
 
         // Firebone fiend - 1/Firebone fiend - 2
         addAlias("2958.png", "2662.png");
+
+        // Vulkanoid/Fire golem - 1/Fire golem - 2/Fire golem - 3/Fire golem - 4
+        addAlias("2248.png", "998.png");
+        addAlias("2250.png", "998.png");
+        addAlias("2252.png", "998.png");
+        addAlias("2253.png", "998.png");
+
+        // Icefist/Ice golem - 1/Ice golem - 2/Ice golem - 3/Ice golem - 4/Ice golem - 5/Ice golem - 6/Ice golem - 7
+        addAlias("2254.png", "2313.png");
+        addAlias("2255.png", "2313.png");
+        addAlias("2256.png", "2313.png");
+        addAlias("2257.png", "2313.png");
+        addAlias("2807.png", "2313.png");
+        addAlias("2820.png", "2313.png");
+        addAlias("2922.png", "2313.png");
+
+        // all risen dead
+        for (int i = 1253; i <= 1281; i++) {
+            addAlias(String.valueOf(i) + ".png", "1252.png");
+        }
+
+        for (int i = 2360; i <= 2379; i++) {
+            addAlias(String.valueOf(i) + ".png", "1252.png");
+        }
     }
 
     @Override
