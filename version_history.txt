@@ -1,3 +1,14 @@
+Freezing development for quite some time
+
+alpha-6 (10.03.2017):
+ - Added chest corpse loot objects
+ - Added some creatures's images and almost all siege and massive unit's images
+ - Added hero's images for almost all The Order of Dawn runes
+ - Added all 7 possible skills parsing and 4 possible spells parsing for hero runes
+ - Fixed equipment widget - extended panel, ability to show all types of runes and plans, disabling "go to parameters" button if object has no parameters
+ - Added worker runes/heroes runes race widget
+ - Fixed behaviour of spell parameters view - added ability to change any school requirement and actually viewing changes in process
+
 alpha-5 (07.03.2017):
  - Added ability to change unit and building plans parameters
  - Added ability to change workers and heroes runes as well as their characteristics, skills and spells

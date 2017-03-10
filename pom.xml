@@ -6,7 +6,7 @@
 
     <groupId>ru.hokan</groupId>
     <artifactId>SFGameDataEditor</artifactId>
-    <version>alpha-6-snapshot</version>
+    <version>alpha-6</version>
     <modules>
         <module>XDeltaEncoder</module>
         <module>Editor</module>
