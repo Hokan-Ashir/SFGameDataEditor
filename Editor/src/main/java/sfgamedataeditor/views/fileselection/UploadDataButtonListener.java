@@ -16,12 +16,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UploadDataButtonListener implements ActionListener {
+class UploadDataButtonListener implements ActionListener {
 
     private final JFrame frame;
     private final FileSelectionView view;
 
-    public UploadDataButtonListener(JFrame frame, FileSelectionView view) {
+    UploadDataButtonListener(JFrame frame, FileSelectionView view) {
         this.frame = frame;
         this.view = view;
     }

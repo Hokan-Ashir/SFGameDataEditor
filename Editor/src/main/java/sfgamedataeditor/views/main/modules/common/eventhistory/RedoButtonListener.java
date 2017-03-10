@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RedoButtonListener implements ActionListener {
+class RedoButtonListener implements ActionListener {
 
     private final JButton redoButton;
     private final JButton undoButton;
 
-    public RedoButtonListener(JButton undoButton, JButton redoButton) {
+    RedoButtonListener(JButton undoButton, JButton redoButton) {
         this.undoButton = undoButton;
         this.redoButton = redoButton;
     }

@@ -8,20 +8,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Requirements {
+class Requirements {
     private static final Integer SIZE = 3;
-    private List<Integer> requirementClasses = new ArrayList<>(SIZE);
-    private List<Integer> requirementSubClasses = new ArrayList<>(SIZE);
+    private final List<Integer> requirementClasses = new ArrayList<>(SIZE);
+    private final List<Integer> requirementSubClasses = new ArrayList<>(SIZE);
 
-    public Requirements() {
+    Requirements() {
     }
 
-    public Requirements(int requirementClass0,
-                        int requirementSubClass0,
-                        int requirementClass1,
-                        int requirementSubClass1,
-                        int requirementClass2,
-                        int requirementSubClass2) {
+    private Requirements(int requirementClass0,
+                         int requirementSubClass0,
+                         int requirementClass1,
+                         int requirementSubClass1,
+                         int requirementClass2,
+                         int requirementSubClass2) {
         addRequirementClass(requirementClass0);
         addRequirementSubClass(requirementSubClass0);
 
@@ -33,23 +33,23 @@ public class Requirements {
     }
 
 
-    public void addRequirementClass(Integer value) {
+    void addRequirementClass(Integer value) {
         requirementClasses.add(value);
     }
 
-    public void addRequirementSubClass(Integer value) {
+    void addRequirementSubClass(Integer value) {
         requirementSubClasses.add(value);
     }
 
-    public Integer getRequirementClass(int position) {
+    Integer getRequirementClass(int position) {
         return requirementClasses.get(position);
     }
 
-    public Integer getSubRequirementClass(int position) {
+    Integer getSubRequirementClass(int position) {
         return requirementSubClasses.get(position);
     }
 
-    public void fillRestSubClassesValuesWithNulls() {
+    private void fillRestSubClassesValuesWithNulls() {
         for (int i = 0; i <= requirementClasses.size(); ++i) {
             if (requirementSubClasses.size() < i) {
                 requirementSubClasses.add(0);
@@ -94,7 +94,7 @@ public class Requirements {
         return builder.hashCode();
     }
 
-    public static Set<Requirements> generatePermutations(Requirements requirements) {
+    private static Set<Requirements> generatePermutations(Requirements requirements) {
         Integer requirementClass0 = requirements.getRequirementClass(0);
         Integer subRequirementClass0 = requirements.getSubRequirementClass(0);
 
@@ -115,7 +115,7 @@ public class Requirements {
         return requirementsSet;
     }
 
-    public static Set<Requirements> getAllRequirements(Requirements requirements) {
+    static Set<Requirements> getAllRequirements(Requirements requirements) {
         // add subClasses requirements if they are not exists in all cases
         requirements.fillRestSubClassesValuesWithNulls();
         // cause of stripping duplicated School names (for nice UI) and so called "Other" school as well

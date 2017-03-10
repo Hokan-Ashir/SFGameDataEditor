@@ -19,7 +19,7 @@ public abstract class BaseDropItemsComboBoxListener<T extends OffsetableObject, 
     private final V view;
     private final Class<T> objectClass;
 
-    public BaseDropItemsComboBoxListener(V view, Class<T> objectClass) {
+    BaseDropItemsComboBoxListener(V view, Class<T> objectClass) {
         this.view = view;
         this.objectClass = objectClass;
     }

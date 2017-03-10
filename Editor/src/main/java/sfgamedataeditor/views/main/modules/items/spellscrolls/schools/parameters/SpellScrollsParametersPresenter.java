@@ -20,8 +20,8 @@ public class SpellScrollsParametersPresenter extends AbstractParametersPresenter
     private static final Integer SCROLL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.scrolls"));
     private static final Integer SPELL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
 
-    private List<Integer> scrollGUIIds = new ArrayList<>();
-    private List<Integer> spellGUIIds = new ArrayList<>();
+    private final List<Integer> scrollGUIIds = new ArrayList<>();
+    private final List<Integer> spellGUIIds = new ArrayList<>();
 
     public SpellScrollsParametersPresenter(SpellScrollsParametersView view) {
         super(view);

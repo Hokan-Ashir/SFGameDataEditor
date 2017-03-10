@@ -17,7 +17,7 @@ public abstract class AbstractParametersPresenter<P extends IconableParameter, V
 
     private static final Logger LOGGER = Logger.getLogger(AbstractParametersPresenter.class);
 
-    public AbstractParametersPresenter(V view) {
+    protected AbstractParametersPresenter(V view) {
         super(view);
     }
 

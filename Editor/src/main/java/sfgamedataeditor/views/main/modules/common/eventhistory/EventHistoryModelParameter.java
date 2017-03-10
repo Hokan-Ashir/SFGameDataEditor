@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.common.eventhistory;
 
-public class EventHistoryModelParameter {
+class EventHistoryModelParameter {
     private final boolean isRedoPossible;
     private final boolean isUndoPossible;
 
@@ -9,11 +9,11 @@ public class EventHistoryModelParameter {
         this.isUndoPossible = isUndoPossible;
     }
 
-    public boolean isRedoPossible() {
+    boolean isRedoPossible() {
         return isRedoPossible;
     }
 
-    public boolean isUndoPossible() {
+    boolean isUndoPossible() {
         return isUndoPossible;
     }
 }

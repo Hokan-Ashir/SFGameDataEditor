@@ -15,14 +15,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 
-public class OriginalFileSelectorListener implements ActionListener {
+class OriginalFileSelectorListener implements ActionListener {
 
     private static final Logger LOGGER = Logger.getLogger(OriginalFileSelectorListener.class);
     private static final String CFF_FILE_EXTENSION = "cff";
     private final FileSelectionView view;
 
 
-    public OriginalFileSelectorListener(FileSelectionView view) {
+    OriginalFileSelectorListener(FileSelectionView view) {
         this.view = view;
     }
 

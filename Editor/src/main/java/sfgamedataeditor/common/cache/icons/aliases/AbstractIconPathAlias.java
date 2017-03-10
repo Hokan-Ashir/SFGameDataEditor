@@ -7,14 +7,14 @@ public abstract class AbstractIconPathAlias {
 
     private final Map<String, String> aliasMap = new HashMap<>();
 
-    public AbstractIconPathAlias() {
+    AbstractIconPathAlias() {
         fillAliasMap();
     }
 
     protected abstract void fillAliasMap();
     protected abstract String getImagePathPrefix();
 
-    protected void addAlias(String alias, String original) {
+    void addAlias(String alias, String original) {
         aliasMap.put(getImagePathPrefix() + alias, getImagePathPrefix() + original);
     }
 

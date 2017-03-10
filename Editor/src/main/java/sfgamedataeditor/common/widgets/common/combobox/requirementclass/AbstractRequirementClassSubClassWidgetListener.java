@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 public abstract class AbstractRequirementClassSubClassWidgetListener extends AbstractWidgetListener<RequirementClassSubClassWidget, OffsetableObject> implements ItemListener {
 
-    public AbstractRequirementClassSubClassWidgetListener(RequirementClassSubClassWidget widget, Field[] DTOField) {
+    AbstractRequirementClassSubClassWidgetListener(RequirementClassSubClassWidget widget, Field[] DTOField) {
         super(widget, DTOField);
         fillWidgetClassComboBox();
     }

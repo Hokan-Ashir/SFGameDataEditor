@@ -5,7 +5,7 @@ import javax.swing.*;
 public class IconableParameter {
     private final Icon icon;
 
-    public IconableParameter(Icon icon) {
+    protected IconableParameter(Icon icon) {
         this.icon = icon;
     }
 

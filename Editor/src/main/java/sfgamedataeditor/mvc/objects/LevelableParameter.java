@@ -5,7 +5,7 @@ import javax.swing.*;
 public class LevelableParameter extends IconableParameter {
     private Integer level;
 
-    public LevelableParameter(Integer level, Icon icon) {
+    protected LevelableParameter(Integer level, Icon icon) {
         super(icon);
         this.level = level;
     }

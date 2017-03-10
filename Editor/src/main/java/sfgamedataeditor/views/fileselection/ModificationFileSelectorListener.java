@@ -19,13 +19,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.RandomAccessFile;
 
-public class ModificationFileSelectorListener implements ActionListener {
+class ModificationFileSelectorListener implements ActionListener {
 
     private static final Logger LOGGER = Logger.getLogger(ModificationFileSelectorListener.class);
     private static final String SFMOD_FILE_EXTENSION = "sfmod";
     private final FileSelectionView view;
 
-    public ModificationFileSelectorListener(FileSelectionView view) {
+    ModificationFileSelectorListener(FileSelectionView view) {
         this.view = view;
     }
 
