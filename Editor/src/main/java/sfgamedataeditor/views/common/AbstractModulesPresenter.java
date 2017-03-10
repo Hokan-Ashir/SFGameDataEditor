@@ -36,6 +36,8 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
             } else {
                 getView().fillSubViewsMappings();
             }
+        } else {
+            getView().fillSubViewsMappings();
         }
 
         getView().updateSubViewsLayout();

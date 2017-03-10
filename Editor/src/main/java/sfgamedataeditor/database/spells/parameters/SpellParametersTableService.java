@@ -74,10 +74,10 @@ public enum SpellParametersTableService implements TableCreationService {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         List<SpellParametersObject> spellParameterObjects;
         try {
-            Requirements spellRequirements = getSpellRequirements(spellSchoolName);
+            Set<Requirements> requirements = getSpellRequirements(spellSchoolName);
             Dao<SpellParametersObject, Integer> dao = DaoManager.createDao(connectionSource, SpellParametersObject.class);
             Where<SpellParametersObject, Integer> where = dao.queryBuilder().where();
-            where = decorateRequirementWhere(where, spellRequirements);
+            where = decorateRequirementWhere(where, requirements);
             spellParameterObjects = where.query();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
@@ -87,31 +87,26 @@ public enum SpellParametersTableService implements TableCreationService {
         return spellParameterObjects;
     }
 
-    private Where<SpellParametersObject, Integer> decorateRequirementWhere(Where<SpellParametersObject, Integer> where, Requirements spellRequirements) {
-        where = where.or(addPermutationWhere(where, spellRequirements, 0, 1, 2),
-                            addPermutationWhere(where, spellRequirements, 0, 2, 1),
-                            addPermutationWhere(where, spellRequirements, 1, 0, 2),
-                            addPermutationWhere(where, spellRequirements, 1, 2, 0),
-                            addPermutationWhere(where, spellRequirements, 2, 0, 1),
-                            addPermutationWhere(where, spellRequirements, 2, 1, 0));
+    private Where<SpellParametersObject, Integer> decorateRequirementWhere(Where<SpellParametersObject, Integer> where, Set<Requirements> spellRequirements) {
+        for (Requirements spellRequirement : spellRequirements) {
+            addPermutationWhere(where, spellRequirement);
+        }
+        where = where.or(spellRequirements.size());
         return where;
     }
 
     private Where<SpellParametersObject, Integer> addPermutationWhere(Where<SpellParametersObject, Integer> where,
-                                                                      Requirements spellRequirements,
-                                                                      int firstPosition,
-                                                                      int secondPosition,
-                                                                      int thirdPosition) {
+                                                                      Requirements spellRequirements) {
         try {
             Where<SpellParametersObject, Integer> spellRequirementClass1Where =
-                    where.eq("requirementClass1", spellRequirements.getRequirementClass(firstPosition))
-                            .and().eq("requirementSubClass1", spellRequirements.getSubRequirementClass(firstPosition));
+                    where.eq("requirementClass1", spellRequirements.getRequirementClass(0))
+                            .and().eq("requirementSubClass1", spellRequirements.getSubRequirementClass(0));
             Where<SpellParametersObject, Integer> spellRequirementClass2Where =
-                    where.eq("requirementClass2", spellRequirements.getRequirementClass(secondPosition))
-                            .and().eq("requirementSubClass2", spellRequirements.getSubRequirementClass(secondPosition));
+                    where.eq("requirementClass2", spellRequirements.getRequirementClass(1))
+                            .and().eq("requirementSubClass2", spellRequirements.getSubRequirementClass(1));
             Where<SpellParametersObject, Integer> spellRequirementClass3Where =
-                    where.eq("requirementClass3", spellRequirements.getRequirementClass(thirdPosition))
-                            .and().eq("requirementSubClass3", spellRequirements.getSubRequirementClass(thirdPosition));
+                    where.eq("requirementClass3", spellRequirements.getRequirementClass(2))
+                            .and().eq("requirementSubClass3", spellRequirements.getSubRequirementClass(2));
             where.and(spellRequirementClass1Where, spellRequirementClass2Where, spellRequirementClass3Where);
             return where;
         } catch (SQLException e) {
@@ -120,7 +115,7 @@ public enum SpellParametersTableService implements TableCreationService {
         }
     }
 
-    private Requirements getSpellRequirements(String spellSchoolName) {
+    private Set<Requirements> getSpellRequirements(String spellSchoolName) {
         String[] wholeSchoolNames = spellSchoolName.split(" & ");
         Requirements requirements = new Requirements();
         for (String wholeSchoolName : wholeSchoolNames) {
@@ -139,8 +134,7 @@ public enum SpellParametersTableService implements TableCreationService {
             requirements.addRequirementClass(schoolNameId);
         }
 
-        requirements.fillOtherValuesWithNulls();
-        return requirements;
+        return Requirements.getAllRequirements(requirements);
     }
 
     public SpellParametersObject getSpellParameterBySpellIdAndLevel(final int selectedSpellId, final int selectedLevel) {
@@ -273,40 +267,6 @@ public enum SpellParametersTableService implements TableCreationService {
         }
 
         return schoolName;
-    }
-
-    private static final class Requirements {
-        private static final Integer SIZE = 3;
-        private List<Integer> requirementClasses = new ArrayList<>(SIZE);
-        private List<Integer> requirementSubClasses = new ArrayList<>(SIZE);
-
-        public void addRequirementClass(Integer value) {
-            requirementClasses.add(value);
-        }
-
-        public void addRequirementSubClass(Integer value) {
-            requirementSubClasses.add(value);
-        }
-
-        public void fillOtherValuesWithNulls() {
-            for (int i = 0; i <= SIZE; ++i) {
-                if (requirementClasses.size() < i) {
-                    requirementClasses.add(0);
-                }
-
-                if (requirementSubClasses.size() < i) {
-                    requirementSubClasses.add(0);
-                }
-            }
-        }
-
-        public Integer getRequirementClass(int position) {
-            return requirementClasses.get(position);
-        }
-
-        public Integer getSubRequirementClass(int position) {
-            return requirementSubClasses.get(position);
-        }
     }
 
     private interface WhereDecorator<T, ID> {

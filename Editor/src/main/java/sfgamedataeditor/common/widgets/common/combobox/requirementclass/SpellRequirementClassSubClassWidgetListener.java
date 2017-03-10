@@ -6,6 +6,9 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SpellRequirementClassSubClassWidgetListener extends AbstractRequirementClassSubClassWidgetListener {
@@ -18,8 +21,14 @@ public class SpellRequirementClassSubClassWidgetListener extends AbstractRequire
     protected void fillWidgetClassComboBox() {
         JComboBox<String> comboBox = getWidget().getRequirementClassComboBox();
         ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.SKILL_SCHOOL_MAPPING);
+        List<String> skillNames = new ArrayList<>();
         for (String key : bundle.keySet()) {
-            comboBox.addItem(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, key));
+            skillNames.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, key));
+        }
+
+        Collections.sort(skillNames);
+        for (String skillName : skillNames) {
+            comboBox.addItem(skillName);
         }
     }
 
@@ -32,6 +41,7 @@ public class SpellRequirementClassSubClassWidgetListener extends AbstractRequire
 
         ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.SKILL_SUB_SCHOOL_MAPPING);
         JComboBox<String> comboBox = getWidget().getRequirementSubClassComboBox();
+        comboBox.addItem("");
         for (String key : bundle.keySet()) {
             if (key.startsWith(skillClassKey)) {
                 String value = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, key);

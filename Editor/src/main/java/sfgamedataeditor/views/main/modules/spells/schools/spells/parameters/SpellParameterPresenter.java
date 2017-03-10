@@ -105,6 +105,8 @@ public class SpellParameterPresenter extends AbstractPresenter<SpellParameterMod
                         } else {
                             widget.setVisible(false);
                         }
+                    } else {
+                        widget.getListener().updateWidgetValue(spellParameter);
                     }
                 }
             } catch (IllegalAccessException e) {
