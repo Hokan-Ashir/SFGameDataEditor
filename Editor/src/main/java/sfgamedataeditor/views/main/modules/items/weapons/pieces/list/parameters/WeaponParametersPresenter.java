@@ -7,9 +7,7 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObjec
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
-import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.common.AbstractParametersPresenter;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -21,7 +19,7 @@ import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.List;
 
-public class WeaponParametersPresenter extends AbstractPresenter<WeaponParametersModelParameter, WeaponParametersView> {
+public class WeaponParametersPresenter extends AbstractParametersPresenter<WeaponParametersModelParameter, WeaponParametersView> {
 
     private static final Logger LOGGER = Logger.getLogger(WeaponParametersPresenter.class);
     private final ItemRequirementsComboBoxListener itemRequirementsListener = new ItemRequirementsComboBoxListener();
@@ -36,39 +34,30 @@ public class WeaponParametersPresenter extends AbstractPresenter<WeaponParameter
     @Override
     public void updateView() {
         WeaponParametersModelParameter parameter = getModel().getParameter();
-        ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
         List<ItemSpellEffectsObject> itemSpellEffectsObjects = parameter.getItemSpellEffectsObjects();
-        WeaponParametersObject weaponParametersObject = parameter.getWeaponParametersObject();
         final List<ItemRequirementsObject> requirementsObjects = parameter.getRequirementsObjects();
 
         updateItemRequirementsWidgets(requirementsObjects);
         updateWeaponEffectWidgets(itemSpellEffectsObjects);
 
-        Field[] declaredFields = getView().getClass().getDeclaredFields();
-        for (Field declaredField : declaredFields) {
-            GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-            if (annotation == null) {
-                continue;
-            }
+        super.updateView();
+    }
 
-            try {
-                declaredField.setAccessible(true);
-                JPanel panel = (JPanel) declaredField.get(getView());
-                AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
+    @Override
+    protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
+        WeaponParametersModelParameter parameter = getModel().getParameter();
+        ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
+        WeaponParametersObject weaponParametersObject = parameter.getWeaponParametersObject();
 
-                Class<?> dtoClass = annotation.DTOClass();
-                if (dtoClass.equals(ItemPriceParametersObject.class)) {
-                    widget.getListener().updateWidgetValue(priceParametersObject);
-                } else if (dtoClass.equals(WeaponParametersObject.class)) {
-                    if (weaponParametersObject == null) {
-                        panel.setVisible(false);
-                    } else {
-                        panel.setVisible(true);
-                        widget.getListener().updateWidgetValue(weaponParametersObject);
-                    }
-                }
-            } catch (IllegalAccessException e) {
-                LOGGER.error(e.getMessage(), e);
+        Class<?> dtoClass = annotation.DTOClass();
+        if (dtoClass.equals(ItemPriceParametersObject.class)) {
+            widget.getListener().updateWidgetValue(priceParametersObject);
+        } else if (dtoClass.equals(WeaponParametersObject.class)) {
+            if (weaponParametersObject == null) {
+                panel.setVisible(false);
+            } else {
+                panel.setVisible(true);
+                widget.getListener().updateWidgetValue(weaponParametersObject);
             }
         }
     }
@@ -115,18 +104,6 @@ public class WeaponParametersPresenter extends AbstractPresenter<WeaponParameter
 
         itemRequirementsListener.setItemRequirementsObjects(requirementsObjects);
         itemRequirementsComboBox.setSelectedItem(itemRequirementsComboBox.getItemAt(0));
-    }
-
-    @Override
-    public void renderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideContentPanel(getView().getMainPanel());
-    }
-
-    @Override
-    public void unRenderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unRenderViewInsideContentPanel(getView().getMainPanel());
     }
 
     // TODO get rid of duplications (copy-&-paste from ArmorParametersPresenter)

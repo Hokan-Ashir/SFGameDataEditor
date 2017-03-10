@@ -8,6 +8,8 @@ import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
+import javax.swing.*;
+
 public class SkillSchoolsPresenter extends AbstractModulesPresenter<ModuleParameter, SkillSchoolsView, SkillParameterModel> {
     public SkillSchoolsPresenter(SkillSchoolsView view) {
         super(view);
@@ -18,7 +20,8 @@ public class SkillSchoolsPresenter extends AbstractModulesPresenter<ModuleParame
         String selectedSkillSchool = getView().getSelectedModuleName();
         String skillSchoolKey = ViewTools.getKeyStringByPropertyValue(selectedSkillSchool, I18NTypes.COMMON);
         int skillSchoolId = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.SKILL_SCHOOL_MAPPING, skillSchoolKey));
-        SkillParameterModelParameter parameter = new SkillParameterModelParameter(skillSchoolId, 1);
+        Icon icon = getView().getSelectedModuleIcon();
+        SkillParameterModelParameter parameter = new SkillParameterModelParameter(skillSchoolId, 1, icon);
         return new SkillParameterModel(parameter);
     }
 }

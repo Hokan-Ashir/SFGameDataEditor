@@ -5,17 +5,17 @@ import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
+import sfgamedataeditor.mvc.objects.IconableParameter;
 
 import javax.swing.*;
 import java.util.List;
 
-public class CreaturesParametersModelParameter {
+public class CreaturesParametersModelParameter extends IconableParameter {
     private final CreatureParameterObject creatureParameterObject;
     private final CreaturesCommonParameterObject creatureCommonParameterObject;
     private final List<CreatureEquipmentObject> creatureEquipment;
     private final List<CreatureSpellObject> creatureSpells;
     private final List<CreatureCorpseLootObject> corpseLootObjects;
-    private final Icon icon;
 
     public CreaturesParametersModelParameter(CreatureParameterObject creatureParameterObject,
                                              CreaturesCommonParameterObject creatureCommonParameterObject,
@@ -23,12 +23,12 @@ public class CreaturesParametersModelParameter {
                                              List<CreatureSpellObject> creatureSpells,
                                              List<CreatureCorpseLootObject> corpseLootObjects,
                                              Icon icon) {
+        super(icon);
         this.creatureParameterObject = creatureParameterObject;
         this.creatureCommonParameterObject = creatureCommonParameterObject;
         this.creatureEquipment = creatureEquipment;
         this.creatureSpells = creatureSpells;
         this.corpseLootObjects = corpseLootObjects;
-        this.icon = icon;
     }
 
     public CreatureParameterObject getCreatureParameterObject() {
@@ -49,9 +49,5 @@ public class CreaturesParametersModelParameter {
 
     public List<CreatureCorpseLootObject> getCorpseLootObjects() {
         return corpseLootObjects;
-    }
-
-    public Icon getIcon() {
-        return icon;
     }
 }

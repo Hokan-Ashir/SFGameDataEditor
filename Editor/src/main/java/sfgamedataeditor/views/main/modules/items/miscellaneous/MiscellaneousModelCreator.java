@@ -13,7 +13,7 @@ public class MiscellaneousModelCreator implements ModelCreator<MiscellaneousPara
     @Override
     public MiscellaneousParametersModel createModel(int objectId, Icon icon) {
         ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(objectId);
-        MiscellaneousParametersModelParameter parameter = new MiscellaneousParametersModelParameter(itemPriceObject);
+        MiscellaneousParametersModelParameter parameter = new MiscellaneousParametersModelParameter(itemPriceObject, icon);
         return new MiscellaneousParametersModel(parameter);
     }
 }

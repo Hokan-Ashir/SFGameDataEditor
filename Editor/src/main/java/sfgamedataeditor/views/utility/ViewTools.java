@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
 public class ViewTools {
 
     private static final int LABEL_LINE_MAX_LENGTH = 30;
-    private static final double WIDTH_COEFFICIENT = 0.55;
 
     private ViewTools() {
 
@@ -29,22 +28,6 @@ public class ViewTools {
 
             component.setEnabled(isEnabled);
         }
-    }
-
-    public static void repaintButtonTextContent(JButton button, JFrame frame, JPanel panel, String content) {
-        button.setText(content);
-        int fontSize = button.getFont().getSize();
-        Dimension size = new Dimension(button.getText().length() * fontSize,
-                button.getPreferredSize().height);
-        if (size.getWidth() > panel.getWidth() * WIDTH_COEFFICIENT) {
-            size.setSize(panel.getWidth(), size.getHeight());
-        }
-        button.setPreferredSize(size);
-        button.setMaximumSize(size);
-        button.setMinimumSize(size);
-
-        frame.pack();
-        panel.paintImmediately(panel.getBounds());
     }
 
     public static void centerFrame(JFrame frame) {

@@ -6,18 +6,12 @@ import javax.swing.*;
 
 public class WorkersRunesParametersModelParameter extends LevelableParameter {
     private final String runeName;
-    private final Icon icon;
 
     public WorkersRunesParametersModelParameter(String runeName,
                                                 Integer runeLevel,
                                                 Icon icon) {
-        super(runeLevel);
+        super(runeLevel, icon);
         this.runeName = runeName;
-        this.icon = icon;
-    }
-
-    public Icon getIcon() {
-        return icon;
     }
 
     public String getRuneName() {

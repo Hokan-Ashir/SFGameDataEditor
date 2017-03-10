@@ -1,8 +1,6 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters;
 
-import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
-import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.creature.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
@@ -10,25 +8,21 @@ import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
-import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.views.common.AbstractParametersPresenter;
 import sfgamedataeditor.views.common.dropitems.BaseDropItemsComboBoxListener;
 import sfgamedataeditor.views.common.dropitems.CreaturesDropItemsComboBoxListener;
-import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreaturesParametersPresenter extends AbstractPresenter<CreaturesParametersModelParameter, CreaturesParametersView> {
+public class CreaturesParametersPresenter extends AbstractParametersPresenter<CreaturesParametersModelParameter, CreaturesParametersView> {
 
-    private static final Logger LOGGER = Logger.getLogger(CreaturesParametersPresenter.class);
     private static final Map<Integer, Integer> SLOT_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
     private final BaseDropItemsComboBoxListener dropItemsListener;
@@ -68,12 +62,7 @@ public class CreaturesParametersPresenter extends AbstractPresenter<CreaturesPar
     @Override
     public void updateView() {
         CreaturesParametersModelParameter parameter = getModel().getParameter();
-        CreatureParameterObject creatureParameterObject = parameter.getCreatureParameterObject();
-        CreaturesCommonParameterObject commonParameterObject = parameter.getCreatureCommonParameterObject();
-        List<CreatureEquipmentObject> creatureEquipment = parameter.getCreatureEquipment();
-        List<CreatureSpellObject> creatureSpells = parameter.getCreatureSpells();
         final List<CreatureCorpseLootObject> corpseLootObjects = parameter.getCorpseLootObjects();
-        Icon icon = parameter.getIcon();
 
         if (corpseLootObjects != null && !corpseLootObjects.isEmpty()) {
             getView().getTabPane().setEnabledAt(CreaturesParametersView.CORPSE_LOOT_TAB_INDEX, true);
@@ -96,73 +85,46 @@ public class CreaturesParametersPresenter extends AbstractPresenter<CreaturesPar
             getView().getTabPane().setEnabledAt(CreaturesParametersView.CORPSE_LOOT_TAB_INDEX, false);
         }
 
-        Field[] declaredFields = getView().getClass().getDeclaredFields();
-        for (Field declaredField : declaredFields) {
-            try {
-                IconElement iconElement = declaredField.getAnnotation(IconElement.class);
-                if (iconElement != null) {
-                    declaredField.setAccessible(true);
-                    JLabel panel = (JLabel) declaredField.get(getView());
-                    panel.setIcon(icon);
-                    continue;
+        super.updateView();
+    }
+
+    @Override
+    protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
+        CreaturesParametersModelParameter parameter = getModel().getParameter();
+        CreatureParameterObject creatureParameterObject = parameter.getCreatureParameterObject();
+        CreaturesCommonParameterObject commonParameterObject = parameter.getCreatureCommonParameterObject();
+        List<CreatureEquipmentObject> creatureEquipment = parameter.getCreatureEquipment();
+        List<CreatureSpellObject> creatureSpells = parameter.getCreatureSpells();
+
+        Class<?> dtoClass = annotation.DTOClass();
+        if (dtoClass.equals(CreatureParameterObject.class)) {
+            widget.getListener().updateWidgetValue(creatureParameterObject);
+        } else if (dtoClass.equals(CreaturesCommonParameterObject.class)) {
+            widget.getListener().updateWidgetValue(commonParameterObject);
+        } else if (dtoClass.equals(CreatureEquipmentObject.class)) {
+            int elementId = annotation.GUIElementId();
+            Integer slotNumber = SLOT_NUMBER_MAPPING.get(elementId);
+            widget.setVisible(false);
+            for (CreatureEquipmentObject creatureEquipmentObject : creatureEquipment) {
+                if (creatureEquipmentObject.equipmentSlot.equals(slotNumber)) {
+                    widget.setVisible(true);
+                    widget.getListener().updateWidgetValue(creatureEquipmentObject);
+                    break;
                 }
-
-                GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-                if (annotation == null) {
-                    continue;
-                }
-
-
-                declaredField.setAccessible(true);
-                JPanel panel = (JPanel) declaredField.get(getView());
-                AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
-
-                Class<?> dtoClass = annotation.DTOClass();
-                if (dtoClass.equals(CreatureParameterObject.class)) {
-                    widget.getListener().updateWidgetValue(creatureParameterObject);
-                } else if (dtoClass.equals(CreaturesCommonParameterObject.class)) {
-                    widget.getListener().updateWidgetValue(commonParameterObject);
-                } else if (dtoClass.equals(CreatureEquipmentObject.class)) {
-                    int elementId = annotation.GUIElementId();
-                    Integer slotNumber = SLOT_NUMBER_MAPPING.get(elementId);
+            }
+        } else if (dtoClass.equals(CreatureSpellObject.class)) {
+            if (creatureSpells == null || creatureSpells.isEmpty()) {
+                getView().getTabPane().setEnabledAt(CreaturesParametersView.SPELLS_TAB_INDEX, false);
+            } else {
+                getView().getTabPane().setEnabledAt(CreaturesParametersView.SPELLS_TAB_INDEX, true);
+                Integer spellIndex = SPELL_NUMBER_MAPPING.get(annotation.GUIElementId());
+                if (spellIndex >= creatureSpells.size()) {
                     widget.setVisible(false);
-                    for (CreatureEquipmentObject creatureEquipmentObject : creatureEquipment) {
-                        if (creatureEquipmentObject.equipmentSlot.equals(slotNumber)) {
-                            widget.setVisible(true);
-                            widget.getListener().updateWidgetValue(creatureEquipmentObject);
-                            break;
-                        }
-                    }
-                } else if (dtoClass.equals(CreatureSpellObject.class)) {
-                    if (creatureSpells == null || creatureSpells.isEmpty()) {
-                        getView().getTabPane().setEnabledAt(CreaturesParametersView.SPELLS_TAB_INDEX, false);
-                    } else {
-                        getView().getTabPane().setEnabledAt(CreaturesParametersView.SPELLS_TAB_INDEX, true);
-                        Integer spellIndex = SPELL_NUMBER_MAPPING.get(annotation.GUIElementId());
-                        if (spellIndex >= creatureSpells.size()) {
-                            widget.setVisible(false);
-                        } else {
-                            widget.setVisible(true);
-                            widget.getListener().updateWidgetValue(creatureSpells.get(spellIndex));
-                        }
-                    }
+                } else {
+                    widget.setVisible(true);
+                    widget.getListener().updateWidgetValue(creatureSpells.get(spellIndex));
                 }
-
-            } catch (IllegalAccessException e) {
-                LOGGER.error(e.getMessage(), e);
             }
         }
-    }
-
-    @Override
-    public void renderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideContentPanel(getView().getMainPanel());
-    }
-
-    @Override
-    public void unRenderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unRenderViewInsideContentPanel(getView().getMainPanel());
     }
 }

@@ -1,8 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.workersrunes.parameters;
 
-import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
-import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.item.workerrunes.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxParameter;
@@ -12,19 +10,15 @@ import sfgamedataeditor.database.creatures.skills.CreatureSkillObject;
 import sfgamedataeditor.database.creatures.skills.CreatureSkillTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.common.AbstractParametersPresenter;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
-import java.lang.reflect.Field;
 import java.util.*;
 
-public class WorkersRunesParameterPresenter extends AbstractPresenter<WorkersRunesParametersModelParameter, WorkersRunesParametersView> {
+public class WorkersRunesParameterPresenter extends AbstractParametersPresenter<WorkersRunesParametersModelParameter, WorkersRunesParametersView> {
 
-    private static final Logger LOGGER = Logger.getLogger(WorkersRunesParameterPresenter.class);
     private static final Map<Integer, Integer> SKILL_NUMBER_MAPPING = new HashMap<>();
 
     public WorkersRunesParameterPresenter(WorkersRunesParametersView view) {
@@ -44,7 +38,7 @@ public class WorkersRunesParameterPresenter extends AbstractPresenter<WorkersRun
     }
 
     @Override
-    public void updateView() {
+    protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
         WorkersRunesParametersModelParameter parameter = getModel().getParameter();
         String runeName = parameter.getRuneName().split(" - ")[0];
         Integer runeLevel = parameter.getLevel();
@@ -54,55 +48,30 @@ public class WorkersRunesParameterPresenter extends AbstractPresenter<WorkersRun
         CreatureParameterObject creatureParameterObject = CreatureParametersTableService.INSTANCE.getCreatureObjectByStatsId(priceParametersObject.unitStatsId);
         List<CreatureSkillObject> creatureSkills = CreatureSkillTableService.INSTANCE.getCreatureSkillsByStatsId(priceParametersObject.unitStatsId);
         Set<Integer> runesLevels = getRunesLevels(runeName);
-        Icon icon = parameter.getIcon();
 
-        Field[] declaredFields = getView().getClass().getDeclaredFields();
-        for (Field declaredField : declaredFields) {
-            try {
-                IconElement iconElement = declaredField.getAnnotation(IconElement.class);
-                if (iconElement != null) {
-                    declaredField.setAccessible(true);
-                    JLabel panel = (JLabel) declaredField.get(getView());
-                    panel.setIcon(icon);
-                    continue;
-                }
-
-                GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-                if (annotation == null) {
-                    continue;
-                }
-
-                int guiElementId = annotation.GUIElementId();
-                declaredField.setAccessible(true);
-                JPanel panel = (JPanel) declaredField.get(getView());
-                AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
-
-                if (guiElementId == GUIElements.LEVEL) {
-                    LevelComboBoxParameter levelComboBoxParameter = new LevelComboBoxParameter(runeLevel, runesLevels);
-                    widget.getListener().updateWidgetValue(levelComboBoxParameter);
+        int guiElementId = annotation.GUIElementId();
+        if (guiElementId == GUIElements.LEVEL) {
+            LevelComboBoxParameter levelComboBoxParameter = new LevelComboBoxParameter(runeLevel, runesLevels);
+            widget.getListener().updateWidgetValue(levelComboBoxParameter);
+        } else {
+            Class<?> dtoClass = annotation.DTOClass();
+            if (dtoClass.equals(ItemPriceParametersObject.class)) {
+                widget.getListener().updateWidgetValue(priceParametersObject);
+            } else if (dtoClass.equals(CreatureParameterObject.class)) {
+                widget.getListener().updateWidgetValue(creatureParameterObject);
+            } else if (dtoClass.equals(CreatureSkillObject.class)) {
+                if (creatureSkills == null || creatureSkills.isEmpty()) {
+                    getView().getTabPane().setEnabledAt(WorkersRunesParametersView.SKILL_PARAMETERS_TAB_INDEX, false);
                 } else {
-                    Class<?> dtoClass = annotation.DTOClass();
-                    if (dtoClass.equals(ItemPriceParametersObject.class)) {
-                        widget.getListener().updateWidgetValue(priceParametersObject);
-                    } else if (dtoClass.equals(CreatureParameterObject.class)) {
-                        widget.getListener().updateWidgetValue(creatureParameterObject);
-                    } else if (dtoClass.equals(CreatureSkillObject.class)) {
-                        if (creatureSkills == null || creatureSkills.isEmpty()) {
-                            getView().getTabPane().setEnabledAt(WorkersRunesParametersView.SKILL_PARAMETERS_TAB_INDEX, false);
-                        } else {
-                            getView().getTabPane().setEnabledAt(WorkersRunesParametersView.SKILL_PARAMETERS_TAB_INDEX, true);
-                            Integer skillIndex = SKILL_NUMBER_MAPPING.get(annotation.GUIElementId());
-                            if (skillIndex >= creatureSkills.size()) {
-                                widget.setVisible(false);
-                            } else {
-                                widget.setVisible(true);
-                                widget.getListener().updateWidgetValue(creatureSkills.get(skillIndex));
-                            }
-                        }
+                    getView().getTabPane().setEnabledAt(WorkersRunesParametersView.SKILL_PARAMETERS_TAB_INDEX, true);
+                    Integer skillIndex = SKILL_NUMBER_MAPPING.get(annotation.GUIElementId());
+                    if (skillIndex >= creatureSkills.size()) {
+                        widget.setVisible(false);
+                    } else {
+                        widget.setVisible(true);
+                        widget.getListener().updateWidgetValue(creatureSkills.get(skillIndex));
                     }
                 }
-            } catch (IllegalAccessException e) {
-                LOGGER.error(e.getMessage(), e);
             }
         }
     }
@@ -119,17 +88,5 @@ public class WorkersRunesParameterPresenter extends AbstractPresenter<WorkersRun
         }
 
         return runesLevels;
-    }
-
-    @Override
-    public void renderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideContentPanel(getView().getMainPanel());
-    }
-
-    @Override
-    public void unRenderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unRenderViewInsideContentPanel(getView().getMainPanel());
     }
 }

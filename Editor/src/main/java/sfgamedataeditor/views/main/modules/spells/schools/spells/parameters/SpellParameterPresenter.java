@@ -2,7 +2,6 @@ package sfgamedataeditor.views.main.modules.spells.schools.spells.parameters;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
-import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxParameter;
@@ -10,9 +9,7 @@ import sfgamedataeditor.database.spells.names.SpellNameObject;
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
-import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.common.AbstractParametersPresenter;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -20,7 +17,7 @@ import javax.swing.*;
 import java.lang.reflect.Field;
 import java.util.*;
 
-public class SpellParameterPresenter extends AbstractPresenter<SpellParameterModelParameter, SpellParameterView> {
+public class SpellParameterPresenter extends AbstractParametersPresenter<SpellParameterModelParameter, SpellParameterView> {
 
     private static final Logger LOGGER = Logger.getLogger(SpellParameterPresenter.class);
     private static final String SPELL_I18N_NAME_POSTFIX = ".name";
@@ -62,7 +59,21 @@ public class SpellParameterPresenter extends AbstractPresenter<SpellParameterMod
         SpellParameterModelParameter parameter = getModel().getParameter();
         int selectedSpellId = parameter.getSpellId();
         int selectedLevel = parameter.getLevel();
-        Icon icon = parameter.getIcon();
+        Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
+
+        int spellMinLevel = (int) ((TreeSet) spellLevels).first();
+        int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
+        selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
+        SpellParametersObject spellParameter = SpellParametersTableService.INSTANCE.getSpellParameterBySpellIdAndLevel(selectedSpellId, selectedLevel);
+        updateI18NWidgetsData(spellParameter);
+        super.updateView();
+    }
+
+    @Override
+    protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
+        SpellParameterModelParameter parameter = getModel().getParameter();
+        int selectedSpellId = parameter.getSpellId();
+        int selectedLevel = parameter.getLevel();
         Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
 
         int spellMinLevel = (int) ((TreeSet) spellLevels).first();
@@ -71,46 +82,22 @@ public class SpellParameterPresenter extends AbstractPresenter<SpellParameterMod
         SpellParametersObject spellParameter = SpellParametersTableService.INSTANCE.getSpellParameterBySpellIdAndLevel(selectedSpellId, selectedLevel);
         updateI18NWidgetsData(spellParameter);
 
-        Field[] declaredFields = getView().getClass().getDeclaredFields();
-        for (Field declaredField : declaredFields) {
-            try {
-                IconElement iconElement = declaredField.getAnnotation(IconElement.class);
-                if (iconElement != null) {
-                    declaredField.setAccessible(true);
-                    JLabel panel = (JLabel) declaredField.get(getView());
-                    panel.setIcon(icon);
-                    continue;
-                }
-
-                GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-                if (annotation == null) {
-                    continue;
-                }
-
-                declaredField.setAccessible(true);
-                JPanel panel = (JPanel) declaredField.get(getView());
-                AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
-
-                int guiElementId = annotation.GUIElementId();
-                if (guiElementId == GUIElements.SPELL_LEVEL) {
-                    LevelComboBoxParameter levelComboBoxParameter = new LevelComboBoxParameter(selectedLevel, spellLevels);
-                    widget.getListener().updateWidgetValue(levelComboBoxParameter);
+        int guiElementId = annotation.GUIElementId();
+        if (guiElementId == GUIElements.SPELL_LEVEL) {
+            LevelComboBoxParameter levelComboBoxParameter = new LevelComboBoxParameter(selectedLevel, spellLevels);
+            widget.getListener().updateWidgetValue(levelComboBoxParameter);
+        } else {
+            if (i18nDTOFieldsToGUIElementsIdsMap.containsKey(guiElementId)) {
+                List<String> strings = i18nStrings.get(guiElementId);
+                if (!strings.isEmpty()) {
+                    widget.setVisible(true);
+                    widget.updateI18N(strings);
+                    widget.getListener().updateWidgetValue(spellParameter);
                 } else {
-                    if (i18nDTOFieldsToGUIElementsIdsMap.containsKey(guiElementId)) {
-                        List<String> strings = i18nStrings.get(guiElementId);
-                        if (!strings.isEmpty()) {
-                            widget.setVisible(true);
-                            widget.updateI18N(strings);
-                            widget.getListener().updateWidgetValue(spellParameter);
-                        } else {
-                            widget.setVisible(false);
-                        }
-                    } else {
-                        widget.getListener().updateWidgetValue(spellParameter);
-                    }
+                    widget.setVisible(false);
                 }
-            } catch (IllegalAccessException e) {
-                LOGGER.error(e.getMessage(), e);
+            } else {
+                widget.getListener().updateWidgetValue(spellParameter);
             }
         }
     }
@@ -136,18 +123,6 @@ public class SpellParameterPresenter extends AbstractPresenter<SpellParameterMod
                 LOGGER.info(e.getMessage(), e);
             }
         }
-    }
-
-    @Override
-    public void renderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideContentPanel(getView().getMainPanel());
-    }
-
-    @Override
-    public void unRenderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unRenderViewInsideContentPanel(getView().getMainPanel());
     }
 
     // in case user selected spell with level-range [1; 12] with level 5

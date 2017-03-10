@@ -2,11 +2,12 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.fileselection.FileSelectionView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="500" height="200"/>
+      <xy x="20" y="20" width="600" height="200"/>
     </constraints>
     <properties>
-      <minimumSize width="500" height="200"/>
-      <preferredSize width="500" height="200"/>
+      <maximumSize width="600" height="200"/>
+      <minimumSize width="600" height="200"/>
+      <preferredSize width="600" height="200"/>
     </properties>
     <border type="none"/>
     <children>
@@ -18,8 +19,9 @@
           <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <minimumSize width="400" height="23"/>
-          <preferredSize width="400" height="23"/>
+          <maximumSize width="500" height="25"/>
+          <minimumSize width="500" height="25"/>
+          <preferredSize width="500" height="25"/>
           <text value=""/>
         </properties>
       </component>
@@ -63,8 +65,9 @@
           <gridbag top="0" left="0" bottom="0" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <minimumSize width="400" height="23"/>
-          <preferredSize width="400" height="23"/>
+          <maximumSize width="500" height="25"/>
+          <minimumSize width="500" height="25"/>
+          <preferredSize width="500" height="25"/>
         </properties>
       </component>
       <component id="4955a" class="javax.swing.JButton" binding="modificationFileSelectorButton">

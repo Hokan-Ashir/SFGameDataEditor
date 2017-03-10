@@ -23,7 +23,7 @@ public class WeaponModelCreator implements ModelCreator<WeaponParametersModel> {
         List<ItemSpellEffectsObject> itemEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(objectId);
         WeaponParametersObject weaponParametersObject = WeaponParametersTableService.INSTANCE.getObjectByItemId(objectId);
         List<ItemRequirementsObject> requirementsObjects = ItemRequirementsTableService.INSTANCE.getObjectsByItemId(objectId);
-        WeaponParametersModelParameter parameter = new WeaponParametersModelParameter(itemPriceObject, itemEffectsObjects, weaponParametersObject, requirementsObjects);
+        WeaponParametersModelParameter parameter = new WeaponParametersModelParameter(itemPriceObject, itemEffectsObjects, weaponParametersObject, requirementsObjects, icon);
         return new WeaponParametersModel(parameter);
     }
 }

@@ -1,8 +1,6 @@
 package sfgamedataeditor.views.main.modules.units.races.units.parameters;
 
-import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
-import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.unit.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.common.OffsetableObject;
@@ -11,19 +9,15 @@ import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.production.buildings.CreatureBuildingsObject;
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
-import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.common.AbstractParametersPresenter;
 
 import javax.swing.*;
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UnitsParametersPresenter extends AbstractPresenter<UnitsParametersModelParameter, UnitsParametersView> {
+public class UnitsParametersPresenter extends AbstractParametersPresenter<UnitsParametersModelParameter, UnitsParametersView> {
 
-    private static final Logger LOGGER = Logger.getLogger(UnitsParametersPresenter.class);
     private static final Map<Integer, Integer> SLOT_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> BUILDINGS_NUMBER_MAPPING = new HashMap<>();
@@ -74,77 +68,52 @@ public class UnitsParametersPresenter extends AbstractPresenter<UnitsParametersM
     }
 
     @Override
-    public void updateView() {
+    protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
         UnitsParametersModelParameter parameter = getModel().getParameter();
         CreaturesCommonParameterObject commonParameterObject = parameter.getCreatureCommonParameterObject();
         List<CreatureEquipmentObject> creatureEquipment = parameter.getCreatureEquipment();
         List<CreatureSpellObject> creatureSpells = parameter.getCreatureSpells();
         List<CreatureResourcesObject> creatureResources = parameter.getCreatureResources();
         List<CreatureBuildingsObject> creatureBuildings = parameter.getCreatureBuildings();
-        Icon icon = parameter.getIcon();
 
-        Field[] declaredFields = getView().getClass().getDeclaredFields();
-        for (Field declaredField : declaredFields) {
-            try {
-                IconElement iconElement = declaredField.getAnnotation(IconElement.class);
-                if (iconElement != null) {
-                    declaredField.setAccessible(true);
-                    JLabel panel = (JLabel) declaredField.get(getView());
-                    panel.setIcon(icon);
-                    continue;
-                }
-
-                GUIElement guiElement = declaredField.getAnnotation(GUIElement.class);
-                if (guiElement == null) {
-                    continue;
-                }
-
-
-                declaredField.setAccessible(true);
-                JPanel panel = (JPanel) declaredField.get(getView());
-                AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
-
-                Class<?> dtoClass = guiElement.DTOClass();
-                if (dtoClass.equals(CreaturesCommonParameterObject.class)) {
-                    widget.getListener().updateWidgetValue(commonParameterObject);
-                } else if (dtoClass.equals(CreatureEquipmentObject.class)) {
-                    int elementId = guiElement.GUIElementId();
-                    Integer slotNumber = SLOT_NUMBER_MAPPING.get(elementId);
-                    widget.setVisible(false);
-                    for (CreatureEquipmentObject creatureEquipmentObject : creatureEquipment) {
-                        if (creatureEquipmentObject.equipmentSlot.equals(slotNumber)) {
-                            widget.setVisible(true);
-                            widget.getListener().updateWidgetValue(creatureEquipmentObject);
-                            break;
-                        }
-                    }
-                } else {
-                    JTabbedPane tabPane = getView().getTabPane();
-
-                    if (dtoClass.equals(CreatureSpellObject.class)) {
-                        if (creatureSpells == null || creatureSpells.isEmpty()) {
-                            tabPane.setEnabledAt(UnitsParametersView.CREATURE_SPELLS_TAB_INDEX, false);
-                        } else {
-                            tabPane.setEnabledAt(UnitsParametersView.CREATURE_SPELLS_TAB_INDEX, true);
-                            updateWidgetWithParametersList(guiElement.GUIElementId(), widget, creatureSpells, SPELL_NUMBER_MAPPING);
-                        }
-                    } else if (dtoClass.equals(CreatureBuildingsObject.class)) {
-                        if (creatureBuildings == null || creatureBuildings.isEmpty()) {
-                            widget.setVisible(false);
-                        } else {
-                            updateWidgetWithParametersList(guiElement.GUIElementId(), widget, creatureBuildings, BUILDINGS_NUMBER_MAPPING);
-                        }
-                    } else if (dtoClass.equals(CreatureResourcesObject.class)) {
-                        if (creatureResources == null || creatureResources.isEmpty()) {
-                            widget.setVisible(false);
-                        } else {
-                            updateWidgetWithParametersList(guiElement.GUIElementId(), widget, creatureResources, RESOURCES_NUMBER_MAPPING);
-                        }
+        Class<?> dtoClass = annotation.DTOClass();
+        if (dtoClass.equals(CreaturesCommonParameterObject.class)) {
+            widget.getListener().updateWidgetValue(commonParameterObject);
+        } else {
+            int guiElementId = annotation.GUIElementId();
+            if (dtoClass.equals(CreatureEquipmentObject.class)) {
+                Integer slotNumber = SLOT_NUMBER_MAPPING.get(guiElementId);
+                widget.setVisible(false);
+                for (CreatureEquipmentObject creatureEquipmentObject : creatureEquipment) {
+                    if (creatureEquipmentObject.equipmentSlot.equals(slotNumber)) {
+                        widget.setVisible(true);
+                        widget.getListener().updateWidgetValue(creatureEquipmentObject);
+                        break;
                     }
                 }
+            } else {
+                JTabbedPane tabPane = getView().getTabPane();
 
-            } catch (IllegalAccessException e) {
-                LOGGER.error(e.getMessage(), e);
+                if (dtoClass.equals(CreatureSpellObject.class)) {
+                    if (creatureSpells == null || creatureSpells.isEmpty()) {
+                        tabPane.setEnabledAt(UnitsParametersView.CREATURE_SPELLS_TAB_INDEX, false);
+                    } else {
+                        tabPane.setEnabledAt(UnitsParametersView.CREATURE_SPELLS_TAB_INDEX, true);
+                        updateWidgetWithParametersList(guiElementId, widget, creatureSpells, SPELL_NUMBER_MAPPING);
+                    }
+                } else if (dtoClass.equals(CreatureBuildingsObject.class)) {
+                    if (creatureBuildings == null || creatureBuildings.isEmpty()) {
+                        widget.setVisible(false);
+                    } else {
+                        updateWidgetWithParametersList(guiElementId, widget, creatureBuildings, BUILDINGS_NUMBER_MAPPING);
+                    }
+                } else if (dtoClass.equals(CreatureResourcesObject.class)) {
+                    if (creatureResources == null || creatureResources.isEmpty()) {
+                        widget.setVisible(false);
+                    } else {
+                        updateWidgetWithParametersList(guiElementId, widget, creatureResources, RESOURCES_NUMBER_MAPPING);
+                    }
+                }
             }
         }
     }
@@ -160,17 +129,5 @@ public class UnitsParametersPresenter extends AbstractPresenter<UnitsParametersM
             widget.setVisible(true);
             widget.getListener().updateWidgetValue(objects.get(objectIndex));
         }
-    }
-
-    @Override
-    public void renderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideContentPanel(getView().getMainPanel());
-    }
-
-    @Override
-    public void unRenderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unRenderViewInsideContentPanel(getView().getMainPanel());
     }
 }

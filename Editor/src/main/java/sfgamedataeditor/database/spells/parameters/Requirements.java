@@ -125,7 +125,6 @@ public class Requirements {
             // situation when user selected school "Black magic + Heavy Combat Arts + Archery"
             result.add(requirements);
         } else if (requirements.requirementClasses.size() == SIZE - 1) {
-            requirements.fillRestSubClassesValuesWithNulls();
             // situation when user selected school "Black magic + Heavy Combat Arts"
             // before stripping it can be "BM + BM + HCA"/ "BM + HCA + HCA"/ "BM + HCA + Other"
             Integer requirementClass1 = requirements.getRequirementClass(0);

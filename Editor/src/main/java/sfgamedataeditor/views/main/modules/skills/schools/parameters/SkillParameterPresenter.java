@@ -1,70 +1,35 @@
 package sfgamedataeditor.views.main.modules.skills.schools.parameters;
 
-import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.skill.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxParameter;
 import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
 import sfgamedataeditor.database.skill.parameters.SkillParametersTableService;
-import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.common.AbstractParametersPresenter;
 
 import javax.swing.*;
-import java.lang.reflect.Field;
 import java.util.Set;
 
-public class SkillParameterPresenter extends AbstractPresenter<SkillParameterModelParameter, SkillParameterView> {
-
-    private static final Logger LOGGER = Logger.getLogger(SkillParameterPresenter.class);
+public class SkillParameterPresenter extends AbstractParametersPresenter<SkillParameterModelParameter, SkillParameterView> {
 
     public SkillParameterPresenter(SkillParameterView view) {
         super(view);
     }
 
     @Override
-    public void updateView() {
+    protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
         SkillParameterModelParameter parameter = getModel().getParameter();
         int selectedLevel = parameter.getLevel();
         Set<Integer> getSkillPossibleLevels = SkillParametersTableService.INSTANCE.getSkillPossibleLevels(parameter.getSkillSchoolId());
         SkillParameterObject skillParameter = SkillParametersTableService.INSTANCE.getSkillParameter(parameter.getSkillSchoolId(), selectedLevel);
 
-        Field[] declaredFields = getView().getClass().getDeclaredFields();
-        for (Field declaredField : declaredFields) {
-            GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-            if (annotation == null) {
-                continue;
-            }
-
-            try {
-                declaredField.setAccessible(true);
-                JPanel panel = (JPanel) declaredField.get(getView());
-                AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
-
-                int guiElementId = annotation.GUIElementId();
-                if (guiElementId != GUIElements.SKILL_LEVEL) {
-                    widget.getListener().updateWidgetValue(skillParameter);
-                } else {
-                    LevelComboBoxParameter levelComboBoxParameter = new LevelComboBoxParameter(selectedLevel, getSkillPossibleLevels);
-                    widget.getListener().updateWidgetValue(levelComboBoxParameter);
-                }
-
-            } catch (IllegalAccessException e) {
-                LOGGER.error(e.getMessage(), e);
-            }
+        int guiElementId = annotation.GUIElementId();
+        if (guiElementId != GUIElements.SKILL_LEVEL) {
+            widget.getListener().updateWidgetValue(skillParameter);
+        } else {
+            LevelComboBoxParameter levelComboBoxParameter = new LevelComboBoxParameter(selectedLevel, getSkillPossibleLevels);
+            widget.getListener().updateWidgetValue(levelComboBoxParameter);
         }
-    }
-
-    @Override
-    public void renderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideContentPanel(getView().getMainPanel());
-    }
-
-    @Override
-    public void unRenderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unRenderViewInsideContentPanel(getView().getMainPanel());
     }
 }
