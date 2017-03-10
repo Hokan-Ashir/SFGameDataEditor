@@ -21,6 +21,7 @@ See "What it can't do" section below to be aware of restrictions.
  - Editing spell scrolls and spells, i.e. how to make Pain level 1 scroll teach you Torture level 14
  - Editing workers and heroes runes parameters i.e. how make Dwarves be revived at night like Dark Elves or how to add Warrior Kord more strength and fight speed
  - Editing units and buildings plans, i.e. how to give elves ability to build Fishman's Hat or let Orcs summon Clerics
+ - Editing chest corpse loot, like chests, logs, corpses, skeletons etc.
  - Creating compact sf-mod files, which stores your modifications
  - Loading sf-mod files created by other users
  - Merging sf-mod files with your GameData.cff files to get modificated data, which you can test in game
@@ -93,9 +94,10 @@ See "What it can't do" section below to be aware of restrictions.
 
 # TODO
  - Add more flexible ability to merge multiple sf-mod files
- - Extend sf-mod-files format to include description
- - Extend item, unit parameters, merchants views, add buildings, runes, plans views
- - Add support for any language i18n possible
+ - Extend sf-mod-files format to include description, maybe picture
+ - Add filtration
+ - Add search; in views and across whole application
+ - Add icons for objects and creatures
 
 # Special thanks
  - This application won't be possible without information grabbed from this forum - http://spellforcefanforum.hostoi.com/index.php
