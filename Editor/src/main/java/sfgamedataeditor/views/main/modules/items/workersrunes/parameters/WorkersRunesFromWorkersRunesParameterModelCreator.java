@@ -35,9 +35,7 @@ public class WorkersRunesFromWorkersRunesParameterModelCreator implements ModelC
     @Override
     public ModulesModel createModel(WorkersRunesParametersModel childModel) {
         String runeName = childModel.getParameter().getRuneName();
-        Integer runeLevel = childModel.getParameter().getLevel();
-        String fullRuneName = runeName + " - level " + String.valueOf(runeLevel);
-        Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemName(fullRuneName);
+        Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemName(runeName);
         int itemType = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
         String raceName = runeWorkersRaceTypeToNameMapping.get(String.valueOf(itemType));
         ModuleParameter parameter = new ModuleParameter(raceName);

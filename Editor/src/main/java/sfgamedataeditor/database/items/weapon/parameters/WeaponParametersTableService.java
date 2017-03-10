@@ -6,6 +6,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -82,5 +83,16 @@ public enum WeaponParametersTableService implements TableCreationService {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptySet();
         }
+    }
+
+    public Integer getItemIdByItemTypeAndName(String itemName, int typeId) {
+        Set<String> itemNames = getItemsByItemType(typeId);
+        for (String name : itemNames) {
+            if (name.equals(itemName)) {
+                return ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(itemName);
+            }
+        }
+
+        return null;
     }
 }

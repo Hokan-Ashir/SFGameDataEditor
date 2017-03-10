@@ -1,5 +1,6 @@
 package sfgamedataeditor.common.widgets.creatures.equipment;
 
+import sfgamedataeditor.common.widgets.items.weapons.type.WeaponTypesMap;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.PresentableView;
@@ -46,6 +47,19 @@ public enum EquipmentMapping {
         addWorkerRunesViewMapping();
         addUnitPlansViewMapping();
         addBuildingPlansViewMapping();
+        addObjectsWithoutParametersMapping();
+    }
+
+    private void addObjectsWithoutParametersMapping() {
+        Pair<Class<? extends PresentableView>, ModelCreator> pair = new Pair<Class<? extends PresentableView>, ModelCreator>(NotImplementedView.class, null);
+        int figureNPCId = getItemTypeByNameMapping("items.figureNPC");
+        itemTypesClassViews.put(figureNPCId, pair);
+
+        int heroArmyUnitsId = getItemTypeByNameMapping("items.hero.army.units");
+        itemTypesClassViews.put(heroArmyUnitsId, pair);
+
+        int blankScrollsId =  getItemTypeByNameMapping("items.blank.scrolls");
+        itemTypesClassViews.put(blankScrollsId, pair);
     }
 
     private void addBuildingPlansViewMapping() {
@@ -180,23 +194,31 @@ public enum EquipmentMapping {
     public Class<? extends PresentableView> getItemParametersViewClassByItemId(int itemId) {
         int itemTypeId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
         Pair<Class<? extends PresentableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
-        // TODO remove in future, stub for not implemented items sold by merchants
-        if (pair == null) {
-            return NotImplementedView.class;
-        } else {
-            return pair.getKey();
-        }
+        return pair.getKey();
     }
 
     public Model createModel(Integer itemId) {
         int itemTypeId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
         Pair<Class<? extends PresentableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
-        // TODO remove in future, stub for not implemented items sold by merchants
-        if (pair == null) {
-            return null;
-        } else {
+        if (pair.getValue() != null) {
             // TODO add Icon creation
             return pair.getValue().createModel(itemId, null);
+        } else {
+            return null;
+        }
+    }
+
+    public boolean isItemTypeHasNoParameters(int itemType) {
+        Pair<Class<? extends PresentableView>, ModelCreator> pair = itemTypesClassViews.get(itemType);
+        if (pair == null) {
+            String weaponTypeNameById = WeaponTypesMap.INSTANCE.getWeaponTypeNameById(itemType);
+            if(weaponTypeNameById != null) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return pair.getKey().equals(NotImplementedView.class);
         }
     }
 }

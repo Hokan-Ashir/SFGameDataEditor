@@ -1,5 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.workersrunes;
 
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesParametersModel;
@@ -9,6 +10,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 import javax.swing.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class WorkersRuneRacesPresenter extends AbstractModulesPresenter<ModuleParameter, WorkersRuneRacesView, WorkersRunesParametersModel> {
 
@@ -37,9 +39,10 @@ public class WorkersRuneRacesPresenter extends AbstractModulesPresenter<ModulePa
     protected WorkersRunesParametersModel createModel() {
         String selectedModuleName = getView().getSelectedModuleName();
         Integer itemType = Integer.valueOf(runeWorkersRaceTypeToNameMapping.get(selectedModuleName));
+        Set<String> runesNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(itemType);
+        String runeName = runesNames.iterator().next();
+        Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(runeName, itemType);
         Icon icon = getView().getSelectedModuleIcon();
-        return modelCreator.createModel(itemType, icon);
+        return modelCreator.createModel(itemId, icon);
     }
-
-
 }

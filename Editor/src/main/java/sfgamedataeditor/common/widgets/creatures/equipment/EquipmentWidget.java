@@ -104,6 +104,10 @@ public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
         }
     }
 
+    public JButton getGoToItemButton() {
+        return goToItemButton;
+    }
+
     public JComboBox<String> getItemTypeComboBox() {
         return itemTypeComboBox;
     }

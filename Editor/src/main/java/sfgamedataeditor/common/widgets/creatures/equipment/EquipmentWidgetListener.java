@@ -30,9 +30,8 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
 
     @Override
     protected int[] getFieldValues() {
-        String selectedItemName = (String) getWidget().getItemPieceComboBox().getSelectedItem();
-        Integer selectedItemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemName(selectedItemName);
-        return new int[]{selectedItemId};
+        int itemId = getSelectedItemId();
+        return new int[]{itemId};
     }
 
     @Override
@@ -51,7 +50,6 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
             int itemPieceId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
             String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(itemPieceId), I18NTypes.ITEM_TYPES_NAME_MAPPING);
             itemTypeName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, itemPieceNameKey);
-
         }
         getWidget().getItemTypeComboBox().setSelectedItem(itemTypeName);
         updateItemNames();
@@ -64,11 +62,25 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
             return;
         }
 
-        String selectedItemName = (String) getWidget().getItemPieceComboBox().getSelectedItem();
-        Integer itemId = ViewTools.getKeyByPropertyValue(selectedItemName, I18NTypes.ITEMS);
+        Integer itemId = getSelectedItemId();
         Class<? extends PresentableView> classViewToShow = EquipmentMapping.INSTANCE.getItemParametersViewClassByItemId(itemId);
         Model model = EquipmentMapping.INSTANCE.createModel(itemId);
         EventProcessor.INSTANCE.process(new ShowContentViewEvent(classViewToShow, model));
+    }
+
+    private Integer getSelectedItemId() {
+        String selectedItemName = (String) getWidget().getItemPieceComboBox().getSelectedItem();
+        String itemTypeName = (String) getWidget().getItemTypeComboBox().getSelectedItem();
+        String itemTypeKey = ViewTools.getKeyStringByPropertyValue(itemTypeName, I18NTypes.COMMON);
+        Integer itemId;
+        if (itemTypeKey == null) {
+            Integer weaponType = WeaponTypesMap.INSTANCE.getWeaponTypeByName(itemTypeName);
+            itemId = WeaponParametersTableService.INSTANCE.getItemIdByItemTypeAndName(selectedItemName, weaponType);
+        } else {
+            Integer itemType = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemTypeKey));
+            itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedItemName, itemType);
+        }
+        return itemId;
     }
 
     @Override
@@ -79,6 +91,9 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
 
         if (e.getSource().equals(getWidget().getItemTypeComboBox())) {
             updateItemNames();
+            int selectedItemType = getSelectedItemType();
+            boolean itemTypeHasNoParameters = EquipmentMapping.INSTANCE.isItemTypeHasNoParameters(selectedItemType);
+            getWidget().getGoToItemButton().setEnabled(!itemTypeHasNoParameters);
             return;
         }
 
@@ -87,10 +102,22 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
         }
     }
 
+    private int getSelectedItemType() {
+        String itemTypeName = (String) getWidget().getItemTypeComboBox().getSelectedItem();
+        String itemTypeKey = ViewTools.getKeyStringByPropertyValue(itemTypeName, I18NTypes.COMMON);
+        Integer itemType;
+        if (itemTypeKey == null) {
+            itemType = WeaponTypesMap.INSTANCE.getWeaponTypeByName(itemTypeName);
+        } else {
+            itemType = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemTypeKey));
+        }
+        return itemType;
+    }
+
     private void updateItemNames() {
         String itemTypeName = (String) getWidget().getItemTypeComboBox().getSelectedItem();
         String itemTypeI18NKey = ViewTools.getKeyStringByPropertyValue(itemTypeName, I18NTypes.COMMON);
-        Set<String> itemNames;
+        final Set<String> itemNames;
         if (itemTypeI18NKey == null) {
             Integer weaponType = WeaponTypesMap.INSTANCE.getWeaponTypeByName(itemTypeName);
             itemNames = WeaponParametersTableService.INSTANCE.getItemsByItemType(weaponType);
