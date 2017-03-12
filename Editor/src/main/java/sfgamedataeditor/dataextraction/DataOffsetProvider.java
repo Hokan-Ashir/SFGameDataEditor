@@ -10,6 +10,7 @@ import sfgamedataeditor.dataextraction.offsets.creatures.production.CreatureReso
 import sfgamedataeditor.dataextraction.offsets.items.*;
 import sfgamedataeditor.dataextraction.offsets.merchants.MerchantInventoryItemsOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.merchants.MerchantInventoryOffsetHolder;
+import sfgamedataeditor.dataextraction.offsets.objects.chests.ChestCorpseLootOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.skills.SkillsOffsetHolder;
 import sfgamedataeditor.dataextraction.offsets.spells.SpellsOffsetHolder;
 import sfgamedataeditor.views.utility.Pair;
@@ -46,7 +47,7 @@ public enum DataOffsetProvider {
         holderMap.put(DTOOffsetTypes.BUILDINGS_REQUIREMENTS, new BuildingsRequirementsOffsetHolder());
         holderMap.put(DTOOffsetTypes.BUILDINGS_ARMY_REQUIREMENTS, new BuildingsArmyRequirementsOffsetHolder());
         holderMap.put(DTOOffsetTypes.HERO_SPELLS, new HeroSpellsOffsetHolder());
-        holderMap.put(DTOOffsetTypes.CHEST_CORPSE_LOOT, new CreatureCorpseLootOffsetHolder());
+        holderMap.put(DTOOffsetTypes.CHEST_CORPSE_LOOT, new ChestCorpseLootOffsetHolder());
     }
 
     public List<Pair<Integer, Integer>> getOffsets(DTOOffsetTypes types) {

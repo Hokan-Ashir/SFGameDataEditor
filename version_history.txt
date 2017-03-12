@@ -1,5 +1,10 @@
 Freezing development for quite some time
 
+alpha-7 (12.03.2017):
+ - Fixed behaviour of chest/corpse loot mapping; by mistake it was the same objects with same offset range in file
+ - As side effect - chest loot parameters view are now correctly shows only treasure chests
+ - Fixed orcs/trolls race mapping in workers runes widget
+
 alpha-6 (10.03.2017):
  - Added chest corpse loot objects
  - Added some creatures's images and almost all siege and massive unit's images

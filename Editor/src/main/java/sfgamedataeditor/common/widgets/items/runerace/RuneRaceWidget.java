@@ -14,13 +14,13 @@ public class RuneRaceWidget extends AbstractWidget<RuneRaceWidgetListener> {
     private JComboBox<String> raceNameComboBox;
 
     private static final Map<Integer, String> runeRaceMap = new TreeMap<Integer, String>() {{
-       put(0, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.player"));
-       put(1, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.humans"));
-       put(2, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dwarves"));
-       put(3, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.elves"));
-       put(4, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.orcs"));
-       put(5, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.trolls"));
-       put(6, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dark.elves"));
+        put(0, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.player"));
+        put(1, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.humans"));
+        put(2, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dwarves"));
+        put(3, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.elves"));
+        put(4, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.trolls"));
+        put(5, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.orcs"));
+        put(6, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dark.elves"));
     }};
 
     public RuneRaceWidget() {
