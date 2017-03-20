@@ -75,10 +75,25 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2193.png", "161.png");
         addAlias("2194.png", "161.png");
 
-        // Hazim warrior/Krongor/Hazim guard - 1/Hazim guard - 2
+        // Hazim warrior/Krongor/Hazim guard - 1/Hazim guard - 2/Hazim sandtracer
+        // Hazim cursechanter/Trakan - 1/Trakan - 2/Trokan - 1/Trokan - 1
         addAlias("2904.png", "2094.png");
         addAlias("2436.png", "2094.png");
         addAlias("2954.png", "2094.png");
+        addAlias("2438.png", "2094.png");
+        addAlias("2092.png", "2094.png");
+        addAlias("2095.png", "2094.png");
+        addAlias("2096.png", "2094.png");
+        addAlias("2097.png", "2094.png");
+        addAlias("2098.png", "2094.png");
+
+        // Citizen of empyria - 7/Ayzo/Hazim Archer-1/Hazim Archer-2
+        addAlias("2828.png", "2852.png");
+        addAlias("2051.png", "2852.png");
+        addAlias("2090.png", "2852.png");
+        addAlias("2093.png", "2852.png");
+        addAlias("2437.png", "2852.png");
+        addAlias("2050.png", "2852.png");
 
         // Firebone fiend - 1/Firebone fiend - 2/Greater Bone Fiend
         addAlias("2958.png", "2662.png");
@@ -150,6 +165,30 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2344.png", "2343.png");
         addAlias("2868.png", "2343.png");
         addAlias("2480.png", "2343.png");
+
+        //Cursed houri/Cursed guardian-1/Cursed guardian-2/Cursed guardian-3/Cursed guardian-4/Cursed guardian-5/Medusa
+        addAlias("1331.png", "999.png");
+        addAlias("2657.png", "999.png");
+        addAlias("2727.png", "999.png");
+        addAlias("2728.png", "999.png");
+        addAlias("2729.png", "999.png");
+        addAlias("126.png", "999.png");
+
+        // Bridge guard/Brok Dalingar/Leonidar guardsman/Leonidar guard/Villager
+        addAlias("629.png", "1172.png");
+        addAlias("491.png", "1172.png");
+        addAlias("823.png", "1172.png");
+        addAlias("2888.png", "1172.png");
+
+        //Gabar - 1/Gabar - 2
+        addAlias("2844.png", "1083.png");
+
+        //Sunder blackhand/Tombard/Tombard the brute
+        addAlias("1154.png", "628.png");
+        addAlias("1155.png", "628.png");
+
+        // Tyrgar brannon - 1/Tyrgar brannon - 2
+        addAlias("634.png", "633.png");
 
         addBalisisksAliases();
         addBeastmanAliases();
