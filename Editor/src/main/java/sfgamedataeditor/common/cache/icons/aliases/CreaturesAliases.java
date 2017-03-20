@@ -19,10 +19,6 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2049.png", "2048.png");
         addAlias("2091.png", "2048.png");
 
-        // Soulforger - 1/Soulforger - 2/Soulforger - 3
-        addAlias("1392.png", "1044.png");
-        addAlias("1393.png", "1044.png");
-
         // Lichking anktahr/Korshar
         addAlias("2068.png", "592.png");
 
@@ -108,13 +104,74 @@ public class CreaturesAliases extends AbstractIconPathAlias {
             addAlias(String.valueOf(i) + ".png", "1252.png");
         }
 
-        // Basilisk-1/Basilisk-2/Lava Crawler/Mindbender/Sandworm/Stonewyrm
-        addAlias("1282.png", "319.png");
-        addAlias("1723.png", "319.png");
-        addAlias("996.png", "319.png");
-        addAlias("2174.png", "319.png");
-        addAlias("1048.png", "319.png");
+        addBalisisksAliases();
+        addBeastmanAliases();
+        addBeetlesAliases();
+        addBladesAliases();
+    }
 
+    private void addBladesAliases() {
+        // Blade minion - 1/Blade minion - 2/Blade iceweaver/Blade changer - 1/Blade changer - 2
+        // Blade changer - 3
+        // Blade servant
+        addAlias("304.png", "302.png");
+        addAlias("310.png", "302.png");
+        addAlias("2485.png", "302.png");
+        addAlias("2730.png", "302.png");
+        addAlias("2731.png", "302.png");
+        addAlias("2732.png", "302.png");
+
+        // Blade defender/Blade changer - 7/Blade changer - 8/Blade changer - 9
+        // Blade warlord - 1/Blade warlord - 2/Blade overlord/Blade runner/Bladeweaver
+        // Blade Greater Weaver/Blade Captain/Blade devastator/Blade Nightmare
+        addAlias("2733.png", "1375.png");
+        addAlias("2734.png", "1375.png");
+        addAlias("2735.png", "1375.png");
+        addAlias("306.png", "1375.png");
+        addAlias("1102.png", "1375.png");
+        addAlias("303.png", "1375.png");
+        addAlias("312.png", "1375.png");
+        addAlias("1418.png", "1375.png");
+        addAlias("1419.png", "1375.png");
+        addAlias("1420.png", "1375.png");
+        addAlias("2280.png", "1375.png");
+        addAlias("2483.png", "1375.png");
+        addAlias("2416.png", "1375.png");
+
+        // Blade warlord - 1/Blade warlord - 2
+        // Blade changer - 7/Blade changer - 8/Blade changer - 9
+        // Princeps of the first order/Blade grandmaster
+        // Blade frostcaller/Servant of the forger/Blade lord of ice
+        // Blade master of strategy
+        addAlias("2280.png", "1420.png");
+        addAlias("2736.png", "1420.png");
+        addAlias("2737.png", "1420.png");
+        addAlias("2738.png", "1420.png");
+        addAlias("1105.png", "1420.png");
+        addAlias("2484.png", "1420.png");
+        addAlias("317.png", "1420.png");
+        addAlias("2580.png", "1420.png");
+        addAlias("2417.png", "1420.png");
+        addAlias("2845.png", "1420.png");
+
+        // Soulforger - 1/Soulforger - 2/Soulforger - 3
+        // Lesser soulforger - 1/Lesser soulforger - 2
+        addAlias("1392.png", "1044.png");
+        addAlias("1393.png", "1044.png");
+        addAlias("2425.png", "1044.png");
+        addAlias("2579.png", "1044.png");
+    }
+
+    private void addBeetlesAliases() {
+        // Lesser forest beetle/Forest beetle/Scythecrawler
+        addAlias("1002.png", "208.png");
+        addAlias("737.png", "208.png");
+
+        // Giant rock beetle/Greater sand beetle
+        addAlias("2172.png", "211.png");
+    }
+
+    private void addBeastmanAliases() {
         // Clawripper/Cave Devil-1
         addAlias("1912.png", "725.png");
 
@@ -123,8 +180,15 @@ public class CreaturesAliases extends AbstractIconPathAlias {
 
         // Beastman scratchling - 1/Weak Beastman
         addAlias("706.png", "689.png");
+    }
 
-
+    private void addBalisisksAliases() {
+        // Basilisk-1/Basilisk-2/Lava Crawler/Mindbender/Sandworm/Stonewyrm
+        addAlias("1282.png", "319.png");
+        addAlias("1723.png", "319.png");
+        addAlias("996.png", "319.png");
+        addAlias("2174.png", "319.png");
+        addAlias("1048.png", "319.png");
     }
 
     @Override
