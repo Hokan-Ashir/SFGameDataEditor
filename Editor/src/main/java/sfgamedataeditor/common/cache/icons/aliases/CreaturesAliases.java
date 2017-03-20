@@ -107,6 +107,24 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         for (int i = 2360; i <= 2379; i++) {
             addAlias(String.valueOf(i) + ".png", "1252.png");
         }
+
+        // Basilisk-1/Basilisk-2/Lava Crawler/Mindbender/Sandworm/Stonewyrm
+        addAlias("1282.png", "319.png");
+        addAlias("1723.png", "319.png");
+        addAlias("996.png", "319.png");
+        addAlias("2174.png", "319.png");
+        addAlias("1048.png", "319.png");
+
+        // Clawripper/Cave Devil-1
+        addAlias("1912.png", "725.png");
+
+        // Beastman butcher/The Ripper
+        addAlias("916.png", "2276.png");
+
+        // Beastman scratchling - 1/Weak Beastman
+        addAlias("706.png", "689.png");
+
+
     }
 
     @Override
