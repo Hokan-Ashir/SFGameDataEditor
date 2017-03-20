@@ -54,13 +54,14 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2508.png", "2010.png");
 
         // Uthar Griffonsteel - 1/ Uthar Griffonsteel - 2/Dark griffonrider
-        // Mighty human titan/Human titan - 1/Human titan - 2
-        addAlias("1228.png", "1198.png");
-        addAlias("1388.png", "1198.png");
-        addAlias("1363.png", "1198.png");
-        addAlias("2284.png", "1198.png");
-        addAlias("1099.png", "1198.png");
-        addAlias("2507.png", "1198.png");
+        // Mighty human titan/Human titan - 1/Human titan - 2/Griffon
+        addAlias("1228.png", "1228.png");
+        addAlias("1388.png", "1228.png");
+        addAlias("1363.png", "1228.png");
+        addAlias("2284.png", "1228.png");
+        addAlias("1099.png", "1228.png");
+        addAlias("2507.png", "1228.png");
+        addAlias("1182.png", "1228.png");
 
         // Darius - 2/Lea
         addAlias("1112.png", "2910.png");
@@ -82,8 +83,9 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2436.png", "2094.png");
         addAlias("2954.png", "2094.png");
 
-        // Firebone fiend - 1/Firebone fiend - 2
+        // Firebone fiend - 1/Firebone fiend - 2/Greater Bone Fiend
         addAlias("2958.png", "2662.png");
+        addAlias("2911.png", "2662.png");
 
         // Vulkanoid/Fire golem - 1/Fire golem - 2/Fire golem - 3/Fire golem - 4
         addAlias("2248.png", "998.png");
@@ -124,6 +126,27 @@ public class CreaturesAliases extends AbstractIconPathAlias {
 
         //Swine-1/Swine-2
         addAlias("1046.png", "1045.png");
+
+        //Fial darg - 1/Fial darg - 2/Fial darg - 3
+        addAlias("2180.png", "1623.png");
+        addAlias("2528.png", "1623.png");
+
+        //The Masked One - 1/The Masked One - 2/The Masked One - 3
+        addAlias("2294.png", "1868.png");
+        addAlias("2843.png", "1868.png");
+
+        // Jenquai sundancer/Jenquai
+        addAlias("2109.png", "845.png");
+
+        //Flink mcwinter - 1/Flink mcwinter - 2
+        addAlias("2980.png", "935.png");
+
+        // Borgo/Cursed borgo
+        addAlias("2779.png", "2692.png");
+
+        // Ambassador dorkhan - 1/Ambassador dorkhan - 2/Ambassador dorkhan - 3
+        addAlias("2762.png", "2665.png");
+        addAlias("2767.png", "2665.png");
 
         addBalisisksAliases();
         addBeastmanAliases();
