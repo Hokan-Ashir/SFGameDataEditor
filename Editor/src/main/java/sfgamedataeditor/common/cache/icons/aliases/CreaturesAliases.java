@@ -53,9 +53,14 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("1079.png", "2010.png");
         addAlias("2508.png", "2010.png");
 
-        // Uthar Griffonsteel - 1/ Uthar Griffonsteel - 2/
+        // Uthar Griffonsteel - 1/ Uthar Griffonsteel - 2/Dark griffonrider
+        // Mighty human titan/Human titan - 1/Human titan - 2
         addAlias("1228.png", "1198.png");
         addAlias("1388.png", "1198.png");
+        addAlias("1363.png", "1198.png");
+        addAlias("2284.png", "1198.png");
+        addAlias("1099.png", "1198.png");
+        addAlias("2507.png", "1198.png");
 
         // Darius - 2/Lea
         addAlias("1112.png", "2910.png");
@@ -104,10 +109,39 @@ public class CreaturesAliases extends AbstractIconPathAlias {
             addAlias(String.valueOf(i) + ".png", "1252.png");
         }
 
+        // Cave orc-1/Cave orc-2
+        addAlias("2232.png", "1161.png");
+
         addBalisisksAliases();
         addBeastmanAliases();
         addBeetlesAliases();
         addBladesAliases();
+        addBriarwolvesAliases();
+    }
+
+    private void addBriarwolvesAliases() {
+        // Briarwolves sergent/Briarwolves corporal
+        addAlias("983.png", "982.png");
+
+        // Ismail/Briarwolves Enchanter
+        addAlias("971.png", "962.png");
+
+        // Captain Ciar/Briar guard/Briarwolves elite
+        addAlias("1054.png", "980.png");
+        addAlias("1344.png", "980.png");
+
+        // Briarwolves captain juno/Briarwolves armsman
+        addAlias("987.png", "970.png");
+
+        // Mechlan - 1/Mechlan - 2/Mechlan - 3/Mechlan - 4
+        //Mechlan - 5/Mechlan - 6/Mechlan - 7/Mechlan - 8
+        addAlias("1330.png", "984.png");
+        addAlias("1332.png", "984.png");
+        addAlias("1333.png", "984.png");
+        addAlias("1334.png", "984.png");
+        addAlias("1335.png", "984.png");
+        addAlias("1336.png", "984.png");
+        addAlias("1337.png", "984.png");
     }
 
     private void addBladesAliases() {
