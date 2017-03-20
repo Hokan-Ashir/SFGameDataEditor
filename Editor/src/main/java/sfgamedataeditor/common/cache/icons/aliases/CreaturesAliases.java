@@ -27,8 +27,19 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2534.png", "931.png");
         addAlias("2572.png", "931.png");
 
-        // Shin tar guar/Ghost of udwin
+        // Shin tar guar/Ghost of udwin/Zerbite ghost/Terror from the deep/Ghost of the scribe
+        // Ghost of the scout/Dream-snatcher/Ghost of the piper/Ghost of shar
+        // Ghost of uram/Ghost of silverhand
         addAlias("1097.png", "640.png");
+        addAlias("2335.png", "640.png");
+        addAlias("637.png", "640.png");
+        addAlias("638.png", "640.png");
+        addAlias("639.png", "640.png");
+        addAlias("720.png", "640.png");
+        addAlias("2726.png", "640.png");
+        addAlias("2723.png", "640.png");
+        addAlias("2716.png", "640.png");
+        addAlias("2724.png", "640.png");
 
         // Iridon/Laurin - 1/Laurin - 2/Laurin - 3/Laurin - 4/Laurin - 5
         addAlias("2308.png", "2307.png");
@@ -201,8 +212,9 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         // Briarwolves sergent/Briarwolves corporal
         addAlias("983.png", "982.png");
 
-        // Ismail/Briarwolves Enchanter
+        // Ismail/Briarwolves Enchanter/Master of skeleton
         addAlias("971.png", "962.png");
+        addAlias("1170.png", "962.png");
 
         // Captain Ciar/Briar guard/Briarwolves elite
         addAlias("1054.png", "980.png");
