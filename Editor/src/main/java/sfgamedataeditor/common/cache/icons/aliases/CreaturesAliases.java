@@ -112,6 +112,19 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         // Cave orc-1/Cave orc-2
         addAlias("2232.png", "1161.png");
 
+        // Rohen-1/Rohen-2/Rohen-3/Rohen-4/Rohen-5/Rohen the master of elements
+        addAlias("1377.png", "856.png");
+        addAlias("2477.png", "856.png");
+        addAlias("2663.png", "856.png");
+        addAlias("2680.png", "856.png");
+        addAlias("2707.png", "856.png");
+
+        //Raith the black - 1/Raith the black - 2
+        addAlias("2470.png", "2195.png");
+
+        //Swine-1/Swine-2
+        addAlias("1046.png", "1045.png");
+
         addBalisisksAliases();
         addBeastmanAliases();
         addBeetlesAliases();
