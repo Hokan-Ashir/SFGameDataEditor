@@ -5,7 +5,7 @@
     <parent>
         <artifactId>SFGameDataEditor</artifactId>
         <groupId>ru.hokan</groupId>
-        <version>alpha-7</version>
+        <version>alpha-8-snapshot</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

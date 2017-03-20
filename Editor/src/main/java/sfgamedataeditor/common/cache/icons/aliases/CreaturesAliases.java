@@ -63,9 +63,6 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2507.png", "1228.png");
         addAlias("1182.png", "1228.png");
 
-        // Darius - 2/Lea
-        addAlias("1112.png", "2910.png");
-
         // Undead goblin - 1/2/3/4/5/6/7/8/9/10/11
         addAlias("162.png", "161.png");
         addAlias("593.png", "161.png");
@@ -135,9 +132,6 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2294.png", "1868.png");
         addAlias("2843.png", "1868.png");
 
-        // Jenquai sundancer/Jenquai
-        addAlias("2109.png", "845.png");
-
         //Flink mcwinter - 1/Flink mcwinter - 2
         addAlias("2980.png", "935.png");
 
@@ -147,6 +141,15 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         // Ambassador dorkhan - 1/Ambassador dorkhan - 2/Ambassador dorkhan - 3
         addAlias("2762.png", "2665.png");
         addAlias("2767.png", "2665.png");
+
+        // Tanar/Tinara/Tinara's cub
+        addAlias("923.png", "922.png");
+        addAlias("924.png", "922.png");
+
+        // Nymphet - 1/Nymphet - 2/Nymphet - 3
+        addAlias("2344.png", "2343.png");
+        addAlias("2868.png", "2343.png");
+        addAlias("2480.png", "2343.png");
 
         addBalisisksAliases();
         addBeastmanAliases();
