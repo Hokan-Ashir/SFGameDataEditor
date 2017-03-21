@@ -127,6 +127,32 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         // Tyrgar brannon - 1/Tyrgar brannon - 2
         addAlias("634.png", "633.png");
 
+        // Slave of the fire - 1/Slave of the fire - 2/Seductress/Misterss of zarach/Blinder - 1
+        // Blinder - 2/Sinistri/Marble houri
+        addAlias("2044.png", "338.png");
+        addAlias("337.png", "338.png");
+        addAlias("1304.png", "338.png");
+        addAlias("1305.png", "338.png");
+        addAlias("1877.png", "338.png");
+        addAlias("1000.png", "338.png");
+        addAlias("2183.png", "338.png");
+
+        // Gravelurker/Reaper - 1/Reaper - 2/Dark ghoul/Bonethief
+        addAlias("1104.png", "164.png");
+        addAlias("2187.png", "164.png");
+        addAlias("2184.png", "164.png");
+        addAlias("2468.png", "164.png");
+
+        // Klurg/Klarg/Gnomeling - 1/Gnomeling - 2
+        addAlias("712.png", "711.png");
+        addAlias("2712.png", "711.png");
+        addAlias("2713.png", "711.png");
+
+        // Ogre maceman/Ogre axeman/Ruff
+        addAlias("686.png", "687.png");
+        addAlias("676.png", "687.png");
+        addScrythesAliases();
+
         addScytheTerrors();
         addHazimAliases();
         addOrderOfDawnAliases();
@@ -139,6 +165,25 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addBeetlesAliases();
         addBladesAliases();
         addBriarwolvesAliases();
+    }
+
+    private void addScrythesAliases() {
+        // Souldrinker/Thief of thoughts/Mindburner/Manifest of terror/Manifest of fear
+        // Manifest of trepidation/Thar's servant/Harbinger of decay
+        // Spectre - 1/2/3/4/5/6/7/8/9/10/11
+        addAlias("294.png", "153.png");
+        addAlias("295.png", "153.png");
+        addAlias("292.png", "153.png");
+        addAlias("291.png", "153.png");
+        addAlias("290.png", "153.png");
+        addAlias("1357.png", "153.png");
+        addAlias("2182.png", "153.png");
+        for (int i = 792; i <= 798; ++i) {
+            addAlias(String.valueOf(i) + ".png", "153.png");
+        }
+        for (int i = 2196; i <= 2199; ++i) {
+            addAlias(String.valueOf(i) + ".png", "153.png");
+        }
     }
 
     private void addScytheTerrors() {
