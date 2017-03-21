@@ -7,17 +7,8 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2246.png", "1426.png");
         addAlias("2823.png", "1426.png");
 
-        // Derwish/Flamedancer/Mirage
-        addAlias("2049.png", "2048.png");
-        addAlias("2091.png", "2048.png");
-
         // Lichking anktahr/Korshar
         addAlias("2068.png", "592.png");
-
-        // Urias - 1/Urias - 2/Urias - 3/Urias - 4
-        addAlias("2108.png", "931.png");
-        addAlias("2534.png", "931.png");
-        addAlias("2572.png", "931.png");
 
         // Shin tar guar/Ghost of udwin/Zerbite ghost/Terror from the deep/Ghost of the scribe
         // Ghost of the scout/Dream-snatcher/Ghost of the piper/Ghost of shar
@@ -52,18 +43,6 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2193.png", "161.png");
         addAlias("2194.png", "161.png");
 
-        // Hazim warrior/Krongor/Hazim guard - 1/Hazim guard - 2/Hazim sandtracer
-        // Hazim cursechanter/Trakan - 1/Trakan - 2/Trokan - 1/Trokan - 1
-        addAlias("2904.png", "2094.png");
-        addAlias("2436.png", "2094.png");
-        addAlias("2954.png", "2094.png");
-        addAlias("2438.png", "2094.png");
-        addAlias("2092.png", "2094.png");
-        addAlias("2095.png", "2094.png");
-        addAlias("2096.png", "2094.png");
-        addAlias("2097.png", "2094.png");
-        addAlias("2098.png", "2094.png");
-
         // Citizen of empyria - 7/Ayzo/Hazim Archer-1/Hazim Archer-2
         addAlias("2828.png", "2852.png");
         addAlias("2051.png", "2852.png");
@@ -88,12 +67,8 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         // Cave orc-1/Cave orc-2
         addAlias("2232.png", "1161.png");
 
-        // Rohen-1/Rohen-2/Rohen-3/Rohen-4/Rohen-5/Rohen the master of elements
-        addAlias("1377.png", "856.png");
-        addAlias("2477.png", "856.png");
-        addAlias("2663.png", "856.png");
-        addAlias("2680.png", "856.png");
-        addAlias("2707.png", "856.png");
+        // Rohen-3/Rohen-5
+        addAlias("2707.png", "2663.png");
 
         //Raith the black - 1/Raith the black - 2
         addAlias("2470.png", "2195.png");
@@ -152,6 +127,9 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         // Tyrgar brannon - 1/Tyrgar brannon - 2
         addAlias("634.png", "633.png");
 
+        addScytheTerrors();
+        addHazimAliases();
+        addOrderOfDawnAliases();
         addGiantsAliases();
         addGolemsAlisases();
         addElementalsAliases();
@@ -161,6 +139,65 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addBeetlesAliases();
         addBladesAliases();
         addBriarwolvesAliases();
+    }
+
+    private void addScytheTerrors() {
+        // Scythe terror - 1/Lesser scythe terror - 1/Scythe terror - 2/Lesser scythe terror - 2
+        addAlias("2178.png", "2088.png");
+        addAlias("2901.png", "2088.png");
+        addAlias("2902.png", "2088.png");
+
+        // Grass stalker/Grass devil/Greater Grass devil
+        addAlias("2449.png", "2885.png");
+        addAlias("2450.png", "2885.png");
+    }
+
+    private void addHazimAliases() {
+        // Derwish/Flamedancer/Mirage
+        addAlias("2049.png", "2048.png");
+        addAlias("2091.png", "2048.png");
+
+        // Hazim warrior/Krongor/Hazim guard - 1/Hazim guard - 2/Hazim sandtracer
+        // Hazim cursechanter/Trakan - 1/Trakan - 2/Trokan - 1/Trokan - 1
+        addAlias("2904.png", "2094.png");
+        addAlias("2436.png", "2094.png");
+        addAlias("2954.png", "2094.png");
+        addAlias("2438.png", "2094.png");
+        addAlias("2092.png", "2094.png");
+        addAlias("2095.png", "2094.png");
+        addAlias("2096.png", "2094.png");
+        addAlias("2097.png", "2094.png");
+        addAlias("2098.png", "2094.png");
+    }
+
+    private void addOrderOfDawnAliases() {
+        // Urias - 1/Urias - 2/Urias - 3/Urias - 4
+        addAlias("2108.png", "931.png");
+        addAlias("2534.png", "931.png");
+        addAlias("2572.png", "931.png");
+
+        // Rohen-1/Rohen-2/Rohen-4/Rohen the master of elements
+        addAlias("1377.png", "856.png");
+        addAlias("2477.png", "856.png");
+        addAlias("2680.png", "856.png");
+
+        // Sartarius - 1/Sartarius - 2
+        addAlias("1378.png", "1106.png");
+
+        // Dawn knight - 1/Dawn knight - 2/Dawn knight - 3/Dawn knight - 4/Dawn knight - 5
+        // Dawn knight - 6/Dawn knight - 7
+        addAlias("529.png", "520.png");
+        addAlias("532.png", "520.png");
+        addAlias("873.png", "520.png");
+        addAlias("2058.png", "520.png");
+        addAlias("2841.png", "520.png");
+        addAlias("2842.png", "520.png");
+
+        // Dawn mage - 1/Dawn mage - 2
+        addAlias("2559.png", "522.png");
+
+        // Malicor serpentes - 1/Malicor serpentes - 2
+        addAlias("961.png", "937.png");
     }
 
     private void addGiantsAliases() {
