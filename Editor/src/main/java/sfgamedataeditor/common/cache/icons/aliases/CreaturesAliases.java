@@ -151,8 +151,30 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         // Ogre maceman/Ogre axeman/Ruff
         addAlias("686.png", "687.png");
         addAlias("676.png", "687.png");
-        addScrythesAliases();
 
+        // Ghost monkey/Nine eyes monkey/Lord bongo/Little monkey
+        addAlias("2611.png", "2613.png");
+        addAlias("2639.png", "2613.png");
+        addAlias("2640.png", "2613.png");
+
+        // Bloodtooth monkey/Screaming monkey
+        addAlias("2612.png", "2426.png");
+
+        // Soulbreaker/Rock screamer/Mindwrecker/Strange guardian
+        addAlias("1689.png", "2871.png");
+        addAlias("1689.png", "2871.png");
+        addAlias("2870.png", "2871.png");
+        addAlias("2917.png", "2871.png");
+
+        // Stonescreamer/Whisperer/Strange mindprober - 1/Strange mindprober - 2/Mesmer
+        // Strange torturer
+        addAlias("1690.png", "2181.png");
+        addAlias("2404.png", "2181.png");
+        addAlias("2916.png", "2181.png");
+        addAlias("2869.png", "2181.png");
+        addAlias("2915.png", "2181.png");
+
+        addScrythesAliases();
         addScytheTerrors();
         addHazimAliases();
         addOrderOfDawnAliases();
