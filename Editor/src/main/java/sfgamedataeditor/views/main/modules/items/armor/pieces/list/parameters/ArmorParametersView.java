@@ -79,22 +79,23 @@ public class ArmorParametersView implements PresentableView {
 
     private JComboBox<String> requirementsComboBox;
 
-    @GUIElement(GUIElementId = GUIElements.CHARACTERISTICS_PANEL, DTOClass = ArmorParametersObject.class)
+    // TODO temporary commented, should be processed and made invisible in case object ArmorParametersObject is absent
+//    @GUIElement(GUIElementId = GUIElements.CHARACTERISTICS_PANEL, DTOClass = ArmorParametersObject.class)
     private JPanel characteristicsPanel;
 
-    @GUIElement(GUIElementId = GUIElements.CHARACTERISTICS_LABEL, DTOClass = ArmorParametersObject.class)
+//    @GUIElement(GUIElementId = GUIElements.CHARACTERISTICS_LABEL, DTOClass = ArmorParametersObject.class)
     private JLabel characteristicsLabel;
 
-    @GUIElement(GUIElementId = GUIElements.RESISTANCES_PANEL, DTOClass = ArmorParametersObject.class)
+//    @GUIElement(GUIElementId = GUIElements.RESISTANCES_PANEL, DTOClass = ArmorParametersObject.class)
     private JPanel resistancesPanel;
 
-    @GUIElement(GUIElementId = GUIElements.RESISTANCES_LABEL, DTOClass = ArmorParametersObject.class)
+//    @GUIElement(GUIElementId = GUIElements.RESISTANCES_LABEL, DTOClass = ArmorParametersObject.class)
     private JLabel resistancesLabel;
 
-    @GUIElement(GUIElementId = GUIElements.SPEEDS_PANEL, DTOClass = ArmorParametersObject.class)
+//    @GUIElement(GUIElementId = GUIElements.SPEEDS_PANEL, DTOClass = ArmorParametersObject.class)
     private JPanel speedsPanel;
 
-    @GUIElement(GUIElementId = GUIElements.SPEEDS_LABEL, DTOClass = ArmorParametersObject.class)
+//    @GUIElement(GUIElementId = GUIElements.SPEEDS_LABEL, DTOClass = ArmorParametersObject.class)
     private JLabel speedsLabel;
 
     @GUIElement(GUIElementId = GUIElements.ITEM_SET_PANEL, DTOColumnNames = "itemSetId", DTOClass = ItemPriceParametersObject.class)

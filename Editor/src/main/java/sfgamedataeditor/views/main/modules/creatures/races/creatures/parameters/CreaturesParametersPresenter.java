@@ -9,8 +9,7 @@ import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.views.common.AbstractParametersPresenter;
-import sfgamedataeditor.views.common.dropitems.BaseDropItemsComboBoxListener;
-import sfgamedataeditor.views.common.dropitems.CreaturesDropItemsComboBoxListener;
+import sfgamedataeditor.views.common.WidgetsComboBoxListener;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -25,13 +24,13 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
 
     private static final Map<Integer, Integer> SLOT_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
-    private final BaseDropItemsComboBoxListener dropItemsListener;
+    private final WidgetsComboBoxListener dropItemsListener;
 
     public CreaturesParametersPresenter(CreaturesParametersView view) {
         super(view);
         initializeSlotNumberMapping();
         initializeSpellNumberMapping();
-        dropItemsListener = new CreaturesDropItemsComboBoxListener(getView(), CreatureCorpseLootObject.class);
+        dropItemsListener = new WidgetsComboBoxListener<>(getView(), CreatureCorpseLootObject.class, getView().getDropItemsComboBox());
         getView().getDropItemsComboBox().addItemListener(dropItemsListener);
     }
 
@@ -79,7 +78,7 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
                 }
             });
 
-            dropItemsListener.setDroppingObjects(corpseLootObjects);
+            dropItemsListener.setWidgetObjects(corpseLootObjects);
             dropItemsComboBox.setSelectedItem(dropItemsComboBox.getItemAt(0));
         } else {
             getView().getTabPane().setEnabledAt(CreaturesParametersView.CORPSE_LOOT_TAB_INDEX, false);

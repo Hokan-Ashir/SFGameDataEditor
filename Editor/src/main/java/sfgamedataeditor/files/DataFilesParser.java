@@ -4,6 +4,9 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsTableService;
 import sfgamedataeditor.database.buildings.common.BuildingsTableService;
 import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsTableService;
+import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.ObjectDataMappingService;
+import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootTableService;
@@ -28,8 +31,13 @@ import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.views.utility.Pair;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,37 +45,36 @@ public enum DataFilesParser {
     INSTANCE;
 
     private static final Logger LOGGER = Logger.getLogger(DataFilesParser.class);
+    private List<TableCreationService> services = new ArrayList<TableCreationService>() {{
+        add(SkillParametersTableService.INSTANCE);
+        add(SpellParametersTableService.INSTANCE);
+        add(CreatureParametersTableService.INSTANCE);
+        add(CreatureCommonParametersTableService.INSTANCE);
+        add(CreatureSpellTableService.INSTANCE);
+        add(CreatureEquipmentTableService.INSTANCE);
+        add(CreatureCorpseLootTableService.INSTANCE);
+        add(CreatureBuildingsTableService.INSTANCE);
+        add(CreatureResourcesTableService.INSTANCE);
+        add(CreatureSkillTableService.INSTANCE);
+        add(HeroSpellTableService.INSTANCE);
+        add(ItemEffectsTableService.INSTANCE);
+        add(ItemSpellEffectsTableService.INSTANCE);
+        add(ItemRequirementsTableService.INSTANCE);
+        add(WeaponParametersTableService.INSTANCE);
+        add(ArmorParametersTableService.INSTANCE);
+        add(ItemPriceParametersTableService.INSTANCE);
+        add(MerchantInventoryTableService.INSTANCE);
+        add(MerchantInventoryItemsTableService.INSTANCE);
+        add(BuildingsTableService.INSTANCE);
+        add(BuildingsRequirementsTableService.INSTANCE);
+        add(BuildingsArmyRequirementsTableService.INSTANCE);
+        add(ChestCorpseLootTableService.INSTANCE);
+    }};
 
     public void extractAllDataFromFile(RandomAccessFile file) {
         SpellNameTableService.INSTANCE.createSpellNameTable();
 
         // not multithreaded, cause will be slower with additional threads - database is bottleneck
-        List<TableCreationService> services = new ArrayList<TableCreationService>() {{
-            add(SkillParametersTableService.INSTANCE);
-            add(SpellParametersTableService.INSTANCE);
-            add(CreatureParametersTableService.INSTANCE);
-            add(CreatureCommonParametersTableService.INSTANCE);
-            add(CreatureSpellTableService.INSTANCE);
-            add(CreatureEquipmentTableService.INSTANCE);
-            add(CreatureCorpseLootTableService.INSTANCE);
-            add(CreatureBuildingsTableService.INSTANCE);
-            add(CreatureResourcesTableService.INSTANCE);
-            add(CreatureSkillTableService.INSTANCE);
-            add(HeroSpellTableService.INSTANCE);
-            add(ItemEffectsTableService.INSTANCE);
-            add(ItemSpellEffectsTableService.INSTANCE);
-            add(ItemRequirementsTableService.INSTANCE);
-            add(WeaponParametersTableService.INSTANCE);
-            add(ArmorParametersTableService.INSTANCE);
-            add(ItemPriceParametersTableService.INSTANCE);
-            add(MerchantInventoryTableService.INSTANCE);
-            add(MerchantInventoryItemsTableService.INSTANCE);
-            add(BuildingsTableService.INSTANCE);
-            add(BuildingsRequirementsTableService.INSTANCE);
-            add(BuildingsArmyRequirementsTableService.INSTANCE);
-            add(ChestCorpseLootTableService.INSTANCE);
-        }};
-
         for (TableCreationService service : services) {
             service.createTable();
 
@@ -93,5 +100,47 @@ public enum DataFilesParser {
         }
 
         return result;
+    }
+
+    public void dropDatabaseChangesIntoModificationFile() {
+        String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
+        String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
+        String modificationFileName = originalFileName + FileUtils.MOD_FILE_EXTENSION;
+
+        Path originalFilePath = Paths.get(originalFileDirectory + originalFileName);
+        Path modificationFilePath = Paths.get(originalFileDirectory + modificationFileName);
+        try {
+            Files.copy(originalFilePath, modificationFilePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+
+        RandomAccessFile file;
+        try {
+            file = new RandomAccessFile(originalFileDirectory + modificationFileName, "rw");
+        } catch (FileNotFoundException e) {
+            LOGGER.error(e.getMessage(), e);
+            return;
+        }
+
+        for (TableCreationService service : services) {
+            List<? extends OffsetableObject> allTableData = CommonTableService.INSTANCE.getAllTableData(service.getDTOClass());
+            for (OffsetableObject offsetableObject : allTableData) {
+                Long offset = offsetableObject.getOffset();
+                try {
+                    file.seek(offset);
+                    byte[] bytes = ObjectDataMappingService.INSTANCE.serializeObject(offsetableObject);
+                    file.write(bytes);
+                } catch (IOException e) {
+                    LOGGER.error(e.getMessage(), e);
+                }
+            }
+        }
+
+        try {
+            file.close();
+        } catch (IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
     }
 }

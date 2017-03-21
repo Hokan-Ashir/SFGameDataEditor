@@ -9,4 +9,5 @@ public interface TableCreationService {
     void addRecordsToTable(List<Pair<byte[], Long>> offsettedData);
     int getDataLength();
     Pair<Integer, Integer> getOffsetInterval();
+    Class<? extends OffsetableObject> getDTOClass();
 }

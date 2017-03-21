@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.common.buttons.listeners;
 
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.files.FileUtils;
+import sfgamedataeditor.files.DataFilesParser;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -22,7 +22,7 @@ public class CreateModificatedFileButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         new Notification(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "temporaryModificationFileCreation"));
         ViewTools.setComponentsEnableStatus(mainView.getMainPanel(), false);
-        FileUtils.dropDatabaseChangesIntoModificationFile();
+        DataFilesParser.INSTANCE.dropDatabaseChangesIntoModificationFile();
         ViewTools.setComponentsEnableStatus(mainView.getMainPanel(), true);
         new Notification(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "temporaryModificationFileCreationSuccess"));
     }

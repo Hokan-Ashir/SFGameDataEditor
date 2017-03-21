@@ -4,32 +4,6 @@ import de.idyl.winzipaes.AesZipFileDecrypter;
 import de.idyl.winzipaes.AesZipFileEncrypter;
 import de.idyl.winzipaes.impl.*;
 import org.apache.log4j.Logger;
-import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsObject;
-import sfgamedataeditor.database.buildings.common.BuildingsObject;
-import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsObject;
-import sfgamedataeditor.database.common.CommonTableService;
-import sfgamedataeditor.database.common.ObjectDataMappingService;
-import sfgamedataeditor.database.common.OffsetableObject;
-import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
-import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootObject;
-import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
-import sfgamedataeditor.database.creatures.herospells.HeroSpellObject;
-import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
-import sfgamedataeditor.database.creatures.production.buildings.CreatureBuildingsObject;
-import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesObject;
-import sfgamedataeditor.database.creatures.skills.CreatureSkillObject;
-import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
-import sfgamedataeditor.database.items.armor.parameters.ArmorParametersObject;
-import sfgamedataeditor.database.items.effects.ItemEffectsObject;
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
-import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
-import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
-import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
-import sfgamedataeditor.database.merchants.inventory.MerchantInventoryObject;
-import sfgamedataeditor.database.merchants.items.MerchantInventoryItemsObject;
-import sfgamedataeditor.database.objects.chests.ChestCorpseLootObject;
-import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
-import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
 import xdeltaencoder.org.mantlik.xdeltaencoder.XDeltaEncoder;
 
 import java.io.*;
@@ -39,8 +13,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.zip.DataFormatException;
 import java.util.zip.ZipException;
 
@@ -50,7 +22,7 @@ public final class FileUtils {
 
     private static final String TMP_FILE_EXTENSION = ".tmp";
     private static final String SFMOD_FILE_EXTENSION = ".sfmod";
-    private static final String MOD_FILE_EXTENSION = ".mod";
+    static final String MOD_FILE_EXTENSION = ".mod";
     private static final int KEY_SIZE = 192;
     private static final String HASH_ALGORITHM = "SHA-512";
 
@@ -147,7 +119,7 @@ public final class FileUtils {
     }
 
     public static void createSfModFile(String sfModFileName) {
-        dropDatabaseChangesIntoModificationFile();
+        DataFilesParser.INSTANCE.dropDatabaseChangesIntoModificationFile();
         String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
         String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
         String originalFilePath = originalFileDirectory + originalFileName;
@@ -168,78 +140,6 @@ public final class FileUtils {
         String filePath = FilesContainer.INSTANCE.getModificationFilePath() + FilesContainer.INSTANCE.getModificationFileName();
         try {
             Files.delete(Paths.get(filePath));
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-    }
-
-    public static void dropDatabaseChangesIntoModificationFile() {
-        String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
-        String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
-        String modificationFileName = originalFileName + MOD_FILE_EXTENSION;
-
-        Path originalFilePath = Paths.get(originalFileDirectory + originalFileName);
-        Path modificationFilePath = Paths.get(originalFileDirectory + modificationFileName);
-        try {
-            Files.copy(originalFilePath, modificationFilePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-
-        RandomAccessFile file;
-        try {
-            file = new RandomAccessFile(originalFileDirectory + modificationFileName, "rw");
-        } catch (FileNotFoundException e) {
-            LOGGER.error(e.getMessage(), e);
-            return;
-        }
-
-        List<Class<? extends OffsetableObject>> dtoClasses = new ArrayList<>();
-        dtoClasses.add(SkillParameterObject.class);
-        dtoClasses.add(SpellParametersObject.class);
-
-        dtoClasses.add(CreatureCorpseLootObject.class);
-        dtoClasses.add(CreaturesCommonParameterObject.class);
-        dtoClasses.add(CreatureBuildingsObject.class);
-        dtoClasses.add(CreatureResourcesObject.class);
-        dtoClasses.add(CreatureEquipmentObject.class);
-        dtoClasses.add(CreatureParameterObject.class);
-        dtoClasses.add(CreatureSkillObject.class);
-        dtoClasses.add(CreatureSpellObject.class);
-        dtoClasses.add(HeroSpellObject.class);
-
-        dtoClasses.add(ItemEffectsObject.class);
-        dtoClasses.add(ItemRequirementsObject.class);
-        dtoClasses.add(ItemPriceParametersObject.class);
-        dtoClasses.add(ItemSpellEffectsObject.class);
-        dtoClasses.add(ArmorParametersObject.class);
-        dtoClasses.add(WeaponParametersObject.class);
-
-        dtoClasses.add(MerchantInventoryObject.class);
-        dtoClasses.add(MerchantInventoryItemsObject.class);
-
-        dtoClasses.add(BuildingsObject.class);
-        dtoClasses.add(BuildingsRequirementsObject.class);
-        dtoClasses.add(BuildingsArmyRequirementsObject.class);
-
-        dtoClasses.add(ChestCorpseLootObject.class);
-
-        for (Class<? extends OffsetableObject> dtoClass : dtoClasses) {
-            List<? extends OffsetableObject> allTableData = CommonTableService.INSTANCE.getAllTableData(dtoClass);
-            for (OffsetableObject offsetableObject : allTableData) {
-                Long offset = offsetableObject.getOffset();
-                try {
-                    file.seek(offset);
-                    byte[] bytes = ObjectDataMappingService.INSTANCE.serializeObject(offsetableObject);
-                    file.write(bytes);
-                } catch (IOException e) {
-                    LOGGER.error(e.getMessage(), e);
-                }
-            }
-        }
-
-        try {
-            file.close();
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }

@@ -4,8 +4,7 @@ import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.objects.chests.ChestCorpseLootObject;
 import sfgamedataeditor.views.common.AbstractParametersPresenter;
-import sfgamedataeditor.views.common.dropitems.BaseDropItemsComboBoxListener;
-import sfgamedataeditor.views.common.dropitems.ChestLootDropItemsComboBoxListener;
+import sfgamedataeditor.views.common.WidgetsComboBoxListener;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -16,11 +15,11 @@ import java.util.List;
 
 public class ChestParametersPresenter extends AbstractParametersPresenter<ChestParametersModelParameter, ChestParametersView> {
 
-    private final BaseDropItemsComboBoxListener dropItemsListener;
+    private final WidgetsComboBoxListener dropItemsListener;
 
     public ChestParametersPresenter(ChestParametersView view) {
         super(view);
-        dropItemsListener = new ChestLootDropItemsComboBoxListener(getView(), ChestCorpseLootObject.class);
+        dropItemsListener = new WidgetsComboBoxListener<>(getView(), ChestCorpseLootObject.class, getView().getDropItemsComboBox());
         getView().getDropItemsComboBox().addItemListener(dropItemsListener);
     }
 
@@ -41,7 +40,7 @@ public class ChestParametersPresenter extends AbstractParametersPresenter<ChestP
             }
         });
 
-        dropItemsListener.setDroppingObjects(chestCorpseLootObjects);
+        dropItemsListener.setWidgetObjects(chestCorpseLootObjects);
         dropItemsComboBox.setSelectedItem(dropItemsComboBox.getItemAt(0));
 
         super.updateView();

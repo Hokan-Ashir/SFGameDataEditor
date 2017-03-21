@@ -8,6 +8,7 @@ import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.views.utility.Pair;
@@ -36,6 +37,11 @@ public enum MerchantInventoryItemsTableService implements TableCreationService {
         @Override
         public Pair<Integer, Integer> getOffsetInterval() {
             return new Pair<>(0x03F867D8, 0x03F8E7AB);
+        }
+
+        @Override
+        public Class<? extends OffsetableObject> getDTOClass() {
+            return MerchantInventoryItemsObject.class;
         }
     };
 

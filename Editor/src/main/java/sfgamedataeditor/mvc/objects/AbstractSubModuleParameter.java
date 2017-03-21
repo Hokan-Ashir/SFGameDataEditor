@@ -3,20 +3,20 @@ package sfgamedataeditor.mvc.objects;
 import java.util.Set;
 
 public abstract class AbstractSubModuleParameter {
-    private final Set<String> objectNames;
-    private final String selectedObjectName;
+    private final Set<String> subPanelsNames;
+    private final String selectedModuleName;
 
     protected AbstractSubModuleParameter(Set<String> objectNames, String selectedObjectName) {
-        this.objectNames = objectNames;
-        this.selectedObjectName = selectedObjectName;
+        this.subPanelsNames = objectNames;
+        this.selectedModuleName = selectedObjectName;
     }
 
     public String getSelectedModuleName() {
-        return selectedObjectName;
+        return selectedModuleName;
     }
 
     public Set<String> getSubPanelsNames() {
-        return objectNames;
+        return subPanelsNames;
     }
 
     public abstract Class<? extends PresentableView> getSubPanelsViewClass();

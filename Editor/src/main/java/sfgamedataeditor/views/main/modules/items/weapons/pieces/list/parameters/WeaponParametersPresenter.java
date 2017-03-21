@@ -1,6 +1,5 @@
 package sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters;
 
-import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
@@ -8,22 +7,19 @@ import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
 import sfgamedataeditor.views.common.AbstractParametersPresenter;
+import sfgamedataeditor.views.common.WidgetsComboBoxListener;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.lang.reflect.Field;
 import java.util.List;
 
 public class WeaponParametersPresenter extends AbstractParametersPresenter<WeaponParametersModelParameter, WeaponParametersView> {
 
-    private static final Logger LOGGER = Logger.getLogger(WeaponParametersPresenter.class);
-    private final ItemRequirementsComboBoxListener itemRequirementsListener = new ItemRequirementsComboBoxListener();
-    private final ItemEffectsComboBoxListener itemEffectsListener = new ItemEffectsComboBoxListener();
+    private final WidgetsComboBoxListener itemRequirementsListener = new WidgetsComboBoxListener<>(getView(), ItemRequirementsObject.class, getView().getItemRequirementsComboBox());
+    private final WidgetsComboBoxListener itemEffectsListener = new WidgetsComboBoxListener<>(getView(), ItemSpellEffectsObject.class, getView().getEffectsComboBox());
 
     public WeaponParametersPresenter(WeaponParametersView view) {
         super(view);
@@ -83,7 +79,7 @@ public class WeaponParametersPresenter extends AbstractParametersPresenter<Weapo
                 }
             });
 
-            itemEffectsListener.setItemEffectsObjects(itemSpellEffectsObjects);
+            itemEffectsListener.setWidgetObjects(itemSpellEffectsObjects);
             effectsComboBox.setSelectedItem(effectsComboBox.getItemAt(0));
         }
     }
@@ -102,86 +98,7 @@ public class WeaponParametersPresenter extends AbstractParametersPresenter<Weapo
             }
         });
 
-        itemRequirementsListener.setItemRequirementsObjects(requirementsObjects);
+        itemRequirementsListener.setWidgetObjects(requirementsObjects);
         itemRequirementsComboBox.setSelectedItem(itemRequirementsComboBox.getItemAt(0));
-    }
-
-    // TODO get rid of duplications (copy-&-paste from ArmorParametersPresenter)
-    private final class ItemRequirementsComboBoxListener implements ItemListener {
-
-        private List<ItemRequirementsObject> itemRequirementsObjects;
-
-        public void setItemRequirementsObjects(List<ItemRequirementsObject> itemRequirementsObjects) {
-            this.itemRequirementsObjects = itemRequirementsObjects;
-        }
-
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            if (e.getStateChange() != ItemEvent.SELECTED) {
-                return;
-            }
-
-            Field[] declaredFields = getView().getClass().getDeclaredFields();
-            for (Field declaredField : declaredFields) {
-                GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-                if (annotation == null) {
-                    continue;
-                }
-
-                try {
-                    declaredField.setAccessible(true);
-                    JPanel panel = (JPanel) declaredField.get(getView());
-                    AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
-
-                    Class<?> dtoClass = annotation.DTOClass();
-                    if (dtoClass.equals(ItemRequirementsObject.class)) {
-                        int selectedIndex = getView().getItemRequirementsComboBox().getSelectedIndex();
-                        widget.getListener().updateWidgetValue(itemRequirementsObjects.get(selectedIndex));
-                    }
-
-                } catch (IllegalAccessException ex) {
-                    LOGGER.error(ex.getMessage(), ex);
-                }
-            }
-        }
-    }
-
-    private final class ItemEffectsComboBoxListener implements ItemListener {
-
-        private List<ItemSpellEffectsObject> itemEffectsObjects;
-
-        public void setItemEffectsObjects(List<ItemSpellEffectsObject> itemEffectsObjects) {
-            this.itemEffectsObjects = itemEffectsObjects;
-        }
-
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            if (e.getStateChange() != ItemEvent.SELECTED) {
-                return;
-            }
-
-            Field[] declaredFields = getView().getClass().getDeclaredFields();
-            for (Field declaredField : declaredFields) {
-                GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-                if (annotation == null) {
-                    continue;
-                }
-
-                try {
-                    declaredField.setAccessible(true);
-                    JPanel panel = (JPanel) declaredField.get(getView());
-                    AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
-
-                    Class<?> dtoClass = annotation.DTOClass();
-                    if (dtoClass.equals(ItemSpellEffectsObject.class)) {
-                        int selectedIndex = getView().getEffectsComboBox().getSelectedIndex();
-                        widget.getListener().updateWidgetValue(itemEffectsObjects.get(selectedIndex));
-                    }
-
-                } catch (IllegalAccessException ex) {
-                    LOGGER.error(ex.getMessage(), ex);
-                }
-            }
-        }
     }
 }

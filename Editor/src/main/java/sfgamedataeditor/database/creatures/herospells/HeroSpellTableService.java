@@ -5,6 +5,7 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentTableService;
 import sfgamedataeditor.views.utility.Pair;
@@ -34,6 +35,11 @@ public enum HeroSpellTableService implements TableCreationService {
         @Override
         public Pair<Integer, Integer> getOffsetInterval() {
             return new Pair<>(0x00062EA3, 0x00063591);
+        }
+
+        @Override
+        public Class<? extends OffsetableObject> getDTOClass() {
+            return HeroSpellObject.class;
         }
     };
 

@@ -1,9 +1,10 @@
-package sfgamedataeditor.views.common.dropitems;
+package sfgamedataeditor.views.common;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.common.OffsetableObject;
+import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -11,21 +12,23 @@ import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.List;
 
-public abstract class BaseDropItemsComboBoxListener<T extends OffsetableObject, V extends DropItemsListenerableView> implements ItemListener {
+public class WidgetsComboBoxListener<T extends OffsetableObject, V extends PresentableView> implements ItemListener {
 
-    private static final Logger LOGGER = Logger.getLogger(BaseDropItemsComboBoxListener.class);
+    private static final Logger LOGGER = Logger.getLogger(WidgetsComboBoxListener.class);
 
-    private List<T> corpseLootObjects;
+    private List<T> widgetObjects;
     private final V view;
     private final Class<T> objectClass;
+    private final JComboBox<String> comboBox;
 
-    BaseDropItemsComboBoxListener(V view, Class<T> objectClass) {
+    public WidgetsComboBoxListener(V view, Class<T> objectClass, JComboBox<String> comboBox) {
         this.view = view;
         this.objectClass = objectClass;
+        this.comboBox = comboBox;
     }
 
-    public void setDroppingObjects(List<T> corpseLootObjects) {
-        this.corpseLootObjects = corpseLootObjects;
+    public void setWidgetObjects(List<T> widgetObjects) {
+        this.widgetObjects = widgetObjects;
     }
 
     @Override
@@ -48,8 +51,8 @@ public abstract class BaseDropItemsComboBoxListener<T extends OffsetableObject, 
 
                 Class<?> dtoClass = annotation.DTOClass();
                 if (dtoClass.equals(objectClass)) {
-                    int selectedIndex = view.getDropItemsComboBox().getSelectedIndex();
-                    widget.getListener().updateWidgetValue(corpseLootObjects.get(selectedIndex));
+                    int selectedIndex = comboBox.getSelectedIndex();
+                    widget.getListener().updateWidgetValue(widgetObjects.get(selectedIndex));
                 }
 
             } catch (IllegalAccessException ex) {

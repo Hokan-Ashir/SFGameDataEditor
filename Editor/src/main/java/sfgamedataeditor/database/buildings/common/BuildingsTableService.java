@@ -5,6 +5,7 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -37,6 +38,11 @@ public enum BuildingsTableService implements TableCreationService {
         @Override
         public Pair<Integer, Integer> getOffsetInterval() {
             return new Pair<>(0x03F81C69, 0x03F82F01);
+        }
+
+        @Override
+        public Class<? extends OffsetableObject> getDTOClass() {
+            return BuildingsObject.class;
         }
     };
 

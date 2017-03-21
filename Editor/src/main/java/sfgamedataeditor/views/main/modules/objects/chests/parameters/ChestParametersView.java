@@ -6,11 +6,10 @@ import sfgamedataeditor.common.viewconfigurations.objects.chests.GUIElements;
 import sfgamedataeditor.database.objects.chests.ChestCorpseLootObject;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.views.common.dropitems.DropItemsListenerableView;
 
 import javax.swing.*;
 
-public class ChestParametersView implements PresentableView, DropItemsListenerableView {
+public class ChestParametersView implements PresentableView {
     private JPanel mainPanel;
     private JComboBox<String> dropItemsComboBox;
 
@@ -42,7 +41,6 @@ public class ChestParametersView implements PresentableView, DropItemsListenerab
         return mainPanel;
     }
 
-    @Override
     public JComboBox<String> getDropItemsComboBox() {
         return dropItemsComboBox;
     }

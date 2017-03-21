@@ -9,6 +9,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.DTODecorator;
+import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -41,6 +42,11 @@ public enum CreatureCommonParametersTableService implements TableCreationService
         @Override
         public Pair<Integer, Integer> getOffsetInterval() {
             return new Pair<>(0x03F4CDE6, 0x03F75C25);
+        }
+
+        @Override
+        public Class<? extends OffsetableObject> getDTOClass() {
+            return CreaturesCommonParameterObject.class;
         }
     };
 

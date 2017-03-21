@@ -5,6 +5,7 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.utility.Pair;
@@ -37,6 +38,11 @@ public enum WeaponParametersTableService implements TableCreationService {
         @Override
         public Pair<Integer, Integer> getOffsetInterval() {
             return new Pair<>(0x00091734, 0x00094443);
+        }
+
+        @Override
+        public Class<? extends OffsetableObject> getDTOClass() {
+            return WeaponParametersObject.class;
         }
     };
 

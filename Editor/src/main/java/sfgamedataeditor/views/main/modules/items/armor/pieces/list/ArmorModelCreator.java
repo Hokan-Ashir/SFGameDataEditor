@@ -20,7 +20,7 @@ public class ArmorModelCreator implements ModelCreator<ArmorParametersModel> {
         ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(objectId);
         ArmorParametersObject armorParametersObject = ArmorParametersTableService.INSTANCE.getObjectByItemId(objectId);
         List<ItemRequirementsObject> requirementsObjects = ItemRequirementsTableService.INSTANCE.getObjectsByItemId(objectId);
-        ArmorParametersModelParameter parameter = new ArmorParametersModelParameter(itemPriceObject, armorParametersObject, requirementsObjects);
+        ArmorParametersModelParameter parameter = new ArmorParametersModelParameter(itemPriceObject, armorParametersObject, requirementsObjects, icon);
         return new ArmorParametersModel(parameter);
     }
 }

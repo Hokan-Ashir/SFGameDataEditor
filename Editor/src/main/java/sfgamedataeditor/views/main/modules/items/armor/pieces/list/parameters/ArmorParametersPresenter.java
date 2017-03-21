@@ -6,25 +6,21 @@ import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.items.armor.parameters.ArmorParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
-import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.common.AbstractParametersPresenter;
+import sfgamedataeditor.views.common.WidgetsComboBoxListener;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.lang.reflect.Field;
 import java.util.List;
 
-public class ArmorParametersPresenter extends AbstractPresenter<ArmorParametersModelParameter, ArmorParametersView> {
+public class ArmorParametersPresenter extends AbstractParametersPresenter<ArmorParametersModelParameter, ArmorParametersView> {
 
     private static final Logger LOGGER = Logger.getLogger(ArmorParametersPresenter.class);
 
-    private final ArmorRequirementsComboBoxListener armorRequirementsListener = new ArmorRequirementsComboBoxListener();
+    private final WidgetsComboBoxListener armorRequirementsListener = new WidgetsComboBoxListener<>(getView(), ItemRequirementsObject.class, getView().getRequirementsComboBox());
 
     public ArmorParametersPresenter(ArmorParametersView view) {
         super(view);
@@ -34,47 +30,33 @@ public class ArmorParametersPresenter extends AbstractPresenter<ArmorParametersM
     @Override
     public void updateView() {
         ArmorParametersModelParameter parameter = getModel().getParameter();
-        ArmorParametersObject armorParametersObject = parameter.getArmorParametersObject();
-        ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
         List<ItemRequirementsObject> requirementsObjects = parameter.getRequirementsObjects();
-
         updateItemRequirementsWidgets(requirementsObjects);
 
-        Field[] declaredFields = getView().getClass().getDeclaredFields();
-        for (Field declaredField : declaredFields) {
-            GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-            if (annotation == null) {
-                continue;
-            }
+        super.updateView();
+    }
 
-            try {
-                declaredField.setAccessible(true);
+    @Override
+    protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
+        ArmorParametersModelParameter parameter = getModel().getParameter();
+        ArmorParametersObject armorParametersObject = parameter.getArmorParametersObject();
+        ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
 
-                Class<?> dtoClass = annotation.DTOClass();
-                if (dtoClass.equals(ItemPriceParametersObject.class)) {
-                    JPanel panel = (JPanel) declaredField.get(getView());
-                    AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
-                    widget.getListener().updateWidgetValue(priceParametersObject);
-                } else if (dtoClass.equals(ArmorParametersObject.class)) {
-                    JComponent object = (JComponent) declaredField.get(getView());
-
-                    if (armorParametersObject == null) {
-                        object.setVisible(false);
-                    } else {
-                        object.setVisible(true);
-                        try {
-                            // TODO get rid of exception catching (in case of JLabels marked as GUIComponents or
-                            // JPanels that contains many many other JPanels and do not contains widgets)
-                            JPanel panel = (JPanel) object;
-                            AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
-                            widget.getListener().updateWidgetValue(armorParametersObject);
-                        } catch (ClassCastException e) {
-                            LOGGER.info(e.getMessage(), e);
-                        }
-                    }
+        Class<?> dtoClass = annotation.DTOClass();
+        if (dtoClass.equals(ItemPriceParametersObject.class)) {
+            widget.getListener().updateWidgetValue(priceParametersObject);
+        } else if (dtoClass.equals(ArmorParametersObject.class)) {
+            if (armorParametersObject == null) {
+                panel.setVisible(false);
+            } else {
+                panel.setVisible(true);
+                try {
+                    // TODO get rid of exception catching (in case of JLabels marked as GUIComponents or
+                    // JPanels that contains many many other JPanels and do not contains widgets)
+                    widget.getListener().updateWidgetValue(armorParametersObject);
+                } catch (ClassCastException e) {
+                    LOGGER.info(e.getMessage(), e);
                 }
-            } catch (IllegalAccessException e) {
-                LOGGER.error(e.getMessage(), e);
             }
         }
     }
@@ -93,57 +75,7 @@ public class ArmorParametersPresenter extends AbstractPresenter<ArmorParametersM
             }
         });
 
-        armorRequirementsListener.setItemRequirementsObjects(requirementsObjects);
+        armorRequirementsListener.setWidgetObjects(requirementsObjects);
         comboBox.setSelectedItem(comboBox.getItemAt(0));
-    }
-
-    @Override
-    public void renderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideContentPanel(getView().getMainPanel());
-    }
-
-    @Override
-    public void unRenderView() {
-        MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.unRenderViewInsideContentPanel(getView().getMainPanel());
-    }
-
-    private final class ArmorRequirementsComboBoxListener implements ItemListener {
-
-        private List<ItemRequirementsObject> itemRequirementsObjects;
-
-        public void setItemRequirementsObjects(List<ItemRequirementsObject> itemRequirementsObjects) {
-            this.itemRequirementsObjects = itemRequirementsObjects;
-        }
-
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            if (e.getStateChange() != ItemEvent.SELECTED) {
-                return;
-            }
-
-            Field[] declaredFields = getView().getClass().getDeclaredFields();
-            for (Field declaredField : declaredFields) {
-                GUIElement annotation = declaredField.getAnnotation(GUIElement.class);
-                if (annotation == null) {
-                    continue;
-                }
-
-                try {
-                    Class<?> dtoClass = annotation.DTOClass();
-                    if (dtoClass.equals(ItemRequirementsObject.class)) {
-                        declaredField.setAccessible(true);
-                        JPanel panel = (JPanel) declaredField.get(getView());
-                        AbstractWidget widget = (AbstractWidget) panel.getComponent(0);
-                        int selectedIndex = getView().getRequirementsComboBox().getSelectedIndex();
-                        widget.getListener().updateWidgetValue(itemRequirementsObjects.get(selectedIndex));
-                    }
-
-                } catch (IllegalAccessException ex) {
-                    LOGGER.error(ex.getMessage(), ex);
-                }
-            }
-        }
     }
 }
