@@ -59,21 +59,6 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2269.png", "125.png");
         addAlias("2270.png", "125.png");
 
-        // Mighty elf titan/Dark treant/Elf titan - 1/Elf titan - 2
-        addAlias("2283.png", "2010.png");
-        addAlias("1079.png", "2010.png");
-        addAlias("2508.png", "2010.png");
-
-        // Uthar Griffonsteel - 1/ Uthar Griffonsteel - 2/Dark griffonrider
-        // Mighty human titan/Human titan - 1/Human titan - 2/Griffon
-        addAlias("1228.png", "1228.png");
-        addAlias("1388.png", "1228.png");
-        addAlias("1363.png", "1228.png");
-        addAlias("2284.png", "1228.png");
-        addAlias("1099.png", "1228.png");
-        addAlias("2507.png", "1228.png");
-        addAlias("1182.png", "1228.png");
-
         // Undead goblin - 1/2/3/4/5/6/7/8/9/10/11
         addAlias("162.png", "161.png");
         addAlias("593.png", "161.png");
@@ -201,11 +186,110 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         // Tyrgar brannon - 1/Tyrgar brannon - 2
         addAlias("634.png", "633.png");
 
+        addElementalsAliases();
+        addDemonsAliases();
         addBalisisksAliases();
         addBeastmanAliases();
         addBeetlesAliases();
         addBladesAliases();
         addBriarwolvesAliases();
+    }
+
+    private void addElementalsAliases() {
+        // Earth elemental - 1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17
+        // Servant of the deep
+        addAlias("770.png", "589.png");
+        for (int i = 815; i <= 822; ++i) {
+            addAlias(String.valueOf(i) + ".png", "589.png");
+        }
+        for (int i = 2208; i <= 2211; ++i) {
+            addAlias(String.valueOf(i) + ".png", "589.png");
+        }
+        for (int i = 2289; i <= 2291; ++i) {
+            addAlias(String.valueOf(i) + ".png", "589.png");
+        }
+        addAlias("771.png", "589.png");
+
+        // Burning sacrifice/Fire elemental - 1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20
+        addAlias("590.png", "2739.png");
+        addAlias("768.png", "2739.png");
+        for (int i = 799; i <= 806; ++i) {
+            addAlias(String.valueOf(i) + ".png", "2739.png");
+        }
+        addAlias("1187.png", "2739.png");
+        addAlias("1404.png", "2739.png");
+        addAlias("1804.png", "2739.png");
+        for (int i = 2212; i <= 2215; ++i) {
+            addAlias(String.valueOf(i) + ".png", "2739.png");
+        }
+        addAlias("2287.png", "2739.png");
+        addAlias("2288.png", "2739.png");
+        addAlias("2292.png", "2739.png");
+    }
+
+    private void addDemonsAliases() {
+        // Dwarf titan - 1/Mighty dwarf titan/Dwarf titan - 2/Bank guard
+        addAlias("2282.png", "1100.png");
+        addAlias("2509.png", "1100.png");
+        addAlias("2631.png", "1100.png");
+
+        // Orc titan - 1/Mighty orc titan/Orc titan - 2
+        addAlias("2285.png", "1047.png");
+        addAlias("2510.png", "1047.png");
+
+        // Troll titan - 1/Mighty troll titan/Troll titan - 2
+        addAlias("2286.png", "1098.png");
+        addAlias("2511.png", "1098.png");
+
+        // Darkelf titan - 1/Mighty darkelf titan/Dark elf titan - 2
+        addAlias("2281.png", "1098.png");
+        addAlias("2512.png", "1098.png");
+
+        // Mighty elf titan/Dark treant/Elf titan - 1/Elf titan - 2/Treant - 1/Treant - 2
+        addAlias("2283.png", "2010.png");
+        addAlias("1079.png", "2010.png");
+        addAlias("2508.png", "2010.png");
+        addAlias("2391.png", "2010.png");
+        addAlias("2867.png", "2010.png");
+
+        // Uthar Griffonsteel - 1/ Uthar Griffonsteel - 2/Dark griffonrider
+        // Mighty human titan/Human titan - 1/Human titan - 2/Griffon
+        // Dark griffon rider/Griffon rider
+        addAlias("1228.png", "1228.png");
+        addAlias("1388.png", "1228.png");
+        addAlias("1363.png", "1228.png");
+        addAlias("2284.png", "1228.png");
+        addAlias("1099.png", "1228.png");
+        addAlias("2507.png", "1228.png");
+        addAlias("1182.png", "1228.png");
+        addAlias("2011.png", "1228.png");
+        addAlias("2389.png", "1228.png");
+
+        // Lesser demon/Fire terror/Fireling/Arz'ach/Master of fire/Firespitter/Fireling - 1/Fireling - 2
+        // Red death/Demon lord/Red butcher/Fire demon/Demonic warlord
+        addAlias("997.png", "178.png");
+        addAlias("1805.png", "178.png");
+        addAlias("1053.png", "178.png");
+        addAlias("186.png", "178.png");
+        addAlias("185.png", "178.png");
+        addAlias("174.png", "178.png");
+        addAlias("179.png", "178.png");
+        addAlias("1306.png", "178.png");
+        addAlias("2421.png", "178.png");
+        addAlias("2561.png", "178.png");
+        addAlias("2563.png", "178.png");
+        addAlias("2564.png", "178.png");
+
+        // Ulather/Imprisoned demon lord/The invincible/Underling/Demonic guardian/Strange firecaller
+        // Strange warrior/Arch fire devil/Arch demon
+        addAlias("2768.png", "1069.png");
+        addAlias("2769.png", "1069.png");
+        addAlias("2521.png", "1069.png");
+        addAlias("2332.png", "1069.png");
+        addAlias("2918.png", "1069.png");
+        addAlias("2919.png", "1069.png");
+        addAlias("2420.png", "1069.png");
+        addAlias("2872.png", "1069.png");
     }
 
     private void addBriarwolvesAliases() {
