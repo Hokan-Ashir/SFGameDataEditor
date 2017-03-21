@@ -6,7 +6,6 @@ import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.TableCreationService;
-import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
@@ -26,8 +25,13 @@ public enum BuildingsRequirementsTableService implements TableCreationService {
         }
 
         @Override
-        public DTOOffsetTypes getDTOOffsetType() {
-            return DTOOffsetTypes.BUILDINGS_REQUIREMENTS;
+        public int getDataLength() {
+            return 0x5;
+        }
+
+        @Override
+        public Pair<Integer, Integer> getOffsetInterval() {
+            return new Pair<>(0x03F85BBE, 0x03F85EFB);
         }
     };
 

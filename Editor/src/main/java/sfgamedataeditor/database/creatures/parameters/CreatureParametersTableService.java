@@ -8,7 +8,6 @@ import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.TableCreationService;
-import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -32,8 +31,13 @@ public enum CreatureParametersTableService implements TableCreationService {
         }
 
         @Override
-        public DTOOffsetTypes getDTOOffsetType() {
-            return DTOOffsetTypes.CREATURE_PARAMETERS;
+        public int getDataLength() {
+            return 47;
+        }
+
+        @Override
+        public Pair<Integer, Integer> getOffsetInterval() {
+            return new Pair<>(0x0004421D, 0x000613B4);
         }
     };
 

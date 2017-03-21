@@ -2,7 +2,6 @@ package sfgamedataeditor.database.items.effects;
 
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.TableCreationService;
-import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.util.List;
@@ -20,8 +19,13 @@ public enum ItemEffectsTableService implements TableCreationService {
         }
 
         @Override
-        public DTOOffsetTypes getDTOOffsetType() {
-            return DTOOffsetTypes.ITEM_EFFECTS;
+        public int getDataLength() {
+            return 0x4;
+        }
+
+        @Override
+        public Pair<Integer, Integer> getOffsetInterval() {
+            return new Pair<>(0x0012B373, 0x0012D16A);
         }
     }
 }

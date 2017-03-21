@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
-import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
@@ -30,8 +29,13 @@ public enum MerchantInventoryItemsTableService implements TableCreationService {
         }
 
         @Override
-        public DTOOffsetTypes getDTOOffsetType() {
-            return DTOOffsetTypes.MERCHANT_INVENTORY_ITEMS;
+        public int getDataLength() {
+            return 0x6;
+        }
+
+        @Override
+        public Pair<Integer, Integer> getOffsetInterval() {
+            return new Pair<>(0x03F867D8, 0x03F8E7AB);
         }
     };
 

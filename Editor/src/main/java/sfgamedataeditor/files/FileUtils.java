@@ -30,7 +30,6 @@ import sfgamedataeditor.database.merchants.items.MerchantInventoryItemsObject;
 import sfgamedataeditor.database.objects.chests.ChestCorpseLootObject;
 import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
-import sfgamedataeditor.dataextraction.DataFilesParser;
 import xdeltaencoder.org.mantlik.xdeltaencoder.XDeltaEncoder;
 
 import java.io.*;

@@ -1,4 +1,4 @@
-package sfgamedataeditor.dataextraction;
+package sfgamedataeditor.files;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequirementsTableService;
@@ -71,25 +71,22 @@ public enum DataFilesParser {
         for (TableCreationService service : services) {
             service.createTable();
 
-            DTOOffsetTypes dtoOffsetType = service.getDTOOffsetType();
-            List<Pair<Integer, Integer>> skillOffsets = DataOffsetProvider.INSTANCE.getOffsets(dtoOffsetType);
-            int dataLength = DataOffsetProvider.INSTANCE.getDataLength(dtoOffsetType);
-            List<Pair<byte[], Long>> offsettedData = readData(file, skillOffsets, dataLength);
+            Pair<Integer, Integer> offsetInterval = service.getOffsetInterval();
+            int dataLength = service.getDataLength();
+            List<Pair<byte[], Long>> offsettedData = readData(file, offsetInterval, dataLength);
             service.addRecordsToTable(offsettedData);
         }
     }
 
-    private List<Pair<byte[], Long>> readData(RandomAccessFile file, List<Pair<Integer, Integer>> dataOffsets, int dataLength) {
+    private List<Pair<byte[], Long>> readData(RandomAccessFile file, Pair<Integer, Integer> offsetInterval, int dataLength) {
         List<Pair<byte[], Long>> result = new ArrayList<>();
         try {
-            for (Pair<Integer, Integer> pair : dataOffsets) {
-                file.seek(pair.getKey());
-                byte[] buffer = new byte[dataLength];
-                while (file.getFilePointer() < pair.getValue()) {
-                    file.read(buffer);
-                    long offset = file.getFilePointer() - dataLength;
-                    result.add(new Pair<>(buffer.clone(), offset));
-                }
+            file.seek(offsetInterval.getKey());
+            byte[] buffer = new byte[dataLength];
+            while (file.getFilePointer() < offsetInterval.getValue()) {
+                file.read(buffer);
+                long offset = file.getFilePointer() - dataLength;
+                result.add(new Pair<>(buffer.clone(), offset));
             }
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);

@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentTableService;
-import sfgamedataeditor.dataextraction.DTOOffsetTypes;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
@@ -27,8 +26,13 @@ public enum CreatureCorpseLootTableService implements TableCreationService {
         }
 
         @Override
-        public DTOOffsetTypes getDTOOffsetType() {
-            return DTOOffsetTypes.CREATURE_CORPSE_LOOT;
+        public int getDataLength() {
+            return 11;
+        }
+
+        @Override
+        public Pair<Integer, Integer> getOffsetInterval() {
+            return new Pair<>(0x03F7E10A, 0x03F81B79);
         }
     };
 
