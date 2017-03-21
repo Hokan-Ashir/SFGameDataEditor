@@ -3,7 +3,7 @@ package sfgamedataeditor.views.main.modules.objects.chests;
 import sfgamedataeditor.database.objects.chests.ChestCorpseLootTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.common.managers.ModulePanelManager;
+import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.NameModulesPanelManager;
 import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -29,7 +29,7 @@ public class ChestsListView extends AbstractModulesView {
     }
 
     @Override
-    protected Class<? extends ModulePanelManager> getModulesPanelManagerClass() {
+    protected Class<? extends AbstractModulePanelManager> getModulesPanelManagerClass() {
         return NameModulesPanelManager.class;
     }
 }

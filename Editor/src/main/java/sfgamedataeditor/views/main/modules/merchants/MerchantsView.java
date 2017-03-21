@@ -4,7 +4,7 @@ import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.merchants.inventory.MerchantInventoryTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.common.managers.ModulePanelManager;
+import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.NameModulesPanelManager;
 import sfgamedataeditor.views.main.modules.merchants.inventory.MerchantInventoryView;
 import sfgamedataeditor.views.utility.ViewTools;
@@ -46,7 +46,7 @@ public class MerchantsView extends AbstractModulesView {
     }
 
     @Override
-    protected Class<? extends ModulePanelManager> getModulesPanelManagerClass() {
+    protected Class<? extends AbstractModulePanelManager> getModulesPanelManagerClass() {
         return NameModulesPanelManager.class;
     }
 }

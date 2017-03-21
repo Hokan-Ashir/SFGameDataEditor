@@ -4,7 +4,7 @@ import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.common.managers.ModulePanelManager;
+import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.NameModulesPanelManager;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -28,7 +28,7 @@ public class CreaturesView extends AbstractModulesView {
     }
 
     @Override
-    protected Class<? extends ModulePanelManager> getModulesPanelManagerClass() {
+    protected Class<? extends AbstractModulePanelManager> getModulesPanelManagerClass() {
         return NameModulesPanelManager.class;
     }
 

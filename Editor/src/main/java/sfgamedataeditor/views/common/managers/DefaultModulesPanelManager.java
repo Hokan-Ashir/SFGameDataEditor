@@ -6,26 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class DefaultModulesPanelManager implements ModulePanelManager {
-    private static final int VERTICAL_SCROLL_UNIT_INCREMENT = 16;
+public class DefaultModulesPanelManager extends AbstractModulePanelManager {
     private static final int DEFAULT_NUMBER_OF_COLUMNS = 3;
-    private final JPanel mainPanel;
-    private final JPanel panel;
-
-    public DefaultModulesPanelManager() {
-        mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(0, 1));
-        GridBagLayout layout = new GridBagLayout();
-        panel = new JPanel();
-        panel.setLayout(layout);
-        JScrollPane scrollPane = new JScrollPane(panel);
-        scrollPane.getViewport().setScrollMode(JViewport.SIMPLE_SCROLL_MODE);
-        scrollPane.getVerticalScrollBar().setUnitIncrement(VERTICAL_SCROLL_UNIT_INCREMENT);
-        mainPanel.add(scrollPane);
-    }
 
     @Override
     public void updatePanelsLayout(List<SubViewPanel> subViewsPanels) {
+        JPanel panel = getPanel();
         panel.removeAll();
 
         int numberOfColumns = DEFAULT_NUMBER_OF_COLUMNS;
@@ -52,10 +38,5 @@ public class DefaultModulesPanelManager implements ModulePanelManager {
                 gridY++;
             }
         }
-    }
-
-    @Override
-    public JPanel getMainPanel() {
-        return mainPanel;
     }
 }

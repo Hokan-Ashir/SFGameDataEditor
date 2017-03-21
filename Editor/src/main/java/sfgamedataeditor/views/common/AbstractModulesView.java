@@ -2,8 +2,8 @@ package sfgamedataeditor.views.common;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.mvc.objects.PresentableView;
+import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.DefaultModulesPanelManager;
-import sfgamedataeditor.views.common.managers.ModulePanelManager;
 import sfgamedataeditor.views.utility.Pair;
 
 import javax.swing.*;
@@ -17,13 +17,13 @@ public abstract class AbstractModulesView implements PresentableView {
     private Icon selectedIcon;
     private final List<SubViewPanel> subViewsPanels = new ArrayList<>();
     private final Comparator<SubViewPanel> subViewPanelComparator = new SubViewsPanelComparator();
-    private ModulePanelManager panelManager;
+    private AbstractModulePanelManager panelManager;
     private final String moduleName;
 
     protected AbstractModulesView(String viewName) {
         this.moduleName = viewName;
 
-        Class<? extends ModulePanelManager> managerClass = getModulesPanelManagerClass();
+        Class<? extends AbstractModulePanelManager> managerClass = getModulesPanelManagerClass();
         try {
             panelManager = managerClass.getConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
@@ -125,7 +125,7 @@ public abstract class AbstractModulesView implements PresentableView {
         return selectedIcon;
     }
 
-    protected Class<? extends ModulePanelManager> getModulesPanelManagerClass() {
+    protected Class<? extends AbstractModulePanelManager> getModulesPanelManagerClass() {
         return DefaultModulesPanelManager.class;
     }
 
@@ -133,7 +133,7 @@ public abstract class AbstractModulesView implements PresentableView {
         return selectedPanel;
     }
 
-    public ModulePanelManager getPanelManager() {
+    public AbstractModulePanelManager getPanelManager() {
         return panelManager;
     }
 

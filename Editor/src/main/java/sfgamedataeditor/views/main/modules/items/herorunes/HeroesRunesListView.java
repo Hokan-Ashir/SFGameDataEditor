@@ -4,7 +4,7 @@ import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
-import sfgamedataeditor.views.common.managers.ModulePanelManager;
+import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.NameModulesPanelManager;
 import sfgamedataeditor.views.main.modules.items.herorunes.parameters.HeroesRunesParametersView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -33,7 +33,7 @@ public class HeroesRunesListView extends AbstractModulesView {
     }
 
     @Override
-    protected Class<? extends ModulePanelManager> getModulesPanelManagerClass() {
+    protected Class<? extends AbstractModulePanelManager> getModulesPanelManagerClass() {
         return NameModulesPanelManager.class;
     }
 

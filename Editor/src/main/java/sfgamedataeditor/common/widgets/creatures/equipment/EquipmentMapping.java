@@ -5,7 +5,6 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTable
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.ModelCreator;
-import sfgamedataeditor.views.common.notimplemented.NotImplementedView;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.ArmorModelCreator;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
 import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.BuildingPlansModelCreator;
@@ -51,7 +50,7 @@ public enum EquipmentMapping {
     }
 
     private void addObjectsWithoutParametersMapping() {
-        Pair<Class<? extends PresentableView>, ModelCreator> pair = new Pair<Class<? extends PresentableView>, ModelCreator>(NotImplementedView.class, null);
+        Pair<Class<? extends PresentableView>, ModelCreator> pair = new Pair<Class<? extends PresentableView>, ModelCreator>(null, null);
         int figureNPCId = getItemTypeByNameMapping("items.figureNPC");
         itemTypesClassViews.put(figureNPCId, pair);
 
@@ -212,13 +211,9 @@ public enum EquipmentMapping {
         Pair<Class<? extends PresentableView>, ModelCreator> pair = itemTypesClassViews.get(itemType);
         if (pair == null) {
             String weaponTypeNameById = WeaponTypesMap.INSTANCE.getWeaponTypeNameById(itemType);
-            if(weaponTypeNameById != null) {
-                return false;
-            } else {
-                return true;
-            }
+            return weaponTypeNameById == null;
         } else {
-            return pair.getKey().equals(NotImplementedView.class);
+            return pair.getKey() == null;
         }
     }
 }
