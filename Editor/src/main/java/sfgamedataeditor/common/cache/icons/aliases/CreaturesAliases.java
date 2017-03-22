@@ -43,14 +43,6 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2193.png", "161.png");
         addAlias("2194.png", "161.png");
 
-        // Citizen of empyria - 7/Ayzo/Hazim Archer-1/Hazim Archer-2
-        addAlias("2828.png", "2852.png");
-        addAlias("2051.png", "2852.png");
-        addAlias("2090.png", "2852.png");
-        addAlias("2093.png", "2852.png");
-        addAlias("2437.png", "2852.png");
-        addAlias("2050.png", "2852.png");
-
         // Firebone fiend - 1/Firebone fiend - 2/Greater Bone Fiend
         addAlias("2958.png", "2662.png");
         addAlias("2911.png", "2662.png");
@@ -70,8 +62,9 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         // Rohen-3/Rohen-5
         addAlias("2707.png", "2663.png");
 
-        //Raith the black - 1/Raith the black - 2
+        //Raith the black - 1/Raith the black - 2/Nazshar
         addAlias("2470.png", "2195.png");
+        addAlias("2547.png", "2195.png");
 
         //Swine-1/Swine-2
         addAlias("1046.png", "1045.png");
@@ -111,11 +104,12 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2729.png", "999.png");
         addAlias("126.png", "999.png");
 
-        // Bridge guard/Brok Dalingar/Leonidar guardsman/Leonidar guard/Villager
+        // Bridge guard/Brok Dalingar/Leonidar guardsman/Leonidar guard/Villager/Fisherman anuk
         addAlias("629.png", "1172.png");
         addAlias("491.png", "1172.png");
         addAlias("823.png", "1172.png");
         addAlias("2888.png", "1172.png");
+        addAlias("2531.png", "1172.png");
 
         //Gabar - 1/Gabar - 2
         addAlias("2844.png", "1083.png");
@@ -173,6 +167,20 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2916.png", "2181.png");
         addAlias("2869.png", "2181.png");
         addAlias("2915.png", "2181.png");
+
+        // Wise of the jungle/Lyrio forrel
+        addAlias("2114.png", "2632.png");
+
+        // Uzakahn - 1/Uzakahn - 2/Uzakahn - 3/Uzakahn - 4/Uzakahn - 5
+        addAlias("2574.png", "2565.png");
+        addAlias("2575.png", "2565.png");
+        addAlias("2576.png", "2565.png");
+        addAlias("2577.png", "2565.png");
+
+        // Plexor mim thar/Toth lar/The guardian - 1/The guardian - 2
+        addAlias("2546.png", "1356.png");
+        addAlias("409.png", "1356.png");
+        addAlias("1076.png", "1356.png");
 
         addGargoylesAliases();
         addScrythesAliases();
@@ -241,7 +249,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2091.png", "2048.png");
 
         // Hazim warrior/Krongor/Hazim guard - 1/Hazim guard - 2/Hazim sandtracer
-        // Hazim cursechanter/Trakan - 1/Trakan - 2/Trokan - 1/Trokan - 1
+        // Hazim cursechanter/Trakan - 1/Trakan - 2/Trokan - 1/Trokan - 1/Bario
         addAlias("2904.png", "2094.png");
         addAlias("2436.png", "2094.png");
         addAlias("2954.png", "2094.png");
@@ -251,6 +259,16 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2096.png", "2094.png");
         addAlias("2097.png", "2094.png");
         addAlias("2098.png", "2094.png");
+        addAlias("2100.png", "2094.png");
+
+        // Citizen of empyria - 7/Ayzo/Hazim Archer-1/Hazim Archer-2/Bario's servant
+        addAlias("2828.png", "2852.png");
+        addAlias("2051.png", "2852.png");
+        addAlias("2090.png", "2852.png");
+        addAlias("2093.png", "2852.png");
+        addAlias("2437.png", "2852.png");
+        addAlias("2050.png", "2852.png");
+        addAlias("2310.png", "2852.png");
     }
 
     private void addOrderOfDawnAliases() {
@@ -302,7 +320,8 @@ public class CreaturesAliases extends AbstractIconPathAlias {
 
     private void addGolemsAlisases() {
         // Wrath of stone/Stonefist/Stone golem - 1/Stone golem - 2/Stone golem - 3/Stone golem - 4/Stone golem - 5
-        // Stone golem - 6/Stone golem - 7/Stone golem - 8/Stone guardian/Stoneling
+        // Stone golem - 6/Stone golem - 7/Stone golem - 8/Stone guardian/Stoneling/Lifeless golem
+        // Rock crystal golem/Onyx golem
         addAlias("2076.png", "125.png");
         addAlias("123.png", "125.png");
         addAlias("1403.png", "125.png");
@@ -314,6 +333,9 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2270.png", "125.png");
         addAlias("124.png", "125.png");
         addAlias("860.png", "125.png");
+        addAlias("2653.png", "125.png");
+        addAlias("2654.png", "125.png");
+        addAlias("2655.png", "125.png");
 
         // Vulkanoid/Fire golem - 1/Fire golem - 2/Fire golem - 3/Fire golem - 4/Lavagolem/Lava golem/Firestone
         addAlias("2248.png", "998.png");
