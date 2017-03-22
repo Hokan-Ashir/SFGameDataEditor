@@ -174,6 +174,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2869.png", "2181.png");
         addAlias("2915.png", "2181.png");
 
+        addGargoylesAliases();
         addScrythesAliases();
         addScytheTerrors();
         addHazimAliases();
@@ -187,6 +188,21 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addBeetlesAliases();
         addBladesAliases();
         addBriarwolvesAliases();
+    }
+
+    private void addGargoylesAliases() {
+        // Gargoyle - 1/Granite gargoyle - 1/Gargoyle - 2/Granite gargoyle - 2/Basalt gargoyle/Slate gargoyle
+        // Blutstein/Eternal guardian/Portected guardian - 1/Portected guardian - 2/Dusty guardian
+        addAlias("1066.png", "326.png");
+        addAlias("1329.png", "326.png");
+        addAlias("1816.png", "326.png");
+        addAlias("1817.png", "326.png");
+        addAlias("1818.png", "326.png");
+        addAlias("1051.png", "326.png");
+        addAlias("1067.png", "326.png");
+        addAlias("2708.png", "326.png");
+        addAlias("2709.png", "326.png");
+        addAlias("2466.png", "326.png");
     }
 
     private void addScrythesAliases() {
