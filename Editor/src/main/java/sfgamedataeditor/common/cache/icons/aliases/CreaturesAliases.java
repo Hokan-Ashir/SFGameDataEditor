@@ -182,6 +182,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("409.png", "1356.png");
         addAlias("1076.png", "1356.png");
 
+        addKathaisAliases();
         addGargoylesAliases();
         addScrythesAliases();
         addScytheTerrors();
@@ -196,6 +197,25 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addBeetlesAliases();
         addBladesAliases();
         addBriarwolvesAliases();
+    }
+
+    private void addKathaisAliases() {
+        // Kathai assassin/Kathai defender
+        addAlias("2107.png", "2104.png");
+
+        // Kathai master of the northwind/Kathai windfist/Kathai woundmender
+        addAlias("2516.png", "2514.png");
+        addAlias("2136.png", "2514.png");
+
+        // Kathai saber dancer/Kathai shieldbreaker/Kathai windhammer
+        addAlias("2105.png", "2101.png");
+        addAlias("2106.png", "2101.png");
+
+        // Khal - 1/Khal - 2
+        addAlias("2527.png", "2116.png");
+
+        // Xalabar - 1/Xalabar - 2
+        addAlias("2139.png", "2099.png");
     }
 
     private void addGargoylesAliases() {
