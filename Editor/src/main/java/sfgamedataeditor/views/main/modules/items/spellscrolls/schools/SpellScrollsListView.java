@@ -26,6 +26,7 @@ public class SpellScrollsListView extends AbstractModulesView {
      */
     @Override
     protected void fillSubViewsMappings() {
+        // TODO replace with "item.spells" (also change mapping for Skill-like abilities)
         int scrollsType = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.scrolls"));
         Set<String> scrollsNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(scrollsType);
         scrollsNames = getFilteredScrollNames(scrollsNames);

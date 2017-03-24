@@ -9,6 +9,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 public class ScrollsFromScrollsParametersModelCreator implements ModelCreator<ModulesModel, SpellScrollsParametersModel> {
 
+    // TODO replace with "item.spells" (also change mapping for Skill-like abilities)
     private static final Integer SCROLL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.scrolls"));
 
     @Override

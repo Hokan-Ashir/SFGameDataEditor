@@ -182,6 +182,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("409.png", "1356.png");
         addAlias("1076.png", "1356.png");
 
+        addTheFistAliases();
         addKathaisAliases();
         addGargoylesAliases();
         addScrythesAliases();
@@ -197,6 +198,37 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addBeetlesAliases();
         addBladesAliases();
         addBriarwolvesAliases();
+    }
+
+    private void addTheFistAliases() {
+        // Fist Thug - 1/Fist Thug - 2/Fist Thug - 3/Alert post/Bladeswirler of the fist
+        addAlias("1156.png", "895.png");
+        addAlias("1291.png", "895.png");
+        addAlias("1436.png", "895.png");
+        addAlias("741.png", "895.png");
+
+        // Fist spearman - 1/Fist spearman - 2/Fist spearman - 3
+        addAlias("1157.png", "876.png");
+        addAlias("1293.png", "876.png");
+
+        // Fist totem - 1/Fist totem - 2/Murak/Tronk/Hyrr/Urshuk/Gulkar/Obak/Shirkar
+        addAlias("1292.png", "886.png");
+        addAlias("675.png", "886.png");
+        addAlias("730.png", "886.png");
+        addAlias("729.png", "886.png");
+        addAlias("674.png", "886.png");
+        addAlias("738.png", "886.png");
+        addAlias("1175.png", "886.png");
+        addAlias("869.png", "886.png");
+
+        // Fist veteran - 1/Fist veteran - 2/Fist lieutenant
+        addAlias("1233.png", "881.png");
+        addAlias("363.png", "881.png");
+
+        // Runemaster/Fist conjurer/Fist firemaster/Orc firedevil
+        addAlias("1073.png", "632.png");
+        addAlias("882.png", "632.png");
+        addAlias("740.png", "632.png");
     }
 
     private void addKathaisAliases() {
