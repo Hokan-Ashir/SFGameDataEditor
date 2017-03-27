@@ -185,6 +185,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("409.png", "1356.png");
         addAlias("1076.png", "1356.png");
 
+        addSpidersAliases();
         addUroksAliases();
         addUtranAliases();
         addTheFistAliases();
@@ -204,6 +205,43 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addBladesAliases();
         addBriarwolvesAliases();
         addKitharsAliases();
+    }
+
+    private void addSpidersAliases() {
+        // Young forest spider/Small forestspider/Giant forest spider - 1/Great forestspider
+        // Rock spider/Small desert spider/Giant sand spider/Giant rock spider - 2/Giant rock spider - 3/Zalaga
+        addAlias("200.png", "750.png");
+        addAlias("203.png", "750.png");
+        addAlias("201.png", "750.png");
+        addAlias("1085.png", "750.png");
+        addAlias("2175.png", "750.png");
+        addAlias("2146.png", "750.png");
+        addAlias("2502.png", "750.png");
+        addAlias("2503.png", "750.png");
+        addAlias("1407.png", "750.png");
+
+        // Young rock spider/Giant rock spider - 1/Phantom spider/Lesser rock spider/Kirsh/Giant night spider
+        // Ghost of the spider master
+        addAlias("204.png", "751.png");
+        addAlias("1374.png", "751.png");
+        addAlias("202.png", "751.png");
+        addAlias("912.png", "751.png");
+        addAlias("2147.png", "751.png");
+        addAlias("2336.png", "751.png");
+
+        // Young swamp spider/Giant swamp spider - 1/Giant swamp spider - 2/Great swamp spider
+        // Giant forest spider - 2
+        addAlias("2336.png", "752.png");
+        addAlias("205.png", "752.png");
+        addAlias("207.png", "752.png");
+        addAlias("206.png", "752.png");
+        addAlias("2145.png", "752.png");
+
+        // Thakra/Giant white spider/Rock weaver/Thukarda/Giant albino spider
+        addAlias("850.png", "1181.png");
+        addAlias("1451.png", "1181.png");
+        addAlias("2144.png", "1181.png");
+        addAlias("2148.png", "1181.png");
     }
 
     private void addUroksAliases() {
