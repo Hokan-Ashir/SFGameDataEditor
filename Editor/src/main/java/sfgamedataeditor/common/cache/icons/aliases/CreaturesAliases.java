@@ -105,11 +105,14 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("126.png", "999.png");
 
         // Bridge guard/Brok Dalingar/Leonidar guardsman/Leonidar guard/Villager/Fisherman anuk
+        // Wulfgar farmer / Peasant lemuel
         addAlias("629.png", "1172.png");
         addAlias("491.png", "1172.png");
         addAlias("823.png", "1172.png");
         addAlias("2888.png", "1172.png");
         addAlias("2531.png", "1172.png");
+        addAlias("1160.png", "1172.png");
+        addAlias("1191.png", "1172.png");
 
         //Gabar - 1/Gabar - 2
         addAlias("2844.png", "1083.png");
@@ -181,9 +184,8 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2546.png", "1356.png");
         addAlias("409.png", "1356.png");
         addAlias("1076.png", "1356.png");
+        addUtranAliases();
 
-        // Wulfgar farmer / Peasant lemuel
-        addAlias("1160.png", "1191.png");
 
         addTheFistAliases();
         addKathaisAliases();
@@ -202,6 +204,18 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addBladesAliases();
         addBriarwolvesAliases();
         addKitharsAliases();
+    }
+
+    private void addUtranAliases() {
+        // Village elder tario/ Sergeant einar/Utran captain/ Utran swordmaster
+        addAlias("786.png", "2070.png");
+        addAlias("507.png", "2070.png");
+        addAlias("502.png", "2070.png");
+
+        // Tantaro/ Utran defender/Utran lieutenant/Utran scout
+        addAlias("504.png", "2686.png");
+        addAlias("506.png", "2686.png");
+        addAlias("499.png", "2686.png");
     }
 
     private void addKitharsAliases() {
