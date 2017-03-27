@@ -185,6 +185,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("409.png", "1356.png");
         addAlias("1076.png", "1356.png");
 
+        addEloniElvesAliases();
         addSpidersAliases();
         addUroksAliases();
         addUtranAliases();
@@ -205,6 +206,36 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addBladesAliases();
         addBriarwolvesAliases();
         addKitharsAliases();
+    }
+
+    private void addEloniElvesAliases() {
+        // Eloni bladedancer/Eloni elder druid/Eloni watcher/Eloni ranger - 2/Swerdis
+        addAlias("462.png", "459.png");
+        addAlias("455.png", "459.png");
+        addAlias("455.png", "459.png");
+        addAlias("776.png", "459.png");
+
+        // Ashawe/Eloni warder/Lycande/Sidahan
+        addAlias("454.png", "679.png");
+        addAlias("468.png", "679.png");
+        addAlias("465.png", "679.png");
+
+        // Eloni druid/Sindare
+        addAlias("847.png", "460.png");
+
+        // Eloni Healer/Faedale
+        addAlias("678.png", "1174.png");
+
+        // Eloni ranger - 1/Eloni ranger - 3/Eloni ranger - 4
+        addAlias("846.png", "456.png");
+        addAlias("1471.png", "456.png");
+
+        // Eloni winterguard/Lanlyn longrunner/Sinwen whiteleaf
+        addAlias("787.png", "464.png");
+        addAlias("748.png", "464.png");
+
+        // Eloni wintermage - 1/Eloni wintermage - 2
+        addAlias("1486.png", "1173.png");
     }
 
     private void addSpidersAliases() {
