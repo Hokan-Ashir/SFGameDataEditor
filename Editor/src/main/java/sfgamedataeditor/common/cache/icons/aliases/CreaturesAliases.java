@@ -184,9 +184,9 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2546.png", "1356.png");
         addAlias("409.png", "1356.png");
         addAlias("1076.png", "1356.png");
+
+        addUroksAliases();
         addUtranAliases();
-
-
         addTheFistAliases();
         addKathaisAliases();
         addGargoylesAliases();
@@ -204,6 +204,33 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addBladesAliases();
         addBriarwolvesAliases();
         addKitharsAliases();
+    }
+
+    private void addUroksAliases() {
+        // Urok champion - 1/Urok champion - 2/Urok champion - 3
+        addAlias("1596.png", "1218.png");
+        addAlias("2266.png", "1218.png");
+
+        // Urok smasher - 1/Urok smasher - 2
+        addAlias("1021.png", "449.png");
+
+        // Urok brawler - 1/Urok brawler - 2/Urok brawler - 3
+        addAlias("448.png", "439.png");
+        addAlias("2268.png", "439.png");
+
+        // Urok thrower - 1/Urok thrower - 2/Urok thrower - 3
+        addAlias("450.png", "440.png");
+        addAlias("2267.png", "440.png");
+
+        // Urok devastator - 1/Urok devastator - 2/Urok devastator - 3
+        addAlias("1215.png", "452.png");
+        addAlias("1595.png", "452.png");
+
+        // Urok hurler - 1/Urok hurler - 2
+        addAlias("1217.png", "447.png");
+
+        // Urok rowdy - 1/Urok rowdy - 2
+        addAlias("1216.png", "451.png");
     }
 
     private void addUtranAliases() {
