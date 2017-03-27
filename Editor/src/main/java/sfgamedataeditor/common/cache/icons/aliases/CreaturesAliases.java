@@ -348,9 +348,9 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("363.png", "881.png");
 
         // Runemaster/Fist conjurer/Fist firemaster/Orc firedevil
-        addAlias("1073.png", "632.png");
-        addAlias("882.png", "632.png");
-        addAlias("740.png", "632.png");
+        addAlias("1073.png", "362.png");
+        addAlias("882.png", "362.png");
+        addAlias("740.png", "362.png");
     }
 
     private void addKathaisAliases() {
