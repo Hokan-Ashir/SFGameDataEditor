@@ -171,8 +171,10 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2869.png", "2181.png");
         addAlias("2915.png", "2181.png");
 
-        // Wise of the jungle/Lyrio forrel
+        // Wise of the jungle/Lyrio forrel/Healer of the city guard/Mentalist of the city guard
         addAlias("2114.png", "2632.png");
+        addAlias("2163.png", "2632.png");
+        addAlias("2164.png", "2632.png");
 
         // Uzakahn - 1/Uzakahn - 2/Uzakahn - 3/Uzakahn - 4/Uzakahn - 5
         addAlias("2574.png", "2565.png");
@@ -206,6 +208,49 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addBladesAliases();
         addBriarwolvesAliases();
         addKitharsAliases();
+        addEmpyriaCityGuards();
+    }
+
+    private void addEmpyriaCityGuards() {
+        // City guard/Oro
+        addAlias("2156.png", "2113.png");
+
+        // City guard Shamziro - 1/City guard Shamziro - 2/Palace guard - 4/Palace guard - 6
+        // Palace guard - 10/Palaceguard Mon/Naras/Razyl/Syrio/Tanthar/Tak/Bostos/Endo/fandaro/Jarod/Kahled
+        // Myro/Prajios/Ulyo
+        addAlias("2963.png", "2906.png");
+        addAlias("2963.png", "2906.png");
+        addAlias("2553.png", "2906.png");
+        addAlias("2889.png", "2906.png");
+        addAlias("2893.png", "2906.png");
+        addAlias("2969.png", "2906.png");
+        addAlias("2973.png", "2906.png");
+        addAlias("2974.png", "2906.png");
+        addAlias("2970.png", "2906.png");
+        addAlias("2975.png", "2906.png");
+        addAlias("2964.png", "2906.png");
+        addAlias("2967.png", "2906.png");
+        addAlias("2962.png", "2906.png");
+        addAlias("2960.png", "2906.png");
+        addAlias("2966.png", "2906.png");
+        addAlias("2965.png", "2906.png");
+        addAlias("2959.png", "2906.png");
+        addAlias("2961.png", "2906.png");
+        addAlias("2968.png", "2906.png");
+
+        // Emperor magnus arias - 1/Emperor magnus arias - 2/Emperor magnus arias - 3
+        addAlias("2451.png", "2117.png");
+        addAlias("2912.png", "2117.png");
+
+        // Palace guard - 1/Palace guard - 3
+        addAlias("2162.png", "2157.png");
+
+        // Palace guard - 5/Yrmir/Sergeant of the city guard
+        addAlias("2554.png", "2621.png");
+        addAlias("2167.png", "2621.png");
+
+        // Palace guard - 7/Palace guard - 9
+        addAlias("2892.png", "2890.png");
     }
 
     private void addEloniElvesAliases() {
