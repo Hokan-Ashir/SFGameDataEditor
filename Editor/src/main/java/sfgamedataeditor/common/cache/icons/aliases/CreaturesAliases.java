@@ -182,6 +182,9 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("409.png", "1356.png");
         addAlias("1076.png", "1356.png");
 
+        // Wulfgar farmer / Peasant lemuel
+        addAlias("1160.png", "1191.png");
+
         addTheFistAliases();
         addKathaisAliases();
         addGargoylesAliases();
@@ -198,6 +201,15 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addBeetlesAliases();
         addBladesAliases();
         addBriarwolvesAliases();
+        addKitharsAliases();
+    }
+
+    private void addKitharsAliases() {
+        // Kithar warrior - 4/Kithar gladatior
+        addAlias("2272.png", "1425.png");
+
+        // Sharkan/Kithar spearfighter
+        addAlias("2757.png", "1429.png");
     }
 
     private void addTheFistAliases() {
