@@ -195,7 +195,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addKathaisAliases();
         addGargoylesAliases();
         addScrythesAliases();
-        addScytheTerrors();
+        addScytheTerrorsAliases();
         addHazimAliases();
         addOrderOfDawnAliases();
         addGiantsAliases();
@@ -211,6 +211,19 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addEmpyriaCityGuardsAliases();
         addDragonlingsAliases();
         addMummiesAliases();
+        addScytheAliases();
+    }
+
+    private void addScytheAliases() {
+        // Envoy of death/Nightblade/Sirkah/Mighty dreamthief/Vicious dreamthief/Sleeping dreamthief
+        addAlias("938.png", "281.png");
+        addAlias("941.png", "281.png");
+        addAlias("2658.png", "281.png");
+        addAlias("2659.png", "281.png");
+        addAlias("2660.png", "281.png");
+
+        // Soulthief/The shadow
+        addAlias("894.png", "280.png");
     }
 
     private void addMummiesAliases() {
@@ -488,7 +501,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         }
     }
 
-    private void addScytheTerrors() {
+    private void addScytheTerrorsAliases() {
         // Scythe terror - 1/Lesser scythe terror - 1/Scythe terror - 2/Lesser scythe terror - 2
         addAlias("2178.png", "2088.png");
         addAlias("2901.png", "2088.png");
