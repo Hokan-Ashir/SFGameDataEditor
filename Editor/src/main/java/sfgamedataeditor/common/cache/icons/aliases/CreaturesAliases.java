@@ -212,6 +212,16 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addDragonlingsAliases();
         addMummiesAliases();
         addScytheAliases();
+        addMeatEatersAliases();
+    }
+
+    private void addMeatEatersAliases() {
+        // Undead executioner/Rotting graverobber
+        addAlias("2456.png", "1193.png");
+
+        // Axebutcher/Undead adventurer/Walking corpse
+        addAlias("2459.png", "1192.png");
+        addAlias("2457.png", "1192.png");
     }
 
     private void addScytheAliases() {
