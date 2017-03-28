@@ -12,7 +12,8 @@ public class CreaturesAliases extends AbstractIconPathAlias {
 
         // Shin tar guar/Ghost of udwin/Zerbite ghost/Terror from the deep/Ghost of the scribe
         // Ghost of the scout/Dream-snatcher/Ghost of the piper/Ghost of shar
-        // Ghost of uram/Ghost of silverhand
+        // Ghost of uram/Ghost of silverhand/Ghost of hokan ashir/Priest of tiara
+        // Desperate soul - 1/Desperate soul - 2
         addAlias("1097.png", "640.png");
         addAlias("2335.png", "640.png");
         addAlias("637.png", "640.png");
@@ -23,6 +24,10 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2723.png", "640.png");
         addAlias("2716.png", "640.png");
         addAlias("2724.png", "640.png");
+        addAlias("963.png", "640.png");
+        addAlias("2648.png", "640.png");
+        addAlias("2478.png", "640.png");
+        addAlias("2522.png", "640.png");
 
         // Iridon/Laurin - 1/Laurin - 2/Laurin - 3/Laurin - 4/Laurin - 5
         addAlias("2308.png", "2307.png");
@@ -187,6 +192,48 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("409.png", "1356.png");
         addAlias("1076.png", "1356.png");
 
+        // Trader weasel - 1/Trader weasel - 2
+        addAlias("2977.png", "2690.png");
+
+        // Vagabond nandini - 1/Vagabond nandini - 2
+        addAlias("2983.png", "2328.png");
+
+        // Kind soul - 1/Kind soul - 2
+        addAlias("2524.png", "2480.png");
+
+        // Strong soul - 1/Strong soul - 2
+        addAlias("2523.png", "2479.png");
+
+        // Angry soul - 1/Angry soul - 2
+        addAlias("2526.png", "2482.png");
+
+        // Swift soul - 1/Swift soul - 2
+        addAlias("2525.png", "2481.png");
+
+        // Cenwen - 1/Cenwen - 2
+        addAlias("1707.png", "1555.png");
+
+        // Dryad - 2/Dryad - 3
+        addAlias("2948.png", "2838.png");
+
+        // The dark one - 1/The dark one - 2
+        addAlias("1437.png", "1075.png");
+
+        // Tuomi-1/2/3/4/5
+        for (int i = 2695; i <= 2698; ++i) {
+            addAlias(String.valueOf(i) + ".png", "2694.png");
+        }
+
+        // Tuomi-6/7/8/9/10/11/12
+        for (int i = 2942; i <= 2947; ++i) {
+            addAlias(String.valueOf(i) + ".png", "2941.png");
+        }
+
+        // Tuomi-13/14/15/16
+        for (int i = 2950; i <= 2953; ++i) {
+            addAlias(String.valueOf(i) + ".png", "2941.png");
+        }
+
         addEloniElvesAliases();
         addSpidersAliases();
         addUroksAliases();
@@ -265,10 +312,11 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2398.png", "586.png");
         addAlias("587.png", "586.png");
 
-        // Glacier drakeling/Gatekeeper dragon/Ice drakeling - 1/Ice drakeling - 2
+        // Glacier drakeling/Gatekeeper dragon/Ice drakeling - 1/Ice drakeling - 2/Argamun the guardian
         addAlias("1718.png", "1716.png");
         addAlias("1717.png", "1716.png");
         addAlias("2923.png", "1716.png");
+        addAlias("2704.png", "1716.png");
     }
 
     private void addEmpyriaCityGuardsAliases() {
@@ -298,9 +346,10 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2961.png", "2906.png");
         addAlias("2968.png", "2906.png");
 
-        // Emperor magnus arias - 1/Emperor magnus arias - 2/Emperor magnus arias - 3
+        // Emperor magnus arias - 1/Emperor magnus arias - 2/Emperor magnus arias - 3/Circus master serbius
         addAlias("2451.png", "2117.png");
         addAlias("2912.png", "2117.png");
+        addAlias("2700.png", "2117.png");
 
         // Palace guard - 1/Palace guard - 3
         addAlias("2162.png", "2157.png");
@@ -438,7 +487,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("1157.png", "876.png");
         addAlias("1293.png", "876.png");
 
-        // Fist totem - 1/Fist totem - 2/Murak/Tronk/Hyrr/Urshuk/Gulkar/Obak/Shirkar
+        // Fist totem - 1/Fist totem - 2/Murak/Tronk/Hyrr/Urshuk/Gulkar/Obak/Shirkar/Argamun
         addAlias("1292.png", "886.png");
         addAlias("675.png", "886.png");
         addAlias("730.png", "886.png");
@@ -447,6 +496,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("738.png", "886.png");
         addAlias("1175.png", "886.png");
         addAlias("869.png", "886.png");
+        addAlias("2331.png", "886.png");
 
         // Fist veteran - 1/Fist veteran - 2/Fist lieutenant
         addAlias("1233.png", "881.png");
