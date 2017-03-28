@@ -210,6 +210,21 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addKitharsAliases();
         addEmpyriaCityGuardsAliases();
         addDragonlingsAliases();
+        addMummiesAliases();
+    }
+
+    private void addMummiesAliases() {
+        // Claw mummy - 1/Claw mummy - 2/Foul mummy
+        addAlias("2949.png", "2089.png");
+        addAlias("2428.png", "2089.png");
+
+        // Mummified fighter/Mummy guardian
+        addAlias("2430.png", "2588.png");
+
+        // Mummified keymaster/Mummified servant/Mummy/Rotting mummy
+        addAlias("2589.png", "2591.png");
+        addAlias("2087.png", "2591.png");
+        addAlias("2431.png", "2591.png");
     }
 
     private void addDragonlingsAliases() {
