@@ -208,10 +208,32 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addBladesAliases();
         addBriarwolvesAliases();
         addKitharsAliases();
-        addEmpyriaCityGuards();
+        addEmpyriaCityGuardsAliases();
+        addDragonlingsAliases();
     }
 
-    private void addEmpyriaCityGuards() {
+    private void addDragonlingsAliases() {
+        // Zyrafyr/Fire drakeling - 1/Fire drakeling - 2/Fire drakeling - 3/Greater fire drakeling
+        addAlias("585.png", "917.png");
+        addAlias("1347.png", "917.png");
+        addAlias("1917.png", "917.png");
+        addAlias("1918.png", "917.png");
+
+        // Fafna/Faurung
+        addAlias("1450.png", "848.png");
+
+        // Forest drakeling - 1/Forest drakeling - 2/Forest drakeling - 3/Swamp drakeling
+        addAlias("1348.png", "586.png");
+        addAlias("2398.png", "586.png");
+        addAlias("587.png", "586.png");
+
+        // Glacier drakeling/Gatekeeper dragon/Ice drakeling - 1/Ice drakeling - 2
+        addAlias("1718.png", "1716.png");
+        addAlias("1717.png", "1716.png");
+        addAlias("2923.png", "1716.png");
+    }
+
+    private void addEmpyriaCityGuardsAliases() {
         // City guard/Oro
         addAlias("2156.png", "2113.png");
 
