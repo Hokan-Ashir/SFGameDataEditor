@@ -96,6 +96,9 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("923.png", "922.png");
         addAlias("924.png", "922.png");
 
+        // Black wolf/Wilding
+        addAlias("873.png", "350.png");
+
         // Nymphet - 1/Nymphet - 2/Nymphet - 3
         addAlias("2344.png", "2343.png");
         addAlias("2868.png", "2343.png");
@@ -260,6 +263,16 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addMummiesAliases();
         addScytheAliases();
         addMeatEatersAliases();
+        addLuciensAliases();
+    }
+
+    private void addLuciensAliases() {
+        // Stonebeast/Vampire beast
+        addAlias("2353.png", "2350.png");
+
+        // Ravaging beast/Raging beast/The beast
+        addAlias("2780.png", "2352.png");
+        addAlias("2349.png", "2352.png");
     }
 
     private void addMeatEatersAliases() {
