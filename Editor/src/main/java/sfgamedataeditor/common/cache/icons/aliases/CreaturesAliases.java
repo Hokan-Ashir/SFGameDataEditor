@@ -52,15 +52,6 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2958.png", "2662.png");
         addAlias("2911.png", "2662.png");
 
-        // all risen dead
-        for (int i = 1253; i <= 1281; i++) {
-            addAlias(String.valueOf(i) + ".png", "1252.png");
-        }
-
-        for (int i = 2360; i <= 2379; i++) {
-            addAlias(String.valueOf(i) + ".png", "1252.png");
-        }
-
         // Cave orc-1/Cave orc-2
         addAlias("2232.png", "1161.png");
 
@@ -273,6 +264,103 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addShaAliases();
         addGoblinsAliases();
         addBanditsAliases();
+        addSkeletonsAliases();
+    }
+
+    private void addSkeletonsAliases() {
+        // all risen dead
+        for (int i = 1253; i <= 1281; i++) {
+            addAlias(String.valueOf(i) + ".png", "1252.png");
+        }
+
+        for (int i = 2360; i <= 2379; i++) {
+            addAlias(String.valueOf(i) + ".png", "1252.png");
+        }
+
+        // Fire skeleton/Amok skeleton/Skeleton marauder/Great souldrinker/Skeleton chaosblade
+        // Skeleton archer - 1/Bonelurker/Skeleton frostbone/Angstling/Strongskull
+        // Skeleton butcher/Skeleton mangler/Skeleton defender/Skeleton body collector
+        // Skeleton temple servant/Skeleton marksman/Skeleton combat archer
+        // Skeleton spellgazer/Skeleton keeper of the dead/Skeleton master torturer
+        // Bone archer/Great keeper of the second fragment/Braineater/Plagoue of the mosaic
+        // Great keeper of the third fragment/Skeleton bonemender/Skeleton shieldshatterer
+        // Skeleton hearthief/Skeleton brainstabber/Skeleton demonslayer/Bone fiend
+        // Skeleton berserk/Manaburner
+        addAlias("736.png", "1252.png");
+        addAlias("1169.png", "1252.png");
+        addAlias("1301.png", "1252.png");
+        addAlias("1415.png", "1252.png");
+        addAlias("1303.png", "1252.png");
+        addAlias("617.png", "1252.png");
+        addAlias("892.png", "1252.png");
+        addAlias("1300.png", "1252.png");
+        addAlias("890.png", "1252.png");
+        addAlias("2190.png", "1252.png");
+        addAlias("2130.png", "1252.png");
+        addAlias("2129.png", "1252.png");
+        addAlias("2135.png", "1252.png");
+        addAlias("2056.png", "1252.png");
+        addAlias("2134.png", "1252.png");
+        addAlias("1846.png", "1252.png");
+        addAlias("2897.png", "1252.png");
+        addAlias("2518.png", "1252.png");
+        addAlias("2851.png", "1252.png");
+        addAlias("2898.png", "1252.png");
+        addAlias("2834.png", "1252.png");
+        addAlias("2831.png", "1252.png");
+        addAlias("2835.png", "1252.png");
+        addAlias("2836.png", "1252.png");
+        addAlias("2832.png", "1252.png");
+        addAlias("2899.png", "1252.png");
+        addAlias("2131.png", "1252.png");
+        addAlias("2519.png", "1252.png");
+        addAlias("2278.png", "1252.png");
+        addAlias("2419.png", "1252.png");
+        addAlias("2593.png", "1252.png");
+        addAlias("2123.png", "1252.png");
+        addAlias("2846.png", "1252.png");
+
+        // Marauder - 2/Marauder - 3/Marauder - 4/Skeleton general - 1/Skeleton general - 2/Keeper of keys
+        // Keymaster - 2/Keymaster - 3
+        addAlias("2080.png", "2078.png");
+        addAlias("2084.png", "2078.png");
+        addAlias("148.png", "2078.png");
+        addAlias("1188.png", "2078.png");
+        addAlias("2435.png", "2078.png");
+        addAlias("2119.png", "2078.png");
+        addAlias("2120.png", "2078.png");
+
+        // Bonewraith/Lifesucker/Skeleton cutthroat/Skeleton painbringer/Skeleton brawler/Skeleton blademaster
+        addAlias("1184.png", "695.png");
+        addAlias("133.png", "695.png");
+        addAlias("134.png", "695.png");
+        addAlias("2583.png", "695.png");
+        addAlias("2585.png", "695.png");
+
+        // Ashbone archer/Keeper of the fourth fragment/Ashbone butcher/Zihar/Ashbone/Ashbone bowmaster
+        // Ashbone bloodthief/Ashdigger/Ashdancer - 1/Ashdancer - 2/Ashdancer - 3/Ashdancer - 4
+        // Skeleton heretic/Skeleton petit mal/Skeleton slave drive
+        addAlias("1414.png", "149.png");
+        addAlias("146.png", "149.png");
+        addAlias("145.png", "149.png");
+        addAlias("616.png", "149.png");
+        addAlias("606.png", "149.png");
+        addAlias("619.png", "149.png");
+        addAlias("893.png", "149.png");
+        addAlias("2714.png", "149.png");
+        addAlias("2715.png", "149.png");
+        addAlias("2907.png", "149.png");
+        addAlias("2908.png", "149.png");
+        addAlias("2976.png", "149.png");
+        addAlias("2955.png", "149.png");
+        addAlias("2138.png", "149.png");
+
+        // Skeleton guardian/Skeleton fighter/Grandmaster of the mosaic
+        addAlias("605.png", "1302.png");
+        addAlias("2830.png", "1302.png");
+
+        // Skeleton legionnaire/Skeleton pretorian
+        addAlias("2277.png", "2557.png");
     }
 
     private void addBanditsAliases() {
