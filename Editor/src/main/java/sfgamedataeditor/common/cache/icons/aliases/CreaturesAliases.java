@@ -267,6 +267,13 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addLuciensAliases();
         addMinotaurAliases();
         addFlayedAliases();
+        addShaAliases();
+    }
+
+    private void addShaAliases() {
+        // Sha blowpipe hunter/Sha marksman/Sha scout
+        addAlias("2607.png", "2081.png");
+        addAlias("2540.png", "2081.png");
     }
 
     private void addFlayedAliases() {
