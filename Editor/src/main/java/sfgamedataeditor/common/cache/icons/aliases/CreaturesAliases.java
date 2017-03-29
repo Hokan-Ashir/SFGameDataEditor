@@ -266,6 +266,16 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addMeatEatersAliases();
         addLuciensAliases();
         addMinotaurAliases();
+        addFlayedAliases();
+    }
+
+    private void addFlayedAliases() {
+        // Flayed archer - 1/Flayed archer - 2/Flayed marksman
+        addAlias("2626.png", "2625.png");
+        addAlias("2433.png", "2625.png");
+
+        // Flayed guardian/Flayed mage
+        addAlias("2434.png", "2506.png");
     }
 
     private void addMinotaurAliases() {
