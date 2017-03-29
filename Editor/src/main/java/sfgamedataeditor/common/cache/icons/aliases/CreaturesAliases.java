@@ -272,6 +272,30 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addFlayedAliases();
         addShaAliases();
         addGoblinsAliases();
+        addBanditsAliases();
+    }
+
+    private void addBanditsAliases() {
+        // Kargan skorn/Briarwolves recruit
+        addAlias("840.png", "994.png");
+
+        // Lord commander tynar/Halgard arvig
+        addAlias("870.png", "508.png");
+
+        // Thurgon farmir/Sling
+        addAlias("744.png", "936.png");
+
+        // Bandit swordfighter - 1/Cutpurse/Lifty/Bandit basher
+        addAlias("1082.png", "831.png");
+        addAlias("843.png", "831.png");
+        addAlias("832.png", "831.png");
+
+        // Bandit swordfighter - 2/Bandit macefighter/Botar hammerfall
+        addAlias("852.png", "851.png");
+        addAlias("842.png", "851.png");
+
+        // Brigand marksman/Brigant marksman
+        addAlias("762.png", "743.png");
     }
 
     private void addGoblinsAliases() {
@@ -339,9 +363,10 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("976.png", "2652.png");
         addAlias("1447.png", "2652.png");
 
-        // Seth dundred - 1/Red legion recruit - 1/Red legion recruit - 2
+        // Seth dundred - 1/Red legion recruit - 1/Red legion recruit - 2/Gonthar thorme
         addAlias("993.png", "2652.png");
         addAlias("1448.png", "2652.png");
+        addAlias("841.png", "2652.png");
 
         // Red legion scout - 1/Red legion scout - 2
         addAlias("1449.png", "973.png");
@@ -917,8 +942,9 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("1054.png", "980.png");
         addAlias("1344.png", "980.png");
 
-        // Briarwolves captain juno/Briarwolves armsman
+        // Briarwolves captain juno/Briarwolves armsman/Bandit leader
         addAlias("987.png", "970.png");
+        addAlias("642.png", "970.png");
 
         // Mechlan - 1/Mechlan - 2/Mechlan - 3/Mechlan - 4
         //Mechlan - 5/Mechlan - 6/Mechlan - 7/Mechlan - 8
