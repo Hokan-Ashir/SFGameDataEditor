@@ -1,6 +1,5 @@
 package sfgamedataeditor.common.widgets.common.effectnumber;
 
-import org.apache.log4j.Logger;
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
@@ -24,11 +23,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNumberWidget, OffsetableObject> implements ItemListener, ActionListener {
-
-    private static final Logger LOGGER = Logger.getLogger(EffectNumberWidgetListener.class);
 
     public EffectNumberWidgetListener(EffectNumberWidget component, Field... mappedFields) {
         super(component, mappedFields);
@@ -73,7 +69,7 @@ public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNum
         final JComboBox<String> spellLevelComboBox = getWidget().getSpellLevelComboBox();
         setPossibleSpellLevels(spellLevels, spellLevelComboBox);
 
-        final Object selectedItem = getSelectedSpellLevel(spellParametersObject, (TreeSet) spellLevels, spellLevelComboBox);
+        final Object selectedItem = getSelectedSpellLevel(spellParametersObject, spellLevelComboBox);
 
         ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(spellLevelComboBox) {
             @Override
@@ -83,25 +79,23 @@ public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNum
         });
     }
 
-    private Object getSelectedSpellLevel(SpellParametersObject spellParametersObject, TreeSet spellLevels, JComboBox<String> spellLevelComboBox) {
+    private String getSelectedSpellLevel(SpellParametersObject spellParametersObject, JComboBox<String> spellLevelComboBox) {
         Integer requirementLevel1 = spellParametersObject.requirementLevel1;
         Integer requirementLevel2 = spellParametersObject.requirementLevel2;
         Integer requirementLevel3 = spellParametersObject.requirementLevel3;
 
-        int spellMinLevel = (int) spellLevels.first();
-        final Object selectedItem;
+        String selectedSpellLevel = null;
         if (requirementLevel1 != 0 || requirementLevel2 != 0 || requirementLevel3 != 0) {
             if (requirementLevel1 != 0) {
-                selectedItem = spellLevelComboBox.getItemAt(requirementLevel1 - spellMinLevel);
+                selectedSpellLevel = String.valueOf(requirementLevel1);
             } else if (requirementLevel2 != 0) {
-                selectedItem = spellLevelComboBox.getItemAt(requirementLevel2 - spellMinLevel);
+                selectedSpellLevel = String.valueOf(requirementLevel2);
             } else {
-                selectedItem = spellLevelComboBox.getItemAt(requirementLevel3 - spellMinLevel);
+                selectedSpellLevel = String.valueOf(requirementLevel3);
             }
-        } else {
-            selectedItem = spellLevelComboBox.getItemAt(0);
         }
-        return selectedItem;
+
+        return selectedSpellLevel;
     }
 
     private void setPossibleSpellLevels(final Set<Integer> spellLevels, final JComboBox<String> spellLevelComboBox) {
