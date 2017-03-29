@@ -221,6 +221,9 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         // The dark one - 1/The dark one - 2
         addAlias("1437.png", "1075.png");
 
+        // Westman barbarian - 1/Westman barbarian - 2
+        addAlias("1177.png", "1176.png");
+
         // Tuomi-1/2/3/4/5
         for (int i = 2695; i <= 2698; ++i) {
             addAlias(String.valueOf(i) + ".png", "2694.png");
