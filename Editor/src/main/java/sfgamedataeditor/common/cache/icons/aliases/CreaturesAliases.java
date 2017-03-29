@@ -265,6 +265,12 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addScytheAliases();
         addMeatEatersAliases();
         addLuciensAliases();
+        addMinotaurAliases();
+    }
+
+    private void addMinotaurAliases() {
+        // Minotaur devastator - 1/Minotaur devastator - 2
+        addAlias("2151.png", "705.png");
     }
 
     private void addRedLegionAliases() {
