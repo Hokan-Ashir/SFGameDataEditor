@@ -69,8 +69,7 @@ public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNum
         final JComboBox<String> spellLevelComboBox = getWidget().getSpellLevelComboBox();
         setPossibleSpellLevels(spellLevels, spellLevelComboBox);
 
-        final Object selectedItem = getSelectedSpellLevel(spellParametersObject, spellLevelComboBox);
-
+        final Object selectedItem = getSelectedSpellLevel(spellParametersObject);
         ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(spellLevelComboBox) {
             @Override
             protected void setValues() {
@@ -79,7 +78,7 @@ public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNum
         });
     }
 
-    private String getSelectedSpellLevel(SpellParametersObject spellParametersObject, JComboBox<String> spellLevelComboBox) {
+    private String getSelectedSpellLevel(SpellParametersObject spellParametersObject) {
         Integer requirementLevel1 = spellParametersObject.requirementLevel1;
         Integer requirementLevel2 = spellParametersObject.requirementLevel2;
         Integer requirementLevel3 = spellParametersObject.requirementLevel3;
@@ -119,37 +118,21 @@ public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNum
         setWidgetValueToDTOField();
     }
 
-    private Integer getSelectedSpellLevel(SpellParametersObject spellParametersObject) {
-        Integer requirementLevel1 = spellParametersObject.requirementLevel1;
-        Integer requirementLevel2 = spellParametersObject.requirementLevel2;
-        Integer requirementLevel3 = spellParametersObject.requirementLevel3;
-
-        int spellLevel;
-        if (requirementLevel1 != 0 || requirementLevel2 != 0 || requirementLevel3 != 0) {
-            if (requirementLevel1 != 0) {
-                spellLevel = requirementLevel1;
-            } else if (requirementLevel2 != 0) {
-                spellLevel = requirementLevel2;
-            } else {
-                spellLevel = requirementLevel3;
-            }
-        } else {
-            spellLevel = 0;
-        }
-
-
-        return spellLevel;
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         SpellParametersObject selectedSpellParameterObject = getSelectedSpellParameterObject();
-        Integer selectedSpellLevel = getSelectedSpellLevel(selectedSpellParameterObject);
+        String selectedSpellLevel = getSelectedSpellLevel(selectedSpellParameterObject);
+        Integer selectedSpellLevelInteger;
+        if (selectedSpellLevel == null) {
+            selectedSpellLevelInteger = 0;
+        } else {
+            selectedSpellLevelInteger = Integer.valueOf(selectedSpellLevel);
+        }
         Integer selectedSpellNameId = selectedSpellParameterObject.spellNameId;
 
         String selectedSpellName = (String) getWidget().getSpellNameComboBox().getSelectedItem();
         Icon icon = getSpellIcon(selectedSpellName);
-        SpellParameterModelParameter parameter = new SpellParameterModelParameter(selectedSpellNameId, selectedSpellLevel, icon);
+        SpellParameterModelParameter parameter = new SpellParameterModelParameter(selectedSpellNameId, selectedSpellLevelInteger, icon);
         SpellParameterModel model = new SpellParameterModel(parameter);
         ShowContentViewEvent event = new ShowContentViewEvent(SpellParameterView.class, model);
         EventProcessor.INSTANCE.process(event);

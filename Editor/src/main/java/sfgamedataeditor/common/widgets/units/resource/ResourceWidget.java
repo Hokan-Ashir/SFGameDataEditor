@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 public class ResourceWidget extends AbstractWidget<ResourceWidgetListener> {
     private static final Map<Integer, String> RESOURCES_NAME_NUMBER_MAPPING = new HashMap<>();
 
@@ -59,19 +60,19 @@ public class ResourceWidget extends AbstractWidget<ResourceWidgetListener> {
         RESOURCES_NAME_NUMBER_MAPPING.put(19, I18NService.INSTANCE.getMessage(I18NTypes.UNITS_GUI, "resource.type.lenya"));
     }
 
-    public JTextField getResourceAmountTextField() {
+    JTextField getResourceAmountTextField() {
         return resourceAmountTextField;
     }
 
-    public JComboBox<String> getResourceTypeComboBox() {
+    JComboBox<String> getResourceTypeComboBox() {
         return resourceTypeComboBox;
     }
 
-    public String getResourceTypeNameByResourceId(int resourceId) {
+    String getResourceTypeNameByResourceId(int resourceId) {
         return RESOURCES_NAME_NUMBER_MAPPING.get(resourceId);
     }
 
-    public Integer getResourceIdByName(String resourceName) {
+    Integer getResourceIdByName(String resourceName) {
         for (Map.Entry<Integer, String> entry : RESOURCES_NAME_NUMBER_MAPPING.entrySet()) {
             if (entry.getValue().equals(resourceName)) {
                 return entry.getKey();

@@ -5,6 +5,7 @@ import sfgamedataeditor.common.widgets.AbstractWidget;
 import javax.swing.*;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class EquipmentSlotWidget extends AbstractWidget<EquipmentSlotWidgetListener> {
     private JPanel mainPanel;
     private JLabel equipmentSlotLabel;
@@ -18,15 +19,15 @@ public class EquipmentSlotWidget extends AbstractWidget<EquipmentSlotWidgetListe
         add(getMainPanel());
     }
 
-    public JRadioButton getAllSlotsAvailableRadioButton() {
+    JRadioButton getAllSlotsAvailableRadioButton() {
         return allSlotsAvailableRadioButton;
     }
 
-    public JRadioButton getHandsAndRingsAvailableRadioButton() {
+    JRadioButton getHandsAndRingsAvailableRadioButton() {
         return handsAndRingsAvailableRadioButton;
     }
 
-    public JRadioButton getNoSlotsAvailable() {
+    JRadioButton getNoSlotsAvailable() {
         return noSlotsAvailable;
     }
 

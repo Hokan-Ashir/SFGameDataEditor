@@ -8,6 +8,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 import javax.swing.*;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class UnitWidget extends AbstractWidget<UnitWidgetListener> {
     private JPanel mainPanel;
     private JLabel titleLabel;
@@ -36,7 +37,7 @@ public class UnitWidget extends AbstractWidget<UnitWidgetListener> {
         return racesComboBox;
     }
 
-    public JComboBox<String> getUnitComboBox() {
+    JComboBox<String> getUnitComboBox() {
         return unitComboBox;
     }
 

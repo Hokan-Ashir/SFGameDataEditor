@@ -50,7 +50,7 @@ public enum EquipmentMapping {
     }
 
     private void addObjectsWithoutParametersMapping() {
-        Pair<Class<? extends PresentableView>, ModelCreator> pair = new Pair<Class<? extends PresentableView>, ModelCreator>(null, null);
+        Pair<Class<? extends PresentableView>, ModelCreator> pair = new Pair<>(null, null);
         int figureNPCId = getItemTypeByNameMapping("items.figureNPC");
         itemTypesClassViews.put(figureNPCId, pair);
 

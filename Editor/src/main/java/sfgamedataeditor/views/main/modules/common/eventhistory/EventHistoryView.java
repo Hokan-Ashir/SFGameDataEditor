@@ -5,16 +5,17 @@ import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class EventHistoryView implements PresentableView {
     private JPanel mainPanel;
     private JButton undoButton;
     private JButton redoButton;
 
-    public JButton getUndoButton() {
+    JButton getUndoButton() {
         return undoButton;
     }
 
-    public JButton getRedoButton() {
+    JButton getRedoButton() {
         return redoButton;
     }
 

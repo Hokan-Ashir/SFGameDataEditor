@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 public class WeaponTypeWidget extends AbstractWidget<WeaponTypeWidgetListener> {
-
     private JPanel mainPanel;
     private JLabel titleLabel;
     private JComboBox<String> typeComboBox;
@@ -20,11 +20,11 @@ public class WeaponTypeWidget extends AbstractWidget<WeaponTypeWidgetListener> {
         add(getMainPanel());
     }
 
-    public JComboBox<String> getTypeComboBox() {
+    JComboBox<String> getTypeComboBox() {
         return typeComboBox;
     }
 
-    public Integer getWeaponTypeByName(String typeName) {
+    Integer getWeaponTypeByName(String typeName) {
         for (Map.Entry<Integer, String> integerStringEntry : WeaponTypesMap.INSTANCE.getTypesMap().entrySet()) {
             if (integerStringEntry.getValue().equals(typeName)) {
                 return integerStringEntry.getKey();
@@ -34,7 +34,7 @@ public class WeaponTypeWidget extends AbstractWidget<WeaponTypeWidgetListener> {
         return 0;
     }
 
-    public String getWeaponTypeById(Integer typeId) {
+    String getWeaponTypeById(Integer typeId) {
         return WeaponTypesMap.INSTANCE.getTypesMap().get(typeId);
     }
 

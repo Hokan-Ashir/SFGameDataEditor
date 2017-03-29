@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.util.List;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public class RacesWidget extends AbstractWidget<RacesWidgetListener> {
     private JPanel mainPanel;
     private JLabel titleLabel;

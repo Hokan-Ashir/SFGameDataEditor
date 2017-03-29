@@ -8,6 +8,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class MainView implements PresentableView {
     private static final int VERTICAL_SCROLL_UNIT_INCREMENT = 16;
     private JPanel mainPanel;

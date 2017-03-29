@@ -5,6 +5,7 @@ import sfgamedataeditor.common.widgets.AbstractWidget;
 import javax.swing.*;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class RequirementClassSubClassWidget extends AbstractWidget<AbstractRequirementClassSubClassWidgetListener> {
     private JPanel mainPanel;
     private JLabel requirementClassLabel;
@@ -16,11 +17,11 @@ public class RequirementClassSubClassWidget extends AbstractWidget<AbstractRequi
         add(getMainPanel());
     }
 
-    public JComboBox<String> getRequirementClassComboBox() {
+    JComboBox<String> getRequirementClassComboBox() {
         return requirementClassComboBox;
     }
 
-    public JComboBox<String> getRequirementSubClassComboBox() {
+    JComboBox<String> getRequirementSubClassComboBox() {
         return requirementSubClassComboBox;
     }
 

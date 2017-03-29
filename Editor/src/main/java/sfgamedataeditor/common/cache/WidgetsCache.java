@@ -14,14 +14,14 @@ public class WidgetsCache {
     // rendering (on rendering views)
     private final Map<Integer, List<Pair<AbstractWidget, AbstractWidgetListener>>> widgetMap = new HashMap<>();
 
-    public boolean addWidgetListenerPair(Integer GUIComponentId, AbstractWidget widget, AbstractWidgetListener listener) {
+    public void addWidgetListenerPair(Integer GUIComponentId, AbstractWidget widget, AbstractWidgetListener listener) {
         List<Pair<AbstractWidget, AbstractWidgetListener>> pairs = widgetMap.get(GUIComponentId);
         if (pairs == null) {
             pairs = new ArrayList<>();
             widgetMap.put(GUIComponentId, pairs);
         }
 
-        return pairs.add(new Pair<>(widget, listener));
+        pairs.add(new Pair<>(widget, listener));
     }
 
     public boolean isWidgetExistsInCache(Integer GUIComponentId, Class<? extends AbstractWidget> widgetClass) {

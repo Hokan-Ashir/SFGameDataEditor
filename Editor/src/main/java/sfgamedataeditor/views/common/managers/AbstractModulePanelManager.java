@@ -12,7 +12,7 @@ public abstract class AbstractModulePanelManager implements View {
     private final JPanel mainPanel;
     private final JPanel panel;
 
-    public AbstractModulePanelManager() {
+    AbstractModulePanelManager() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(0, 1));
         GridBagLayout layout = new GridBagLayout();
@@ -24,7 +24,7 @@ public abstract class AbstractModulePanelManager implements View {
         mainPanel.add(scrollPane);
     }
 
-    public JPanel getPanel() {
+    JPanel getPanel() {
         return panel;
     }
 

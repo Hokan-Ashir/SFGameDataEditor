@@ -9,6 +9,7 @@ import sfgamedataeditor.mvc.objects.PresentableView;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class ChestParametersView implements PresentableView {
     private JPanel mainPanel;
     private JComboBox<String> dropItemsComboBox;

@@ -9,8 +9,8 @@ import javax.swing.*;
 import java.util.Collections;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class EffectNumberWidget extends AbstractWidget<EffectNumberWidgetListener> {
-
     private JPanel mainPanel;
     private JComboBox<String> spellNameComboBox;
     private JComboBox<String> spellLevelComboBox;
@@ -35,11 +35,11 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberWidgetListene
         }
     }
 
-    public JComboBox<String> getSpellNameComboBox() {
+    JComboBox<String> getSpellNameComboBox() {
         return spellNameComboBox;
     }
 
-    public JComboBox<String> getSpellLevelComboBox() {
+    JComboBox<String> getSpellLevelComboBox() {
         return spellLevelComboBox;
     }
 

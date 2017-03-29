@@ -1,6 +1,5 @@
 package sfgamedataeditor.views.main.modules.units.races.units;
 
-import org.apache.log4j.Logger;
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.AbstractModulesView;
@@ -11,8 +10,6 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 import javax.swing.*;
 
 public class UnitListView extends AbstractModulesView {
-
-    private static final Logger LOGGER = Logger.getLogger(UnitListView.class);
 
     public UnitListView() {
         super(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "units"));

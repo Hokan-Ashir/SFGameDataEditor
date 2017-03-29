@@ -45,11 +45,11 @@ public class ViewHierarchyNode {
         return children;
     }
 
-    public boolean addChild(ViewHierarchyNode node) {
-        return children.add(node);
+    public void addChild(ViewHierarchyNode node) {
+        children.add(node);
     }
 
-    public boolean addChildren(ViewHierarchyNode... nodes) {
-        return children.addAll(Arrays.asList(nodes));
+    public void addChildren(ViewHierarchyNode... nodes) {
+        children.addAll(Arrays.asList(nodes));
     }
 }

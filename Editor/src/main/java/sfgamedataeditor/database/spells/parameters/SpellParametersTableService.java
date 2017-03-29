@@ -105,7 +105,7 @@ public enum SpellParametersTableService implements TableCreationService {
         return where;
     }
 
-    private Where<SpellParametersObject, Integer> addPermutationWhere(Where<SpellParametersObject, Integer> where,
+    private void addPermutationWhere(Where<SpellParametersObject, Integer> where,
                                                                       Requirements spellRequirements) {
         try {
             Where<SpellParametersObject, Integer> spellRequirementClass1Where =
@@ -118,10 +118,8 @@ public enum SpellParametersTableService implements TableCreationService {
                     where.eq("requirementClass3", spellRequirements.getRequirementClass(2))
                             .and().eq("requirementSubClass3", spellRequirements.getSubRequirementClass(2));
             where.and(spellRequirementClass1Where, spellRequirementClass2Where, spellRequirementClass3Where);
-            return where;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return where;
         }
     }
 

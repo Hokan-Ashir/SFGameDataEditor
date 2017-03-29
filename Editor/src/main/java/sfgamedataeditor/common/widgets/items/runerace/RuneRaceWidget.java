@@ -7,6 +7,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 import javax.swing.*;
 import java.util.*;
 
+@SuppressWarnings("unused")
 public class RuneRaceWidget extends AbstractWidget<RuneRaceWidgetListener> {
 
     private JPanel mainPanel;
@@ -53,7 +54,7 @@ public class RuneRaceWidget extends AbstractWidget<RuneRaceWidgetListener> {
         return mainPanel;
     }
 
-    public Integer getRaceIdByByName(String raceName) {
+    Integer getRaceIdByByName(String raceName) {
         for (Map.Entry<Integer, String> integerStringEntry : runeRaceMap.entrySet()) {
             if (integerStringEntry.getValue().equals(raceName)) {
                 return integerStringEntry.getKey();
@@ -63,11 +64,11 @@ public class RuneRaceWidget extends AbstractWidget<RuneRaceWidgetListener> {
         return 0;
     }
 
-    public String getRaceNameById(Integer raceId) {
+    String getRaceNameById(Integer raceId) {
         return runeRaceMap.get(raceId);
     }
 
-    public JComboBox<String> getRaceNameComboBox() {
+    JComboBox<String> getRaceNameComboBox() {
         return raceNameComboBox;
     }
 }

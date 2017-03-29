@@ -4,13 +4,13 @@ import javax.swing.*;
 import java.util.List;
 
 public abstract class AbstractWidget<L extends AbstractWidgetListener> extends JPanel {
-    private AbstractWidgetListener listener;
+    private L listener;
 
-    public void setListener(AbstractWidgetListener listener) {
+    public void setListener(L listener) {
         this.listener = listener;
     }
 
-    public AbstractWidgetListener getListener() {
+    public L getListener() {
         return listener;
     }
 

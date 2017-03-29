@@ -24,7 +24,7 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
 
     private static final Map<Integer, Integer> SLOT_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
-    private final WidgetsComboBoxListener dropItemsListener;
+    private final WidgetsComboBoxListener<CreatureCorpseLootObject, CreaturesParametersView> dropItemsListener;
 
     public CreaturesParametersPresenter(CreaturesParametersView view) {
         super(view);

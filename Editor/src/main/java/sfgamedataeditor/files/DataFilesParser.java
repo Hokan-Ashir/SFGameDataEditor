@@ -45,7 +45,7 @@ public enum DataFilesParser {
     INSTANCE;
 
     private static final Logger LOGGER = Logger.getLogger(DataFilesParser.class);
-    private List<TableCreationService> services = new ArrayList<TableCreationService>() {{
+    private final List<TableCreationService> services = new ArrayList<TableCreationService>() {{
         add(SkillParametersTableService.INSTANCE);
         add(SpellParametersTableService.INSTANCE);
         add(CreatureParametersTableService.INSTANCE);

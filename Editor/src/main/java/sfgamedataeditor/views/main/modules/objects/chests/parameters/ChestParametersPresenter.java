@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ChestParametersPresenter extends AbstractParametersPresenter<ChestParametersModelParameter, ChestParametersView> {
 
-    private final WidgetsComboBoxListener dropItemsListener;
+    private final WidgetsComboBoxListener<ChestCorpseLootObject, ChestParametersView> dropItemsListener;
 
     public ChestParametersPresenter(ChestParametersView view) {
         super(view);

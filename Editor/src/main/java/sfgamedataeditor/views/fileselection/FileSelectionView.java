@@ -6,6 +6,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class FileSelectionView {
 
     private JPanel mainPanel;
@@ -17,7 +18,7 @@ public class FileSelectionView {
     private JButton modificationFileSelectorButton;
     private JButton okButton;
 
-    public FileSelectionView() {
+    private FileSelectionView() {
         originalFileLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "fileSelectionWindowOriginalFileTextFieldCaption"));
         modificationFileLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "fileSelectionWindowModificationFileTextFieldCaption"));
         okButton.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "ok"));
@@ -43,7 +44,7 @@ public class FileSelectionView {
         return mainPanel;
     }
 
-    public JButton getOkButton() {
+    JButton getOkButton() {
         return okButton;
     }
 
@@ -55,11 +56,11 @@ public class FileSelectionView {
         return modificationFileSelectorButton;
     }
 
-    public JTextField getOriginalFileField() {
+    JTextField getOriginalFileField() {
         return originalFileField;
     }
 
-    public JTextField getModificationFileField() {
+    JTextField getModificationFileField() {
         return modificationFileField;
     }
 }

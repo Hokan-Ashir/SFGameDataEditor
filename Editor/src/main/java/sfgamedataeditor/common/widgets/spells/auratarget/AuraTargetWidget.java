@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class AuraTargetWidget extends AbstractWidget<AuraTargetWidgetListener> {
     private JPanel mainPanel;
     private JComboBox<String> auraTargetComboBox;
@@ -26,11 +27,11 @@ public class AuraTargetWidget extends AbstractWidget<AuraTargetWidgetListener> {
         add(getMainPanel());
     }
 
-    public JComboBox<String> getAuraTargetComboBox() {
+    JComboBox<String> getAuraTargetComboBox() {
         return auraTargetComboBox;
     }
 
-    public void setAuraTargetComboBoxValue(int value) {
+    void setAuraTargetComboBoxValue(int value) {
         for (Pair<Integer, String> pair : auraTargetMapping) {
             if (pair.getKey().equals(value)) {
                 auraTargetComboBox.setSelectedItem(pair.getValue());
@@ -38,7 +39,7 @@ public class AuraTargetWidget extends AbstractWidget<AuraTargetWidgetListener> {
         }
     }
 
-    public int getAuraTargetComboBoxValue() {
+    int getAuraTargetComboBoxValue() {
         String selectedItem = (String) auraTargetComboBox.getSelectedItem();
         for (Pair<Integer, String> pair : auraTargetMapping) {
             if (pair.getValue().equals(selectedItem)) {

@@ -12,6 +12,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 import javax.swing.*;
 import java.lang.reflect.Field;
 
+@SuppressWarnings("unused")
 public class MerchantInventoryView implements PresentableView {
 
     private static final Logger LOGGER = Logger.getLogger(MerchantInventoryView.class);
@@ -50,11 +51,11 @@ public class MerchantInventoryView implements PresentableView {
         return iconLabel;
     }
 
-    public JList<String> getMerchantInventoryItemList() {
+    JList<String> getMerchantInventoryItemList() {
         return merchantInventoryItemList;
     }
 
-    public EquipmentWidget getEquipmentWidget() {
+    EquipmentWidget getEquipmentWidget() {
         return equipmentWidget;
     }
 

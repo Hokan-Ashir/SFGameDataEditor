@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 public class WeaponMaterialWidget extends AbstractWidget<WeaponMaterialWidgetListener> {
 
     private JPanel mainPanel;
@@ -55,7 +56,7 @@ public class WeaponMaterialWidget extends AbstractWidget<WeaponMaterialWidgetLis
         return mainPanel;
     }
 
-    public Integer getWeaponMaterialByName(String materialName) {
+    Integer getWeaponMaterialByName(String materialName) {
         for (Map.Entry<Integer, String> integerStringEntry : materialMap.entrySet()) {
             if (integerStringEntry.getValue().equals(materialName)) {
                 return integerStringEntry.getKey();
@@ -65,11 +66,11 @@ public class WeaponMaterialWidget extends AbstractWidget<WeaponMaterialWidgetLis
         return 0;
     }
 
-    public String getWeaponMaterialById(Integer materialId) {
+    String getWeaponMaterialById(Integer materialId) {
         return materialMap.get(materialId);
     }
 
-    public JComboBox<String> getMaterialComboBox() {
+    JComboBox<String> getMaterialComboBox() {
         return materialComboBox;
     }
 }

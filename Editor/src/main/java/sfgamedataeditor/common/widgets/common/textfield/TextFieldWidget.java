@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class TextFieldWidget extends AbstractWidget<TextFieldWidgetListener> {
     private static final int INSETS_VALUE = 5;
     private JPanel mainPanel;

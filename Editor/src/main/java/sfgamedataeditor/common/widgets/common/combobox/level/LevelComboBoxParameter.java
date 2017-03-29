@@ -11,11 +11,11 @@ public class LevelComboBoxParameter {
         this.levels = levels;
     }
 
-    public int getSelectedLevel() {
+    int getSelectedLevel() {
         return selectedLevel;
     }
 
-    public Set<Integer> getLevels() {
+    Set<Integer> getLevels() {
         return levels;
     }
 }

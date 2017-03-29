@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class LanguageSelectionView {
 
     private static final Logger LOGGER = Logger.getLogger(LanguageSelectionView.class);

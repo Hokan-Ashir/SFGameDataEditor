@@ -5,8 +5,8 @@ import sfgamedataeditor.common.widgets.AbstractWidget;
 import javax.swing.*;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class CastTypeWidget extends AbstractWidget<CastTypeWidgetListener> {
-
     private JPanel mainPanel;
     private JRadioButton isProjectileToEnemyRadioButton;
     private JRadioButton isProjectileToAlliesRadioButton;
@@ -23,31 +23,31 @@ public class CastTypeWidget extends AbstractWidget<CastTypeWidgetListener> {
         add(getMainPanel());
     }
 
-    public JRadioButton getIsProjectileToEnemyRadioButton() {
+    JRadioButton getIsProjectileToEnemyRadioButton() {
         return isProjectileToEnemyRadioButton;
     }
 
-    public JRadioButton getIsProjectileToAlliesRadioButton() {
+    JRadioButton getIsProjectileToAlliesRadioButton() {
         return isProjectileToAlliesRadioButton;
     }
 
-    public JRadioButton getIsTargetAreaRadioButton() {
+    JRadioButton getIsTargetAreaRadioButton() {
         return isTargetAreaRadioButton;
     }
 
-    public JRadioButton getIsWorldInstantAreaRadioButton() {
+    JRadioButton getIsWorldInstantAreaRadioButton() {
         return isWorldInstantAreaRadioButton;
     }
 
-    public JRadioButton getIsInstantAreaRadioButton() {
+    JRadioButton getIsInstantAreaRadioButton() {
         return isInstantAreaRadioButton;
     }
 
-    public JRadioButton getIsWorldTargetAreaRadioButton() {
+    JRadioButton getIsWorldTargetAreaRadioButton() {
         return isWorldTargetAreaRadioButton;
     }
 
-    public JRadioButton getIsAlliesAreaRadioButton() {
+    JRadioButton getIsAlliesAreaRadioButton() {
         return isAlliesAreaRadioButton;
     }
 

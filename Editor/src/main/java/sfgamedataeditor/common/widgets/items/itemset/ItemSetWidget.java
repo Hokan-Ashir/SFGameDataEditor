@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.util.List;
 import java.util.ResourceBundle;
 
+@SuppressWarnings("unused")
 public class ItemSetWidget extends AbstractWidget<ItemSetWidgetListener> {
 
     private static final String DESCRIPTION_POSTFIX = "description";
@@ -29,11 +30,11 @@ public class ItemSetWidget extends AbstractWidget<ItemSetWidgetListener> {
         add(getMainPanel());
     }
 
-    public JComboBox<String> getItemSetNameComboBox() {
+    JComboBox<String> getItemSetNameComboBox() {
         return itemSetNameComboBox;
     }
 
-    public void updateItemSetDescription(String itemSetName) {
+    void updateItemSetDescription(String itemSetName) {
         String itemSetNumber = ViewTools.getKeyStringByPropertyValue(itemSetName, I18NTypes.ITEM_SETS);
         itemSetNumber += "." + DESCRIPTION_POSTFIX;
         itemSetDescriptionArea.setText(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_SETS, itemSetNumber));

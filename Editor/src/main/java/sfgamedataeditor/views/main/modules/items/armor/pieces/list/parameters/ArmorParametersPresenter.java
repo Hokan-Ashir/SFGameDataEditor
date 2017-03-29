@@ -20,10 +20,11 @@ public class ArmorParametersPresenter extends AbstractParametersPresenter<ArmorP
 
     private static final Logger LOGGER = Logger.getLogger(ArmorParametersPresenter.class);
 
-    private final WidgetsComboBoxListener armorRequirementsListener = new WidgetsComboBoxListener<>(getView(), ItemRequirementsObject.class, getView().getRequirementsComboBox());
+    private final WidgetsComboBoxListener<ItemRequirementsObject, ArmorParametersView> armorRequirementsListener;
 
     public ArmorParametersPresenter(ArmorParametersView view) {
         super(view);
+        armorRequirementsListener = new WidgetsComboBoxListener<>(getView(), ItemRequirementsObject.class, getView().getRequirementsComboBox());
         getView().getRequirementsComboBox().addItemListener(armorRequirementsListener);
     }
 

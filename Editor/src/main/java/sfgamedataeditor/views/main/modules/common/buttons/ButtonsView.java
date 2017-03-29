@@ -10,6 +10,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class ButtonsView implements PresentableView {
     private JButton loadSfmodFileButton;
     private JButton createSfmodFileButton;

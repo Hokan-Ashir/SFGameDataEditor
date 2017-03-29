@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.text.Document;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class ItemPriceWidget extends AbstractWidget<ItemPriceWidgetListener> {
     private JPanel mainPanel;
     private JLabel goldAmountLabel;
@@ -57,11 +58,11 @@ public class ItemPriceWidget extends AbstractWidget<ItemPriceWidgetListener> {
         field.setText(String.valueOf(value));
     }
 
-    public boolean isGoldAmountField(Document document) {
+    boolean isGoldAmountField(Document document) {
         return goldAmountTextField.getDocument().equals(document);
     }
 
-    public Integer getFieldValue(Document document) {
+    Integer getFieldValue(Document document) {
         if (goldAmountTextField.getDocument().equals(document)) {
             return Integer.valueOf(goldAmountTextField.getText());
         } else if (silverAmountTextField.getDocument().equals(document)) {
@@ -71,7 +72,7 @@ public class ItemPriceWidget extends AbstractWidget<ItemPriceWidgetListener> {
         }
     }
 
-    public boolean isFieldOfDocumentIsEmpty(Document document) {
+    boolean isFieldOfDocumentIsEmpty(Document document) {
         if (goldAmountTextField.getDocument().equals(document)) {
             return goldAmountTextField.getText().isEmpty();
         } else if (silverAmountTextField.getDocument().equals(document)) {

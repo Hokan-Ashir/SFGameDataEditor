@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
     private JPanel mainPanel;
     private JLabel itemTypeLabel;
@@ -104,15 +105,15 @@ public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
         }
     }
 
-    public JButton getGoToItemButton() {
+    JButton getGoToItemButton() {
         return goToItemButton;
     }
 
-    public JComboBox<String> getItemTypeComboBox() {
+    JComboBox<String> getItemTypeComboBox() {
         return itemTypeComboBox;
     }
 
-    public JComboBox<String> getItemPieceComboBox() {
+    JComboBox<String> getItemPieceComboBox() {
         return itemPieceComboBox;
     }
 

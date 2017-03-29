@@ -12,10 +12,9 @@ public enum EventHistory {
     private final List<ShowViewEvent> events = new ArrayList<>();
     private int currentEventIndex = -1;
 
-    public boolean addEventToHistory(ShowViewEvent event) {
-        boolean isSuccess = this.events.add(event);
+    public void addEventToHistory(ShowViewEvent event) {
+        this.events.add(event);
         currentEventIndex++;
-        return isSuccess;
     }
 
     public void undo() {

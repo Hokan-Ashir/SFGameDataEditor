@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.util.List;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public class CreatureWidget extends AbstractWidget<CreatureWidgetListener> {
     private JPanel mainPanel;
     private JLabel titleLabel;
@@ -37,7 +38,7 @@ public class CreatureWidget extends AbstractWidget<CreatureWidgetListener> {
         return racesComboBox;
     }
 
-    public JComboBox<String> getCreatureNameComboBox() {
+    JComboBox<String> getCreatureNameComboBox() {
         return creatureNameComboBox;
     }
 

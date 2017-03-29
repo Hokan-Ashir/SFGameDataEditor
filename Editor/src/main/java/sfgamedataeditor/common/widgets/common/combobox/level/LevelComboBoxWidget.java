@@ -5,6 +5,7 @@ import sfgamedataeditor.common.widgets.AbstractWidget;
 import javax.swing.*;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class LevelComboBoxWidget extends AbstractWidget<AbstractLevelComboBoxListener> {
     private JPanel mainPanel;
     private JComboBox<String> comboBox;

@@ -18,11 +18,13 @@ import java.util.List;
 
 public class WeaponParametersPresenter extends AbstractParametersPresenter<WeaponParametersModelParameter, WeaponParametersView> {
 
-    private final WidgetsComboBoxListener itemRequirementsListener = new WidgetsComboBoxListener<>(getView(), ItemRequirementsObject.class, getView().getItemRequirementsComboBox());
-    private final WidgetsComboBoxListener itemEffectsListener = new WidgetsComboBoxListener<>(getView(), ItemSpellEffectsObject.class, getView().getEffectsComboBox());
+    private final WidgetsComboBoxListener<ItemRequirementsObject, WeaponParametersView> itemRequirementsListener;
+    private final WidgetsComboBoxListener<ItemSpellEffectsObject, WeaponParametersView> itemEffectsListener;
 
     public WeaponParametersPresenter(WeaponParametersView view) {
         super(view);
+        itemRequirementsListener = new WidgetsComboBoxListener<>(getView(), ItemRequirementsObject.class, getView().getItemRequirementsComboBox());
+        itemEffectsListener = new WidgetsComboBoxListener<>(getView(), ItemSpellEffectsObject.class, getView().getEffectsComboBox());
         getView().getItemRequirementsComboBox().addItemListener(itemRequirementsListener);
         getView().getEffectsComboBox().addItemListener(itemEffectsListener);
     }

@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.util.List;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public class BuildingsWidget extends AbstractWidget<BuildingsWidgetListener> {
     private JPanel mainPanel;
     private JLabel titleLabel;
@@ -37,7 +38,7 @@ public class BuildingsWidget extends AbstractWidget<BuildingsWidgetListener> {
         return racesComboBox;
     }
 
-    public JComboBox<String> getBuildingComboBox() {
+    JComboBox<String> getBuildingComboBox() {
         return buildingComboBox;
     }
 
