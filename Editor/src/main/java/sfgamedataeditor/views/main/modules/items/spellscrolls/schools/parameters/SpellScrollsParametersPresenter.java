@@ -4,6 +4,8 @@ import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.viewconfigurations.item.scrolls.GUIElements;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxParameter;
+import sfgamedataeditor.database.items.effects.ItemEffectsObject;
+import sfgamedataeditor.database.items.effects.ItemEffectsTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
@@ -52,13 +54,18 @@ public class SpellScrollsParametersPresenter extends AbstractParametersPresenter
         Set<Integer> scrollLevels = getScrollLevels(scrollBaseName);
         String scrollName = scrollBaseName + " - " + I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "level") + " " + selectedLevel;
 
-        int scrollId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(scrollName, SCROLL_TYPE_ID);
-        ItemPriceParametersObject scrollPriceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(scrollId);
-        List<ItemSpellEffectsObject> scrollItemSpellEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(scrollId);
+        Integer scrollId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(scrollName, SCROLL_TYPE_ID);
+        ItemPriceParametersObject scrollPriceParametersObject = null;
+        List<ItemSpellEffectsObject> scrollItemSpellEffectsObjects = null;
+        if (scrollId != null) {
+             scrollPriceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(scrollId);
+             scrollItemSpellEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(scrollId);
+        }
 
         int spellId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(scrollName, SPELL_TYPE_ID);
         ItemPriceParametersObject spellPriceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(spellId);
         List<ItemSpellEffectsObject> spellItemSpellEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(spellId);
+        ItemEffectsObject itemEffectsObject = ItemEffectsTableService.INSTANCE.getObjectByItemId(spellId);
 
         int guiElementId = annotation.GUIElementId();
         if (guiElementId == GUIElements.LEVEL) {
@@ -68,9 +75,19 @@ public class SpellScrollsParametersPresenter extends AbstractParametersPresenter
             Class<?> dtoClass = annotation.DTOClass();
             if (dtoClass.equals(ItemPriceParametersObject.class)) {
                 if (scrollGUIIds.contains(guiElementId)) {
-                    widget.getListener().updateWidgetValue(scrollPriceParametersObject);
+                    if (scrollPriceParametersObject == null) {
+                        widget.setVisible(false);
+                    } else {
+                        widget.setVisible(true);
+                        widget.getListener().updateWidgetValue(scrollPriceParametersObject);
+                    }
                 } else if (spellGUIIds.contains(guiElementId)) {
-                    widget.getListener().updateWidgetValue(spellPriceParametersObject);
+                    if (spellItemSpellEffectsObjects == null) {
+                        widget.setVisible(false);
+                    } else {
+                        widget.setVisible(true);
+                        widget.getListener().updateWidgetValue(spellPriceParametersObject);
+                    }
                 }
             } else if (dtoClass.equals(ItemSpellEffectsObject.class)) {
                 if (scrollGUIIds.contains(guiElementId)) {
@@ -90,6 +107,9 @@ public class SpellScrollsParametersPresenter extends AbstractParametersPresenter
                         widget.getListener().updateWidgetValue(spellItemSpellEffectsObjects.get(0));
                     }
                 }
+            } else if (dtoClass.equals(ItemEffectsObject.class)) {
+                // it's guaranteed that spell has only one item effect on it
+                widget.getListener().updateWidgetValue(itemEffectsObject);
             }
         }
     }

@@ -13,6 +13,8 @@ public final class GUIElements {
     public static final int SPELL_ITEM_EFFECT = 7;
     public static final int SPELL_ITEM_SET = 8;
 
+    public static final int ITEM_EFFECT_NUMBER = 9;
+
     private GUIElements() {
 
     }

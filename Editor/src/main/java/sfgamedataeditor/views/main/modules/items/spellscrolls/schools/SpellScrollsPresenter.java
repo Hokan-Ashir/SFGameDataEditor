@@ -14,7 +14,7 @@ import java.util.TreeSet;
 
 public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParameter, SpellScrollsListView, SpellScrollsParametersModel> {
 
-    private static final Integer SCROLL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.scrolls"));
+    private static final Integer SPELL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
     private final SpellScrollsModelCreator modelCreator = new SpellScrollsModelCreator();
 
     public SpellScrollsPresenter(SpellScrollsListView view) {
@@ -29,7 +29,7 @@ public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParame
                 + I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "level")
                 + " "
                 + lowestScrollLevel;
-        int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedSpellScroll, SCROLL_TYPE_ID);
+        int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedSpellScroll, SPELL_TYPE_ID);
         Icon icon = getView().getSelectedModuleIcon();
         return modelCreator.createModel(itemId, icon);
     }

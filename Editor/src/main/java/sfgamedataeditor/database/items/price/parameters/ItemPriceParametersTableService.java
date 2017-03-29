@@ -144,6 +144,10 @@ public enum ItemPriceParametersTableService implements TableCreationService {
                 where = where.and().in("typeId", (Object[]) typeId);
             }
             List<ItemPriceParametersObject> objects = where.query();
+            if (objects.isEmpty()) {
+                return null;
+            }
+
             return objects.get(0).itemId;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

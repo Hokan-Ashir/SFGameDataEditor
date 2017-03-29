@@ -152,6 +152,19 @@
               <text value="Label"/>
             </properties>
           </component>
+          <grid id="c1c9b" binding="itemEffectPanel" layout-manager="GridBagLayout">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="300" height="80"/>
+              <minimumSize width="300" height="80"/>
+              <preferredSize width="300" height="80"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
         </children>
       </grid>
       <grid id="dcb36" binding="levelPanel" layout-manager="GridBagLayout">

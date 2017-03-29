@@ -29,6 +29,7 @@ public class ScrollsParametersViewConfiguration extends AbstractConfiguration {
                 "effectNumber");
         addViewMapping(GUIElements.SCROLL_ITEM_EFFECT, itemEffect);
         addViewMapping(GUIElements.SPELL_ITEM_EFFECT, itemEffect);
+        addViewMapping(GUIElements.ITEM_EFFECT_NUMBER, itemEffect);
 
         ConfigurationWidgetParameter itemSet = new ConfigurationWidgetParameter(ItemSetWidget.class, ItemSetWidgetListener.class, I18NTypes.SCROLLS_AND_SPELLS_GUI,
                 "itemSet");

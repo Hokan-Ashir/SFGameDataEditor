@@ -3,6 +3,7 @@ package sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameter
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.item.scrolls.GUIElements;
+import sfgamedataeditor.database.items.effects.ItemEffectsObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
@@ -50,6 +51,9 @@ public class SpellScrollsParametersView implements PresentableView {
     private JPanel itemEffectSpellPanel;
     private JLabel scrollParametersLabel;
     private JLabel spellParametersLabel;
+
+    @GUIElement(GUIElementId = GUIElements.ITEM_EFFECT_NUMBER, DTOColumnNames = "effectNumber", DTOClass = ItemEffectsObject.class)
+    private JPanel itemEffectPanel;
 
     public SpellScrollsParametersView() {
         scrollParametersLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.SCROLLS_AND_SPELLS_GUI, "scroll.parameters"));
