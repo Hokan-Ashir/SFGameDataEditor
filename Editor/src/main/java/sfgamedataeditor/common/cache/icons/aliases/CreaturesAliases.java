@@ -271,6 +271,39 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addMinotaurAliases();
         addFlayedAliases();
         addShaAliases();
+        addGoblinsAliases();
+    }
+
+    private void addGoblinsAliases() {
+        // Burgle the ripper/Fishrobber/Goblin backstabber/Goblin charlatan/Goblin firemaster
+        // Goblin flamethrower/Goblin firedancer/Goblin quacksalver/Goblin swordfighter
+        // Klingzog/Snarf/Daylight thief/Goblin thief/Wartskin
+        addAlias("1171.png", "635.png");
+        addAlias("784.png", "635.png");
+        addAlias("262.png", "635.png");
+        addAlias("265.png", "635.png");
+        addAlias("266.png", "635.png");
+        addAlias("268.png", "635.png");
+        addAlias("267.png", "635.png");
+        addAlias("838.png", "635.png");
+        addAlias("783.png", "635.png");
+        addAlias("636.png", "635.png");
+        addAlias("837.png", "635.png");
+        addAlias("2390.png", "635.png");
+        addAlias("2592.png", "635.png");
+        addAlias("259.png", "635.png");
+
+        // Gnaff/Goblin Bruiser - 1/Goblin Bruiser - 2/Goblin rockcaster/Goblin rockthrower
+        // Goblin sandcaster/Goblin wildling/Gubble/Thump/Spiderwhisperer
+        addAlias("658.png", "836.png");
+        addAlias("779.png", "836.png");
+        addAlias("650.png", "836.png");
+        addAlias("667.png", "836.png");
+        addAlias("655.png", "836.png");
+        addAlias("777.png", "836.png");
+        addAlias("669.png", "836.png");
+        addAlias("668.png", "836.png");
+        addAlias("660.png", "836.png");
     }
 
     private void addShaAliases() {
