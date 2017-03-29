@@ -190,9 +190,8 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2576.png", "2565.png");
         addAlias("2577.png", "2565.png");
 
-        // Plexor mim thar/Toth lar/The guardian - 1/The guardian - 2
+        // Plexor mim thar/Toth lar/The guardian - 2
         addAlias("2546.png", "1356.png");
-        addAlias("409.png", "1356.png");
         addAlias("1076.png", "1356.png");
 
         // Trader weasel - 1/Trader weasel - 2
@@ -237,6 +236,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
             addAlias(String.valueOf(i) + ".png", "2941.png");
         }
 
+        addHallitsAliases();
         addEloniElvesAliases();
         addSpidersAliases();
         addUroksAliases();
@@ -264,6 +264,23 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addScytheAliases();
         addMeatEatersAliases();
         addLuciensAliases();
+    }
+
+    private void addHallitsAliases() {
+        // Hinrik Karison/Lorderic svartlar/Hallit miner/Tworsnik
+        addAlias("907.png", "1004.png");
+        addAlias("395.png", "1004.png");
+        addAlias("1039.png", "1004.png");
+
+        // Ragnar thorginson/Hallit veteran/Hallit defender
+        addAlias("403.png", "905.png");
+        addAlias("402.png", "905.png");
+
+        // Skarvig ironbeard - 1/Skarvig ironbeard - 2
+        addAlias("904.png", "406.png");
+
+        // Hallit soldier/Hallit lieutenant
+        addAlias("516.png", "512.png");
     }
 
     private void addLuciensAliases() {
