@@ -236,6 +236,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
             addAlias(String.valueOf(i) + ".png", "2941.png");
         }
 
+        addRedLegionAliases();
         addHallitsAliases();
         addEloniElvesAliases();
         addSpidersAliases();
@@ -264,6 +265,34 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addScytheAliases();
         addMeatEatersAliases();
         addLuciensAliases();
+    }
+
+    private void addRedLegionAliases() {
+        // Kerwen twinblades/Cord dunnahan/Red legion lieutenant - 1/Red legion lieutenant - 2/Red legion sergeant - 1
+        // Commander halicor
+        addAlias("1006.png", "1012.png");
+        addAlias("981.png", "1012.png");
+        addAlias("1385.png", "1012.png");
+        addAlias("979.png", "1012.png");
+        addAlias("989.png", "1012.png");
+
+        // Priest of ereon/Red legion mentalist - 1/Red legion mentalist - 2
+        addAlias("976.png", "2652.png");
+        addAlias("1447.png", "2652.png");
+
+        // Seth dundred - 1/Red legion recruit - 1/Red legion recruit - 2
+        addAlias("993.png", "2652.png");
+        addAlias("1448.png", "2652.png");
+
+        // Red legion scout - 1/Red legion scout - 2
+        addAlias("1449.png", "973.png");
+
+        // Red legion marksman - 1/Red legion marksman - 2
+        addAlias("1446.png", "974.png");
+
+        // Peasant/Bren fallwind/John goddard
+        addAlias("1008.png", "1345.png");
+        addAlias("1009.png", "1345.png");
     }
 
     private void addHallitsAliases() {
