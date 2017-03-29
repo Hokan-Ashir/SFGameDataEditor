@@ -321,7 +321,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2846.png", "1252.png");
 
         // Marauder - 2/Marauder - 3/Marauder - 4/Skeleton general - 1/Skeleton general - 2/Keeper of keys
-        // Keymaster - 2/Keymaster - 3
+        // Keymaster - 2/Keymaster - 3/Arne/Steffen/Jochen/Sidonie
         addAlias("2080.png", "2078.png");
         addAlias("2084.png", "2078.png");
         addAlias("148.png", "2078.png");
@@ -329,17 +329,24 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2435.png", "2078.png");
         addAlias("2119.png", "2078.png");
         addAlias("2120.png", "2078.png");
+        addAlias("1462.png", "2078.png");
+        addAlias("1459.png", "2078.png");
+        addAlias("1456.png", "2078.png");
+        addAlias("1457.png", "2078.png");
 
         // Bonewraith/Lifesucker/Skeleton cutthroat/Skeleton painbringer/Skeleton brawler/Skeleton blademaster
+        // Steffen/Marcus
         addAlias("1184.png", "695.png");
         addAlias("133.png", "695.png");
         addAlias("134.png", "695.png");
         addAlias("2583.png", "695.png");
         addAlias("2585.png", "695.png");
+        addAlias("1466.png", "695.png");
+        addAlias("1463.png", "695.png");
 
         // Ashbone archer/Keeper of the fourth fragment/Ashbone butcher/Zihar/Ashbone/Ashbone bowmaster
         // Ashbone bloodthief/Ashdigger/Ashdancer - 1/Ashdancer - 2/Ashdancer - 3/Ashdancer - 4
-        // Skeleton heretic/Skeleton petit mal/Skeleton slave drive
+        // Skeleton heretic/Skeleton petit mal/Skeleton slave drive/Holger
         addAlias("1414.png", "149.png");
         addAlias("146.png", "149.png");
         addAlias("145.png", "149.png");
@@ -354,6 +361,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2976.png", "149.png");
         addAlias("2955.png", "149.png");
         addAlias("2138.png", "149.png");
+        addAlias("1455.png", "149.png");
 
         // Skeleton guardian/Skeleton fighter/Grandmaster of the mosaic
         addAlias("605.png", "1302.png");
@@ -361,6 +369,9 @@ public class CreaturesAliases extends AbstractIconPathAlias {
 
         // Skeleton legionnaire/Skeleton pretorian
         addAlias("2277.png", "2557.png");
+
+        // Skeleton grand mal/Libi
+        addAlias("1458.png", "2956.png");
     }
 
     private void addBanditsAliases() {
