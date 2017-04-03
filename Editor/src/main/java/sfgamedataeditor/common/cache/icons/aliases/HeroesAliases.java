@@ -37,6 +37,24 @@ public class HeroesAliases extends AbstractIconPathAlias {
         addAlias("3854.png", "757.png");
         addAlias("4129.png", "757.png");
         addAlias("4771.png", "757.png");
+
+        // Priest adhira/Priest thalia/Mage ayla
+        addAlias("761.png", "759.png");
+        addAlias("4718.png", "759.png");
+
+        // Mentalist faerin/Warrior ishtar/Fighter alrius
+        addAlias("764.png", "762.png");
+        addAlias("779.png", "762.png");
+
+        // Priest tehr/Warrior bael/Archer rolfor
+        addAlias("778.png", "765.png");
+        addAlias("4132.png", "765.png");
+
+        // Archer caitlyn/Mentalist zoe/Fighter ragna/Fighter yonie/Priestess nova
+        addAlias("2930.png", "766.png");
+        addAlias("3717.png", "766.png");
+        addAlias("4121.png", "766.png");
+        addAlias("4135.png", "766.png");
     }
 
     @Override
