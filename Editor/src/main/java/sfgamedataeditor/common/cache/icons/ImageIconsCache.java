@@ -1,10 +1,7 @@
 package sfgamedataeditor.common.cache.icons;
 
 import org.apache.log4j.Logger;
-import sfgamedataeditor.common.cache.icons.aliases.AbstractIconPathAlias;
-import sfgamedataeditor.common.cache.icons.aliases.CreaturesAliases;
-import sfgamedataeditor.common.cache.icons.aliases.SpellAliases;
-import sfgamedataeditor.common.cache.icons.aliases.UnitAliases;
+import sfgamedataeditor.common.cache.icons.aliases.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -27,6 +24,7 @@ public enum ImageIconsCache {
         aliasList.add(new SpellAliases());
         aliasList.add(new UnitAliases());
         aliasList.add(new CreaturesAliases());
+        aliasList.add(new HeroesAliases());
     }
 
     public ImageIcon getImageIcon(String iconPath) {
