@@ -64,7 +64,7 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
     public void renderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
 
-        JPanel managerPanel = getView().getPanelManager().getMainPanel();
+        JPanel managerPanel = getView().getManagerPanel();
         mainView.renderViewInsideContentPanel(managerPanel);
 
         JButton selectedPanel = getView().getSelectedPanel();
@@ -75,7 +75,7 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
     public void unRenderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
 
-        JPanel managerPanel = getView().getPanelManager().getMainPanel();
+        JPanel managerPanel = getView().getManagerPanel();
         mainView.unRenderViewInsideContentPanel(managerPanel);
 
         JButton selectedPanel = getView().getSelectedPanel();
