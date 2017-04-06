@@ -61,7 +61,7 @@ public class EventHistoryPresenter extends AbstractPresenter<EventHistoryModelPa
     @Override
     public void renderView() {
         MainView mainView = ViewRegister.INSTANCE.getView(MainView.class);
-        mainView.renderViewInsideEventHistoryPanel(getView().getMainPanel());
+        mainView.renderViewInsideHeaderPanel(getView().getMainPanel());
     }
 
     @Override

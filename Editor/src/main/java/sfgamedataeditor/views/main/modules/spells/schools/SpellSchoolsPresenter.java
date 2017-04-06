@@ -3,8 +3,8 @@ package sfgamedataeditor.views.main.modules.spells.schools;
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
-import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
+import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModelParameter;
 

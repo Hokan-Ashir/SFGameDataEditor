@@ -6,7 +6,7 @@ import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxParameter;
 import sfgamedataeditor.database.skill.parameters.SkillParameterObject;
 import sfgamedataeditor.database.skill.parameters.SkillParametersTableService;
-import sfgamedataeditor.views.common.AbstractParametersPresenter;
+import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
 
 import javax.swing.*;
 import java.util.Set;

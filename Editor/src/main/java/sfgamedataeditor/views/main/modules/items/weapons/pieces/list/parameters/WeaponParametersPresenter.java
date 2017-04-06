@@ -6,8 +6,8 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObjec
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
-import sfgamedataeditor.views.common.AbstractParametersPresenter;
 import sfgamedataeditor.views.common.WidgetsComboBoxListener;
+import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;

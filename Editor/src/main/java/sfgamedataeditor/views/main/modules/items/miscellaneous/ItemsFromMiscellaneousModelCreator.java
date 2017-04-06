@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.miscellaneous;
 
-import sfgamedataeditor.views.common.AbstractModulesModelCreator;
+import sfgamedataeditor.views.common.model.creators.AbstractModulesModelCreator;
 
 public class ItemsFromMiscellaneousModelCreator extends AbstractModulesModelCreator {
     @Override

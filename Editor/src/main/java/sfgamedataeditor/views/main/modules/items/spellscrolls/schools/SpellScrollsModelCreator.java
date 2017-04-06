@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.spellscrolls.schools;
 
-import sfgamedataeditor.views.common.ModelCreator;
+import sfgamedataeditor.views.common.model.creators.ModelCreator;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersModel;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersModelParameter;
 import sfgamedataeditor.views.utility.i18n.I18NService;

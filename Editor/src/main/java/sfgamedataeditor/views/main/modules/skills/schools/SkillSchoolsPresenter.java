@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.skills.schools;
 
-import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
+import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterModel;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterModelParameter;
 import sfgamedataeditor.views.utility.ViewTools;

@@ -18,7 +18,7 @@ public class ChestsListView extends AbstractModulesView {
     }
 
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
         Set<String> names = ChestCorpseLootTableService.INSTANCE.getAllChestCorpseLootObjectNames();
         addMappings(names, ChestParametersView.class);
     }

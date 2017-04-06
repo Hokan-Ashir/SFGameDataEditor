@@ -16,7 +16,7 @@ public class BuildingsView extends AbstractModulesView {
     }
 
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
 
     }
 

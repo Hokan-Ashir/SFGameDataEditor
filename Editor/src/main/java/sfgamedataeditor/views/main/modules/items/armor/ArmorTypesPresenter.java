@@ -1,8 +1,8 @@
 package sfgamedataeditor.views.main.modules.items.armor;
 
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
+import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.ArmorPiecesModel;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.ArmorPiecesModelParameter;
 import sfgamedataeditor.views.utility.ViewTools;

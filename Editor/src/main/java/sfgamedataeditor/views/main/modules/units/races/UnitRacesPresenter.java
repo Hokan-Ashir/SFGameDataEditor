@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.units.races;
 
-import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
+import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitListModel;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitListModelParameter;
 

@@ -10,7 +10,7 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObjec
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsTableService;
-import sfgamedataeditor.views.common.AbstractParametersPresenter;
+import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 

@@ -11,7 +11,7 @@ import sfgamedataeditor.database.creatures.production.resources.CreatureResource
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesTableService;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
-import sfgamedataeditor.views.common.ModelCreator;
+import sfgamedataeditor.views.common.model.creators.ModelCreator;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersModel;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersModelParameter;
 

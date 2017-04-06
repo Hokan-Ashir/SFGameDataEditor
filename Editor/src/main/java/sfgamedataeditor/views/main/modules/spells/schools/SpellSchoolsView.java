@@ -19,7 +19,7 @@ public class SpellSchoolsView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
         Set<String> allSpellSchoolNameObjects = SpellParametersTableService.INSTANCE.getAllSpellSchoolNames();
         addMappings(allSpellSchoolNameObjects, SpellsView.class);
     }

@@ -17,7 +17,7 @@ public class WeaponPiecesView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
     }
 
     @Override

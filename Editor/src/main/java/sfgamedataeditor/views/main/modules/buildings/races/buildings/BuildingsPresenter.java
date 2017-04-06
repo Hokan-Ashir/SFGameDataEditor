@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.buildings.races.buildings;
 
-import sfgamedataeditor.views.common.AbstractModulesPresenter;
+import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersModel;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;

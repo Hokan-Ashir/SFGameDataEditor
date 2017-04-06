@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.spells.schools;
 
-import sfgamedataeditor.views.common.AbstractModulesModelCreator;
+import sfgamedataeditor.views.common.model.creators.AbstractModulesModelCreator;
 
 public class ModulesFromSpellSchoolsModelCreator extends AbstractModulesModelCreator {
     @Override

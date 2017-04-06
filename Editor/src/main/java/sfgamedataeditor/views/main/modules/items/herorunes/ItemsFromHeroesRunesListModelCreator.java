@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.herorunes;
 
-import sfgamedataeditor.views.common.AbstractModulesModelCreator;
+import sfgamedataeditor.views.common.model.creators.AbstractModulesModelCreator;
 
 public class ItemsFromHeroesRunesListModelCreator extends AbstractModulesModelCreator {
     @Override

@@ -34,13 +34,13 @@ public abstract class AbstractModulesView implements PresentableView {
         initializeSubViewsMapping();
     }
 
-    protected abstract void fillSubViewsMappings();
+    public abstract void fillSubViewsMappings();
 
     private void initializeSubViewsMapping() {
         fillSubViewsMappings();
     }
 
-    void updateSubViewsLayout() {
+    public void updateSubViewsLayout() {
         panelManager.updatePanelsLayout(subViewsPanels);
     }
 
@@ -108,7 +108,7 @@ public abstract class AbstractModulesView implements PresentableView {
         button.setHorizontalTextPosition(SwingConstants.CENTER);
     }
 
-    void setSelectedModuleValue(String selectedModuleValue) {
+    public void setSelectedModuleValue(String selectedModuleValue) {
         selectedPanel.setSize(selectedModuleValue.length() * 2, selectedPanel.getHeight());
         selectedPanel.setText(selectedModuleValue);
     }
@@ -117,7 +117,7 @@ public abstract class AbstractModulesView implements PresentableView {
         return selectedPanel.getText();
     }
 
-    void setSelectedModuleIcon(Icon icon) {
+    public void setSelectedModuleIcon(Icon icon) {
         selectedIcon = icon;
     }
 
@@ -129,19 +129,19 @@ public abstract class AbstractModulesView implements PresentableView {
         return DefaultModulesPanelManager.class;
     }
 
-    JButton getSelectedPanel() {
+    public JButton getSelectedPanel() {
         return selectedPanel;
     }
 
-    JPanel getManagerPanel() {
+    public JPanel getManagerPanel() {
         return panelManager.getMainPanel();
     }
 
-    List<SubViewPanel> getSubViewsPanels() {
+    public List<SubViewPanel> getSubViewsPanels() {
         return subViewsPanels;
     }
 
-    Class<? extends PresentableView> getSubPanelViewClass(JButton clickedButton) {
+    public Class<? extends PresentableView> getSubPanelViewClass(JButton clickedButton) {
         if (clickedButton.equals(selectedPanel)) {
             return this.getClass();
         }

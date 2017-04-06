@@ -20,7 +20,7 @@ public class SkillSchoolsView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
         Set<String> mappings = new TreeSet<>();
         ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.SKILL_SCHOOL_MAPPING);
         for (String key : bundle.keySet()) {

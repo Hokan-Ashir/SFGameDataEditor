@@ -2,8 +2,8 @@ package sfgamedataeditor.views.main.modules.items.weapons;
 
 import sfgamedataeditor.common.widgets.items.weapons.type.WeaponTypesMap;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableService;
-import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
+import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiecesModel;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiecesModelParameter;
 

@@ -19,7 +19,7 @@ public class ArmorTypeListView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
         Set<String> names = new TreeSet<>();
         names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.helmets"));
         names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.chest.armor"));

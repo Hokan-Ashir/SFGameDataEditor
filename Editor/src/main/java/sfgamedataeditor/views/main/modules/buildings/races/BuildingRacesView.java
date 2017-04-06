@@ -16,7 +16,7 @@ public class BuildingRacesView extends AbstractModulesView {
     }
 
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
         Set<String> buildingsRacesNames = BuildingsTableService.INSTANCE.getBuildingsRacesNames();
         addMappings(buildingsRacesNames, BuildingsView.class);
     }

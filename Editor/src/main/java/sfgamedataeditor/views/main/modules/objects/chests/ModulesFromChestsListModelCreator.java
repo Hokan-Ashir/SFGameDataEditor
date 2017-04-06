@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.objects.chests;
 
-import sfgamedataeditor.views.common.AbstractModulesModelCreator;
+import sfgamedataeditor.views.common.model.creators.AbstractModulesModelCreator;
 
 public class ModulesFromChestsListModelCreator extends AbstractModulesModelCreator {
     @Override

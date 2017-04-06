@@ -2,7 +2,7 @@ package sfgamedataeditor.views.main.modules.items.workersrunes;
 
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.views.common.ModelCreator;
+import sfgamedataeditor.views.common.model.creators.ModelCreator;
 import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesParametersModel;
 import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesParametersModelParameter;
 

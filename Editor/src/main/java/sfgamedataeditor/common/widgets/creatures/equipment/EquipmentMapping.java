@@ -4,7 +4,7 @@ import sfgamedataeditor.common.widgets.items.weapons.type.WeaponTypesMap;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.views.common.ModelCreator;
+import sfgamedataeditor.views.common.model.creators.ModelCreator;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.ArmorModelCreator;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.parameters.ArmorParametersView;
 import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.BuildingPlansModelCreator;
@@ -25,16 +25,20 @@ import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public enum EquipmentMapping {
     INSTANCE;
 
     private final Map<Integer, Pair<Class<? extends PresentableView>, ModelCreator>> itemTypesClassViews = new HashMap<>();
+    private final List<Integer> itemTypesWithParameters;
 
     EquipmentMapping() {
         initializeItemTypesClassViewMap();
+        itemTypesWithParameters = createItemTypesWithParameters();
     }
 
     private void initializeItemTypesClassViewMap() {
@@ -190,6 +194,14 @@ public enum EquipmentMapping {
         return Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, nameMapping));
     }
 
+    public Class<? extends PresentableView> getItemParametersViewClassByTypeId(int typeId) {
+        Pair<Class<? extends PresentableView>, ModelCreator> pair = itemTypesClassViews.get(typeId);
+        if (pair == null) {
+            return null;
+        }
+        return pair.getKey();
+    }
+
     public Class<? extends PresentableView> getItemParametersViewClassByItemId(int itemId) {
         int itemTypeId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
         Pair<Class<? extends PresentableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
@@ -216,5 +228,20 @@ public enum EquipmentMapping {
         } else {
             return pair.getKey() == null;
         }
+    }
+
+    public List<Integer> getItemTypesWithParameters() {
+        return itemTypesWithParameters;
+    }
+
+    private List<Integer> createItemTypesWithParameters() {
+        List<Integer> result = new ArrayList<>();
+        for (Integer integer : itemTypesClassViews.keySet()) {
+            if (!isItemTypeHasNoParameters(integer)) {
+                result.add(integer);
+            }
+        }
+
+        return result;
     }
 }

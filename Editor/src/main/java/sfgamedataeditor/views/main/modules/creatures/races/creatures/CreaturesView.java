@@ -18,7 +18,7 @@ public class CreaturesView extends AbstractModulesView {
     }
 
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
 
     }
 

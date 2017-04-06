@@ -10,7 +10,7 @@ import sfgamedataeditor.database.creatures.skills.CreatureSkillObject;
 import sfgamedataeditor.database.creatures.skills.CreatureSkillTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.views.common.AbstractParametersPresenter;
+import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 

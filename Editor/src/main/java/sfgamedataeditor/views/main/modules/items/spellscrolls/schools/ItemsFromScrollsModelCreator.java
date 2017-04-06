@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.spellscrolls.schools;
 
-import sfgamedataeditor.views.common.AbstractModulesModelCreator;
+import sfgamedataeditor.views.common.model.creators.AbstractModulesModelCreator;
 
 public class ItemsFromScrollsModelCreator extends AbstractModulesModelCreator {
     @Override

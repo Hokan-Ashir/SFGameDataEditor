@@ -32,7 +32,7 @@ public class SpellsView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
     }
 
     @Override

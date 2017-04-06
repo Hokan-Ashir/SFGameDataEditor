@@ -22,7 +22,7 @@ public class HeroesRunesListView extends AbstractModulesView {
     }
 
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
         Set<String> runesNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(HERO_RUNE_TYPE_ID);
         addMappings(runesNames, HeroesRunesParametersView.class);
     }

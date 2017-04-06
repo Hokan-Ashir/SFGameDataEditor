@@ -4,6 +4,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.GenericRawResults;
 import com.j256.ormlite.dao.RawRowMapper;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
@@ -17,10 +18,7 @@ import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public enum CreatureCommonParametersTableService implements TableCreationService {
     INSTANCE {
@@ -104,27 +102,46 @@ public enum CreatureCommonParametersTableService implements TableCreationService
         }
     }
 
+    public List<Pair<String, Integer>> getCreaturesNameIdPairByItemNamePart(String namePart, Long limit) {
+        List<CreaturesCommonParameterObject> objects = getObjectsByNamePart(namePart, limit);
+        List<Pair<String, Integer>> result = new ArrayList<>();
+        for (CreaturesCommonParameterObject object : objects) {
+            result.add(new Pair<>(object.name, object.creatureId));
+        }
+
+        return result;
+    }
+
     public Integer getCreatureIdByName(String name) {
+        List<CreaturesCommonParameterObject> objects = getObjectsByNamePart(name, null);
+        if (objects.isEmpty()) {
+            return null;
+        } else {
+            return objects.get(0).creatureId;
+        }
+    }
+
+    private List<CreaturesCommonParameterObject> getObjectsByNamePart(String partName, Long limit) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<CreaturesCommonParameterObject, String> dao;
         try {
             dao = DaoManager.createDao(connectionSource, CreaturesCommonParameterObject.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return null;
+            return Collections.emptyList();
         }
 
         try {
-            SelectArg selectArg = new SelectArg(name);
-            List<CreaturesCommonParameterObject> objects = dao.queryBuilder().where().like("name", selectArg).query();
-            if (objects.isEmpty()) {
-                return null;
-            } else {
-                return objects.get(0).creatureId;
+            SelectArg selectArg = new SelectArg("%" + partName + "%");
+            QueryBuilder<CreaturesCommonParameterObject, String> builder = dao.queryBuilder();
+            if (limit != null) {
+                builder = builder.limit(limit);
             }
+
+            return builder.where().like("name", selectArg).query();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return null;
+            return Collections.emptyList();
         }
     }
 

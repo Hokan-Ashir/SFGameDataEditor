@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.units.races.units;
 
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
-import sfgamedataeditor.views.common.AbstractModulesPresenter;
+import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersModel;
 
 import javax.swing.*;

@@ -24,7 +24,7 @@ public class MerchantsView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
         Set<String> creatureNames = MerchantInventoryTableService.INSTANCE.getAllMerchantNames();
         addMappings(creatureNames, MerchantInventoryView.class);
     }

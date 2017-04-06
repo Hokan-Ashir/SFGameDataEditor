@@ -28,7 +28,7 @@ public class ItemTypesView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
         List<Pair<String, Class<? extends PresentableView>>> mappings = new ArrayList<>();
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.weapons"), WeaponsTypesListView.class));
         mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor"), ArmorTypeListView.class));

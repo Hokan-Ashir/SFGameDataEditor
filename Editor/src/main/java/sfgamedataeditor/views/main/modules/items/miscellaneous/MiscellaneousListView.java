@@ -21,7 +21,7 @@ public class MiscellaneousListView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
         int miscellaneousType = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.miscellaneous"));
         Set<String> miscellaneousNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(miscellaneousType);
         addMappings(miscellaneousNames, MiscellaneousParametersView.class);

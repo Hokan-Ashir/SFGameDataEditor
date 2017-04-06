@@ -19,7 +19,7 @@ public class WeaponsTypesListView extends AbstractModulesView {
      * {@inheritDoc}
      */
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
         Set<String> mappings = new TreeSet<>();
         mappings.add(createMappingName("type.default"));
         mappings.add(createMappingName("type.hand"));

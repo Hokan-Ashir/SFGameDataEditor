@@ -16,7 +16,7 @@ public class UnitRacesView extends AbstractModulesView {
     }
 
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
         Set<String> names = new TreeSet<>();
         names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.humans"));
         names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.elves"));

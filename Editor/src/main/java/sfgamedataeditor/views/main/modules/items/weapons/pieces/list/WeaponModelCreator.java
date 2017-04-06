@@ -8,7 +8,7 @@ import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsTableService;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableService;
-import sfgamedataeditor.views.common.ModelCreator;
+import sfgamedataeditor.views.common.model.creators.ModelCreator;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersModel;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersModelParameter;
 

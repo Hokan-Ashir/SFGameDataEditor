@@ -1,8 +1,8 @@
 package sfgamedataeditor.views.main.modules.items.herorunes;
 
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
-import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
+import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.items.herorunes.parameters.HeroesRunesParametersModel;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;

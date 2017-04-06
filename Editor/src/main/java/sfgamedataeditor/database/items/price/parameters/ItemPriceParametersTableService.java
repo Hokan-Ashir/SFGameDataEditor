@@ -2,6 +2,7 @@ package sfgamedataeditor.database.items.price.parameters;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
@@ -15,10 +16,7 @@ import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public enum ItemPriceParametersTableService implements TableCreationService {
     INSTANCE {
@@ -107,51 +105,56 @@ public enum ItemPriceParametersTableService implements TableCreationService {
         }
     }
 
-    public Integer getItemIdByItemName(String name) {
-        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
-        final Dao<ItemPriceParametersObject, String> dao;
-        try {
-            dao = DaoManager.createDao(connectionSource, ItemPriceParametersObject.class);
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
-            return null;
+    public List<Pair<String, Integer>> getItemNameIdPairByItemNamePart(String namePart, Long limit, Integer... typeId) {
+        List<ItemPriceParametersObject> objects = getItemObjectsByItemNamePartAndType(namePart, limit, typeId);
+        List<Pair<String, Integer>> result = new ArrayList<>();
+        for (ItemPriceParametersObject object : objects) {
+            result.add(new Pair<>(object.name, object.itemId));
         }
 
-        try {
-            SelectArg selectArg = new SelectArg(name);
-            List<ItemPriceParametersObject> objects = dao.queryBuilder().where().like("name", selectArg).query();
-            return objects.get(0).itemId;
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
-            return null;
-        }
+        return result;
+    }
+
+    public Integer getItemIdByItemName(String name) {
+        List<ItemPriceParametersObject> objects = getItemObjectsByItemNamePartAndType(name, null);
+        return objects.get(0).itemId;
     }
 
     public Integer getItemIdByItemNameAndType(String name, Integer... typeId) {
+        List<ItemPriceParametersObject> objectList = getItemObjectsByItemNamePartAndType(name, null, typeId);
+        if (objectList.isEmpty()) {
+            return null;
+        }
+
+        return objectList.get(0).itemId;
+    }
+
+    private List<ItemPriceParametersObject> getItemObjectsByItemNamePartAndType(String namePart, Long limit, Integer... typeId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<ItemPriceParametersObject, String> dao;
         try {
             dao = DaoManager.createDao(connectionSource, ItemPriceParametersObject.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return null;
+            return Collections.emptyList();
         }
 
         try {
-            SelectArg selectArg = new SelectArg(name);
-            Where<ItemPriceParametersObject, String> where = dao.queryBuilder().where().like("name", selectArg);
+            SelectArg selectArg = new SelectArg("%" + namePart + "%");
+            QueryBuilder<ItemPriceParametersObject, String> builder = dao.queryBuilder();
+            if (limit != null) {
+                builder = builder.limit(limit);
+            }
+
+            Where<ItemPriceParametersObject, String> where = builder.where().like("name", selectArg);
             if (typeId != null && typeId.length != 0) {
                 where = where.and().in("typeId", (Object[]) typeId);
             }
-            List<ItemPriceParametersObject> objects = where.query();
-            if (objects.isEmpty()) {
-                return null;
-            }
 
-            return objects.get(0).itemId;
+            return where.query();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return null;
+            return Collections.emptyList();
         }
     }
 

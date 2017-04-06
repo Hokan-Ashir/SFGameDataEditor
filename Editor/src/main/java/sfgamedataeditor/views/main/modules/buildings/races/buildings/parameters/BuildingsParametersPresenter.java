@@ -7,7 +7,7 @@ import sfgamedataeditor.database.buildings.army.requirements.BuildingsArmyRequir
 import sfgamedataeditor.database.buildings.common.BuildingsObject;
 import sfgamedataeditor.database.buildings.requirements.BuildingsRequirementsObject;
 import sfgamedataeditor.database.common.OffsetableObject;
-import sfgamedataeditor.views.common.AbstractParametersPresenter;
+import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
 
 import javax.swing.*;
 import java.util.HashMap;

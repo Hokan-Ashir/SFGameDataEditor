@@ -18,7 +18,7 @@ public class CreaturesRacesView extends AbstractModulesView {
     }
 
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
         Set<String> listOfCreatureRaces = CreatureParametersTableService.INSTANCE.getListOfCreatureRaces();
         addMappings(listOfCreatureRaces, CreaturesView.class);
     }

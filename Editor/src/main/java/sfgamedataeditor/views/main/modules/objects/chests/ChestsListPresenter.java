@@ -2,8 +2,8 @@ package sfgamedataeditor.views.main.modules.objects.chests;
 
 import sfgamedataeditor.database.objects.chests.ChestCorpseLootObject;
 import sfgamedataeditor.database.objects.chests.ChestCorpseLootTableService;
-import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
+import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersModel;
 import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersModelParameter;
 

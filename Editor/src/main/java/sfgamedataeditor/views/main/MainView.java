@@ -14,7 +14,7 @@ public class MainView implements PresentableView {
     private JPanel mainPanel;
     private JPanel navigationPanel;
     private JPanel contentPanel;
-    private JPanel eventHistoryPanel;
+    private JPanel headerPanel;
     private JPanel buttonsPanel;
     private JScrollPane scrollPane;
     private JPanel componentsPanel;
@@ -45,8 +45,8 @@ public class MainView implements PresentableView {
         renderViewInsidePanel(viewComponent, navigationPanel);
     }
 
-    public void renderViewInsideEventHistoryPanel(JComponent viewComponent) {
-        renderViewInsidePanel(viewComponent, eventHistoryPanel);
+    public void renderViewInsideHeaderPanel(JComponent viewComponent) {
+        renderViewInsidePanel(viewComponent, headerPanel);
     }
 
     public void renderViewInsideButtonPanel(JComponent viewComponent) {

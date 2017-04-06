@@ -7,7 +7,7 @@ import sfgamedataeditor.database.creatures.herospells.HeroSpellObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.skills.CreatureSkillObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
-import sfgamedataeditor.views.common.AbstractParametersPresenter;
+import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
 
 import javax.swing.*;
 import java.util.HashMap;

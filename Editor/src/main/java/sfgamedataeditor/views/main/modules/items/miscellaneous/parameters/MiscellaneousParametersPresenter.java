@@ -3,7 +3,7 @@ package sfgamedataeditor.views.main.modules.items.miscellaneous.parameters;
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
-import sfgamedataeditor.views.common.AbstractParametersPresenter;
+import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
 
 import javax.swing.*;
 

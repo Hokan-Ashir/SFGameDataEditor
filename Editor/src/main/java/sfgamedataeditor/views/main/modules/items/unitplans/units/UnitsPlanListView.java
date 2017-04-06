@@ -16,7 +16,7 @@ public class UnitsPlanListView extends AbstractModulesView {
     }
 
     @Override
-    protected void fillSubViewsMappings() {
+    public void fillSubViewsMappings() {
 
     }
 

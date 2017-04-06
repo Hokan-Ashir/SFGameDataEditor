@@ -1,8 +1,8 @@
 package sfgamedataeditor.views.main.modules.creatures.races;
 
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
-import sfgamedataeditor.views.common.AbstractModulesPresenter;
 import sfgamedataeditor.views.common.ModuleParameter;
+import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesModel;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesModelParameter;
 

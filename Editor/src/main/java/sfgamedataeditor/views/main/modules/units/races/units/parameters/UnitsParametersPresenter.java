@@ -9,7 +9,7 @@ import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.production.buildings.CreatureBuildingsObject;
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
-import sfgamedataeditor.views.common.AbstractParametersPresenter;
+import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
 
 import javax.swing.*;
 import java.util.HashMap;
