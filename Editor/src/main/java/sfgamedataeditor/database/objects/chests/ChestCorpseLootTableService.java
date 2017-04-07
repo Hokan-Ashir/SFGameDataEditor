@@ -8,7 +8,6 @@ import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.views.utility.Pair;
-import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -59,8 +58,7 @@ public enum ChestCorpseLootTableService implements TableCreationService {
         return names;
     }
 
-    public List<ChestCorpseLootObject> getChestLootObjectsByName(String selectedModuleName) {
-        Integer chestLootId = ViewTools.getKeyByPropertyValue(selectedModuleName, I18NTypes.OBJECTS);
+    public List<ChestCorpseLootObject> getChestLootObjectsById(Integer chestLootId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<ChestCorpseLootObject, String> dao;
         try {

@@ -1,16 +1,17 @@
 package sfgamedataeditor.views.main.modules.objects.chests;
 
-import sfgamedataeditor.database.objects.chests.ChestCorpseLootObject;
-import sfgamedataeditor.database.objects.chests.ChestCorpseLootTableService;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
+import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestLootModelCreator;
 import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersModel;
-import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersModelParameter;
+import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
-import java.util.List;
 
 public class ChestsListPresenter extends AbstractModulesPresenter<ModuleParameter, ChestsListView, ChestParametersModel> {
+
+    private final ChestLootModelCreator creator = new ChestLootModelCreator();
 
     public ChestsListPresenter(ChestsListView view) {
         super(view);
@@ -19,9 +20,8 @@ public class ChestsListPresenter extends AbstractModulesPresenter<ModuleParamete
     @Override
     protected ChestParametersModel createModel() {
         String selectedModuleName = getView().getSelectedModuleName();
-        List<ChestCorpseLootObject> objectList = ChestCorpseLootTableService.INSTANCE.getChestLootObjectsByName(selectedModuleName);
+        Integer chestLootId = ViewTools.getKeyByPropertyValue(selectedModuleName, I18NTypes.OBJECTS);
         Icon icon = getView().getSelectedModuleIcon();
-        ChestParametersModelParameter parameter = new ChestParametersModelParameter(objectList, icon);
-        return new ChestParametersModel(parameter);
+        return creator.createModel(chestLootId, icon);
     }
 }
