@@ -1,8 +1,5 @@
 package sfgamedataeditor.database.spells.parameters;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -69,29 +66,21 @@ class Requirements {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        Requirements that = (Requirements) obj;
-        EqualsBuilder builder = new EqualsBuilder();
-        for (int i = 0; i < SIZE; i++) {
-            builder.append(this.getRequirementClass(i), that.getRequirementClass(i));
-            builder.append(this.getSubRequirementClass(i), that.getSubRequirementClass(i));
-        }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        return builder.isEquals();
+        Requirements that = (Requirements) o;
+
+        if (!requirementClasses.equals(that.requirementClasses)) return false;
+        return requirementSubClasses.equals(that.requirementSubClasses);
     }
 
     @Override
     public int hashCode() {
-        HashCodeBuilder builder = new HashCodeBuilder();
-        for (Integer requirementClass : requirementClasses) {
-            builder.append(requirementClass);
-        }
-
-        for (Integer requirementSubClass : requirementSubClasses) {
-            builder.append(requirementSubClass);
-        }
-
-        return builder.hashCode();
+        int result = requirementClasses.hashCode();
+        result = 31 * result + requirementSubClasses.hashCode();
+        return result;
     }
 
     private static Set<Requirements> generatePermutations(Requirements requirements) {
