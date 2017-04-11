@@ -9,7 +9,6 @@ import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesModelCreator;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModel;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
-import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -50,17 +49,7 @@ public class CreatureWidgetListener extends AbstractWidgetListener<CreatureWidge
         String selectedRaceName = (String) getWidget().getRacesComboBox().getSelectedItem();
         final Set<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceName(selectedRaceName);
         final JComboBox<String> comboBox = getWidget().getCreatureNameComboBox();
-        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
-            @Override
-            protected void setValues() {
-                comboBox.setSelectedItem(null);
-                comboBox.removeAllItems();
-                for (String creatureName : creatureNames) {
-                    comboBox.addItem(creatureName);
-                }
-            }
-        });
-
+        ViewTools.replaceComboBoxContentSilently(comboBox, creatureNames);
     }
 
     @Override

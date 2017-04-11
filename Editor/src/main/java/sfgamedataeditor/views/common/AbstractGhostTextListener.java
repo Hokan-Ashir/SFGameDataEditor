@@ -14,7 +14,7 @@ public abstract class AbstractGhostTextListener  implements FocusListener, Docum
     private static final String FOREGROUND_PROPERTY_NAME = "foreground";
     private final JTextField textfield;
     private boolean isEmpty;
-    private Color ghostColor;
+    private final Color ghostColor;
     private Color foregroundColor;
     private final String ghostText;
 

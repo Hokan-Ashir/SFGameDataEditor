@@ -1,25 +1,21 @@
 package sfgamedataeditor.views.main.modules.common.search;
 
-public class SearchTuple {
+class SearchTuple {
     private final Integer elementType;
     private final String elementName;
     private final Integer elementId;
 
-    public SearchTuple(Integer elementType, String elementName, Integer elementId) {
+    SearchTuple(Integer elementType, String elementName, Integer elementId) {
         this.elementType = elementType;
         this.elementName = elementName;
         this.elementId = elementId;
     }
 
-    public Integer getElementType() {
+    Integer getElementType() {
         return elementType;
     }
 
-    public String getElementName() {
-        return elementName;
-    }
-
-    public Integer getElementId() {
+    Integer getElementId() {
         return elementId;
     }
 

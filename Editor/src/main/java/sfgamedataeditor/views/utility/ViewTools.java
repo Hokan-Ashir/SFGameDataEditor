@@ -5,6 +5,7 @@ import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 public class ViewTools {
@@ -37,21 +38,36 @@ public class ViewTools {
 
     public static String convertToMultiline(String value) {
         String[] subStrings = value.split(" ");
-        String result = "<html>";
+        StringBuilder result = new StringBuilder("<html>");
         int lastNewLineInjectionPosition = 0;
         for (int i = 0; i < subStrings.length; ++i) {
-            result = result + subStrings[i] + " ";
+            result.append(subStrings[i]).append(" ");
             if (result.length() - lastNewLineInjectionPosition > LABEL_LINE_MAX_LENGTH
                     && i != subStrings.length - 1) {
-                result = result + "<br>";
+                result.append("<br>");
                 lastNewLineInjectionPosition = result.length();
             }
         }
-        return result;
+        return result.toString();
     }
 
     public static void setComboBoxValuesSilently(SilentComboBoxValuesSetter setter) {
         setter.setValuesSilently();
+    }
+
+    public static void replaceComboBoxContentSilently(final JComboBox<String> comboBox, final Collection<String> values) {
+        SilentComboBoxValuesSetter<String> setter = new SilentComboBoxValuesSetter<String>(comboBox) {
+            @Override
+            protected void setValues() {
+                comboBox.setSelectedItem(null);
+                comboBox.removeAllItems();
+                for (String value : values) {
+                    comboBox.addItem(value);
+                }
+            }
+        };
+
+        setter.setValues();
     }
 
     public static Integer getKeyByPropertyValue(String value, I18NTypes type) {

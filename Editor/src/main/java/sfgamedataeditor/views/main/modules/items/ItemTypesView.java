@@ -2,7 +2,7 @@ package sfgamedataeditor.views.main.modules.items;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.items.armor.ArmorTypeListView;
 import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansRacesView;
 import sfgamedataeditor.views.main.modules.items.herorunes.HeroesRunesListView;

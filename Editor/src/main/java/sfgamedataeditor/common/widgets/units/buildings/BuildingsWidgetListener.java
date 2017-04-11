@@ -9,7 +9,6 @@ import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.BuildingModelCreator;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersModel;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersView;
-import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -86,15 +85,6 @@ public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWid
         String selectedRaceName = (String) getWidget().getRacesComboBox().getSelectedItem();
         final Set<String> buildingsNames = BuildingsTableService.INSTANCE.getBuildingsNamesByRaceName(selectedRaceName);
         final JComboBox<String> comboBox = getWidget().getBuildingComboBox();
-        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
-            @Override
-            protected void setValues() {
-                comboBox.setSelectedItem(null);
-                comboBox.removeAllItems();
-                for (String buildingName : buildingsNames) {
-                    comboBox.addItem(buildingName);
-                }
-            }
-        });
+        ViewTools.replaceComboBoxContentSilently(comboBox, buildingsNames);
     }
 }

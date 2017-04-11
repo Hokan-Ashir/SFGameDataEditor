@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.armor;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.ArmorPiecesView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;

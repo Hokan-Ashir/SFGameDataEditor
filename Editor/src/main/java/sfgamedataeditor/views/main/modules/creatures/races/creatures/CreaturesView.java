@@ -3,9 +3,9 @@ package sfgamedataeditor.views.main.modules.creatures.races.creatures;
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.NameModulesPanelManager;
+import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 

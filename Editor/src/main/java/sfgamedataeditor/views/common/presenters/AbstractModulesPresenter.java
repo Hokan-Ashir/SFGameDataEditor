@@ -7,8 +7,8 @@ import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.AbstractSubModuleParameter;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.views.common.AbstractModulesView;
 import sfgamedataeditor.views.common.SubViewPanel;
+import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.MainView;
 
 import javax.swing.*;

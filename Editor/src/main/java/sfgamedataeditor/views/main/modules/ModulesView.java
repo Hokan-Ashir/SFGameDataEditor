@@ -2,7 +2,7 @@ package sfgamedataeditor.views.main.modules;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.views.common.AbstractModulesView;
+import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.buildings.races.BuildingRacesView;
 import sfgamedataeditor.views.main.modules.creatures.races.CreaturesRacesView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;

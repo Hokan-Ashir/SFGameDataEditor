@@ -10,7 +10,6 @@ import sfgamedataeditor.views.main.modules.units.races.UnitMapping;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitModelCreator;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersModel;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersView;
-import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -90,15 +89,6 @@ public class UnitWidgetListener extends AbstractWidgetListener<UnitWidget, Offse
         String selectedRaceName = (String) getWidget().getRacesComboBox().getSelectedItem();
         final Set<String> creatureNames = UnitMapping.INSTANCE.getUnitNames(selectedRaceName);
         final JComboBox<String> comboBox = getWidget().getUnitComboBox();
-        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
-            @Override
-            protected void setValues() {
-                comboBox.setSelectedItem(null);
-                comboBox.removeAllItems();
-                for (String creatureName : creatureNames) {
-                    comboBox.addItem(creatureName);
-                }
-            }
-        });
+        ViewTools.replaceComboBoxContentSilently(comboBox, creatureNames);
     }
 }

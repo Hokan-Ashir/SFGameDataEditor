@@ -1,7 +1,8 @@
-package sfgamedataeditor.views.common;
+package sfgamedataeditor.views.common.views;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.mvc.objects.PresentableView;
+import sfgamedataeditor.views.common.SubViewPanel;
 import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.DefaultModulesPanelManager;
 import sfgamedataeditor.views.utility.Pair;
