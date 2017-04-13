@@ -63,6 +63,9 @@ public enum EquipmentMapping {
 
         int blankScrollsId =  getItemTypeByNameMapping("items.blank.scrolls");
         itemTypesClassViews.put(blankScrollsId, pair);
+
+        int noTypeId =  getItemTypeByNameMapping("items.no.type");
+        itemTypesClassViews.put(noTypeId, pair);
     }
 
     private void addBuildingPlansViewMapping() {

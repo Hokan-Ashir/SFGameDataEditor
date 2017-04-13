@@ -29,6 +29,8 @@ public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
     // TODO possibly restrict users, so that they can't mindlessly put i.e. rings in chest slot
     private void initializeItemTypesComboBox() {
         List<String> i18nItemTypeKeys = new ArrayList<String>() {{
+            add("items.no.type");
+
             add("items.armor.helmets");
             add("items.armor.chest.armor");
             add("items.armor.robes");
