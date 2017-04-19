@@ -10,6 +10,16 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         // Lichking anktahr/Korshar
         addAlias("2068.png", "592.png");
 
+        // Blade scorpion/Blade destroyer
+        addAlias("2703.png", "2537.png");
+
+        // Darkwing - 1/2/3/4/5/6
+        addAlias("2989.png", "2220.png");
+        addAlias("2990.png", "2220.png");
+        addAlias("2991.png", "2220.png");
+        addAlias("2992.png", "2220.png");
+        addAlias("2993.png", "2220.png");
+
         // Shin tar guar/Ghost of udwin/Zerbite ghost/Terror from the deep/Ghost of the scribe
         // Ghost of the scout/Dream-snatcher/Ghost of the piper/Ghost of shar
         // Ghost of uram/Ghost of silverhand/Ghost of hokan ashir/Priest of tiara
@@ -51,9 +61,6 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         // Firebone fiend - 1/Firebone fiend - 2/Greater Bone Fiend
         addAlias("2958.png", "2662.png");
         addAlias("2911.png", "2662.png");
-
-        // Cave orc-1/Cave orc-2
-        addAlias("2232.png", "1161.png");
 
         // Rohen-3/Rohen-5
         addAlias("2707.png", "2663.png");
@@ -265,6 +272,30 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addGoblinsAliases();
         addBanditsAliases();
         addSkeletonsAliases();
+        addCaveOrcsAliases();
+        addManticorasAliases();
+    }
+
+    private void addManticorasAliases() {
+        // Great manticora/Lesser manticora/Manticora blood messenger/Manticora wildfang/Manticora
+        // Fireclaw/Firelion/Manticore - 1
+        addAlias("1858.png", "1860.png");
+        addAlias("1862.png", "1860.png");
+        addAlias("1861.png", "1860.png");
+        addAlias("1859.png", "1860.png");
+        addAlias("1049.png", "1860.png");
+        addAlias("995.png", "1860.png");
+        addAlias("197.png", "1860.png");
+    }
+
+    private void addCaveOrcsAliases() {
+        // Cave orc-1/Cave orc-2/Cave orc guard/Cave orc spearfighter
+        addAlias("2232.png", "1161.png");
+        addAlias("2928.png", "1161.png");
+        addAlias("2234.png", "1161.png");
+
+        // Cave orc healer - 1/Cave orc healer - 2
+        addAlias("2233.png", "1197.png");
     }
 
     private void addSkeletonsAliases() {
@@ -451,12 +482,13 @@ public class CreaturesAliases extends AbstractIconPathAlias {
 
     private void addRedLegionAliases() {
         // Kerwen twinblades/Cord dunnahan/Red legion lieutenant - 1/Red legion lieutenant - 2/Red legion sergeant - 1
-        // Commander halicor
+        // Commander halicor/General Torn
         addAlias("1006.png", "1012.png");
         addAlias("981.png", "1012.png");
         addAlias("1385.png", "1012.png");
         addAlias("979.png", "1012.png");
         addAlias("989.png", "1012.png");
+        addAlias("1152.png", "1012.png");
 
         // Priest of ereon/Red legion mentalist - 1/Red legion mentalist - 2
         addAlias("976.png", "2652.png");
@@ -809,9 +841,10 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2901.png", "2088.png");
         addAlias("2902.png", "2088.png");
 
-        // Grass stalker/Grass devil/Greater Grass devil
+        // Grass stalker/Grass devil/Greater Grass devil/Queen of the  scythe terrors
         addAlias("2449.png", "2885.png");
         addAlias("2450.png", "2885.png");
+        addAlias("2638.png", "2885.png");
     }
 
     private void addHazimAliases() {
@@ -832,7 +865,7 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2098.png", "2094.png");
         addAlias("2100.png", "2094.png");
 
-        // Citizen of empyria - 7/Ayzo/Hazim Archer-1/Hazim Archer-2/Bario's servant
+        // Citizen of empyria - 7/Ayzo/Hazim Archer-1/Hazim Archer-2/Bario's servant/Hazim defender/Tarwakan
         addAlias("2828.png", "2852.png");
         addAlias("2051.png", "2852.png");
         addAlias("2090.png", "2852.png");
@@ -840,6 +873,8 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2437.png", "2852.png");
         addAlias("2050.png", "2852.png");
         addAlias("2310.png", "2852.png");
+        addAlias("2903.png", "2852.png");
+        addAlias("2052.png", "2852.png");
     }
 
     private void addOrderOfDawnAliases() {
@@ -874,25 +909,28 @@ public class CreaturesAliases extends AbstractIconPathAlias {
 
     private void addGiantsAliases() {
         // Hill giant/Mountain giant/Braga/Windwielder/Destroyer - 1
-        // Stormfist
+        // Stormfist/Gravecrawler/Stormstrider
         addAlias("130.png", "129.png");
         addAlias("131.png", "129.png");
         addAlias("708.png", "129.png");
         addAlias("710.png", "129.png");
         addAlias("709.png", "129.png");
+        addAlias("2504.png", "129.png");
+        addAlias("1547.png", "129.png");
 
-        // Kraga/Kraga-2/Horgr/Mjorn - 1/Mjorn - 2/Weak horgr
+        // Kraga/Kraga-2/Horgr/Mjorn - 1/Mjorn - 2/Weak horgr/Corpse digger
         addAlias("925.png", "132.png");
         addAlias("914.png", "132.png");
         addAlias("2581.png", "132.png");
         addAlias("2582.png", "132.png");
         addAlias("915.png", "132.png");
+        addAlias("2505.png", "132.png");
     }
 
     private void addGolemsAlisases() {
         // Wrath of stone/Stonefist/Stone golem - 1/Stone golem - 2/Stone golem - 3/Stone golem - 4/Stone golem - 5
         // Stone golem - 6/Stone golem - 7/Stone golem - 8/Stone guardian/Stoneling/Lifeless golem
-        // Rock crystal golem/Onyx golem
+        // Rock crystal golem/Onyx golem/Ancient wanderer/Primal force/Wandering stones
         addAlias("2076.png", "125.png");
         addAlias("123.png", "125.png");
         addAlias("1403.png", "125.png");
@@ -907,8 +945,12 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2653.png", "125.png");
         addAlias("2654.png", "125.png");
         addAlias("2655.png", "125.png");
+        addAlias("1959.png", "125.png");
+        addAlias("2413.png", "125.png");
+        addAlias("1958.png", "125.png");
 
         // Vulkanoid/Fire golem - 1/Fire golem - 2/Fire golem - 3/Fire golem - 4/Lavagolem/Lava golem/Firestone
+        // Guardian of stone/Magmastomper
         addAlias("2248.png", "998.png");
         addAlias("2250.png", "998.png");
         addAlias("2252.png", "998.png");
@@ -916,9 +958,12 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("120.png", "998.png");
         addAlias("1355.png", "998.png");
         addAlias("121.png", "998.png");
+        addAlias("929.png", "998.png");
+        addAlias("2414.png", "998.png");
 
         // Icefist/Ice golem - 1/Ice golem - 2/Ice golem - 3/Ice golem - 4/Ice golem - 5/Ice golem - 6/Ice golem - 7
-        // Golem icehurler/Frostgolem - 1/Frostgolem - 2/Frozen one
+        // Golem icehurler/Frostgolem - 1/Frostgolem - 2/Frozen one/Arch frost/Frostbringer - 2/Ice elemental - 1
+        // Ice wrath/Winter guardian/Winterfist
         addAlias("2254.png", "2313.png");
         addAlias("2255.png", "2313.png");
         addAlias("2256.png", "2313.png");
@@ -930,6 +975,12 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("117.png", "2313.png");
         addAlias("1485.png", "2313.png");
         addAlias("1087.png", "2313.png");
+        addAlias("2415.png", "2313.png");
+        addAlias("2848.png", "2313.png");
+        addAlias("591.png", "2313.png");
+        addAlias("1604.png", "2313.png");
+        addAlias("1086.png", "2313.png");
+        addAlias("1961.png", "2313.png");
     }
 
     private void addElementalsAliases() {
@@ -962,25 +1013,46 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2287.png", "2739.png");
         addAlias("2288.png", "2739.png");
         addAlias("2292.png", "2739.png");
+
+        // Air elemental - 1/Air elemental - 2/Master of air
+        addAlias("767.png", "588.png");
+        addAlias("772.png", "588.png");
+
+        // Ice elemental - 1/2/3/4/5/6/7/8/9/10/11/12
+        for (int i = 808; i <= 814; ++i) {
+            addAlias(String.valueOf(i) + ".png", "807.png");
+        }
+        for (int i = 2216; i <= 2219; ++i) {
+            addAlias(String.valueOf(i) + ".png", "807.png");
+        }
+
     }
 
     private void addDemonsAliases() {
-        // Dwarf titan - 1/Mighty dwarf titan/Dwarf titan - 2/Bank guard
+        // Dwarf titan - 1/Mighty dwarf titan/Dwarf titan - 2/Bank guard/Corrupted rocksmith/Rocksmith
         addAlias("2282.png", "1100.png");
         addAlias("2509.png", "1100.png");
         addAlias("2631.png", "1100.png");
+        addAlias("2012.png", "1100.png");
+        addAlias("2380.png", "1100.png");
 
-        // Orc titan - 1/Mighty orc titan/Orc titan - 2
+        // Orc titan - 1/Mighty orc titan/Orc titan - 2/Fire devil/Raging firedevil
         addAlias("2285.png", "1047.png");
         addAlias("2510.png", "1047.png");
+        addAlias("2383.png", "1047.png");
+        addAlias("2013.png", "1047.png");
 
-        // Troll titan - 1/Mighty troll titan/Troll titan - 2
+        // Troll titan - 1/Mighty troll titan/Troll titan - 2/Cyclops/Raging Cyclops
         addAlias("2286.png", "1098.png");
         addAlias("2511.png", "1098.png");
+        addAlias("2392.png", "1098.png");
+        addAlias("2014.png", "1098.png");
 
-        // Darkelf titan - 1/Mighty darkelf titan/Dark elf titan - 2
-        addAlias("2281.png", "1098.png");
-        addAlias("2512.png", "1098.png");
+        // Darkelf titan - 1/Mighty darkelf titan/Dark elf titan - 2/Dark spiderbrood/Spiderbrood
+        addAlias("2281.png", "1101.png");
+        addAlias("2512.png", "1101.png");
+        addAlias("2015.png", "1101.png");
+        addAlias("2388.png", "1101.png");
 
         // Mighty elf titan/Dark treant/Elf titan - 1/Elf titan - 2/Treant - 1/Treant - 2
         addAlias("2283.png", "2010.png");
@@ -1003,7 +1075,8 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2389.png", "1228.png");
 
         // Lesser demon/Fire terror/Fireling/Arz'ach/Master of fire/Firespitter/Fireling - 1/Fireling - 2
-        // Red death/Demon lord/Red butcher/Fire demon/Demonic warlord
+        // Red death/Demon lord/Red butcher/Fire demon/Demonic warlord/Devourer/Red prince/Red servant/The Renegade
+        // Zhuul/Greater demon
         addAlias("997.png", "178.png");
         addAlias("1805.png", "178.png");
         addAlias("1053.png", "178.png");
@@ -1016,9 +1089,15 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2561.png", "178.png");
         addAlias("2563.png", "178.png");
         addAlias("2564.png", "178.png");
+        addAlias("1307.png", "178.png");
+        addAlias("2873.png", "178.png");
+        addAlias("1013.png", "178.png");
+        addAlias("1059.png", "178.png");
+        addAlias("1068.png", "178.png");
+        addAlias("2562.png", "178.png");
 
         // Ulather/Imprisoned demon lord/The invincible/Underling/Demonic guardian/Strange firecaller
-        // Strange warrior/Arch fire devil/Arch demon
+        // Strange warrior/Arch fire devil/Arch demon/Deceiving demon/Master of the flames
         addAlias("2768.png", "1069.png");
         addAlias("2769.png", "1069.png");
         addAlias("2521.png", "1069.png");
@@ -1027,19 +1106,27 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2919.png", "1069.png");
         addAlias("2420.png", "1069.png");
         addAlias("2872.png", "1069.png");
+        addAlias("2567.png", "1069.png");
+        addAlias("2874.png", "1069.png");
     }
 
     private void addBriarwolvesAliases() {
         // Briarwolves sergent/Briarwolves corporal
         addAlias("983.png", "982.png");
 
+        // Briarwolves mentalist/Sharknar/Haran
+        addAlias("992.png", "719.png");
+        addAlias("2115.png", "719.png");
+
         // Ismail/Briarwolves Enchanter/Master of skeleton
         addAlias("971.png", "962.png");
         addAlias("1170.png", "962.png");
 
-        // Captain Ciar/Briar guard/Briarwolves elite
+        // Captain Ciar/Briar guard/Briarwolves elite/Briarwolves captain Ultar/Commander Briar
         addAlias("1054.png", "980.png");
         addAlias("1344.png", "980.png");
+        addAlias("986.png", "980.png");
+        addAlias("988.png", "980.png");
 
         // Briarwolves captain juno/Briarwolves armsman/Bandit leader
         addAlias("987.png", "970.png");
@@ -1129,12 +1216,15 @@ public class CreaturesAliases extends AbstractIconPathAlias {
     }
 
     private void addBalisisksAliases() {
-        // Basilisk-1/Basilisk-2/Lava Crawler/Mindbender/Sandworm/Stonewyrm
+        // Basilisk-1/Basilisk-2/Lava Crawler/Mindbender/Sandworm/Stonewyrm/Novarg/Sandcrawler/Stonesnake
         addAlias("1282.png", "319.png");
         addAlias("1723.png", "319.png");
         addAlias("996.png", "319.png");
         addAlias("2174.png", "319.png");
         addAlias("1048.png", "319.png");
+        addAlias("1722.png", "319.png");
+        addAlias("2293.png", "319.png");
+        addAlias("2932.png", "319.png");
     }
 
     @Override
