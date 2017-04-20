@@ -116,17 +116,37 @@ public enum ItemPriceParametersTableService implements TableCreationService {
     }
 
     public Integer getItemIdByItemName(String name) {
-        List<ItemPriceParametersObject> objects = getItemObjectsByItemNamePartAndType(name, null);
-        return objects.get(0).itemId;
+        return getItemIdByItemNameAndType(name);
     }
 
     public Integer getItemIdByItemNameAndType(String name, Integer... typeId) {
-        List<ItemPriceParametersObject> objectList = getItemObjectsByItemNamePartAndType(name, null, typeId);
-        if (objectList.isEmpty()) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        final Dao<ItemPriceParametersObject, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, ItemPriceParametersObject.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
             return null;
         }
 
-        return objectList.get(0).itemId;
+        try {
+            SelectArg selectArg = new SelectArg(name);
+            QueryBuilder<ItemPriceParametersObject, String> builder = dao.queryBuilder();
+            Where<ItemPriceParametersObject, String> where = builder.where().like("name", selectArg);
+            if (typeId != null && typeId.length != 0) {
+                where = where.and().in("typeId", (Object[]) typeId);
+            }
+
+            List<ItemPriceParametersObject> objects = where.query();
+            if (objects.isEmpty()) {
+                return null;
+            } else {
+                return objects.get(0).itemId;
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
     }
 
     private List<ItemPriceParametersObject> getItemObjectsByItemNamePartAndType(String namePart, Long limit, Integer... typeId) {

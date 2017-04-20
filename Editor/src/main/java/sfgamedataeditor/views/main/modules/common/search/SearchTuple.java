@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.main.modules.common.search;
 
-class SearchTuple {
+class SearchTuple implements Comparable<SearchTuple> {
     private final Integer elementType;
     private final String elementName;
     private final Integer elementId;
@@ -22,5 +22,10 @@ class SearchTuple {
     @Override
     public String toString() {
         return elementName;
+    }
+
+    @Override
+    public int compareTo(SearchTuple o) {
+        return this.elementName.compareTo(o.elementName);
     }
 }

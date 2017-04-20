@@ -113,11 +113,27 @@ public enum CreatureCommonParametersTableService implements TableCreationService
     }
 
     public Integer getCreatureIdByName(String name) {
-        List<CreaturesCommonParameterObject> objects = getObjectsByNamePart(name, null);
-        if (objects.isEmpty()) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        final Dao<CreaturesCommonParameterObject, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, CreaturesCommonParameterObject.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
             return null;
-        } else {
-            return objects.get(0).creatureId;
+        }
+
+        try {
+            SelectArg selectArg = new SelectArg(name);
+            QueryBuilder<CreaturesCommonParameterObject, String> builder = dao.queryBuilder();
+            List<CreaturesCommonParameterObject> objects = builder.where().like("name", selectArg).query();
+            if (objects.isEmpty()) {
+                return null;
+            } else {
+                return objects.get(0).creatureId;
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
         }
     }
 
@@ -133,11 +149,7 @@ public enum CreatureCommonParametersTableService implements TableCreationService
 
         try {
             SelectArg selectArg = new SelectArg("%" + partName + "%");
-            QueryBuilder<CreaturesCommonParameterObject, String> builder = dao.queryBuilder();
-            if (limit != null) {
-                builder = builder.limit(limit);
-            }
-
+            QueryBuilder<CreaturesCommonParameterObject, String> builder = dao.queryBuilder().limit(limit);
             return builder.where().like("name", selectArg).query();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

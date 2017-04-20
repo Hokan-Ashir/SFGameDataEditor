@@ -38,7 +38,7 @@ public class SearchView implements PresentableView {
     private JTextField searchField;
 
     private static final String FILTERING_PHRASE = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "filterPanel.text");
-    private static final Long MAXIMUM_NUMBER_OF_SUGGESTIONS = 10L;
+    private static final Long MAXIMUM_NUMBER_OF_SUGGESTIONS = 50L;
     private JComboBox<SearchTuple> suggestionsComboBox;
     private final DefaultComboBoxModel<SearchTuple> model = new DefaultComboBoxModel<>();
     private Map<Integer, Pair<ModelCreator, Class<? extends PresentableView>>> modelCreatorsMap = new HashMap<>();
@@ -107,6 +107,7 @@ public class SearchView implements PresentableView {
                 addObjectsSuggestions(text, elements);
             }
 
+            Collections.sort(elements);
             return elements;
         }
 

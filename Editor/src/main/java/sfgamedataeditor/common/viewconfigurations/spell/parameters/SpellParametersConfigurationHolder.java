@@ -123,6 +123,9 @@ public class SpellParametersConfigurationHolder extends AbstractConfigurationHol
             add("SummonFireGolem");
             add("SummonIceGolem");
             add("SummonEarthGolem");
+            add("FireElemental");
+            add("IceElemental");
+            add("EarthElemental");
         }};
     }
 
