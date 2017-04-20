@@ -46,18 +46,6 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2316.png", "2307.png");
         addAlias("2317.png", "2307.png");
 
-        // Undead goblin - 1/2/3/4/5/6/7/8/9/10/11
-        addAlias("162.png", "161.png");
-        addAlias("593.png", "161.png");
-        addAlias("594.png", "161.png");
-        addAlias("595.png", "161.png");
-        addAlias("596.png", "161.png");
-        addAlias("597.png", "161.png");
-        addAlias("2191.png", "161.png");
-        addAlias("2192.png", "161.png");
-        addAlias("2193.png", "161.png");
-        addAlias("2194.png", "161.png");
-
         // Firebone fiend - 1/Firebone fiend - 2/Greater Bone Fiend
         addAlias("2958.png", "2662.png");
         addAlias("2911.png", "2662.png");
@@ -274,6 +262,30 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addSkeletonsAliases();
         addCaveOrcsAliases();
         addManticorasAliases();
+        addGreylingsAliases();
+    }
+
+    private void addGreylingsAliases() {
+        // Undead goblin - 1/2/3/4/5/6/7/8/9/10/11
+        addAlias("162.png", "161.png");
+        addAlias("593.png", "161.png");
+        addAlias("594.png", "161.png");
+        addAlias("595.png", "161.png");
+        addAlias("596.png", "161.png");
+        addAlias("597.png", "161.png");
+        addAlias("2191.png", "161.png");
+        addAlias("2192.png", "161.png");
+        addAlias("2193.png", "161.png");
+        addAlias("2194.png", "161.png");
+        // Greyling torturer/Greyling/Greyling lurker/Greyling soulsipper/Greyling strengthstealer/Greyling berserker
+        for (int i = 1564; i <= 1569; i++) {
+            addAlias(String.valueOf(i) + ".png", "161.png");
+        }
+        // Greyling fleshformer/Greyling bone carver/Greyling slayer
+        addAlias("1923.png", "161.png");
+        addAlias("1727.png", "161.png");
+        addAlias("1924.png", "161.png");
+
     }
 
     private void addManticorasAliases() {
@@ -1145,18 +1157,24 @@ public class CreaturesAliases extends AbstractIconPathAlias {
 
     private void addBladesAliases() {
         // Blade minion - 1/Blade minion - 2/Blade iceweaver/Blade changer - 1/Blade changer - 2
-        // Blade changer - 3
-        // Blade servant
+        // Blade changer - 3/Blade servant/Blade - 1/Blade icecaster/Blade stormtrooper
+        // Blade spellbreaker/Unholy energy
         addAlias("304.png", "302.png");
         addAlias("310.png", "302.png");
         addAlias("2485.png", "302.png");
         addAlias("2730.png", "302.png");
         addAlias("2731.png", "302.png");
         addAlias("2732.png", "302.png");
+        addAlias("2299.png", "302.png");
+        addAlias("305.png", "302.png");
+        addAlias("1406.png", "302.png");
+        addAlias("307.png", "302.png");
+        addAlias("1408.png", "302.png");
 
         // Blade defender/Blade changer - 7/Blade changer - 8/Blade changer - 9
         // Blade warlord - 1/Blade warlord - 2/Blade overlord/Blade runner/Bladeweaver
-        // Blade Greater Weaver/Blade Captain/Blade devastator/Blade Nightmare
+        // Blade Greater Weaver/Blade Captain/Blade devastator/Blade Nightmare/Blade - 2/Blade - 3
+        // Blade deathweaver/Blade whirlwind/Thunderblade
         addAlias("2733.png", "1375.png");
         addAlias("2734.png", "1375.png");
         addAlias("2735.png", "1375.png");
@@ -1170,12 +1188,19 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2280.png", "1375.png");
         addAlias("2483.png", "1375.png");
         addAlias("2416.png", "1375.png");
+        addAlias("2300.png", "1375.png");
+        addAlias("2301.png", "1375.png");
+        addAlias("308.png", "1375.png");
+        addAlias("2279.png", "1375.png");
+        addAlias("1103.png", "1375.png");
 
         // Blade warlord - 1/Blade warlord - 2
         // Blade changer - 7/Blade changer - 8/Blade changer - 9
         // Princeps of the first order/Blade grandmaster
         // Blade frostcaller/Servant of the forger/Blade lord of ice
-        // Blade master of strategy
+        // Blade master of strategy/Blade - 4/Blade deathlord/Blade prime/Blade princeps
+        // First princeps of the hand/First triumvir/Second princeps of the hand/Second triumvir
+        // Third princeps of the hand/Third triumvir
         addAlias("2280.png", "1420.png");
         addAlias("2736.png", "1420.png");
         addAlias("2737.png", "1420.png");
@@ -1186,13 +1211,25 @@ public class CreaturesAliases extends AbstractIconPathAlias {
         addAlias("2580.png", "1420.png");
         addAlias("2417.png", "1420.png");
         addAlias("2845.png", "1420.png");
+        addAlias("2302.png", "1420.png");
+        addAlias("316.png", "1420.png");
+        addAlias("318.png", "1420.png");
+        addAlias("309.png", "1420.png");
+        addAlias("1115.png", "1420.png");
+        addAlias("1432.png", "1420.png");
+        addAlias("1389.png", "1420.png");
+        addAlias("1433.png", "1420.png");
+        addAlias("1391.png", "1420.png");
+        addAlias("1434.png", "1420.png");
 
         // Soulforger - 1/Soulforger - 2/Soulforger - 3
         // Lesser soulforger - 1/Lesser soulforger - 2
+        // Dark forger
         addAlias("1392.png", "1044.png");
         addAlias("1393.png", "1044.png");
         addAlias("2425.png", "1044.png");
         addAlias("2579.png", "1044.png");
+        addAlias("2571.png", "1044.png");
     }
 
     private void addBeetlesAliases() {
