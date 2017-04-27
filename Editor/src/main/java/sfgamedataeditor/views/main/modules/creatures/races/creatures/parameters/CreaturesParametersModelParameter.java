@@ -16,12 +16,16 @@ public class CreaturesParametersModelParameter extends IconableParameter {
     private final List<CreatureEquipmentObject> creatureEquipment;
     private final List<CreatureSpellObject> creatureSpells;
     private final List<CreatureCorpseLootObject> corpseLootObjects;
+    private final List<Integer> merchantItemIds;
+    private final String selectedMerchantItem;
 
     public CreaturesParametersModelParameter(CreatureParameterObject creatureParameterObject,
                                              CreaturesCommonParameterObject creatureCommonParameterObject,
                                              List<CreatureEquipmentObject> creatureEquipment,
                                              List<CreatureSpellObject> creatureSpells,
                                              List<CreatureCorpseLootObject> corpseLootObjects,
+                                             List<Integer> merchantItemIds,
+                                             String selectedMerchantItem,
                                              Icon icon) {
         super(icon);
         this.creatureParameterObject = creatureParameterObject;
@@ -29,6 +33,8 @@ public class CreaturesParametersModelParameter extends IconableParameter {
         this.creatureEquipment = creatureEquipment;
         this.creatureSpells = creatureSpells;
         this.corpseLootObjects = corpseLootObjects;
+        this.merchantItemIds = merchantItemIds;
+        this.selectedMerchantItem = selectedMerchantItem;
     }
 
     public CreatureParameterObject getCreatureParameterObject() {
@@ -49,5 +55,13 @@ public class CreaturesParametersModelParameter extends IconableParameter {
 
     public List<CreatureCorpseLootObject> getCorpseLootObjects() {
         return corpseLootObjects;
+    }
+
+    public List<Integer> getMerchantItemIds() {
+        return merchantItemIds;
+    }
+
+    public String getSelectedMerchantItem() {
+        return selectedMerchantItem;
     }
 }

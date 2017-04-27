@@ -760,6 +760,99 @@
               </grid>
             </children>
           </grid>
+          <grid id="a3b3f" binding="merchantTrades" layout-manager="GridBagLayout">
+            <constraints>
+              <tabbedpane title="MerchantTrades"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="4f4f8" class="javax.swing.JLabel" binding="inventoryLabel">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <labelFor value="593f5"/>
+                  <maximumSize width="160" height="25"/>
+                  <minimumSize width="160" height="25"/>
+                  <preferredSize width="160" height="25"/>
+                  <text value="Label"/>
+                </properties>
+              </component>
+              <grid id="bf7d7" binding="listPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="200" height="540"/>
+                  <minimumSize width="200" height="540"/>
+                  <preferredSize width="200" height="540"/>
+                </properties>
+                <border type="etched">
+                  <size top="5" left="5" bottom="5" right="5"/>
+                </border>
+                <children>
+                  <scrollpane id="9fbc5" binding="scrollPane">
+                    <constraints/>
+                    <properties>
+                      <autoscrolls value="true"/>
+                      <doubleBuffered value="true"/>
+                      <focusable value="true"/>
+                      <horizontalScrollBarPolicy value="30"/>
+                      <maximumSize width="180" height="520"/>
+                      <minimumSize width="180" height="520"/>
+                      <preferredSize width="180" height="520"/>
+                      <verticalScrollBarPolicy value="20"/>
+                      <wheelScrollingEnabled value="true"/>
+                    </properties>
+                    <border type="empty">
+                      <size top="5" left="5" bottom="5" right="5"/>
+                    </border>
+                    <children>
+                      <component id="2d444" class="javax.swing.JList" binding="merchantInventoryItemList">
+                        <constraints/>
+                        <properties>
+                          <autoscrolls value="true"/>
+                          <doubleBuffered value="true"/>
+                          <focusCycleRoot value="false"/>
+                          <focusTraversalPolicyProvider value="false"/>
+                          <focusable value="true"/>
+                          <layoutOrientation value="0"/>
+                          <maximumSize width="160" height="500"/>
+                          <minimumSize width="160" height="500"/>
+                          <model/>
+                          <opaque value="true"/>
+                          <preferredSize width="160" height="500"/>
+                          <requestFocusEnabled value="true"/>
+                          <selectionMode value="0"/>
+                          <valueIsAdjusting value="true"/>
+                          <visibleRowCount value="0"/>
+                        </properties>
+                        <clientProperties>
+                          <List.isFileList class="java.lang.Boolean" value="false"/>
+                        </clientProperties>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </grid>
+              <grid id="6bd3f" binding="selectedItemPanel" layout-manager="GridBagLayout">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <maximumSize width="255" height="110"/>
+                  <minimumSize width="255" height="110"/>
+                  <preferredSize width="255" height="110"/>
+                </properties>
+                <border type="etched"/>
+                <children/>
+              </grid>
+            </children>
+          </grid>
         </children>
       </tabbedpane>
       <component id="cb066" class="javax.swing.JLabel" binding="iconLabel">

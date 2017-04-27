@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
-import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
@@ -47,8 +46,7 @@ public enum MerchantInventoryItemsTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(MerchantInventoryItemsTableService.class);
 
-    public List<Integer> getInventoryItemIdsByMerchantName(String merchantName) {
-        Integer merchantId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(merchantName);
+    public List<Integer> getInventoryItemIdsByMerchantName(Integer merchantId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         Dao<MerchantInventoryItemsObject, ?> dao;
         try {

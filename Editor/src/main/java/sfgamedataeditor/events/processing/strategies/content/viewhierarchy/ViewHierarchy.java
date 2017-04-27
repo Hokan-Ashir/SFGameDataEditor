@@ -57,10 +57,6 @@ import sfgamedataeditor.views.main.modules.items.workersrunes.ItemsFromWorkersRu
 import sfgamedataeditor.views.main.modules.items.workersrunes.WorkersRuneRacesView;
 import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesFromWorkersRunesParameterModelCreator;
 import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesParametersView;
-import sfgamedataeditor.views.main.modules.merchants.MerchantsView;
-import sfgamedataeditor.views.main.modules.merchants.ModulesFromMerchantsModelCreator;
-import sfgamedataeditor.views.main.modules.merchants.inventory.MerchantInventoryView;
-import sfgamedataeditor.views.main.modules.merchants.inventory.MerchantsFromMerchantItemsModelCreator;
 import sfgamedataeditor.views.main.modules.objects.chests.ChestsListView;
 import sfgamedataeditor.views.main.modules.objects.chests.ModulesFromChestsListModelCreator;
 import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersView;
@@ -93,7 +89,6 @@ public enum  ViewHierarchy {
     ViewHierarchy() {
         rootNode.addChildren(createBuildingsNodes(rootNode),
                 createItemsNodes(rootNode),
-                createMerchantsNodes(rootNode),
                 createSkillNodes(rootNode),
                 createSpellNodes(rootNode),
                 createCreaturesNodes(rootNode),
@@ -118,14 +113,6 @@ public enum  ViewHierarchy {
         unitList.addChild(unitParameters);
 
         return units;
-    }
-
-    private ViewHierarchyNode createMerchantsNodes(ViewHierarchyNode rootNode) {
-        ViewHierarchyNode merchants = new ViewHierarchyNode(rootNode, MerchantsView.class, new ModulesFromMerchantsModelCreator());
-        ViewHierarchyNode merchantItems = new ViewHierarchyNode(merchants, MerchantInventoryView.class, new MerchantsFromMerchantItemsModelCreator());
-        merchants.addChild(merchantItems);
-
-        return merchants;
     }
 
     private ViewHierarchyNode createItemsNodes(ViewHierarchyNode rootNode) {

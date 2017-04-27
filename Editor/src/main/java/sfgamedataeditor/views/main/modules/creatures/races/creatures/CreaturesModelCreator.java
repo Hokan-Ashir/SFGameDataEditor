@@ -10,6 +10,7 @@ import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
+import sfgamedataeditor.database.merchants.items.MerchantInventoryItemsTableService;
 import sfgamedataeditor.views.common.model.creators.ModelCreator;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModel;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModelParameter;
@@ -25,8 +26,9 @@ public class CreaturesModelCreator implements ModelCreator<CreaturesParametersMo
         List<CreatureEquipmentObject> creatureEquipment = CreatureEquipmentTableService.INSTANCE.getCreatureEquipmentByCreatureId(objectId);
         List<CreatureSpellObject> creatureSpells = CreatureSpellTableService.INSTANCE.getCreatureSpellsByCreatureId(objectId);
         List<CreatureCorpseLootObject> corpseLootObjects = CreatureCorpseLootTableService.INSTANCE.getCreatureCorpseLootByCreatureId(objectId);
+        List<Integer> itemIds = MerchantInventoryItemsTableService.INSTANCE.getInventoryItemIdsByMerchantName(objectId);
         CreaturesParametersModelParameter parameter = new CreaturesParametersModelParameter(creatureParameterObject, commonParameterObject,
-                creatureEquipment, creatureSpells, corpseLootObjects, icon);
+                creatureEquipment, creatureSpells, corpseLootObjects, itemIds, null, icon);
         return new CreaturesParametersModel(parameter);
     }
 }

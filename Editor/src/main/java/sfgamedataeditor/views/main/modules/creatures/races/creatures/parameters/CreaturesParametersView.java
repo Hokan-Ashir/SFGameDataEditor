@@ -1,20 +1,26 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters;
 
+import org.apache.log4j.Logger;
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.IconElement;
 import sfgamedataeditor.common.viewconfigurations.creature.parameters.GUIElements;
 import sfgamedataeditor.common.widgets.Disabled;
+import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidget;
+import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidgetListener;
 import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
 import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
+import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
+import java.lang.reflect.Field;
 
 @SuppressWarnings("unused")
 public class CreaturesParametersView implements PresentableView {
@@ -23,6 +29,10 @@ public class CreaturesParametersView implements PresentableView {
     private static final int EQUIPMENT_TAB_INDEX = 1;
     public static final int SPELLS_TAB_INDEX = 2;
     public static final int CORPSE_LOOT_TAB_INDEX = 3;
+    public static final int MERCHANT_TRADES_TAB_INDEX = 4;
+
+    private static final Logger LOGGER = Logger.getLogger(ChestParametersView.class);
+    private static final String ITEM_ID_FIELD_NAME = "itemId";
 
     private JPanel mainPanel;
 
@@ -167,11 +177,36 @@ public class CreaturesParametersView implements PresentableView {
 
     @IconElement
     private JLabel iconLabel;
+    private JPanel merchantTrades;
+    private JLabel inventoryLabel;
+    private JPanel listPanel;
+    private JScrollPane scrollPane;
+    private JList<String> merchantInventoryItemList;
+    private JPanel selectedItemPanel;
+    private final EquipmentWidget equipmentWidget;
 
     public CreaturesParametersView() {
         internationalizeCommonLabels();
         internationalizeEquipmentLabels();
         internationalizeTabs();
+
+        merchantInventoryItemList.setModel(new DefaultListModel<String>());
+        // http://stackoverflow.com/questions/818163/make-jscrollpane-display-scrollbars-when-jlist-inside-is-changed
+        merchantInventoryItemList.setPreferredSize(null);
+        inventoryLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items"));
+
+        equipmentWidget = new EquipmentWidget();
+        Field itemId;
+        try {
+            itemId = ItemPriceParametersObject.class.getField(ITEM_ID_FIELD_NAME);
+        } catch (NoSuchFieldException e) {
+            LOGGER.error(e.getMessage(), e);
+            return;
+        }
+
+        EquipmentWidgetListener listener = new EquipmentWidgetListener(equipmentWidget, itemId);
+        equipmentWidget.attachListener(listener);
+        selectedItemPanel.add(equipmentWidget);
     }
 
     private void internationalizeTabs() {
@@ -179,6 +214,7 @@ public class CreaturesParametersView implements PresentableView {
         tabPane.setTitleAt(EQUIPMENT_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.equipment"));
         tabPane.setTitleAt(SPELLS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.spells"));
         tabPane.setTitleAt(CORPSE_LOOT_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.corpse.loot"));
+        tabPane.setTitleAt(MERCHANT_TRADES_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "tab.creature.merchant.trades"));
     }
 
     private void internationalizeCommonLabels() {
@@ -195,6 +231,14 @@ public class CreaturesParametersView implements PresentableView {
         leftRingSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.left.ring.slot.label"));
         rightRingSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.right.ring.slot.label"));
         legsSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.legs.slot.label"));
+    }
+
+    public JList<String> getMerchantInventoryItemList() {
+        return merchantInventoryItemList;
+    }
+
+    public EquipmentWidget getEquipmentWidget() {
+        return equipmentWidget;
     }
 
     public JComboBox<String> getDropItemsComboBox() {

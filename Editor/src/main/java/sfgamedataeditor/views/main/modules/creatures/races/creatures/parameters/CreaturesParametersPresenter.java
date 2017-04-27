@@ -8,6 +8,8 @@ import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootObject;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.common.WidgetsComboBoxListener;
 import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
@@ -16,11 +18,13 @@ import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreaturesParametersPresenter extends AbstractParametersPresenter<CreaturesParametersModelParameter, CreaturesParametersView> {
+public class CreaturesParametersPresenter extends AbstractParametersPresenter<CreaturesParametersModelParameter, CreaturesParametersView> implements ListSelectionListener {
 
     private static final Map<Integer, Integer> SLOT_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
@@ -61,6 +65,24 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
     @Override
     public void updateView() {
         CreaturesParametersModelParameter parameter = getModel().getParameter();
+        updateCorpseLootObjects(parameter);
+        updateMerchantTrades(parameter);
+
+        super.updateView();
+    }
+
+    private void updateMerchantTrades(CreaturesParametersModelParameter parameter) {
+        List<Integer> itemIds = parameter.getMerchantItemIds();
+        if (itemIds != null && !itemIds.isEmpty()) {
+            getView().getTabPane().setEnabledAt(CreaturesParametersView.MERCHANT_TRADES_TAB_INDEX, true);
+            String selectedItem = parameter.getSelectedMerchantItem();
+            updateMerchantInventoryList(itemIds, selectedItem);
+        } else {
+            getView().getTabPane().setEnabledAt(CreaturesParametersView.MERCHANT_TRADES_TAB_INDEX, false);
+        }
+    }
+
+    private void updateCorpseLootObjects(CreaturesParametersModelParameter parameter) {
         final List<CreatureCorpseLootObject> corpseLootObjects = parameter.getCorpseLootObjects();
 
         if (corpseLootObjects != null && !corpseLootObjects.isEmpty()) {
@@ -83,8 +105,20 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
         } else {
             getView().getTabPane().setEnabledAt(CreaturesParametersView.CORPSE_LOOT_TAB_INDEX, false);
         }
+    }
 
-        super.updateView();
+    private void updateMerchantInventoryList(List<Integer> itemIds, String selectedItem) {
+        JList<String> inventoryItemList = getView().getMerchantInventoryItemList();
+        DefaultListModel<String> model = (DefaultListModel<String>) inventoryItemList.getModel();
+        model.removeAllElements();
+
+        inventoryItemList.removeListSelectionListener(this);
+        for (Integer itemId : itemIds) {
+            String itemName = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
+            model.addElement(itemName);
+        }
+        inventoryItemList.addListSelectionListener(this);
+        inventoryItemList.setSelectedValue(selectedItem, true);
     }
 
     @Override
@@ -125,5 +159,25 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
                 }
             }
         }
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        // do not catch other events except last one
+        if (e.getValueIsAdjusting()) {
+            return;
+        }
+        ListModel<String> model = getView().getMerchantInventoryItemList().getModel();
+        if (model.getSize() == 0) {
+            return;
+        }
+
+        getView().getEquipmentWidget().setVisible(true);
+        // because list permit only to select one item at a time, it's not important which (first or last) selected
+        // index get from click event
+        int firstIndex = e.getFirstIndex();
+        Integer itemId = getModel().getParameter().getMerchantItemIds().get(firstIndex);
+        ItemPriceParametersObject parametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
+        getView().getEquipmentWidget().getListener().updateWidgetValue(parametersObject);
     }
 }

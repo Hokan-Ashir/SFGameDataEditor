@@ -36,13 +36,6 @@ public class CreaturesView extends AbstractModulesView {
     protected ImageIcon getPanelImageByPanelName(String panelName) {
         Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(panelName);
         String iconPath = "/images/creatures/" + creatureId + ".png";
-        ImageIcon imageIcon = ImageIconsCache.INSTANCE.getImageIcon(iconPath);
-        if (imageIcon == null) {
-            // try to get merchant images, cause they are also creatures
-            iconPath = "/images/merchants/" + creatureId + ".png";
-            return ImageIconsCache.INSTANCE.getImageIcon(iconPath);
-        } else {
-            return imageIcon;
-        }
+        return ImageIconsCache.INSTANCE.getImageIcon(iconPath);
     }
 }
