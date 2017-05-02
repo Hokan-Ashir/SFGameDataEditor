@@ -16,7 +16,7 @@ See "What it can't do" section below to be aware of restrictions.
  - Editing spell parameters, i.e. how far you can cast your "Fireball" or how many hops can make "Chain Pain"
  - Editing creature common parameters, spells, equipment, loot drop, i.e. how many strength has "Blade Nightmare", how to make Lena/Urias mortal, how to make Eloni Watcher bite you with poisonous claw
  - Editing unit common parameters, i.e. how change what blades hold dark elves assassin and how to make orc drummers mass heal instead of war crying  
- - Editing ARMOR, WEAPONS and MISCELLANEOUS parameters, i.e. how many strength "Amra's armor" gives you and for how much you can sell/buyout it or how far "Heartseeker" can shoot
+ - Editing armor, weapons and miscellaneous parameters, i.e. how many strength "Amra's armor" gives you and for how much you can sell/buyout it or how far "Heartseeker" can shoot
  - Editing buildings parameters, i.e. how many resources need to build human's Quarry or what buildings are needed to produce dwarves' Defender
  - Editing spell scrolls and spells, i.e. how to make Pain level 1 scroll teach you Torture level 14
  - Editing workers and heroes runes parameters i.e. how make Dwarves be revived at night like Dark Elves or how to add Warrior Kord more strength and fight speed
@@ -33,8 +33,8 @@ See "What it can't do" section below to be aware of restrictions.
 
 # How to launch it
  - Install, at least, Java 7 from Oracle site (see https://www.java.com/download/)
- - Download SFGameDataEditor-alpha-3.jar from (https://github.com/Hokan-Ashir/SFGameDataEditor/tree/master/bin)
- - Double-click on SFGameDataEditor-alpha-3.jar OR run with "java -jar SFGameDataEditor-alpha-3.jar" command in console
+ - Download Editor-alpha-8.jar from (https://github.com/Hokan-Ashir/SFGameDataEditor/tree/master/Editor/bin)
+ - Double-click on Editor-alpha-8.jar OR run with "java -jar Editor-alpha-8.jar" command in console
  
 # How to use it
  - After launch you can select editor's language
@@ -95,9 +95,8 @@ See "What it can't do" section below to be aware of restrictions.
 # TODO
  - Add more flexible ability to merge multiple sf-mod files
  - Extend sf-mod-files format to include description, maybe picture
- - Add filtration
- - Add search; in views and across whole application
- - Add icons for objects and creatures
+ - Add filtration 
+ - Add icons for objects and creatures (in progress)
 
 # Special thanks
  - This application won't be possible without information grabbed from this forum - http://spellforcefanforum.hostoi.com/index.php

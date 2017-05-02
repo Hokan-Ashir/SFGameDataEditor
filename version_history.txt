@@ -1,5 +1,14 @@
 Freezing development for quite some time
 
+alpha-8 (02.05.2017)
+ - Added search over all database (chests, buildings, creatures, items)
+ - Merchant parameters merged into creatures
+ - Added filtering component on modules view
+ - Fixed absence of CreaturesWidget in summoning elemental spells
+ - Added stub for "Unknown Item 3105" which parameters are not presented in Gamedata.cff, but item with its id should be dropped by one of in-game chests
+ - Fixed correct creature and item extraction via names in corresponding widgets extended number of suggestion from 10 to 50 added more accurate search for name
+ - Added almost all creatures images except some creatures from races Mages, Mixed Race, Shaal Duhn Elves, Shial elves, Skeletons, Uroks, Winterguard
+
 alpha-7 (12.03.2017):
  - Fixed behaviour of chest/corpse loot mapping; by mistake it was the same objects with same offset range in file
  - As side effect - chest loot parameters view are now correctly shows only treasure chests
