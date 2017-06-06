@@ -7,6 +7,7 @@ import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
+import java.awt.*;
 
 @SuppressWarnings("unused")
 public class MainView implements PresentableView {
@@ -28,12 +29,17 @@ public class MainView implements PresentableView {
 
     private void createAndShowMainFrame() {
         JFrame frame = new JFrame(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "sfmodFilesCreationWindowCaption"));
-        frame.setResizable(false);
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.pack();
         frame.setVisible(true);
-        ViewTools.centerFrame(frame);
+        GraphicsEnvironment env =
+                GraphicsEnvironment.getLocalGraphicsEnvironment();
+        frame.setMaximizedBounds(env.getMaximumWindowBounds());
+        frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+        frame.pack();
     }
 
     public void renderViewInsideContentPanel(JComponent viewComponent) {

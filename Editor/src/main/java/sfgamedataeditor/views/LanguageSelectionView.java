@@ -53,7 +53,7 @@ public class LanguageSelectionView {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        ViewTools.centerFrame(frame);
+        frame.setLocationRelativeTo(null);
 
         view.getOkButton().addActionListener(new ActionListener() {
             @Override

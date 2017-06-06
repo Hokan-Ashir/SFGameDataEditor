@@ -43,9 +43,6 @@ class UploadDataButtonListener implements ActionListener {
         EventProcessor.INSTANCE.process(new ShowViewEvent(ButtonsView.class, null));
         EventProcessor.INSTANCE.process(new ShowViewEvent(ModulesView.class, null));
 
-//        CreaturesModelCreator creator = new CreaturesModelCreator();
-//        Model model = creator.createModel(2499, null);
-//        EventProcessor.INSTANCE.process(new ShowContentViewEvent(CreaturesParametersView.class, model));
         frame.dispose();
     }
 

@@ -32,7 +32,7 @@ public class FileSelectionView {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        ViewTools.centerFrame(frame);
+        frame.setLocationRelativeTo(null);
 
         view.getOkButton().setEnabled(false);
         view.getOkButton().addActionListener(new UploadDataButtonListener(frame, view));

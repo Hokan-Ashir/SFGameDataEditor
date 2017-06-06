@@ -31,11 +31,6 @@ public class ViewTools {
         }
     }
 
-    public static void centerFrame(JFrame frame) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setLocation(screenSize.width / 2 - frame.getWidth() / 2, screenSize.height / 2 - frame.getHeight() / 2);
-    }
-
     public static String convertToMultiline(String value) {
         String[] subStrings = value.split(" ");
         StringBuilder result = new StringBuilder("<html>");
