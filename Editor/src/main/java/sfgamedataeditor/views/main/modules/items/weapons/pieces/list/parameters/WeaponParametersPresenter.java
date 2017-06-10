@@ -40,6 +40,7 @@ public class WeaponParametersPresenter extends AbstractParametersPresenter<Weapo
         updateWeaponEffectWidgets(itemSpellEffectsObjects);
 
         super.updateView();
+        ViewTools.setFirstActiveTab(getView().getTabPane());
     }
 
     @Override

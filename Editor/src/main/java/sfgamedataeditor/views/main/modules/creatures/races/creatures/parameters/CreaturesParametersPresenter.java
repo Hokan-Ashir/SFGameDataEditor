@@ -69,6 +69,7 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
         updateMerchantTrades(parameter);
 
         super.updateView();
+        ViewTools.setFirstActiveTab(getView().getTabPane());
     }
 
     private void updateMerchantTrades(CreaturesParametersModelParameter parameter) {

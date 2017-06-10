@@ -10,6 +10,7 @@ import sfgamedataeditor.database.creatures.production.buildings.CreatureBuilding
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
+import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -65,6 +66,12 @@ public class UnitsParametersPresenter extends AbstractParametersPresenter<UnitsP
         SLOT_NUMBER_MAPPING.put(GUIElements.RIGHT_RING_SLOT, 4);
         SLOT_NUMBER_MAPPING.put(GUIElements.LEGS_SLOT, 5);
         SLOT_NUMBER_MAPPING.put(GUIElements.LEFT_RING_SLOT, 6);
+    }
+
+    @Override
+    public void updateView() {
+        super.updateView();
+        ViewTools.setFirstActiveTab(getView().getTabPane());
     }
 
     @Override

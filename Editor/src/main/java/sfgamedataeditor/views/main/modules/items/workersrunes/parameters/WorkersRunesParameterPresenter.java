@@ -11,6 +11,7 @@ import sfgamedataeditor.database.creatures.skills.CreatureSkillTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
+import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -35,6 +36,12 @@ public class WorkersRunesParameterPresenter extends AbstractParametersPresenter<
         SKILL_NUMBER_MAPPING.put(GUIElements.SKILL_LEVEL_2, 1);
         SKILL_NUMBER_MAPPING.put(GUIElements.SKILL_LEVEL_3, 2);
         SKILL_NUMBER_MAPPING.put(GUIElements.SKILL_LEVEL_4, 3);
+    }
+
+    @Override
+    public void updateView() {
+        super.updateView();
+        ViewTools.setFirstActiveTab(getView().getTabPane());
     }
 
     @Override

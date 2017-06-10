@@ -8,6 +8,7 @@ import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.skills.CreatureSkillObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
+import sfgamedataeditor.views.utility.ViewTools;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -47,6 +48,12 @@ public class HeroesRunesParameterPresenter extends AbstractParametersPresenter<H
         SKILL_NUMBER_MAPPING.put(GUIElements.SKILL_LEVEL_5, 4);
         SKILL_NUMBER_MAPPING.put(GUIElements.SKILL_LEVEL_6, 5);
         SKILL_NUMBER_MAPPING.put(GUIElements.SKILL_LEVEL_7, 6);
+    }
+
+    @Override
+    public void updateView() {
+        super.updateView();
+        ViewTools.setFirstActiveTab(getView().getTabPane());
     }
 
     @Override

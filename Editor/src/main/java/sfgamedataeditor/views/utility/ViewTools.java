@@ -81,4 +81,14 @@ public class ViewTools {
 
         return result;
     }
+
+    public static void setFirstActiveTab(JTabbedPane tabbedPane) {
+        int tabCount = tabbedPane.getTabCount();
+        for (int i = 0; i < tabCount; i++) {
+            if (tabbedPane.isEnabledAt(i)) {
+                tabbedPane.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
 }
