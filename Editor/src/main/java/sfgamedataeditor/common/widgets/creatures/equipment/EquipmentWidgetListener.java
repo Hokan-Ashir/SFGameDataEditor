@@ -3,6 +3,7 @@ package sfgamedataeditor.common.widgets.creatures.equipment;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.common.widgets.items.weapons.type.WeaponTypesMap;
 import sfgamedataeditor.database.common.OffsetableObject;
+import sfgamedataeditor.database.items.armor.parameters.ArmorParametersTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableService;
@@ -24,6 +25,8 @@ import java.util.Set;
 
 public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWidget, OffsetableObject> implements ItemListener, ActionListener {
 
+    public static final int ORB_TYPE_WEAPON = 22;
+
     public EquipmentWidgetListener(EquipmentWidget component, Field... mappedFields) {
         super(component, mappedFields);
     }
@@ -43,14 +46,20 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
 
         String itemName = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
         String itemTypeName;
-        WeaponParametersObject weaponParametersObject = WeaponParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        if (weaponParametersObject != null) {
-            itemTypeName = WeaponTypesMap.INSTANCE.getWeaponTypeNameById(weaponParametersObject.type);
+        boolean isItemOrb = ArmorParametersTableService.INSTANCE.getOrbNames().contains(itemName);
+        if (isItemOrb) {
+            itemTypeName = WeaponTypesMap.INSTANCE.getWeaponTypeNameById(ORB_TYPE_WEAPON);
         } else {
-            int itemPieceId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
-            String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(itemPieceId), I18NTypes.ITEM_TYPES_NAME_MAPPING);
-            itemTypeName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, itemPieceNameKey);
+            WeaponParametersObject weaponParametersObject = WeaponParametersTableService.INSTANCE.getObjectByItemId(itemId);
+            if (weaponParametersObject != null) {
+                itemTypeName = WeaponTypesMap.INSTANCE.getWeaponTypeNameById(weaponParametersObject.type);
+            } else {
+                int itemPieceId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
+                String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(itemPieceId), I18NTypes.ITEM_TYPES_NAME_MAPPING);
+                itemTypeName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, itemPieceNameKey);
+            }
         }
+
         getWidget().getItemTypeComboBox().setSelectedItem(itemTypeName);
         updateItemNames();
         getWidget().getItemPieceComboBox().setSelectedItem(itemName);
@@ -76,6 +85,9 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
         if (itemTypeKey == null) {
             Integer weaponType = WeaponTypesMap.INSTANCE.getWeaponTypeByName(itemTypeName);
             itemId = WeaponParametersTableService.INSTANCE.getItemIdByItemTypeAndName(selectedItemName, weaponType);
+            if (itemId == null) {
+                itemId = ViewTools.getKeyByPropertyValue(selectedItemName, I18NTypes.ITEMS);
+            }
         } else {
             Integer itemType = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemTypeKey));
             itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedItemName, itemType);
@@ -117,10 +129,13 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     private void updateItemNames() {
         String itemTypeName = (String) getWidget().getItemTypeComboBox().getSelectedItem();
         String itemTypeI18NKey = ViewTools.getKeyStringByPropertyValue(itemTypeName, I18NTypes.COMMON);
-        final Set<String> itemNames;
+        Set<String> itemNames;
         if (itemTypeI18NKey == null) {
             Integer weaponType = WeaponTypesMap.INSTANCE.getWeaponTypeByName(itemTypeName);
             itemNames = WeaponParametersTableService.INSTANCE.getItemsByItemType(weaponType);
+            if (itemNames.isEmpty()) {
+                itemNames = ArmorParametersTableService.INSTANCE.getOrbNames();
+            }
         } else {
             String itemPieceType = I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemTypeI18NKey);
             itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));

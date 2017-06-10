@@ -94,6 +94,7 @@ public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
             add("type.claw");
             add("type.mouth");
             add("type.stone.thrower");
+            add("type.orb");
         }};
 
         for (String i18nItemTypeKey : weaponItemTypeKeys) {
