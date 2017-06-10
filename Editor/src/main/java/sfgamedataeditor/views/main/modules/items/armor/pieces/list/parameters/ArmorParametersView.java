@@ -62,7 +62,7 @@ public class ArmorParametersView implements PresentableView {
     @GUIElement(GUIElementId = GUIElements.BLACK_RESISTANCE, DTOColumnNames = "blackResistance", DTOClass = ArmorParametersObject.class)
     private JPanel blackResistancePanel;
 
-    @GUIElement(GUIElementId = GUIElements.WALK_SPEED, DTOColumnNames = "runSpeed", DTOClass = ArmorParametersObject.class)
+    @GUIElement(GUIElementId = GUIElements.RUN_SPEED, DTOColumnNames = "runSpeed", DTOClass = ArmorParametersObject.class)
     private JPanel runSpeedPanel;
 
     @GUIElement(GUIElementId = GUIElements.FIGHT_SPEED, DTOColumnNames = "fightSpeed", DTOClass = ArmorParametersObject.class)

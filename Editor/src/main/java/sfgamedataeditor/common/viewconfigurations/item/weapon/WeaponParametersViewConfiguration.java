@@ -31,6 +31,22 @@ public class WeaponParametersViewConfiguration extends AbstractConfiguration {
             put(GUIElements.MAX_RANGE, "maxRange");
             put(GUIElements.SPEED, "speed");
             put(GUIElements.REQUIREMENT_LEVEL, "requirementLevel");
+            put(GUIElements.STRENGTH, "strength");
+            put(GUIElements.STAMINA, "stamina");
+            put(GUIElements.AGILITY, "agility");
+            put(GUIElements.DEXTERITY, "dexterity");
+            put(GUIElements.WISDOM, "wisdom");
+            put(GUIElements.INTELLIGENCE, "intelligence");
+            put(GUIElements.CHARISMA, "charisma");
+            put(GUIElements.MANA, "mana");
+            put(GUIElements.ARMOR, "armor");
+            put(GUIElements.FIRE_RESISTANCE, "fireResistance");
+            put(GUIElements.ICE_RESISTANCE, "iceResistance");
+            put(GUIElements.MIND_RESISTANCE, "mindResistance");
+            put(GUIElements.BLACK_RESISTANCE, "blackResistance");
+            put(GUIElements.RUN_SPEED, "walkSpeed");
+            put(GUIElements.FIGHT_SPEED, "fightSpeed");
+            put(GUIElements.CAST_SPEED, "castSpeed");
         }};
 
         for (Map.Entry<Integer, String> entry : i18nMap.entrySet()) {

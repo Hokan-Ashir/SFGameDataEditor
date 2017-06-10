@@ -16,6 +16,23 @@ public final class GUIElements {
     public static final int REQUIREMENT_LEVEL = 11;
     public static final int ITEM_SET = 12;
 
+    public static final int STRENGTH = 13;
+    public static final int STAMINA = 14;
+    public static final int AGILITY = 15;
+    public static final int DEXTERITY = 16;
+    public static final int WISDOM = 17;
+    public static final int INTELLIGENCE = 18;
+    public static final int CHARISMA = 19;
+    public static final int MANA = 20;
+    public static final int ARMOR = 21;
+    public static final int FIRE_RESISTANCE = 22;
+    public static final int ICE_RESISTANCE = 23;
+    public static final int MIND_RESISTANCE = 24;
+    public static final int BLACK_RESISTANCE = 25;
+    public static final int RUN_SPEED = 26;
+    public static final int FIGHT_SPEED = 27;
+    public static final int CAST_SPEED = 28;
+
     private GUIElements() {
 
     }

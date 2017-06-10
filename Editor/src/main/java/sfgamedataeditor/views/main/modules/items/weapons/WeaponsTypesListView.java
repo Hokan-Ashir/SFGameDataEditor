@@ -42,6 +42,7 @@ public class WeaponsTypesListView extends AbstractModulesView {
         mappings.add(createMappingName("type.claw"));
         mappings.add(createMappingName("type.mouth"));
         mappings.add(createMappingName("type.stone.thrower"));
+        mappings.add(createMappingName("type.orb"));
 
         addMappings(mappings, WeaponPiecesView.class);
     }

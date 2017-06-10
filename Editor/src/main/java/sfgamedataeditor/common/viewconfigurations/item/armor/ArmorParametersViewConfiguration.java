@@ -32,7 +32,7 @@ public class ArmorParametersViewConfiguration extends AbstractConfiguration {
             put(GUIElements.ICE_RESISTANCE, "iceResistance");
             put(GUIElements.MIND_RESISTANCE, "mindResistance");
             put(GUIElements.BLACK_RESISTANCE, "blackResistance");
-            put(GUIElements.WALK_SPEED, "walkSpeed");
+            put(GUIElements.RUN_SPEED, "walkSpeed");
             put(GUIElements.FIGHT_SPEED, "fightSpeed");
             put(GUIElements.CAST_SPEED, "castSpeed");
             put(GUIElements.REQUIREMENT_LEVEL, "requirementLevel");

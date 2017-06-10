@@ -1,5 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.weapons.pieces.list;
 
+import sfgamedataeditor.database.items.armor.parameters.ArmorParametersObject;
+import sfgamedataeditor.database.items.armor.parameters.ArmorParametersTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
@@ -23,7 +25,8 @@ public class WeaponModelCreator implements ModelCreator<WeaponParametersModel> {
         List<ItemSpellEffectsObject> itemEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(objectId);
         WeaponParametersObject weaponParametersObject = WeaponParametersTableService.INSTANCE.getObjectByItemId(objectId);
         List<ItemRequirementsObject> requirementsObjects = ItemRequirementsTableService.INSTANCE.getObjectsByItemId(objectId);
-        WeaponParametersModelParameter parameter = new WeaponParametersModelParameter(itemPriceObject, itemEffectsObjects, weaponParametersObject, requirementsObjects, icon);
+        ArmorParametersObject armorParametersObject = ArmorParametersTableService.INSTANCE.getObjectByItemId(objectId);
+        WeaponParametersModelParameter parameter = new WeaponParametersModelParameter(itemPriceObject, itemEffectsObjects, weaponParametersObject, armorParametersObject, requirementsObjects, icon);
         return new WeaponParametersModel(parameter);
     }
 }

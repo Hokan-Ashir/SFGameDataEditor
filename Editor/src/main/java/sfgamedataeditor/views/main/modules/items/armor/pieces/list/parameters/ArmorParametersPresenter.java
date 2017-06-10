@@ -68,7 +68,7 @@ public class ArmorParametersPresenter extends AbstractParametersPresenter<ArmorP
             @Override
             protected void setValues() {
                 comboBox.removeAllItems();
-                String dropItem = I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "requirement.object");
+                String dropItem = I18NService.INSTANCE.getMessage(I18NTypes.ARMOR_GUI, "requirement.object");
                 for (int i = 0; i < requirementsObjects.size(); i++) {
                     comboBox.addItem(dropItem + " - " + (i + 1));
                 }

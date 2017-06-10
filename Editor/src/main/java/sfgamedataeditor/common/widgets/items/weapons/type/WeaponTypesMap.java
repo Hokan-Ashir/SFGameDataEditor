@@ -30,6 +30,7 @@ public enum WeaponTypesMap {
     //    13 00 - Weapon Type Claw
     //    14 00 - Weapon Type Mouth
     //    15 00 - Weapon Type Stone Thrower
+    //    16 00 - Weapon Type Orb (artificially created; cause "Orbs" considered weapons, though do not have weapons parameters)
     private final Map<Integer, String> typesMap = new HashMap<Integer, String>() {{
         put(1, I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "type.default"));
         put(2, I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "type.hand"));
@@ -52,6 +53,7 @@ public enum WeaponTypesMap {
         put(19, I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "type.claw"));
         put(20, I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "type.mouth"));
         put(21, I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "type.stone.thrower"));
+        put(22, I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "type.orb"));
     }};
 
     public Map<Integer, String> getTypesMap() {

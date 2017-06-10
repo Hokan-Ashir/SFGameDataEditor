@@ -17,7 +17,7 @@ public final class GUIElements {
     public static final int ICE_RESISTANCE = 13;
     public static final int MIND_RESISTANCE = 14;
     public static final int BLACK_RESISTANCE = 15;
-    public static final int WALK_SPEED = 16;
+    public static final int RUN_SPEED = 16;
     public static final int FIGHT_SPEED = 17;
     public static final int CAST_SPEED = 18;
     public static final int REQUIREMENT_CLASS_SUBCLASS = 19;

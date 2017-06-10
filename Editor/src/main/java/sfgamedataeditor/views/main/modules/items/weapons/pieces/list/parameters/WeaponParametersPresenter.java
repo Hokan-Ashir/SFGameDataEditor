@@ -2,6 +2,7 @@ package sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters
 
 import sfgamedataeditor.common.GUIElement;
 import sfgamedataeditor.common.widgets.AbstractWidget;
+import sfgamedataeditor.database.items.armor.parameters.ArmorParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.requirements.ItemRequirementsObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
@@ -46,16 +47,24 @@ public class WeaponParametersPresenter extends AbstractParametersPresenter<Weapo
         WeaponParametersModelParameter parameter = getModel().getParameter();
         ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
         WeaponParametersObject weaponParametersObject = parameter.getWeaponParametersObject();
+        ArmorParametersObject armorParametersObject = parameter.getArmorParametersObject();
 
         Class<?> dtoClass = annotation.DTOClass();
         if (dtoClass.equals(ItemPriceParametersObject.class)) {
             widget.getListener().updateWidgetValue(priceParametersObject);
         } else if (dtoClass.equals(WeaponParametersObject.class)) {
             if (weaponParametersObject == null) {
-                panel.setVisible(false);
+                getView().getTabPane().setEnabledAt(WeaponParametersView.WEAPON_PARAMETERS_TAB_INDEX, false);
             } else {
-                panel.setVisible(true);
+                getView().getTabPane().setEnabledAt(WeaponParametersView.WEAPON_PARAMETERS_TAB_INDEX, true);
                 widget.getListener().updateWidgetValue(weaponParametersObject);
+            }
+        } else if (dtoClass.equals(ArmorParametersObject.class)) {
+            if (armorParametersObject == null) {
+                getView().getTabPane().setEnabledAt(WeaponParametersView.ARMOR_PARAMETERS_TAB_INDEX, false);
+            } else {
+                getView().getTabPane().setEnabledAt(WeaponParametersView.ARMOR_PARAMETERS_TAB_INDEX, true);
+                widget.getListener().updateWidgetValue(armorParametersObject);
             }
         }
     }
@@ -68,39 +77,39 @@ public class WeaponParametersPresenter extends AbstractParametersPresenter<Weapo
             getView().getItemEffectPanel().setVisible(true);
             getView().getEffectsComboBox().setVisible(true);
 
-            final JComboBox<String> effectsComboBox = getView().getEffectsComboBox();
-            ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(effectsComboBox) {
+            final JComboBox<String> comboBox = getView().getEffectsComboBox();
+            ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
                 @Override
                 protected void setValues() {
-                    effectsComboBox.removeAllItems();
+                    comboBox.removeAllItems();
                     String dropItem = I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "weapon.effect");
                     for (int i = 0; i < itemSpellEffectsObjects.size(); i++) {
-                        effectsComboBox.addItem(dropItem + " - " + (i + 1));
+                        comboBox.addItem(dropItem + " - " + (i + 1));
                     }
-                    effectsComboBox.setSelectedItem(null);
+                    comboBox.setSelectedItem(null);
                 }
             });
 
             itemEffectsListener.setWidgetObjects(itemSpellEffectsObjects);
-            effectsComboBox.setSelectedItem(effectsComboBox.getItemAt(0));
+            comboBox.setSelectedItem(comboBox.getItemAt(0));
         }
     }
 
     private void updateItemRequirementsWidgets(final List<ItemRequirementsObject> requirementsObjects) {
-        final JComboBox<String> itemRequirementsComboBox = getView().getItemRequirementsComboBox();
-        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(itemRequirementsComboBox) {
+        final JComboBox<String> comboBox = getView().getItemRequirementsComboBox();
+        ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(comboBox) {
             @Override
             protected void setValues() {
-                itemRequirementsComboBox.removeAllItems();
+                comboBox.removeAllItems();
                 String dropItem = I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "requirement.object");
                 for (int i = 0; i < requirementsObjects.size(); i++) {
-                    itemRequirementsComboBox.addItem(dropItem + " - " + (i + 1));
+                    comboBox.addItem(dropItem + " - " + (i + 1));
                 }
-                itemRequirementsComboBox.setSelectedItem(null);
+                comboBox.setSelectedItem(null);
             }
         });
 
         itemRequirementsListener.setWidgetObjects(requirementsObjects);
-        itemRequirementsComboBox.setSelectedItem(itemRequirementsComboBox.getItemAt(0));
+        comboBox.setSelectedItem(comboBox.getItemAt(0));
     }
 }
