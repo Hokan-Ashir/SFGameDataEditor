@@ -23,7 +23,7 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
 
     protected AbstractModulesPresenter(V view) {
         super(view);
-        getView().getSelectedPanel().addActionListener(subPanelsListener);
+        getView().getSelectedPanelButton().addActionListener(subPanelsListener);
     }
 
     protected abstract C createModel();
@@ -69,7 +69,7 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
         JPanel managerPanel = getView().getManagerPanel();
         mainView.renderViewInsideContentPanel(managerPanel);
 
-        JButton selectedPanel = getView().getSelectedPanel();
+        JPanel selectedPanel = getView().getSelectedPanel();
         mainView.renderViewInsideNavigationPanel(selectedPanel);
     }
 
@@ -80,7 +80,7 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
         JPanel managerPanel = getView().getManagerPanel();
         mainView.unRenderViewInsideContentPanel(managerPanel);
 
-        JButton selectedPanel = getView().getSelectedPanel();
+        JPanel selectedPanel = getView().getSelectedPanel();
         mainView.unRenderViewInsideNavigationPanel(selectedPanel);
     }
 
@@ -98,7 +98,7 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
             getView().setSelectedModuleIcon(source.getIcon());
             Class<? extends PresentableView> classViewToShow = getView().getSubPanelViewClass(source);
             Model model;
-            if (source.equals(getView().getSelectedPanel())) {
+            if (source.equals(getView().getSelectedPanelButton())) {
                 model = getModel();
             } else {
                 model = createModel();

@@ -5,8 +5,8 @@
       <xy x="170" y="569" width="1050" height="750"/>
     </constraints>
     <properties>
-      <alignmentX value="1.0"/>
-      <alignmentY value="1.0"/>
+      <alignmentX value="0.5"/>
+      <alignmentY value="0.5"/>
       <maximumSize width="1050" height="750"/>
       <minimumSize width="1050" height="750"/>
       <preferredSize width="1050" height="750"/>
@@ -16,7 +16,7 @@
     <children>
       <tabbedpane id="12b0b" binding="tabPane">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="200" height="200"/>
           </grid>
           <gridbag weightx="0.0" weighty="0.0"/>
@@ -358,7 +358,7 @@
       </tabbedpane>
       <grid id="10a3c" binding="levelPanel" layout-manager="GridBagLayout">
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
@@ -371,7 +371,7 @@
       </grid>
       <component id="795fa" class="javax.swing.JLabel" binding="iconLabel">
         <constraints>
-          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>

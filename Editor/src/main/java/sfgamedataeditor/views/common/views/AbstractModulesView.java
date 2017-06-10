@@ -8,8 +8,12 @@ import sfgamedataeditor.views.common.managers.DefaultModulesPanelManager;
 import sfgamedataeditor.views.utility.Pair;
 
 import javax.swing.*;
+import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.List;
+
+import static java.awt.Component.LEFT_ALIGNMENT;
 
 public abstract class AbstractModulesView implements PresentableView {
 
@@ -20,9 +24,11 @@ public abstract class AbstractModulesView implements PresentableView {
     private final Comparator<SubViewPanel> subViewPanelComparator = new SubViewsPanelComparator();
     private AbstractModulePanelManager panelManager;
     private final String moduleName;
+    private JPanel selectedRenderPanel;
 
     protected AbstractModulesView(String viewName) {
         this.moduleName = viewName;
+        this.selectedRenderPanel = createSelectedRenderPanel();
 
         Class<? extends AbstractModulePanelManager> managerClass = getModulesPanelManagerClass();
         try {
@@ -33,6 +39,16 @@ public abstract class AbstractModulesView implements PresentableView {
         }
 
         initializeSubViewsMapping();
+    }
+
+    private JPanel createSelectedRenderPanel() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setAlignmentX(LEFT_ALIGNMENT);
+        panel.add(selectedPanel);
+        panel.add(Box.createHorizontalStrut(10));
+
+        return panel;
     }
 
     public abstract void fillSubViewsMappings();
@@ -130,8 +146,12 @@ public abstract class AbstractModulesView implements PresentableView {
         return DefaultModulesPanelManager.class;
     }
 
-    public JButton getSelectedPanel() {
+    public JButton getSelectedPanelButton() {
         return selectedPanel;
+    }
+
+    public JPanel getSelectedPanel() {
+        return selectedRenderPanel;
     }
 
     public JPanel getManagerPanel() {
