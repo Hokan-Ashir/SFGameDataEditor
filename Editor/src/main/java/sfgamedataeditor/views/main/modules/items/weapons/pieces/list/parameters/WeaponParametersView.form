@@ -71,8 +71,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="97cb9" binding="weaponParametersPanel" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
+          <grid id="97cb9" binding="weaponParametersPanel" layout-manager="GridBagLayout">
             <constraints>
               <tabbedpane title="WeaponParameters"/>
             </constraints>
@@ -82,6 +81,7 @@
               <grid id="7d01d" binding="minDamagePanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <maximumSize width="90" height="60"/>
@@ -94,6 +94,7 @@
               <grid id="4b075" binding="maxDamagePanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <maximumSize width="90" height="60"/>
@@ -106,6 +107,7 @@
               <grid id="dbd44" binding="speedPanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <maximumSize width="90" height="60"/>
@@ -118,6 +120,7 @@
               <grid id="e689e" binding="minRangePanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
                   <maximumSize width="90" height="60"/>
@@ -130,6 +133,7 @@
               <grid id="61758" binding="maxRangePanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
                   <maximumSize width="90" height="60"/>
@@ -142,6 +146,7 @@
               <grid id="54276" binding="materialPanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <maximumSize width="60" height="60"/>
@@ -154,6 +159,7 @@
               <grid id="879ec" binding="typePanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <maximumSize width="110" height="60"/>
@@ -166,6 +172,7 @@
               <component id="184ce" class="javax.swing.JComboBox" binding="effectsComboBox">
                 <constraints>
                   <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
                   <maximumSize width="160" height="25"/>
@@ -176,6 +183,7 @@
               <grid id="8e3bc" binding="itemEffectPanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <maximumSize width="300" height="90"/>
@@ -187,8 +195,7 @@
               </grid>
             </children>
           </grid>
-          <grid id="cba4f" binding="armorParametersPanel" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
+          <grid id="cba4f" binding="armorParametersPanel" layout-manager="GridBagLayout">
             <constraints>
               <tabbedpane title="ArmorParameters"/>
             </constraints>
@@ -198,6 +205,7 @@
               <component id="2f5c9" class="javax.swing.JLabel" binding="characteristicsLabel">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
                   <text value="Label"/>
@@ -206,6 +214,7 @@
               <component id="f2daa" class="javax.swing.JLabel" binding="resistancesLabel">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
                   <text value="Label"/>
@@ -214,6 +223,7 @@
               <component id="a2742" class="javax.swing.JLabel" binding="speedsLabel">
                 <constraints>
                   <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="0.0"/>
                 </constraints>
                 <properties>
                   <text value="Label"/>
@@ -222,6 +232,7 @@
               <grid id="23a78" binding="resistancesPanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties/>
                 <border type="etched"/>
@@ -283,6 +294,7 @@
               <grid id="8b0f5" binding="characteristicsPanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties/>
                 <border type="etched"/>
@@ -383,6 +395,7 @@
               <grid id="f21" binding="speedsPanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties/>
                 <border type="etched"/>
@@ -431,6 +444,7 @@
               <grid id="f3fe1" binding="manaPanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <maximumSize width="90" height="60"/>
@@ -443,6 +457,7 @@
               <grid id="72d3" binding="armorPanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <maximumSize width="90" height="60"/>
