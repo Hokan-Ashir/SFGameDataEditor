@@ -26,6 +26,7 @@ import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableSe
 import sfgamedataeditor.database.merchants.inventory.MerchantInventoryTableService;
 import sfgamedataeditor.database.merchants.items.MerchantInventoryItemsTableService;
 import sfgamedataeditor.database.objects.chests.ChestCorpseLootTableService;
+import sfgamedataeditor.database.player.level.stats.PlayerLevelStatsTableService;
 import sfgamedataeditor.database.skill.parameters.SkillParametersTableService;
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
@@ -69,6 +70,7 @@ public enum DataFilesParser {
         add(BuildingsRequirementsTableService.INSTANCE);
         add(BuildingsArmyRequirementsTableService.INSTANCE);
         add(ChestCorpseLootTableService.INSTANCE);
+        add(PlayerLevelStatsTableService.INSTANCE);
     }};
 
     public void extractAllDataFromFile(RandomAccessFile file) {

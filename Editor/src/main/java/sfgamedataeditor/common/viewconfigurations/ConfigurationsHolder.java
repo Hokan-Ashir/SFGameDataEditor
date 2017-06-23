@@ -11,6 +11,7 @@ import sfgamedataeditor.common.viewconfigurations.item.unitplans.UnitPlansParame
 import sfgamedataeditor.common.viewconfigurations.item.weapon.WeaponParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.item.workerrunes.WorkersRunesParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.objects.chests.ChestLootParametersConfigurationHolder;
+import sfgamedataeditor.common.viewconfigurations.player.level.stats.PlayerLevelStatsConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.skill.parameters.SkillParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.spell.parameters.SpellParametersConfigurationHolder;
 import sfgamedataeditor.common.viewconfigurations.unit.parameters.UnitParametersConfigurationHolder;
@@ -26,6 +27,7 @@ import sfgamedataeditor.views.main.modules.items.unitplans.units.parameters.Unit
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters.WeaponParametersView;
 import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesParametersView;
 import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersView;
+import sfgamedataeditor.views.main.modules.player.level.stats.PlayerLevelStatsView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersView;
@@ -53,6 +55,7 @@ public enum  ConfigurationsHolder {
         configurationHolderMap.put(WorkersRunesParametersView.class, new WorkersRunesParametersConfigurationHolder());
         configurationHolderMap.put(HeroesRunesParametersView.class, new HeroesRunesParametersConfigurationHolder());
         configurationHolderMap.put(ChestParametersView.class, new ChestLootParametersConfigurationHolder());
+        configurationHolderMap.put(PlayerLevelStatsView.class, new PlayerLevelStatsConfigurationHolder());
     }
 
     public AbstractConfigurationHolder getConfigurationHolder(Class<? extends View> viewClass) {

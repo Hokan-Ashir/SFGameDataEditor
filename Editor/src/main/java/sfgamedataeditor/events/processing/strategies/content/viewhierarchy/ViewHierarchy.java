@@ -61,6 +61,8 @@ import sfgamedataeditor.views.main.modules.objects.chests.ChestsListView;
 import sfgamedataeditor.views.main.modules.objects.chests.ModulesFromChestsListModelCreator;
 import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersView;
 import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestsListFromChestsParametersModelCreator;
+import sfgamedataeditor.views.main.modules.player.level.stats.ModulesFromPlayerLevelStatsModelCreator;
+import sfgamedataeditor.views.main.modules.player.level.stats.PlayerLevelStatsView;
 import sfgamedataeditor.views.main.modules.skills.schools.ModulesFromSkillSchoolsModelCreator;
 import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
 import sfgamedataeditor.views.main.modules.skills.schools.parameters.SkillParameterView;
@@ -93,7 +95,12 @@ public enum  ViewHierarchy {
                 createSpellNodes(rootNode),
                 createCreaturesNodes(rootNode),
                 createUnitsNodes(rootNode),
-                createChestNodes(rootNode));
+                createChestNodes(rootNode),
+                createPlayerStatsNodes(rootNode));
+    }
+
+    private ViewHierarchyNode createPlayerStatsNodes(ViewHierarchyNode rootNode) {
+        return new ViewHierarchyNode(rootNode, PlayerLevelStatsView.class, new ModulesFromPlayerLevelStatsModelCreator());
     }
 
     private ViewHierarchyNode createChestNodes(ViewHierarchyNode rootNode) {

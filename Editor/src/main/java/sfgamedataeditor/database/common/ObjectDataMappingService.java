@@ -3,6 +3,7 @@ package sfgamedataeditor.database.common;
 import org.apache.log4j.Logger;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -21,11 +22,19 @@ public enum ObjectDataMappingService {
             int offset = dataPairFieldEntry.getKey().getOffset();
             int length = dataPairFieldEntry.getKey().getLength();
 
-            int temp = getValue(buffer, offset, length);
+
             try {
                 Field field = dataPairFieldEntry.getValue();
                 field.setAccessible(true);
-                field.set(object, temp);
+
+                Class<?> daoFieldType = dataPairFieldEntry.getValue().getType();
+                if (Integer.class.isAssignableFrom(daoFieldType)) {
+                    int temp = getValue(buffer, offset, length);
+                    field.set(object, temp);
+                } else if (daoFieldType.isAssignableFrom(String.class)) {
+                    String string = new String(buffer);
+                    field.set(object, string);
+                }
             } catch (IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);
             }

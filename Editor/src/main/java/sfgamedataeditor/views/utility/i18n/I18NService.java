@@ -28,6 +28,7 @@ public enum I18NService {
     private static final String SCROLLS_AND_SPELLS_GUI_PROPERTIES_FILE_NAME = "scrolls_and_spells_gui";
     private static final String WORKERS_RUNES_GUI_PROPERTIES_FILE_NAME = "workers_runes_gui";
     private static final String OBJECTS_PROPERTIES_FILE_NAME = "objects";
+    private static final String PLAYER_LEVEL_STATS_GUI_PROPERTIES_FILE_NAME = "player_level_stats_gui";
 
     private final Map<I18NTypes, ResourceBundle> bundleMap = new HashMap<>();
 
@@ -52,6 +53,7 @@ public enum I18NService {
         bundleMap.put(I18NTypes.SCROLLS_AND_SPELLS_GUI, ResourceBundle.getBundle(SCROLLS_AND_SPELLS_GUI_PROPERTIES_FILE_NAME, locale));
         bundleMap.put(I18NTypes.WORKERS_RUNES_GUI, ResourceBundle.getBundle(WORKERS_RUNES_GUI_PROPERTIES_FILE_NAME, locale));
         bundleMap.put(I18NTypes.OBJECTS, ResourceBundle.getBundle(OBJECTS_PROPERTIES_FILE_NAME, locale));
+        bundleMap.put(I18NTypes.PLAYER_LEVEL_STATS_GUI, ResourceBundle.getBundle(PLAYER_LEVEL_STATS_GUI_PROPERTIES_FILE_NAME, locale));
     }
 
     public String getMessage(I18NTypes type, String key) {

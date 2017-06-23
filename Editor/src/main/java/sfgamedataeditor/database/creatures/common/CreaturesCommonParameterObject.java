@@ -61,45 +61,9 @@ public class CreaturesCommonParameterObject extends OffsetableObject {
 
     // 4D 65 72 63 68 61 6E 74 20 4B 6C 61 75 73 00 00 00 00 00 00 00 00 00
     // 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 - unit name in gamedata file
-    @Data(offset = 23, length = 4)
+    @Data(offset = 23, length = 40)
     @DatabaseField
-    private Integer unitNameIdPart1;
-
-    @Data(offset = 27, length = 4)
-    @DatabaseField
-    private Integer unitNameIdPart2;
-
-    @Data(offset = 31, length = 4)
-    @DatabaseField
-    private Integer unitNameIdPart3;
-
-    @Data(offset = 35, length = 4)
-    @DatabaseField
-    private Integer unitNameIdPart4;
-
-    @Data(offset = 39, length = 4)
-    @DatabaseField
-    private Integer unitNameIdPart5;
-
-    @Data(offset = 43, length = 4)
-    @DatabaseField
-    private Integer unitNameIdPart6;
-
-    @Data(offset = 47, length = 4)
-    @DatabaseField
-    private Integer unitNameIdPart7;
-
-    @Data(offset = 51, length = 4)
-    @DatabaseField
-    private Integer unitNameIdPart8;
-
-    @Data(offset = 55, length = 4)
-    @DatabaseField
-    private Integer unitNameIdPart9;
-
-    @Data(offset = 59, length = 4)
-    @DatabaseField
-    private Integer unitNameIdPart10;
+    private String unitNameId;
 
     // 00 - unknown (only 00 and 01 values)
     @Data(offset = 63, length = 1)

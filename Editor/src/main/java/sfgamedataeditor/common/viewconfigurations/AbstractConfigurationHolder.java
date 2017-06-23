@@ -52,6 +52,10 @@ public abstract class AbstractConfigurationHolder {
             return false;
         }
 
+        if (configurationModel == null && incomingModel == null) {
+            return true;
+        }
+
         Object configurationModelParameter = configurationModel.getParameter();
         Object incomingModelParameter = incomingModel.getParameter();
         if (!configurationModelParameter.getClass().equals(incomingModelParameter.getClass())) {
