@@ -85,7 +85,8 @@ public class WorkersRunesParameterPresenter extends AbstractParametersPresenter<
 
     private Set<Integer> getRunesLevels(String runeBaseName) {
         Set<Integer> runesLevels = new TreeSet<>();
-        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.ITEMS);
+        // TODO FIX
+        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.PLAYER_LEVEL_STATS_GUI);
         String prefix = runeBaseName + " - level ";
         for (String key : bundle.keySet()) {
             String value = bundle.getString(key);

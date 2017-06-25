@@ -9,15 +9,16 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.ResourceBundle;
 
 public enum CreatureParametersTableService implements TableCreationService {
     INSTANCE {
@@ -49,34 +50,27 @@ public enum CreatureParametersTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(CreatureParametersTableService.class);
 
-    public Set<String> getListOfCreatureRaces() {
-        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
-        Dao<CreatureParameterObject, ?> dao;
-        try {
-            dao = DaoManager.createDao(connectionSource, CreatureParameterObject.class);
-            List<CreatureParameterObject> raceIds = dao.queryBuilder().selectColumns("raceId").query();
-
-            Set<String> creatureRaces = new TreeSet<>();
-            for (CreatureParameterObject raceId : raceIds) {
-                creatureRaces.add(I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId.raceId)));
-            }
-            return creatureRaces;
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
-            return Collections.emptySet();
+    public List<SubViewPanelTuple> getListOfCreatureRaces() {
+        List<SubViewPanelTuple> result = new ArrayList<>();
+        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.RACES);
+        for (String key : bundle.keySet()) {
+            result.add(new SubViewPanelTuple(bundle.getString(key), Integer.valueOf(key)));
         }
+        Collections.sort(result);
+
+        return result;
     }
 
-    public CreatureParameterObject getCreatureParameterObjectByCreatureName(String creatureName) {
+    public CreatureParameterObject getCreatureParameterObjectByCreatureName(Integer creatureId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         Dao<CreatureParameterObject, ?> dao;
         try {
             dao = DaoManager.createDao(connectionSource, CreatureParameterObject.class);
             GenericRawResults<CreatureParameterObject> rawResults =
                     dao.queryRaw(
-                            "select creature_parameters.* from creature_parameters inner join creature_common_parameters on creature_common_parameters.statsId = creature_parameters.statsId where creature_common_parameters.name = ?",
+                            "select creature_parameters.* from creature_parameters inner join creature_common_parameters on creature_common_parameters.statsId = creature_parameters.statsId where creature_common_parameters.creatureId = ?",
                             dao.getRawRowMapper(),
-                            creatureName);
+                            String.valueOf(creatureId));
 
             return rawResults.getResults().get(0);
         } catch (SQLException e) {
@@ -85,7 +79,7 @@ public enum CreatureParametersTableService implements TableCreationService {
         }
     }
 
-    public Integer getRaceIdByCreatureName(String creatureName) {
+    public Integer getRaceIdByCreatureName(Integer creatureId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<CreatureParameterObject, Integer> parametersObject;
         try {
@@ -93,14 +87,14 @@ public enum CreatureParametersTableService implements TableCreationService {
 
             GenericRawResults<String> rawResults =
                     parametersObject.queryRaw(
-                            "select creature_parameters.raceId from creature_common_parameters inner join creature_parameters on creature_common_parameters.statsId = creature_parameters.statsId where creature_common_parameters.name = ?",
+                            "select creature_parameters.raceId from creature_common_parameters inner join creature_parameters on creature_common_parameters.statsId = creature_parameters.statsId where creature_common_parameters.creatureId = ?",
                             new RawRowMapper<String>() {
                                 public String mapRow(String[] columnNames,
                                                      String[] resultColumns) {
                                     return resultColumns[0];
                                 }
                             },
-                            creatureName);
+                            String.valueOf(creatureId));
 
             return Integer.valueOf(rawResults.getResults().get(0));
         } catch (SQLException e) {

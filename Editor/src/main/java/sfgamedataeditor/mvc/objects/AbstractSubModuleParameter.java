@@ -1,14 +1,16 @@
 package sfgamedataeditor.mvc.objects;
 
-import java.util.Set;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
+
+import java.util.List;
 
 public abstract class AbstractSubModuleParameter extends IconableParameter {
-    private final Set<String> subPanelsNames;
+    private final List<SubViewPanelTuple> panelTuples;
     private final String selectedModuleName;
 
-    protected AbstractSubModuleParameter(Set<String> objectNames, String selectedObjectName) {
+    protected AbstractSubModuleParameter(List<SubViewPanelTuple> panelTuples, String selectedObjectName) {
         super(null);
-        this.subPanelsNames = objectNames;
+        this.panelTuples = panelTuples;
         this.selectedModuleName = selectedObjectName;
     }
 
@@ -16,8 +18,8 @@ public abstract class AbstractSubModuleParameter extends IconableParameter {
         return selectedModuleName;
     }
 
-    public Set<String> getSubPanelsNames() {
-        return subPanelsNames;
+    public List<SubViewPanelTuple> getSubViewPanelTuples() {
+        return panelTuples;
     }
 
     public abstract Class<? extends PresentableView> getSubPanelsViewClass();

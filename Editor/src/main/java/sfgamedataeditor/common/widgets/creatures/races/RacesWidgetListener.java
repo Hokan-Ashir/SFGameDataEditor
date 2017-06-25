@@ -2,7 +2,7 @@ package sfgamedataeditor.common.widgets.creatures.races;
 
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
-import sfgamedataeditor.views.utility.ViewTools;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -22,7 +22,7 @@ public class RacesWidgetListener extends AbstractWidgetListener<RacesWidget, Off
             return;
         }
 
-        String selectedItem = (String) getWidget().getRacesComboBox().getSelectedItem();
+        SubViewPanelTuple selectedItem = (SubViewPanelTuple) getWidget().getRacesComboBox().getSelectedItem();
         if (selectedItem == null) {
             return;
         }
@@ -32,15 +32,15 @@ public class RacesWidgetListener extends AbstractWidgetListener<RacesWidget, Off
 
     @Override
     protected int[] getFieldValues() {
-        String selectedRaceName = (String) getWidget().getRacesComboBox().getSelectedItem();
-        int raceId = ViewTools.getKeyByPropertyValue(selectedRaceName, I18NTypes.RACES);
-        return new int[]{raceId};
+        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getRacesComboBox().getSelectedItem();
+        return new int[]{tuple.getObjectId()};
     }
 
     @Override
     protected void setFieldValues(int[] value) {
         int raceId = value[0];
+
         String raceName = I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId));
-        getWidget().getRacesComboBox().setSelectedItem(raceName);
+        getWidget().getRacesComboBox().setSelectedItem(new SubViewPanelTuple(raceName, raceId));
     }
 }

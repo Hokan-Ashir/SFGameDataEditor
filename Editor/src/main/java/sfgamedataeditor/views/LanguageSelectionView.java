@@ -2,7 +2,6 @@ package sfgamedataeditor.views;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.views.fileselection.FileSelectionView;
-import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 

@@ -2,6 +2,7 @@ package sfgamedataeditor.views.main.modules.items.miscellaneous;
 
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.NameModulesPanelManager;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
@@ -9,7 +10,7 @@ import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.Miscel
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.Set;
+import java.util.List;
 
 public class MiscellaneousListView extends AbstractModulesView {
 
@@ -23,8 +24,8 @@ public class MiscellaneousListView extends AbstractModulesView {
     @Override
     public void fillSubViewsMappings() {
         int miscellaneousType = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.miscellaneous"));
-        Set<String> miscellaneousNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(miscellaneousType);
-        addMappings(miscellaneousNames, MiscellaneousParametersView.class);
+        List<SubViewPanelTuple> mappings = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(miscellaneousType);
+        addMappings(mappings, MiscellaneousParametersView.class);
     }
 
     @Override

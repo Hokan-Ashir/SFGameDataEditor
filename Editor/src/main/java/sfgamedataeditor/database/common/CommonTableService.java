@@ -32,10 +32,6 @@ public enum CommonTableService {
     }
 
     public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final List<Pair<byte[], Long>> offsetedData) {
-        addRecordsToTable(ormClass, offsetedData, null);
-    }
-
-    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final List<Pair<byte[], Long>> offsetedData, final DTODecorator<T> decorator) {
         ConnectionSource connectionSource = getConnectionSource();
         final Dao<T, String> dao;
         try {
@@ -52,9 +48,6 @@ public enum CommonTableService {
                     for (Pair<byte[], Long> longPair : offsetedData) {
                         T object = createObject(ormClass, longPair.getKey());
                         object.setOffset(longPair.getValue());
-                        if (decorator != null) {
-                            object = decorator.decorateObject(object);
-                        }
                         dao.create(object);
                     }
 

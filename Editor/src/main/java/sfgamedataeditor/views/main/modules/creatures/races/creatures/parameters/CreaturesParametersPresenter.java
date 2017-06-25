@@ -115,7 +115,8 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
 
         inventoryItemList.removeListSelectionListener(this);
         for (Integer itemId : itemIds) {
-            String itemName = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
+            // TODO FIX
+            String itemName = I18NService.INSTANCE.getMessage(I18NTypes.PLAYER_LEVEL_STATS_GUI, String.valueOf(itemId));
             model.addElement(itemName);
         }
         inventoryItemList.addListSelectionListener(this);

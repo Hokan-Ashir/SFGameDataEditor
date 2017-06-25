@@ -7,7 +7,6 @@ import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxParame
 import sfgamedataeditor.database.player.level.stats.PlayerLevelStatsObject;
 import sfgamedataeditor.database.player.level.stats.PlayerLevelStatsTableService;
 import sfgamedataeditor.mvc.objects.Model;
-import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
 
 import javax.swing.*;

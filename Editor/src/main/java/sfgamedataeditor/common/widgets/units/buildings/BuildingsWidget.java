@@ -2,12 +2,12 @@ package sfgamedataeditor.common.widgets.units.buildings;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.buildings.common.BuildingsTableService;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.util.List;
-import java.util.Set;
 
 @SuppressWarnings("unused")
 public class BuildingsWidget extends AbstractWidget<BuildingsWidgetListener> {
@@ -15,8 +15,8 @@ public class BuildingsWidget extends AbstractWidget<BuildingsWidgetListener> {
     private JLabel titleLabel;
     private JLabel raceLabel;
     private JLabel buildingLabel;
-    private JComboBox<String> racesComboBox;
-    private JComboBox<String> buildingComboBox;
+    private JComboBox<SubViewPanelTuple> racesComboBox;
+    private JComboBox<SubViewPanelTuple> buildingComboBox;
     private JSeparator separator;
     private JButton goToBuildingParametersButton;
 
@@ -28,17 +28,17 @@ public class BuildingsWidget extends AbstractWidget<BuildingsWidgetListener> {
     }
 
     private void fillWithPredefinedRaces() {
-        Set<String> creatureRaces = BuildingsTableService.INSTANCE.getBuildingsRacesNames();
-        for (String creatureRace : creatureRaces) {
-            racesComboBox.addItem(creatureRace);
+        List<SubViewPanelTuple> creatureRaces = BuildingsTableService.INSTANCE.getBuildingsRacesNames();
+        for (SubViewPanelTuple tuple : creatureRaces) {
+            racesComboBox.addItem(tuple);
         }
     }
 
-    public JComboBox<String> getRacesComboBox() {
+    public JComboBox<SubViewPanelTuple> getRacesComboBox() {
         return racesComboBox;
     }
 
-    JComboBox<String> getBuildingComboBox() {
+    JComboBox<SubViewPanelTuple> getBuildingComboBox() {
         return buildingComboBox;
     }
 

@@ -1,13 +1,14 @@
 package sfgamedataeditor.views.main.modules.items.weapons;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiecesView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WeaponsTypesListView extends AbstractModulesView {
 
@@ -20,35 +21,36 @@ public class WeaponsTypesListView extends AbstractModulesView {
      */
     @Override
     public void fillSubViewsMappings() {
-        Set<String> mappings = new TreeSet<>();
-        mappings.add(createMappingName("type.default"));
-        mappings.add(createMappingName("type.hand"));
-        mappings.add(createMappingName("type.1h.dagger"));
-        mappings.add(createMappingName("type.1h.sword"));
-        mappings.add(createMappingName("type.1h.axe"));
-        mappings.add(createMappingName("type.1h.mace.spiky"));
-        mappings.add(createMappingName("type.1h.hammer"));
-        mappings.add(createMappingName("type.1h.staff"));
-        mappings.add(createMappingName("type.2h.sword"));
-        mappings.add(createMappingName("type.2h.axe"));
-        mappings.add(createMappingName("type.2h.mace"));
-        mappings.add(createMappingName("type.2h.hammer"));
-        mappings.add(createMappingName("type.2h.staff"));
-        mappings.add(createMappingName("type.2h.spear"));
-        mappings.add(createMappingName("type.2h.halberd"));
-        mappings.add(createMappingName("type.2h.bow"));
-        mappings.add(createMappingName("type.2h.crossbow"));
-        mappings.add(createMappingName("type.1h.mace.blunt"));
-        mappings.add(createMappingName("type.claw"));
-        mappings.add(createMappingName("type.mouth"));
-        mappings.add(createMappingName("type.stone.thrower"));
-        mappings.add(createMappingName("type.orb"));
+        List<SubViewPanelTuple> mappings = new ArrayList<SubViewPanelTuple>() {{
+            add(createMappingName("type.default"));
+            add(createMappingName("type.hand"));
+            add(createMappingName("type.1h.dagger"));
+            add(createMappingName("type.1h.sword"));
+            add(createMappingName("type.1h.axe"));
+            add(createMappingName("type.1h.mace.spiky"));
+            add(createMappingName("type.1h.hammer"));
+            add(createMappingName("type.1h.staff"));
+            add(createMappingName("type.2h.sword"));
+            add(createMappingName("type.2h.axe"));
+            add(createMappingName("type.2h.mace"));
+            add(createMappingName("type.2h.hammer"));
+            add(createMappingName("type.2h.staff"));
+            add(createMappingName("type.2h.spear"));
+            add(createMappingName("type.2h.halberd"));
+            add(createMappingName("type.2h.bow"));
+            add(createMappingName("type.2h.crossbow"));
+            add(createMappingName("type.1h.mace.blunt"));
+            add(createMappingName("type.claw"));
+            add(createMappingName("type.mouth"));
+            add(createMappingName("type.stone.thrower"));
+            add(createMappingName("type.orb"));
+        }};
 
         addMappings(mappings, WeaponPiecesView.class);
     }
     
-    private String createMappingName(String weaponTypeKey) {
-        return I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, weaponTypeKey);
+    private SubViewPanelTuple createMappingName(String weaponTypeKey) {
+        return new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, weaponTypeKey));
     }
 
     @Override

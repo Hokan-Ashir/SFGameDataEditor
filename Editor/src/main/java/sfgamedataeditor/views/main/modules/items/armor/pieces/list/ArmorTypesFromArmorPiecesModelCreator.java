@@ -22,9 +22,7 @@ public class ArmorTypesFromArmorPiecesModelCreator implements ModelCreator<Modul
     @Override
     public ModulesModel createModel(ArmorPiecesModel childModel) {
         // TODO maybe it is important to get not first one object
-        String selectedArmorPieceName = childModel.getParameter().getSubPanelsNames().iterator().next();
-        int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedArmorPieceName, ARMOR_TYPES_IDS);
-
+        int itemId = childModel.getParameter().getSubViewPanelTuples().get(0).getObjectId();
         String typeId = String.valueOf(ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId));
         String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(typeId, I18NTypes.ITEM_TYPES_NAME_MAPPING);
         String armorPieceTypeName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, itemPieceNameKey);

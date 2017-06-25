@@ -4,13 +4,13 @@ import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.views.common.ModuleParameter;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModelParameter;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class SpellSchoolsPresenter extends AbstractModulesPresenter<ModuleParameter, SpellSchoolsView, SpellModel> {
     public SpellSchoolsPresenter(SpellSchoolsView view) {
@@ -19,7 +19,7 @@ public class SpellSchoolsPresenter extends AbstractModulesPresenter<ModuleParame
 
     @Override
     protected SpellModel createModel() {
-        Set<String> listOfSpells = new TreeSet<>();
+        List<SubViewPanelTuple> tuples = new ArrayList<>();
         List<SpellParametersObject> spellParameterObjects = SpellParametersTableService.INSTANCE.getSpells(getView().getSelectedModuleName());
         for (SpellParametersObject spellParametersObject : spellParameterObjects) {
             String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParametersObject.spellNameId);
@@ -27,10 +27,10 @@ public class SpellSchoolsPresenter extends AbstractModulesPresenter<ModuleParame
                 continue;
             }
 
-            listOfSpells.add(spellName);
+            tuples.add(new SubViewPanelTuple(spellName, spellParametersObject.spellNumber));
         }
 
-        SpellModelParameter spellModelParameter = new SpellModelParameter(listOfSpells, null);
+        SpellModelParameter spellModelParameter = new SpellModelParameter(tuples, null);
         return new SpellModel(spellModelParameter);
     }
 }

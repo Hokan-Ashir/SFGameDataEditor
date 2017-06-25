@@ -1,129 +1,136 @@
 package sfgamedataeditor.views.main.modules.units.races;
 
+import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
+import sfgamedataeditor.database.text.TextTableService;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 // TODO unfortunately there is NO database object-related how to figure what race belong non-statable, which do not have statId, creatures (units)
 public enum UnitMapping {
     INSTANCE;
 
-    private final Set<String> humanUnitsNames = new TreeSet<String>() {{
-        add(getI18NUnitName("537")); // "Armsman"
-        add(getI18NUnitName("538")); // "Cleric"
-        add(getI18NUnitName("1227")); // "Cleric (Upgrade)"
-        add(getI18NUnitName("539")); // "Enchanter"
-        add(getI18NUnitName("1225")); // "Enchanter (Upgrade)"
-        add(getI18NUnitName("540")); // "Marksman"
-        add(getI18NUnitName("1223")); // "Marksman (Upgrade)"
-        add(getI18NUnitName("541")); // "Mentalist"
-        add(getI18NUnitName("1224")); // "Mentalist (Upgrade)"
-        add(getI18NUnitName("542")); // "Paladin"
-        add(getI18NUnitName("1226")); // "Paladin (Upgrade)"
-        add(getI18NUnitName("543")); // "Recruit"
-        add(getI18NUnitName("544")); // "Scout"
-        add(getI18NUnitName("2236")); // "Star mage"
-    }};
+    // 537 // "Armsman"
+    // 538 // "Cleric"
+    // 1227 // "Cleric (Upgrade)"
+    // 539 // "Enchanter"
+    // 1225 // "Enchanter (Upgrade)"
+    // 540 // "Marksman"
+    // 1223 // "Marksman (Upgrade)"
+    // 541 // "Mentalist"
+    // 1224 // "Mentalist (Upgrade)"
+    // 542 // "Paladin"
+    // 1226 // "Paladin (Upgrade)"
+    // 543 // "Recruit"
+    // 544 // "Scout"
+    // 2236 // "Star mage"
+    private final List<SubViewPanelTuple> humanUnitsNames = createUnitList(new Integer[] {537, 538, 1227, 539, 1225, 540, 1223, 541, 1224, 542, 1226, 543, 544, 2236});
 
-    private final Set<String> elvesUnitsNames = new TreeSet<String>() {{
-        add(getI18NUnitName("545")); // "Windarcher"
-        add(getI18NUnitName("1229")); // "Windarcher (Upgrade)"
-        add(getI18NUnitName("546")); // "Druid"
-        add(getI18NUnitName("1240")); // "Druid (Upgrade)"
-        add(getI18NUnitName("547")); // "Healer"
-        add(getI18NUnitName("1239")); // "Healer (Upgrade)"
-        add(getI18NUnitName("548")); // "Wintermage"
-        add(getI18NUnitName("1435")); // "Wintermage (Upgrade)"
-        add(getI18NUnitName("549")); // "Protector"
-        add(getI18NUnitName("1231")); // "Protector (Upgrade)"
-        add(getI18NUnitName("550")); // "Ranger"
-        add(getI18NUnitName("551")); // "Wanderer"
-        add(getI18NUnitName("1230")); // "Wanderer (Upgrade)"
-        add(getI18NUnitName("552")); // "Warder"
-        add(getI18NUnitName("1232")); // "Warder (Upgrade)"
-        add(getI18NUnitName("2238")); // "Stormbringer"
-        add(getI18NUnitName("2222")); // "Pixie"
-    }};
+    // 545 // "Windarcher"
+    // 1229 // "Windarcher (Upgrade)"
+    // 546 // "Druid"
+    // 1240 // "Druid (Upgrade)"
+    // 547 // "Healer"
+    // 1239 // "Healer (Upgrade)"
+    // 548 // "Wintermage"
+    // 1435 // "Wintermage (Upgrade)"
+    // 549 // "Protector"
+    // 1231 // "Protector (Upgrade)"
+    // 550 // "Ranger"
+    // 551 // "Wanderer"
+    // 1230 // "Wanderer (Upgrade)"
+    // 552 // "Warder"
+    // 1232 // "Warder (Upgrade)"
+    // 2238 // "Stormbringer"
+    // 2222 // "Pixie"
+    private final List<SubViewPanelTuple> elvesUnitsNames = createUnitList(new Integer[] {545, 1229, 546, 1240, 547, 1239, 548, 1435, 549, 1231, 550, 551, 1230, 552, 1232, 2238, 2222});
 
-    private final Set<String> orcsUnitsNames = new TreeSet<String>() {{
-        add(getI18NUnitName("553")); // "Drummer"
-        add(getI18NUnitName("1249")); // "Drummer (Upgrade)"
-        add(getI18NUnitName("554")); // "Fighter"
-        add(getI18NUnitName("555")); // "Firemaster"
-        add(getI18NUnitName("1246")); // "Firemaster (Upgrade)"
-        add(getI18NUnitName("556")); // "Spearman"
-        add(getI18NUnitName("1247")); // "Spearman (Upgrade)"
-        add(getI18NUnitName("557")); // "Thug"
-        add(getI18NUnitName("558")); // "Totem"
-        add(getI18NUnitName("1245")); // "Totem (Upgrade)"
-        add(getI18NUnitName("559")); // "Veteran"
-        add(getI18NUnitName("1248")); // "Veteran (Upgrade)"
-        add(getI18NUnitName("560")); // "Hornblower"
-        add(getI18NUnitName("1250")); // "Hornblower (Upgrade)"
-        add(getI18NUnitName("2244")); // "Inferno"
-        add(getI18NUnitName("2224")); // "War boar horde"
-    }};
+    // 553 // "Drummer"
+    // 1249 // "Drummer (Upgrade)"
+    // 554 // "Fighter"
+    // 555 // "Firemaster"
+    // 1246 // "Firemaster (Upgrade)"
+    // 556 // "Spearman"
+    // 1247 // "Spearman (Upgrade)"
+    // 557 // "Thug"
+    // 558 // "Totem"
+    // 1245 // "Totem (Upgrade)"
+    // 559 // "Veteran"
+    // 1248 // "Veteran (Upgrade)"
+    // 560 // "Hornblower"
+    // 1250 // "Hornblower (Upgrade)"
+    // 2244 // "Inferno"
+    // 2224 // "War boar horde"
+    private final List<SubViewPanelTuple> orcsUnitsNames = createUnitList(new Integer[] {553, 1249, 554, 555, 1246, 556, 1247, 557, 558, 1245, 559, 1248, 560, 1250, 2244, 2224});
 
-    private final Set<String> darkElvesUnitsNames = new TreeSet<String>() {{
-        add(getI18NUnitName("561")); // "Assassin"
-        add(getI18NUnitName("1294")); // "Assassin (Upgrade)"
-        add(getI18NUnitName("562")); // "Battlemaster"
-        add(getI18NUnitName("1297")); // "Battlemaster (Upgrade)"
-        add(getI18NUnitName("563")); // "Darkblade"
-        add(getI18NUnitName("564")); // "Deathknight"
-        add(getI18NUnitName("1296")); // "Deathknight (Upgrade)"
-        add(getI18NUnitName("565")); // "Havoc"
-        add(getI18NUnitName("1299")); // "Havoc (Upgrade)"
-        add(getI18NUnitName("566")); // "Necromancer"
-        add(getI18NUnitName("1295")); // "Necromancer (Upgrage)"
-        add(getI18NUnitName("567")); // "Sorcerer"
-        add(getI18NUnitName("568")); // "Warlock"
-        add(getI18NUnitName("1298")); // "Warlock (Upgrade)"
-        add(getI18NUnitName("2249")); // "Harbinger of chaos"
-    }};
+    // 561 // "Assassin"
+    // 1294 // "Assassin (Upgrade)"
+    // 562 // "Battlemaster"
+    // 1297 // "Battlemaster (Upgrade)"
+    // 563 // "Darkblade"
+    // 564 // "Deathknight"
+    // 1296 // "Deathknight (Upgrade)"
+    // 565 // "Havoc"
+    // 1299 // "Havoc (Upgrade)"
+    // 566 // "Necromancer"
+    // 1295 // "Necromancer (Upgrage)"
+    // 567 // "Sorcerer"
+    // 568 // "Warlock"
+    // 1298 // "Warlock (Upgrade)"
+    // 2249 // "Harbinger of chaos"
+    private final List<SubViewPanelTuple> darkElvesUnitsNames = createUnitList(new Integer[] {561, 1294, 562, 1297, 563, 564, 1296, 565, 1299, 566, 1295, 567, 568, 1298, 2249});
 
-    private final Set<String> dwarvesUnitsNames = new TreeSet<String>() {{
-        add(getI18NUnitName("569")); // "Battlepriest"
-        add(getI18NUnitName("1234")); // "Battlepriest (Upgrade)"
-        add(getI18NUnitName("570")); // "Defender"
-        add(getI18NUnitName("1238")); // "Defender (Upgrade)"
-        add(getI18NUnitName("571")); // "Demolisher"
-        add(getI18NUnitName("572")); // "Elder"
-        add(getI18NUnitName("1235")); // "Elder (Upgrade)"
-        add(getI18NUnitName("573")); // "Elite"
-        add(getI18NUnitName("1236")); // "Elite (Upgrade)"
-        add(getI18NUnitName("574")); // "Militia"
-        add(getI18NUnitName("575")); // "Warrior"
-        add(getI18NUnitName("1237")); // "Warrior (Upgrade)"
-        add(getI18NUnitName("576")); // "Watchman"
-        add(getI18NUnitName("2221")); // "Stone rams"
-    }};
+    // 569 // "Battlepriest"
+    // 1234 // "Battlepriest (Upgrade)"
+    // 570 // "Defender"
+    // 1238 // "Defender (Upgrade)"
+    // 571 // "Demolisher"
+    // 572 // "Elder"
+    // 1235 // "Elder (Upgrade)"
+    // 573 // "Elite"
+    // 1236 // "Elite (Upgrade)"
+    // 574 // "Militia"
+    // 575 // "Warrior"
+    // 1237 // "Warrior (Upgrade)"
+    // 576 // "Watchman"
+    // 2221 // "Stone rams"
+    private final List<SubViewPanelTuple> dwarvesUnitsNames = createUnitList(new Integer[] {569, 1234, 570, 1238, 571, 572, 1235, 573, 1236, 574, 575, 1237, 576, 2221});
 
-    private final Set<String> trollsUnitsNames = new TreeSet<String>() {{
-        add(getI18NUnitName("577")); // "Bouncer"
-        add(getI18NUnitName("1287")); // "Bouncer (Upgrade)"
-        add(getI18NUnitName("578")); // "Champion"
-        add(getI18NUnitName("1290")); // "Champion (Upgrade)"
-        add(getI18NUnitName("579")); // "Destroyer"
-        add(getI18NUnitName("1289")); // "Destroyer (Upgrade)"
-        add(getI18NUnitName("580")); // "Devastator"
-        add(getI18NUnitName("1286")); // "Devastator (Upgrade)"
-        add(getI18NUnitName("581")); // "Hurler"
-        add(getI18NUnitName("1288")); // "Hurler (Upgrade)"
-        add(getI18NUnitName("582")); // "Rowdy"
-        add(getI18NUnitName("583")); // "Smasher"
-        add(getI18NUnitName("1284")); // "Smasher (Upgrade)"
-        add(getI18NUnitName("584")); // "Thrower"
-        add(getI18NUnitName("1285")); // "Thrower (Upgrade)"
-        add(getI18NUnitName("2245")); // "Walking fortress"
-    }};
+    // 577 // "Bouncer"
+    // 1287 // "Bouncer (Upgrade)"
+    // 578 // "Champion"
+    // 1290 // "Champion (Upgrade)"
+    // 579 // "Destroyer"
+    // 1289 // "Destroyer (Upgrade)"
+    // 580 // "Devastator"
+    // 1286 // "Devastator (Upgrade)"
+    // 581 // "Hurler"
+    // 1288 // "Hurler (Upgrade)"
+    // 582 // "Rowdy"
+    // 583 // "Smasher"
+    // 1284 // "Smasher (Upgrade)"
+    // 584 // "Thrower"
+    // 1285 // "Thrower (Upgrade)"
+    // 2245 // "Walking fortress"
+    private final List<SubViewPanelTuple> trollsUnitsNames = createUnitList(new Integer[] {577, 1287, 578, 1290, 579, 1289, 580, 1286, 581, 1288, 582, 583, 1284, 584, 1285, 2245});
 
-    private String getI18NUnitName(String unitId) {
-        return I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, unitId);
+    private List<SubViewPanelTuple> createUnitList(Integer[] creatureIds) {
+        Integer[] nameIds = CreatureCommonParametersTableService.INSTANCE.getNameIds(creatureIds);
+        List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
+        List<SubViewPanelTuple> result = new ArrayList<>();
+        for (int i = 0; i < objectNames.size(); ++i) {
+            result.add(new SubViewPanelTuple(objectNames.get(i), creatureIds[i]));
+        }
+        
+        return result;
     }
 
-    private final Map<String, Set<String>> unitRacesToUnitNamesMap = new TreeMap<String, Set<String>>() {{
+    private final Map<String, List<SubViewPanelTuple>> unitRacesToUnitNamesMap = new TreeMap<String, List<SubViewPanelTuple>>() {{
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.humans"), humanUnitsNames);
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.elves"), elvesUnitsNames);
         put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dwarves"), dwarvesUnitsNames);
@@ -134,23 +141,36 @@ public enum UnitMapping {
 
     public List<String> getUnitRacesList() {
         List<String> result = new ArrayList<>();
-        for (Map.Entry<String, Set<String>> entry : unitRacesToUnitNamesMap.entrySet()) {
+        for (Map.Entry<String, List<SubViewPanelTuple>> entry : unitRacesToUnitNamesMap.entrySet()) {
             result.add(entry.getKey());
         }
 
         return result;
     }
 
-    public Set<String> getUnitNames(String raceName) {
+    public List<SubViewPanelTuple> getUnitNames(String raceName) {
         return unitRacesToUnitNamesMap.get(raceName);
     }
 
-    public String getRaceName(String unitName) {
-        for (Map.Entry<String, Set<String>> entry : unitRacesToUnitNamesMap.entrySet()) {
-            Set<String> unitNames = entry.getValue();
-            for (String name : unitNames) {
-                if (name.equals(unitName)) {
+    public String getRaceName(Integer unitId) {
+        for (Map.Entry<String, List<SubViewPanelTuple>> entry : unitRacesToUnitNamesMap.entrySet()) {
+            List<SubViewPanelTuple> tuples = entry.getValue();
+            for (SubViewPanelTuple tuple : tuples) {
+                if (tuple.getObjectId().equals(unitId)) {
                     return entry.getKey();
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public String getUnitName(Integer unitId) {
+        for (Map.Entry<String, List<SubViewPanelTuple>> entry : unitRacesToUnitNamesMap.entrySet()) {
+            List<SubViewPanelTuple> tuples = entry.getValue();
+            for (SubViewPanelTuple tuple : tuples) {
+                if (tuple.getObjectId().equals(unitId)) {
+                    return tuple.getName();
                 }
             }
         }

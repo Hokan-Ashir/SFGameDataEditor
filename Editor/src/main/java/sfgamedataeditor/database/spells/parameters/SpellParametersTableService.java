@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -214,15 +215,15 @@ public enum SpellParametersTableService implements TableCreationService {
         }
     }
 
-    public Set<String> getAllSpellSchoolNames() {
+    public List<SubViewPanelTuple> getAllSpellSchoolNames() {
         List<SpellParametersObject> allTableData = CommonTableService.INSTANCE.getAllTableData(SpellParametersObject.class);
-        Set<String> names = new TreeSet<>();
+        List<SubViewPanelTuple> result = new ArrayList<>();
         for (SpellParametersObject parametersObject : allTableData) {
             String wholeName = getSpellSchoolName(parametersObject);
-            names.add(wholeName);
+            result.add(new SubViewPanelTuple(wholeName));
         }
 
-        return names;
+        return result;
     }
 
     public String getSpellSchoolName(SpellParametersObject parametersObject) {

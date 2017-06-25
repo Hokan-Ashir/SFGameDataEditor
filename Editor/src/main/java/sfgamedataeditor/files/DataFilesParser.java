@@ -30,6 +30,7 @@ import sfgamedataeditor.database.player.level.stats.PlayerLevelStatsTableService
 import sfgamedataeditor.database.skill.parameters.SkillParametersTableService;
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
+import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.io.FileNotFoundException;
@@ -47,6 +48,7 @@ public enum DataFilesParser {
 
     private static final Logger LOGGER = Logger.getLogger(DataFilesParser.class);
     private final List<TableCreationService> services = new ArrayList<TableCreationService>() {{
+        add(TextTableService.INSTANCE);
         add(SkillParametersTableService.INSTANCE);
         add(SpellParametersTableService.INSTANCE);
         add(CreatureParametersTableService.INSTANCE);

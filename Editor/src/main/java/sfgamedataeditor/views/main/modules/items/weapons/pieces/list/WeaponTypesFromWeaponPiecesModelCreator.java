@@ -28,7 +28,7 @@ public class WeaponTypesFromWeaponPiecesModelCreator implements ModelCreator<Mod
         // TODO remove duplication and generalize item types views
         String selectedWeaponPieceName = childModel.getParameter().getSelectedModuleName();
         if (selectedWeaponPieceName == null) {
-            selectedWeaponPieceName = childModel.getParameter().getSubPanelsNames().iterator().next();
+            selectedWeaponPieceName = childModel.getParameter().getSubViewPanelTuples().get(0).getName();
         }
         int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedWeaponPieceName, WEAPON_TYPE_IDS);
 

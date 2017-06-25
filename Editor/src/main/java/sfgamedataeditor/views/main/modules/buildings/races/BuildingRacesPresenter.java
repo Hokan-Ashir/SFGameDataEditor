@@ -2,11 +2,12 @@ package sfgamedataeditor.views.main.modules.buildings.races;
 
 import sfgamedataeditor.database.buildings.common.BuildingsTableService;
 import sfgamedataeditor.views.common.ModuleParameter;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.BuildingsModel;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.BuildingsModelParameter;
 
-import java.util.Set;
+import java.util.List;
 
 public class BuildingRacesPresenter extends AbstractModulesPresenter<ModuleParameter, BuildingRacesView, BuildingsModel> {
 
@@ -16,8 +17,8 @@ public class BuildingRacesPresenter extends AbstractModulesPresenter<ModuleParam
 
     @Override
     protected BuildingsModel createModel() {
-        String selectedRace = getView().getSelectedModuleName();
-        Set<String> buildingNames = BuildingsTableService.INSTANCE.getBuildingsNamesByRaceName(selectedRace);
+        Integer raceId = getView().getSelectedModuleObjectId();
+        List<SubViewPanelTuple> buildingNames = BuildingsTableService.INSTANCE.getBuildingsNamesByRaceId(raceId);
         BuildingsModelParameter parameter = new BuildingsModelParameter(buildingNames, null);
         return new BuildingsModel(parameter);
     }

@@ -19,7 +19,7 @@ public abstract class AbstractIconPathAlias {
         for (String key : bundle.keySet()) {
             String value = bundle.getString(key);
             if (value.startsWith("[")) {
-                String[] aliases = value.replaceAll("\\[(.*)\\]", "$1").split(", ");
+                String[] aliases = value.replaceAll("\\[(.*)]", "$1").split(", ");
                 for (String alias : aliases) {
                     addAlias(alias + ".png", key + ".png");
                 }

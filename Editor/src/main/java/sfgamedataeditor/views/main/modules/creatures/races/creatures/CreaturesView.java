@@ -1,7 +1,6 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures;
 
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
-import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.NameModulesPanelManager;
@@ -33,9 +32,8 @@ public class CreaturesView extends AbstractModulesView {
     }
 
     @Override
-    protected ImageIcon getPanelImageByPanelName(String panelName) {
-        Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(panelName);
-        String iconPath = "/images/creatures/" + creatureId + ".png";
+    protected ImageIcon getPanelImageByObjectId(Integer objectId) {
+        String iconPath = "/images/creatures/" + objectId + ".png";
         return ImageIconsCache.INSTANCE.getImageIcon(iconPath);
     }
 }

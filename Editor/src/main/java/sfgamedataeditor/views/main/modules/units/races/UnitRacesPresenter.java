@@ -1,11 +1,12 @@
 package sfgamedataeditor.views.main.modules.units.races;
 
 import sfgamedataeditor.views.common.ModuleParameter;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitListModel;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitListModelParameter;
 
-import java.util.Set;
+import java.util.List;
 
 public class UnitRacesPresenter extends AbstractModulesPresenter<ModuleParameter, UnitRacesView, UnitListModel> {
 
@@ -16,7 +17,7 @@ public class UnitRacesPresenter extends AbstractModulesPresenter<ModuleParameter
     @Override
     protected UnitListModel createModel() {
         String selectedRaceName = getView().getSelectedModuleName();
-        Set<String> unitNames = UnitMapping.INSTANCE.getUnitNames(selectedRaceName);
+        List<SubViewPanelTuple> unitNames = UnitMapping.INSTANCE.getUnitNames(selectedRaceName);
         UnitListModelParameter parameter = new UnitListModelParameter(unitNames, null);
         return new UnitListModel(parameter);
     }

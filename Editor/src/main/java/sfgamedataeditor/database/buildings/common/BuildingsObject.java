@@ -34,7 +34,7 @@ public class BuildingsObject extends OffsetableObject {
 
     @Data(offset = 7, length = 2)
     @DatabaseField
-    private Integer nameId;
+    public Integer nameId;
 
     @Data(offset = 9, length = 2)
     @DatabaseField

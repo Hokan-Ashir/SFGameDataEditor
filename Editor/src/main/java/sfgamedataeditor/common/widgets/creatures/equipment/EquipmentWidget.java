@@ -1,6 +1,7 @@
 package sfgamedataeditor.common.widgets.creatures.equipment;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -15,7 +16,7 @@ public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
     private JLabel itemTypeLabel;
     private JComboBox<String> itemTypeComboBox;
     private JLabel itemPieceLabel;
-    private JComboBox<String> itemPieceComboBox;
+    private JComboBox<SubViewPanelTuple> itemPieceComboBox;
     private JButton goToItemButton;
 
     public EquipmentWidget() {
@@ -116,7 +117,7 @@ public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
         return itemTypeComboBox;
     }
 
-    JComboBox<String> getItemPieceComboBox() {
+    JComboBox<SubViewPanelTuple> getItemPieceComboBox() {
         return itemPieceComboBox;
     }
 

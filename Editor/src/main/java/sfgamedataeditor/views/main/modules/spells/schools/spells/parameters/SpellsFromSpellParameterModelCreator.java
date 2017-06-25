@@ -4,12 +4,12 @@ import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.mvc.ModelCreator;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellModelParameter;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class SpellsFromSpellParameterModelCreator implements ModelCreator<SpellModel, SpellParameterModel> {
     @Override
@@ -17,18 +17,18 @@ public class SpellsFromSpellParameterModelCreator implements ModelCreator<SpellM
         int spellId = childModel.getParameter().getSpellId();
         int spellLevel = childModel.getParameter().getLevel();
         List<SpellParametersObject> spellParametersBySpellSchoolObject = SpellParametersTableService.INSTANCE.getSpellParametersBySpellSchool(spellId, spellLevel);
-        Set<String> listOfSpells = new TreeSet<>();
+        List<SubViewPanelTuple> tuples = new ArrayList<>();
         for (SpellParametersObject spellParametersObject : spellParametersBySpellSchoolObject) {
             String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParametersObject.spellNameId);
             if (spellName == null) {
                 continue;
             }
 
-            listOfSpells.add(spellName);
+            tuples.add(new SubViewPanelTuple(spellName, spellParametersObject.spellNumber));
         }
 
         String selectedSpellName = SpellNameTableService.INSTANCE.getSpellName(spellId);
-        SpellModelParameter parameter = new SpellModelParameter(listOfSpells, selectedSpellName);
+        SpellModelParameter parameter = new SpellModelParameter(tuples, selectedSpellName);
         return new SpellModel(parameter);
     }
 }

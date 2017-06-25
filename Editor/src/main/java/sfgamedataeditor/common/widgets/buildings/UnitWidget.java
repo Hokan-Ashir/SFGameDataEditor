@@ -1,6 +1,7 @@
 package sfgamedataeditor.common.widgets.buildings;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.main.modules.units.races.UnitMapping;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -15,7 +16,7 @@ public class UnitWidget extends AbstractWidget<UnitWidgetListener> {
     private JComboBox<String> racesComboBox;
     private JLabel racesLabel;
     private JSeparator separator;
-    private JComboBox<String> unitComboBox;
+    private JComboBox<SubViewPanelTuple> unitComboBox;
     private JLabel unitLabel;
     private JButton goToUnitParametersButton;
 
@@ -37,7 +38,7 @@ public class UnitWidget extends AbstractWidget<UnitWidgetListener> {
         return racesComboBox;
     }
 
-    JComboBox<String> getUnitComboBox() {
+    JComboBox<SubViewPanelTuple> getUnitComboBox() {
         return unitComboBox;
     }
 

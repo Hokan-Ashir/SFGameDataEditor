@@ -17,7 +17,8 @@ public class ScrollsFromScrollsParametersModelCreator implements ModelCreator<Mo
         SpellScrollsParametersModelParameter childModelParameter = childModel.getParameter();
         String scrollName = childModelParameter.getScrollBaseName() + " - " + I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "level") + " " + childModelParameter.getLevel();
         Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(scrollName, SCROLL_TYPE_ID);
-        String selectedItem = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
+        // TODO FIX
+        String selectedItem = "";
         ModuleParameter parameter = new ModuleParameter(selectedItem);
         return new ModulesModel(parameter);
     }

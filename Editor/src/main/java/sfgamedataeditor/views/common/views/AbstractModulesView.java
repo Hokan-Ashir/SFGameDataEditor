@@ -3,28 +3,26 @@ package sfgamedataeditor.views.common.views;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.SubViewPanel;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.DefaultModulesPanelManager;
-import sfgamedataeditor.views.utility.Pair;
 
 import javax.swing.*;
-import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-import java.util.List;
 
 import static java.awt.Component.LEFT_ALIGNMENT;
 
 public abstract class AbstractModulesView implements PresentableView {
 
     private static final Logger LOGGER = Logger.getLogger(AbstractModulesView.class);
-    private final JButton selectedPanel = new JButton();
+    private final SubViewPanel selectedPanel = new SubViewPanel();
     private Icon selectedIcon;
     private final List<SubViewPanel> subViewsPanels = new ArrayList<>();
     private final Comparator<SubViewPanel> subViewPanelComparator = new SubViewsPanelComparator();
     private AbstractModulePanelManager panelManager;
     private final String moduleName;
-    private JPanel selectedRenderPanel;
+    private final JPanel selectedRenderPanel;
 
     protected AbstractModulesView(String viewName) {
         this.moduleName = viewName;
@@ -45,7 +43,7 @@ public abstract class AbstractModulesView implements PresentableView {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setAlignmentX(LEFT_ALIGNMENT);
-        panel.add(selectedPanel);
+        panel.add(selectedPanel.getButton());
         panel.add(Box.createHorizontalStrut(10));
 
         return panel;
@@ -61,40 +59,7 @@ public abstract class AbstractModulesView implements PresentableView {
         panelManager.updatePanelsLayout(subViewsPanels);
     }
 
-    public void addMappings(Set<String> subViewNames, Class<? extends PresentableView> viewClass) {
-        int size = subViewNames.size();
-        int subViewsSize = subViewsPanels.size();
-        if (subViewsSize < size) {
-            for (int i = 0; i < size - subViewsSize; i++) {
-                subViewsPanels.add(new SubViewPanel());
-            }
-        }
-
-        Iterator<SubViewPanel> iterator = subViewsPanels.iterator();
-        Iterator<String> stringIterator = subViewNames.iterator();
-        while (iterator.hasNext()) {
-            SubViewPanel subViewPanel = iterator.next();
-            JButton button = subViewPanel.getButton();
-            if (stringIterator.hasNext()) {
-                String name = stringIterator.next();
-                setPanelImageAndSize(button, name);
-
-                button.setText(name);
-                button.setVisible(true);
-                subViewPanel.setSubViewClass(viewClass);
-            } else {
-                button.setVisible(false);
-            }
-        }
-
-        Collections.sort(subViewsPanels, subViewPanelComparator);
-    }
-
-    protected ImageIcon getPanelImageByPanelName(String panelName) {
-        return null;
-    }
-
-    protected void addMappings(List<Pair<String, Class<? extends PresentableView>>> mappings) {
+    public void addMappings(List<SubViewPanelTuple> mappings, Class<? extends PresentableView> viewClass) {
         int size = mappings.size();
         int subViewsSize = subViewsPanels.size();
         if (subViewsSize < size) {
@@ -104,34 +69,78 @@ public abstract class AbstractModulesView implements PresentableView {
         }
 
         Iterator<SubViewPanel> iterator = subViewsPanels.iterator();
-        Iterator<Pair<String, Class<? extends PresentableView>>> pairIterator = mappings.iterator();
+        Iterator<SubViewPanelTuple> stringIterator = mappings.iterator();
         while (iterator.hasNext()) {
             SubViewPanel subViewPanel = iterator.next();
-            Pair<String, Class<? extends PresentableView>> pair = pairIterator.next();
-            String name = pair.getKey();
             JButton button = subViewPanel.getButton();
-            button.setText(name);
-            setPanelImageAndSize(button, name);
-            subViewPanel.setSubViewClass(pair.getValue());
+            if (stringIterator.hasNext()) {
+                SubViewPanelTuple tuple = stringIterator.next();
+                String name = tuple.getName();
+                setPanelImageAndSize(button, tuple.getObjectId());
+
+                button.setText(name);
+                button.setVisible(true);
+                subViewPanel.setSubViewClass(viewClass);
+                subViewPanel.setObjectId(tuple.getObjectId());
+            } else {
+                button.setVisible(false);
+            }
         }
 
         Collections.sort(subViewsPanels, subViewPanelComparator);
     }
 
-    private void setPanelImageAndSize(JButton button, String name) {
-        ImageIcon icon = getPanelImageByPanelName(name);
+    protected ImageIcon getPanelImageByObjectId(Integer objectId) {
+        return null;
+    }
+
+    protected void addMappings(List<SubViewPanelTuple> mappings) {
+        int size = mappings.size();
+        int subViewsSize = subViewsPanels.size();
+        if (subViewsSize < size) {
+            for (int i = 0; i < size - subViewsSize; i++) {
+                subViewsPanels.add(new SubViewPanel());
+            }
+        }
+
+        Iterator<SubViewPanel> iterator = subViewsPanels.iterator();
+        Iterator<SubViewPanelTuple> tupleIterator = mappings.iterator();
+        while (iterator.hasNext()) {
+            SubViewPanel subViewPanel = iterator.next();
+            SubViewPanelTuple tuple = tupleIterator.next();
+            String name = tuple.getName();
+            JButton button = subViewPanel.getButton();
+            button.setText(name);
+            setPanelImageAndSize(button, tuple.getObjectId());
+            subViewPanel.setSubViewClass(tuple.getPresentableViewClass());
+            subViewPanel.setObjectId(tuple.getObjectId());
+        }
+
+        Collections.sort(subViewsPanels, subViewPanelComparator);
+    }
+
+    private void setPanelImageAndSize(JButton button, Integer objectId) {
+        ImageIcon icon = getPanelImageByObjectId(objectId);
         button.setIcon(icon);
         button.setVerticalTextPosition(SwingConstants.BOTTOM);
         button.setHorizontalTextPosition(SwingConstants.CENTER);
     }
 
     public void setSelectedModuleValue(String selectedModuleValue) {
-        selectedPanel.setSize(selectedModuleValue.length() * 2, selectedPanel.getHeight());
-        selectedPanel.setText(selectedModuleValue);
+        selectedPanel.getButton().setSize(selectedModuleValue.length() * 2, selectedPanel.getButton().getHeight());
+        selectedPanel.getButton().setText(selectedModuleValue);
     }
 
     public String getSelectedModuleName() {
-        return selectedPanel.getText();
+        return selectedPanel.getButton().getText();
+    }
+
+    public Integer getSelectedModuleObjectId() {
+        return selectedPanel.getObjectId();
+    }
+
+    public void setSelectedObjectId(Integer objectId) {
+        selectedPanel.setObjectId(objectId);
     }
 
     public void setSelectedModuleIcon(Icon icon) {
@@ -147,7 +156,7 @@ public abstract class AbstractModulesView implements PresentableView {
     }
 
     public JButton getSelectedPanelButton() {
-        return selectedPanel;
+        return selectedPanel.getButton();
     }
 
     public JPanel getSelectedPanel() {
@@ -163,13 +172,27 @@ public abstract class AbstractModulesView implements PresentableView {
     }
 
     public Class<? extends PresentableView> getSubPanelViewClass(JButton clickedButton) {
-        if (clickedButton.equals(selectedPanel)) {
+        if (clickedButton.equals(selectedPanel.getButton())) {
             return this.getClass();
         }
 
         for (SubViewPanel subViewsPanel : subViewsPanels) {
             if (subViewsPanel.getButton().equals(clickedButton)) {
                 return subViewsPanel.getSubViewClass();
+            }
+        }
+
+        return null;
+    }
+
+    public Integer getSubPanelViewObjectId(JButton clickedButton) {
+        if (clickedButton.equals(selectedPanel.getButton())) {
+            return selectedPanel.getObjectId();
+        }
+
+        for (SubViewPanel subViewsPanel : subViewsPanels) {
+            if (subViewsPanel.getButton().equals(clickedButton)) {
+                return subViewsPanel.getObjectId();
             }
         }
 

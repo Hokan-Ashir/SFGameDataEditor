@@ -9,16 +9,16 @@ import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
-import sfgamedataeditor.database.common.DTODecorator;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.database.text.TextTableService;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.utility.Pair;
-import sfgamedataeditor.views.utility.ViewTools;
-import sfgamedataeditor.views.utility.i18n.I18NService;
-import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public enum CreatureCommonParametersTableService implements TableCreationService {
     INSTANCE {
@@ -29,7 +29,7 @@ public enum CreatureCommonParametersTableService implements TableCreationService
 
         @Override
         public void addRecordsToTable(List<Pair<byte[], Long>> offsettedData) {
-            CommonTableService.INSTANCE.addRecordsToTable(CreaturesCommonParameterObject.class, offsettedData, new CreaturesObjectDecorator());
+            CommonTableService.INSTANCE.addRecordsToTable(CreaturesCommonParameterObject.class, offsettedData);
         }
 
         @Override
@@ -50,32 +50,45 @@ public enum CreatureCommonParametersTableService implements TableCreationService
 
     private static final Logger LOGGER = Logger.getLogger(CreatureCommonParametersTableService.class);
 
-    public Set<String> getCreatureNamesByRaceName(String i18nRaceName) {
-        int raceId = ViewTools.getKeyByPropertyValue(i18nRaceName, I18NTypes.RACES);
-        return getCreatureNamesByRaceId(raceId);
-    }
-
-    public Set<String> getCreatureNamesByRaceId(int raceId) {
+    public List<SubViewPanelTuple> getCreatureNamesByRaceId(int raceId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<CreaturesCommonParameterObject, Integer> commonParametersDAO;
         try {
             commonParametersDAO = DaoManager.createDao(connectionSource, CreaturesCommonParameterObject.class);
 
-            GenericRawResults<String> rawResults =
+            GenericRawResults<Pair<Integer, Integer>> rawResults =
                     commonParametersDAO.queryRaw(
-                            "select name from creature_common_parameters inner join creature_parameters on creature_common_parameters.statsId = creature_parameters.statsId where creature_parameters.raceId = ?",
-                            new RawRowMapper<String>() {
-                                public String mapRow(String[] columnNames,
+                            "select creature_common_parameters.nameId, creature_common_parameters.creatureId " +
+                                    "from creature_common_parameters " +
+                                    "inner join creature_parameters on " +
+                                    "creature_common_parameters.statsId = creature_parameters.statsId " +
+                                    "where creature_parameters.raceId = ? " +
+                                    "order by creature_common_parameters.nameId asc",
+                            new RawRowMapper<Pair<Integer, Integer>>() {
+                                public Pair<Integer, Integer> mapRow(String[] columnNames,
                                                      String[] resultColumns) {
-                                    return resultColumns[0];
+                                    return new Pair<>(Integer.valueOf(resultColumns[0]), Integer.valueOf(resultColumns[1]));
                                 }
                             },
                             String.valueOf(raceId));
 
-            return new TreeSet<>(rawResults.getResults());
+            List<Pair<Integer, Integer>> results = rawResults.getResults();
+            Integer[] nameIds = new Integer[results.size()];
+            for (int i = 0; i < results.size(); ++i) {
+                nameIds[i] = results.get(i).getKey();
+            }
+
+            List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
+
+            List<SubViewPanelTuple> result = new ArrayList<>();
+            for (int i = 0; i < objectNames.size(); i++) {
+                result.add(new SubViewPanelTuple(objectNames.get(i), results.get(i).getValue()));
+            }
+
+            return result;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
     }
 
@@ -102,11 +115,17 @@ public enum CreatureCommonParametersTableService implements TableCreationService
         }
     }
 
-    public List<Pair<String, Integer>> getCreaturesNameIdPairByItemNamePart(String namePart, Long limit) {
+    public List<SubViewPanelTuple> getCreaturesNameIdPairByItemNamePart(String namePart, Long limit) {
         List<CreaturesCommonParameterObject> objects = getObjectsByNamePart(namePart, limit);
-        List<Pair<String, Integer>> result = new ArrayList<>();
-        for (CreaturesCommonParameterObject object : objects) {
-            result.add(new Pair<>(object.name, object.creatureId));
+        Integer[] nameIds = new Integer[objects.size()];
+        for (int i = 0; i < objects.size(); ++i) {
+            nameIds[i] = objects.get(i).nameId;
+        }
+
+        List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
+        List<SubViewPanelTuple> result = new ArrayList<>();
+        for (int i = 0; i < objectNames.size(); i++) {
+            result.add(new SubViewPanelTuple(objectNames.get(i), objects.get(i).creatureId));
         }
 
         return result;
@@ -150,20 +169,38 @@ public enum CreatureCommonParametersTableService implements TableCreationService
         try {
             SelectArg selectArg = new SelectArg("%" + partName + "%");
             QueryBuilder<CreaturesCommonParameterObject, String> builder = dao.queryBuilder().limit(limit);
-            return builder.where().like("name", selectArg).query();
+            return builder.selectColumns("creatureId", "nameId").where().like("name", selectArg).query();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
         }
     }
 
-    private static final class CreaturesObjectDecorator implements DTODecorator<CreaturesCommonParameterObject> {
+    public Integer[] getNameIds(Integer[] creatureIds) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        final Dao<CreaturesCommonParameterObject, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, CreaturesCommonParameterObject.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
 
-        @Override
-        public CreaturesCommonParameterObject decorateObject(CreaturesCommonParameterObject object) {
-            Integer creatureId = object.creatureId;
-            object.name = I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, String.valueOf(creatureId));
-            return object;
+        try {
+            List<CreaturesCommonParameterObject> objects = dao.queryBuilder().where().in("creatureId", (Object[]) creatureIds).query();
+            if (objects.isEmpty()) {
+                return null;
+            } else {
+                Integer[] nameIds = new Integer[objects.size()];
+                for (int i = 0; i < objects.size(); i++) {
+                    nameIds[i] = objects.get(i).nameId;
+                }
+
+                return nameIds;
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
         }
     }
 }

@@ -11,6 +11,7 @@ import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.PresentableView;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -21,11 +22,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
-import java.util.Set;
+import java.util.List;
 
 public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWidget, OffsetableObject> implements ItemListener, ActionListener {
 
-    public static final int ORB_TYPE_WEAPON = 22;
+    private static final int ORB_TYPE_WEAPON = 22;
 
     public EquipmentWidgetListener(EquipmentWidget component, Field... mappedFields) {
         super(component, mappedFields);
@@ -44,7 +45,8 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
             return;
         }
 
-        String itemName = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(itemId));
+        // TODO FIX
+        String itemName = I18NService.INSTANCE.getMessage(I18NTypes.PLAYER_LEVEL_STATS_GUI, String.valueOf(itemId));
         String itemTypeName;
         boolean isItemOrb = ArmorParametersTableService.INSTANCE.getOrbNames().contains(itemName);
         if (isItemOrb) {
@@ -78,21 +80,8 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     }
 
     private Integer getSelectedItemId() {
-        String selectedItemName = (String) getWidget().getItemPieceComboBox().getSelectedItem();
-        String itemTypeName = (String) getWidget().getItemTypeComboBox().getSelectedItem();
-        String itemTypeKey = ViewTools.getKeyStringByPropertyValue(itemTypeName, I18NTypes.COMMON);
-        Integer itemId;
-        if (itemTypeKey == null) {
-            Integer weaponType = WeaponTypesMap.INSTANCE.getWeaponTypeByName(itemTypeName);
-            itemId = WeaponParametersTableService.INSTANCE.getItemIdByItemTypeAndName(selectedItemName, weaponType);
-            if (itemId == null) {
-                itemId = ViewTools.getKeyByPropertyValue(selectedItemName, I18NTypes.ITEMS);
-            }
-        } else {
-            Integer itemType = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemTypeKey));
-            itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedItemName, itemType);
-        }
-        return itemId;
+        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getItemPieceComboBox().getSelectedItem();
+        return tuple.getObjectId();
     }
 
     @Override
@@ -129,7 +118,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     private void updateItemNames() {
         String itemTypeName = (String) getWidget().getItemTypeComboBox().getSelectedItem();
         String itemTypeI18NKey = ViewTools.getKeyStringByPropertyValue(itemTypeName, I18NTypes.COMMON);
-        Set<String> itemNames;
+        List<SubViewPanelTuple> itemNames;
         if (itemTypeI18NKey == null) {
             Integer weaponType = WeaponTypesMap.INSTANCE.getWeaponTypeByName(itemTypeName);
             itemNames = WeaponParametersTableService.INSTANCE.getItemsByItemType(weaponType);
@@ -141,9 +130,9 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
             itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));
         }
 
-        final JComboBox<String> itemPieceComboBox = getWidget().getItemPieceComboBox();
+        final JComboBox<SubViewPanelTuple> itemPieceComboBox = getWidget().getItemPieceComboBox();
         itemPieceComboBox.removeAllItems();
-        for (String itemName : itemNames) {
+        for (SubViewPanelTuple itemName : itemNames) {
             itemPieceComboBox.addItem(itemName);
         }
     }

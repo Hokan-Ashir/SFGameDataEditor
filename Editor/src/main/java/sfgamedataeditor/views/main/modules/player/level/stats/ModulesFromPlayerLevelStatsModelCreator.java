@@ -3,7 +3,6 @@ package sfgamedataeditor.views.main.modules.player.level.stats;
 import sfgamedataeditor.mvc.ModelCreator;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.ModulesModel;
-import sfgamedataeditor.views.common.model.creators.AbstractModulesModelCreator;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 

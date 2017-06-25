@@ -7,16 +7,16 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.database.text.TextTableService;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.utility.Pair;
-import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 public enum BuildingsTableService implements TableCreationService {
     INSTANCE {
@@ -48,69 +48,73 @@ public enum BuildingsTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(BuildingsTableService.class);
 
-    public Set<String> getBuildingsRacesNames() {
+    public List<SubViewPanelTuple> getBuildingsRacesNames() {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<BuildingsObject, Integer> dao;
         try {
             dao = DaoManager.createDao(connectionSource, BuildingsObject.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
 
         try {
             List<BuildingsObject> objects = dao.queryBuilder().selectColumns("raceId").groupBy("raceId").query();
             if (objects.isEmpty()) {
-                return Collections.emptySet();
+                return Collections.emptyList();
             } else {
-                Set<String> result = new TreeSet<>();
+                List<SubViewPanelTuple> result = new ArrayList<>();
                 for (BuildingsObject object : objects) {
-                    result.add(I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(object.raceId)));
+                    String name = I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(object.raceId));
+                    result.add(new SubViewPanelTuple(name, object.raceId));
                 }
+                Collections.sort(result);
 
                 return result;
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
     }
 
-    public Set<String> getBuildingsNamesByRaceName(String raceName) {
-        int raceId = ViewTools.getKeyByPropertyValue(raceName, I18NTypes.RACES);
-        return getBuildingsNamesByRaceId(raceId);
-    }
-
-    public Set<String> getBuildingsNamesByRaceId(Integer raceId) {
+    public List<SubViewPanelTuple> getBuildingsNamesByRaceId(Integer raceId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<BuildingsObject, Integer> dao;
         try {
             dao = DaoManager.createDao(connectionSource, BuildingsObject.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
 
         try {
-            List<BuildingsObject> objects = dao.queryBuilder().selectColumns("buildingId").where().eq("raceId", raceId).query();
+            List<BuildingsObject> objects = dao.queryBuilder().selectColumns("buildingId", "nameId").orderBy("nameId", true).where().eq("raceId", raceId).query();
             if (objects.isEmpty()) {
-                return Collections.emptySet();
+                return Collections.emptyList();
             } else {
-                Set<String> result = new TreeSet<>();
-                for (BuildingsObject object : objects) {
-                    result.add(I18NService.INSTANCE.getMessage(I18NTypes.BUILDING_NAMES_MAPPING, String.valueOf(object.buildingId)));
+                Integer[] nameIds = new Integer[objects.size()];
+                for (int i = 0; i < objects.size(); i++) {
+                    nameIds[i] = objects.get(i).nameId;
                 }
+
+                List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
+                List<SubViewPanelTuple> result = new ArrayList<>();
+                for (int i = 0; i < objectNames.size(); ++i) {
+                    result.add(new SubViewPanelTuple(objectNames.get(i), objects.get(i).buildingId));
+                }
+
+                Collections.sort(result);
 
                 return result;
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
     }
 
-    public Integer getRaceIdByBuildingName(String buildingName) {
-        int buildingId = ViewTools.getKeyByPropertyValue(buildingName, I18NTypes.BUILDING_NAMES_MAPPING);
+    public Integer getRaceIdByBuildingName(Integer buildingId) {
         return getBuildingObjectByBuildingId(buildingId).raceId;
     }
 

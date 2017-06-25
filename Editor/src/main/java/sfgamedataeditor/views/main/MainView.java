@@ -2,7 +2,6 @@ package sfgamedataeditor.views.main;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 

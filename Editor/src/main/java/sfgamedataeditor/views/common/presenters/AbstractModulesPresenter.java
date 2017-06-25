@@ -8,6 +8,7 @@ import sfgamedataeditor.mvc.objects.AbstractSubModuleParameter;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.SubViewPanel;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.MainView;
 
@@ -15,7 +16,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Set;
 
 public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParameter, V extends AbstractModulesView, C extends Model> extends AbstractPresenter<P, V> {
 
@@ -32,7 +32,7 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
     public void updateView() {
         Model<P> model = getModel();
         if (model != null) {
-            Set<String> subPanelsNames = model.getParameter().getSubPanelsNames();
+            List<SubViewPanelTuple> subPanelsNames = model.getParameter().getSubViewPanelTuples();
             if (subPanelsNames != null) {
                 getView().addMappings(subPanelsNames, model.getParameter().getSubPanelsViewClass());
             } else {
@@ -96,6 +96,8 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
 
             getView().setSelectedModuleValue(source.getText());
             getView().setSelectedModuleIcon(source.getIcon());
+            Integer subPanelViewObjectId = getView().getSubPanelViewObjectId(source);
+            getView().setSelectedObjectId(subPanelViewObjectId);
             Class<? extends PresentableView> classViewToShow = getView().getSubPanelViewClass(source);
             Model model;
             if (source.equals(getView().getSelectedPanelButton())) {

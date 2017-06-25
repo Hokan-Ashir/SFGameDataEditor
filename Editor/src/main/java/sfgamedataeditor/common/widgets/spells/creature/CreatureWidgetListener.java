@@ -4,8 +4,10 @@ import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
+import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesModelCreator;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModel;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
@@ -19,7 +21,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
-import java.util.Set;
+import java.util.List;
 
 public class CreatureWidgetListener extends AbstractWidgetListener<CreatureWidget, OffsetableObject> implements ItemListener, ActionListener {
 
@@ -46,36 +48,39 @@ public class CreatureWidgetListener extends AbstractWidgetListener<CreatureWidge
     }
 
     private void updateCreatureNamesComboBox() {
-        String selectedRaceName = (String) getWidget().getRacesComboBox().getSelectedItem();
-        final Set<String> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceName(selectedRaceName);
-        final JComboBox<String> comboBox = getWidget().getCreatureNameComboBox();
+        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getRacesComboBox().getSelectedItem();
+        final List<SubViewPanelTuple> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceId(tuple.getObjectId());
+        final JComboBox<SubViewPanelTuple> comboBox = getWidget().getCreatureNameComboBox();
         ViewTools.replaceComboBoxContentSilently(comboBox, creatureNames);
     }
 
     @Override
     protected int[] getFieldValues() {
-        String selectedCreatureName = (String) getWidget().getCreatureNameComboBox().getSelectedItem();
-        Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(selectedCreatureName);
-        return new int[]{creatureId};
+        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getCreatureNameComboBox().getSelectedItem();
+        return new int[]{tuple.getObjectId()};
     }
 
     @Override
     protected void setFieldValues(int[] value) {
         int creatureId = value[0];
-        final String creatureName = I18NService.INSTANCE.getMessage(I18NTypes.CREATURES, String.valueOf(creatureId));
-        Integer raceId = CreatureParametersTableService.INSTANCE.getRaceIdByCreatureName(creatureName);
+
+        // TODO
+        Integer raceId = CreatureParametersTableService.INSTANCE.getRaceIdByCreatureName(creatureId);
         final String raceName = I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId));
-        final JComboBox<String> racesComboBox = getWidget().getRacesComboBox();
+        final JComboBox<SubViewPanelTuple> racesComboBox = getWidget().getRacesComboBox();
         racesComboBox.setSelectedItem(raceName);
 
-        final JComboBox<String> creatureNameComboBox = getWidget().getCreatureNameComboBox();
-        creatureNameComboBox.setSelectedItem(creatureName);
+        final JComboBox<SubViewPanelTuple> creatureNameComboBox = getWidget().getCreatureNameComboBox();
+        Integer[] nameIds = CreatureCommonParametersTableService.INSTANCE.getNameIds(new Integer[]{creatureId});
+        List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
+        creatureNameComboBox.setSelectedItem(objectNames.get(0));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String selectedCreatureName = (String) getWidget().getCreatureNameComboBox().getSelectedItem();
         Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(selectedCreatureName);
+        // TODO extract icon from DB object
         CreaturesParametersModel model = modelCreator.createModel(creatureId, null);
         ShowContentViewEvent event = new ShowContentViewEvent(CreaturesParametersView.class, model);
         EventProcessor.INSTANCE.process(event);

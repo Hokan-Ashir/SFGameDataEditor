@@ -7,16 +7,16 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
+import sfgamedataeditor.database.text.TextTableService;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.utility.Pair;
-import sfgamedataeditor.views.utility.i18n.I18NService;
-import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 public enum WeaponParametersTableService implements TableCreationService {
     INSTANCE {
@@ -71,38 +71,39 @@ public enum WeaponParametersTableService implements TableCreationService {
         }
     }
 
-    public Set<String> getItemsByItemType(int typeId) {
+    public List<SubViewPanelTuple> getItemsByItemType(int typeId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<WeaponParametersObject, String> dao;
         try {
             dao = DaoManager.createDao(connectionSource, WeaponParametersObject.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
 
         try {
-            List<WeaponParametersObject> objects = dao.queryBuilder().where().eq("type", typeId).query();
-            Set<String> itemNames = new TreeSet<>();
-            for (WeaponParametersObject object : objects) {
-                itemNames.add(I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(object.itemId)));
+            List<WeaponParametersObject> objects = dao.queryBuilder().selectColumns("itemId").where().eq("type", typeId).query();
+            Integer[] itemIds = new Integer[objects.size()];
+            for (int i = 0; i < objects.size(); i++) {
+                itemIds[i] = objects.get(i).itemId;
             }
 
-            return itemNames;
+            List<ItemPriceParametersObject> priceParametersObjects = ItemPriceParametersTableService.INSTANCE.getObjectByItemIds(itemIds);
+            Integer[] nameIds = new Integer[objects.size()];
+            for (int i = 0; i < objects.size(); i++) {
+                nameIds[i] = priceParametersObjects.get(i).nameId;
+            }
+
+            List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
+            List<SubViewPanelTuple> result = new ArrayList<>();
+            for (int i = 0; i < objectNames.size(); ++i) {
+                result.add(new SubViewPanelTuple(objectNames.get(i), objects.get(i).itemId));
+            }
+
+            return result;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
-    }
-
-    public Integer getItemIdByItemTypeAndName(String itemName, int typeId) {
-        Set<String> itemNames = getItemsByItemType(typeId);
-        for (String name : itemNames) {
-            if (name.equals(itemName)) {
-                return ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(itemName);
-            }
-        }
-
-        return null;
     }
 }

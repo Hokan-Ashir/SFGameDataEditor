@@ -11,7 +11,8 @@ import javax.swing.*;
 public class SpellScrollsModelCreator implements ModelCreator<SpellScrollsParametersModel> {
     @Override
     public SpellScrollsParametersModel createModel(int objectId, Icon icon) {
-        String fullScrollName = I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(objectId));
+        // TODO FIX
+        String fullScrollName = I18NService.INSTANCE.getMessage(I18NTypes.PLAYER_LEVEL_STATS_GUI, String.valueOf(objectId));
         String baseScrollName = fullScrollName.split("\\s")[0];
         Integer scrollLevel = Integer.valueOf(fullScrollName.split("\\s")[3]);
         SpellScrollsParametersModelParameter parameter = new SpellScrollsParametersModelParameter(baseScrollName, scrollLevel, icon);

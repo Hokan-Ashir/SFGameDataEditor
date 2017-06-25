@@ -12,8 +12,8 @@ public class BuildingRacesFromBuildingsModelCreator implements ModelCreator<Modu
     @Override
     public ModulesModel createModel(BuildingsModel childModel) {
         // it's not important which object we choose, cause "getRaceIdByBuildingName" will correct identify race
-        String buildingName = childModel.getParameter().getSubPanelsNames().iterator().next();
-        int raceId = BuildingsTableService.INSTANCE.getRaceIdByBuildingName(buildingName);
+        Integer buildingId = childModel.getParameter().getSubViewPanelTuples().get(0).getObjectId();
+        int raceId = BuildingsTableService.INSTANCE.getRaceIdByBuildingName(buildingId);
         String raceName = I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId));
         ModuleParameter parameter = new ModuleParameter(raceName);
         return new ModulesModel(parameter);

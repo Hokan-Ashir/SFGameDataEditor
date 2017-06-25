@@ -9,6 +9,7 @@ import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.AbstractGhostTextListener;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.model.creators.ModelCreator;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.BuildingModelCreator;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersView;
@@ -112,7 +113,8 @@ public class SearchView implements PresentableView {
         }
 
         private void addBuildingsSuggestions(String text, List<SearchTuple> elements) {
-            addI18nElementsSuggestions(text, elements, BUILDINGS_TYPE_OBJECT, I18NTypes.BUILDING_NAMES_MAPPING);
+            // TODO rewrite it, like as creatures
+//            addI18nElementsSuggestions(text, elements, BUILDINGS_TYPE_OBJECT, I18NTypes.BUILDING_NAMES_MAPPING);
         }
 
         private void addObjectsSuggestions(String text, List<SearchTuple> elements) {
@@ -134,9 +136,9 @@ public class SearchView implements PresentableView {
         }
 
         private void addCreaturesSuggestions(String text, List<SearchTuple> elements) {
-            List<Pair<String, Integer>> objects = CreatureCommonParametersTableService.INSTANCE.getCreaturesNameIdPairByItemNamePart(text, MAXIMUM_NUMBER_OF_SUGGESTIONS - elements.size());
-            for (Pair<String, Integer> object : objects) {
-                elements.add(new SearchTuple(CREATURES_TYPE_OBJECT, object.getKey(), object.getValue()));
+            List<SubViewPanelTuple> objects = CreatureCommonParametersTableService.INSTANCE.getCreaturesNameIdPairByItemNamePart(text, MAXIMUM_NUMBER_OF_SUGGESTIONS - elements.size());
+            for (SubViewPanelTuple object : objects) {
+                elements.add(new SearchTuple(CREATURES_TYPE_OBJECT, object.getName(), object.getObjectId()));
             }
         }
 

@@ -3,7 +3,7 @@ package sfgamedataeditor.database.common;
 import org.apache.log4j.Logger;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -32,7 +32,7 @@ public enum ObjectDataMappingService {
                     int temp = getValue(buffer, offset, length);
                     field.set(object, temp);
                 } else if (daoFieldType.isAssignableFrom(String.class)) {
-                    String string = new String(buffer);
+                    String string = new String(buffer, offset, length, Charset.forName("Cp1251")).trim();
                     field.set(object, string);
                 }
             } catch (IllegalAccessException e) {

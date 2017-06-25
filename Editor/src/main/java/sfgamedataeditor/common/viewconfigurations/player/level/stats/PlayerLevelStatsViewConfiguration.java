@@ -4,18 +4,8 @@ import sfgamedataeditor.common.viewconfigurations.AbstractConfiguration;
 import sfgamedataeditor.common.viewconfigurations.ConfigurationWidgetParameter;
 import sfgamedataeditor.common.widgets.common.combobox.level.LevelComboBoxWidget;
 import sfgamedataeditor.common.widgets.common.combobox.level.PlayerLevelStatsComboBoxListener;
-import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidget;
-import sfgamedataeditor.common.widgets.common.effectnumber.EffectNumberWidgetListener;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidget;
 import sfgamedataeditor.common.widgets.common.textfield.TextFieldWidgetListener;
-import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidget;
-import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentWidgetListener;
-import sfgamedataeditor.common.widgets.creatures.equipmentslot.EquipmentSlotWidget;
-import sfgamedataeditor.common.widgets.creatures.equipmentslot.EquipmentSlotWidgetListener;
-import sfgamedataeditor.common.widgets.creatures.races.RacesWidget;
-import sfgamedataeditor.common.widgets.creatures.races.RacesWidgetListener;
-import sfgamedataeditor.common.widgets.creatures.vulnerability.VulnerabilityWidget;
-import sfgamedataeditor.common.widgets.creatures.vulnerability.VulnerabilityWidgetListener;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.util.HashMap;

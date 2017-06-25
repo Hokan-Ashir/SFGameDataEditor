@@ -13,17 +13,10 @@ public class CreaturesCommonParameterObject extends OffsetableObject {
     @DatabaseField(generatedId = true)
     private Integer id;
 
-    @DatabaseField
-    public String name;
-
     @Data(offset = 0, length = 2)
     @DatabaseField
     public Integer creatureId;
 
-    // TODO maybe add
-    // 54 5A - name ID
-    // still have to be serialized, cause during deserialization whole object is deserialized into byte array
-    // and no bytes should be replaced by zeros
     @Data(offset = 2, length = 2)
     @DatabaseField
     public Integer nameId;

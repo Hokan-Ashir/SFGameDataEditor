@@ -2,10 +2,13 @@ package sfgamedataeditor.common.widgets.units.buildings;
 
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
+import sfgamedataeditor.database.buildings.common.BuildingsObject;
 import sfgamedataeditor.database.buildings.common.BuildingsTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
+import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.BuildingModelCreator;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersModel;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersView;
@@ -19,7 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
-import java.util.Set;
+import java.util.List;
 
 public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWidget, OffsetableObject> implements ItemListener, ActionListener {
 
@@ -31,36 +34,36 @@ public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWid
 
     @Override
     protected int[] getFieldValues() {
-        String selectedBuildingName = (String) getWidget().getBuildingComboBox().getSelectedItem();
-        int buildingId = ViewTools.getKeyByPropertyValue(selectedBuildingName, I18NTypes.BUILDING_NAMES_MAPPING);
-        return new int[]{buildingId};
+        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getBuildingComboBox().getSelectedItem();
+        return new int[]{tuple.getObjectId()};
     }
 
     @Override
     protected void setFieldValues(int[] value) {
         int buildingId = value[0];
-        final String buildingName = I18NService.INSTANCE.getMessage(I18NTypes.BUILDING_NAMES_MAPPING, String.valueOf(buildingId));
-        Integer raceId = BuildingsTableService.INSTANCE.getRaceIdByBuildingName(buildingName);
+        // TODO
+        Integer raceId = BuildingsTableService.INSTANCE.getRaceIdByBuildingName(buildingId);
         final String raceName = I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId));
-        final JComboBox<String> racesComboBox = getWidget().getRacesComboBox();
+        final JComboBox<SubViewPanelTuple> racesComboBox = getWidget().getRacesComboBox();
         racesComboBox.setSelectedItem(raceName);
 
-        final JComboBox<String> unitNameComboBox = getWidget().getBuildingComboBox();
+        final JComboBox<SubViewPanelTuple> unitNameComboBox = getWidget().getBuildingComboBox();
+        BuildingsObject object = BuildingsTableService.INSTANCE.getBuildingObjectByBuildingId(buildingId);
+        String buildingName = TextTableService.INSTANCE.getObjectName(object.nameId);
         unitNameComboBox.setSelectedItem(buildingName);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String selectedBuildingName = (String) getWidget().getBuildingComboBox().getSelectedItem();
-        int buildingId = ViewTools.getKeyByPropertyValue(selectedBuildingName, I18NTypes.BUILDING_NAMES_MAPPING);
-        Icon icon = getBuildingIcon(selectedBuildingName);
+        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getBuildingComboBox().getSelectedItem();
+        Integer buildingId = tuple.getObjectId();
+        Icon icon = getBuildingIcon(buildingId);
         BuildingsParametersModel model = modelCreator.createModel(buildingId, icon);
         ShowContentViewEvent event = new ShowContentViewEvent(BuildingsParametersView.class, model);
         EventProcessor.INSTANCE.process(event);
     }
 
-    private Icon getBuildingIcon(String buildingName) {
-        Integer buildingId = ViewTools.getKeyByPropertyValue(buildingName, I18NTypes.BUILDING_NAMES_MAPPING);
+    private Icon getBuildingIcon(Integer buildingId) {
         String iconPath = "/images/buildings/" + buildingId + ".png";
         return ImageIconsCache.INSTANCE.getImageIcon(iconPath);
     }
@@ -82,9 +85,9 @@ public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWid
     }
 
     private void updateUnitNamesComboBox() {
-        String selectedRaceName = (String) getWidget().getRacesComboBox().getSelectedItem();
-        final Set<String> buildingsNames = BuildingsTableService.INSTANCE.getBuildingsNamesByRaceName(selectedRaceName);
-        final JComboBox<String> comboBox = getWidget().getBuildingComboBox();
+        SubViewPanelTuple item = (SubViewPanelTuple) getWidget().getRacesComboBox().getSelectedItem();
+        final List<SubViewPanelTuple> buildingsNames = BuildingsTableService.INSTANCE.getBuildingsNamesByRaceId(item.getObjectId());
+        final JComboBox<SubViewPanelTuple> comboBox = getWidget().getBuildingComboBox();
         ViewTools.replaceComboBoxContentSilently(comboBox, buildingsNames);
     }
 }

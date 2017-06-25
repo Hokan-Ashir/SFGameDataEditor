@@ -1,13 +1,14 @@
 package sfgamedataeditor.views.main.modules.units.races;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitListView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UnitRacesView extends AbstractModulesView {
 
@@ -17,15 +18,16 @@ public class UnitRacesView extends AbstractModulesView {
 
     @Override
     public void fillSubViewsMappings() {
-        Set<String> names = new TreeSet<>();
-        names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.humans"));
-        names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.elves"));
-        names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dwarves"));
-        names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.orcs"));
-        names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.trolls"));
-        names.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dark.elves"));
+        List<SubViewPanelTuple> mappings = new ArrayList<SubViewPanelTuple>() {{
+            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.humans")));
+            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.elves")));
+            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dwarves")));
+            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.orcs")));
+            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.trolls")));
+            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dark.elves")));
+        }};
 
-        addMappings(names, UnitListView.class);
+        addMappings(mappings, UnitListView.class);
     }
 
     @Override

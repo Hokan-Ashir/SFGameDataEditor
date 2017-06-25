@@ -12,9 +12,6 @@ public class PlayerLevelStatsObject extends OffsetableObject {
     @DatabaseField(generatedId = true)
     private Integer id;
 
-    @DatabaseField
-    public String name;
-
     @Data(offset = 0, length = 1)
     @DatabaseField
     public Integer level;

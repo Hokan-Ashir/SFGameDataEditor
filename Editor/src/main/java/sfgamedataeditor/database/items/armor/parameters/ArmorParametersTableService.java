@@ -9,13 +9,14 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
-import sfgamedataeditor.database.merchants.items.MerchantInventoryItemsObject;
+import sfgamedataeditor.database.text.TextTableService;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.utility.Pair;
-import sfgamedataeditor.views.utility.i18n.I18NService;
-import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public enum ArmorParametersTableService implements TableCreationService {
     INSTANCE {
@@ -77,39 +78,46 @@ public enum ArmorParametersTableService implements TableCreationService {
     // what are objects that:
     // - have 1h-weapon type in ItemPriceParameterObject
     // - have ArmorParametersObjects (that's the main reason why this method is here and no in WeaponParametersTableService)
-    public Set<String> getOrbNames() {
+    public List<SubViewPanelTuple> getOrbNames() {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         Dao<ArmorParametersObject, ?> dao;
         try {
             dao = DaoManager.createDao(connectionSource, ArmorParametersObject.class);
-            GenericRawResults<Integer> rawResults =
+            GenericRawResults<Pair<Integer, Integer>> rawResults =
                     dao.queryRaw(
-                            "select t.itemId from " +
-                                    "(select armor_parameters.itemId as itemId from armor_parameters " +
+                            "select t.itemId, t.nameId from " +
+                                    "(select armor_parameters.itemId as itemId, item_price_parameters.nameId as nameId" +
+                                    " from armor_parameters " +
                                     "inner join item_price_parameters " +
                                     "on armor_parameters.itemId = item_price_parameters.itemId " +
                                     "where item_price_parameters.typeId = ?) as t " +
                                     "left join weapon_parameters " +
                                     "on t.itemId = weapon_parameters.itemId " +
                                     "where weapon_parameters.id is null",
-                            new RawRowMapper<Integer>() {
-                                public Integer mapRow(String[] columnNames,
+                            new RawRowMapper<Pair<Integer, Integer>>() {
+                                public Pair<Integer, Integer> mapRow(String[] columnNames,
                                                       String[] resultColumns) {
-                                    return Integer.valueOf(resultColumns[0]);
+                                    return new Pair<>(Integer.valueOf(resultColumns[0]), Integer.valueOf(resultColumns[1]));
                                 }
                             },
                             String.valueOf(ONE_HANDED_WEAPON_TYPE));
 
-            List<Integer> results = rawResults.getResults();
-            Set<String> names = new TreeSet<>();
-            for (Integer result : results) {
-                names.add(I18NService.INSTANCE.getMessage(I18NTypes.ITEMS, String.valueOf(result)));
+            List<Pair<Integer, Integer>> orbItemIds = rawResults.getResults();
+            Integer[] nameIds = new Integer[orbItemIds.size()];
+            for (int i = 0; i < orbItemIds.size(); ++i) {
+                nameIds[i] = orbItemIds.get(i).getValue();
             }
 
-            return names;
+            List<String> texts = TextTableService.INSTANCE.getObjectNames(nameIds);
+            List<SubViewPanelTuple> result = new ArrayList<>();
+            for (int i = 0; i < texts.size(); i++) {
+                result.add(new SubViewPanelTuple(texts.get(i), orbItemIds.get(i).getKey()));
+            }
+
+            return result;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
     }
 }

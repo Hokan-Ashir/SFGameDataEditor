@@ -2,16 +2,15 @@ package sfgamedataeditor.views.main.modules;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
+import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.buildings.races.BuildingRacesView;
 import sfgamedataeditor.views.main.modules.creatures.races.CreaturesRacesView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 import sfgamedataeditor.views.main.modules.objects.chests.ChestsListView;
 import sfgamedataeditor.views.main.modules.player.level.stats.PlayerLevelStatsView;
-import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;
 import sfgamedataeditor.views.main.modules.units.races.UnitRacesView;
-import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -29,17 +28,21 @@ public class ModulesView extends AbstractModulesView {
      */
     @Override
     public void fillSubViewsMappings() {
-        List<Pair<String, Class<? extends PresentableView>>> mappings = new ArrayList<>();
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "skills"), SkillSchoolsView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "spells"), SpellSchoolsView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "buildings"), BuildingRacesView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "creatures"), CreaturesRacesView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items"), ItemTypesView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "units"), UnitRacesView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "chests"), ChestsListView.class));
-        mappings.add(new Pair<String, Class<? extends PresentableView>>(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "playerStats"), PlayerLevelStatsView.class));
+        List<SubViewPanelTuple> mappings = new ArrayList<SubViewPanelTuple>() {{
+           add(createTuple("spells", SpellSchoolsView.class));
+           add(createTuple("buildings", BuildingRacesView.class));
+           add(createTuple("creatures", CreaturesRacesView.class));
+           add(createTuple("items", ItemTypesView.class));
+           add(createTuple("units", UnitRacesView.class));
+           add(createTuple("chests", ChestsListView.class));
+           add(createTuple("playerStats", PlayerLevelStatsView.class));
+        }};
 
         addMappings(mappings);
+    }
+
+    private SubViewPanelTuple createTuple(String i18nKey, Class<? extends PresentableView> viewClass) {
+        return new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nKey), viewClass);
     }
 
     @Override
