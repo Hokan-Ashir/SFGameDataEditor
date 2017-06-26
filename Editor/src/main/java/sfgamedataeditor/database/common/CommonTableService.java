@@ -31,7 +31,7 @@ public enum CommonTableService {
         }
     }
 
-    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final List<Pair<byte[], Long>> offsetedData) {
+    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final  List<Pair<byte[], Long>> offsetedData, final DTOFilter filter) {
         ConnectionSource connectionSource = getConnectionSource();
         final Dao<T, String> dao;
         try {
@@ -46,6 +46,10 @@ public enum CommonTableService {
                 @Override
                 public Void call() throws Exception {
                     for (Pair<byte[], Long> longPair : offsetedData) {
+                        if (filter != null && !filter.isAcceptable(longPair.getKey())) {
+                            continue;
+                        }
+
                         T object = createObject(ormClass, longPair.getKey());
                         object.setOffset(longPair.getValue());
                         dao.create(object);
@@ -57,6 +61,10 @@ public enum CommonTableService {
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         }
+    }
+
+    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final List<Pair<byte[], Long>> offsetedData) {
+        addRecordsToTable(ormClass, offsetedData, null);
     }
 
     private <T> T createObject(Class<T> objectClass, byte[] buffer) {

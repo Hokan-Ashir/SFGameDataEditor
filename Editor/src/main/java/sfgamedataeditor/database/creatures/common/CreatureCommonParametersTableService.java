@@ -176,7 +176,7 @@ public enum CreatureCommonParametersTableService implements TableCreationService
         }
     }
 
-    public Integer[] getNameIds(Integer[] creatureIds) {
+    public List<SubViewPanelTuple> getCreatureTuples(Integer[] creatureIds) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<CreaturesCommonParameterObject, String> dao;
         try {
@@ -187,16 +187,24 @@ public enum CreatureCommonParametersTableService implements TableCreationService
         }
 
         try {
-            List<CreaturesCommonParameterObject> objects = dao.queryBuilder().where().in("creatureId", (Object[]) creatureIds).query();
+            List<CreaturesCommonParameterObject> objects = dao.queryBuilder().selectColumns("creatureId", "nameId").orderBy("nameId", true).where().in("creatureId", (Object[]) creatureIds).query();
             if (objects.isEmpty()) {
                 return null;
             } else {
+
                 Integer[] nameIds = new Integer[objects.size()];
                 for (int i = 0; i < objects.size(); i++) {
                     nameIds[i] = objects.get(i).nameId;
                 }
 
-                return nameIds;
+
+                List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
+                List<SubViewPanelTuple> result = new ArrayList<>();
+                for (int i = 0; i < objectNames.size(); i++) {
+                    result.add(new SubViewPanelTuple(objectNames.get(i), objects.get(i).creatureId));
+                }
+
+                return result;
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

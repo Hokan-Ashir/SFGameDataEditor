@@ -15,30 +15,13 @@ import java.util.Map;
 
 public class UnitPlansRacesPresenter extends AbstractModulesPresenter<ModuleParameter, UnitPlansRacesView, UnitsPlanListModel> {
 
-    private final Map<String, String> unitRaceTypeToNameMapping = new HashMap<>();
-
     public UnitPlansRacesPresenter(UnitPlansRacesView view) {
         super(view);
-        initializeUnitRaceTypeToNameMapping();
-    }
-
-    private void initializeUnitRaceTypeToNameMapping() {
-        addMapping(unitRaceTypeToNameMapping, "races.humans", "items.unit.plan.in.inventory.humans");
-        addMapping(unitRaceTypeToNameMapping, "races.elves", "items.unit.plan.in.inventory.elves");
-        addMapping(unitRaceTypeToNameMapping, "races.dwarves", "items.unit.plan.in.inventory.dwarves");
-        addMapping(unitRaceTypeToNameMapping, "races.orcs", "items.unit.plan.in.inventory.orcs");
-        addMapping(unitRaceTypeToNameMapping, "races.trolls", "items.unit.plan.in.inventory.trolls");
-        addMapping(unitRaceTypeToNameMapping, "races.dark.elves", "items.unit.plan.in.inventory.dark.elves");
-    }
-
-    private void addMapping(Map<String, String> map, String raceI18nKey, String itemTypeI18nKey) {
-        map.put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, raceI18nKey), I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemTypeI18nKey));
     }
 
     @Override
     protected UnitsPlanListModel createModel() {
-        String selectedModuleName = getView().getSelectedModuleName();
-        Integer itemType = Integer.valueOf(unitRaceTypeToNameMapping.get(selectedModuleName));
+        Integer itemType = getView().getSelectedModuleObjectId();
         List<SubViewPanelTuple> buildingsNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(itemType);
         UnitsPlanListModelParameter parameter = new UnitsPlanListModelParameter(buildingsNames, null, itemType);
         return new UnitsPlanListModel(parameter);

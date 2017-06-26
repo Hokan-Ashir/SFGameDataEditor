@@ -71,9 +71,8 @@ public class CreatureWidgetListener extends AbstractWidgetListener<CreatureWidge
         racesComboBox.setSelectedItem(raceName);
 
         final JComboBox<SubViewPanelTuple> creatureNameComboBox = getWidget().getCreatureNameComboBox();
-        Integer[] nameIds = CreatureCommonParametersTableService.INSTANCE.getNameIds(new Integer[]{creatureId});
-        List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
-        creatureNameComboBox.setSelectedItem(objectNames.get(0));
+        List<SubViewPanelTuple> tuples = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[]{creatureId});
+        creatureNameComboBox.setSelectedItem(tuples.get(0));
     }
 
     @Override

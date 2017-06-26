@@ -96,6 +96,10 @@ public enum WeaponParametersTableService implements TableCreationService {
 
             List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
             List<SubViewPanelTuple> result = new ArrayList<>();
+            if (objectNames == null || objectNames.isEmpty()) {
+                return Collections.emptyList();
+            }
+
             for (int i = 0; i < objectNames.size(); ++i) {
                 result.add(new SubViewPanelTuple(objectNames.get(i), objects.get(i).itemId));
             }

@@ -17,7 +17,8 @@ public class UnitRacesPresenter extends AbstractModulesPresenter<ModuleParameter
     @Override
     protected UnitListModel createModel() {
         String selectedRaceName = getView().getSelectedModuleName();
-        List<SubViewPanelTuple> unitNames = UnitMapping.INSTANCE.getUnitNames(selectedRaceName);
+        Integer raceId = getView().getSelectedModuleObjectId();
+        List<SubViewPanelTuple> unitNames = UnitMapping.INSTANCE.getUnitNames(new SubViewPanelTuple(selectedRaceName, raceId));
         UnitListModelParameter parameter = new UnitListModelParameter(unitNames, null);
         return new UnitListModel(parameter);
     }

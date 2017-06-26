@@ -13,7 +13,7 @@ import java.util.List;
 public class UnitWidget extends AbstractWidget<UnitWidgetListener> {
     private JPanel mainPanel;
     private JLabel titleLabel;
-    private JComboBox<String> racesComboBox;
+    private JComboBox<SubViewPanelTuple> racesComboBox;
     private JLabel racesLabel;
     private JSeparator separator;
     private JComboBox<SubViewPanelTuple> unitComboBox;
@@ -28,13 +28,13 @@ public class UnitWidget extends AbstractWidget<UnitWidgetListener> {
     }
 
     private void fillWithPredefinedRaces() {
-        List<String> unitRacesList = UnitMapping.INSTANCE.getUnitRacesList();
-        for (String raceName : unitRacesList) {
-            racesComboBox.addItem(raceName);
+        List<SubViewPanelTuple> unitRacesList = UnitMapping.INSTANCE.getUnitRacesList();
+        for (SubViewPanelTuple tuple : unitRacesList) {
+            racesComboBox.addItem(tuple);
         }
     }
 
-    public JComboBox<String> getRacesComboBox() {
+    public JComboBox<SubViewPanelTuple> getRacesComboBox() {
         return racesComboBox;
     }
 

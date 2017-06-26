@@ -16,9 +16,7 @@ public class UnitsPlanListPresenter extends AbstractModulesPresenter<UnitsPlanLi
 
     @Override
     protected UnitsPlansParametersModel createModel() {
-        String selectedUnitName = getView().getSelectedModuleName();
-        Integer unitRaceType = getModel().getParameter().getUnitsRaceType();
-        int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedUnitName, unitRaceType);
+        int itemId = getView().getSelectedModuleObjectId();
         Icon icon = getView().getSelectedModuleIcon();
         return modelCreator.createModel(itemId, icon);
     }

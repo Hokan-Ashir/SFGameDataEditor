@@ -60,18 +60,16 @@ public enum ItemPriceParametersTableService implements TableCreationService {
 
 
         try {
-            List<ItemPriceParametersObject> objects = dao.queryBuilder().selectColumns("itemId", "nameId").where().eq("typeId", typeId).query();
+            List<ItemPriceParametersObject> objects = dao.queryBuilder().selectColumns("itemId", "nameId").orderBy("nameId", true).where().eq("typeId", typeId).query();
             Integer[] textIds = new Integer[objects.size()];
             for (int i = 0; i < objects.size(); ++i) {
                 textIds[i] = objects.get(i).nameId;
             }
 
-            // TODO set correct language id
-            Dao<TextObject, String>  textObjectDAO = DaoManager.createDao(connectionSource, TextObject.class);
-            List<TextObject> textObjects = textObjectDAO.queryBuilder().selectColumns("textId", "text").where().in("textId", (Object[]) textIds).and().eq("languageId", 1).query();
+            List<String> textObjects = TextTableService.INSTANCE.getObjectNames(textIds);
             List<SubViewPanelTuple> result = new ArrayList<>();
             for (int i = 0; i < textObjects.size(); ++i) {
-                result.add(new SubViewPanelTuple(textObjects.get(i).text, objects.get(i).itemId));
+                result.add(new SubViewPanelTuple(textObjects.get(i), objects.get(i).itemId));
             }
 
             return result;
@@ -158,6 +156,9 @@ public enum ItemPriceParametersTableService implements TableCreationService {
     }
 
     public Integer getItemIdByItemNameAndType(String name, Integer... typeId) {
+        if (name.startsWith(TextTableService.NULL_OBJECT_PREFIX)) {
+            return Integer.valueOf(name.split(" - ")[1]);
+        }
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<ItemPriceParametersObject, String> dao;
         try {

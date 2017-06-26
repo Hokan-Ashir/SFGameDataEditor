@@ -4,9 +4,11 @@ import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.common.widgets.items.weapons.type.WeaponTypesMap;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.items.armor.parameters.ArmorParametersTableService;
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersObject;
 import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableService;
+import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.mvc.objects.Model;
@@ -45,10 +47,15 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
             return;
         }
 
-        // TODO FIX
-        String itemName = I18NService.INSTANCE.getMessage(I18NTypes.PLAYER_LEVEL_STATS_GUI, String.valueOf(itemId));
+        ItemPriceParametersObject object = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
         String itemTypeName;
-        boolean isItemOrb = ArmorParametersTableService.INSTANCE.getOrbNames().contains(itemName);
+        List<SubViewPanelTuple> tuples = ArmorParametersTableService.INSTANCE.getOrbNames();
+        boolean isItemOrb = false;
+        for (SubViewPanelTuple tuple : tuples) {
+            if (tuple.getObjectId().equals(itemId)) {
+                isItemOrb = true;
+            }
+        }
         if (isItemOrb) {
             itemTypeName = WeaponTypesMap.INSTANCE.getWeaponTypeNameById(ORB_TYPE_WEAPON);
         } else {
@@ -64,6 +71,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
 
         getWidget().getItemTypeComboBox().setSelectedItem(itemTypeName);
         updateItemNames();
+        String itemName = TextTableService.INSTANCE.getObjectName(object.nameId);
         getWidget().getItemPieceComboBox().setSelectedItem(itemName);
     }
 

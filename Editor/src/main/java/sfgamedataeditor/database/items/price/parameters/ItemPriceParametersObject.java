@@ -55,7 +55,7 @@ public class ItemPriceParametersObject extends OffsetableObject {
 
     @Data(offset = 8, length = 2)
     @DatabaseField
-    private Integer armyStatsId;
+    public Integer armyStatsId;
 
     @Data(offset = 10, length = 2)
     @DatabaseField

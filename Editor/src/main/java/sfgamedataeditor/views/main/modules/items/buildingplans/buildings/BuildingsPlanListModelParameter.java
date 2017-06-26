@@ -9,15 +9,8 @@ import java.util.List;
 
 public class BuildingsPlanListModelParameter extends AbstractSubModuleParameter {
 
-    private final Integer buildingsRaceType;
-
-    public BuildingsPlanListModelParameter(List<SubViewPanelTuple> panelTuples, String selectedObjectName, Integer buildingsRaceType) {
+    public BuildingsPlanListModelParameter(List<SubViewPanelTuple> panelTuples, String selectedObjectName) {
         super(panelTuples, selectedObjectName);
-        this.buildingsRaceType = buildingsRaceType;
-    }
-
-    public Integer getBuildingsRaceType() {
-        return buildingsRaceType;
     }
 
     @Override

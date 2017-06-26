@@ -31,21 +31,21 @@ public class UnitWidgetListener extends AbstractWidgetListener<UnitWidget, Offse
 
     @Override
     protected int[] getFieldValues() {
-        String selectedCreatureName = (String) getWidget().getUnitComboBox().getSelectedItem();
-        Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(selectedCreatureName);
-        return new int[]{creatureId};
+        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getUnitComboBox().getSelectedItem();
+        return new int[]{tuple.getObjectId()};
     }
 
     @Override
     protected void setFieldValues(int[] value) {
         int unitId = value[0];
-        final String raceName = UnitMapping.INSTANCE.getRaceName(unitId);
-        final JComboBox<String> racesComboBox = getWidget().getRacesComboBox();
-        racesComboBox.setSelectedItem(raceName);
+        final SubViewPanelTuple raceTuple = UnitMapping.INSTANCE.getRaceTuple(unitId);
+        final JComboBox<SubViewPanelTuple> racesComboBox = getWidget().getRacesComboBox();
+        racesComboBox.setSelectedItem(raceTuple);
+        updateUnitNamesComboBox();
 
         final JComboBox<SubViewPanelTuple> unitNameComboBox = getWidget().getUnitComboBox();
-        String unitName = UnitMapping.INSTANCE.getUnitName(unitId);
-        unitNameComboBox.setSelectedItem(unitName);
+        SubViewPanelTuple unitTuple = UnitMapping.INSTANCE.getUnitTuple(unitId);
+        unitNameComboBox.setSelectedItem(unitTuple);
     }
 
     @Override
@@ -69,10 +69,6 @@ public class UnitWidgetListener extends AbstractWidgetListener<UnitWidget, Offse
             return;
         }
 
-        if (e.getSource().equals(getWidget().getRacesComboBox())) {
-            updateUnitNamesComboBox();
-        }
-
         if (getWidget().getUnitComboBox().getSelectedItem() != null
                 && getWidget().getRacesComboBox().getSelectedItem() != null) {
             setWidgetValueToDTOField();
@@ -80,8 +76,8 @@ public class UnitWidgetListener extends AbstractWidgetListener<UnitWidget, Offse
     }
 
     private void updateUnitNamesComboBox() {
-        String selectedRaceName = (String) getWidget().getRacesComboBox().getSelectedItem();
-        final List<SubViewPanelTuple> creatureNames = UnitMapping.INSTANCE.getUnitNames(selectedRaceName);
+        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getRacesComboBox().getSelectedItem();
+        final List<SubViewPanelTuple> creatureNames = UnitMapping.INSTANCE.getUnitNames(tuple);
         final JComboBox<SubViewPanelTuple> comboBox = getWidget().getUnitComboBox();
         ViewTools.replaceComboBoxContentSilently(comboBox, creatureNames);
     }

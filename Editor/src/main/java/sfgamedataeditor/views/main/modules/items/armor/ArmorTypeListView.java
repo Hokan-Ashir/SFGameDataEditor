@@ -22,15 +22,19 @@ public class ArmorTypeListView extends AbstractModulesView {
     @Override
     public void fillSubViewsMappings() {
         List<SubViewPanelTuple> mappings = new ArrayList<SubViewPanelTuple>() {{
-            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.helmets")));
-            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.chest.armor")));
-            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.robes")));
-            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.legs.armor")));
-            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.shield")));
-            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.armor.rings")));
+            add(createTuple( "items.armor.helmets"));
+            add(createTuple("items.armor.chest.armor"));
+            add(createTuple("items.armor.robes"));
+            add(createTuple("items.armor.legs.armor"));
+            add(createTuple("items.armor.shield"));
+            add(createTuple("items.armor.rings"));
         }};
 
         addMappings(mappings, ArmorPiecesView.class);
+    }
+
+    private SubViewPanelTuple createTuple(String i18nKey) {
+        return new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nKey), Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, i18nKey)));
     }
 
     @Override

@@ -13,10 +13,10 @@ public class UnitsFromUnitParametersModelCreator implements ModelCreator<UnitLis
     @Override
     public UnitListModel createModel(UnitsParametersModel childModel) {
         Integer creatureId = childModel.getParameter().getCreatureCommonParameterObject().creatureId;
-        String creatureName = UnitMapping.INSTANCE.getUnitName(creatureId);
-        String raceName = UnitMapping.INSTANCE.getRaceName(creatureId);
-        List<SubViewPanelTuple> unitNames = UnitMapping.INSTANCE.getUnitNames(raceName);
-        UnitListModelParameter parameter = new UnitListModelParameter(unitNames, creatureName);
+        SubViewPanelTuple unitTuple = UnitMapping.INSTANCE.getUnitTuple(creatureId);
+        SubViewPanelTuple raceTuple = UnitMapping.INSTANCE.getRaceTuple(creatureId);
+        List<SubViewPanelTuple> unitNames = UnitMapping.INSTANCE.getUnitNames(raceTuple);
+        UnitListModelParameter parameter = new UnitListModelParameter(unitNames, unitTuple.getName());
         return new UnitListModel(parameter);
     }
 }

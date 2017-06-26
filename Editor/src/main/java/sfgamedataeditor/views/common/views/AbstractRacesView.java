@@ -16,15 +16,19 @@ public abstract class AbstractRacesView extends AbstractModulesView {
     @Override
     public void fillSubViewsMappings() {
         List<SubViewPanelTuple> mappings = new ArrayList<SubViewPanelTuple>() {{
-           add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.humans")));
-           add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.elves")));
-           add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dwarves")));
-           add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.orcs")));
-           add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.trolls")));
-           add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dark.elves")));
+           add(createTuple("races.humans", 1));
+           add(createTuple( "races.elves", 2));
+           add(createTuple("races.dwarves", 3));
+           add(createTuple("races.orcs", 4));
+           add(createTuple("races.trolls", 5));
+           add(createTuple("races.dark.elves", 6));
         }};
 
         addMappings(mappings, getSubModulesViewClass());
+    }
+
+    private SubViewPanelTuple createTuple(String i18nKey, int raceId) {
+        return new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nKey), raceId);
     }
 
     protected abstract Class<? extends PresentableView> getSubModulesViewClass();

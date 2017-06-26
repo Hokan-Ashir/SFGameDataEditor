@@ -16,9 +16,7 @@ public class BuildingsPlanListPresenter extends AbstractModulesPresenter<Buildin
 
     @Override
     protected BuildingPlansParametersModel createModel() {
-        String selectedBuildingName = getView().getSelectedModuleName();
-        Integer buildingsRaceType = getModel().getParameter().getBuildingsRaceType();
-        int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedBuildingName, buildingsRaceType);
+        Integer itemId = getView().getSelectedModuleObjectId();
         Icon icon = getView().getSelectedModuleIcon();
         return modelCreator.createModel(itemId, icon);
     }

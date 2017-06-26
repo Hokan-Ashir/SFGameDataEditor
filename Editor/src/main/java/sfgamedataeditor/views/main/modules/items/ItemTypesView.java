@@ -6,6 +6,7 @@ import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.items.armor.ArmorTypeListView;
 import sfgamedataeditor.views.main.modules.items.buildingplans.BuildingPlansRacesView;
+import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.BuildingsPlanListView;
 import sfgamedataeditor.views.main.modules.items.herorunes.HeroesRunesListView;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.MiscellaneousListView;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.SpellScrollsListView;
@@ -35,8 +36,8 @@ public class ItemTypesView extends AbstractModulesView {
             add(createTuple("items.scrolls.and.spells", SpellScrollsListView.class));
             add(createTuple( "items.workers.runes", WorkersRuneRacesView.class));
             add(createTuple( "items.heroes.runes", HeroesRunesListView.class));
-            add(createTuple("items.buildingPlans", UnitPlansRacesView.class));
-            add(createTuple("items.unitPlans", BuildingPlansRacesView.class));
+            add(createTuple("items.buildingPlans", BuildingPlansRacesView.class));
+            add(createTuple("items.unitPlans", UnitPlansRacesView.class));
             add(createTuple("items.miscellaneous", MiscellaneousListView.class));
         }};
 

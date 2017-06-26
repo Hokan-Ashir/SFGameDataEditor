@@ -9,15 +9,8 @@ import java.util.List;
 
 public class UnitsPlanListModelParameter extends AbstractSubModuleParameter {
 
-    private final Integer unitsRaceType;
-
     public UnitsPlanListModelParameter(List<SubViewPanelTuple> panelTuples, String selectedObjectName, Integer unitsRaceType) {
         super(panelTuples, selectedObjectName);
-        this.unitsRaceType = unitsRaceType;
-    }
-
-    public Integer getUnitsRaceType() {
-        return unitsRaceType;
     }
 
     @Override

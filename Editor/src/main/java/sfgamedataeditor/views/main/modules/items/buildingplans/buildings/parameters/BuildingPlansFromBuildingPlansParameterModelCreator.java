@@ -19,7 +19,7 @@ public class BuildingPlansFromBuildingPlansParameterModelCreator implements Mode
         String itemName = TextTableService.INSTANCE.getObjectName(object.nameId);
         Integer buildingRaceId = object.typeId;
         List<SubViewPanelTuple> buildingsNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(buildingRaceId);
-        BuildingsPlanListModelParameter parameter = new BuildingsPlanListModelParameter(buildingsNames, itemName, buildingRaceId);
+        BuildingsPlanListModelParameter parameter = new BuildingsPlanListModelParameter(buildingsNames, itemName);
         return new BuildingsPlanListModel(parameter);
     }
 }

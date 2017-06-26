@@ -41,16 +41,16 @@ public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWid
     @Override
     protected void setFieldValues(int[] value) {
         int buildingId = value[0];
-        // TODO
         Integer raceId = BuildingsTableService.INSTANCE.getRaceIdByBuildingName(buildingId);
         final String raceName = I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId));
         final JComboBox<SubViewPanelTuple> racesComboBox = getWidget().getRacesComboBox();
-        racesComboBox.setSelectedItem(raceName);
+        racesComboBox.setSelectedItem(new SubViewPanelTuple(raceName, raceId));
+        updateUnitNamesComboBox();
 
         final JComboBox<SubViewPanelTuple> unitNameComboBox = getWidget().getBuildingComboBox();
         BuildingsObject object = BuildingsTableService.INSTANCE.getBuildingObjectByBuildingId(buildingId);
         String buildingName = TextTableService.INSTANCE.getObjectName(object.nameId);
-        unitNameComboBox.setSelectedItem(buildingName);
+        unitNameComboBox.setSelectedItem(new SubViewPanelTuple(buildingName, buildingId));
     }
 
     @Override
@@ -72,10 +72,6 @@ public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWid
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() != ItemEvent.SELECTED) {
             return;
-        }
-
-        if (e.getSource().equals(getWidget().getRacesComboBox())) {
-            updateUnitNamesComboBox();
         }
 
         if (getWidget().getBuildingComboBox().getSelectedItem() != null
