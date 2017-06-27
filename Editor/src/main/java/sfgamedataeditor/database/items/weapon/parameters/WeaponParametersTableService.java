@@ -10,11 +10,10 @@ import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.text.TextTableService;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -71,7 +70,7 @@ public enum WeaponParametersTableService implements TableCreationService {
         }
     }
 
-    public List<SubViewPanelTuple> getItemsByItemType(int typeId) {
+    public List<ObjectTuple> getItemsByItemType(int typeId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<WeaponParametersObject, String> dao;
         try {
@@ -90,21 +89,13 @@ public enum WeaponParametersTableService implements TableCreationService {
 
             List<ItemPriceParametersObject> priceParametersObjects = ItemPriceParametersTableService.INSTANCE.getObjectByItemIds(itemIds);
             Integer[] nameIds = new Integer[objects.size()];
+            Integer[] objectIds = new Integer[objects.size()];
             for (int i = 0; i < objects.size(); i++) {
                 nameIds[i] = priceParametersObjects.get(i).nameId;
+                objectIds[i] = priceParametersObjects.get(i).itemId;
             }
 
-            List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
-            List<SubViewPanelTuple> result = new ArrayList<>();
-            if (objectNames == null || objectNames.isEmpty()) {
-                return Collections.emptyList();
-            }
-
-            for (int i = 0; i < objectNames.size(); ++i) {
-                result.add(new SubViewPanelTuple(objectNames.get(i), objects.get(i).itemId));
-            }
-
-            return result;
+            return TextTableService.INSTANCE.getObjectTuples(nameIds, objectIds);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();

@@ -8,7 +8,7 @@ import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.BuildingModelCreator;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersModel;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersView;
@@ -34,7 +34,7 @@ public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWid
 
     @Override
     protected int[] getFieldValues() {
-        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getBuildingComboBox().getSelectedItem();
+        ObjectTuple tuple = (ObjectTuple) getWidget().getBuildingComboBox().getSelectedItem();
         return new int[]{tuple.getObjectId()};
     }
 
@@ -43,19 +43,19 @@ public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWid
         int buildingId = value[0];
         Integer raceId = BuildingsTableService.INSTANCE.getRaceIdByBuildingName(buildingId);
         final String raceName = I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId));
-        final JComboBox<SubViewPanelTuple> racesComboBox = getWidget().getRacesComboBox();
-        racesComboBox.setSelectedItem(new SubViewPanelTuple(raceName, raceId));
+        final JComboBox<ObjectTuple> racesComboBox = getWidget().getRacesComboBox();
+        racesComboBox.setSelectedItem(new ObjectTuple(raceName, raceId));
         updateUnitNamesComboBox();
 
-        final JComboBox<SubViewPanelTuple> unitNameComboBox = getWidget().getBuildingComboBox();
+        final JComboBox<ObjectTuple> unitNameComboBox = getWidget().getBuildingComboBox();
         BuildingsObject object = BuildingsTableService.INSTANCE.getBuildingObjectByBuildingId(buildingId);
-        String buildingName = TextTableService.INSTANCE.getObjectName(object.nameId);
-        unitNameComboBox.setSelectedItem(new SubViewPanelTuple(buildingName, buildingId));
+        ObjectTuple objectTuple = TextTableService.INSTANCE.getObjectTuple(object.nameId, object.buildingId);
+        unitNameComboBox.setSelectedItem(objectTuple);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getBuildingComboBox().getSelectedItem();
+        ObjectTuple tuple = (ObjectTuple) getWidget().getBuildingComboBox().getSelectedItem();
         Integer buildingId = tuple.getObjectId();
         Icon icon = getBuildingIcon(buildingId);
         BuildingsParametersModel model = modelCreator.createModel(buildingId, icon);
@@ -81,9 +81,9 @@ public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWid
     }
 
     private void updateUnitNamesComboBox() {
-        SubViewPanelTuple item = (SubViewPanelTuple) getWidget().getRacesComboBox().getSelectedItem();
-        final List<SubViewPanelTuple> buildingsNames = BuildingsTableService.INSTANCE.getBuildingsNamesByRaceId(item.getObjectId());
-        final JComboBox<SubViewPanelTuple> comboBox = getWidget().getBuildingComboBox();
+        ObjectTuple item = (ObjectTuple) getWidget().getRacesComboBox().getSelectedItem();
+        final List<ObjectTuple> buildingsNames = BuildingsTableService.INSTANCE.getBuildingsNamesByRaceId(item.getObjectId());
+        final JComboBox<ObjectTuple> comboBox = getWidget().getBuildingComboBox();
         ViewTools.replaceComboBoxContentSilently(comboBox, buildingsNames);
     }
 }

@@ -10,11 +10,10 @@ import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.text.TextTableService;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -78,7 +77,7 @@ public enum ArmorParametersTableService implements TableCreationService {
     // what are objects that:
     // - have 1h-weapon type in ItemPriceParameterObject
     // - have ArmorParametersObjects (that's the main reason why this method is here and no in WeaponParametersTableService)
-    public List<SubViewPanelTuple> getOrbNames() {
+    public List<ObjectTuple> getOrbNames() {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         Dao<ArmorParametersObject, ?> dao;
         try {
@@ -104,17 +103,13 @@ public enum ArmorParametersTableService implements TableCreationService {
 
             List<Pair<Integer, Integer>> orbItemIds = rawResults.getResults();
             Integer[] nameIds = new Integer[orbItemIds.size()];
+            Integer[] objectIds = new Integer[orbItemIds.size()];
             for (int i = 0; i < orbItemIds.size(); ++i) {
                 nameIds[i] = orbItemIds.get(i).getValue();
+                objectIds[i] = orbItemIds.get(i).getKey();
             }
 
-            List<String> texts = TextTableService.INSTANCE.getObjectNames(nameIds);
-            List<SubViewPanelTuple> result = new ArrayList<>();
-            for (int i = 0; i < texts.size(); i++) {
-                result.add(new SubViewPanelTuple(texts.get(i), orbItemIds.get(i).getKey()));
-            }
-
-            return result;
+            return TextTableService.INSTANCE.getObjectTuples(nameIds, objectIds);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();

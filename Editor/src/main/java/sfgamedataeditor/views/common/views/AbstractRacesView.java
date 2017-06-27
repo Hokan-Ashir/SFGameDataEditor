@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.common.views;
 
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -15,7 +15,7 @@ public abstract class AbstractRacesView extends AbstractModulesView {
 
     @Override
     public void fillSubViewsMappings() {
-        List<SubViewPanelTuple> mappings = new ArrayList<SubViewPanelTuple>() {{
+        List<ObjectTuple> mappings = new ArrayList<ObjectTuple>() {{
            add(createTuple("races.humans", 1));
            add(createTuple( "races.elves", 2));
            add(createTuple("races.dwarves", 3));
@@ -27,8 +27,8 @@ public abstract class AbstractRacesView extends AbstractModulesView {
         addMappings(mappings, getSubModulesViewClass());
     }
 
-    private SubViewPanelTuple createTuple(String i18nKey, int raceId) {
-        return new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nKey), raceId);
+    private ObjectTuple createTuple(String i18nKey, int raceId) {
+        return new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nKey), raceId);
     }
 
     protected abstract Class<? extends PresentableView> getSubModulesViewClass();

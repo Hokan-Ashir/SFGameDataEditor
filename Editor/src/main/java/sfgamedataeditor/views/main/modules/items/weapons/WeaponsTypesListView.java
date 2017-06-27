@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.weapons;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.items.weapons.pieces.list.WeaponPiecesView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -21,7 +21,7 @@ public class WeaponsTypesListView extends AbstractModulesView {
      */
     @Override
     public void fillSubViewsMappings() {
-        List<SubViewPanelTuple> mappings = new ArrayList<SubViewPanelTuple>() {{
+        List<ObjectTuple> mappings = new ArrayList<ObjectTuple>() {{
             add(createMappingName("type.default"));
             add(createMappingName("type.hand"));
             add(createMappingName("type.1h.dagger"));
@@ -49,8 +49,8 @@ public class WeaponsTypesListView extends AbstractModulesView {
         addMappings(mappings, WeaponPiecesView.class);
     }
     
-    private SubViewPanelTuple createMappingName(String weaponTypeKey) {
-        return new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, weaponTypeKey));
+    private ObjectTuple createMappingName(String weaponTypeKey) {
+        return new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, weaponTypeKey));
     }
 
     @Override

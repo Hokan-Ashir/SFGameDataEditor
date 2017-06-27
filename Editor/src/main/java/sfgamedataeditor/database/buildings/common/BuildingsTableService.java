@@ -8,7 +8,7 @@ import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.text.TextTableService;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -48,7 +48,7 @@ public enum BuildingsTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(BuildingsTableService.class);
 
-    public List<SubViewPanelTuple> getBuildingsRacesNames() {
+    public List<ObjectTuple> getBuildingsRacesNames() {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<BuildingsObject, Integer> dao;
         try {
@@ -63,10 +63,10 @@ public enum BuildingsTableService implements TableCreationService {
             if (objects.isEmpty()) {
                 return Collections.emptyList();
             } else {
-                List<SubViewPanelTuple> result = new ArrayList<>();
+                List<ObjectTuple> result = new ArrayList<>();
                 for (BuildingsObject object : objects) {
                     String name = I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(object.raceId));
-                    result.add(new SubViewPanelTuple(name, object.raceId));
+                    result.add(new ObjectTuple(name, object.raceId));
                 }
                 Collections.sort(result);
 
@@ -78,7 +78,7 @@ public enum BuildingsTableService implements TableCreationService {
         }
     }
 
-    public List<SubViewPanelTuple> getBuildingsNamesByRaceId(Integer raceId) {
+    public List<ObjectTuple> getBuildingsNamesByRaceId(Integer raceId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<BuildingsObject, Integer> dao;
         try {
@@ -94,19 +94,13 @@ public enum BuildingsTableService implements TableCreationService {
                 return Collections.emptyList();
             } else {
                 Integer[] nameIds = new Integer[objects.size()];
+                Integer[] objectIds = new Integer[objects.size()];
                 for (int i = 0; i < objects.size(); i++) {
                     nameIds[i] = objects.get(i).nameId;
+                    objectIds[i] = objects.get(i).buildingId;
                 }
 
-                List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
-                List<SubViewPanelTuple> result = new ArrayList<>();
-                for (int i = 0; i < objectNames.size(); ++i) {
-                    result.add(new SubViewPanelTuple(objectNames.get(i), objects.get(i).buildingId));
-                }
-
-                Collections.sort(result);
-
-                return result;
+                return TextTableService.INSTANCE.getObjectTuples(nameIds, objectIds);
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

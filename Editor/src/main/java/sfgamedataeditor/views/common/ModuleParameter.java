@@ -5,7 +5,7 @@ import sfgamedataeditor.mvc.objects.PresentableView;
 
 public class ModuleParameter extends AbstractSubModuleParameter {
 
-    public ModuleParameter(String moduleName) {
+    public ModuleParameter(ObjectTuple moduleName) {
         super(null, moduleName);
     }
 

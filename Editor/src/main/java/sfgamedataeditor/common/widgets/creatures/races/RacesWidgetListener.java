@@ -2,7 +2,7 @@ package sfgamedataeditor.common.widgets.creatures.races;
 
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -22,7 +22,7 @@ public class RacesWidgetListener extends AbstractWidgetListener<RacesWidget, Off
             return;
         }
 
-        SubViewPanelTuple selectedItem = (SubViewPanelTuple) getWidget().getRacesComboBox().getSelectedItem();
+        ObjectTuple selectedItem = (ObjectTuple) getWidget().getRacesComboBox().getSelectedItem();
         if (selectedItem == null) {
             return;
         }
@@ -32,7 +32,7 @@ public class RacesWidgetListener extends AbstractWidgetListener<RacesWidget, Off
 
     @Override
     protected int[] getFieldValues() {
-        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getRacesComboBox().getSelectedItem();
+        ObjectTuple tuple = (ObjectTuple) getWidget().getRacesComboBox().getSelectedItem();
         return new int[]{tuple.getObjectId()};
     }
 
@@ -41,6 +41,6 @@ public class RacesWidgetListener extends AbstractWidgetListener<RacesWidget, Off
         int raceId = value[0];
 
         String raceName = I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId));
-        getWidget().getRacesComboBox().setSelectedItem(new SubViewPanelTuple(raceName, raceId));
+        getWidget().getRacesComboBox().setSelectedItem(new ObjectTuple(raceName, raceId));
     }
 }

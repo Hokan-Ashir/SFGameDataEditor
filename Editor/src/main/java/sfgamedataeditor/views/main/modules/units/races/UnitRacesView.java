@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.units.races;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitListView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -18,13 +18,13 @@ public class UnitRacesView extends AbstractModulesView {
 
     @Override
     public void fillSubViewsMappings() {
-        List<SubViewPanelTuple> mappings = new ArrayList<SubViewPanelTuple>() {{
-            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.humans")));
-            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.elves")));
-            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dwarves")));
-            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.orcs")));
-            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.trolls")));
-            add(new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dark.elves")));
+        List<ObjectTuple> mappings = new ArrayList<ObjectTuple>() {{
+            add(new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.humans")));
+            add(new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.elves")));
+            add(new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dwarves")));
+            add(new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.orcs")));
+            add(new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.trolls")));
+            add(new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races.dark.elves")));
         }};
 
         addMappings(mappings, UnitListView.class);

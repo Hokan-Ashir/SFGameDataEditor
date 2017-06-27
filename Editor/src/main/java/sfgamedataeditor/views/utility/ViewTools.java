@@ -1,6 +1,6 @@
 package sfgamedataeditor.views.utility;
 
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -51,13 +51,13 @@ public class ViewTools {
         setter.setValuesSilently();
     }
 
-    public static void replaceComboBoxContentSilently(final JComboBox<SubViewPanelTuple> comboBox, final Collection<SubViewPanelTuple> values) {
-        SilentComboBoxValuesSetter<SubViewPanelTuple> setter = new SilentComboBoxValuesSetter<SubViewPanelTuple>(comboBox) {
+    public static void replaceComboBoxContentSilently(final JComboBox<ObjectTuple> comboBox, final Collection<ObjectTuple> values) {
+        SilentComboBoxValuesSetter<ObjectTuple> setter = new SilentComboBoxValuesSetter<ObjectTuple>(comboBox) {
             @Override
             protected void setValues() {
                 comboBox.setSelectedItem(null);
                 comboBox.removeAllItems();
-                for (SubViewPanelTuple value : values) {
+                for (ObjectTuple value : values) {
                     comboBox.addItem(value);
                 }
             }

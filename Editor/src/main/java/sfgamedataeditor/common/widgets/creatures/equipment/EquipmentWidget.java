@@ -1,22 +1,20 @@
 package sfgamedataeditor.common.widgets.creatures.equipment;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("unused")
 public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
     private JPanel mainPanel;
     private JLabel itemTypeLabel;
-    private JComboBox<String> itemTypeComboBox;
+    private JComboBox<ObjectTuple> itemTypeComboBox;
     private JLabel itemPieceLabel;
-    private JComboBox<SubViewPanelTuple> itemPieceComboBox;
+    private JComboBox<ObjectTuple> itemPieceComboBox;
     private JButton goToItemButton;
 
     public EquipmentWidget() {
@@ -29,95 +27,85 @@ public class EquipmentWidget extends AbstractWidget<EquipmentWidgetListener> {
 
     // TODO possibly restrict users, so that they can't mindlessly put i.e. rings in chest slot
     private void initializeItemTypesComboBox() {
-        List<String> i18nItemTypeKeys = new ArrayList<String>() {{
-            add("items.no.type");
+        addCommonType("items.no.type");
 
-            add("items.armor.helmets");
-            add("items.armor.chest.armor");
-            add("items.armor.robes");
-            add("items.armor.legs.armor");
-            add("items.armor.shield");
-            add("items.armor.rings");
-            add("items.figureNPC");
-            add("items.hero.army.units");
-            add("items.scrolls");
-            add("items.miscellaneous");
-            add("items.rune.workers.in.inventory.humans");
-            add("items.rune.workers.in.inventory.elves");
-            add("items.rune.workers.in.inventory.dwarves");
-            add("items.rune.workers.in.inventory.orcs");
-            add("items.rune.workers.in.inventory.trolls");
-            add("items.rune.workers.in.inventory.dark.elves");
+        addCommonType("items.armor.helmets");
+        addCommonType("items.armor.chest.armor");
+        addCommonType("items.armor.robes");
+        addCommonType("items.armor.legs.armor");
+        addCommonType("items.armor.shield");
+        addCommonType("items.armor.rings");
+        addCommonType("items.figureNPC");
+        addCommonType("items.hero.army.units");
+        addCommonType("items.scrolls");
+        addCommonType("items.miscellaneous");
+        addCommonType("items.rune.workers.in.inventory.humans");
+        addCommonType("items.rune.workers.in.inventory.elves");
+        addCommonType("items.rune.workers.in.inventory.dwarves");
+        addCommonType("items.rune.workers.in.inventory.orcs");
+        addCommonType("items.rune.workers.in.inventory.trolls");
+        addCommonType("items.rune.workers.in.inventory.dark.elves");
 
-            add("items.rune.hero.in.inventory");
+        addCommonType("items.rune.hero.in.inventory");
 
-            add("items.unit.plan.in.inventory.humans");
-            add("items.unit.plan.in.inventory.elves");
-            add("items.unit.plan.in.inventory.dwarves");
-            add("items.unit.plan.in.inventory.orcs");
-            add("items.unit.plan.in.inventory.trolls");
-            add("items.unit.plan.in.inventory.dark.elves");
+        addCommonType("items.unit.plan.in.inventory.humans");
+        addCommonType("items.unit.plan.in.inventory.elves");
+        addCommonType("items.unit.plan.in.inventory.dwarves");
+        addCommonType("items.unit.plan.in.inventory.orcs");
+        addCommonType("items.unit.plan.in.inventory.trolls");
+        addCommonType("items.unit.plan.in.inventory.dark.elves");
 
-            add("items.building.plan.in.inventory.humans");
-            add("items.building.plan.in.inventory.elves");
-            add("items.building.plan.in.inventory.dwarves");
-            add("items.building.plan.in.inventory.orcs");
-            add("items.building.plan.in.inventory.trolls");
-            add("items.building.plan.in.inventory.dark.elves");
+        addCommonType("items.building.plan.in.inventory.humans");
+        addCommonType("items.building.plan.in.inventory.elves");
+        addCommonType("items.building.plan.in.inventory.dwarves");
+        addCommonType("items.building.plan.in.inventory.orcs");
+        addCommonType("items.building.plan.in.inventory.trolls");
+        addCommonType("items.building.plan.in.inventory.dark.elves");
 
-            add("items.blank.scrolls");
-        }};
+        addCommonType("items.blank.scrolls");
 
-        List<String> itemNames = new ArrayList<>();
-        for (String i18nItemTypeKey : i18nItemTypeKeys) {
-            itemNames.add(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nItemTypeKey));
-        }
+        addWeaponType("type.default", 1);
+        addWeaponType("type.hand", 2);
+        addWeaponType("type.1h.dagger", 3);
+        addWeaponType("type.1h.sword", 4);
+        addWeaponType("type.1h.axe", 5);
+        addWeaponType("type.1h.mace.spiky", 6);
+        addWeaponType("type.1h.hammer", 7);
+        addWeaponType("type.1h.staff", 8);
+        addWeaponType("type.2h.sword", 9);
+        addWeaponType("type.2h.axe", 10);
+        addWeaponType("type.2h.mace", 11);
+        addWeaponType("type.2h.hammer", 12);
+        addWeaponType("type.2h.staff", 13);
+        addWeaponType("type.2h.spear", 14);
+        addWeaponType("type.2h.halberd", 15);
+        addWeaponType("type.2h.bow", 16);
+        addWeaponType("type.2h.crossbow", 17);
+        addWeaponType("type.1h.mace.blunt", 18);
+        addWeaponType("type.claw", 19);
+        addWeaponType("type.mouth", 20);
+        addWeaponType("type.stone.thrower", 21);
+        addWeaponType("type.orb", 22);
+    }
 
-        List<String> weaponItemTypeKeys = new ArrayList<String>() {{
-            add("type.default");
-            add("type.hand");
-            add("type.1h.dagger");
-            add("type.1h.sword");
-            add("type.1h.axe");
-            add("type.1h.mace.spiky");
-            add("type.1h.hammer");
-            add("type.1h.staff");
-            add("type.2h.sword");
-            add("type.2h.axe");
-            add("type.2h.mace");
-            add("type.2h.hammer");
-            add("type.2h.staff");
-            add("type.2h.spear");
-            add("type.2h.halberd");
-            add("type.2h.bow");
-            add("type.2h.crossbow");
-            add("type.1h.mace.blunt");
-            add("type.claw");
-            add("type.mouth");
-            add("type.stone.thrower");
-            add("type.orb");
-        }};
+    private void addCommonType(String i18nKey) {
+        itemTypeComboBox.addItem(new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nKey),
+                Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, i18nKey))));
+    }
 
-        for (String i18nItemTypeKey : weaponItemTypeKeys) {
-            itemNames.add(I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, i18nItemTypeKey));
-        }
-
-        Collections.sort(itemNames);
-
-        for (String itemName : itemNames) {
-            itemTypeComboBox.addItem(itemName);
-        }
+    private void addWeaponType(String i18nKey, int typeId) {
+        itemTypeComboBox.addItem(new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, i18nKey), typeId));
     }
 
     JButton getGoToItemButton() {
         return goToItemButton;
     }
 
-    JComboBox<String> getItemTypeComboBox() {
+    JComboBox<ObjectTuple> getItemTypeComboBox() {
         return itemTypeComboBox;
     }
 
-    JComboBox<SubViewPanelTuple> getItemPieceComboBox() {
+    JComboBox<ObjectTuple> getItemPieceComboBox() {
         return itemPieceComboBox;
     }
 

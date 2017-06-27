@@ -10,13 +10,13 @@ import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.text.TextObject;
 import sfgamedataeditor.database.text.TextTableService;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.Pair;
-import sfgamedataeditor.views.utility.i18n.I18NService;
-import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public enum ItemPriceParametersTableService implements TableCreationService {
     INSTANCE {
@@ -48,7 +48,7 @@ public enum ItemPriceParametersTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(ItemPriceParametersTableService.class);
 
-    public List<SubViewPanelTuple> getItemsByItemType(int typeId) {
+    public List<ObjectTuple> getItemsByItemType(int typeId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<ItemPriceParametersObject, String> dao;
         try {
@@ -62,17 +62,13 @@ public enum ItemPriceParametersTableService implements TableCreationService {
         try {
             List<ItemPriceParametersObject> objects = dao.queryBuilder().selectColumns("itemId", "nameId").orderBy("nameId", true).where().eq("typeId", typeId).query();
             Integer[] textIds = new Integer[objects.size()];
+            Integer[] objectIds = new Integer[objects.size()];
             for (int i = 0; i < objects.size(); ++i) {
                 textIds[i] = objects.get(i).nameId;
+                objectIds[i] = objects.get(i).itemId;
             }
 
-            List<String> textObjects = TextTableService.INSTANCE.getObjectNames(textIds);
-            List<SubViewPanelTuple> result = new ArrayList<>();
-            for (int i = 0; i < textObjects.size(); ++i) {
-                result.add(new SubViewPanelTuple(textObjects.get(i), objects.get(i).itemId));
-            }
-
-            return result;
+            return TextTableService.INSTANCE.getObjectTuples(textIds, objectIds);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
@@ -181,6 +177,10 @@ public enum ItemPriceParametersTableService implements TableCreationService {
                 where = where.and().in("typeId", (Object[]) typeId);
             }
 
+            // TODO for some reason ItemPriceParametersObject for type = 2 (items.rune.hero.in.inventory) has incorrect values
+            // some runes that should have type = 3 (items.rune.hero.in.added) also have type = 2; this can be fixed via adding Prepatcher
+            // during data uploading phase, need to test, does it affect users and will this Prepatcher affect users as well
+            // we CAN'T add additional select filter, i.e. on copperSellingPrice/copperByingPrice cause this will limit users functionality
             List<ItemPriceParametersObject> objects = where.query();
             if (objects.isEmpty()) {
                 return null;

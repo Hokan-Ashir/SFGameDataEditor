@@ -59,6 +59,7 @@ public class WeaponParametersObject extends OffsetableObject {
     //    13 00 - Weapon Type Claw
     //    14 00 - Weapon Type Mouth
     //    15 00 - Weapon Type Stone Thrower
+    //    16 00 - Weapon Type Stone Thrower
     @Data(offset = 12, length = 2)
     @DatabaseField
     public Integer type;

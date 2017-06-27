@@ -2,7 +2,7 @@ package sfgamedataeditor.views.main.modules.spells.schools;
 
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.SpellsView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -21,7 +21,7 @@ public class SpellSchoolsView extends AbstractModulesView {
      */
     @Override
     public void fillSubViewsMappings() {
-        List<SubViewPanelTuple> mappings = SpellParametersTableService.INSTANCE.getAllSpellSchoolNames();
+        List<ObjectTuple> mappings = SpellParametersTableService.INSTANCE.getAllSpellSchoolNames();
         addMappings(mappings, SpellsView.class);
     }
 

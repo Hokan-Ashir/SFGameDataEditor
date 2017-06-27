@@ -1,8 +1,7 @@
 package sfgamedataeditor.views.main.modules.units.races;
 
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
-import sfgamedataeditor.database.text.TextTableService;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -29,7 +28,7 @@ public enum UnitMapping {
     // 543 // "Recruit"
     // 544 // "Scout"
     // 2236 // "Star mage"
-    private final List<SubViewPanelTuple> humanUnitsNames = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[] {
+    private final List<ObjectTuple> humanUnitsNames = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[] {
             537, 538, 1227, 539, 1225, 540, 1223, 541, 1224, 542, 1226, 543, 544, 2236});
 
     // 545 // "Windarcher"
@@ -49,7 +48,7 @@ public enum UnitMapping {
     // 1232 // "Warder (Upgrade)"
     // 2238 // "Stormbringer"
     // 2222 // "Pixie"
-    private final List<SubViewPanelTuple> elvesUnitsNames = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[] {
+    private final List<ObjectTuple> elvesUnitsNames = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[] {
             545, 1229, 546, 1240, 547, 1239, 548, 1435, 549, 1231, 550, 551, 1230, 552, 1232, 2238, 2222});
 
     // 553 // "Drummer"
@@ -68,7 +67,7 @@ public enum UnitMapping {
     // 1250 // "Hornblower (Upgrade)"
     // 2244 // "Inferno"
     // 2224 // "War boar horde"
-    private final List<SubViewPanelTuple> orcsUnitsNames = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[] {
+    private final List<ObjectTuple> orcsUnitsNames = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[] {
             553, 1249, 554, 555, 1246, 556, 1247, 557, 558, 1245, 559, 1248, 560, 1250, 2244, 2224});
 
     // 561 // "Assassin"
@@ -86,7 +85,7 @@ public enum UnitMapping {
     // 568 // "Warlock"
     // 1298 // "Warlock (Upgrade)"
     // 2249 // "Harbinger of chaos"
-    private final List<SubViewPanelTuple> darkElvesUnitsNames = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[] {
+    private final List<ObjectTuple> darkElvesUnitsNames = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[] {
             561, 1294, 562, 1297, 563, 564, 1296, 565, 1299, 566, 1295, 567, 568, 1298, 2249});
 
     // 569 // "Battlepriest"
@@ -103,7 +102,7 @@ public enum UnitMapping {
     // 1237 // "Warrior (Upgrade)"
     // 576 // "Watchman"
     // 2221 // "Stone rams"
-    private final List<SubViewPanelTuple> dwarvesUnitsNames = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[] {
+    private final List<ObjectTuple> dwarvesUnitsNames = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[] {
             569, 1234, 570, 1238, 571, 572, 1235, 573, 1236, 574, 575, 1237, 576, 2221});
 
     // 577 // "Bouncer"
@@ -122,10 +121,10 @@ public enum UnitMapping {
     // 584 // "Thrower"
     // 1285 // "Thrower (Upgrade)"
     // 2245 // "Walking fortress"
-    private final List<SubViewPanelTuple> trollsUnitsNames = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[] {
+    private final List<ObjectTuple> trollsUnitsNames = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[] {
             577, 1287, 578, 1290, 579, 1289, 580, 1286, 581, 1288, 582, 583, 1284, 584, 1285, 2245});
 
-    private final Map<SubViewPanelTuple, List<SubViewPanelTuple>> unitRacesToUnitNamesMap = new TreeMap<SubViewPanelTuple, List<SubViewPanelTuple>>() {{
+    private final Map<ObjectTuple, List<ObjectTuple>> unitRacesToUnitNamesMap = new TreeMap<ObjectTuple, List<ObjectTuple>>() {{
         put(createRaceTuple("races.humans", 1), humanUnitsNames);
         put(createRaceTuple( "races.elves", 2), elvesUnitsNames);
         put(createRaceTuple("races.dwarves", 3), dwarvesUnitsNames);
@@ -134,27 +133,27 @@ public enum UnitMapping {
         put(createRaceTuple("races.dark.elves", 6), darkElvesUnitsNames);
     }};
 
-    public SubViewPanelTuple createRaceTuple(String race18Nkey, int raceId) {
-        return new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, race18Nkey), raceId);
+    public ObjectTuple createRaceTuple(String race18Nkey, int raceId) {
+        return new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, race18Nkey), raceId);
     }
 
-    public List<SubViewPanelTuple> getUnitRacesList() {
-        List<SubViewPanelTuple> result = new ArrayList<>();
-        for (Map.Entry<SubViewPanelTuple, List<SubViewPanelTuple>> entry : unitRacesToUnitNamesMap.entrySet()) {
+    public List<ObjectTuple> getUnitRacesList() {
+        List<ObjectTuple> result = new ArrayList<>();
+        for (Map.Entry<ObjectTuple, List<ObjectTuple>> entry : unitRacesToUnitNamesMap.entrySet()) {
             result.add(entry.getKey());
         }
 
         return result;
     }
 
-    public List<SubViewPanelTuple> getUnitNames(SubViewPanelTuple tuple) {
+    public List<ObjectTuple> getUnitNames(ObjectTuple tuple) {
         return unitRacesToUnitNamesMap.get(tuple);
     }
 
-    public SubViewPanelTuple getRaceTuple(Integer unitId) {
-        for (Map.Entry<SubViewPanelTuple, List<SubViewPanelTuple>> entry : unitRacesToUnitNamesMap.entrySet()) {
-            List<SubViewPanelTuple> tuples = entry.getValue();
-            for (SubViewPanelTuple tuple : tuples) {
+    public ObjectTuple getRaceTuple(Integer unitId) {
+        for (Map.Entry<ObjectTuple, List<ObjectTuple>> entry : unitRacesToUnitNamesMap.entrySet()) {
+            List<ObjectTuple> tuples = entry.getValue();
+            for (ObjectTuple tuple : tuples) {
                 if (tuple.getObjectId().equals(unitId)) {
                     return entry.getKey();
                 }
@@ -164,10 +163,10 @@ public enum UnitMapping {
         return null;
     }
 
-    public SubViewPanelTuple getUnitTuple(Integer unitId) {
-        for (Map.Entry<SubViewPanelTuple, List<SubViewPanelTuple>> entry : unitRacesToUnitNamesMap.entrySet()) {
-            List<SubViewPanelTuple> tuples = entry.getValue();
-            for (SubViewPanelTuple tuple : tuples) {
+    public ObjectTuple getUnitTuple(Integer unitId) {
+        for (Map.Entry<ObjectTuple, List<ObjectTuple>> entry : unitRacesToUnitNamesMap.entrySet()) {
+            List<ObjectTuple> tuples = entry.getValue();
+            for (ObjectTuple tuple : tuples) {
                 if (tuple.getObjectId().equals(unitId)) {
                     return tuple;
                 }

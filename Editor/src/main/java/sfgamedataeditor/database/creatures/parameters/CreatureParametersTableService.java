@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -50,11 +50,11 @@ public enum CreatureParametersTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(CreatureParametersTableService.class);
 
-    public List<SubViewPanelTuple> getListOfCreatureRaces() {
-        List<SubViewPanelTuple> result = new ArrayList<>();
+    public List<ObjectTuple> getListOfCreatureRaces() {
+        List<ObjectTuple> result = new ArrayList<>();
         ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.RACES);
         for (String key : bundle.keySet()) {
-            result.add(new SubViewPanelTuple(bundle.getString(key), Integer.valueOf(key)));
+            result.add(new ObjectTuple(bundle.getString(key), Integer.valueOf(key)));
         }
         Collections.sort(result);
 

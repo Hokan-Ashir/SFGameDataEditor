@@ -2,14 +2,14 @@ package sfgamedataeditor.views.main.modules.units.races.units;
 
 import sfgamedataeditor.mvc.objects.AbstractSubModuleParameter;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersView;
 
 import java.util.List;
 
 public class UnitListModelParameter extends AbstractSubModuleParameter {
 
-    public UnitListModelParameter(List<SubViewPanelTuple> panelTuples, String selectedObjectName) {
+    public UnitListModelParameter(List<ObjectTuple> panelTuples, ObjectTuple selectedObjectName) {
         super(panelTuples, selectedObjectName);
     }
 

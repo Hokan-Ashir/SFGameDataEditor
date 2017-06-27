@@ -2,6 +2,7 @@ package sfgamedataeditor.views.main.modules;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.buildings.races.BuildingRacesView;
@@ -42,7 +43,7 @@ public class ModulesView extends AbstractModulesView {
     }
 
     private SubViewPanelTuple createTuple(String i18nKey, Class<? extends PresentableView> viewClass) {
-        return new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nKey), viewClass);
+        return new SubViewPanelTuple(new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nKey), null), viewClass);
     }
 
     @Override

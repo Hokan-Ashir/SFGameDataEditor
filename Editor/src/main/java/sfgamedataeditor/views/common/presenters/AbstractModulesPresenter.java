@@ -7,8 +7,8 @@ import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.AbstractSubModuleParameter;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.PresentableView;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.SubViewPanel;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.MainView;
 
@@ -32,7 +32,7 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
     public void updateView() {
         Model<P> model = getModel();
         if (model != null) {
-            List<SubViewPanelTuple> subPanelsNames = model.getParameter().getSubViewPanelTuples();
+            List<ObjectTuple> subPanelsNames = model.getParameter().getSubViewPanelTuples();
             if (subPanelsNames != null) {
                 getView().addMappings(subPanelsNames, model.getParameter().getSubPanelsViewClass());
             } else {
@@ -51,9 +51,9 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
         }
 
         if (model != null) {
-            String selectedModuleName = model.getParameter().getSelectedModuleName();
+            ObjectTuple selectedModuleName = model.getParameter().getSelectedModuleName();
             if (selectedModuleName != null) {
-                getView().setSelectedModuleValue(selectedModuleName);
+                getView().setSelectedModuleValue(selectedModuleName.getName());
             } else {
                 getView().setSelectedModuleValue(getView().getModuleName());
             }

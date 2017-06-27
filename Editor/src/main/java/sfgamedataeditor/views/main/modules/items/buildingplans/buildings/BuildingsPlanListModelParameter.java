@@ -2,14 +2,14 @@ package sfgamedataeditor.views.main.modules.items.buildingplans.buildings;
 
 import sfgamedataeditor.mvc.objects.AbstractSubModuleParameter;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.parameters.BuildingsPlansParametersView;
 
 import java.util.List;
 
 public class BuildingsPlanListModelParameter extends AbstractSubModuleParameter {
 
-    public BuildingsPlanListModelParameter(List<SubViewPanelTuple> panelTuples, String selectedObjectName) {
+    public BuildingsPlanListModelParameter(List<ObjectTuple> panelTuples, ObjectTuple selectedObjectName) {
         super(panelTuples, selectedObjectName);
     }
 

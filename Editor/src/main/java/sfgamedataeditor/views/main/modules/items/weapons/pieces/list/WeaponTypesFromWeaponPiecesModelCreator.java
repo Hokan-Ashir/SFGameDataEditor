@@ -7,6 +7,7 @@ import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableSe
 import sfgamedataeditor.mvc.ModelCreator;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.ModulesModel;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -26,11 +27,11 @@ public class WeaponTypesFromWeaponPiecesModelCreator implements ModelCreator<Mod
     @Override
     public ModulesModel createModel(WeaponPiecesModel childModel) {
         // TODO remove duplication and generalize item types views
-        String selectedWeaponPieceName = childModel.getParameter().getSelectedModuleName();
+        ObjectTuple selectedWeaponPieceName = childModel.getParameter().getSelectedModuleName();
         if (selectedWeaponPieceName == null) {
-            selectedWeaponPieceName = childModel.getParameter().getSubViewPanelTuples().get(0).getName();
+            selectedWeaponPieceName = childModel.getParameter().getSubViewPanelTuples().get(0);
         }
-        int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedWeaponPieceName, WEAPON_TYPE_IDS);
+        int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedWeaponPieceName.getName(), WEAPON_TYPE_IDS);
 
         WeaponParametersObject weaponParametersObject = WeaponParametersTableService.INSTANCE.getObjectByItemId(itemId);
         Integer itemPieceTypeId;
@@ -41,7 +42,7 @@ public class WeaponTypesFromWeaponPiecesModelCreator implements ModelCreator<Mod
         }
 
         String weaponPieceTypeName = WeaponTypesMap.INSTANCE.getWeaponTypeNameById(itemPieceTypeId);
-        ModuleParameter parameter = new ModuleParameter(weaponPieceTypeName);
+        ModuleParameter parameter = new ModuleParameter(new ObjectTuple(weaponPieceTypeName, itemPieceTypeId));
         return new ModulesModel(parameter);
     }
 }

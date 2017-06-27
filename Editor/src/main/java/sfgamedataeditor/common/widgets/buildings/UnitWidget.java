@@ -1,7 +1,7 @@
 package sfgamedataeditor.common.widgets.buildings;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.main.modules.units.races.UnitMapping;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -13,10 +13,10 @@ import java.util.List;
 public class UnitWidget extends AbstractWidget<UnitWidgetListener> {
     private JPanel mainPanel;
     private JLabel titleLabel;
-    private JComboBox<SubViewPanelTuple> racesComboBox;
+    private JComboBox<ObjectTuple> racesComboBox;
     private JLabel racesLabel;
     private JSeparator separator;
-    private JComboBox<SubViewPanelTuple> unitComboBox;
+    private JComboBox<ObjectTuple> unitComboBox;
     private JLabel unitLabel;
     private JButton goToUnitParametersButton;
 
@@ -28,17 +28,17 @@ public class UnitWidget extends AbstractWidget<UnitWidgetListener> {
     }
 
     private void fillWithPredefinedRaces() {
-        List<SubViewPanelTuple> unitRacesList = UnitMapping.INSTANCE.getUnitRacesList();
-        for (SubViewPanelTuple tuple : unitRacesList) {
+        List<ObjectTuple> unitRacesList = UnitMapping.INSTANCE.getUnitRacesList();
+        for (ObjectTuple tuple : unitRacesList) {
             racesComboBox.addItem(tuple);
         }
     }
 
-    public JComboBox<SubViewPanelTuple> getRacesComboBox() {
+    public JComboBox<ObjectTuple> getRacesComboBox() {
         return racesComboBox;
     }
 
-    JComboBox<SubViewPanelTuple> getUnitComboBox() {
+    JComboBox<ObjectTuple> getUnitComboBox() {
         return unitComboBox;
     }
 

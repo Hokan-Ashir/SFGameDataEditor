@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.armor;
 
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.modules.items.armor.pieces.list.ArmorPiecesView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -21,7 +21,7 @@ public class ArmorTypeListView extends AbstractModulesView {
      */
     @Override
     public void fillSubViewsMappings() {
-        List<SubViewPanelTuple> mappings = new ArrayList<SubViewPanelTuple>() {{
+        List<ObjectTuple> mappings = new ArrayList<ObjectTuple>() {{
             add(createTuple( "items.armor.helmets"));
             add(createTuple("items.armor.chest.armor"));
             add(createTuple("items.armor.robes"));
@@ -33,8 +33,8 @@ public class ArmorTypeListView extends AbstractModulesView {
         addMappings(mappings, ArmorPiecesView.class);
     }
 
-    private SubViewPanelTuple createTuple(String i18nKey) {
-        return new SubViewPanelTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nKey), Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, i18nKey)));
+    private ObjectTuple createTuple(String i18nKey) {
+        return new ObjectTuple(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, i18nKey), Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, i18nKey)));
     }
 
     @Override

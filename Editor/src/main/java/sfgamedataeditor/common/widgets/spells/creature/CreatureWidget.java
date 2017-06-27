@@ -2,7 +2,7 @@ package sfgamedataeditor.common.widgets.spells.creature;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -13,9 +13,9 @@ import java.util.List;
 public class CreatureWidget extends AbstractWidget<CreatureWidgetListener> {
     private JPanel mainPanel;
     private JLabel titleLabel;
-    private JComboBox<SubViewPanelTuple> racesComboBox;
+    private JComboBox<ObjectTuple> racesComboBox;
     private JLabel racesLabel;
-    private JComboBox<SubViewPanelTuple> creatureNameComboBox;
+    private JComboBox<ObjectTuple> creatureNameComboBox;
     private JLabel creatureNameLabel;
     private JButton goToCreatureParametersButton;
 
@@ -28,17 +28,17 @@ public class CreatureWidget extends AbstractWidget<CreatureWidgetListener> {
     }
 
     private void fillWithPredefinedRaces() {
-        List<SubViewPanelTuple> creatureRaces = CreatureParametersTableService.INSTANCE.getListOfCreatureRaces();
-        for (SubViewPanelTuple tuple : creatureRaces) {
+        List<ObjectTuple> creatureRaces = CreatureParametersTableService.INSTANCE.getListOfCreatureRaces();
+        for (ObjectTuple tuple : creatureRaces) {
             racesComboBox.addItem(tuple);
         }
     }
 
-    public JComboBox<SubViewPanelTuple> getRacesComboBox() {
+    public JComboBox<ObjectTuple> getRacesComboBox() {
         return racesComboBox;
     }
 
-    JComboBox<SubViewPanelTuple> getCreatureNameComboBox() {
+    JComboBox<ObjectTuple> getCreatureNameComboBox() {
         return creatureNameComboBox;
     }
 

@@ -3,7 +3,7 @@ package sfgamedataeditor.views.main.modules.items.herorunes;
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.NameModulesPanelManager;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
@@ -24,7 +24,7 @@ public class HeroesRunesListView extends AbstractModulesView {
 
     @Override
     public void fillSubViewsMappings() {
-        List<SubViewPanelTuple> mappings = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(HERO_RUNE_TYPE_ID);
+        List<ObjectTuple> mappings = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(HERO_RUNE_TYPE_ID);
         addMappings(mappings, HeroesRunesParametersView.class);
     }
 

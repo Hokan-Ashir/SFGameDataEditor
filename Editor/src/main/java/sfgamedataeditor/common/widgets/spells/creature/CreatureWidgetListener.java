@@ -4,10 +4,9 @@ import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
-import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesModelCreator;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersModel;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView;
@@ -48,15 +47,15 @@ public class CreatureWidgetListener extends AbstractWidgetListener<CreatureWidge
     }
 
     private void updateCreatureNamesComboBox() {
-        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getRacesComboBox().getSelectedItem();
-        final List<SubViewPanelTuple> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceId(tuple.getObjectId());
-        final JComboBox<SubViewPanelTuple> comboBox = getWidget().getCreatureNameComboBox();
+        ObjectTuple tuple = (ObjectTuple) getWidget().getRacesComboBox().getSelectedItem();
+        final List<ObjectTuple> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceId(tuple.getObjectId());
+        final JComboBox<ObjectTuple> comboBox = getWidget().getCreatureNameComboBox();
         ViewTools.replaceComboBoxContentSilently(comboBox, creatureNames);
     }
 
     @Override
     protected int[] getFieldValues() {
-        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getCreatureNameComboBox().getSelectedItem();
+        ObjectTuple tuple = (ObjectTuple) getWidget().getCreatureNameComboBox().getSelectedItem();
         return new int[]{tuple.getObjectId()};
     }
 
@@ -67,20 +66,19 @@ public class CreatureWidgetListener extends AbstractWidgetListener<CreatureWidge
         // TODO
         Integer raceId = CreatureParametersTableService.INSTANCE.getRaceIdByCreatureName(creatureId);
         final String raceName = I18NService.INSTANCE.getMessage(I18NTypes.RACES, String.valueOf(raceId));
-        final JComboBox<SubViewPanelTuple> racesComboBox = getWidget().getRacesComboBox();
+        final JComboBox<ObjectTuple> racesComboBox = getWidget().getRacesComboBox();
         racesComboBox.setSelectedItem(raceName);
 
-        final JComboBox<SubViewPanelTuple> creatureNameComboBox = getWidget().getCreatureNameComboBox();
-        List<SubViewPanelTuple> tuples = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[]{creatureId});
+        final JComboBox<ObjectTuple> creatureNameComboBox = getWidget().getCreatureNameComboBox();
+        List<ObjectTuple> tuples = CreatureCommonParametersTableService.INSTANCE.getCreatureTuples(new Integer[]{creatureId});
         creatureNameComboBox.setSelectedItem(tuples.get(0));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String selectedCreatureName = (String) getWidget().getCreatureNameComboBox().getSelectedItem();
-        Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(selectedCreatureName);
+        ObjectTuple tuple = (ObjectTuple) getWidget().getCreatureNameComboBox().getSelectedItem();
         // TODO extract icon from DB object
-        CreaturesParametersModel model = modelCreator.createModel(creatureId, null);
+        CreaturesParametersModel model = modelCreator.createModel(tuple.getObjectId(), null);
         ShowContentViewEvent event = new ShowContentViewEvent(CreaturesParametersView.class, model);
         EventProcessor.INSTANCE.process(event);
     }

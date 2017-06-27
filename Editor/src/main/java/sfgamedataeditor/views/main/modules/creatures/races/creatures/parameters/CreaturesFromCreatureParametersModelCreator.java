@@ -1,9 +1,10 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters;
 
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
+import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
 import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.mvc.ModelCreator;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesModel;
 import sfgamedataeditor.views.main.modules.creatures.races.creatures.CreaturesModelParameter;
 
@@ -14,11 +15,11 @@ public class CreaturesFromCreatureParametersModelCreator implements ModelCreator
     @Override
     public CreaturesModel createModel(CreaturesParametersModel childModel) {
         Integer raceId = childModel.getParameter().getCreatureParameterObject().raceId;
-        List<SubViewPanelTuple> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceId(raceId);
+        List<ObjectTuple> creatureNames = CreatureCommonParametersTableService.INSTANCE.getCreatureNamesByRaceId(raceId);
 
-        Integer nameId = childModel.getParameter().getCreatureCommonParameterObject().nameId;
-        String selectedCreatureName = TextTableService.INSTANCE.getObjectName(nameId);
-        CreaturesModelParameter parameter = new CreaturesModelParameter(creatureNames, selectedCreatureName);
+        CreaturesCommonParameterObject object = childModel.getParameter().getCreatureCommonParameterObject();
+        ObjectTuple objectTuple = TextTableService.INSTANCE.getObjectTuple(object.nameId, object.creatureId);
+        CreaturesModelParameter parameter = new CreaturesModelParameter(creatureNames, objectTuple);
         return new CreaturesModel(parameter);
     }
 }

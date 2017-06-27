@@ -13,7 +13,7 @@ import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.PresentableView;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -49,29 +49,33 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
 
         ItemPriceParametersObject object = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
         String itemTypeName;
-        List<SubViewPanelTuple> tuples = ArmorParametersTableService.INSTANCE.getOrbNames();
+        List<ObjectTuple> tuples = ArmorParametersTableService.INSTANCE.getOrbNames();
         boolean isItemOrb = false;
-        for (SubViewPanelTuple tuple : tuples) {
+        for (ObjectTuple tuple : tuples) {
             if (tuple.getObjectId().equals(itemId)) {
                 isItemOrb = true;
             }
         }
+
+        Integer itemType;
         if (isItemOrb) {
+            itemType = ORB_TYPE_WEAPON;
             itemTypeName = WeaponTypesMap.INSTANCE.getWeaponTypeNameById(ORB_TYPE_WEAPON);
         } else {
             WeaponParametersObject weaponParametersObject = WeaponParametersTableService.INSTANCE.getObjectByItemId(itemId);
             if (weaponParametersObject != null) {
+                itemType = weaponParametersObject.type;
                 itemTypeName = WeaponTypesMap.INSTANCE.getWeaponTypeNameById(weaponParametersObject.type);
             } else {
-                int itemPieceId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
-                String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(itemPieceId), I18NTypes.ITEM_TYPES_NAME_MAPPING);
+                itemType = object.typeId;
+                String itemPieceNameKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(itemType), I18NTypes.ITEM_TYPES_NAME_MAPPING);
                 itemTypeName = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, itemPieceNameKey);
             }
         }
 
-        getWidget().getItemTypeComboBox().setSelectedItem(itemTypeName);
+        getWidget().getItemTypeComboBox().setSelectedItem(new ObjectTuple(itemTypeName, itemType));
         updateItemNames();
-        String itemName = TextTableService.INSTANCE.getObjectName(object.nameId);
+        ObjectTuple itemName = TextTableService.INSTANCE.getObjectTuple(object.nameId, object.itemId);
         getWidget().getItemPieceComboBox().setSelectedItem(itemName);
     }
 
@@ -88,7 +92,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     }
 
     private Integer getSelectedItemId() {
-        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getItemPieceComboBox().getSelectedItem();
+        ObjectTuple tuple = (ObjectTuple) getWidget().getItemPieceComboBox().getSelectedItem();
         return tuple.getObjectId();
     }
 
@@ -112,35 +116,27 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     }
 
     private int getSelectedItemType() {
-        String itemTypeName = (String) getWidget().getItemTypeComboBox().getSelectedItem();
-        String itemTypeKey = ViewTools.getKeyStringByPropertyValue(itemTypeName, I18NTypes.COMMON);
-        Integer itemType;
-        if (itemTypeKey == null) {
-            itemType = WeaponTypesMap.INSTANCE.getWeaponTypeByName(itemTypeName);
-        } else {
-            itemType = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemTypeKey));
-        }
-        return itemType;
+        ObjectTuple tuple = (ObjectTuple) getWidget().getItemTypeComboBox().getSelectedItem();
+        return tuple.getObjectId();
     }
 
     private void updateItemNames() {
-        String itemTypeName = (String) getWidget().getItemTypeComboBox().getSelectedItem();
-        String itemTypeI18NKey = ViewTools.getKeyStringByPropertyValue(itemTypeName, I18NTypes.COMMON);
-        List<SubViewPanelTuple> itemNames;
+        // TODO incorrect select - "Hand - 2" is clashed with "items.rune.hero.in.inventory - 2"
+        ObjectTuple tuple = (ObjectTuple) getWidget().getItemTypeComboBox().getSelectedItem();
+        String itemTypeI18NKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(tuple.getObjectId()), I18NTypes.ITEM_TYPES_NAME_MAPPING);
+        List<ObjectTuple> itemNames;
         if (itemTypeI18NKey == null) {
-            Integer weaponType = WeaponTypesMap.INSTANCE.getWeaponTypeByName(itemTypeName);
-            itemNames = WeaponParametersTableService.INSTANCE.getItemsByItemType(weaponType);
+            itemNames = WeaponParametersTableService.INSTANCE.getItemsByItemType(tuple.getObjectId());
             if (itemNames.isEmpty()) {
                 itemNames = ArmorParametersTableService.INSTANCE.getOrbNames();
             }
         } else {
-            String itemPieceType = I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemTypeI18NKey);
-            itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(Integer.parseInt(itemPieceType));
+            itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(tuple.getObjectId());
         }
 
-        final JComboBox<SubViewPanelTuple> itemPieceComboBox = getWidget().getItemPieceComboBox();
+        final JComboBox<ObjectTuple> itemPieceComboBox = getWidget().getItemPieceComboBox();
         itemPieceComboBox.removeAllItems();
-        for (SubViewPanelTuple itemName : itemNames) {
+        for (ObjectTuple itemName : itemNames) {
             itemPieceComboBox.addItem(itemName);
         }
     }

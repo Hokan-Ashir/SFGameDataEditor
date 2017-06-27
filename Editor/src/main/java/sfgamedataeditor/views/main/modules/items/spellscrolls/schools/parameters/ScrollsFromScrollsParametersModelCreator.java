@@ -4,6 +4,7 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTable
 import sfgamedataeditor.mvc.ModelCreator;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.ModulesModel;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -19,7 +20,7 @@ public class ScrollsFromScrollsParametersModelCreator implements ModelCreator<Mo
         Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(scrollName, SCROLL_TYPE_ID);
         // TODO FIX
         String selectedItem = "";
-        ModuleParameter parameter = new ModuleParameter(selectedItem);
+        ModuleParameter parameter = new ModuleParameter(new ObjectTuple(selectedItem, itemId));
         return new ModulesModel(parameter);
     }
 }

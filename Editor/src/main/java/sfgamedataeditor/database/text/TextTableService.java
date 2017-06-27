@@ -8,11 +8,11 @@ import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.DTOFilter;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -47,44 +47,44 @@ public enum TextTableService implements TableCreationService {
     private static final Logger LOGGER = Logger.getLogger(TextTableService.class);
     public static final String NULL_OBJECT_PREFIX = "Null object - ";
 
-    public String getObjectName(int nameId) {
-        List<String> objectNames = getObjectNames(new Integer[]{nameId});
+    public ObjectTuple getObjectTuple(Integer nameId, Integer objectId) {
+        List<ObjectTuple> objectNames = getObjectTuples(new Integer[]{nameId}, new Integer[] {objectId});
         if (objectNames == null || objectNames.isEmpty()) {
-            return NULL_OBJECT_PREFIX + nameId;
+            return new ObjectTuple(NULL_OBJECT_PREFIX + objectId, objectId);
         } else {
             return objectNames.get(0);
         }
     }
 
-    public List<String> getObjectNames(Integer[] nameIds) {
+    public List<ObjectTuple> getObjectTuples(Integer[] nameIds, Integer[] objectIds) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<TextObject, String> dao;
         try {
             dao = DaoManager.createDao(connectionSource, TextObject.class);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return null;
+            return Collections.emptyList();
         }
 
         try {
             // TODO set correct languageId
             List<TextObject> objects = dao.queryBuilder().selectColumns("text", "textId").orderBy("textId", true).where().in("textId", (Object[]) nameIds).and().eq("languageId", 1).query();
             if (objects.isEmpty()) {
-                return null;
+                return Collections.emptyList();
             } else {
-                List<String> result = new ArrayList<>();
-                for (Integer nameId : nameIds) {
+                List<ObjectTuple> result = new ArrayList<>();
+                for (int i = 0; i < nameIds.length; ++i) {
                     TextObject textObject = null;
                     for (TextObject object : objects) {
-                        if (object.textId.equals(nameId)) {
+                        if (object.textId.equals(nameIds[i])) {
                             textObject = object;
                         }
                     }
 
                     if (textObject != null) {
-                        result.add(textObject.text);
+                        result.add(new ObjectTuple(textObject.text, objectIds[i]));
                     } else {
-                        result.add(NULL_OBJECT_PREFIX + nameId);
+                        result.add(new ObjectTuple(NULL_OBJECT_PREFIX + objectIds[i], objectIds[i]));
                     }
                 }
 
@@ -92,7 +92,7 @@ public enum TextTableService implements TableCreationService {
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -115,11 +115,15 @@ public enum TextTableService implements TableCreationService {
         }
     }
 
+    // do not save dialogues into database
     private static final class TextFilter implements DTOFilter {
+
+        private static final int DIALOGUE_BYTE_POSITION = 3;
+        private static final int IS_NOT_DIALOGUE = 0;
 
         @Override
         public boolean isAcceptable(byte[] buffer) {
-            return buffer[3] == 0;
+            return buffer[DIALOGUE_BYTE_POSITION] == IS_NOT_DIALOGUE;
         }
     }
 }

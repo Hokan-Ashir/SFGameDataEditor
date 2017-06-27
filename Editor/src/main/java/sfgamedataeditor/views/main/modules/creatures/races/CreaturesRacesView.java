@@ -2,7 +2,7 @@ package sfgamedataeditor.views.main.modules.creatures.races;
 
 import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.NameModulesPanelManager;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
@@ -20,7 +20,7 @@ public class CreaturesRacesView extends AbstractModulesView {
 
     @Override
     public void fillSubViewsMappings() {
-        List<SubViewPanelTuple> mappings = CreatureParametersTableService.INSTANCE.getListOfCreatureRaces();
+        List<ObjectTuple> mappings = CreatureParametersTableService.INSTANCE.getListOfCreatureRaces();
         addMappings(mappings, CreaturesView.class);
     }
 

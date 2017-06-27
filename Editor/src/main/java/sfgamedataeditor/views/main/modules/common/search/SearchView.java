@@ -9,7 +9,7 @@ import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.Model;
 import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.AbstractGhostTextListener;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.model.creators.ModelCreator;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.BuildingModelCreator;
 import sfgamedataeditor.views.main.modules.buildings.races.buildings.parameters.BuildingsParametersView;
@@ -136,8 +136,8 @@ public class SearchView implements PresentableView {
         }
 
         private void addCreaturesSuggestions(String text, List<SearchTuple> elements) {
-            List<SubViewPanelTuple> objects = CreatureCommonParametersTableService.INSTANCE.getCreaturesNameIdPairByItemNamePart(text, MAXIMUM_NUMBER_OF_SUGGESTIONS - elements.size());
-            for (SubViewPanelTuple object : objects) {
+            List<ObjectTuple> objects = CreatureCommonParametersTableService.INSTANCE.getCreaturesNameIdPairByItemNamePart(text, MAXIMUM_NUMBER_OF_SUGGESTIONS - elements.size());
+            for (ObjectTuple object : objects) {
                 elements.add(new SearchTuple(CREATURES_TYPE_OBJECT, object.getName(), object.getObjectId()));
             }
         }

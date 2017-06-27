@@ -1,6 +1,5 @@
 package sfgamedataeditor.views.main.modules.items.unitplans.units;
 
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.items.unitplans.units.parameters.UnitsPlansParametersModel;
 

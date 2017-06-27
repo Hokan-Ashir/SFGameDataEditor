@@ -2,7 +2,7 @@ package sfgamedataeditor.views.main.modules.objects.chests;
 
 import sfgamedataeditor.database.objects.chests.ChestCorpseLootTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.NameModulesPanelManager;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
@@ -20,7 +20,7 @@ public class ChestsListView extends AbstractModulesView {
 
     @Override
     public void fillSubViewsMappings() {
-        List<SubViewPanelTuple> names = ChestCorpseLootTableService.INSTANCE.getAllChestCorpseLootObjectNames();
+        List<ObjectTuple> names = ChestCorpseLootTableService.INSTANCE.getAllChestCorpseLootObjectNames();
         addMappings(names, ChestParametersView.class);
     }
 

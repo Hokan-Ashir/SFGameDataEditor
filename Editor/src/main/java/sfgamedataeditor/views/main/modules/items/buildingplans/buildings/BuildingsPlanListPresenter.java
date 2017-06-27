@@ -1,6 +1,5 @@
 package sfgamedataeditor.views.main.modules.items.buildingplans.buildings;
 
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.parameters.BuildingPlansParametersModel;
 

@@ -2,6 +2,7 @@ package sfgamedataeditor.views.common.views;
 
 import org.apache.log4j.Logger;
 import sfgamedataeditor.mvc.objects.PresentableView;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.SubViewPanel;
 import sfgamedataeditor.views.common.SubViewPanelTuple;
 import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
@@ -59,7 +60,7 @@ public abstract class AbstractModulesView implements PresentableView {
         panelManager.updatePanelsLayout(subViewsPanels);
     }
 
-    public void addMappings(List<SubViewPanelTuple> mappings, Class<? extends PresentableView> viewClass) {
+    public void addMappings(List<ObjectTuple> mappings, Class<? extends PresentableView> viewClass) {
         int size = mappings.size();
         int subViewsSize = subViewsPanels.size();
         if (subViewsSize < size) {
@@ -69,12 +70,12 @@ public abstract class AbstractModulesView implements PresentableView {
         }
 
         Iterator<SubViewPanel> iterator = subViewsPanels.iterator();
-        Iterator<SubViewPanelTuple> stringIterator = mappings.iterator();
+        Iterator<ObjectTuple> stringIterator = mappings.iterator();
         while (iterator.hasNext()) {
             SubViewPanel subViewPanel = iterator.next();
             JButton button = subViewPanel.getButton();
             if (stringIterator.hasNext()) {
-                SubViewPanelTuple tuple = stringIterator.next();
+                ObjectTuple tuple = stringIterator.next();
                 String name = tuple.getName();
                 setPanelImageAndSize(button, tuple.getObjectId());
 

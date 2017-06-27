@@ -2,7 +2,7 @@ package sfgamedataeditor.common.widgets.creatures.races;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 
 import javax.swing.*;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class RacesWidget extends AbstractWidget<RacesWidgetListener> {
     private JPanel mainPanel;
     private JLabel titleLabel;
-    private JComboBox<SubViewPanelTuple> racesComboBox;
+    private JComboBox<ObjectTuple> racesComboBox;
 
     public RacesWidget() {
         fillWithPredefinedRaces();
@@ -19,13 +19,13 @@ public class RacesWidget extends AbstractWidget<RacesWidgetListener> {
     }
 
     private void fillWithPredefinedRaces() {
-        List<SubViewPanelTuple> creatureRaces = CreatureParametersTableService.INSTANCE.getListOfCreatureRaces();
-        for (SubViewPanelTuple creatureRace : creatureRaces) {
+        List<ObjectTuple> creatureRaces = CreatureParametersTableService.INSTANCE.getListOfCreatureRaces();
+        for (ObjectTuple creatureRace : creatureRaces) {
             racesComboBox.addItem(creatureRace);
         }
     }
 
-    public JComboBox<SubViewPanelTuple> getRacesComboBox() {
+    public JComboBox<ObjectTuple> getRacesComboBox() {
         return racesComboBox;
     }
 

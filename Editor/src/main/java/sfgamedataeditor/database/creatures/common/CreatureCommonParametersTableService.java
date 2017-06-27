@@ -12,11 +12,10 @@ import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.database.text.TextTableService;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -50,7 +49,7 @@ public enum CreatureCommonParametersTableService implements TableCreationService
 
     private static final Logger LOGGER = Logger.getLogger(CreatureCommonParametersTableService.class);
 
-    public List<SubViewPanelTuple> getCreatureNamesByRaceId(int raceId) {
+    public List<ObjectTuple> getCreatureNamesByRaceId(int raceId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<CreaturesCommonParameterObject, Integer> commonParametersDAO;
         try {
@@ -74,18 +73,13 @@ public enum CreatureCommonParametersTableService implements TableCreationService
 
             List<Pair<Integer, Integer>> results = rawResults.getResults();
             Integer[] nameIds = new Integer[results.size()];
+            Integer[] objectIds = new Integer[results.size()];
             for (int i = 0; i < results.size(); ++i) {
                 nameIds[i] = results.get(i).getKey();
+                objectIds[i] = results.get(i).getValue();
             }
 
-            List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
-
-            List<SubViewPanelTuple> result = new ArrayList<>();
-            for (int i = 0; i < objectNames.size(); i++) {
-                result.add(new SubViewPanelTuple(objectNames.get(i), results.get(i).getValue()));
-            }
-
-            return result;
+            return TextTableService.INSTANCE.getObjectTuples(nameIds, objectIds);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
@@ -115,20 +109,16 @@ public enum CreatureCommonParametersTableService implements TableCreationService
         }
     }
 
-    public List<SubViewPanelTuple> getCreaturesNameIdPairByItemNamePart(String namePart, Long limit) {
+    public List<ObjectTuple> getCreaturesNameIdPairByItemNamePart(String namePart, Long limit) {
         List<CreaturesCommonParameterObject> objects = getObjectsByNamePart(namePart, limit);
         Integer[] nameIds = new Integer[objects.size()];
+        Integer[] objectIds = new Integer[objects.size()];
         for (int i = 0; i < objects.size(); ++i) {
             nameIds[i] = objects.get(i).nameId;
+            objectIds[i] = objects.get(i).creatureId;
         }
 
-        List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
-        List<SubViewPanelTuple> result = new ArrayList<>();
-        for (int i = 0; i < objectNames.size(); i++) {
-            result.add(new SubViewPanelTuple(objectNames.get(i), objects.get(i).creatureId));
-        }
-
-        return result;
+        return TextTableService.INSTANCE.getObjectTuples(nameIds, objectIds);
     }
 
     public Integer getCreatureIdByName(String name) {
@@ -176,7 +166,7 @@ public enum CreatureCommonParametersTableService implements TableCreationService
         }
     }
 
-    public List<SubViewPanelTuple> getCreatureTuples(Integer[] creatureIds) {
+    public List<ObjectTuple> getCreatureTuples(Integer[] creatureIds) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<CreaturesCommonParameterObject, String> dao;
         try {
@@ -193,18 +183,13 @@ public enum CreatureCommonParametersTableService implements TableCreationService
             } else {
 
                 Integer[] nameIds = new Integer[objects.size()];
+                Integer[] objectIds = new Integer[objects.size()];
                 for (int i = 0; i < objects.size(); i++) {
                     nameIds[i] = objects.get(i).nameId;
+                    objectIds[i] = objects.get(i).creatureId;
                 }
 
-
-                List<String> objectNames = TextTableService.INSTANCE.getObjectNames(nameIds);
-                List<SubViewPanelTuple> result = new ArrayList<>();
-                for (int i = 0; i < objectNames.size(); i++) {
-                    result.add(new SubViewPanelTuple(objectNames.get(i), objects.get(i).creatureId));
-                }
-
-                return result;
+                return TextTableService.INSTANCE.getObjectTuples(nameIds, objectIds);
             }
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

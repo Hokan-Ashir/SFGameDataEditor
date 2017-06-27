@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.Pair;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -47,12 +47,12 @@ public enum ChestCorpseLootTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(ChestCorpseLootTableService.class);
 
-    public List<SubViewPanelTuple> getAllChestCorpseLootObjectNames() {
+    public List<ObjectTuple> getAllChestCorpseLootObjectNames() {
         List<ChestCorpseLootObject> allTableData = CommonTableService.INSTANCE.getAllTableData(ChestCorpseLootObject.class);
-        List<SubViewPanelTuple> result = new ArrayList<>();
+        List<ObjectTuple> result = new ArrayList<>();
         for (ChestCorpseLootObject chestCorpseLootObject : allTableData) {
             String objectName = I18NService.INSTANCE.getMessage(I18NTypes.OBJECTS, String.valueOf(chestCorpseLootObject.chestCorpseId));
-            result.add(new SubViewPanelTuple(objectName, chestCorpseLootObject.chestCorpseId));
+            result.add(new ObjectTuple(objectName, chestCorpseLootObject.chestCorpseId));
         }
 
         return result;

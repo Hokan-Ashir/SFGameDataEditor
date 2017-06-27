@@ -6,7 +6,7 @@ import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.main.modules.units.races.UnitMapping;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitModelCreator;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersModel;
@@ -31,29 +31,28 @@ public class UnitWidgetListener extends AbstractWidgetListener<UnitWidget, Offse
 
     @Override
     protected int[] getFieldValues() {
-        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getUnitComboBox().getSelectedItem();
+        ObjectTuple tuple = (ObjectTuple) getWidget().getUnitComboBox().getSelectedItem();
         return new int[]{tuple.getObjectId()};
     }
 
     @Override
     protected void setFieldValues(int[] value) {
         int unitId = value[0];
-        final SubViewPanelTuple raceTuple = UnitMapping.INSTANCE.getRaceTuple(unitId);
-        final JComboBox<SubViewPanelTuple> racesComboBox = getWidget().getRacesComboBox();
+        final ObjectTuple raceTuple = UnitMapping.INSTANCE.getRaceTuple(unitId);
+        final JComboBox<ObjectTuple> racesComboBox = getWidget().getRacesComboBox();
         racesComboBox.setSelectedItem(raceTuple);
         updateUnitNamesComboBox();
 
-        final JComboBox<SubViewPanelTuple> unitNameComboBox = getWidget().getUnitComboBox();
-        SubViewPanelTuple unitTuple = UnitMapping.INSTANCE.getUnitTuple(unitId);
+        final JComboBox<ObjectTuple> unitNameComboBox = getWidget().getUnitComboBox();
+        ObjectTuple unitTuple = UnitMapping.INSTANCE.getUnitTuple(unitId);
         unitNameComboBox.setSelectedItem(unitTuple);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String selectedCreatureName = (String) getWidget().getUnitComboBox().getSelectedItem();
-        Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(selectedCreatureName);
-        Icon icon = getUnitIcon(creatureId);
-        UnitsParametersModel model = modelCreator.createModel(creatureId, icon);
+        ObjectTuple tuple = (ObjectTuple) getWidget().getUnitComboBox().getSelectedItem();
+        Icon icon = getUnitIcon(tuple.getObjectId());
+        UnitsParametersModel model = modelCreator.createModel(tuple.getObjectId(), icon);
         ShowContentViewEvent event = new ShowContentViewEvent(UnitsParametersView.class, model);
         EventProcessor.INSTANCE.process(event);
     }
@@ -76,9 +75,9 @@ public class UnitWidgetListener extends AbstractWidgetListener<UnitWidget, Offse
     }
 
     private void updateUnitNamesComboBox() {
-        SubViewPanelTuple tuple = (SubViewPanelTuple) getWidget().getRacesComboBox().getSelectedItem();
-        final List<SubViewPanelTuple> creatureNames = UnitMapping.INSTANCE.getUnitNames(tuple);
-        final JComboBox<SubViewPanelTuple> comboBox = getWidget().getUnitComboBox();
+        ObjectTuple tuple = (ObjectTuple) getWidget().getRacesComboBox().getSelectedItem();
+        final List<ObjectTuple> creatureNames = UnitMapping.INSTANCE.getUnitNames(tuple);
+        final JComboBox<ObjectTuple> comboBox = getWidget().getUnitComboBox();
         ViewTools.replaceComboBoxContentSilently(comboBox, creatureNames);
     }
 }

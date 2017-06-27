@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.units.races.units.parameters;
 
 import sfgamedataeditor.mvc.ModelCreator;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.main.modules.units.races.UnitMapping;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitListModel;
 import sfgamedataeditor.views.main.modules.units.races.units.UnitListModelParameter;
@@ -13,10 +13,10 @@ public class UnitsFromUnitParametersModelCreator implements ModelCreator<UnitLis
     @Override
     public UnitListModel createModel(UnitsParametersModel childModel) {
         Integer creatureId = childModel.getParameter().getCreatureCommonParameterObject().creatureId;
-        SubViewPanelTuple unitTuple = UnitMapping.INSTANCE.getUnitTuple(creatureId);
-        SubViewPanelTuple raceTuple = UnitMapping.INSTANCE.getRaceTuple(creatureId);
-        List<SubViewPanelTuple> unitNames = UnitMapping.INSTANCE.getUnitNames(raceTuple);
-        UnitListModelParameter parameter = new UnitListModelParameter(unitNames, unitTuple.getName());
+        ObjectTuple unitTuple = UnitMapping.INSTANCE.getUnitTuple(creatureId);
+        ObjectTuple raceTuple = UnitMapping.INSTANCE.getRaceTuple(creatureId);
+        List<ObjectTuple> unitNames = UnitMapping.INSTANCE.getUnitNames(raceTuple);
+        UnitListModelParameter parameter = new UnitListModelParameter(unitNames, unitTuple);
         return new UnitListModel(parameter);
     }
 }

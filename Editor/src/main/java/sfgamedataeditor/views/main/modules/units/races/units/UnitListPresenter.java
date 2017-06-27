@@ -1,6 +1,5 @@
 package sfgamedataeditor.views.main.modules.units.races.units;
 
-import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.units.races.units.parameters.UnitsParametersModel;
 
@@ -16,8 +15,7 @@ public class UnitListPresenter extends AbstractModulesPresenter<UnitListModelPar
 
     @Override
     protected UnitsParametersModel createModel() {
-        String selectedCreatureName = getView().getSelectedModuleName();
-        Integer creatureId = CreatureCommonParametersTableService.INSTANCE.getCreatureIdByName(selectedCreatureName);
+        Integer creatureId = getView().getSelectedModuleObjectId();
         Icon icon = getView().getSelectedModuleIcon();
         return modelCreator.createModel(creatureId, icon);
     }

@@ -3,7 +3,7 @@ package sfgamedataeditor.views.main.modules.items.spellscrolls.schools;
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
 import sfgamedataeditor.views.common.managers.NameModulesPanelManager;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
@@ -28,7 +28,7 @@ public class SpellScrollsListView extends AbstractModulesView {
     @Override
     public void fillSubViewsMappings() {
         int scrollsType = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
-        List<SubViewPanelTuple> mappings = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(scrollsType);
+        List<ObjectTuple> mappings = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(scrollsType);
 //        scrollsNames = getFilteredScrollNames(scrollsNames);
         addMappings(mappings, SpellScrollsParametersView.class);
     }

@@ -7,6 +7,7 @@ import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.mvc.ModelCreator;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.ModulesModel;
+import sfgamedataeditor.views.common.ObjectTuple;
 
 public class SpellSchoolsFromSpellsModelCreator implements ModelCreator<ModulesModel, SpellModel> {
 
@@ -19,7 +20,7 @@ public class SpellSchoolsFromSpellsModelCreator implements ModelCreator<ModulesM
         Integer spellType = spellNameDAO.spellType;
         SpellParametersObject spellParameter = SpellParametersTableService.INSTANCE.getSpellParametersBySpellType(spellType);
         String spellSchoolName = SpellParametersTableService.INSTANCE.getSpellSchoolName(spellParameter);
-        ModuleParameter parameter = new ModuleParameter(spellSchoolName);
+        ModuleParameter parameter = new ModuleParameter(new ObjectTuple(spellSchoolName));
         return new ModulesModel(parameter);
     }
 }

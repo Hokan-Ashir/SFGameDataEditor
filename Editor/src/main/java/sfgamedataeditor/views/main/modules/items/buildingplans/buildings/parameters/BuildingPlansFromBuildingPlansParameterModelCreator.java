@@ -5,7 +5,7 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObjec
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.mvc.ModelCreator;
-import sfgamedataeditor.views.common.SubViewPanelTuple;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.BuildingsPlanListModel;
 import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.BuildingsPlanListModelParameter;
 
@@ -16,9 +16,9 @@ public class BuildingPlansFromBuildingPlansParameterModelCreator implements Mode
     @Override
     public BuildingsPlanListModel createModel(BuildingPlansParametersModel childModel) {
         ItemPriceParametersObject object = childModel.getParameter().getPriceParametersObject();
-        String itemName = TextTableService.INSTANCE.getObjectName(object.nameId);
+        ObjectTuple itemName = TextTableService.INSTANCE.getObjectTuple(object.nameId, object.itemId);
         Integer buildingRaceId = object.typeId;
-        List<SubViewPanelTuple> buildingsNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(buildingRaceId);
+        List<ObjectTuple> buildingsNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(buildingRaceId);
         BuildingsPlanListModelParameter parameter = new BuildingsPlanListModelParameter(buildingsNames, itemName);
         return new BuildingsPlanListModel(parameter);
     }
