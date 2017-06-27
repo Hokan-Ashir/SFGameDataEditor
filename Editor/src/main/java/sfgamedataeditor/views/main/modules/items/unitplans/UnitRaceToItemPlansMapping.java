@@ -9,7 +9,7 @@ import java.util.TreeMap;
 public enum UnitRaceToItemPlansMapping {
     INSTANCE;
     
-    public Map<String, Integer> mappings = new TreeMap<>();
+    public final Map<String, Integer> mappings = new TreeMap<>();
 
     UnitRaceToItemPlansMapping() {
         putObjectIntoMap("races.humans", "items.unit.plan.in.inventory.humans");

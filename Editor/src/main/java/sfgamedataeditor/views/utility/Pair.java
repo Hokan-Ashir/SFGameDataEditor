@@ -24,10 +24,6 @@ public class Pair<K, V> {
         this.value = var2;
     }
 
-    public void setValue(V value) {
-        this.value = value;
-    }
-
     public String toString() {
         return this.key + "=" + this.value;
     }

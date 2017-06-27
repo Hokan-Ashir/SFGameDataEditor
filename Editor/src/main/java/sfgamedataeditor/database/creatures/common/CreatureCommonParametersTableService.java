@@ -121,31 +121,6 @@ public enum CreatureCommonParametersTableService implements TableCreationService
         return TextTableService.INSTANCE.getObjectTuples(nameIds, objectIds);
     }
 
-    public Integer getCreatureIdByName(String name) {
-        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
-        final Dao<CreaturesCommonParameterObject, String> dao;
-        try {
-            dao = DaoManager.createDao(connectionSource, CreaturesCommonParameterObject.class);
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
-            return null;
-        }
-
-        try {
-            SelectArg selectArg = new SelectArg(name);
-            QueryBuilder<CreaturesCommonParameterObject, String> builder = dao.queryBuilder();
-            List<CreaturesCommonParameterObject> objects = builder.where().like("name", selectArg).query();
-            if (objects.isEmpty()) {
-                return null;
-            } else {
-                return objects.get(0).creatureId;
-            }
-        } catch (SQLException e) {
-            LOGGER.error(e.getMessage(), e);
-            return null;
-        }
-    }
-
     private List<CreaturesCommonParameterObject> getObjectsByNamePart(String partName, Long limit) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<CreaturesCommonParameterObject, String> dao;

@@ -11,11 +11,8 @@ public class CreatureParameterObject extends OffsetableObject {
 
     // offsets are taken from http://spellforcefanforum.hostoi.com/viewtopic.php?f=29&t=256&sid=fc7270cda26e73fbb92bf600e1c5be4d
 
-    @DatabaseField(generatedId = true)
-    private Integer id;
-
     @Data(offset = 0, length = 2)
-    @DatabaseField
+    @DatabaseField(id = true)
     public Integer statsId;
 
     @Data(offset = 2, length = 2)

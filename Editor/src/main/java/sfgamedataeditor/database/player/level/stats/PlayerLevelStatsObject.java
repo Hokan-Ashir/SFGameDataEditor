@@ -9,11 +9,8 @@ import sfgamedataeditor.database.common.OffsetableObject;
 @DatabaseTable(tableName = "player_level_stats")
 public class PlayerLevelStatsObject extends OffsetableObject {
 
-    @DatabaseField(generatedId = true)
-    private Integer id;
-
     @Data(offset = 0, length = 1)
-    @DatabaseField
+    @DatabaseField(id = true)
     public Integer level;
 
     @Data(offset = 1, length = 2)

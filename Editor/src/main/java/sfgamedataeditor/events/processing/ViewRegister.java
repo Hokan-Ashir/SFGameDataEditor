@@ -1,6 +1,5 @@
 package sfgamedataeditor.events.processing;
 
-import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
 
 import java.util.HashMap;
@@ -18,14 +17,6 @@ public enum ViewRegister {
     public <T extends PresentableView> T getView(Class<T> viewClass) {
         if (views.containsKey(viewClass)) {
             return (T) views.get(viewClass).getView();
-        }
-
-        return null;
-    }
-
-    public <T extends AbstractPresenter, V extends PresentableView> T getPresenter(Class<V> viewClass) {
-        if (views.containsKey(viewClass)) {
-            return (T) views.get(viewClass).getPresenter();
         }
 
         return null;

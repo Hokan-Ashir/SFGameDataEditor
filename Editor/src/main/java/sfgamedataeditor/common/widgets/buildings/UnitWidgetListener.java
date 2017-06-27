@@ -3,7 +3,6 @@ package sfgamedataeditor.common.widgets.buildings;
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.common.widgets.AbstractWidgetListener;
 import sfgamedataeditor.database.common.OffsetableObject;
-import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.views.common.ObjectTuple;
