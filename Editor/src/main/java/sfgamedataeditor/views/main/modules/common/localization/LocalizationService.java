@@ -14,6 +14,7 @@ public enum LocalizationService {
 
     private List<ObjectTuple> availableLanguages;
 
+    // TODO test order of this call with non-US, RU i.e., OS-level locale
     public void initializeLocalization() {
         availableLanguages = createListOfAvailableLanguages();
 

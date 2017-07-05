@@ -126,10 +126,10 @@ public enum UnitMapping {
 
     private final Map<ObjectTuple, List<ObjectTuple>> unitRacesToUnitNamesMap = new TreeMap<ObjectTuple, List<ObjectTuple>>() {{
         put(createRaceTuple("races.humans", 1), humanUnitsNames);
-        put(createRaceTuple( "races.elves", 2), elvesUnitsNames);
-        put(createRaceTuple("races.dwarves", 3), dwarvesUnitsNames);
-        put(createRaceTuple("races.orcs", 4), orcsUnitsNames);
-        put(createRaceTuple( "races.trolls", 5), trollsUnitsNames);
+        put(createRaceTuple("races.dwarves", 2), dwarvesUnitsNames);
+        put(createRaceTuple( "races.elves", 3), elvesUnitsNames);
+        put(createRaceTuple( "races.trolls", 4), trollsUnitsNames);
+        put(createRaceTuple("races.orcs", 5), orcsUnitsNames);
         put(createRaceTuple("races.dark.elves", 6), darkElvesUnitsNames);
     }};
 
