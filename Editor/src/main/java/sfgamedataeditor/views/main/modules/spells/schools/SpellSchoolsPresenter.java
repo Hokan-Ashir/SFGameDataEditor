@@ -20,14 +20,25 @@ public class SpellSchoolsPresenter extends AbstractModulesPresenter<ModuleParame
     @Override
     protected SpellModel createModel() {
         List<ObjectTuple> tuples = new ArrayList<>();
-        List<SpellParametersObject> spellParameterObjects = SpellParametersTableService.INSTANCE.getSpells(getView().getSelectedModuleName());
+        ObjectTuple tuple = new ObjectTuple(getView().getSelectedModuleName(), getView().getSelectedModuleObjectId());
+        List<SpellParametersObject> spellParameterObjects = SpellParametersTableService.INSTANCE.getSpells(tuple);
         for (SpellParametersObject spellParametersObject : spellParameterObjects) {
             String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParametersObject.spellNameId);
             if (spellName == null) {
                 continue;
             }
 
-            tuples.add(new ObjectTuple(spellName, spellParametersObject.spellNumber));
+            boolean isSpellNameExists = false;
+            for (ObjectTuple objectTuple : tuples) {
+                if (objectTuple.getName().equals(spellName)) {
+                    isSpellNameExists = true;
+                    break;
+                }
+            }
+
+            if (!isSpellNameExists) {
+                tuples.add(new ObjectTuple(spellName, spellParametersObject.spellNameId));
+            }
         }
 
         SpellModelParameter spellModelParameter = new SpellModelParameter(tuples, null);

@@ -92,7 +92,7 @@ public enum ArmorParametersTableService implements TableCreationService {
                                     "where item_price_parameters.typeId = ?) as t " +
                                     "left join weapon_parameters " +
                                     "on t.itemId = weapon_parameters.itemId " +
-                                    "where weapon_parameters.id is null",
+                                    "where weapon_parameters.itemId is null",
                             new RawRowMapper<Pair<Integer, Integer>>() {
                                 public Pair<Integer, Integer> mapRow(String[] columnNames,
                                                       String[] resultColumns) {

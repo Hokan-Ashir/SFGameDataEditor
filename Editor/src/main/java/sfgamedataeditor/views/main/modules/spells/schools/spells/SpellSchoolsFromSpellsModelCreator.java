@@ -19,8 +19,8 @@ public class SpellSchoolsFromSpellsModelCreator implements ModelCreator<ModulesM
         SpellNameObject spellNameDAO = SpellNameTableService.INSTANCE.getSpellName(spellName);
         Integer spellType = spellNameDAO.spellType;
         SpellParametersObject spellParameter = SpellParametersTableService.INSTANCE.getSpellParametersBySpellType(spellType);
-        String spellSchoolName = SpellParametersTableService.INSTANCE.getSpellSchoolName(spellParameter);
-        ModuleParameter parameter = new ModuleParameter(new ObjectTuple(spellSchoolName));
+        ObjectTuple tuple = SpellParametersTableService.INSTANCE.getSpellSchoolTuple(spellParameter);
+        ModuleParameter parameter = new ModuleParameter(tuple);
         return new ModulesModel(parameter);
     }
 }

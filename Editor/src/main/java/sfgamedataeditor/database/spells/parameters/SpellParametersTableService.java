@@ -81,11 +81,11 @@ public enum SpellParametersTableService implements TableCreationService {
         }
     }
 
-    public List<SpellParametersObject> getSpells(String spellSchoolName) {
+    public List<SpellParametersObject> getSpells(ObjectTuple tuple) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         List<SpellParametersObject> spellParameterObjects;
         try {
-            Set<Requirements> requirements = getSpellRequirements(spellSchoolName);
+            Set<Requirements> requirements = getSpellRequirements(tuple);
             Dao<SpellParametersObject, Integer> dao = DaoManager.createDao(connectionSource, SpellParametersObject.class);
             Where<SpellParametersObject, Integer> where = dao.queryBuilder().where();
             where = decorateRequirementWhere(where, requirements);
@@ -124,8 +124,8 @@ public enum SpellParametersTableService implements TableCreationService {
         }
     }
 
-    private Set<Requirements> getSpellRequirements(String spellSchoolName) {
-        String[] wholeSchoolNames = spellSchoolName.split(" & ");
+    private Set<Requirements> getSpellRequirements(ObjectTuple tuple) {
+        String[] wholeSchoolNames = tuple.getName().split(" & ");
         Requirements requirements = new Requirements();
         for (String wholeSchoolName : wholeSchoolNames) {
             String[] split = wholeSchoolName.split(" : ");
@@ -219,14 +219,16 @@ public enum SpellParametersTableService implements TableCreationService {
         List<SpellParametersObject> allTableData = CommonTableService.INSTANCE.getAllTableData(SpellParametersObject.class);
         List<ObjectTuple> result = new ArrayList<>();
         for (SpellParametersObject parametersObject : allTableData) {
-            String wholeName = getSpellSchoolName(parametersObject);
-            result.add(new ObjectTuple(wholeName));
+            ObjectTuple tuple = getSpellSchoolTuple(parametersObject);
+            if (!result.contains(tuple)) {
+                result.add(tuple);
+            }
         }
 
         return result;
     }
 
-    public String getSpellSchoolName(SpellParametersObject parametersObject) {
+    public ObjectTuple getSpellSchoolTuple(SpellParametersObject parametersObject) {
         Set<String> innerNames = new TreeSet<>();
         Integer requirementClass1 = parametersObject.requirementClass1;
         Integer requirementSubClass1 = parametersObject.requirementSubClass1;
@@ -252,7 +254,7 @@ public enum SpellParametersTableService implements TableCreationService {
         while (iterator.hasNext()) {
             wholeName += " & " + iterator.next();
         }
-        return wholeName;
+        return new ObjectTuple(wholeName, wholeName.hashCode());
     }
 
     private String getSchoolName(Integer requirementClass1, Integer requirementSubClass1) {
@@ -284,7 +286,7 @@ public enum SpellParametersTableService implements TableCreationService {
 
     public List<SpellParametersObject> getSpellParametersBySpellSchool(int spellTypeId, int spellLevel) {
         SpellParametersObject spellParameter = getSpellParameterBySpellIdAndLevel(spellTypeId, spellLevel);
-        String spellSchoolName = SpellParametersTableService.INSTANCE.getSpellSchoolName(spellParameter);
-        return getSpells(spellSchoolName);
+        ObjectTuple tuple = SpellParametersTableService.INSTANCE.getSpellSchoolTuple(spellParameter);
+        return getSpells(tuple);
     }
 }

@@ -15,7 +15,7 @@ public class WorkersRunesFromWorkersRunesParameterModelCreator implements ModelC
         String runeName = childModel.getParameter().getRuneName();
         Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemName(runeName);
         int itemType = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
-        String raceName = WorkerRunesMapping.INSTANCE.getWorkerRunesMapping(String.valueOf(itemType));
+        String raceName = WorkerRunesMapping.INSTANCE.getWorkerRuneRaceName(itemType);
         ModuleParameter parameter = new ModuleParameter(new ObjectTuple(raceName));
         return new ModulesModel(parameter);
     }

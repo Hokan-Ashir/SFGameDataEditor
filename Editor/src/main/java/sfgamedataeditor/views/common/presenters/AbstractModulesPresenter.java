@@ -52,7 +52,7 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
 
         if (model != null) {
             ObjectTuple selectedModuleName = model.getParameter().getSelectedModuleName();
-            if (selectedModuleName != null) {
+            if (selectedModuleName != null && selectedModuleName.getName() != null) {
                 getView().setSelectedModuleValue(selectedModuleName.getName());
             } else {
                 getView().setSelectedModuleValue(getView().getModuleName());

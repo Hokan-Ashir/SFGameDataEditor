@@ -24,7 +24,17 @@ public class SpellsFromSpellParameterModelCreator implements ModelCreator<SpellM
                 continue;
             }
 
-            tuples.add(new ObjectTuple(spellName, spellParametersObject.spellNumber));
+            boolean isSpellNameExists = false;
+            for (ObjectTuple objectTuple : tuples) {
+                if (objectTuple.getName().equals(spellName)) {
+                    isSpellNameExists = true;
+                    break;
+                }
+            }
+
+            if (!isSpellNameExists) {
+                tuples.add(new ObjectTuple(spellName, spellParametersObject.spellNameId));
+            }
         }
 
         String selectedSpellName = SpellNameTableService.INSTANCE.getSpellName(spellId);

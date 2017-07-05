@@ -101,6 +101,10 @@ public enum SpellNameTableService {
         try {
             dao = DaoManager.createDao(connectionSource, SpellNameObject.class);
             List<SpellNameObject> query = dao.queryBuilder().selectColumns("spellType").where().eq("name", spellName).query();
+            if (query == null || query.isEmpty()) {
+                return null;
+            }
+
             return query.get(0).spellType;
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);

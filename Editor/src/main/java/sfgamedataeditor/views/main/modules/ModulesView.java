@@ -10,6 +10,7 @@ import sfgamedataeditor.views.main.modules.creatures.races.CreaturesRacesView;
 import sfgamedataeditor.views.main.modules.items.ItemTypesView;
 import sfgamedataeditor.views.main.modules.objects.chests.ChestsListView;
 import sfgamedataeditor.views.main.modules.player.level.stats.PlayerLevelStatsView;
+import sfgamedataeditor.views.main.modules.skills.schools.SkillSchoolsView;
 import sfgamedataeditor.views.main.modules.spells.schools.SpellSchoolsView;
 import sfgamedataeditor.views.main.modules.units.races.UnitRacesView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -30,6 +31,7 @@ public class ModulesView extends AbstractModulesView {
     @Override
     public void fillSubViewsMappings() {
         List<SubViewPanelTuple> mappings = new ArrayList<SubViewPanelTuple>() {{
+           add(createTuple("skills", SkillSchoolsView.class));
            add(createTuple("spells", SpellSchoolsView.class));
            add(createTuple("buildings", BuildingRacesView.class));
            add(createTuple("creatures", CreaturesRacesView.class));

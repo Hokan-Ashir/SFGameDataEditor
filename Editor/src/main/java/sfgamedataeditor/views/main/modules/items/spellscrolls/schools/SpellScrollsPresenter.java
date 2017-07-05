@@ -1,6 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.spellscrolls.schools;
 
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
+import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters.SpellScrollsParametersModel;
@@ -8,9 +9,7 @@ import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
-import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParameter, SpellScrollsListView, SpellScrollsParametersModel> {
 
@@ -23,29 +22,20 @@ public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParame
 
     @Override
     protected SpellScrollsParametersModel createModel() {
-        Integer lowestScrollLevel = getLowestScrollLevel(getView().getSelectedModuleName());
+        Integer lowestScrollLevel = getLowestScrollLevel(getView().getSelectedModuleObjectId());
         String selectedSpellScroll = getView().getSelectedModuleName()
                 + " - "
-                + I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "level")
-                + " "
                 + lowestScrollLevel;
-        int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedSpellScroll, SPELL_TYPE_ID);
+        // search for ".*SCROLL_BASE_NAME.*SELECTED_LEVEL.*"
+        // ^[^\d]*?????? ????[^\d]*1[^\d]*$
+        // inside TTS
+        Integer itemId = ItemPriceParametersTableService.INSTANCE.getSpellScrollItemId(getView().getSelectedModuleName(), lowestScrollLevel);
         Icon icon = getView().getSelectedModuleIcon();
         return modelCreator.createModel(itemId, icon);
     }
 
-    private Integer getLowestScrollLevel(String scrollBaseName) {
-        Set<Integer> scrollLevels = new TreeSet<>();
-        // TODO FIX
-        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.PLAYER_LEVEL_STATS_GUI);
-        String prefix = scrollBaseName + " - ";
-        for (String key : bundle.keySet()) {
-            String value = bundle.getString(key);
-            if (value.startsWith(prefix)) {
-                scrollLevels.add(Integer.valueOf(value.split("\\s")[3]));
-            }
-        }
-
-        return scrollLevels.iterator().next();
+    private Integer getLowestScrollLevel(Integer spellTypeId) {
+        Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(spellTypeId);
+        return spellLevels.iterator().next();
     }
 }

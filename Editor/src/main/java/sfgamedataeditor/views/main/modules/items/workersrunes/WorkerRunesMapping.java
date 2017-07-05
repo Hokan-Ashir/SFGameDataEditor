@@ -24,7 +24,18 @@ public enum WorkerRunesMapping {
         map.put(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, raceI18nKey), I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, itemTypeI18nKey));
     }
 
-    public String getWorkerRunesMapping(String value) {
-        return  runeWorkersRaceTypeToNameMapping.get(value);
+    public Integer getWorkerRuneTypeByName(String value) {
+        return Integer.valueOf(runeWorkersRaceTypeToNameMapping.get(value));
+    }
+
+    public String getWorkerRuneRaceName(Integer itemType) {
+        String typeId = String.valueOf(itemType);
+        for (Map.Entry<String, String> entry : runeWorkersRaceTypeToNameMapping.entrySet()) {
+            if (entry.getValue().equals(typeId)) {
+                return entry.getKey();
+            }
+        }
+
+        return null;
     }
 }

@@ -147,9 +147,9 @@ public class SearchView implements PresentableView {
             List<Integer> typesWithParameters = EquipmentMapping.INSTANCE.getItemTypesWithParameters();
             for (Integer type : typesWithParameters) {
                 if (elements.size() < MAXIMUM_NUMBER_OF_SUGGESTIONS) {
-                    List<Pair<String, Integer>> objects = ItemPriceParametersTableService.INSTANCE.getItemNameIdPairByItemNamePart(text, MAXIMUM_NUMBER_OF_SUGGESTIONS - elements.size(), type);
-                    for (Pair<String, Integer> object : objects) {
-                        elements.add(new SearchTuple(type, object.getKey(), object.getValue()));
+                    List<ObjectTuple> objects = ItemPriceParametersTableService.INSTANCE.getItemNameIdPairByItemNamePart(text, MAXIMUM_NUMBER_OF_SUGGESTIONS - elements.size(), type);
+                    for (ObjectTuple object : objects) {
+                        elements.add(new SearchTuple(type, object.getName(), object.getObjectId()));
                     }
                 } else {
                     break;

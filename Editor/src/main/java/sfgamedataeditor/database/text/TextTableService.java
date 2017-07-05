@@ -2,6 +2,8 @@ package sfgamedataeditor.database.text;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.dao.GenericRawResults;
+import com.j256.ormlite.dao.RawRowMapper;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
@@ -46,6 +48,8 @@ public enum TextTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(TextTableService.class);
     public static final String NULL_OBJECT_PREFIX = "Null object - ";
+    // TODO set correct languageId
+    private static final Integer LANGUAGE_ID = 1;
 
     public ObjectTuple getObjectTuple(Integer nameId, Integer objectId) {
         List<ObjectTuple> objectNames = getObjectTuples(new Integer[]{nameId}, new Integer[] {objectId});
@@ -67,8 +71,10 @@ public enum TextTableService implements TableCreationService {
         }
 
         try {
-            // TODO set correct languageId
-            List<TextObject> objects = dao.queryBuilder().selectColumns("text", "textId").orderBy("textId", true).where().in("textId", (Object[]) nameIds).and().eq("languageId", 1).query();
+            List<TextObject> objects = dao.queryBuilder().selectColumns("text", "textId")
+                    .orderBy("textId", true)
+                    .where().in("textId", (Object[]) nameIds)
+                    .and().eq("languageId", LANGUAGE_ID).query();
             if (objects.isEmpty()) {
                 return Collections.emptyList();
             } else {
@@ -107,8 +113,38 @@ public enum TextTableService implements TableCreationService {
         }
 
         try {
-            // TODO set correct languageId
-            return dao.queryBuilder().where().eq("text", text).and().eq("languageId", 1).query();
+            return dao.queryBuilder().where()
+                    .eq("text", text)
+                    .and().eq("languageId", LANGUAGE_ID).query();
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
+        }
+    }
+
+    public List<Integer> getObjectsNameIdsByRegExp(String regexp) {
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        final Dao<TextObject, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, TextObject.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return Collections.emptyList();
+        }
+
+        try {
+            GenericRawResults<Integer> rawResults =
+                    dao.queryRaw(
+                            "select text.textId from text where text.text regexp ?",
+                            new RawRowMapper<Integer>() {
+                                public Integer mapRow(String[] columnNames,
+                                                      String[] resultColumns) {
+                                    return Integer.valueOf(resultColumns[0]);
+                                }
+                            },
+                            regexp);
+
+            return rawResults.getResults();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();

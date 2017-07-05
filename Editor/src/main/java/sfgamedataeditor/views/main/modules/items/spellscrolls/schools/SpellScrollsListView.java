@@ -2,6 +2,7 @@ package sfgamedataeditor.views.main.modules.items.spellscrolls.schools;
 
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
+import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.managers.AbstractModulePanelManager;
@@ -12,9 +13,8 @@ import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class SpellScrollsListView extends AbstractModulesView {
 
@@ -29,16 +29,26 @@ public class SpellScrollsListView extends AbstractModulesView {
     public void fillSubViewsMappings() {
         int scrollsType = Integer.parseInt(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
         List<ObjectTuple> mappings = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(scrollsType);
-//        scrollsNames = getFilteredScrollNames(scrollsNames);
+        mappings = getFilteredScrollNames(mappings);
         addMappings(mappings, SpellScrollsParametersView.class);
     }
 
-    private Set<String> getFilteredScrollNames(Set<String> scrollNames) {
-        Set<String> result = new TreeSet<>();
-        for (String scrollName : scrollNames) {
-            String originalScrollName = scrollName.split(" -")[0];
-            if (!result.contains(originalScrollName)) {
-                result.add(originalScrollName);
+    private List<ObjectTuple> getFilteredScrollNames(List<ObjectTuple> scrollNames) {
+        List<ObjectTuple> result = new ArrayList<>();
+        for (ObjectTuple scrollName : scrollNames) {
+            String originalScrollName = scrollName.getName().replaceAll(",?(\\s+)?\\b(\\d+)?(\\s+)?(уровень|ур.|niveau|level|Stufe)(\\s+)?(\\d+)?", "");
+
+            boolean isSpellNameExists = false;
+            for (ObjectTuple objectTuple : result) {
+                if (objectTuple.getName().equals(originalScrollName)) {
+                    isSpellNameExists = true;
+                    break;
+                }
+            }
+
+            if (!isSpellNameExists) {
+                Integer spellId = SpellNameTableService.INSTANCE.getSpellId(originalScrollName);
+                result.add(new ObjectTuple(originalScrollName, spellId));
             }
         }
 

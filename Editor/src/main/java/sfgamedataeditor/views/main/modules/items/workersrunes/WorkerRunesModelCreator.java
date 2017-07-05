@@ -13,6 +13,7 @@ import javax.swing.*;
 public class WorkerRunesModelCreator implements ModelCreator<WorkersRunesParametersModel> {
     @Override
     public WorkersRunesParametersModel createModel(int objectId, Icon icon) {
+        // change somehow, what presenter actually need
         ItemPriceParametersObject object = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(objectId);
         ObjectTuple itemName = TextTableService.INSTANCE.getObjectTuple(object.nameId, objectId);
         WorkersRunesParametersModelParameter parameter = new WorkersRunesParametersModelParameter(itemName.getName(), 1, icon);

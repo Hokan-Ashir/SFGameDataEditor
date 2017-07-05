@@ -12,9 +12,10 @@ import sfgamedataeditor.database.text.TextObject;
 import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.Pair;
+import sfgamedataeditor.views.utility.i18n.I18NService;
+import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -113,7 +114,7 @@ public enum ItemPriceParametersTableService implements TableCreationService {
         }
     }
 
-    public List<Pair<String, Integer>> getItemNameIdPairByItemNamePart(String namePart, Long limit, Integer typeId) {
+    public List<ObjectTuple> getItemNameIdPairByItemNamePart(String namePart, Long limit, Integer typeId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<ItemPriceParametersObject, String> dao;
         try {
@@ -126,21 +127,13 @@ public enum ItemPriceParametersTableService implements TableCreationService {
         try {
             List<ItemPriceParametersObject> objects = dao.queryBuilder().selectColumns("nameId", "itemId").limit(limit).where().eq("typeId", typeId).query();
             Integer[] textIds = new Integer[objects.size()];
+            Integer[] itemIds = new Integer[objects.size()];
             for (int i = 0; i < objects.size(); ++i) {
                 textIds[i] = objects.get(i).nameId;
+                itemIds[i] = objects.get(i).itemId;
             }
 
-            // TODO set correct language id
-            Dao<TextObject, String>  textObjectDAO = DaoManager.createDao(connectionSource, TextObject.class);
-            List<TextObject> textObjects = textObjectDAO.queryBuilder().selectColumns("text").where().in("textId", (Object[]) textIds).and().eq("languageId", 1).query();
-
-            // TODO what about ordering inside arraylist?
-            List<Pair<String, Integer>> result = new ArrayList<>();
-            for (int i = 0; i < textObjects.size(); ++i) {
-                result.add(new Pair<>(textObjects.get(i).text, objects.get(i).itemId));
-            }
-
-            return result;
+            return TextTableService.INSTANCE.getObjectTuples(textIds, itemIds);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
@@ -182,6 +175,35 @@ public enum ItemPriceParametersTableService implements TableCreationService {
             // during data uploading phase, need to test, does it affect users and will this Prepatcher affect users as well
             // we CAN'T add additional select filter, i.e. on copperSellingPrice/copperByingPrice cause this will limit users functionality
             List<ItemPriceParametersObject> objects = where.query();
+            if (objects.isEmpty()) {
+                return null;
+            } else {
+                return objects.get(0).itemId;
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
+    public Integer getSpellScrollItemId(String baseScrollName, Integer scrollLevel) {
+        Integer scrollTypeId = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
+
+        ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
+        final Dao<ItemPriceParametersObject, String> dao;
+        try {
+            dao = DaoManager.createDao(connectionSource, ItemPriceParametersObject.class);
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+
+        try {
+            String regExp = "^[^\\d]*" + baseScrollName + "[^\\d]*" + scrollLevel + "[^\\d]*$";
+            List<Integer> textIDs = TextTableService.INSTANCE.getObjectsNameIdsByRegExp(regExp);
+            List<ItemPriceParametersObject> objects = dao.queryBuilder().selectColumns("itemId").where()
+                    .in("nameId", textIDs.toArray())
+                    .and().eq("typeId", scrollTypeId).query();
             if (objects.isEmpty()) {
                 return null;
             } else {
