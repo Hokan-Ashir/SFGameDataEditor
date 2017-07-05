@@ -12,8 +12,6 @@ import sfgamedataeditor.database.text.TextObject;
 import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.Pair;
-import sfgamedataeditor.views.utility.i18n.I18NService;
-import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import java.sql.SQLException;
 import java.util.Collections;
@@ -186,9 +184,7 @@ public enum ItemPriceParametersTableService implements TableCreationService {
         }
     }
 
-    public Integer getSpellScrollItemId(String baseScrollName, Integer scrollLevel) {
-        Integer scrollTypeId = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
-
+    public Integer getItemIdByNameAndLevel(String baseItemName, Integer itemLevel/*, Integer itemType*/) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<ItemPriceParametersObject, String> dao;
         try {
@@ -199,11 +195,11 @@ public enum ItemPriceParametersTableService implements TableCreationService {
         }
 
         try {
-            String regExp = "^[^\\d]*" + baseScrollName + "[^\\d]*" + scrollLevel + "[^\\d]*$";
+            String regExp = "^[^\\d]*" + baseItemName + "[^\\d]*" + itemLevel + "[^\\d]*$";
             List<Integer> textIDs = TextTableService.INSTANCE.getObjectsNameIdsByRegExp(regExp);
             List<ItemPriceParametersObject> objects = dao.queryBuilder().selectColumns("itemId").where()
                     .in("nameId", textIDs.toArray())
-                    .and().eq("typeId", scrollTypeId).query();
+                    /*.and().eq("typeId", itemType)*/.query();
             if (objects.isEmpty()) {
                 return null;
             } else {

@@ -13,7 +13,6 @@ import java.util.Set;
 
 public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParameter, SpellScrollsListView, SpellScrollsParametersModel> {
 
-    private static final Integer SPELL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
     private final SpellScrollsModelCreator modelCreator = new SpellScrollsModelCreator();
 
     public SpellScrollsPresenter(SpellScrollsListView view) {
@@ -29,7 +28,8 @@ public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParame
         // search for ".*SCROLL_BASE_NAME.*SELECTED_LEVEL.*"
         // ^[^\d]*?????? ????[^\d]*1[^\d]*$
         // inside TTS
-        Integer itemId = ItemPriceParametersTableService.INSTANCE.getSpellScrollItemId(getView().getSelectedModuleName(), lowestScrollLevel);
+        Integer scrollTypeId = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
+        Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByNameAndLevel(getView().getSelectedModuleName(), lowestScrollLevel);
         Icon icon = getView().getSelectedModuleIcon();
         return modelCreator.createModel(itemId, icon);
     }

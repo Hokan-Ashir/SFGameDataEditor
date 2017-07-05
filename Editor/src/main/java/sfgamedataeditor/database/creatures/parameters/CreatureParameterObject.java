@@ -17,7 +17,7 @@ public class CreatureParameterObject extends OffsetableObject {
 
     @Data(offset = 2, length = 2)
     @DatabaseField
-    private Integer level;
+    public Integer level;
 
     @Data(offset = 4, length = 1)
     @DatabaseField

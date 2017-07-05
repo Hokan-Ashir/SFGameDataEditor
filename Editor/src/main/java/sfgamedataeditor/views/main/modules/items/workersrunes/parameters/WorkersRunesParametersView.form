@@ -5,9 +5,9 @@
       <xy x="20" y="20" width="1940" height="1435"/>
     </constraints>
     <properties>
-      <maximumSize width="880" height="670"/>
-      <minimumSize width="880" height="670"/>
-      <preferredSize width="880" height="670"/>
+      <maximumSize width="880" height="770"/>
+      <minimumSize width="880" height="770"/>
+      <preferredSize width="880" height="770"/>
     </properties>
     <border type="none"/>
     <children>
@@ -19,9 +19,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="780" height="590"/>
-          <minimumSize width="780" height="590"/>
-          <preferredSize width="780" height="590"/>
+          <maximumSize width="780" height="690"/>
+          <minimumSize width="780" height="690"/>
+          <preferredSize width="780" height="690"/>
         </properties>
         <border type="none"/>
         <children>
@@ -586,9 +586,9 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="66" height="66"/>
-          <minimumSize width="66" height="66"/>
-          <preferredSize width="66" height="66"/>
+          <maximumSize width="200" height="160"/>
+          <minimumSize width="200" height="160"/>
+          <preferredSize width="200" height="160"/>
           <text value=""/>
         </properties>
       </component>

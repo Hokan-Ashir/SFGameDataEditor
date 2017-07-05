@@ -1,5 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.workersrunes;
 
+import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
+import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.text.TextTableService;
@@ -9,14 +11,25 @@ import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.Workers
 import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesParametersModelParameter;
 
 import javax.swing.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class WorkerRunesModelCreator implements ModelCreator<WorkersRunesParametersModel> {
     @Override
     public WorkersRunesParametersModel createModel(int objectId, Icon icon) {
-        // change somehow, what presenter actually need
+        // TODO improve performance, maybe =)
         ItemPriceParametersObject object = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(objectId);
+        List<ObjectTuple> tuples = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(object.typeId);
+        Map<Integer, Integer> runeLevelToItemIdMap = new HashMap<>();
+        for (ObjectTuple tuple : tuples) {
+            ItemPriceParametersObject runeObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(tuple.getObjectId());
+            CreatureParameterObject creatureObjectByStatsId = CreatureParametersTableService.INSTANCE.getCreatureObjectByStatsId(runeObject.unitStatsId);
+            runeLevelToItemIdMap.put(creatureObjectByStatsId.level, runeObject.itemId);
+        }
+
         ObjectTuple itemName = TextTableService.INSTANCE.getObjectTuple(object.nameId, objectId);
-        WorkersRunesParametersModelParameter parameter = new WorkersRunesParametersModelParameter(itemName.getName(), 1, icon);
+        WorkersRunesParametersModelParameter parameter = new WorkersRunesParametersModelParameter(itemName.getName(), 1, runeLevelToItemIdMap, icon);
         return new WorkersRunesParametersModel(parameter);
     }
 }

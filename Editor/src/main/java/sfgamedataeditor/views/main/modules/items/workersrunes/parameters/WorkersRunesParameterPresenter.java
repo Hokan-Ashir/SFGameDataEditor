@@ -12,11 +12,12 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObjec
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
 import sfgamedataeditor.views.utility.ViewTools;
-import sfgamedataeditor.views.utility.i18n.I18NService;
-import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class WorkersRunesParameterPresenter extends AbstractParametersPresenter<WorkersRunesParametersModelParameter, WorkersRunesParametersView> {
 
@@ -47,14 +48,13 @@ public class WorkersRunesParameterPresenter extends AbstractParametersPresenter<
     @Override
     protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
         WorkersRunesParametersModelParameter parameter = getModel().getParameter();
-        String runeName = parameter.getRuneName().split(" - ")[0];
         Integer runeLevel = parameter.getLevel();
-        String fullRuneName = runeName + " - level " + String.valueOf(runeLevel);
-        Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(fullRuneName);
+        Integer itemId = parameter.getRuneLevelToItemIdMap().get(runeLevel);
+
         ItemPriceParametersObject priceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
         CreatureParameterObject creatureParameterObject = CreatureParametersTableService.INSTANCE.getCreatureObjectByStatsId(priceParametersObject.unitStatsId);
         List<CreatureSkillObject> creatureSkills = CreatureSkillTableService.INSTANCE.getCreatureSkillsByStatsId(priceParametersObject.unitStatsId);
-        Set<Integer> runesLevels = getRunesLevels(runeName);
+        Set<Integer> runesLevels = parameter.getRuneLevelToItemIdMap().keySet();
 
         int guiElementId = annotation.GUIElementId();
         if (guiElementId == GUIElements.LEVEL) {
@@ -81,20 +81,5 @@ public class WorkersRunesParameterPresenter extends AbstractParametersPresenter<
                 }
             }
         }
-    }
-
-    private Set<Integer> getRunesLevels(String runeBaseName) {
-        Set<Integer> runesLevels = new TreeSet<>();
-        // TODO FIX
-        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.PLAYER_LEVEL_STATS_GUI);
-        String prefix = runeBaseName + " - level ";
-        for (String key : bundle.keySet()) {
-            String value = bundle.getString(key);
-            if (value.startsWith(prefix)) {
-                runesLevels.add(Integer.valueOf(value.split(" - ")[1].replace("level ", "")));
-            }
-        }
-
-        return runesLevels;
     }
 }
