@@ -12,9 +12,14 @@ public class LocalizationView implements PresentableView {
     private JComboBox<ObjectTuple> languageComboBox;
 
     public LocalizationView() {
+        Integer languageId = LocalizationService.INSTANCE.getLanguageId();
         List<ObjectTuple> availableLanguages = LocalizationService.INSTANCE.getAvailableLanguages();
         for (ObjectTuple availableLanguage : availableLanguages) {
             languageComboBox.addItem(availableLanguage);
+
+            if (availableLanguage.getObjectId().equals(languageId)) {
+                languageComboBox.setSelectedItem(availableLanguage);
+            }
         }
 
         languageComboBox.addItemListener(new LanguageSelectionListener(languageComboBox));

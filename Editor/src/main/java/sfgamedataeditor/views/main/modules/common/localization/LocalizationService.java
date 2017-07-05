@@ -14,6 +14,14 @@ public enum LocalizationService {
 
     private List<ObjectTuple> availableLanguages;
 
+    private Map<String, String> languageFileMap = new TreeMap<String, String>() {{
+        put("en", "English");
+        put("ru", "Русский");
+        put("fr", "Français");
+        put("de", "Deutsch");
+        put("pt", "Português");
+    }};
+
     // TODO test order of this call with non-US, RU i.e., OS-level locale
     public void initializeLocalization() {
         availableLanguages = createListOfAvailableLanguages();
@@ -27,14 +35,6 @@ public enum LocalizationService {
     }
 
     private void load18NInfo(Locale locale, String language) {
-        Map<String, String> languageFileMap = new TreeMap<String, String>() {{
-            put("en", "English");
-            put("ru", "Русский");
-            put("fr", "Français");
-            put("de", "Deutsch");
-            put("pt", "Português");
-        }};
-
         if (languageFileMap.containsKey(language)) {
             String languageName = languageFileMap.get(language);
             for (ObjectTuple availableLanguage : availableLanguages) {
@@ -96,6 +96,28 @@ public enum LocalizationService {
 
     public void setLanguageId(int languageId) {
         this.languageId = languageId;
+
+        reloadI18N(languageId);
+    }
+
+    private void reloadI18N(int languageId) {
+        for (ObjectTuple availableLanguage : availableLanguages) {
+            if (!availableLanguage.getObjectId().equals(languageId)) {
+                continue;
+            }
+
+            String availableLanguageName = availableLanguage.getName();
+            for (Map.Entry<String, String> entry : languageFileMap.entrySet()) {
+                if (!entry.getValue().equals(availableLanguageName)) {
+                    continue;
+                }
+                String language = entry.getKey();
+                Locale locale = new Locale(language);
+                load18NInfo(locale, language);
+                initializeDefaultSwingComponentsI18N();
+                return;
+            }
+        }
     }
 
     public List<ObjectTuple> getAvailableLanguages() {
