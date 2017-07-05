@@ -7,6 +7,7 @@ import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.main.modules.ModulesView;
 import sfgamedataeditor.views.main.modules.common.buttons.ButtonsView;
 import sfgamedataeditor.views.main.modules.common.eventhistory.EventHistoryView;
+import sfgamedataeditor.views.main.modules.common.localization.LocalizationView;
 import sfgamedataeditor.views.main.modules.common.search.SearchView;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -41,6 +42,7 @@ class UploadDataButtonListener implements ActionListener {
         EventProcessor.INSTANCE.process(new ShowViewEvent(EventHistoryView.class, null));
         EventProcessor.INSTANCE.process(new ShowViewEvent(SearchView.class, null));
         EventProcessor.INSTANCE.process(new ShowViewEvent(ButtonsView.class, null));
+        EventProcessor.INSTANCE.process(new ShowViewEvent(LocalizationView.class, null));
         EventProcessor.INSTANCE.process(new ShowViewEvent(ModulesView.class, null));
 
         frame.dispose();

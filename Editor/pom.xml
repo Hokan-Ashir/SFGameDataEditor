@@ -38,7 +38,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>sfgamedataeditor.views.LanguageSelectionView</mainClass>
+                            <mainClass>sfgamedataeditor.views.fileselection.FileSelectionView</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

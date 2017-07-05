@@ -18,6 +18,7 @@ public class MainView implements PresentableView {
     private JPanel buttonsPanel;
     private JScrollPane scrollPane;
     private JPanel componentsPanel;
+    private JPanel localizationPanel;
 
     public MainView() {
         scrollPane.getVerticalScrollBar().setUnitIncrement(VERTICAL_SCROLL_UNIT_INCREMENT);
@@ -56,6 +57,10 @@ public class MainView implements PresentableView {
 
     public void renderViewInsideButtonPanel(JComponent viewComponent) {
         renderViewInsidePanel(viewComponent, buttonsPanel);
+    }
+
+    public void renderViewInsideLocalizationPanel(JComponent viewComponent) {
+        renderViewInsidePanel(viewComponent, localizationPanel);
     }
 
     private void renderViewInsidePanel(JComponent viewComponent, JPanel panel) {

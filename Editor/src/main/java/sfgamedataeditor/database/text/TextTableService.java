@@ -11,6 +11,7 @@ import sfgamedataeditor.database.common.DTOFilter;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.views.common.ObjectTuple;
+import sfgamedataeditor.views.main.modules.common.localization.LocalizationService;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
@@ -48,8 +49,6 @@ public enum TextTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(TextTableService.class);
     public static final String NULL_OBJECT_PREFIX = "Null object - ";
-    // TODO set correct languageId
-    private static final Integer LANGUAGE_ID = 1;
 
     public ObjectTuple getObjectTuple(Integer nameId, Integer objectId) {
         List<ObjectTuple> objectNames = getObjectTuples(new Integer[]{nameId}, new Integer[] {objectId});
@@ -74,7 +73,7 @@ public enum TextTableService implements TableCreationService {
             List<TextObject> objects = dao.queryBuilder().selectColumns("text", "textId")
                     .orderBy("textId", true)
                     .where().in("textId", (Object[]) nameIds)
-                    .and().eq("languageId", LANGUAGE_ID).query();
+                    .and().eq("languageId", LocalizationService.INSTANCE.getLanguageId()).query();
             if (objects.isEmpty()) {
                 return Collections.emptyList();
             } else {
@@ -115,7 +114,7 @@ public enum TextTableService implements TableCreationService {
         try {
             return dao.queryBuilder().where()
                     .eq("text", text)
-                    .and().eq("languageId", LANGUAGE_ID).query();
+                    .and().eq("languageId", LocalizationService.INSTANCE.getLanguageId()).query();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
