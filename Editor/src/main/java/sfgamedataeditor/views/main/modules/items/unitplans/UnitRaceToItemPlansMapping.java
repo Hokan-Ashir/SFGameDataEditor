@@ -34,6 +34,10 @@ public enum UnitRaceToItemPlansMapping {
         return null;
     }
 
+    public Integer getRaceItemType(String raceName) {
+        return mappings.get(raceName);
+    }
+
     public Integer[] getTypes() {
         return mappings.values().toArray(new Integer[mappings.size()]);
     }

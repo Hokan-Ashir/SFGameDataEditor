@@ -17,7 +17,8 @@ public class UnitPlansRacesPresenter extends AbstractModulesPresenter<ModulePara
 
     @Override
     protected UnitsPlanListModel createModel() {
-        Integer itemType = getView().getSelectedModuleObjectId();
+        String raceName = getView().getSelectedModuleName();
+        Integer itemType = UnitRaceToItemPlansMapping.INSTANCE.getRaceItemType(raceName);
         List<ObjectTuple> unitTuples = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(itemType);
         UnitsPlanListModelParameter parameter = new UnitsPlanListModelParameter(unitTuples, null);
         return new UnitsPlanListModel(parameter);

@@ -3,7 +3,6 @@ package sfgamedataeditor.views.common.views;
 import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.ObjectTuple;
-import sfgamedataeditor.views.main.modules.items.buildingplans.buildings.BuildingsPlanListView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -28,7 +27,7 @@ public abstract class AbstractRacesView extends AbstractModulesView {
             add(createTuple("races.dark.elves", 6));
         }};
 
-        addMappings(mappings, BuildingsPlanListView.class);
+        addMappings(mappings, getPanelsViewClass());
     }
 
     protected abstract Class<? extends PresentableView> getPanelsViewClass();
