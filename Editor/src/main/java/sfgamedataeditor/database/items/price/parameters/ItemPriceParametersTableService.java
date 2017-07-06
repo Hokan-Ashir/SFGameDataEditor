@@ -184,7 +184,7 @@ public enum ItemPriceParametersTableService implements TableCreationService {
         }
     }
 
-    public Integer getItemIdByNameAndLevel(String baseItemName, Integer itemLevel/*, Integer itemType*/) {
+    public Integer getItemIdByNameAndLevel(String baseItemName, Integer itemLevel, Integer itemType) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<ItemPriceParametersObject, String> dao;
         try {
@@ -195,11 +195,15 @@ public enum ItemPriceParametersTableService implements TableCreationService {
         }
 
         try {
-            String regExp = "^[^\\d]*" + baseItemName + "[^\\d]*" + itemLevel + "[^\\d]*$";
+            String regExp = "^[^\\d]*" + baseItemName + "[^\\d]*";
+            if (itemLevel != null) {
+                regExp += itemLevel + "[^\\d]*$";
+            }
+
             List<Integer> textIDs = TextTableService.INSTANCE.getObjectsNameIdsByRegExp(regExp);
             List<ItemPriceParametersObject> objects = dao.queryBuilder().selectColumns("itemId").where()
                     .in("nameId", textIDs.toArray())
-                    /*.and().eq("typeId", itemType)*/.query();
+                    .and().eq("typeId", itemType).query();
             if (objects.isEmpty()) {
                 return null;
             } else {

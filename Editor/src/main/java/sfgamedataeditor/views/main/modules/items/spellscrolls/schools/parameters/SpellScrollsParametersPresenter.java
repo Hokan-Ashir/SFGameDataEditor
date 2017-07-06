@@ -11,16 +11,13 @@ import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTable
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsObject;
 import sfgamedataeditor.database.items.spelleffect.ItemSpellEffectsTableService;
 import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
-import sfgamedataeditor.views.utility.i18n.I18NService;
-import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class SpellScrollsParametersPresenter extends AbstractParametersPresenter<SpellScrollsParametersModelParameter, SpellScrollsParametersView> {
-
-    private static final Integer SCROLL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.scrolls"));
-    private static final Integer SPELL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
 
     private final List<Integer> scrollGUIIds = new ArrayList<>();
     private final List<Integer> spellGUIIds = new ArrayList<>();
@@ -49,23 +46,26 @@ public class SpellScrollsParametersPresenter extends AbstractParametersPresenter
     protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
         SpellScrollsParametersModelParameter parameter = getModel().getParameter();
 
-        int selectedLevel = parameter.getLevel();
-        String scrollBaseName = parameter.getScrollBaseName();
-        Set<Integer> scrollLevels = getScrollLevels(scrollBaseName);
-        String scrollName = scrollBaseName + " - " + I18NService.INSTANCE.getMessage(I18NTypes.WEAPON_GUI, "level") + " " + selectedLevel;
+        Integer selectedLevel = parameter.getLevel();
+        Set<Integer> scrollLevels = parameter.getLevelToItemsIdMap().keySet();
 
-        Integer scrollId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(scrollName, SCROLL_TYPE_ID);
+        Integer scrollId = parameter.getLevelToItemsIdMap().get(selectedLevel).getValue();
         ItemPriceParametersObject scrollPriceParametersObject = null;
         List<ItemSpellEffectsObject> scrollItemSpellEffectsObjects = null;
         if (scrollId != null) {
-             scrollPriceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(scrollId);
-             scrollItemSpellEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(scrollId);
+            scrollPriceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(scrollId);
+            scrollItemSpellEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(scrollId);
         }
 
-        int spellId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(scrollName, SPELL_TYPE_ID);
-        ItemPriceParametersObject spellPriceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(spellId);
-        List<ItemSpellEffectsObject> spellItemSpellEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(spellId);
-        ItemEffectsObject itemEffectsObject = ItemEffectsTableService.INSTANCE.getObjectByItemId(spellId);
+        Integer spellId = parameter.getLevelToItemsIdMap().get(selectedLevel).getKey();
+        ItemEffectsObject itemEffectsObject = null;
+        List<ItemSpellEffectsObject> spellItemSpellEffectsObjects = null;
+        ItemPriceParametersObject spellPriceParametersObject = null;
+        if (spellId != null) {
+            spellPriceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(spellId);
+            spellItemSpellEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(spellId);
+            itemEffectsObject = ItemEffectsTableService.INSTANCE.getObjectByItemId(spellId);
+        }
 
         int guiElementId = annotation.GUIElementId();
         if (guiElementId == GUIElements.LEVEL) {
@@ -82,7 +82,7 @@ public class SpellScrollsParametersPresenter extends AbstractParametersPresenter
                         widget.getListener().updateWidgetValue(scrollPriceParametersObject);
                     }
                 } else if (spellGUIIds.contains(guiElementId)) {
-                    if (spellItemSpellEffectsObjects == null) {
+                    if (spellPriceParametersObject == null) {
                         widget.setVisible(false);
                     } else {
                         widget.setVisible(true);
@@ -108,24 +108,14 @@ public class SpellScrollsParametersPresenter extends AbstractParametersPresenter
                     }
                 }
             } else if (dtoClass.equals(ItemEffectsObject.class)) {
-                // it's guaranteed that spell has only one item effect on it
-                widget.getListener().updateWidgetValue(itemEffectsObject);
+                if (itemEffectsObject == null) {
+                    panel.setVisible(false);
+                } else {
+                    panel.setVisible(true);
+                    // it's guaranteed that spell has only one item effect on it
+                    widget.getListener().updateWidgetValue(itemEffectsObject);
+                }
             }
         }
-    }
-
-    private Set<Integer> getScrollLevels(String scrollBaseName) {
-        Set<Integer> scrollLevels = new TreeSet<>();
-        // TODO FIX
-        ResourceBundle bundle = I18NService.INSTANCE.getBundle(I18NTypes.PLAYER_LEVEL_STATS_GUI);
-        String prefix = scrollBaseName + " - ";
-        for (String key : bundle.keySet()) {
-            String value = bundle.getString(key);
-            if (value.startsWith(prefix)) {
-                scrollLevels.add(Integer.valueOf(value.split("\\s")[3]));
-            }
-        }
-
-        return scrollLevels;
     }
 }
