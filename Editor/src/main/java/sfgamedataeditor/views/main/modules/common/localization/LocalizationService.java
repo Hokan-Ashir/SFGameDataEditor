@@ -19,7 +19,9 @@ public enum LocalizationService {
         put("ru", "Русский");
         put("fr", "Français");
         put("de", "Deutsch");
-        put("pt", "Português");
+        put("es", "Español");
+        put("it", "Italiano");
+        put("pl", "Polski");
     }};
 
     // TODO test order of this call with non-US, RU i.e., OS-level locale
@@ -27,7 +29,7 @@ public enum LocalizationService {
         availableLanguages = createListOfAvailableLanguages();
 
         Locale locale = Locale.getDefault();
-        String language = locale.getLanguage();
+        String language = locale.getLanguage().toLowerCase();
 
         load18NInfo(locale, language);
 
@@ -125,20 +127,24 @@ public enum LocalizationService {
     }
 
     private List<ObjectTuple> createListOfAvailableLanguages() {
-        String country = Locale.getDefault().getCountry();
+        String language = Locale.getDefault().getLanguage().toLowerCase();
 
         List<ObjectTuple> result = new ArrayList<>();
-        // TODO add Polish localization version
-        if (country.equals("RU")) {
-            result.add(new ObjectTuple("Deutsch", 0));
-            result.add(new ObjectTuple("Русский", 1));
-            result.add(new ObjectTuple("Français", 2));
-            result.add(new ObjectTuple("Português", 3));
-        } else {
-            result.add(new ObjectTuple("Deutsch", 0));
-            result.add(new ObjectTuple("English", 1));
-            result.add(new ObjectTuple("Français", 2));
-            result.add(new ObjectTuple("Português", 3));
+        result.add(new ObjectTuple("Deutsch", 0));
+        result.add(new ObjectTuple("Français", 2));
+        result.add(new ObjectTuple("Español", 3));
+        result.add(new ObjectTuple("Italiano", 4));
+        // TODO add French localization version
+        switch (language) {
+            case "pl":
+                result.add(new ObjectTuple("Polski", 1));
+                break;
+            case "ru":
+                result.add(new ObjectTuple("Русский", 1));
+                break;
+            default:
+                result.add(new ObjectTuple("English", 1));
+                break;
         }
 
         return result;

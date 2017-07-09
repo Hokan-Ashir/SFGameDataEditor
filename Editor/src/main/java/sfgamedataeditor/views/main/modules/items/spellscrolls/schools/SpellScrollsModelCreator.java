@@ -23,18 +23,6 @@ public class SpellScrollsModelCreator implements ModelCreator<SpellScrollsParame
         ObjectTuple objectTuple = TextTableService.INSTANCE.getObjectTuple(objectByItemId.nameId, objectByItemId.itemId);
         String scrollName = objectTuple.getName();
         String baseScrollName = scrollName.replaceAll(",?(\\s+)?\\b(\\d+)?(\\s+)?(уровень|ур.|niveau|level|Stufe)(\\s+)?(\\d+)?", "");
-        // extract level via regExp (\d+)
-        // we should get here
-        //
-        // spellScrollId(IPPTS. some type)
-        // spellObjectId (IPPTS another type)
-        // all spell levels
-        // Integer spellId = SpellNameTableService.INSTANCE.getSpellId(originalScrollName);
-        // Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(spellTypeId);
-
-        // TODO FIX
-//        private static final Integer SCROLL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.scrolls"));
-//        private static final Integer SPELL_TYPE_ID = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
         Map<Integer, Pair<Integer, Integer>> levelToItemsIdMap = getLevelToItemsIdMap(baseScrollName);
         String scrollLevelString = scrollName.replaceAll("\\D+", "");
         Integer scrollLevel = null;

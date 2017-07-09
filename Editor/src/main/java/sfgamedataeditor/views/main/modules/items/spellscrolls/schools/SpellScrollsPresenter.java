@@ -22,12 +22,6 @@ public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParame
     @Override
     protected SpellScrollsParametersModel createModel() {
         Integer lowestScrollLevel = getLowestScrollLevel();
-        String selectedSpellScroll = getView().getSelectedModuleName()
-                + " - "
-                + lowestScrollLevel;
-        // search for ".*SCROLL_BASE_NAME.*SELECTED_LEVEL.*"
-        // ^[^\d]*?????? ????[^\d]*1[^\d]*$
-        // inside TTS
         Integer scrollTypeId = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
         Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByNameAndLevel(getView().getSelectedModuleName(), lowestScrollLevel, scrollTypeId);
         Icon icon = getView().getSelectedModuleIcon();
