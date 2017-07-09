@@ -1,6 +1,7 @@
 package sfgamedataeditor.database.common;
 
 import org.apache.log4j.Logger;
+import org.mozilla.universalchardet.UniversalDetector;
 
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
@@ -14,6 +15,7 @@ public enum ObjectDataMappingService {
     private static final Logger LOGGER = Logger.getLogger(ObjectDataMappingService.class);
 
     private final Map<Class<?>, Map<DataPair, Field>> map = new HashMap<>();
+    private UniversalDetector detector = new UniversalDetector(null);
 
     public void fillObjectWithData(Object object, byte[] buffer) {
         Class<?> aClass = object.getClass();
@@ -32,14 +34,35 @@ public enum ObjectDataMappingService {
                     int temp = getValue(buffer, offset, length);
                     field.set(object, temp);
                 } else if (daoFieldType.isAssignableFrom(String.class)) {
-                    // TODO setup correct charset, otherwise serialization will be incorrect
-                    String string = new String(buffer, offset, length, Charset.forName("Cp1251")).trim();
+                    String detectCharset = detectCharset(buffer, offset, length);
+                    String string;
+                    if (detectCharset == null) {
+                        string = new String(buffer, offset, length).trim();
+                    } else {
+                        // juniversalchardet will incorrectly detect "Cp1251" charset, considering "Cp1251" as MACCYRILLIC
+                        // so if detector actually detected anything, just admit - this is russian language encoded via "Cp1251"
+                        // 38285
+                        if (detectCharset.equals("MACCYRILLIC") || detectCharset.equals("IBM855")) {
+                            string = new String(buffer, offset, length, Charset.forName("Cp1251")).trim();
+                        } else {
+                            string = new String(buffer, offset, length, Charset.forName(detectCharset)).trim();
+                        }
+                    }
                     field.set(object, string);
                 }
             } catch (IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);
             }
         }
+    }
+
+    private String detectCharset(byte[] bytes, int offset, int length) {
+        detector.handleData(bytes, offset, length);
+        detector.dataEnd();
+
+        String encoding = detector.getDetectedCharset();
+        detector.reset();
+        return encoding;
     }
 
     private Map<DataPair, Field> getObjectMapping(Class<?> ormObject) {
@@ -95,8 +118,20 @@ public enum ObjectDataMappingService {
                     }
                 } else if (type.isAssignableFrom(String.class)) {
                     String value = (String) field.get(daoObject);
-                    // TODO setup correct charset, otherwise deserialization will be incorrect
-                    byte[] bytes = value.getBytes(Charset.forName("Cp1251"));
+                    byte[] valueBytes = value.getBytes();
+                    String detectCharset = detectCharset(valueBytes, 0, valueBytes.length);
+                    byte[] bytes;
+                    if (detectCharset == null) {
+                        bytes = valueBytes;
+                    } else {
+                        // juniversalchardet will incorrectly detect "Cp1251" charset, considering "Cp1251" as MACCYRILLIC
+                        // so if detector actually detected anything, just admit - this is russian language encoded via "Cp1251"
+                        if (detectCharset.equals("MACCYRILLIC") || detectCharset.equals("IBM855")) {
+                            bytes = value.getBytes(Charset.forName("Cp1251"));
+                        } else {
+                            bytes = value.getBytes(Charset.forName(detectCharset));
+                        }
+                    }
                     for (int i = offset, j = 0; i < (offset + length); i++, j++) {
                         if (bytes.length <= j) {
                             result[i] = 0;

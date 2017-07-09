@@ -36,7 +36,7 @@ public enum  FileStorageService {
         }
 
         try {
-            dao.create(object);
+            dao.update(object);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
         }
@@ -55,10 +55,12 @@ public enum  FileStorageService {
         try {
             List<FileStorageObject> fileStorageObjects = dao.queryForAll();
             if (fileStorageObjects == null || fileStorageObjects.isEmpty()) {
-                return null;
+                FileStorageObject object = new FileStorageObject();
+                dao.create(object);
+                return object;
+            } else {
+                return fileStorageObjects.get(0);
             }
-
-            return fileStorageObjects.get(0);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
             return null;

@@ -40,7 +40,7 @@ class UploadDataButtonListener implements ActionListener {
         ViewTools.setComponentsEnableStatus(mainPanel, false);
         repaintButtonTextContent(okButton, frame, mainPanel, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "processingData"));
 
-        FileStorageObject storageObject = new FileStorageObject();
+        FileStorageObject storageObject = FileStorageService.INSTANCE.getFileStorage();
         storageObject.pathToGameDataCff = view.getOriginalFileField().getText();
         storageObject.pathToSFMod = view.getModificationFileField().getText();
         FileStorageService.INSTANCE.setFileStorage(storageObject);
