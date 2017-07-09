@@ -1,10 +1,9 @@
 package sfgamedataeditor.views.main.modules.common.buttons.listeners;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.database.file.storage.FileStorageService;
 import sfgamedataeditor.events.processing.ViewRegister;
-import sfgamedataeditor.files.FileData;
 import sfgamedataeditor.files.FileUtils;
-import sfgamedataeditor.files.FilesContainer;
 import sfgamedataeditor.views.main.MainView;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
@@ -17,8 +16,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.RandomAccessFile;
 
 public class LoadSfModFileButtonListener implements ActionListener {
 
@@ -43,16 +40,6 @@ public class LoadSfModFileButtonListener implements ActionListener {
             return;
         }
 
-        RandomAccessFile file;
-        try {
-            file = new RandomAccessFile(selectedFile.getAbsolutePath(), "r");
-        } catch (FileNotFoundException ex) {
-            LOGGER.error(ex.getMessage(), ex);
-            return;
-        }
-
-        FilesContainer.INSTANCE.setModificationFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
-
         String notificationMassage = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "processingSfModFile")
                 + selectedFile.getName()
                 + I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "processingLoading")
@@ -60,12 +47,13 @@ public class LoadSfModFileButtonListener implements ActionListener {
         new Notification(notificationMassage);
         ViewTools.setComponentsEnableStatus(mainView.getMainPanel(), false);
 
+        FileStorageService.INSTANCE.setSfModFilePath(selectedFile.getAbsolutePath());
         FileUtils.uploadDataIntoDatabase();
         // TODO check if this is necessarily
 //        updateAllCurrentViews();
 
         String successfulMessage = I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "sfmodFilePrefix")
-                + FilesContainer.INSTANCE.getModificationFileName()
+                + selectedFile.getName()
                 + I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "successfullyLoaded");
         new Notification(successfulMessage);
         ViewTools.setComponentsEnableStatus(mainView.getMainPanel(), true);

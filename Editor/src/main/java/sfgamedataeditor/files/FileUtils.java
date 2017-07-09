@@ -1,9 +1,12 @@
 package sfgamedataeditor.files;
 
 import de.idyl.winzipaes.AesZipFileDecrypter;
-import de.idyl.winzipaes.AesZipFileEncrypter;
-import de.idyl.winzipaes.impl.*;
+import de.idyl.winzipaes.impl.AESDecrypter;
+import de.idyl.winzipaes.impl.AESDecrypterBC;
+import de.idyl.winzipaes.impl.ExtZipEntry;
 import org.apache.log4j.Logger;
+import sfgamedataeditor.database.file.storage.FileStorageObject;
+import sfgamedataeditor.database.file.storage.FileStorageService;
 import xdeltaencoder.org.mantlik.xdeltaencoder.XDeltaEncoder;
 
 import java.io.*;
@@ -14,17 +17,13 @@ import java.nio.file.StandardCopyOption;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.zip.DataFormatException;
-import java.util.zip.ZipException;
 
 public final class FileUtils {
 
     private static final Logger LOGGER = Logger.getLogger(FileUtils.class);
-
-    private static final String TMP_FILE_EXTENSION = ".tmp";
-    private static final String SFMOD_FILE_EXTENSION = ".sfmod";
-    static final String MOD_FILE_EXTENSION = ".mod";
-    private static final int KEY_SIZE = 192;
     private static final String HASH_ALGORITHM = "SHA-512";
+    public static final String MOD_FILE_EXTENSION = ".mod";
+    public static final String TMP_FILE_EXTENSION = ".tmp";
 
     /**
      * length of GameData.cff file on version v1.1
@@ -36,41 +35,40 @@ public final class FileUtils {
     }
 
     public static void uploadDataIntoDatabase() {
-        FileData fileData = createTemporaryModificationFile();
-        RandomAccessFile file = fileData.getFile();
+        RandomAccessFile file = createTemporaryModificationFile();
         DataFilesParser.INSTANCE.extractAllDataFromFile(file);
 
         try {
             boolean isVersion11 = file.length() == GAME_DATA_CFF_V11_FILE_LENGTH;
-            FilesContainer.INSTANCE.setIsVersion11(isVersion11);
+            FileStorageService.INSTANCE.setIsVersion11(isVersion11);
         } catch (IOException e) {
             LOGGER.error(e.getMessage());
         }
 
-        String filePath = fileData.getPath() + fileData.getName();
+        FileStorageObject fileStorage = FileStorageService.INSTANCE.getFileStorage();
+        String[] split = fileStorage.pathToGameDataCff.split("/");
+        String originalFileName = split[split.length - 1];
+        String originalFileDirectory = fileStorage.pathToGameDataCff.replaceAll(originalFileName, "");
+        String modificationFileName = originalFileName + MOD_FILE_EXTENSION;
         try {
             file.close();
-            Files.delete(Paths.get(filePath));
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-
-        try {
-            FilesContainer.INSTANCE.getOriginalFile().close();
+            Files.delete(Paths.get(originalFileDirectory + modificationFileName));
         } catch (IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
     }
 
-    private static FileData createTemporaryModificationFile() {
-        String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
-        String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
+    private static RandomAccessFile createTemporaryModificationFile() {
+        FileStorageObject fileStorage = FileStorageService.INSTANCE.getFileStorage();
+        String[] split = fileStorage.pathToGameDataCff.split("/");
+        String originalFileName = split[split.length - 1];
+        String originalFileDirectory = fileStorage.pathToGameDataCff.replaceAll(originalFileName, "");
         String modificationFileName = originalFileName + MOD_FILE_EXTENSION;
         String modificationFileDirectory = originalFileDirectory + modificationFileName;
 
-        if (FilesContainer.INSTANCE.getModificationFile() != null) {
+        if (fileStorage.pathToSFMod != null && !fileStorage.pathToSFMod.isEmpty()) {
             String originalFilePath = originalFileDirectory + originalFileName;
-            String sfModificationFilePath = FilesContainer.INSTANCE.getModificationFilePath() + FilesContainer.INSTANCE.getModificationFileName();
+            String sfModificationFilePath = fileStorage.pathToSFMod;
             String tempExtractedFilePath = originalFilePath + TMP_FILE_EXTENSION;
 
             String password = getHashSHA_512(originalFileDirectory, originalFileName);
@@ -109,8 +107,7 @@ public final class FileUtils {
         }
 
         try {
-            RandomAccessFile file = new RandomAccessFile(originalFileDirectory + modificationFileName, "rw");
-            return new FileData(file, originalFileDirectory, modificationFileName);
+            return new RandomAccessFile(originalFileDirectory + modificationFileName, "rw");
         } catch (FileNotFoundException e) {
             LOGGER.error(e.getMessage(), e);
         }
@@ -118,54 +115,11 @@ public final class FileUtils {
         return null;
     }
 
-    public static void createSfModFile(String sfModFileName) {
-        DataFilesParser.INSTANCE.dropDatabaseChangesIntoModificationFile();
-        String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
-        String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
-        String originalFilePath = originalFileDirectory + originalFileName;
-        String tempDiffFilePath = originalFilePath + TMP_FILE_EXTENSION;
-
-        String modificationFilePath = FilesContainer.INSTANCE.getModificationFilePath() + FilesContainer.INSTANCE.getModificationFileName();
-
-        XDeltaEncoder.main(new String[]{originalFilePath, modificationFilePath, tempDiffFilePath});
-
-        zipAndEncryptDiffFile(sfModFileName, originalFileDirectory, originalFileName, tempDiffFilePath);
-
-        try {
-            Files.delete(Paths.get(tempDiffFilePath));
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-
-        String filePath = FilesContainer.INSTANCE.getModificationFilePath() + FilesContainer.INSTANCE.getModificationFileName();
-        try {
-            Files.delete(Paths.get(filePath));
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-    }
-
-    private static void zipAndEncryptDiffFile(String sfModFileName, String originalFileDirectory, String originalFileName, String tempDiffFilePath) {
-        AESEncrypter encrypter = new AESEncrypterBC();
-        String password = getHashSHA_512(originalFileDirectory, originalFileName);
-        try {
-            encrypter.init(password, KEY_SIZE);
-        } catch (ZipException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-
-        sfModFileName += SFMOD_FILE_EXTENSION;
-        String resultFilePath = originalFileDirectory + sfModFileName;
-        try {
-            AesZipFileEncrypter.zipAndEncrypt(new File(tempDiffFilePath), new File(resultFilePath), password, encrypter);
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-    }
-
     public static boolean isModificationFileBasedOnOriginalFile(String sfModificationFilePath) {
-        String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
-        String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
+        FileStorageObject fileStorage = FileStorageService.INSTANCE.getFileStorage();
+        String[] split = fileStorage.pathToGameDataCff.split("/");
+        String originalFileName = split[split.length - 1];
+        String originalFileDirectory = fileStorage.pathToGameDataCff.replaceAll(originalFileName, "");
         String originalFilePath = originalFileDirectory + originalFileName;
         String tempExtractedFilePath = originalFilePath + TMP_FILE_EXTENSION;
 
@@ -204,7 +158,7 @@ public final class FileUtils {
      * @param fileName name of file, from which hash will be taken
      * @return hash as hex string, null is any error occurred
      */
-    private static String getHashSHA_512(String filePath, String fileName) {
+    public static String getHashSHA_512(String filePath, String fileName) {
         MessageDigest md;
         try {
             md = MessageDigest.getInstance(HASH_ALGORITHM);

@@ -1,6 +1,8 @@
 package sfgamedataeditor.views.fileselection;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.database.file.storage.FileStorageObject;
+import sfgamedataeditor.database.file.storage.FileStorageService;
 import sfgamedataeditor.views.main.modules.common.localization.LocalizationService;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -28,6 +30,17 @@ public class FileSelectionView {
         originalFileLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "fileSelectionWindowOriginalFileTextFieldCaption"));
         modificationFileLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "fileSelectionWindowModificationFileTextFieldCaption"));
         okButton.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "ok"));
+        setFilesNames();
+    }
+
+    private void setFilesNames() {
+        FileStorageObject fileStorage = FileStorageService.INSTANCE.getFileStorage();
+        if (fileStorage == null) {
+            return;
+        }
+
+        originalFileField.setText(fileStorage.pathToGameDataCff);
+        modificationFileField.setText(fileStorage.pathToSFMod);
     }
 
     public static void main(String[] args) {
@@ -51,7 +64,9 @@ public class FileSelectionView {
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 
-        view.getOkButton().setEnabled(false);
+        FileStorageObject fileStorage = FileStorageService.INSTANCE.getFileStorage();
+        boolean isCffFilePreviouslySelected = fileStorage.pathToGameDataCff != null;
+        view.getOkButton().setEnabled(isCffFilePreviouslySelected);
         view.getOkButton().addActionListener(new UploadDataButtonListener(frame, view));
         view.getOriginalFileSelectorButton().addActionListener(new OriginalFileSelectorListener(view));
         view.getModificationFileSelectorButton().addActionListener(new ModificationFileSelectorListener(view));

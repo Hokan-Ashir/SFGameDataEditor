@@ -32,6 +32,7 @@ public enum ObjectDataMappingService {
                     int temp = getValue(buffer, offset, length);
                     field.set(object, temp);
                 } else if (daoFieldType.isAssignableFrom(String.class)) {
+                    // TODO setup correct charset, otherwise serialization will be incorrect
                     String string = new String(buffer, offset, length, Charset.forName("Cp1251")).trim();
                     field.set(object, string);
                 }
@@ -84,11 +85,25 @@ public enum ObjectDataMappingService {
             Field field = dataPairFieldEntry.getValue();
             field.setAccessible(true);
             try {
-                int value = (int) field.get(daoObject);
-                for (int i = offset; i < offset + length; i++) {
-                    byte b = (byte) (value & 0xFF);
-                    result[i] = b;
-                    value >>= 8;
+                Class<?> type = field.getType();
+                if (Integer.class.isAssignableFrom(type)) {
+                    int value = (int) field.get(daoObject);
+                    for (int i = offset; i < offset + length; i++) {
+                        byte b = (byte) (value & 0xFF);
+                        result[i] = b;
+                        value >>= 8;
+                    }
+                } else if (type.isAssignableFrom(String.class)) {
+                    String value = (String) field.get(daoObject);
+                    // TODO setup correct charset, otherwise deserialization will be incorrect
+                    byte[] bytes = value.getBytes(Charset.forName("Cp1251"));
+                    for (int i = offset, j = 0; i < (offset + length); i++, j++) {
+                        if (bytes.length <= j) {
+                            result[i] = 0;
+                        } else {
+                            result[i] = bytes[j];
+                        }
+                    }
                 }
             } catch (IllegalAccessException | ArrayIndexOutOfBoundsException e) {
                 LOGGER.error(e.getMessage(), e);

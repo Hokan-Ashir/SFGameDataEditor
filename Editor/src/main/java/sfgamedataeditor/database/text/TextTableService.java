@@ -7,7 +7,6 @@ import com.j256.ormlite.dao.RawRowMapper;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
-import sfgamedataeditor.database.common.DTOFilter;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.views.common.ObjectTuple;
@@ -28,7 +27,7 @@ public enum TextTableService implements TableCreationService {
 
         @Override
         public void addRecordsToTable(List<Pair<byte[], Long>> offsettedData) {
-            CommonTableService.INSTANCE.addRecordsToTable(TextObject.class, offsettedData, new TextFilter());
+            CommonTableService.INSTANCE.addRecordsToTable(TextObject.class, offsettedData);
         }
 
         @Override
@@ -73,6 +72,7 @@ public enum TextTableService implements TableCreationService {
             List<TextObject> objects = dao.queryBuilder().selectColumns("text", "textId")
                     .orderBy("textId", true)
                     .where().in("textId", (Object[]) nameIds)
+                    .and().eq("isDialogue", 0)
                     .and().eq("languageId", LocalizationService.INSTANCE.getLanguageId()).query();
             if (objects.isEmpty()) {
                 return Collections.emptyList();
@@ -114,6 +114,7 @@ public enum TextTableService implements TableCreationService {
         try {
             return dao.queryBuilder().where()
                     .eq("text", text)
+                    .and().eq("isDialogue", 0)
                     .and().eq("languageId", LocalizationService.INSTANCE.getLanguageId()).query();
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
@@ -134,7 +135,7 @@ public enum TextTableService implements TableCreationService {
         try {
             GenericRawResults<Integer> rawResults =
                     dao.queryRaw(
-                            "select text.textId from text where text.text regexp ?",
+                            "select text.textId from text where text.text regexp ? and text.isDialogue = 0",
                             new RawRowMapper<Integer>() {
                                 public Integer mapRow(String[] columnNames,
                                                       String[] resultColumns) {
@@ -147,18 +148,6 @@ public enum TextTableService implements TableCreationService {
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
-        }
-    }
-
-    // do not save dialogues into database
-    private static final class TextFilter implements DTOFilter {
-
-        private static final int DIALOGUE_BYTE_POSITION = 3;
-        private static final int IS_NOT_DIALOGUE = 0;
-
-        @Override
-        public boolean isAcceptable(byte[] buffer) {
-            return buffer[DIALOGUE_BYTE_POSITION] == IS_NOT_DIALOGUE;
         }
     }
 }

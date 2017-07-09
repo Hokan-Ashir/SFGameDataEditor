@@ -17,6 +17,8 @@ import sfgamedataeditor.database.creatures.production.buildings.CreatureBuilding
 import sfgamedataeditor.database.creatures.production.resources.CreatureResourcesTableService;
 import sfgamedataeditor.database.creatures.skills.CreatureSkillTableService;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellTableService;
+import sfgamedataeditor.database.file.storage.FileStorageObject;
+import sfgamedataeditor.database.file.storage.FileStorageService;
 import sfgamedataeditor.database.items.armor.parameters.ArmorParametersTableService;
 import sfgamedataeditor.database.items.effects.ItemEffectsTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
@@ -107,8 +109,10 @@ public enum DataFilesParser {
     }
 
     public void dropDatabaseChangesIntoModificationFile() {
-        String originalFileDirectory = FilesContainer.INSTANCE.getOriginalFilePath();
-        String originalFileName = FilesContainer.INSTANCE.getOriginalFileName();
+        FileStorageObject fileStorage = FileStorageService.INSTANCE.getFileStorage();
+        String[] split = fileStorage.pathToGameDataCff.split("/");
+        String originalFileName = split[split.length - 1];
+        String originalFileDirectory = fileStorage.pathToGameDataCff.replaceAll(originalFileName, "");
         String modificationFileName = originalFileName + FileUtils.MOD_FILE_EXTENSION;
 
         Path originalFilePath = Paths.get(originalFileDirectory + originalFileName);

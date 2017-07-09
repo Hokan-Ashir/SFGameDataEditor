@@ -1,5 +1,7 @@
 package sfgamedataeditor.views.fileselection;
 
+import sfgamedataeditor.database.file.storage.FileStorageObject;
+import sfgamedataeditor.database.file.storage.FileStorageService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowViewEvent;
 import sfgamedataeditor.files.FileUtils;
@@ -37,15 +39,25 @@ class UploadDataButtonListener implements ActionListener {
         JPanel mainPanel = view.getMainPanel();
         ViewTools.setComponentsEnableStatus(mainPanel, false);
         repaintButtonTextContent(okButton, frame, mainPanel, I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "processingData"));
+
+        FileStorageObject storageObject = new FileStorageObject();
+        storageObject.pathToGameDataCff = view.getOriginalFileField().getText();
+        storageObject.pathToSFMod = view.getModificationFileField().getText();
+        FileStorageService.INSTANCE.setFileStorage(storageObject);
+
         FileUtils.uploadDataIntoDatabase();
+        showInitialViews();
+
+        frame.dispose();
+    }
+
+    private void showInitialViews() {
         EventProcessor.INSTANCE.process(new ShowViewEvent(MainView.class, null));
         EventProcessor.INSTANCE.process(new ShowViewEvent(EventHistoryView.class, null));
         EventProcessor.INSTANCE.process(new ShowViewEvent(SearchView.class, null));
         EventProcessor.INSTANCE.process(new ShowViewEvent(ButtonsView.class, null));
         EventProcessor.INSTANCE.process(new ShowViewEvent(LocalizationView.class, null));
         EventProcessor.INSTANCE.process(new ShowViewEvent(ModulesView.class, null));
-
-        frame.dispose();
     }
 
     private void repaintButtonTextContent(JButton button, JFrame frame, JPanel panel, String content) {

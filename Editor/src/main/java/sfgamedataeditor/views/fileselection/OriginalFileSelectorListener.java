@@ -1,8 +1,5 @@
 package sfgamedataeditor.views.fileselection;
 
-import org.apache.log4j.Logger;
-import sfgamedataeditor.files.FileData;
-import sfgamedataeditor.files.FilesContainer;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -12,12 +9,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.RandomAccessFile;
 
 class OriginalFileSelectorListener implements ActionListener {
 
-    private static final Logger LOGGER = Logger.getLogger(OriginalFileSelectorListener.class);
     private static final String CFF_FILE_EXTENSION = "cff";
     private final FileSelectionView view;
 
@@ -38,21 +32,11 @@ class OriginalFileSelectorListener implements ActionListener {
         chooser.showOpenDialog(view.getMainPanel());
         File selectedFile = chooser.getSelectedFile();
         if (selectedFile == null) {
-            view.getOkButton().setEnabled(FilesContainer.INSTANCE.getOriginalFile() != null);
-            return;
-        }
-
-        view.getOriginalFileField().setText(selectedFile.getAbsolutePath());
-        RandomAccessFile file;
-        try {
-            file = new RandomAccessFile(selectedFile.getAbsolutePath(), "r");
-        } catch (FileNotFoundException ex) {
-            LOGGER.error(ex.getMessage(), ex);
             view.getOkButton().setEnabled(false);
             return;
         }
 
-        FilesContainer.INSTANCE.setOriginalFile(new FileData(file, selectedFile.getParent() + File.separator, selectedFile.getName()));
+        view.getOriginalFileField().setText(selectedFile.getAbsolutePath());
         view.getOkButton().setEnabled(true);
     }
 }
