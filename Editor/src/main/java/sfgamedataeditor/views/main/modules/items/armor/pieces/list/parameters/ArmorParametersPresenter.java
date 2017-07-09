@@ -21,6 +21,8 @@ public class ArmorParametersPresenter extends AbstractParametersPresenter<ArmorP
     private static final Logger LOGGER = Logger.getLogger(ArmorParametersPresenter.class);
 
     private final WidgetsComboBoxListener<ItemRequirementsObject, ArmorParametersView> armorRequirementsListener;
+    private ArmorParametersObject armorParametersObject;
+    private ItemPriceParametersObject priceParametersObject;
 
     public ArmorParametersPresenter(ArmorParametersView view) {
         super(view);
@@ -33,16 +35,14 @@ public class ArmorParametersPresenter extends AbstractParametersPresenter<ArmorP
         ArmorParametersModelParameter parameter = getModel().getParameter();
         List<ItemRequirementsObject> requirementsObjects = parameter.getRequirementsObjects();
         updateItemRequirementsWidgets(requirementsObjects);
+        armorParametersObject = parameter.getArmorParametersObject();
+        priceParametersObject = parameter.getPriceParametersObject();
 
         super.updateView();
     }
 
     @Override
     protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
-        ArmorParametersModelParameter parameter = getModel().getParameter();
-        ArmorParametersObject armorParametersObject = parameter.getArmorParametersObject();
-        ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
-
         Class<?> dtoClass = annotation.DTOClass();
         if (dtoClass.equals(ItemPriceParametersObject.class)) {
             widget.getListener().updateWidgetValue(priceParametersObject);

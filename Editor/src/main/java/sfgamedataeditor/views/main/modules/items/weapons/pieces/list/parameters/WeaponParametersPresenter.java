@@ -22,6 +22,10 @@ public class WeaponParametersPresenter extends AbstractParametersPresenter<Weapo
     private final WidgetsComboBoxListener<ItemRequirementsObject, WeaponParametersView> itemRequirementsListener;
     private final WidgetsComboBoxListener<ItemSpellEffectsObject, WeaponParametersView> itemEffectsListener;
 
+    private ItemPriceParametersObject priceParametersObject;
+    private WeaponParametersObject weaponParametersObject;
+    private ArmorParametersObject armorParametersObject;
+
     public WeaponParametersPresenter(WeaponParametersView view) {
         super(view);
         itemRequirementsListener = new WidgetsComboBoxListener<>(getView(), ItemRequirementsObject.class, getView().getItemRequirementsComboBox());
@@ -39,17 +43,16 @@ public class WeaponParametersPresenter extends AbstractParametersPresenter<Weapo
         updateItemRequirementsWidgets(requirementsObjects);
         updateWeaponEffectWidgets(itemSpellEffectsObjects);
 
+        priceParametersObject = parameter.getPriceParametersObject();
+        weaponParametersObject = parameter.getWeaponParametersObject();
+        armorParametersObject = parameter.getArmorParametersObject();
+
         super.updateView();
         ViewTools.setFirstActiveTab(getView().getTabPane());
     }
 
     @Override
     protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
-        WeaponParametersModelParameter parameter = getModel().getParameter();
-        ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
-        WeaponParametersObject weaponParametersObject = parameter.getWeaponParametersObject();
-        ArmorParametersObject armorParametersObject = parameter.getArmorParametersObject();
-
         Class<?> dtoClass = annotation.DTOClass();
         if (dtoClass.equals(ItemPriceParametersObject.class)) {
             widget.getListener().updateWidgetValue(priceParametersObject);

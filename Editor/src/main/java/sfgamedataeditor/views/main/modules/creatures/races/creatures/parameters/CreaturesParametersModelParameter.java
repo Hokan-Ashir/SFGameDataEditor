@@ -6,6 +6,7 @@ import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.mvc.objects.IconableParameter;
+import sfgamedataeditor.views.common.ObjectTuple;
 
 import javax.swing.*;
 import java.util.List;
@@ -16,7 +17,7 @@ public class CreaturesParametersModelParameter extends IconableParameter {
     private final List<CreatureEquipmentObject> creatureEquipment;
     private final List<CreatureSpellObject> creatureSpells;
     private final List<CreatureCorpseLootObject> corpseLootObjects;
-    private final List<Integer> merchantItemIds;
+    private final List<ObjectTuple> merchantItemIds;
     private final String selectedMerchantItem;
 
     public CreaturesParametersModelParameter(CreatureParameterObject creatureParameterObject,
@@ -24,7 +25,7 @@ public class CreaturesParametersModelParameter extends IconableParameter {
                                              List<CreatureEquipmentObject> creatureEquipment,
                                              List<CreatureSpellObject> creatureSpells,
                                              List<CreatureCorpseLootObject> corpseLootObjects,
-                                             List<Integer> merchantItemIds,
+                                             List<ObjectTuple> merchantItemIds,
                                              String selectedMerchantItem,
                                              Icon icon) {
         super(icon);
@@ -57,7 +58,7 @@ public class CreaturesParametersModelParameter extends IconableParameter {
         return corpseLootObjects;
     }
 
-    public List<Integer> getMerchantItemIds() {
+    public List<ObjectTuple> getMerchantItemIds() {
         return merchantItemIds;
     }
 

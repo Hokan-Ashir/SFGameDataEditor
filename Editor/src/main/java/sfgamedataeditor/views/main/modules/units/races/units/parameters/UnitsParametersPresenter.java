@@ -24,6 +24,12 @@ public class UnitsParametersPresenter extends AbstractParametersPresenter<UnitsP
     private static final Map<Integer, Integer> BUILDINGS_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> RESOURCES_NUMBER_MAPPING = new HashMap<>();
 
+    private CreaturesCommonParameterObject commonParameterObject;
+    private List<CreatureEquipmentObject> creatureEquipment;
+    private List<CreatureSpellObject> creatureSpells;
+    private List<CreatureResourcesObject> creatureResources;
+    private List<CreatureBuildingsObject> creatureBuildings;
+
     public UnitsParametersPresenter(UnitsParametersView view) {
         super(view);
         initializeSlotNumberMapping();
@@ -70,19 +76,19 @@ public class UnitsParametersPresenter extends AbstractParametersPresenter<UnitsP
 
     @Override
     public void updateView() {
+        UnitsParametersModelParameter parameter = getModel().getParameter();
+        commonParameterObject = parameter.getCreatureCommonParameterObject();
+        creatureEquipment = parameter.getCreatureEquipment();
+        creatureSpells = parameter.getCreatureSpells();
+        creatureResources = parameter.getCreatureResources();
+        creatureBuildings = parameter.getCreatureBuildings();
         super.updateView();
+
         ViewTools.setFirstActiveTab(getView().getTabPane());
     }
 
     @Override
     protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
-        UnitsParametersModelParameter parameter = getModel().getParameter();
-        CreaturesCommonParameterObject commonParameterObject = parameter.getCreatureCommonParameterObject();
-        List<CreatureEquipmentObject> creatureEquipment = parameter.getCreatureEquipment();
-        List<CreatureSpellObject> creatureSpells = parameter.getCreatureSpells();
-        List<CreatureResourcesObject> creatureResources = parameter.getCreatureResources();
-        List<CreatureBuildingsObject> creatureBuildings = parameter.getCreatureBuildings();
-
         Class<?> dtoClass = annotation.DTOClass();
         if (dtoClass.equals(CreaturesCommonParameterObject.class)) {
             widget.getListener().updateWidgetValue(commonParameterObject);

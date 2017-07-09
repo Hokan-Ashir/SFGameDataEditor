@@ -34,6 +34,10 @@ public class SpellParameterPresenter extends AbstractParametersPresenter<SpellPa
         put(GUIElements.PARAMETER_9, "field9");
     }};
 
+    private Set<Integer> spellLevels;
+    private Integer selectedLevel;
+    private SpellParametersObject spellParameter;
+
     public SpellParameterPresenter(SpellParameterView view) {
         super(view);
         createI18NMap();
@@ -57,31 +61,20 @@ public class SpellParameterPresenter extends AbstractParametersPresenter<SpellPa
     @Override
     public void updateView() {
         SpellParameterModelParameter parameter = getModel().getParameter();
-        int selectedSpellId = parameter.getSpellId();
-        int selectedLevel = parameter.getLevel();
-        Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
+        Integer selectedSpellId = parameter.getSpellId();
+        selectedLevel = parameter.getLevel();
+        spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
 
-        int spellMinLevel = (int) ((TreeSet) spellLevels).first();
-        int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
+        Integer spellMinLevel = (Integer) ((TreeSet) spellLevels).first();
+        Integer spellMaxLevel = (Integer) ((TreeSet) spellLevels).last();
         selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
-        SpellParametersObject spellParameter = SpellParametersTableService.INSTANCE.getSpellParameterBySpellIdAndLevel(selectedSpellId, selectedLevel);
+        spellParameter = SpellParametersTableService.INSTANCE.getSpellParameterBySpellIdAndLevel(selectedSpellId, selectedLevel);
         updateI18NWidgetsData(spellParameter);
         super.updateView();
     }
 
     @Override
     protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
-        SpellParameterModelParameter parameter = getModel().getParameter();
-        int selectedSpellId = parameter.getSpellId();
-        int selectedLevel = parameter.getLevel();
-        Set<Integer> spellLevels = SpellParametersTableService.INSTANCE.getSpellLevels(selectedSpellId);
-
-        int spellMinLevel = (int) ((TreeSet) spellLevels).first();
-        int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
-        selectedLevel = adjustSelectedLevel(selectedLevel, spellMinLevel, spellMaxLevel);
-        SpellParametersObject spellParameter = SpellParametersTableService.INSTANCE.getSpellParameterBySpellIdAndLevel(selectedSpellId, selectedLevel);
-        updateI18NWidgetsData(spellParameter);
-
         int guiElementId = annotation.GUIElementId();
         if (guiElementId == GUIElements.SPELL_LEVEL) {
             LevelComboBoxParameter levelComboBoxParameter = new LevelComboBoxParameter(selectedLevel, spellLevels);

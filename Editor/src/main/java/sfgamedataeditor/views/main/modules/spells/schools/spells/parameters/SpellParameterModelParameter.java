@@ -6,14 +6,14 @@ import javax.swing.*;
 
 public class SpellParameterModelParameter extends LevelableParameter {
 
-    private final int spellId;
+    private final Integer spellId;
 
-    public SpellParameterModelParameter(int spellId, int spellLevel, Icon icon) {
+    public SpellParameterModelParameter(Integer spellId, Integer spellLevel, Icon icon) {
         super(spellLevel, icon);
         this.spellId = spellId;
     }
 
-    public int getSpellId() {
+    public Integer getSpellId() {
         return spellId;
     }
 }

@@ -20,6 +20,11 @@ public class HeroesRunesParameterPresenter extends AbstractParametersPresenter<H
     private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> SKILL_NUMBER_MAPPING = new HashMap<>();
 
+    private ItemPriceParametersObject priceParametersObject;
+    private CreatureParameterObject creatureParameterObject;
+    private List<CreatureSkillObject> creatureSkills;
+    private List<HeroSpellObject> heroSpellObjects;
+
     public HeroesRunesParameterPresenter(HeroesRunesParametersView view) {
         super(view);
         initializeSpellNumberMapping();
@@ -52,18 +57,18 @@ public class HeroesRunesParameterPresenter extends AbstractParametersPresenter<H
 
     @Override
     public void updateView() {
+        HeroesRunesParametersModelParameter parameter = getModel().getParameter();
+        priceParametersObject = parameter.getPriceParametersObject();
+        creatureParameterObject = parameter.getCreatureParameterObject();
+        creatureSkills = parameter.getCreatureSkills();
+        heroSpellObjects = parameter.getHeroSpellObjects();
         super.updateView();
+
         ViewTools.setFirstActiveTab(getView().getTabPane());
     }
 
     @Override
     protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
-        HeroesRunesParametersModelParameter parameter = getModel().getParameter();
-        ItemPriceParametersObject priceParametersObject = parameter.getPriceParametersObject();
-        CreatureParameterObject creatureParameterObject = parameter.getCreatureParameterObject();
-        List<CreatureSkillObject> creatureSkills = parameter.getCreatureSkills();
-        List<HeroSpellObject> heroSpellObjects = parameter.getHeroSpellObjects();
-
         Class<?> dtoClass = annotation.DTOClass();
         if (dtoClass.equals(ItemPriceParametersObject.class)) {
             widget.getListener().updateWidgetValue(priceParametersObject);

@@ -23,6 +23,12 @@ public class WorkersRunesParameterPresenter extends AbstractParametersPresenter<
 
     private static final Map<Integer, Integer> SKILL_NUMBER_MAPPING = new HashMap<>();
 
+    private ItemPriceParametersObject priceParametersObject;
+    private CreatureParameterObject creatureParameterObject;
+    private List<CreatureSkillObject> creatureSkills;
+    private Set<Integer> runesLevels;
+    private Integer runeLevel;
+
     public WorkersRunesParameterPresenter(WorkersRunesParametersView view) {
         super(view);
         initializeSkillNumberMapping();
@@ -41,21 +47,20 @@ public class WorkersRunesParameterPresenter extends AbstractParametersPresenter<
 
     @Override
     public void updateView() {
+        WorkersRunesParametersModelParameter parameter = getModel().getParameter();
+        runeLevel = parameter.getLevel();
+        Integer itemId = parameter.getRuneLevelToItemIdMap().get(runeLevel);
+
+        priceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
+        creatureParameterObject = CreatureParametersTableService.INSTANCE.getCreatureObjectByStatsId(priceParametersObject.unitStatsId);
+        creatureSkills = CreatureSkillTableService.INSTANCE.getCreatureSkillsByStatsId(priceParametersObject.unitStatsId);
+        runesLevels = parameter.getRuneLevelToItemIdMap().keySet();
         super.updateView();
         ViewTools.setFirstActiveTab(getView().getTabPane());
     }
 
     @Override
     protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
-        WorkersRunesParametersModelParameter parameter = getModel().getParameter();
-        Integer runeLevel = parameter.getLevel();
-        Integer itemId = parameter.getRuneLevelToItemIdMap().get(runeLevel);
-
-        ItemPriceParametersObject priceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
-        CreatureParameterObject creatureParameterObject = CreatureParametersTableService.INSTANCE.getCreatureObjectByStatsId(priceParametersObject.unitStatsId);
-        List<CreatureSkillObject> creatureSkills = CreatureSkillTableService.INSTANCE.getCreatureSkillsByStatsId(priceParametersObject.unitStatsId);
-        Set<Integer> runesLevels = parameter.getRuneLevelToItemIdMap().keySet();
-
         int guiElementId = annotation.GUIElementId();
         if (guiElementId == GUIElements.LEVEL) {
             LevelComboBoxParameter levelComboBoxParameter = new LevelComboBoxParameter(runeLevel, runesLevels);

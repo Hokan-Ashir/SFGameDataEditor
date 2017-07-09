@@ -15,6 +15,7 @@ import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.mvc.objects.PresentableView;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersView;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -181,7 +182,7 @@ public class CreaturesParametersView implements PresentableView {
     private JLabel inventoryLabel;
     private JPanel listPanel;
     private JScrollPane scrollPane;
-    private JList<String> merchantInventoryItemList;
+    private JList<ObjectTuple> merchantInventoryItemList;
     private JPanel selectedItemPanel;
     private final EquipmentWidget equipmentWidget;
 
@@ -190,7 +191,7 @@ public class CreaturesParametersView implements PresentableView {
         internationalizeEquipmentLabels();
         internationalizeTabs();
 
-        merchantInventoryItemList.setModel(new DefaultListModel<String>());
+        merchantInventoryItemList.setModel(new DefaultListModel<ObjectTuple>());
         // http://stackoverflow.com/questions/818163/make-jscrollpane-display-scrollbars-when-jlist-inside-is-changed
         merchantInventoryItemList.setPreferredSize(null);
         inventoryLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items"));
@@ -233,7 +234,7 @@ public class CreaturesParametersView implements PresentableView {
         legsSlotLabel.setText(I18NService.INSTANCE.getMessage(I18NTypes.CREATURES_GUI, "equipment.legs.slot.label"));
     }
 
-    public JList<String> getMerchantInventoryItemList() {
+    public JList<ObjectTuple> getMerchantInventoryItemList() {
         return merchantInventoryItemList;
     }
 

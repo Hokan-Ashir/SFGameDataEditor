@@ -764,7 +764,10 @@
             <constraints>
               <tabbedpane title="MerchantTrades"/>
             </constraints>
-            <properties/>
+            <properties>
+              <minimumSize width="660" height="565"/>
+              <preferredSize width="660" height="565"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="4f4f8" class="javax.swing.JLabel" binding="inventoryLabel">
@@ -786,9 +789,9 @@
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="200" height="540"/>
-                  <minimumSize width="200" height="540"/>
-                  <preferredSize width="200" height="540"/>
+                  <maximumSize width="400" height="540"/>
+                  <minimumSize width="400" height="540"/>
+                  <preferredSize width="400" height="540"/>
                 </properties>
                 <border type="etched">
                   <size top="5" left="5" bottom="5" right="5"/>
@@ -801,9 +804,9 @@
                       <doubleBuffered value="true"/>
                       <focusable value="true"/>
                       <horizontalScrollBarPolicy value="30"/>
-                      <maximumSize width="180" height="520"/>
-                      <minimumSize width="180" height="520"/>
-                      <preferredSize width="180" height="520"/>
+                      <maximumSize width="360" height="520"/>
+                      <minimumSize width="360" height="520"/>
+                      <preferredSize width="360" height="520"/>
                       <verticalScrollBarPolicy value="20"/>
                       <wheelScrollingEnabled value="true"/>
                     </properties>
@@ -820,11 +823,11 @@
                           <focusTraversalPolicyProvider value="false"/>
                           <focusable value="true"/>
                           <layoutOrientation value="0"/>
-                          <maximumSize width="160" height="500"/>
-                          <minimumSize width="160" height="500"/>
+                          <maximumSize width="300" height="500"/>
+                          <minimumSize width="300" height="500"/>
                           <model/>
                           <opaque value="true"/>
-                          <preferredSize width="160" height="500"/>
+                          <preferredSize width="300" height="500"/>
                           <requestFocusEnabled value="true"/>
                           <selectionMode value="0"/>
                           <valueIsAdjusting value="true"/>

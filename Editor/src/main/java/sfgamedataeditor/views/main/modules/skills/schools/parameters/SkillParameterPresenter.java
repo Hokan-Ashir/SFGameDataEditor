@@ -13,17 +13,25 @@ import java.util.Set;
 
 public class SkillParameterPresenter extends AbstractParametersPresenter<SkillParameterModelParameter, SkillParameterView> {
 
+    private int selectedLevel;
+    private Set<Integer> getSkillPossibleLevels;
+    private SkillParameterObject skillParameter;
+
     public SkillParameterPresenter(SkillParameterView view) {
         super(view);
     }
 
     @Override
-    protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
+    public void updateView() {
         SkillParameterModelParameter parameter = getModel().getParameter();
-        int selectedLevel = parameter.getLevel();
-        Set<Integer> getSkillPossibleLevels = SkillParametersTableService.INSTANCE.getSkillPossibleLevels(parameter.getSkillSchoolId());
-        SkillParameterObject skillParameter = SkillParametersTableService.INSTANCE.getSkillParameter(parameter.getSkillSchoolId(), selectedLevel);
+        selectedLevel = parameter.getLevel();
+        getSkillPossibleLevels = SkillParametersTableService.INSTANCE.getSkillPossibleLevels(parameter.getSkillSchoolId());
+        skillParameter = SkillParametersTableService.INSTANCE.getSkillParameter(parameter.getSkillSchoolId(), selectedLevel);
+        super.updateView();
+    }
 
+    @Override
+    protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
         int guiElementId = annotation.GUIElementId();
         if (guiElementId != GUIElements.SKILL_LEVEL) {
             widget.getListener().updateWidgetValue(skillParameter);

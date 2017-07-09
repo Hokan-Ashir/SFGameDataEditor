@@ -9,6 +9,10 @@ import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
+import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
+import sfgamedataeditor.database.text.TextTableService;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.Pair;
 
 import java.sql.SQLException;
@@ -45,7 +49,7 @@ public enum MerchantInventoryItemsTableService implements TableCreationService {
 
     private static final Logger LOGGER = Logger.getLogger(MerchantInventoryItemsTableService.class);
 
-    public List<Integer> getInventoryItemIdsByMerchantName(Integer merchantId) {
+    public List<ObjectTuple> getInventoryItemIdsByMerchantName(Integer merchantId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         Dao<MerchantInventoryItemsObject, ?> dao;
         try {
@@ -61,7 +65,15 @@ public enum MerchantInventoryItemsTableService implements TableCreationService {
                             },
                             String.valueOf(merchantId));
 
-            return rawResults.getResults();
+            List<Integer> results = rawResults.getResults();
+            Integer[] itemIds = results.toArray(new Integer[results.size()]);
+            List<ItemPriceParametersObject> objects = ItemPriceParametersTableService.INSTANCE.getObjectByItemIds(itemIds);
+            Integer[] nameIds = new Integer[objects.size()];
+            for (int i = 0; i < objects.size(); ++i) {
+                nameIds[i] = objects.get(i).nameId;
+            }
+
+            return TextTableService.INSTANCE.getObjectTuples(nameIds, itemIds);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();

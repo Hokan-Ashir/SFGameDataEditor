@@ -10,6 +10,7 @@ import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.spells.CreatureSpellObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.WidgetsComboBoxListener;
 import sfgamedataeditor.views.common.presenters.AbstractParametersPresenter;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
@@ -29,6 +30,11 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
     private static final Map<Integer, Integer> SLOT_NUMBER_MAPPING = new HashMap<>();
     private static final Map<Integer, Integer> SPELL_NUMBER_MAPPING = new HashMap<>();
     private final WidgetsComboBoxListener<CreatureCorpseLootObject, CreaturesParametersView> dropItemsListener;
+
+    private CreatureParameterObject creatureParameterObject;
+    private CreaturesCommonParameterObject commonParameterObject;
+    private List<CreatureEquipmentObject> creatureEquipment;
+    private List<CreatureSpellObject> creatureSpells;
 
     public CreaturesParametersPresenter(CreaturesParametersView view) {
         super(view);
@@ -67,13 +73,17 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
         CreaturesParametersModelParameter parameter = getModel().getParameter();
         updateCorpseLootObjects(parameter);
         updateMerchantTrades(parameter);
+        creatureParameterObject = parameter.getCreatureParameterObject();
+        commonParameterObject = parameter.getCreatureCommonParameterObject();
+        creatureEquipment = parameter.getCreatureEquipment();
+        creatureSpells = parameter.getCreatureSpells();
 
         super.updateView();
         ViewTools.setFirstActiveTab(getView().getTabPane());
     }
 
     private void updateMerchantTrades(CreaturesParametersModelParameter parameter) {
-        List<Integer> itemIds = parameter.getMerchantItemIds();
+        List<ObjectTuple> itemIds = parameter.getMerchantItemIds();
         if (itemIds != null && !itemIds.isEmpty()) {
             getView().getTabPane().setEnabledAt(CreaturesParametersView.MERCHANT_TRADES_TAB_INDEX, true);
             String selectedItem = parameter.getSelectedMerchantItem();
@@ -108,16 +118,14 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
         }
     }
 
-    private void updateMerchantInventoryList(List<Integer> itemIds, String selectedItem) {
-        JList<String> inventoryItemList = getView().getMerchantInventoryItemList();
-        DefaultListModel<String> model = (DefaultListModel<String>) inventoryItemList.getModel();
+    private void updateMerchantInventoryList(List<ObjectTuple> itemIds, String selectedItem) {
+        JList<ObjectTuple> inventoryItemList = getView().getMerchantInventoryItemList();
+        DefaultListModel<ObjectTuple> model = (DefaultListModel<ObjectTuple>) inventoryItemList.getModel();
         model.removeAllElements();
 
         inventoryItemList.removeListSelectionListener(this);
-        for (Integer itemId : itemIds) {
-            // TODO FIX
-            String itemName = I18NService.INSTANCE.getMessage(I18NTypes.PLAYER_LEVEL_STATS_GUI, String.valueOf(itemId));
-            model.addElement(itemName);
+        for (ObjectTuple itemId : itemIds) {
+            model.addElement(itemId);
         }
         inventoryItemList.addListSelectionListener(this);
         inventoryItemList.setSelectedValue(selectedItem, true);
@@ -125,12 +133,6 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
 
     @Override
     protected void updateWidget(AbstractWidget widget, GUIElement annotation, JPanel panel) {
-        CreaturesParametersModelParameter parameter = getModel().getParameter();
-        CreatureParameterObject creatureParameterObject = parameter.getCreatureParameterObject();
-        CreaturesCommonParameterObject commonParameterObject = parameter.getCreatureCommonParameterObject();
-        List<CreatureEquipmentObject> creatureEquipment = parameter.getCreatureEquipment();
-        List<CreatureSpellObject> creatureSpells = parameter.getCreatureSpells();
-
         Class<?> dtoClass = annotation.DTOClass();
         if (dtoClass.equals(CreatureParameterObject.class)) {
             widget.getListener().updateWidgetValue(creatureParameterObject);
@@ -169,7 +171,8 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
         if (e.getValueIsAdjusting()) {
             return;
         }
-        ListModel<String> model = getView().getMerchantInventoryItemList().getModel();
+
+        ListModel<ObjectTuple> model = getView().getMerchantInventoryItemList().getModel();
         if (model.getSize() == 0) {
             return;
         }
@@ -178,8 +181,8 @@ public class CreaturesParametersPresenter extends AbstractParametersPresenter<Cr
         // because list permit only to select one item at a time, it's not important which (first or last) selected
         // index get from click event
         int firstIndex = e.getFirstIndex();
-        Integer itemId = getModel().getParameter().getMerchantItemIds().get(firstIndex);
-        ItemPriceParametersObject parametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId);
+        ObjectTuple itemId = getModel().getParameter().getMerchantItemIds().get(firstIndex);
+        ItemPriceParametersObject parametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(itemId.getObjectId());
         getView().getEquipmentWidget().getListener().updateWidgetValue(parametersObject);
     }
 }
