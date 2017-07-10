@@ -88,9 +88,12 @@ public enum WeaponParametersTableService implements TableCreationService {
             }
 
             List<ItemPriceParametersObject> priceParametersObjects = ItemPriceParametersTableService.INSTANCE.getObjectByItemIds(itemIds);
-            Integer[] nameIds = new Integer[objects.size()];
-            Integer[] objectIds = new Integer[objects.size()];
-            for (int i = 0; i < objects.size(); i++) {
+            if (priceParametersObjects == null || priceParametersObjects.isEmpty()) {
+                return Collections.emptyList();
+            }
+            Integer[] nameIds = new Integer[priceParametersObjects.size()];
+            Integer[] objectIds = new Integer[priceParametersObjects.size()];
+            for (int i = 0; i < priceParametersObjects.size(); i++) {
                 nameIds[i] = priceParametersObjects.get(i).nameId;
                 objectIds[i] = priceParametersObjects.get(i).itemId;
             }

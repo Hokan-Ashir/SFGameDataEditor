@@ -6,7 +6,6 @@ import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.items.workersrunes.parameters.WorkersRunesParametersModel;
 
-import javax.swing.*;
 import java.util.List;
 
 public class WorkersRuneRacesPresenter extends AbstractModulesPresenter<ModuleParameter, WorkersRuneRacesView, WorkersRunesParametersModel> {
@@ -24,7 +23,6 @@ public class WorkersRuneRacesPresenter extends AbstractModulesPresenter<ModulePa
         List<ObjectTuple> runesNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(itemType);
         String runeName = runesNames.get(0).getName();
         Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(runeName, itemType);
-        Icon icon = getView().getSelectedModuleIcon();
         return modelCreator.createModel(itemId);
     }
 }

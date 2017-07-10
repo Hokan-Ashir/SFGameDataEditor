@@ -76,7 +76,11 @@ public enum TextTableService implements TableCreationService {
                     .and().eq("isDialogue", 0)
                     .and().eq("languageId", LocalizationService.INSTANCE.getLanguageId()).query();
             if (objects.isEmpty()) {
-                return Collections.emptyList();
+                List<ObjectTuple> result = new ArrayList<>();
+                for (Integer objectId : objectIds) {
+                    result.add(new ObjectTuple(NULL_OBJECT_PREFIX + objectId, objectId));
+                }
+                return result;
             } else {
                 List<ObjectTuple> result = new ArrayList<>();
                 for (int i = 0; i < nameIds.length; ++i) {

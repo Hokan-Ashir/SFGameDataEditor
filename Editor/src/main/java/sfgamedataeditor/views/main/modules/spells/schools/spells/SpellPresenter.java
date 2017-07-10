@@ -1,5 +1,6 @@
 package sfgamedataeditor.views.main.modules.spells.schools.spells;
 
+import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
@@ -25,7 +26,7 @@ public class SpellPresenter extends AbstractModulesPresenter<SpellModelParameter
         int spellMinLevel = (int) ((TreeSet) spellLevels).first();
         int spellMaxLevel = (int) ((TreeSet) spellLevels).last();
         int selectedLevel = adjustSelectedLevel(1, spellMinLevel, spellMaxLevel);
-        Icon icon = getView().getSelectedModuleIcon();
+        Icon icon = ImageIconsCache.INSTANCE.getImageIcon("/images/spells_and_scrolls/", spellId);
         SpellParameterModelParameter parameter = new SpellParameterModelParameter(spellId, selectedLevel, icon);
         return new SpellParameterModel(parameter);
     }

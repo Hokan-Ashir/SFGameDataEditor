@@ -19,7 +19,6 @@ public abstract class AbstractModulesView implements PresentableView {
 
     private static final Logger LOGGER = Logger.getLogger(AbstractModulesView.class);
     private final SubViewPanel selectedPanel = new SubViewPanel();
-    private Icon selectedIcon;
     private final List<SubViewPanel> subViewsPanels = new ArrayList<>();
     private final Comparator<SubViewPanel> subViewPanelComparator = new SubViewsPanelComparator();
     private AbstractModulePanelManager panelManager;
@@ -143,14 +142,6 @@ public abstract class AbstractModulesView implements PresentableView {
 
     public void setSelectedObjectId(Integer objectId) {
         selectedPanel.setObjectId(objectId);
-    }
-
-    public void setSelectedModuleIcon(Icon icon) {
-        selectedIcon = icon;
-    }
-
-    public Icon getSelectedModuleIcon() {
-        return selectedIcon;
     }
 
     protected Class<? extends AbstractModulePanelManager> getModulesPanelManagerClass() {

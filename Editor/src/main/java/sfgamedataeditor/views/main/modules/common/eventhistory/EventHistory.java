@@ -27,7 +27,11 @@ public enum EventHistory {
         fireCurrentEvent();
     }
 
-    private void fireCurrentEvent() {
+    public void fireCurrentEvent() {
+        if (events.isEmpty()) {
+            return;
+        }
+
         ShowViewEvent event = events.get(currentEventIndex);
         event.setShouldBeRecordedInHistory(false);
         EventProcessor.INSTANCE.process(event);

@@ -7,8 +7,6 @@ import sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParame
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import javax.swing.*;
-
 public class ChestsListPresenter extends AbstractModulesPresenter<ModuleParameter, ChestsListView, ChestParametersModel> {
 
     private final ChestLootModelCreator creator = new ChestLootModelCreator();
@@ -21,7 +19,6 @@ public class ChestsListPresenter extends AbstractModulesPresenter<ModuleParamete
     protected ChestParametersModel createModel() {
         String selectedModuleName = getView().getSelectedModuleName();
         Integer chestLootId = ViewTools.getKeyByPropertyValue(selectedModuleName, I18NTypes.OBJECTS);
-        Icon icon = getView().getSelectedModuleIcon();
         return creator.createModel(chestLootId);
     }
 }

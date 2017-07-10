@@ -8,7 +8,6 @@ import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import javax.swing.*;
 import java.util.List;
 
 public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParameter, SpellScrollsListView, SpellScrollsParametersModel> {
@@ -24,7 +23,6 @@ public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParame
         Integer lowestScrollLevel = getLowestScrollLevel();
         Integer scrollTypeId = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
         Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByNameAndLevel(getView().getSelectedModuleName(), lowestScrollLevel, scrollTypeId);
-        Icon icon = getView().getSelectedModuleIcon();
         return modelCreator.createModel(itemId);
     }
 

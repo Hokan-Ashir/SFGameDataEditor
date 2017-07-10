@@ -4,8 +4,6 @@ import sfgamedataeditor.views.common.ModuleParameter;
 import sfgamedataeditor.views.common.presenters.AbstractModulesPresenter;
 import sfgamedataeditor.views.main.modules.items.miscellaneous.parameters.MiscellaneousParametersModel;
 
-import javax.swing.*;
-
 public class MiscellaneousPresenter extends AbstractModulesPresenter<ModuleParameter, MiscellaneousListView, MiscellaneousParametersModel> {
 
     private final MiscellaneousModelCreator modelCreator = new MiscellaneousModelCreator();
@@ -17,7 +15,6 @@ public class MiscellaneousPresenter extends AbstractModulesPresenter<ModuleParam
     @Override
     protected MiscellaneousParametersModel createModel() {
         int itemId = getView().getSelectedModuleObjectId();
-        Icon icon = getView().getSelectedModuleIcon();
         return modelCreator.createModel(itemId);
     }
 }
