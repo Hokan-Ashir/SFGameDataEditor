@@ -22,7 +22,7 @@ public class SpellScrollsModelCreator implements ModelCreator<SpellScrollsParame
         ItemPriceParametersObject objectByItemId = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(objectId);
         ObjectTuple objectTuple = TextTableService.INSTANCE.getObjectTuple(objectByItemId.nameId, objectByItemId.itemId);
         String scrollName = objectTuple.getName();
-        String baseScrollName = scrollName.replaceAll(",?(\\s+)?\\b(\\d+)?(\\s+)?(уровень|ур.|niveau|level|Stufe)(\\s+)?(\\d+)?", "");
+        String baseScrollName = scrollName.replaceAll(SpellScrollsListView.SPELL_NAME_REG_EXP, "");
         Map<Integer, Pair<Integer, Integer>> levelToItemsIdMap = getLevelToItemsIdMap(baseScrollName);
         String scrollLevelString = scrollName.replaceAll("\\D+", "");
         Integer scrollLevel = null;

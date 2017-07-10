@@ -18,6 +18,8 @@ import java.util.List;
 
 public class SpellScrollsListView extends AbstractModulesView {
 
+    public static final String SPELL_NAME_REG_EXP = ",?(\\s+)?\\b(\\d+)?(\\s+)?([Уу]ровень|[Уу]р.|liv.|[Nn]iveau|[Nn]ivel|[Ll]ivello|[Pp]oziom|[Ll]evel|[Ss]tufe)(\\s+)?(\\d+)?";
+
     public SpellScrollsListView() {
         super(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "items.scrolls.and.spells"));
     }
@@ -36,7 +38,7 @@ public class SpellScrollsListView extends AbstractModulesView {
     private List<ObjectTuple> getFilteredScrollNames(List<ObjectTuple> scrollNames) {
         List<ObjectTuple> result = new ArrayList<>();
         for (ObjectTuple scrollName : scrollNames) {
-            String originalScrollName = scrollName.getName().replaceAll(",?(\\s+)?\\b(\\d+)?(\\s+)?(уровень|ур.|niveau|level|Stufe)(\\s+)?(\\d+)?", "");
+            String originalScrollName = scrollName.getName().replaceAll(SPELL_NAME_REG_EXP, "");
 
             boolean isSpellNameExists = false;
             for (ObjectTuple objectTuple : result) {
