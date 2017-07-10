@@ -7,6 +7,7 @@ import com.j256.ormlite.dao.RawRowMapper;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.database.common.DTOFilter;
 import sfgamedataeditor.database.common.OffsetableObject;
 import sfgamedataeditor.database.common.TableCreationService;
 import sfgamedataeditor.views.common.ObjectTuple;
@@ -27,7 +28,7 @@ public enum TextTableService implements TableCreationService {
 
         @Override
         public void addRecordsToTable(List<Pair<byte[], Long>> offsettedData) {
-            CommonTableService.INSTANCE.addRecordsToTable(TextObject.class, offsettedData);
+            CommonTableService.INSTANCE.addRecordsToTable(TextObject.class, offsettedData, new TextFilter());
         }
 
         @Override
@@ -148,6 +149,17 @@ public enum TextTableService implements TableCreationService {
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();
+        }
+    }
+
+    // upload only selected language
+    private static final class TextFilter implements DTOFilter {
+
+        private static final int LANGUAGE_ID_BYTE_POSITION = 2;
+
+        @Override
+        public boolean isApplicable(byte[] value) {
+            return value[LANGUAGE_ID_BYTE_POSITION] == LocalizationService.INSTANCE.getLanguageId();
         }
     }
 }

@@ -91,6 +91,16 @@ public enum DataFilesParser {
         }
     }
 
+    public void reloadLocalizedTexts() {
+        RandomAccessFile file = FileUtils.createTemporaryModificationFile();
+        TextTableService service = TextTableService.INSTANCE;
+        service.createTable();
+        Pair<Integer, Integer> offsetInterval = service.getOffsetInterval();
+        int dataLength = service.getDataLength();
+        List<Pair<byte[], Long>> offsettedData = readData(file, offsetInterval, dataLength);
+        service.addRecordsToTable(offsettedData);
+    }
+
     private List<Pair<byte[], Long>> readData(RandomAccessFile file, Pair<Integer, Integer> offsetInterval, int dataLength) {
         List<Pair<byte[], Long>> result = new ArrayList<>();
         try {

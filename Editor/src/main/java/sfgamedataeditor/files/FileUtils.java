@@ -58,7 +58,7 @@ public final class FileUtils {
         }
     }
 
-    private static RandomAccessFile createTemporaryModificationFile() {
+    public static RandomAccessFile createTemporaryModificationFile() {
         FileStorageObject fileStorage = FileStorageService.INSTANCE.getFileStorage();
         String[] split = fileStorage.pathToGameDataCff.split("/");
         String originalFileName = split[split.length - 1];

@@ -1,5 +1,6 @@
 package sfgamedataeditor.views.main.modules.common.localization;
 
+import sfgamedataeditor.files.DataFilesParser;
 import sfgamedataeditor.views.common.ObjectTuple;
 
 import javax.swing.*;
@@ -22,5 +23,6 @@ public class LanguageSelectionListener implements ItemListener {
 
         ObjectTuple selectedItem = (ObjectTuple) comboBox.getSelectedItem();
         LocalizationService.INSTANCE.setLanguageId(selectedItem.getObjectId());
+        DataFilesParser.INSTANCE.reloadLocalizedTexts();
     }
 }
