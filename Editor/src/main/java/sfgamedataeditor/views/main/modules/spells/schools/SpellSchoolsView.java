@@ -29,4 +29,9 @@ public class SpellSchoolsView extends AbstractModulesView {
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return SpellSchoolsPresenter.class;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

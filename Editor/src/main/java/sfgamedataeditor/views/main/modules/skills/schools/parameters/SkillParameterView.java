@@ -50,4 +50,9 @@ public class SkillParameterView implements PresentableView {
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return SkillParameterPresenter.class;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

@@ -38,4 +38,9 @@ public class CreaturesRacesView extends AbstractModulesView {
     protected String getIconPath() {
         return "/images/races/";
     }
+
+    @Override
+    public void localize() {
+        setModuleName(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races"));
+    }
 }

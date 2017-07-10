@@ -66,6 +66,11 @@ public class SearchView implements PresentableView {
         return SearchViewPresenter.class;
     }
 
+    @Override
+    public void localize() {
+
+    }
+
     private class GhostText extends AbstractGhostTextListener {
 
         public GhostText(JTextField textfield, String ghostText) {

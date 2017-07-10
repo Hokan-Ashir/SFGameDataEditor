@@ -31,4 +31,9 @@ public class MiscellaneousParametersView implements PresentableView {
     public JPanel getMainPanel() {
         return mainPanel;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

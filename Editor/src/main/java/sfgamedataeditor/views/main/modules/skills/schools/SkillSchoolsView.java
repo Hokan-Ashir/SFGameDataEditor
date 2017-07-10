@@ -39,4 +39,9 @@ public class SkillSchoolsView extends AbstractModulesView {
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return SkillSchoolsPresenter.class;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

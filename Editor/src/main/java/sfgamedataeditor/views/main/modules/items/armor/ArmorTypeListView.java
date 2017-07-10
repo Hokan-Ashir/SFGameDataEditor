@@ -41,4 +41,9 @@ public class ArmorTypeListView extends AbstractModulesView {
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return ArmorTypesPresenter.class;
     }
+
+    @Override
+    public void localize() {
+        setModuleName(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "armorTypes"));
+    }
 }

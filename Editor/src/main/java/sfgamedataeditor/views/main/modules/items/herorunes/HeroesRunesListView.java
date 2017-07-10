@@ -40,4 +40,9 @@ public class HeroesRunesListView extends AbstractModulesView {
     protected String getIconPath() {
         return "/images/heroes/";
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

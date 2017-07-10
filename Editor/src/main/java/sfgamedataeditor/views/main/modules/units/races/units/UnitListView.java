@@ -25,4 +25,9 @@ public class UnitListView extends AbstractModulesView {
     protected String getIconPath() {
         return "/images/units/";
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

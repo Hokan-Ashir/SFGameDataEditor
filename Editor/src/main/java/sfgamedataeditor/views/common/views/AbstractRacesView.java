@@ -38,4 +38,10 @@ public abstract class AbstractRacesView extends AbstractModulesView {
     protected String getIconPath() {
         return "/images/races/";
     }
+
+    @Override
+    public void localize() {
+        refillSubViewsMapping();
+        setModuleName(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races"));
+    }
 }

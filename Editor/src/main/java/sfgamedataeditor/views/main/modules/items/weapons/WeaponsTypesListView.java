@@ -57,4 +57,9 @@ public class WeaponsTypesListView extends AbstractModulesView {
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return WeaponsTypesPresenter.class;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

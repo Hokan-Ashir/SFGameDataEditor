@@ -37,4 +37,9 @@ public class MiscellaneousListView extends AbstractModulesView {
     protected Class<? extends AbstractModulePanelManager> getModulesPanelManagerClass() {
         return NameModulesPanelManager.class;
     }
+
+    @Override
+    public void localize() {
+        setModuleName(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "miscellaneousTypes"));
+    }
 }

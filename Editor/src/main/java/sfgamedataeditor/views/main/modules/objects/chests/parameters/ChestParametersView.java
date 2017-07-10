@@ -45,4 +45,9 @@ public class ChestParametersView implements PresentableView {
     public JComboBox<String> getDropItemsComboBox() {
         return dropItemsComboBox;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

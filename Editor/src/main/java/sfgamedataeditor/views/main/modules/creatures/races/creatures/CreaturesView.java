@@ -32,4 +32,9 @@ public class CreaturesView extends AbstractModulesView {
     protected String getIconPath() {
         return "/images/creatures/";
     }
+
+    @Override
+    public void localize() {
+        
+    }
 }

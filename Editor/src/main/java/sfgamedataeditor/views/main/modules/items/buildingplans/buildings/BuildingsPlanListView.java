@@ -25,4 +25,9 @@ public class BuildingsPlanListView extends AbstractModulesView {
     protected String getIconPath() {
         return "/images/buildings/";
     }
+
+    @Override
+    public void localize() {
+        setModuleName(I18NService.INSTANCE.getMessage(I18NTypes.BUILDING_GUI, "moduleName"));
+    }
 }

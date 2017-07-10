@@ -22,7 +22,7 @@ public abstract class AbstractModulesView implements PresentableView {
     private final List<SubViewPanel> subViewsPanels = new ArrayList<>();
     private final Comparator<SubViewPanel> subViewPanelComparator = new SubViewsPanelComparator();
     private AbstractModulePanelManager panelManager;
-    private final String moduleName;
+    private String moduleName;
     private final JPanel selectedRenderPanel;
 
     protected AbstractModulesView(String viewName) {
@@ -37,7 +37,7 @@ public abstract class AbstractModulesView implements PresentableView {
             return;
         }
 
-        initializeSubViewsMapping();
+        refillSubViewsMapping();
     }
 
     private JPanel createSelectedRenderPanel() {
@@ -52,7 +52,8 @@ public abstract class AbstractModulesView implements PresentableView {
 
     public abstract void fillSubViewsMappings();
 
-    private void initializeSubViewsMapping() {
+    protected void refillSubViewsMapping() {
+        subViewsPanels.clear();
         fillSubViewsMappings();
     }
 
@@ -194,6 +195,10 @@ public abstract class AbstractModulesView implements PresentableView {
 
     public String getModuleName() {
         return moduleName;
+    }
+
+    public void setModuleName(String moduleName) {
+        this.moduleName = moduleName;
     }
 
     /**

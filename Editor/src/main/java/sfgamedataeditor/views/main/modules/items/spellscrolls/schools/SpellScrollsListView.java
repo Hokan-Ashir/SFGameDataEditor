@@ -69,4 +69,9 @@ public class SpellScrollsListView extends AbstractModulesView {
     protected Class<? extends AbstractModulePanelManager> getModulesPanelManagerClass() {
         return NameModulesPanelManager.class;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

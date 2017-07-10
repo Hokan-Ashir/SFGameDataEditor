@@ -42,6 +42,7 @@ public class ShowViewEventProcessingStrategy implements EventProcessingStrategy<
         if (controller != null) {
             controller.setModel(model);
             controller.updateView();
+            viewPresenterPair.getView().localize();
             controller.renderView();
         }
     }

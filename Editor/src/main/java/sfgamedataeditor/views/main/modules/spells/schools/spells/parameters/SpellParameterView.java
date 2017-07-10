@@ -101,11 +101,6 @@ public class SpellParameterView implements PresentableView {
     @IconElement
     private JLabel iconLabel;
 
-    public SpellParameterView() {
-        tabPane.setTitleAt(SPELL_COMMON_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "tab.spell.common.parameters"));
-        tabPane.setTitleAt(SPELL_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "tab.spell.parameters"));
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -117,5 +112,11 @@ public class SpellParameterView implements PresentableView {
     @Override
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return SpellParameterPresenter.class;
+    }
+
+    @Override
+    public void localize() {
+        tabPane.setTitleAt(SPELL_COMMON_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "tab.spell.common.parameters"));
+        tabPane.setTitleAt(SPELL_PARAMETERS_TAB_INDEX, I18NService.INSTANCE.getMessage(I18NTypes.SPELLS_GUI, "tab.spell.parameters"));
     }
 }

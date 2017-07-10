@@ -39,4 +39,9 @@ public class ButtonsView implements PresentableView {
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return ButtonsPresenter.class;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

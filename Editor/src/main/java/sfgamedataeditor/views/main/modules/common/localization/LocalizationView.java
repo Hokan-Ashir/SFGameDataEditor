@@ -34,4 +34,9 @@ public class LocalizationView implements PresentableView {
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return LocalizationPresenter.class;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

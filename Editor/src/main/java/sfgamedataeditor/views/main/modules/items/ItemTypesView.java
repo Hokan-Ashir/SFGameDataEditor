@@ -52,4 +52,9 @@ public class ItemTypesView extends AbstractModulesView {
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return ItemTypesPresenter.class;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

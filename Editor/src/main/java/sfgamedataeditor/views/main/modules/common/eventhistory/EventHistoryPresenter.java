@@ -3,8 +3,6 @@ package sfgamedataeditor.views.main.modules.common.eventhistory;
 import sfgamedataeditor.events.processing.ViewRegister;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.main.MainView;
-import sfgamedataeditor.views.utility.i18n.I18NService;
-import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 
@@ -14,9 +12,6 @@ public class EventHistoryPresenter extends AbstractPresenter<EventHistoryModelPa
         super(view);
         JButton undoButton = getView().getUndoButton();
         JButton redoButton = getView().getRedoButton();
-
-        undoButton.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "back"));
-        redoButton.setText(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "forward"));
 
         undoButton.setEnabled(false);
         redoButton.setEnabled(false);

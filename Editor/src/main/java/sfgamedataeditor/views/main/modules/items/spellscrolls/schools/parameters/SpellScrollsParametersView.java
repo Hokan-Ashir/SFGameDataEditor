@@ -69,4 +69,9 @@ public class SpellScrollsParametersView implements PresentableView {
     public JPanel getMainPanel() {
         return mainPanel;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

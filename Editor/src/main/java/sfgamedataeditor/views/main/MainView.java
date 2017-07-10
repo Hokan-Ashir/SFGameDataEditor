@@ -100,4 +100,9 @@ public class MainView implements PresentableView {
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return null;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

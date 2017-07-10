@@ -29,4 +29,9 @@ public class WeaponPiecesView extends AbstractModulesView {
     protected Class<? extends AbstractModulePanelManager> getModulesPanelManagerClass() {
         return NameModulesPanelManager.class;
     }
+
+    @Override
+    public void localize() {
+        setModuleName(I18NService.INSTANCE.getMessage(I18NTypes.ARMOR_GUI, "items"));
+    }
 }

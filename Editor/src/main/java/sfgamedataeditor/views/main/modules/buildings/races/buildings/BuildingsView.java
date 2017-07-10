@@ -25,4 +25,9 @@ public class BuildingsView extends AbstractModulesView {
     protected String getIconPath() {
         return "/images/buildings/";
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

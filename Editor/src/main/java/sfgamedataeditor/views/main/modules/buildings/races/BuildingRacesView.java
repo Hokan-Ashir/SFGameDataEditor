@@ -31,4 +31,9 @@ public class BuildingRacesView extends AbstractModulesView {
     protected String getIconPath() {
         return "/images/races/";
     }
+
+    @Override
+    public void localize() {
+
+    }
 }

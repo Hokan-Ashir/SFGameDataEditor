@@ -44,4 +44,9 @@ public class PlayerLevelStatsView implements PresentableView {
     public Class<? extends AbstractPresenter> getPresenterClass() {
         return PlayerLevelStatsPresenter.class;
     }
+
+    @Override
+    public void localize() {
+
+    }
 }
