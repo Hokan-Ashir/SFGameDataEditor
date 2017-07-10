@@ -78,7 +78,7 @@ public class CreatureWidgetListener extends AbstractWidgetListener<CreatureWidge
     public void actionPerformed(ActionEvent e) {
         ObjectTuple tuple = (ObjectTuple) getWidget().getCreatureNameComboBox().getSelectedItem();
         // TODO extract icon from DB object
-        CreaturesParametersModel model = modelCreator.createModel(tuple.getObjectId(), null);
+        CreaturesParametersModel model = modelCreator.createModel(tuple.getObjectId());
         ShowContentViewEvent event = new ShowContentViewEvent(CreaturesParametersView.class, model);
         EventProcessor.INSTANCE.process(event);
     }

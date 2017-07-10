@@ -2,6 +2,7 @@ package sfgamedataeditor.common.widgets.common.effectnumber;
 
 import sfgamedataeditor.common.widgets.AbstractWidget;
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class EffectNumberWidget extends AbstractWidget<EffectNumberWidgetListener> {
     private JPanel mainPanel;
-    private JComboBox<String> spellNameComboBox;
+    private JComboBox<ObjectTuple> spellNameComboBox;
     private JComboBox<String> spellLevelComboBox;
     private JLabel spellNameLabel;
     private JLabel spellLevelLabel;
@@ -28,14 +29,14 @@ public class EffectNumberWidget extends AbstractWidget<EffectNumberWidgetListene
 
     private void fillSpellNameComboBoxValues() {
         // TODO add search inside comboBox
-        List<String> allSpellNames = SpellNameTableService.INSTANCE.getAllSpellNames();
+        List<ObjectTuple> allSpellNames = SpellNameTableService.INSTANCE.getAllSpellNames();
         Collections.sort(allSpellNames);
-        for (String allSpellName : allSpellNames) {
+        for (ObjectTuple allSpellName : allSpellNames) {
             spellNameComboBox.addItem(allSpellName);
         }
     }
 
-    JComboBox<String> getSpellNameComboBox() {
+    JComboBox<ObjectTuple> getSpellNameComboBox() {
         return spellNameComboBox;
     }
 

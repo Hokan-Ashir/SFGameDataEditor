@@ -16,6 +16,7 @@ import java.util.Map;
 public enum ImageIconsCache {
     INSTANCE;
 
+    private static final String IMAGE_EXTENSION = ".png";
     private static final Logger LOGGER = Logger.getLogger(ImageIconsCache.class);
     private final Map<String, ImageIcon> iconsMap = new HashMap<>();
     private final List<AbstractIconPathAlias> aliasList = new ArrayList<>();
@@ -27,7 +28,12 @@ public enum ImageIconsCache {
         aliasList.add(new HeroesAliases());
     }
 
-    public ImageIcon getImageIcon(String iconPath) {
+    public ImageIcon getImageIcon(String iconsPath, Integer objectId) {
+        if (objectId == null) {
+            return null;
+        }
+
+        String iconPath = iconsPath + objectId + IMAGE_EXTENSION;
         ImageIcon imageIcon = iconsMap.get(iconPath);
         if (imageIcon != null) {
             return imageIcon;

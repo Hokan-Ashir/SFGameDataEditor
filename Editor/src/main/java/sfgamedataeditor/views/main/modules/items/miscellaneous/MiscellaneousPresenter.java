@@ -18,6 +18,6 @@ public class MiscellaneousPresenter extends AbstractModulesPresenter<ModuleParam
     protected MiscellaneousParametersModel createModel() {
         int itemId = getView().getSelectedModuleObjectId();
         Icon icon = getView().getSelectedModuleIcon();
-        return modelCreator.createModel(itemId, icon);
+        return modelCreator.createModel(itemId);
     }
 }

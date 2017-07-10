@@ -1,5 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.weapons.pieces.list;
 
+import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.items.armor.parameters.ArmorParametersObject;
 import sfgamedataeditor.database.items.armor.parameters.ArmorParametersTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
@@ -20,13 +21,19 @@ import java.util.List;
 public class WeaponModelCreator implements ModelCreator<WeaponParametersModel> {
 
     @Override
-    public WeaponParametersModel createModel(int objectId, Icon icon) {
+    public WeaponParametersModel createModel(int objectId) {
         ItemPriceParametersObject itemPriceObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(objectId);
         List<ItemSpellEffectsObject> itemEffectsObjects = ItemSpellEffectsTableService.INSTANCE.getObjectsByItemId(objectId);
         WeaponParametersObject weaponParametersObject = WeaponParametersTableService.INSTANCE.getObjectByItemId(objectId);
         List<ItemRequirementsObject> requirementsObjects = ItemRequirementsTableService.INSTANCE.getObjectsByItemId(objectId);
         ArmorParametersObject armorParametersObject = ArmorParametersTableService.INSTANCE.getObjectByItemId(objectId);
+        Icon icon = ImageIconsCache.INSTANCE.getImageIcon(getIconPath(), objectId);
         WeaponParametersModelParameter parameter = new WeaponParametersModelParameter(itemPriceObject, itemEffectsObjects, weaponParametersObject, armorParametersObject, requirementsObjects, icon);
         return new WeaponParametersModel(parameter);
+    }
+
+    @Override
+    public String getIconPath() {
+        return "";
     }
 }

@@ -68,6 +68,10 @@ public enum MerchantInventoryItemsTableService implements TableCreationService {
             List<Integer> results = rawResults.getResults();
             Integer[] itemIds = results.toArray(new Integer[results.size()]);
             List<ItemPriceParametersObject> objects = ItemPriceParametersTableService.INSTANCE.getObjectByItemIds(itemIds);
+            if (objects == null || objects.isEmpty()) {
+                return Collections.emptyList();
+            }
+
             Integer[] nameIds = new Integer[objects.size()];
             for (int i = 0; i < objects.size(); ++i) {
                 nameIds[i] = objects.get(i).nameId;

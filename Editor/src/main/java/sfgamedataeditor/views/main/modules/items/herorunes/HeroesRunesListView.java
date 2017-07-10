@@ -1,6 +1,5 @@
 package sfgamedataeditor.views.main.modules.items.herorunes;
 
-import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
 import sfgamedataeditor.views.common.ObjectTuple;
@@ -11,7 +10,6 @@ import sfgamedataeditor.views.main.modules.items.herorunes.parameters.HeroesRune
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import javax.swing.*;
 import java.util.List;
 
 public class HeroesRunesListView extends AbstractModulesView {
@@ -39,8 +37,7 @@ public class HeroesRunesListView extends AbstractModulesView {
     }
 
     @Override
-    protected ImageIcon getPanelImageByObjectId(Integer objectId) {
-        String iconPath = "/images/heroes/" + objectId + ".png";
-        return ImageIconsCache.INSTANCE.getImageIcon(iconPath);
+    protected String getIconPath() {
+        return "/images/heroes/";
     }
 }

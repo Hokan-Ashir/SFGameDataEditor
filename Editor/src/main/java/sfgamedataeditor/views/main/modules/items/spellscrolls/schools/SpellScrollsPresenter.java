@@ -25,7 +25,7 @@ public class SpellScrollsPresenter extends AbstractModulesPresenter<ModuleParame
         Integer scrollTypeId = Integer.valueOf(I18NService.INSTANCE.getMessage(I18NTypes.ITEM_TYPES_NAME_MAPPING, "items.spells"));
         Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByNameAndLevel(getView().getSelectedModuleName(), lowestScrollLevel, scrollTypeId);
         Icon icon = getView().getSelectedModuleIcon();
-        return modelCreator.createModel(itemId, icon);
+        return modelCreator.createModel(itemId);
     }
 
     private Integer getLowestScrollLevel() {

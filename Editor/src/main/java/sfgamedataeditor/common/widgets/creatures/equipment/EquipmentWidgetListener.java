@@ -121,17 +121,17 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
     }
 
     private void updateItemNames() {
-        // TODO incorrect select - "Hand - 2" is clashed with "items.rune.hero.in.inventory - 2"
         ObjectTuple tuple = (ObjectTuple) getWidget().getItemTypeComboBox().getSelectedItem();
-        String itemTypeI18NKey = ViewTools.getKeyStringByPropertyValue(String.valueOf(tuple.getObjectId()), I18NTypes.ITEM_TYPES_NAME_MAPPING);
+        String itemTypeI18NKey;
         List<ObjectTuple> itemNames;
-        if (itemTypeI18NKey == null) {
+        itemTypeI18NKey = ViewTools.getKeyStringByPropertyValue(tuple.getName(), I18NTypes.WEAPON_GUI);
+        if (itemTypeI18NKey == null || itemTypeI18NKey.isEmpty()) {
+            itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(tuple.getObjectId());
+        } else {
             itemNames = WeaponParametersTableService.INSTANCE.getItemsByItemType(tuple.getObjectId());
             if (itemNames.isEmpty()) {
                 itemNames = ArmorParametersTableService.INSTANCE.getOrbNames();
             }
-        } else {
-            itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(tuple.getObjectId());
         }
 
         final JComboBox<ObjectTuple> itemPieceComboBox = getWidget().getItemPieceComboBox();

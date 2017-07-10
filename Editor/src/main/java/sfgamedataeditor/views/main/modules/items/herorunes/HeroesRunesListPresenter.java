@@ -18,6 +18,6 @@ public class HeroesRunesListPresenter extends AbstractModulesPresenter<ModulePar
     protected HeroesRunesParametersModel createModel() {
         Integer itemId = getView().getSelectedModuleObjectId();
         Icon icon = getView().getSelectedModuleIcon();
-        return modelCreator.createModel(itemId, icon);
+        return modelCreator.createModel(itemId);
     }
 }

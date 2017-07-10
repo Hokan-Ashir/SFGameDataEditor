@@ -9,12 +9,12 @@ import sfgamedataeditor.database.spells.parameters.SpellParametersObject;
 import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModel;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterModelParameter;
 import sfgamedataeditor.views.main.modules.spells.schools.spells.parameters.SpellParameterView;
 import sfgamedataeditor.views.utility.SilentComboBoxValuesSetter;
 import sfgamedataeditor.views.utility.ViewTools;
-import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -46,14 +46,14 @@ public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNum
 
     private void setSelectedSpellName(SpellParametersObject spellParametersObject) {
         String spellName = SpellNameTableService.INSTANCE.getSpellName(spellParametersObject.spellNameId);
-        final JComboBox<String> spellNameComboBox = getWidget().getSpellNameComboBox();
-        ComboBoxModel<String> comboBoxModel = spellNameComboBox.getModel();
+        final JComboBox<ObjectTuple> spellNameComboBox = getWidget().getSpellNameComboBox();
+        ComboBoxModel<ObjectTuple> comboBoxModel = spellNameComboBox.getModel();
         int size = comboBoxModel.getSize();
         for (int i = 0; i < size; ++i) {
-            String element = comboBoxModel.getElementAt(i);
-            if (element.equals(spellName)) {
+            ObjectTuple element = comboBoxModel.getElementAt(i);
+            if (element.getName().equals(spellName)) {
                 final int finalI = i;
-                ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<String>(spellNameComboBox) {
+                ViewTools.setComboBoxValuesSilently(new SilentComboBoxValuesSetter<ObjectTuple>(spellNameComboBox) {
                     @Override
                     protected void setValues() {
                         spellNameComboBox.setSelectedItem(spellNameComboBox.getItemAt(finalI));
@@ -130,29 +130,17 @@ public class EffectNumberWidgetListener extends AbstractWidgetListener<EffectNum
         }
         Integer selectedSpellNameId = selectedSpellParameterObject.spellNameId;
 
-        String selectedSpellName = (String) getWidget().getSpellNameComboBox().getSelectedItem();
-        Icon icon = getSpellIcon(selectedSpellName);
+        ObjectTuple tuple = (ObjectTuple) getWidget().getSpellNameComboBox().getSelectedItem();
+        Icon icon = ImageIconsCache.INSTANCE.getImageIcon("/images/spells_and_scrolls/", tuple.getObjectId());
         SpellParameterModelParameter parameter = new SpellParameterModelParameter(selectedSpellNameId, selectedSpellLevelInteger, icon);
         SpellParameterModel model = new SpellParameterModel(parameter);
         ShowContentViewEvent event = new ShowContentViewEvent(SpellParameterView.class, model);
         EventProcessor.INSTANCE.process(event);
     }
 
-    private Icon getSpellIcon(String selectedSpellName) {
-        String spellNameKey = ViewTools.getKeyStringByPropertyValue(selectedSpellName, I18NTypes.SPELLS_GUI);
-        if (spellNameKey == null) {
-            return null;
-        }
-
-        spellNameKey = spellNameKey.replaceAll("(.*)\\.name", "$1");
-
-        String iconPath = "/images/spells_and_scrolls/" + spellNameKey + ".png";
-        return ImageIconsCache.INSTANCE.getImageIcon(iconPath);
-    }
-
     private SpellParametersObject getSelectedSpellParameterObject() {
-        String spellName = (String) getWidget().getSpellNameComboBox().getSelectedItem();
-        SpellNameObject spellNameObject = SpellNameTableService.INSTANCE.getSpellName(spellName);
+        ObjectTuple tuple = (ObjectTuple) getWidget().getSpellNameComboBox().getSelectedItem();
+        SpellNameObject spellNameObject = SpellNameTableService.INSTANCE.getSpellName(tuple.getName());
 
         String spellLevel = (String) getWidget().getSpellLevelComboBox().getSelectedItem();
         return SpellParametersTableService.INSTANCE.getSpellParameterBySpellIdAndLevel(spellNameObject.spellType, Integer.parseInt(spellLevel));

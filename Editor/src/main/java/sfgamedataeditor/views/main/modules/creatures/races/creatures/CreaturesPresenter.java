@@ -17,6 +17,6 @@ public class CreaturesPresenter extends AbstractModulesPresenter<CreaturesModelP
     protected CreaturesParametersModel createModel() {
         Integer creatureId =  getView().getSelectedModuleObjectId();
         Icon icon = getView().getSelectedModuleIcon();
-        return modelCreator.createModel(creatureId, icon);
+        return modelCreator.createModel(creatureId);
     }
 }

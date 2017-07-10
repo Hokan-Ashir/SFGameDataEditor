@@ -27,6 +27,6 @@ public class WeaponPiecesPresenter extends AbstractModulesPresenter<WeaponPieces
         String selectedWeaponPiece = getView().getSelectedModuleName();
         int itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(selectedWeaponPiece, WEAPON_TYPE_IDS);
         Icon icon = getView().getSelectedModuleIcon();
-        return modelCreator.createModel(itemId, icon);
+        return modelCreator.createModel(itemId);
     }
 }

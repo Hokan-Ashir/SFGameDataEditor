@@ -1,5 +1,6 @@
 package sfgamedataeditor.views.main.modules.creatures.races.creatures;
 
+import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.database.creatures.common.CreaturesCommonParameterObject;
 import sfgamedataeditor.database.creatures.corpseloot.CreatureCorpseLootObject;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class CreaturesModelCreator implements ModelCreator<CreaturesParametersModel> {
     @Override
-    public CreaturesParametersModel createModel(int objectId, Icon icon) {
+    public CreaturesParametersModel createModel(int objectId) {
         CreaturesCommonParameterObject commonParameterObject = CreatureCommonParametersTableService.INSTANCE.getCreatureParametersByCreatureId(objectId);
         Integer creatureId = commonParameterObject.creatureId;
         CreatureParameterObject creatureParameterObject = CreatureParametersTableService.INSTANCE.getCreatureParameterObjectByCreatureName(creatureId);
@@ -29,8 +30,14 @@ public class CreaturesModelCreator implements ModelCreator<CreaturesParametersMo
         List<CreatureSpellObject> creatureSpells = CreatureSpellTableService.INSTANCE.getCreatureSpellsByCreatureId(objectId);
         List<CreatureCorpseLootObject> corpseLootObjects = CreatureCorpseLootTableService.INSTANCE.getCreatureCorpseLootByCreatureId(objectId);
         List<ObjectTuple> itemIds = MerchantInventoryItemsTableService.INSTANCE.getInventoryItemIdsByMerchantName(objectId);
+        Icon icon = ImageIconsCache.INSTANCE.getImageIcon(getIconPath(), objectId);
         CreaturesParametersModelParameter parameter = new CreaturesParametersModelParameter(creatureParameterObject, commonParameterObject,
                 creatureEquipment, creatureSpells, corpseLootObjects, itemIds, null, icon);
         return new CreaturesParametersModel(parameter);
+    }
+
+    @Override
+    public String getIconPath() {
+        return "/images/creatures/";
     }
 }

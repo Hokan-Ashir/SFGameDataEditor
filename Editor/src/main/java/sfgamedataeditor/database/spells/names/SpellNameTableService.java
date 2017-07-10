@@ -5,6 +5,7 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
+import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.ViewTools;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
@@ -100,6 +101,7 @@ public enum SpellNameTableService {
         final Dao<SpellNameObject, String> dao;
         try {
             dao = DaoManager.createDao(connectionSource, SpellNameObject.class);
+            // TODO wrap this pup with Args wrapper; and also in TextTableService; everywhere where String equal condition involved
             List<SpellNameObject> query = dao.queryBuilder().selectColumns("spellType").where().eq("name", spellName).query();
             if (query == null || query.isEmpty()) {
                 return null;
@@ -142,11 +144,11 @@ public enum SpellNameTableService {
         }
     }
 
-    public List<String> getAllSpellNames() {
+    public List<ObjectTuple> getAllSpellNames() {
         List<SpellNameObject> allTableData = CommonTableService.INSTANCE.getAllTableData(SpellNameObject.class);
-        List<String> result = new ArrayList<>();
+        List<ObjectTuple> result = new ArrayList<>();
         for (SpellNameObject spellNameObject : allTableData) {
-            result.add(spellNameObject.name);
+            result.add(new ObjectTuple(spellNameObject.name, spellNameObject.spellType));
         }
 
         return result;

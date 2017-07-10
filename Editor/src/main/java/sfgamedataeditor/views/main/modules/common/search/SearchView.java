@@ -215,7 +215,7 @@ public class SearchView implements PresentableView {
                 } else {
                     Pair<ModelCreator, Class<? extends PresentableView>> pair = modelCreatorsMap.get(selectedItem.getElementType());
                     parametersClass = pair.getValue();
-                    model = pair.getKey().createModel(elementId, null);
+                    model = pair.getKey().createModel(elementId);
                 }
 
                 EventProcessor.INSTANCE.process(new ShowContentViewEvent(parametersClass, model));

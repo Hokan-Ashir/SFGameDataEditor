@@ -1,5 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.spellscrolls.schools;
 
+import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.text.TextTableService;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 public class SpellScrollsModelCreator implements ModelCreator<SpellScrollsParametersModel> {
     @Override
-    public SpellScrollsParametersModel createModel(int objectId, Icon icon) {
+    public SpellScrollsParametersModel createModel(int objectId) {
         ItemPriceParametersObject objectByItemId = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(objectId);
         ObjectTuple objectTuple = TextTableService.INSTANCE.getObjectTuple(objectByItemId.nameId, objectByItemId.itemId);
         String scrollName = objectTuple.getName();
@@ -29,8 +30,14 @@ public class SpellScrollsModelCreator implements ModelCreator<SpellScrollsParame
         if (!scrollLevelString.isEmpty()) {
             scrollLevel = Integer.valueOf(scrollLevelString);
         }
+        Icon icon = ImageIconsCache.INSTANCE.getImageIcon(getIconPath(), objectId);
         SpellScrollsParametersModelParameter parameter = new SpellScrollsParametersModelParameter(baseScrollName, scrollLevel, levelToItemsIdMap, icon);
         return new SpellScrollsParametersModel(parameter);
+    }
+
+    @Override
+    public String getIconPath() {
+        return "/images/spells_and_scrolls/";
     }
 
     private Map<Integer, Pair<Integer, Integer>> getLevelToItemsIdMap(String baseScrollName) {

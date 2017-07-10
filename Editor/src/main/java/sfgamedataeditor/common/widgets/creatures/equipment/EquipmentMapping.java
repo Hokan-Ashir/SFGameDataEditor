@@ -215,9 +215,7 @@ public enum EquipmentMapping {
         int itemTypeId = ItemPriceParametersTableService.INSTANCE.getItemTypeIdByItemId(itemId);
         Pair<Class<? extends PresentableView>, ModelCreator> pair = itemTypesClassViews.get(itemTypeId);
         if (pair.getValue() != null) {
-
-            // TODO add Icon creation
-            return pair.getValue().createModel(itemId, null);
+            return pair.getValue().createModel(itemId);
         } else {
             return null;
         }

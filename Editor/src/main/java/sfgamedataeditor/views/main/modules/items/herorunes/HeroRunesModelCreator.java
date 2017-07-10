@@ -1,5 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.herorunes;
 
+import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.creatures.herospells.HeroSpellObject;
 import sfgamedataeditor.database.creatures.herospells.HeroSpellTableService;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
@@ -17,12 +18,18 @@ import java.util.List;
 
 public class HeroRunesModelCreator implements ModelCreator<HeroesRunesParametersModel> {
     @Override
-    public HeroesRunesParametersModel createModel(int objectId, Icon icon) {
+    public HeroesRunesParametersModel createModel(int objectId) {
         ItemPriceParametersObject priceParametersObject = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(objectId);
         CreatureParameterObject creatureParameterObject = CreatureParametersTableService.INSTANCE.getCreatureObjectByStatsId(priceParametersObject.unitStatsId);
         List<CreatureSkillObject> creatureSkills = CreatureSkillTableService.INSTANCE.getCreatureSkillsByStatsId(priceParametersObject.unitStatsId);
         List<HeroSpellObject> heroSpellObjects = HeroSpellTableService.INSTANCE.getHeroSpellsByCreatureId(priceParametersObject.unitStatsId);
+        Icon icon = ImageIconsCache.INSTANCE.getImageIcon(getIconPath(), objectId);
         HeroesRunesParametersModelParameter parameter = new HeroesRunesParametersModelParameter(priceParametersObject, creatureParameterObject, creatureSkills, heroSpellObjects, icon);
         return new HeroesRunesParametersModel(parameter);
+    }
+
+    @Override
+    public String getIconPath() {
+        return "/images/heroes/";
     }
 }

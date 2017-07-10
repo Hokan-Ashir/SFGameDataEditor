@@ -1,6 +1,5 @@
 package sfgamedataeditor.views.main.modules.items.spellscrolls.schools;
 
-import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
 import sfgamedataeditor.database.spells.names.SpellNameTableService;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
@@ -12,7 +11,6 @@ import sfgamedataeditor.views.main.modules.items.spellscrolls.schools.parameters
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,9 +61,8 @@ public class SpellScrollsListView extends AbstractModulesView {
     }
 
     @Override
-    protected ImageIcon getPanelImageByObjectId(Integer objectId) {
-        String iconPath = "/images/spells_and_scrolls/" + objectId + ".png";
-        return ImageIconsCache.INSTANCE.getImageIcon(iconPath);
+    protected String getIconPath() {
+        return "/images/spells_and_scrolls/";
     }
 
     @Override

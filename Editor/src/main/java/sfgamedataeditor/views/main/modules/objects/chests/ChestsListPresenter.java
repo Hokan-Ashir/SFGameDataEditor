@@ -22,6 +22,6 @@ public class ChestsListPresenter extends AbstractModulesPresenter<ModuleParamete
         String selectedModuleName = getView().getSelectedModuleName();
         Integer chestLootId = ViewTools.getKeyByPropertyValue(selectedModuleName, I18NTypes.OBJECTS);
         Icon icon = getView().getSelectedModuleIcon();
-        return creator.createModel(chestLootId, icon);
+        return creator.createModel(chestLootId);
     }
 }

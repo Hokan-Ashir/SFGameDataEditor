@@ -25,6 +25,6 @@ public class WorkersRuneRacesPresenter extends AbstractModulesPresenter<ModulePa
         String runeName = runesNames.get(0).getName();
         Integer itemId = ItemPriceParametersTableService.INSTANCE.getItemIdByItemNameAndType(runeName, itemType);
         Icon icon = getView().getSelectedModuleIcon();
-        return modelCreator.createModel(itemId, icon);
+        return modelCreator.createModel(itemId);
     }
 }

@@ -1,6 +1,7 @@
 package sfgamedataeditor.views.common.views;
 
 import org.apache.log4j.Logger;
+import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.SubViewPanel;
@@ -91,8 +92,8 @@ public abstract class AbstractModulesView implements PresentableView {
         Collections.sort(subViewsPanels, subViewPanelComparator);
     }
 
-    protected ImageIcon getPanelImageByObjectId(Integer objectId) {
-        return null;
+    protected String getIconPath() {
+        return "";
     }
 
     protected void addMappings(List<SubViewPanelTuple> mappings) {
@@ -121,7 +122,7 @@ public abstract class AbstractModulesView implements PresentableView {
     }
 
     private void setPanelImageAndSize(JButton button, Integer objectId) {
-        ImageIcon icon = getPanelImageByObjectId(objectId);
+        ImageIcon icon = ImageIconsCache.INSTANCE.getImageIcon(getIconPath(), objectId);
         button.setIcon(icon);
         button.setVerticalTextPosition(SwingConstants.BOTTOM);
         button.setHorizontalTextPosition(SwingConstants.CENTER);

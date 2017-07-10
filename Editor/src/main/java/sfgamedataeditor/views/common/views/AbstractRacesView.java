@@ -1,12 +1,10 @@
 package sfgamedataeditor.views.common.views;
 
-import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.mvc.objects.PresentableView;
 import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.utility.i18n.I18NService;
 import sfgamedataeditor.views.utility.i18n.I18NTypes;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +35,7 @@ public abstract class AbstractRacesView extends AbstractModulesView {
     }
 
     @Override
-    protected ImageIcon getPanelImageByObjectId(Integer objectId) {
-        String iconPath = "/images/races/" + objectId + ".png";
-        return ImageIconsCache.INSTANCE.getImageIcon(iconPath);
+    protected String getIconPath() {
+        return "/images/races/";
     }
 }

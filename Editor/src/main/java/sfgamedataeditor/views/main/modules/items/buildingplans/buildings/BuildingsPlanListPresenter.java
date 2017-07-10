@@ -17,6 +17,6 @@ public class BuildingsPlanListPresenter extends AbstractModulesPresenter<Buildin
     protected BuildingPlansParametersModel createModel() {
         Integer itemId = getView().getSelectedModuleObjectId();
         Icon icon = getView().getSelectedModuleIcon();
-        return modelCreator.createModel(itemId, icon);
+        return modelCreator.createModel(itemId);
     }
 }

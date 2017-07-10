@@ -1,5 +1,6 @@
 package sfgamedataeditor.views.main.modules.items.workersrunes;
 
+import sfgamedataeditor.common.cache.icons.ImageIconsCache;
 import sfgamedataeditor.database.creatures.parameters.CreatureParameterObject;
 import sfgamedataeditor.database.creatures.parameters.CreatureParametersTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersObject;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 public class WorkerRunesModelCreator implements ModelCreator<WorkersRunesParametersModel> {
     @Override
-    public WorkersRunesParametersModel createModel(int objectId, Icon icon) {
+    public WorkersRunesParametersModel createModel(int objectId) {
         // TODO improve performance, maybe =)
         ItemPriceParametersObject object = ItemPriceParametersTableService.INSTANCE.getObjectByItemId(objectId);
         List<ObjectTuple> tuples = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(object.typeId);
@@ -29,7 +30,13 @@ public class WorkerRunesModelCreator implements ModelCreator<WorkersRunesParamet
         }
 
         ObjectTuple itemName = TextTableService.INSTANCE.getObjectTuple(object.nameId, objectId);
+        Icon icon = ImageIconsCache.INSTANCE.getImageIcon(getIconPath(), objectId);
         WorkersRunesParametersModelParameter parameter = new WorkersRunesParametersModelParameter(itemName.getName(), 1, runeLevelToItemIdMap, icon);
         return new WorkersRunesParametersModel(parameter);
+    }
+
+    @Override
+    public String getIconPath() {
+        return "/images/races/";
     }
 }

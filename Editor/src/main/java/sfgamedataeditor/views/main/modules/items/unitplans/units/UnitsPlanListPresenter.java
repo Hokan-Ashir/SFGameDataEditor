@@ -17,6 +17,6 @@ public class UnitsPlanListPresenter extends AbstractModulesPresenter<UnitsPlanLi
     protected UnitsPlansParametersModel createModel() {
         int itemId = getView().getSelectedModuleObjectId();
         Icon icon = getView().getSelectedModuleIcon();
-        return modelCreator.createModel(itemId, icon);
+        return modelCreator.createModel(itemId);
     }
 }

@@ -50,15 +50,10 @@ public class UnitWidgetListener extends AbstractWidgetListener<UnitWidget, Offse
     @Override
     public void actionPerformed(ActionEvent e) {
         ObjectTuple tuple = (ObjectTuple) getWidget().getUnitComboBox().getSelectedItem();
-        Icon icon = getUnitIcon(tuple.getObjectId());
-        UnitsParametersModel model = modelCreator.createModel(tuple.getObjectId(), icon);
+        Icon icon = ImageIconsCache.INSTANCE.getImageIcon("/images/units/", tuple.getObjectId());
+        UnitsParametersModel model = modelCreator.createModel(tuple.getObjectId());
         ShowContentViewEvent event = new ShowContentViewEvent(UnitsParametersView.class, model);
         EventProcessor.INSTANCE.process(event);
-    }
-
-    private Icon getUnitIcon(Integer creatureId) {
-        String iconPath = "/images/units/" + creatureId + ".png";
-        return ImageIconsCache.INSTANCE.getImageIcon(iconPath);
     }
 
     @Override

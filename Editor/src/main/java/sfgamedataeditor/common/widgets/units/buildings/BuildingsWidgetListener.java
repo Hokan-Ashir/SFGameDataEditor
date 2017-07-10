@@ -57,15 +57,10 @@ public class BuildingsWidgetListener extends AbstractWidgetListener<BuildingsWid
     public void actionPerformed(ActionEvent e) {
         ObjectTuple tuple = (ObjectTuple) getWidget().getBuildingComboBox().getSelectedItem();
         Integer buildingId = tuple.getObjectId();
-        Icon icon = getBuildingIcon(buildingId);
-        BuildingsParametersModel model = modelCreator.createModel(buildingId, icon);
+        Icon icon = ImageIconsCache.INSTANCE.getImageIcon("/images/buildings/", buildingId);
+        BuildingsParametersModel model = modelCreator.createModel(buildingId);
         ShowContentViewEvent event = new ShowContentViewEvent(BuildingsParametersView.class, model);
         EventProcessor.INSTANCE.process(event);
-    }
-
-    private Icon getBuildingIcon(Integer buildingId) {
-        String iconPath = "/images/buildings/" + buildingId + ".png";
-        return ImageIconsCache.INSTANCE.getImageIcon(iconPath);
     }
 
     @Override
