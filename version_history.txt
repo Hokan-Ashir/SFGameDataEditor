@@ -1,5 +1,17 @@
 Freezing development for quite some time
 
+alpha-9 (21.07.2017)
+ - Translated many French GUI localizations (thanks to Berzetoberze)
+ - Added localization of "Extinct", "Pain Tower", "Extinct Tower", "Pain Area", "Tower Stone", "Arrow Tower", "Protection Black", "Stone Rain", "Blizzard", "Rain of Fire" spells
+ - Added ability to change weapon (like Everflame, Earthblade) stats
+ - Added orbs (as weapons)
+ - Added all other races creatures images, like Skeletions, Shial Elves, Winterguard etc.
+ - Added races images
+ - Added determination of language locale based on user's operation system locale
+ - Added localization of creatures/items directly from Gamedata.cff
+ - Added memorizing of previously selected file names of Gamedata.cff and sf-mod files
+ - Added switching localization in real time (a bit hanging of UI is acceptable)
+
 alpha-8 (02.05.2017)
  - Added search over all database (chests, buildings, creatures, items)
  - Merchant parameters merged into creatures

@@ -22,19 +22,20 @@ See "What it can't do" section below to be aware of restrictions.
  - Editing workers and heroes runes parameters i.e. how make Dwarves be revived at night like Dark Elves or how to add Warrior Kord more strength and fight speed
  - Editing units and buildings plans, i.e. how to give elves ability to build Fishman's Hat or let Orcs summon Clerics
  - Editing chest corpse loot, like chests, logs, corpses, skeletons etc.
+ - Editing player stats parameters, i.e. how many XP you should have to up to level 6 or what armor/health modifier you have on that level
  - Creating compact sf-mod files, which stores your modifications
  - Loading sf-mod files created by other users
  - Merging sf-mod files with your GameData.cff files to get modificated data, which you can test in game
 
 # What it can't do
  - Add new elements. It's tricky to explain easy, but game will crush if we will add anything into Gamedata.cff file
- - Currently NO localization for creature names, creature races and items cause they are too many (in progress) 
- - No other languages except English, Russian, German and French
+ - Currently NO localization for gui on different languages (in progress) 
+ - No other languages except English, Russian, German, French, Spanish, Italian, Polish
 
 # How to launch it
  - Install, at least, Java 7 from Oracle site (see https://www.java.com/download/)
- - Download Editor-alpha-8.jar from (https://github.com/Hokan-Ashir/SFGameDataEditor/tree/master/Editor/bin)
- - Double-click on Editor-alpha-8.jar OR run with "java -jar Editor-alpha-8.jar" command in console
+ - Download Editor-alpha-9.jar from (https://github.com/Hokan-Ashir/SFGameDataEditor/tree/master/Editor/bin)
+ - Double-click on Editor-alpha-8.jar OR run with "java -jar Editor-alpha-9.jar" command in console
  
 # How to use it
  - After launch you can select editor's language
