@@ -46,9 +46,8 @@ public final class FileUtils {
         }
 
         FileStorageObject fileStorage = FileStorageService.INSTANCE.getFileStorage();
-        String[] split = fileStorage.pathToGameDataCff.split("/");
-        String originalFileName = split[split.length - 1];
-        String originalFileDirectory = fileStorage.pathToGameDataCff.replaceAll(originalFileName, "");
+        String originalFileName = new File(fileStorage.pathToGameDataCff).getName();
+        String originalFileDirectory = new File(fileStorage.pathToGameDataCff).getParent() + File.separator;
         String modificationFileName = originalFileName + MOD_FILE_EXTENSION;
         try {
             file.close();
@@ -60,9 +59,8 @@ public final class FileUtils {
 
     public static RandomAccessFile createTemporaryModificationFile() {
         FileStorageObject fileStorage = FileStorageService.INSTANCE.getFileStorage();
-        String[] split = fileStorage.pathToGameDataCff.split("/");
-        String originalFileName = split[split.length - 1];
-        String originalFileDirectory = fileStorage.pathToGameDataCff.replaceAll(originalFileName, "");
+        String originalFileName = new File(fileStorage.pathToGameDataCff).getName();
+        String originalFileDirectory = new File(fileStorage.pathToGameDataCff).getParent() + File.separator;
         String modificationFileName = originalFileName + MOD_FILE_EXTENSION;
         String modificationFileDirectory = originalFileDirectory + modificationFileName;
 
@@ -117,9 +115,8 @@ public final class FileUtils {
 
     public static boolean isModificationFileBasedOnOriginalFile(String sfModificationFilePath) {
         FileStorageObject fileStorage = FileStorageService.INSTANCE.getFileStorage();
-        String[] split = fileStorage.pathToGameDataCff.split("/");
-        String originalFileName = split[split.length - 1];
-        String originalFileDirectory = fileStorage.pathToGameDataCff.replaceAll(originalFileName, "");
+        String originalFileName = new File(fileStorage.pathToGameDataCff).getName();
+        String originalFileDirectory = new File(fileStorage.pathToGameDataCff).getParent() + File.separator;
         String originalFilePath = originalFileDirectory + originalFileName;
         String tempExtractedFilePath = originalFilePath + TMP_FILE_EXTENSION;
 

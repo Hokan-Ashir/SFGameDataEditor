@@ -58,9 +58,8 @@ public class CreateSfModFileButtonListener implements ActionListener {
         DataFilesParser.INSTANCE.dropDatabaseChangesIntoModificationFile();
 
         FileStorageObject fileStorage = FileStorageService.INSTANCE.getFileStorage();
-        String[] split = fileStorage.pathToGameDataCff.split("/");
-        String originalFileName = split[split.length - 1];
-        String originalFileDirectory = fileStorage.pathToGameDataCff.replaceAll(originalFileName, "");
+        String originalFileName = new File(fileStorage.pathToGameDataCff).getName();
+        String originalFileDirectory = new File(fileStorage.pathToGameDataCff).getParent() + File.separator;
         String originalFilePath = originalFileDirectory + originalFileName;
         String tempDiffFilePath = originalFilePath + FileUtils.TMP_FILE_EXTENSION;
         String modificationFileName = originalFileName + FileUtils.MOD_FILE_EXTENSION;
