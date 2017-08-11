@@ -166,12 +166,12 @@ public abstract class AbstractModulesView implements PresentableView {
     }
 
     public Class<? extends PresentableView> getSubPanelViewClass(JButton clickedButton) {
-        if (clickedButton.equals(selectedPanel.getButton())) {
+        if (clickedButton.getText().equals(selectedPanel.getButton().getText())) {
             return this.getClass();
         }
 
         for (SubViewPanel subViewsPanel : subViewsPanels) {
-            if (subViewsPanel.getButton().equals(clickedButton)) {
+            if (subViewsPanel.getButton().getText().equals(clickedButton.getText())) {
                 return subViewsPanel.getSubViewClass();
             }
         }

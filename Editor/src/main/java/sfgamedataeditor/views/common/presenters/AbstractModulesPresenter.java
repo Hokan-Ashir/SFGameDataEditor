@@ -11,6 +11,7 @@ import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.common.SubViewPanel;
 import sfgamedataeditor.views.common.views.AbstractModulesView;
 import sfgamedataeditor.views.main.MainView;
+import sfgamedataeditor.views.main.modules.ModulesView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -94,14 +95,15 @@ public abstract class AbstractModulesPresenter<P extends AbstractSubModuleParame
                 return;
             }
 
-            getView().setSelectedModuleValue(source.getText());
+            Class<? extends PresentableView> classViewToShow = getView().getSubPanelViewClass(source);
             Integer subPanelViewObjectId = getView().getSubPanelViewObjectId(source);
             getView().setSelectedObjectId(subPanelViewObjectId);
-            Class<? extends PresentableView> classViewToShow = getView().getSubPanelViewClass(source);
             Model model;
-            if (source.equals(getView().getSelectedPanelButton())) {
+            if (source.getText().equals(getView().getSelectedPanelButton().getText()) && !(getView().getClass().equals(ModulesView.class))) {
+                getView().setSelectedModuleValue(source.getText());
                 model = getModel();
             } else {
+                getView().setSelectedModuleValue(source.getText());
                 model = createModel();
             }
 
