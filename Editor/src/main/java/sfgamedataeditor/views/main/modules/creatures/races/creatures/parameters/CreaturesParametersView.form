@@ -2,12 +2,12 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.main.modules.creatures.races.creatures.parameters.CreaturesParametersView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="216" y="30" width="1290" height="872"/>
+      <xy x="216" y="30" width="1550" height="872"/>
     </constraints>
     <properties>
-      <maximumSize width="1100" height="600"/>
-      <minimumSize width="1100" height="600"/>
-      <preferredSize width="1100" height="600"/>
+      <maximumSize width="1550" height="600"/>
+      <minimumSize width="1550" height="600"/>
+      <preferredSize width="1550" height="600"/>
     </properties>
     <border type="none"/>
     <children>
@@ -19,9 +19,9 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="900" height="600"/>
-          <minimumSize width="900" height="600"/>
-          <preferredSize width="900" height="600"/>
+          <maximumSize width="1350" height="600"/>
+          <minimumSize width="1350" height="600"/>
+          <preferredSize width="1350" height="600"/>
         </properties>
         <border type="none"/>
         <children>
@@ -445,9 +445,9 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="255" height="110"/>
-                  <minimumSize width="255" height="110"/>
-                  <preferredSize width="255" height="110"/>
+                  <maximumSize width="405" height="110"/>
+                  <minimumSize width="405" height="110"/>
+                  <preferredSize width="405" height="110"/>
                 </properties>
                 <border type="etched"/>
                 <children/>
@@ -458,9 +458,9 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="255" height="110"/>
-                  <minimumSize width="255" height="110"/>
-                  <preferredSize width="255" height="110"/>
+                  <maximumSize width="405" height="110"/>
+                  <minimumSize width="405" height="110"/>
+                  <preferredSize width="405" height="110"/>
                 </properties>
                 <border type="etched"/>
                 <children/>
@@ -471,9 +471,9 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="255" height="110"/>
-                  <minimumSize width="255" height="110"/>
-                  <preferredSize width="255" height="110"/>
+                  <maximumSize width="405" height="110"/>
+                  <minimumSize width="405" height="110"/>
+                  <preferredSize width="405" height="110"/>
                 </properties>
                 <border type="etched"/>
                 <children/>
@@ -484,9 +484,9 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="255" height="110"/>
-                  <minimumSize width="255" height="110"/>
-                  <preferredSize width="255" height="110"/>
+                  <maximumSize width="405" height="110"/>
+                  <minimumSize width="405" height="110"/>
+                  <preferredSize width="405" height="110"/>
                 </properties>
                 <border type="etched"/>
                 <children/>
@@ -497,9 +497,9 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="255" height="110"/>
-                  <minimumSize width="255" height="110"/>
-                  <preferredSize width="255" height="110"/>
+                  <maximumSize width="405" height="110"/>
+                  <minimumSize width="405" height="110"/>
+                  <preferredSize width="405" height="110"/>
                 </properties>
                 <border type="etched"/>
                 <children/>
@@ -510,9 +510,9 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="255" height="110"/>
-                  <minimumSize width="255" height="110"/>
-                  <preferredSize width="255" height="110"/>
+                  <maximumSize width="405" height="110"/>
+                  <minimumSize width="405" height="110"/>
+                  <preferredSize width="405" height="110"/>
                 </properties>
                 <border type="etched"/>
                 <children/>
@@ -523,9 +523,9 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="255" height="110"/>
-                  <minimumSize width="255" height="110"/>
-                  <preferredSize width="255" height="110"/>
+                  <maximumSize width="405" height="110"/>
+                  <minimumSize width="405" height="110"/>
+                  <preferredSize width="405" height="110"/>
                 </properties>
                 <border type="etched"/>
                 <children/>
@@ -700,9 +700,9 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="255" height="110"/>
-                  <minimumSize width="255" height="110"/>
-                  <preferredSize width="255" height="110"/>
+                  <maximumSize width="405" height="110"/>
+                  <minimumSize width="405" height="110"/>
+                  <preferredSize width="405" height="110"/>
                 </properties>
                 <border type="etched"/>
                 <children/>
@@ -737,9 +737,9 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="255" height="110"/>
-                  <minimumSize width="255" height="110"/>
-                  <preferredSize width="255" height="110"/>
+                  <maximumSize width="405" height="110"/>
+                  <minimumSize width="405" height="110"/>
+                  <preferredSize width="405" height="110"/>
                   <requestFocusEnabled value="false"/>
                 </properties>
                 <border type="etched"/>
@@ -751,9 +751,9 @@
                   <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="255" height="110"/>
-                  <minimumSize width="255" height="110"/>
-                  <preferredSize width="255" height="110"/>
+                  <maximumSize width="405" height="110"/>
+                  <minimumSize width="405" height="110"/>
+                  <preferredSize width="405" height="110"/>
                 </properties>
                 <border type="etched"/>
                 <children/>
@@ -847,9 +847,9 @@
                   <gridbag top="0" left="5" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <maximumSize width="255" height="110"/>
-                  <minimumSize width="255" height="110"/>
-                  <preferredSize width="255" height="110"/>
+                  <maximumSize width="405" height="110"/>
+                  <minimumSize width="405" height="110"/>
+                  <preferredSize width="405" height="110"/>
                 </properties>
                 <border type="etched"/>
                 <children/>

@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="sfgamedataeditor.views.main.modules.objects.chests.parameters.ChestParametersView">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="795" height="400"/>
+      <xy x="20" y="20" width="1245" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -37,9 +37,9 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="255" height="110"/>
-          <minimumSize width="255" height="110"/>
-          <preferredSize width="255" height="110"/>
+          <maximumSize width="405" height="110"/>
+          <minimumSize width="405" height="110"/>
+          <preferredSize width="405" height="110"/>
         </properties>
         <border type="etched"/>
         <children/>
@@ -63,9 +63,9 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="255" height="110"/>
-          <minimumSize width="255" height="110"/>
-          <preferredSize width="255" height="110"/>
+          <maximumSize width="405" height="110"/>
+          <minimumSize width="405" height="110"/>
+          <preferredSize width="405" height="110"/>
           <requestFocusEnabled value="false"/>
         </properties>
         <border type="etched"/>
@@ -77,9 +77,9 @@
           <gridbag top="5" left="5" bottom="5" right="5" weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
-          <maximumSize width="255" height="110"/>
-          <minimumSize width="255" height="110"/>
-          <preferredSize width="255" height="110"/>
+          <maximumSize width="405" height="110"/>
+          <minimumSize width="405" height="110"/>
+          <preferredSize width="405" height="110"/>
         </properties>
         <border type="etched"/>
         <children/>

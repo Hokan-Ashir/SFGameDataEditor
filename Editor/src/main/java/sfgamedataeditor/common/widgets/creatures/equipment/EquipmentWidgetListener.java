@@ -24,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.lang.reflect.Field;
+import java.util.Collections;
 import java.util.List;
 
 public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWidget, OffsetableObject> implements ItemListener, ActionListener {
@@ -136,6 +137,7 @@ public class EquipmentWidgetListener extends AbstractWidgetListener<EquipmentWid
 
         final JComboBox<ObjectTuple> itemPieceComboBox = getWidget().getItemPieceComboBox();
         itemPieceComboBox.removeAllItems();
+        Collections.sort(itemNames);
         for (ObjectTuple itemName : itemNames) {
             itemPieceComboBox.addItem(itemName);
         }
