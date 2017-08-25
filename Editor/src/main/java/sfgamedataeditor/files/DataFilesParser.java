@@ -35,6 +35,7 @@ import sfgamedataeditor.database.spells.parameters.SpellParametersTableService;
 import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.views.utility.Pair;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -120,9 +121,8 @@ public enum DataFilesParser {
 
     public void dropDatabaseChangesIntoModificationFile() {
         FileStorageObject fileStorage = FileStorageService.INSTANCE.getFileStorage();
-        String[] split = fileStorage.pathToGameDataCff.split("/");
-        String originalFileName = split[split.length - 1];
-        String originalFileDirectory = fileStorage.pathToGameDataCff.replaceAll(originalFileName, "");
+        String originalFileName = new File(fileStorage.pathToGameDataCff).getName();
+        String originalFileDirectory = new File(fileStorage.pathToGameDataCff).getParent() + File.separator;
         String modificationFileName = originalFileName + FileUtils.MOD_FILE_EXTENSION;
 
         Path originalFilePath = Paths.get(originalFileDirectory + originalFileName);
