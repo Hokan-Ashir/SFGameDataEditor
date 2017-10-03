@@ -3,6 +3,7 @@ package sfgamedataeditor.database.common;
 import org.apache.log4j.Logger;
 import org.mozilla.universalchardet.UniversalDetector;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 import java.util.HashMap;
@@ -42,8 +43,10 @@ public enum ObjectDataMappingService {
                         // juniversalchardet will incorrectly detect "Cp1251" charset, considering "Cp1251" as MACCYRILLIC
                         // so if detector actually detected anything, just admit - this is russian language encoded via "Cp1251"
                         // 38285
-                        if (detectCharset.equals("MACCYRILLIC") || detectCharset.equals("IBM855")) {
-                            string = new String(buffer, offset, length, Charset.forName("Cp1251")).trim();
+                        if (detectCharset.equals("MACCYRILLIC") || detectCharset.equals("IBM855") || detectCharset.equals("ISO-8859-8") || detectCharset.equals("WINDOWS-1255")
+                                 || detectCharset.equals("ISO-8859-7") || detectCharset.equals("ISO-8859-5") || detectCharset.equals("IBM866") || detectCharset.equals("KOI8-R")
+                                || detectCharset.equals("WINDOWS-1252")) {
+                            string = new String(buffer, offset, length, Charset.forName("WINDOWS-1251")).trim();
                         } else {
                             string = new String(buffer, offset, length, Charset.forName(detectCharset)).trim();
                         }
@@ -118,7 +121,7 @@ public enum ObjectDataMappingService {
                     }
                 } else if (type.isAssignableFrom(String.class)) {
                     String value = (String) field.get(daoObject);
-                    byte[] valueBytes = value.getBytes();
+                    byte[] valueBytes = value.getBytes("utf-8");
                     String detectCharset = detectCharset(valueBytes, 0, valueBytes.length);
                     byte[] bytes;
                     if (detectCharset == null) {
@@ -140,7 +143,7 @@ public enum ObjectDataMappingService {
                         }
                     }
                 }
-            } catch (IllegalAccessException | ArrayIndexOutOfBoundsException e) {
+            } catch (IllegalAccessException | ArrayIndexOutOfBoundsException | UnsupportedEncodingException e) {
                 LOGGER.error(e.getMessage(), e);
             }
         }
