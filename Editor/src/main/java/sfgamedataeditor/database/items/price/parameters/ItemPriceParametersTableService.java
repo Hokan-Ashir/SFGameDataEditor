@@ -112,7 +112,7 @@ public enum ItemPriceParametersTableService implements TableCreationService {
         }
     }
 
-    public List<ObjectTuple> getItemNameIdPairByItemNamePart(String namePart, Long limit, Integer typeId) {
+    public List<ObjectTuple> getItemNameIdPairByTextIds(List<Integer> textIds, Long limit, Integer typeId) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<ItemPriceParametersObject, String> dao;
         try {
@@ -123,15 +123,15 @@ public enum ItemPriceParametersTableService implements TableCreationService {
         }
 
         try {
-            List<ItemPriceParametersObject> objects = dao.queryBuilder().selectColumns("nameId", "itemId").limit(limit).where().eq("typeId", typeId).query();
-            Integer[] textIds = new Integer[objects.size()];
-            Integer[] itemIds = new Integer[objects.size()];
+            List<ItemPriceParametersObject> objects = dao.queryBuilder().selectColumns("nameId", "itemId").limit(limit).where().eq("typeId", typeId).and().in("nameId", textIds).query();
+            Integer[] nameIds = new Integer[objects.size()];
+            Integer[] objectIds = new Integer[objects.size()];
             for (int i = 0; i < objects.size(); ++i) {
-                textIds[i] = objects.get(i).nameId;
-                itemIds[i] = objects.get(i).itemId;
+                nameIds[i] = objects.get(i).nameId;
+                objectIds[i] = objects.get(i).itemId;
             }
 
-            return TextTableService.INSTANCE.getObjectTuples(textIds, itemIds);
+            return TextTableService.INSTANCE.getObjectTuples(nameIds, objectIds);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();

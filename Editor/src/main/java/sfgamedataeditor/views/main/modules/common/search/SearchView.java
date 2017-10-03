@@ -3,6 +3,7 @@ package sfgamedataeditor.views.main.modules.common.search;
 import sfgamedataeditor.common.widgets.creatures.equipment.EquipmentMapping;
 import sfgamedataeditor.database.creatures.common.CreatureCommonParametersTableService;
 import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
+import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.events.processing.EventProcessor;
 import sfgamedataeditor.events.types.ShowContentViewEvent;
 import sfgamedataeditor.mvc.objects.AbstractPresenter;
@@ -99,34 +100,32 @@ public class SearchView implements PresentableView {
         }
 
         private List<SearchTuple> getSuggestedElements(String text) {
-            List<SearchTuple> elements = getItemsSuggestions(text);
+            List<Integer> textIds = TextTableService.INSTANCE.getObjectsNameIdsByRegExp(text);
 
+            List<SearchTuple> elements = getItemsSuggestions(textIds);
             if (elements.size() < MAXIMUM_NUMBER_OF_SUGGESTIONS) {
-                addCreaturesSuggestions(text, elements);
+                addCreaturesSuggestions(textIds, elements);
             }
 
             if (elements.size() < MAXIMUM_NUMBER_OF_SUGGESTIONS) {
-                addBuildingsSuggestions(text, elements);
+                addBuildingsSuggestions(textIds, elements);
             }
 
             if (elements.size() < MAXIMUM_NUMBER_OF_SUGGESTIONS) {
-                addObjectsSuggestions(text, elements);
+                addObjectsSuggestions(textIds, elements);
             }
 
             Collections.sort(elements);
             return elements;
         }
 
-        private void addBuildingsSuggestions(String text, List<SearchTuple> elements) {
+        private void addBuildingsSuggestions(List<Integer> textIds, List<SearchTuple> elements) {
             // TODO rewrite it, like as creatures
 //            addI18nElementsSuggestions(text, elements, BUILDINGS_TYPE_OBJECT, I18NTypes.BUILDING_NAMES_MAPPING);
         }
 
-        private void addObjectsSuggestions(String text, List<SearchTuple> elements) {
-            addI18nElementsSuggestions(text, elements, OBJECTS_TYPE_OBJECT, I18NTypes.OBJECTS);
-        }
-
-        private void addI18nElementsSuggestions(String text, List<SearchTuple> elements, Integer objectType, I18NTypes I18NKey) {
+        private void addObjectsSuggestions(List<Integer> textIds, List<SearchTuple> elements) {
+            /*addI18nElementsSuggestions(text, elements, OBJECTS_TYPE_OBJECT, I18NTypes.OBJECTS);
             Set<String> keySet = I18NService.INSTANCE.getBundle(I18NKey).keySet();
             for (String key : keySet) {
                 String elementName = I18NService.INSTANCE.getMessage(I18NKey, key);
@@ -137,22 +136,22 @@ public class SearchView implements PresentableView {
                 if (elements.size() >= MAXIMUM_NUMBER_OF_SUGGESTIONS) {
                     return;
                 }
-            }
+            }*/
         }
 
-        private void addCreaturesSuggestions(String text, List<SearchTuple> elements) {
-            List<ObjectTuple> objects = CreatureCommonParametersTableService.INSTANCE.getCreaturesNameIdPairByItemNamePart(text, MAXIMUM_NUMBER_OF_SUGGESTIONS - elements.size());
+        private void addCreaturesSuggestions(List<Integer> textIds, List<SearchTuple> elements) {
+            List<ObjectTuple> objects = CreatureCommonParametersTableService.INSTANCE.getCreaturesNameIdPairByTextIds(textIds, MAXIMUM_NUMBER_OF_SUGGESTIONS - elements.size());
             for (ObjectTuple object : objects) {
                 elements.add(new SearchTuple(CREATURES_TYPE_OBJECT, object.getName(), object.getObjectId()));
             }
         }
 
-        private List<SearchTuple> getItemsSuggestions(String text) {
+        private List<SearchTuple> getItemsSuggestions(List<Integer> textIds) {
             List<SearchTuple> elements = new ArrayList<>();
             List<Integer> typesWithParameters = EquipmentMapping.INSTANCE.getItemTypesWithParameters();
             for (Integer type : typesWithParameters) {
                 if (elements.size() < MAXIMUM_NUMBER_OF_SUGGESTIONS) {
-                    List<ObjectTuple> objects = ItemPriceParametersTableService.INSTANCE.getItemNameIdPairByItemNamePart(text, MAXIMUM_NUMBER_OF_SUGGESTIONS - elements.size(), type);
+                    List<ObjectTuple> objects = ItemPriceParametersTableService.INSTANCE.getItemNameIdPairByTextIds(textIds, MAXIMUM_NUMBER_OF_SUGGESTIONS - elements.size(), type);
                     for (ObjectTuple object : objects) {
                         elements.add(new SearchTuple(type, object.getName(), object.getObjectId()));
                     }

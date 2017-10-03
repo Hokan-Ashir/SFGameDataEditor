@@ -5,7 +5,6 @@ import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.GenericRawResults;
 import com.j256.ormlite.dao.RawRowMapper;
 import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
@@ -109,19 +108,7 @@ public enum CreatureCommonParametersTableService implements TableCreationService
         }
     }
 
-    public List<ObjectTuple> getCreaturesNameIdPairByItemNamePart(String namePart, Long limit) {
-        List<CreaturesCommonParameterObject> objects = getObjectsByNamePart(namePart, limit);
-        Integer[] nameIds = new Integer[objects.size()];
-        Integer[] objectIds = new Integer[objects.size()];
-        for (int i = 0; i < objects.size(); ++i) {
-            nameIds[i] = objects.get(i).nameId;
-            objectIds[i] = objects.get(i).creatureId;
-        }
-
-        return TextTableService.INSTANCE.getObjectTuples(nameIds, objectIds);
-    }
-
-    private List<CreaturesCommonParameterObject> getObjectsByNamePart(String partName, Long limit) {
+    public List<ObjectTuple> getCreaturesNameIdPairByTextIds(List<Integer> textIds, Long limit) {
         ConnectionSource connectionSource = CommonTableService.INSTANCE.getConnectionSource();
         final Dao<CreaturesCommonParameterObject, String> dao;
         try {
@@ -132,9 +119,17 @@ public enum CreatureCommonParametersTableService implements TableCreationService
         }
 
         try {
-            SelectArg selectArg = new SelectArg("%" + partName + "%");
             QueryBuilder<CreaturesCommonParameterObject, String> builder = dao.queryBuilder().limit(limit);
-            return builder.selectColumns("creatureId", "nameId").where().like("name", selectArg).query();
+            List<CreaturesCommonParameterObject> objects = builder.selectColumns("creatureId", "nameId").where().in("nameId", textIds).query();
+
+            Integer[] nameIds = new Integer[objects.size()];
+            Integer[] objectIds = new Integer[objects.size()];
+            for (int i = 0; i < objects.size(); ++i) {
+                nameIds[i] = objects.get(i).nameId;
+                objectIds[i] = objects.get(i).creatureId;
+            }
+
+            return TextTableService.INSTANCE.getObjectTuples(nameIds, objectIds);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage(), e);
             return Collections.emptyList();

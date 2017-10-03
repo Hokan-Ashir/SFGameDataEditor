@@ -1,7 +1,7 @@
 package sfgamedataeditor.views.main.modules.items.weapons.pieces.list.parameters;
 
 import sfgamedataeditor.database.items.armor.parameters.ArmorParametersTableService;
-import sfgamedataeditor.database.items.price.parameters.ItemPriceParametersTableService;
+import sfgamedataeditor.database.items.weapon.parameters.WeaponParametersTableService;
 import sfgamedataeditor.database.text.TextTableService;
 import sfgamedataeditor.mvc.ModelCreator;
 import sfgamedataeditor.views.common.ObjectTuple;
@@ -19,9 +19,8 @@ public class WeaponPiecesFromWeaponParametersModelCreator implements ModelCreato
                 && childModel.getParameter().getWeaponParametersObject() == null) {
             itemNames = ArmorParametersTableService.INSTANCE.getOrbNames();
         } else {
-
-            Integer typeId = childModel.getParameter().getPriceParametersObject().typeId;
-            itemNames = ItemPriceParametersTableService.INSTANCE.getItemsByItemType(typeId);
+            Integer typeId = childModel.getParameter().getWeaponParametersObject().type;
+            itemNames = WeaponParametersTableService.INSTANCE.getItemsByItemType(typeId);
         }
         Integer nameId = childModel.getParameter().getPriceParametersObject().nameId;
         ObjectTuple selectedItem = TextTableService.INSTANCE.getObjectTuple(nameId, nameId);

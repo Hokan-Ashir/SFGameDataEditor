@@ -4,6 +4,8 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.GenericRawResults;
 import com.j256.ormlite.dao.RawRowMapper;
+import com.j256.ormlite.stmt.SelectArg;
+import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
 import sfgamedataeditor.database.common.CommonTableService;
@@ -70,11 +72,12 @@ public enum TextTableService implements TableCreationService {
         }
 
         try {
-            List<TextObject> objects = dao.queryBuilder().selectColumns("text", "textId")
+            Where<TextObject, String> where = dao.queryBuilder().selectColumns("text", "textId")
                     .orderBy("textId", true)
                     .where().in("textId", (Object[]) nameIds)
                     .and().eq("isDialogue", 0)
-                    .and().eq("languageId", LocalizationService.INSTANCE.getLanguageId()).query();
+                    .and().eq("languageId", LocalizationService.INSTANCE.getLanguageId());
+            List<TextObject> objects = where.query();
             if (objects.isEmpty()) {
                 List<ObjectTuple> result = new ArrayList<>();
                 for (Integer objectId : objectIds) {
@@ -116,9 +119,10 @@ public enum TextTableService implements TableCreationService {
             return Collections.emptyList();
         }
 
+        SelectArg textArg = new SelectArg(text);
         try {
             return dao.queryBuilder().where()
-                    .eq("text", text)
+                    .like("text", textArg)
                     .and().eq("isDialogue", 0)
                     .and().eq("languageId", LocalizationService.INSTANCE.getLanguageId()).query();
         } catch (SQLException e) {
