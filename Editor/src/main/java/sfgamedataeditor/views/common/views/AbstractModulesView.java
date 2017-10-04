@@ -11,7 +11,10 @@ import sfgamedataeditor.views.common.managers.DefaultModulesPanelManager;
 
 import javax.swing.*;
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import static java.awt.Component.LEFT_ALIGNMENT;
 
@@ -37,7 +40,7 @@ public abstract class AbstractModulesView implements PresentableView {
             return;
         }
 
-        refillSubViewsMapping();
+        fillSubViewsMappings();
     }
 
     private JPanel createSelectedRenderPanel() {
@@ -52,41 +55,21 @@ public abstract class AbstractModulesView implements PresentableView {
 
     public abstract void fillSubViewsMappings();
 
-    protected void refillSubViewsMapping() {
-        subViewsPanels.clear();
-        fillSubViewsMappings();
-    }
-
     public void updateSubViewsLayout() {
         panelManager.updatePanelsLayout(subViewsPanels);
     }
 
     public void addMappings(List<ObjectTuple> mappings, Class<? extends PresentableView> viewClass) {
-        int size = mappings.size();
-        int subViewsSize = subViewsPanels.size();
-        if (subViewsSize < size) {
-            for (int i = 0; i < size - subViewsSize; i++) {
-                subViewsPanels.add(new SubViewPanel());
-            }
-        }
-
-        Iterator<SubViewPanel> iterator = subViewsPanels.iterator();
-        Iterator<ObjectTuple> stringIterator = mappings.iterator();
-        while (iterator.hasNext()) {
-            SubViewPanel subViewPanel = iterator.next();
+        subViewsPanels.clear();
+        for (ObjectTuple tuple : mappings) {
+            SubViewPanel subViewPanel = new SubViewPanel();
+            String name = tuple.getName();
             JButton button = subViewPanel.getButton();
-            if (stringIterator.hasNext()) {
-                ObjectTuple tuple = stringIterator.next();
-                String name = tuple.getName();
-                setPanelImageAndSize(button, tuple.getObjectId());
-
-                button.setText(name);
-                button.setVisible(true);
-                subViewPanel.setSubViewClass(viewClass);
-                subViewPanel.setObjectId(tuple.getObjectId());
-            } else {
-                button.setVisible(false);
-            }
+            button.setText(name);
+            setPanelImageAndSize(button, tuple.getObjectId());
+            subViewPanel.setSubViewClass(viewClass);
+            subViewPanel.setObjectId(tuple.getObjectId());
+            subViewsPanels.add(subViewPanel);
         }
 
         Collections.sort(subViewsPanels, subViewPanelComparator);
@@ -97,25 +80,16 @@ public abstract class AbstractModulesView implements PresentableView {
     }
 
     protected void addMappings(List<SubViewPanelTuple> mappings) {
-        int size = mappings.size();
-        int subViewsSize = subViewsPanels.size();
-        if (subViewsSize < size) {
-            for (int i = 0; i < size - subViewsSize; i++) {
-                subViewsPanels.add(new SubViewPanel());
-            }
-        }
-
-        Iterator<SubViewPanel> iterator = subViewsPanels.iterator();
-        Iterator<SubViewPanelTuple> tupleIterator = mappings.iterator();
-        while (iterator.hasNext()) {
-            SubViewPanel subViewPanel = iterator.next();
-            SubViewPanelTuple tuple = tupleIterator.next();
+        subViewsPanels.clear();
+        for (SubViewPanelTuple tuple : mappings) {
+            SubViewPanel subViewPanel = new SubViewPanel();
             String name = tuple.getName();
             JButton button = subViewPanel.getButton();
             button.setText(name);
             setPanelImageAndSize(button, tuple.getObjectId());
             subViewPanel.setSubViewClass(tuple.getPresentableViewClass());
             subViewPanel.setObjectId(tuple.getObjectId());
+            subViewsPanels.add(subViewPanel);
         }
 
         Collections.sort(subViewsPanels, subViewPanelComparator);
@@ -166,12 +140,12 @@ public abstract class AbstractModulesView implements PresentableView {
     }
 
     public Class<? extends PresentableView> getSubPanelViewClass(JButton clickedButton) {
-        if (clickedButton.getText().equals(selectedPanel.getButton().getText())) {
+        if (clickedButton.equals(selectedPanel.getButton())) {
             return this.getClass();
         }
 
         for (SubViewPanel subViewsPanel : subViewsPanels) {
-            if (subViewsPanel.getButton().getText().equals(clickedButton.getText())) {
+            if (subViewsPanel.getButton().equals(clickedButton)) {
                 return subViewsPanel.getSubViewClass();
             }
         }

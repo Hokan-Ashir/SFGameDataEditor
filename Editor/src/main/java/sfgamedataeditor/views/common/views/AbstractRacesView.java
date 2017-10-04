@@ -41,7 +41,6 @@ public abstract class AbstractRacesView extends AbstractModulesView {
 
     @Override
     public void localize() {
-        refillSubViewsMapping();
         setModuleName(I18NService.INSTANCE.getMessage(I18NTypes.COMMON, "races"));
     }
 }
