@@ -44,6 +44,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public enum DataFilesParser {
@@ -147,7 +148,7 @@ public enum DataFilesParser {
                 Long offset = offsetableObject.getOffset();
                 try {
                     file.seek(offset);
-                    byte[] bytes = ObjectDataMappingService.INSTANCE.serializeObject(offsetableObject);
+                    byte[] bytes = service.serializeObject(offsetableObject);
                     file.write(bytes);
                 } catch (IOException e) {
                     LOGGER.error(e.getMessage(), e);

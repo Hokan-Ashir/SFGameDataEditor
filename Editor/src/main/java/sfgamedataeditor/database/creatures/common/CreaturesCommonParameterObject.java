@@ -3,6 +3,7 @@ package sfgamedataeditor.database.creatures.common;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import sfgamedataeditor.database.common.Data;
+import sfgamedataeditor.database.common.Encoding;
 import sfgamedataeditor.database.common.OffsetableObject;
 
 @SuppressWarnings("unused")
@@ -62,4 +63,12 @@ public class CreaturesCommonParameterObject extends OffsetableObject {
     @Data(offset = 63, length = 1)
     @DatabaseField
     private Integer unknown4;
+
+    @Encoding(isSource = true)
+    @DatabaseField
+    public String sourceEncoding;
+
+    @Encoding(isSource = false)
+    @DatabaseField
+    public String currentEncoding;
 }

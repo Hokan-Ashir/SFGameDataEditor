@@ -4,9 +4,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
-import sfgamedataeditor.database.common.CommonTableService;
-import sfgamedataeditor.database.common.OffsetableObject;
-import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.database.common.*;
 import sfgamedataeditor.database.creatures.equipment.CreatureEquipmentTableService;
 import sfgamedataeditor.views.utility.Pair;
 
@@ -17,6 +15,9 @@ import java.util.List;
 
 public enum HeroSpellTableService implements TableCreationService {
     INSTANCE {
+
+        private Serializer serializer = new DefaultSerializer();
+
         @Override
         public void createTable() {
             CommonTableService.INSTANCE.recreateTable(HeroSpellObject.class);
@@ -24,7 +25,12 @@ public enum HeroSpellTableService implements TableCreationService {
 
         @Override
         public void addRecordsToTable(List<Pair<byte[], Long>> offsettedData) {
-            CommonTableService.INSTANCE.addRecordsToTable(HeroSpellObject.class, offsettedData);
+            CommonTableService.INSTANCE.addRecordsToTable(HeroSpellObject.class, offsettedData, serializer);
+        }
+
+        @Override
+        public byte[] serializeObject(OffsetableObject object) {
+            return ObjectDataMappingService.INSTANCE.serializeObject(object, serializer);
         }
 
         @Override

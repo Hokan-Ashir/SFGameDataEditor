@@ -3,6 +3,7 @@ package sfgamedataeditor.database.text;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import sfgamedataeditor.database.common.Data;
+import sfgamedataeditor.database.common.Encoding;
 import sfgamedataeditor.database.common.OffsetableObject;
 
 @SuppressWarnings("unused")
@@ -31,4 +32,12 @@ public class TextObject extends OffsetableObject {
     @Data(offset = 54, length = 512)
     @DatabaseField(width = 512)
     public String text;
+
+    @Encoding(isSource = true)
+    @DatabaseField
+    public String sourceEncoding;
+
+    @Encoding(isSource = false)
+    @DatabaseField
+    public String currentEncoding;
 }

@@ -8,10 +8,7 @@ import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import org.apache.log4j.Logger;
-import sfgamedataeditor.database.common.CommonTableService;
-import sfgamedataeditor.database.common.DTOFilter;
-import sfgamedataeditor.database.common.OffsetableObject;
-import sfgamedataeditor.database.common.TableCreationService;
+import sfgamedataeditor.database.common.*;
 import sfgamedataeditor.views.common.ObjectTuple;
 import sfgamedataeditor.views.main.modules.common.localization.LocalizationService;
 import sfgamedataeditor.views.utility.Pair;
@@ -23,6 +20,9 @@ import java.util.List;
 
 public enum TextTableService implements TableCreationService {
     INSTANCE {
+        private DTOFilter filter = new TextFilter();
+        private Serializer serializer = new TextSerializer();
+
         @Override
         public void createTable() {
             CommonTableService.INSTANCE.recreateTable(TextObject.class);
@@ -30,7 +30,12 @@ public enum TextTableService implements TableCreationService {
 
         @Override
         public void addRecordsToTable(List<Pair<byte[], Long>> offsettedData) {
-            CommonTableService.INSTANCE.addRecordsToTable(TextObject.class, offsettedData, new TextFilter());
+            CommonTableService.INSTANCE.addRecordsToTable(TextObject.class, offsettedData, filter, serializer);
+        }
+
+        @Override
+        public byte[] serializeObject(OffsetableObject object) {
+            return ObjectDataMappingService.INSTANCE.serializeObject(object, serializer);
         }
 
         @Override

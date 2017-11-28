@@ -31,11 +31,11 @@ public enum CommonTableService {
         }
     }
 
-    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final  List<Pair<byte[], Long>> offsetedData) {
-        addRecordsToTable(ormClass, offsetedData, null);
+    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final  List<Pair<byte[], Long>> offsetedData, Serializer serializer) {
+        addRecordsToTable(ormClass, offsetedData, null, serializer);
     }
 
-    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final  List<Pair<byte[], Long>> offsetedData, final DTOFilter filter) {
+    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final  List<Pair<byte[], Long>> offsetedData, final DTOFilter filter, final Serializer serializer) {
         ConnectionSource connectionSource = getConnectionSource();
         final Dao<T, String> dao;
         try {
@@ -54,7 +54,7 @@ public enum CommonTableService {
                             continue;
                         }
 
-                        T object = createObject(ormClass, longPair.getKey());
+                        T object = createObject(ormClass, longPair.getKey(), serializer);
                         object.setOffset(longPair.getValue());
                         dao.create(object);
                     }
@@ -67,7 +67,7 @@ public enum CommonTableService {
         }
     }
 
-    private <T> T createObject(Class<T> objectClass, byte[] buffer) {
+    private <T> T createObject(Class<T> objectClass, byte[] buffer, Serializer serializer) {
         T object;
         try {
             object = objectClass.newInstance();
@@ -76,7 +76,7 @@ public enum CommonTableService {
             return null;
         }
 
-        ObjectDataMappingService.INSTANCE.fillObjectWithData(object, buffer);
+        ObjectDataMappingService.INSTANCE.fillObjectWithData(object, buffer, serializer);
         return object;
     }
 
