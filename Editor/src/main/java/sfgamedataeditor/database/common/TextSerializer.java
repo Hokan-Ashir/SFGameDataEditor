@@ -3,9 +3,9 @@ package sfgamedataeditor.database.common;
 import org.apache.log4j.Logger;
 import org.mozilla.universalchardet.UniversalDetector;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.Map;
 
 public class TextSerializer extends DefaultSerializer {
@@ -36,21 +36,19 @@ public class TextSerializer extends DefaultSerializer {
             String string;
             if (detectCharset == null) {
                 string = new String(buffer, offset, length).trim();
-                setEncoding(object, Charset.defaultCharset().name(), true);
             } else {
                 // juniversalchardet will incorrectly detect "Cp1251" charset, considering "Cp1251" as MACCYRILLIC
                 // so if detector actually detected anything, just admit - this is russian language encoded via "Cp1251"
                 // 38285
-//                if (detectCharset.equals("MACCYRILLIC") || detectCharset.equals("WINDOWS-1255") ||
-//                        detectCharset.equals("ISO-8859-5") || detectCharset.equals("KOI8-R")
-//                        || detectCharset.equals("WINDOWS-1252")) {
-//                    string = new String(buffer, offset, length, Charset.forName("WINDOWS-1251")).trim();
-//                } else {
+                if (detectCharset.equals("MACCYRILLIC") || detectCharset.equals("IBM855") || detectCharset.equals("ISO-8859-8") || detectCharset.equals("WINDOWS-1255")
+                        || detectCharset.equals("ISO-8859-7") || detectCharset.equals("ISO-8859-5") || detectCharset.equals("IBM866") || detectCharset.equals("KOI8-R")
+                        || detectCharset.equals("WINDOWS-1252")) {
+                    string = new String(buffer, offset, length, Charset.forName("WINDOWS-1251")).trim();
+                } else {
                     string = new String(buffer, offset, length, Charset.forName(detectCharset)).trim();
-//                }
-                setEncoding(object, detectCharset, true);
+                }
             }
-            setEncoding(object, Charset.defaultCharset().name(), false);
+            setOriginalContent(object,field, buffer, offset, length);
             field.set(object, string);
         } catch (IllegalAccessException e) {
             LOGGER.error(e.getMessage(), e);
@@ -60,13 +58,25 @@ public class TextSerializer extends DefaultSerializer {
         return true;
     }
 
-    private void setEncoding(Object object, String value, boolean isSourceEncoding) {
+    private void setOriginalContent(Object object, Field field, byte[] buffer, int offset, int length) {
+        OriginalContent originalContent = field.getAnnotation(OriginalContent.class);
+        if (originalContent == null) {
+            LOGGER.error("No " + OriginalContent.class.getName() + " annotation presents over " + field.getName());
+            return;
+        }
+
+        if (originalContent.isSource()) {
+            LOGGER.error(OriginalContent.class.getName() + " is source annotation");
+            return;
+        }
+
         try {
-            for (Field field : object.getClass().getDeclaredFields()) {
-                Encoding annotation = field.getAnnotation(Encoding.class);
-                if (annotation != null && annotation.isSource() == isSourceEncoding) {
-                    field.setAccessible(true);
-                    field.set(object, value);
+            for (Field innerField : object.getClass().getDeclaredFields()) {
+                OriginalContent annotation = innerField.getAnnotation(OriginalContent.class);
+                if (annotation != null && annotation.isSource()
+                        && annotation.number() == originalContent.number()) {
+                    innerField.setAccessible(true);
+                    innerField.set(object, Arrays.copyOfRange(buffer, offset, offset + length));
                 }
             }
         } catch (IllegalAccessException e) {
@@ -95,55 +105,49 @@ public class TextSerializer extends DefaultSerializer {
         Field field = dataPairFieldEntry.getValue();
         field.setAccessible(true);
         byte[] result = new byte[objectByteLength];
-        try {
-            Class<?> type = field.getType();
-            if (!type.isAssignableFrom(String.class)) {
-                return null;
-            }
-
-            String value = (String) field.get(object);
-            byte[] valueBytes = value.getBytes(getEncoding(object, false));
-            String detectCharset = detectCharset(valueBytes, 0, valueBytes.length);
-            byte[] bytes;
-            if (detectCharset == null) {
-                bytes = valueBytes;
-            } else {
-                try {
-                    bytes = value.getBytes(Charset.forName(getEncoding(object, true)));
-                } catch (IllegalArgumentException e) {
-                    bytes = value.getBytes(Charset.defaultCharset().name());
-                }
-            }
-            for (int i = offset, j = 0; i < (offset + length); i++, j++) {
-                if (bytes.length <= j) {
-                    result[i] = 0;
-                } else {
-                    result[i] = bytes[j];
-                }
-            }
-
-        } catch (IllegalAccessException | UnsupportedEncodingException e) {
-            LOGGER.error(e.getMessage(), e);
+        Class<?> type = field.getType();
+        if (!type.isAssignableFrom(String.class)) {
             return null;
+        }
+
+
+        byte[] bytes = getOriginalContent(object, field);
+        for (int i = offset, j = 0; i < (offset + length); i++, j++) {
+            if (bytes.length <= j) {
+                result[i] = 0;
+            } else {
+                result[i] = bytes[j];
+            }
         }
 
         return result;
     }
 
-    private String getEncoding(Object object, boolean isSourceEncoding) {
+    private byte[] getOriginalContent(Object object, Field field) {
+        OriginalContent originalContent = field.getAnnotation(OriginalContent.class);
+        if (originalContent == null) {
+            LOGGER.error("No " + OriginalContent.class.getName() + " annotation presents over " + field.getName());
+            return null;
+        }
+
+        if (originalContent.isSource()) {
+            LOGGER.error(OriginalContent.class.getName() + " is source annotation");
+            return null;
+        }
+
         try {
-            for (Field field : object.getClass().getDeclaredFields()) {
-                Encoding annotation = field.getAnnotation(Encoding.class);
-                if (annotation != null && annotation.isSource() == isSourceEncoding) {
-                    field.setAccessible(true);
-                    return (String) field.get(object);
+            for (Field innerField : object.getClass().getDeclaredFields()) {
+                OriginalContent annotation = innerField.getAnnotation(OriginalContent.class);
+                if (annotation != null && annotation.isSource() && annotation.number() == originalContent.number()) {
+                    innerField.setAccessible(true);
+                    return (byte[]) innerField.get(object);
                 }
             }
         } catch (IllegalAccessException e) {
             LOGGER.error(e.getMessage(), e);
-            return "";
+            return null;
         }
 
-        return "";
+        return null;
     }
 }

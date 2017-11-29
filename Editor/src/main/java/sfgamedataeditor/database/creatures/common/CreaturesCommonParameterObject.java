@@ -1,9 +1,10 @@
 package sfgamedataeditor.database.creatures.common;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 import sfgamedataeditor.database.common.Data;
-import sfgamedataeditor.database.common.Encoding;
+import sfgamedataeditor.database.common.OriginalContent;
 import sfgamedataeditor.database.common.OffsetableObject;
 
 @SuppressWarnings("unused")
@@ -55,6 +56,7 @@ public class CreaturesCommonParameterObject extends OffsetableObject {
 
     // 4D 65 72 63 68 61 6E 74 20 4B 6C 61 75 73 00 00 00 00 00 00 00 00 00
     // 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 - unit name in gamedata file
+    @OriginalContent(number = 1, isSource = false)
     @Data(offset = 23, length = 40)
     @DatabaseField
     private String unitNameId;
@@ -64,11 +66,7 @@ public class CreaturesCommonParameterObject extends OffsetableObject {
     @DatabaseField
     private Integer unknown4;
 
-    @Encoding(isSource = true)
-    @DatabaseField
-    public String sourceEncoding;
-
-    @Encoding(isSource = false)
-    @DatabaseField
-    public String currentEncoding;
+    @OriginalContent(number = 1, isSource = true)
+    @DatabaseField(dataType = DataType.BYTE_ARRAY)
+    public byte[] unitNameIdContent;
 }
