@@ -31,11 +31,11 @@ public enum CommonTableService {
         }
     }
 
-    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final  List<Pair<byte[], Long>> offsetedData, Serializer serializer) {
+    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final List<Pair<byte[], Long>> offsetedData, Serializer serializer) {
         addRecordsToTable(ormClass, offsetedData, null, serializer);
     }
 
-    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final  List<Pair<byte[], Long>> offsetedData, final DTOFilter filter, final Serializer serializer) {
+    public <T extends OffsetableObject> void addRecordsToTable(final Class<T> ormClass, final List<Pair<byte[], Long>> offsetedData, final DTOFilter filter, final Serializer serializer) {
         ConnectionSource connectionSource = getConnectionSource();
         final Dao<T, String> dao;
         try {
@@ -56,7 +56,11 @@ public enum CommonTableService {
 
                         T object = createObject(ormClass, longPair.getKey(), serializer);
                         object.setOffset(longPair.getValue());
-                        dao.create(object);
+                        try {
+                            dao.create(object);
+                        } catch (SQLException e) {
+                            LOGGER.error(e.getMessage(), e);
+                        }
                     }
 
                     return null;
